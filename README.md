@@ -66,6 +66,6 @@ and for code quality see [that one](https://github.com/marketplace/category/code
 - [ ] sppplus_connect
 - [ ] sppplus_taxonconcept
 - [ ] cites_legislation
-- [ ] cites_distribution
+- [ ] taxon_distribution
 - [ ] cites_eu_legislation
-- [ ] cites_references
+- [ ] taxon_references
