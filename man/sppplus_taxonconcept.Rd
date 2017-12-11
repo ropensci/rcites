@@ -7,20 +7,18 @@
 sppplus_taxonconcept(cnx, query = "Smaug giganteus", appendix_only = TRUE)
 }
 \arguments{
-\item{cnx}{species+ connection information (see \code{\link[citesr]{sppplus_connect}})}
+\item{query}{character string containing the query (e.g. species)}
 
-\item{query}{character string containing the query}
-
-\item{appendix_only}{a logical statement for querying information in the Appendix. Default is TRUE.}
+\item{appendix_only}{a logical statement for querying only the appendix number information. Default is TRUE.}
 }
 \value{
-If appendix_only is TRUE, returns a dataframe with taxon and cites_listing. If appendix_only is FALSE, returns a list with all matching taxon_concepts.
+If appendix_only is TRUE, returns a dataframe with taxon and cites_listing. If appendix_only is FALSE, returns a list with all taxon_concept information.
 }
 \description{
 Queries CITES species+ API using connection generated from \code{\link[citesr]{sppplus_connect}}. The query string filters species+ data by taxon concept (e.g.species, genus, class)
 }
 \examples{
-cnx <- sppplus_connect(token = 'ErJcYxUsIApHLCLOxiJ1Zwtt')
+cnx <- sppplus_connect(token = 'insert token here')
 sppplus_taxonconcept(cnx, query = 'Smaug giganteus', appendix_only = TRUE)
 sppplus_taxonconcept(cnx, query = 'Homo sapiens', appendix_only = TRUE)
 }
