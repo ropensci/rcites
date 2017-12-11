@@ -60,3 +60,12 @@ and for code quality see [that one](https://github.com/marketplace/category/code
 - Marie-Bé Leduc/ Email: mledu050@uottawa.ca / Git: mbhleduc
 - Kevin Cazelles / Email: kcazelle@uoguelph.ca / GitHub: KevCaz
 - Ignasi Bartomeus / Email: nacho.bartomeus@gmail.com / GitHub: ibartomeus
+
+
+# names for functions:
+- sppplus_connect
+- cites_taxonconcepts
+- cites_legislation
+- cites_distributions
+- cites_eu_legislation
+- cites_references
