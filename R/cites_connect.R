@@ -1,5 +1,5 @@
 require("httr")
-require(RCurl)
+require("RCurl")
 
 #' Creates a connection.
 #'
@@ -13,10 +13,10 @@ require(RCurl)
 #' This connection object can be used to discover and access to resources.
 #' @export
 #' @examples
-#' cnx <- connect("url", "user", "token")
+#' cnx <- cites_connect(token = "ErJcYxUsIApHLCLOxiJ1Zwtt")
 
-connect <- function(url="https://api.speciesplus.net/api/v1/taxon_concepts.xml?name=",
-                    token="ErJcYxUsIApHLCLOxiJ1Zwtt") {
+cites_connect <- function(url="https://api.speciesplus.net/api/v1/taxon_concepts.xml?name=",
+                    token) {
   #check URL is up
   urlbase <- httr::handle(url)
   rping <- httr::GET(handle=urlbase, path="ping")
@@ -24,11 +24,6 @@ connect <- function(url="https://api.speciesplus.net/api/v1/taxon_concepts.xml?n
   list(url, token)
 }
 
-con <- connect( token = "ErJcYxUsIApHLCLOxiJ1Zwtt")
 
-acces <- function(con = con, query = "Mammalia"){
-  getURI(url = paste(con[[1]], query, sep = ""),
-         httpheader = paste("X-Authentication-Token: ", con[[2]], sep = ""))
-}
 
 
