@@ -22,6 +22,16 @@ taxon_distribution(cnx, query_taxon = 'Loxodonta africana', country_only = TRUE)
 ```
 
 
+# Example
+
+```R
+library(rworldmap)
+map1 <- taxon_distribution(cnx, query_taxon = 'Loxodonta africana', country_only = TRUE)
+map2 <- joinCountryData2Map(map1, joinCode="ISO2", nameJoinColumn = "iso2", nameCountryColumn = "distribution")
+mapCountryData(mapToPlot = map2, nameColumnToPlot = "taxon", mapRegion = "africa", mapTitle = "taxon")
+```
+
+![](inst/Elephant.jpeg)
 
 -------------------------------------------------------
 
