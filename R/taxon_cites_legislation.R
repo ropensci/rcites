@@ -12,10 +12,14 @@
 #' @export
 #' @examples
 #' cnx <- sppplus_connect(token = 'ErJcYxUsIApHLCLOxiJ1Zwtt')
-#' taxon_cites_legislation(cnx, query_taxon = 'Loxodonta africana', suspension = TRUE)
+#' taxon_cites_legislation(cnx, taxon_id = '4521', suspension = TRUE)
 
-taxon_cites_legislation <- function(cnx, query_taxon = "Loxodonta africana", suspension = TRUE) {
-  tax <- sppplus_taxonconcept(cnx, query = query_taxon)
+taxon_cites_legislation <- function(cnx, query_taxon = "Loxodonta africana", tax_id = NULL, suspension = TRUE) {
+  if (is.null(tax_id)){
+    tax <- sppplus_taxonconcept(cnx, query = query_taxon, appendix_only = TRUE)
+  } else{
+    tax <- data.frame(id = tax_id)
+  }
   temp <- getURI(url = paste(cnx[[1]], 
                              "taxon_concepts/", tax$id, 
                              "/cites_legislation.xml", sep = ""),
