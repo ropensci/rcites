@@ -2,6 +2,5 @@
 
 export(cites_connect)
 export(cites_query)
-export(helloWorld)
 importFrom(RCurl,getURI)
 importFrom(XML,xmlToList)

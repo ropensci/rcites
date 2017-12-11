@@ -1,4 +1,5 @@
 # citesr
+[![Build Status](https://travis-ci.org/ibartomeus/citesr.svg?branch=master)](https://travis-ci.org/ibartomeus/citesr)
 
 An r package to access CITES (https://speciesplus.net/)
 
