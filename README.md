@@ -45,15 +45,19 @@ and for code quality see [that one](https://github.com/marketplace/category/code
 # Todo list
 
 - [x] Figure out how the CITES API works!
-- [x] write function for personal API
+- [x] write function for personal API: sppplus_connect
+- [x] write function for access to taxon concept: sppplus_taxonconcept
 - [x] Set Travis / AppVeyor / Code coverage up
 - [x] Query by Taxon
 - [ ] Add warning when species do not exists.
 - [ ] unlist info.
 - [ ] Better help
-- [ ] expand to legislation, distribution, references, EU legislation
 - [ ] vignette
-
+- expand to other APIs:
+- [ ] taxon_cites_legislation
+- [x] taxon_distribution
+- [ ] taxon_eu_legislation
+- [ ] taxon_references
 
 
 # Contributors
@@ -62,12 +66,3 @@ and for code quality see [that one](https://github.com/marketplace/category/code
 - Marie-Bé Leduc/ Email: mledu050@uottawa.ca / Git: mbhleduc
 - Kevin Cazelles / Email: kcazelle@uoguelph.ca / GitHub: KevCaz
 - Ignasi Bartomeus / Email: nacho.bartomeus@gmail.com / GitHub: ibartomeus
-
-
-# rename functions
-- [x] sppplus_connect
-- [x] sppplus_taxonconcept
-- [ ] taxon_cites_legislation
-- [x] taxon_distribution
-- [ ] taxon_eu_legislation
-- [ ] taxon_references
