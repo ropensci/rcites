@@ -1,0 +1,14 @@
+Package: citesr
+Type: Package
+Title: An r package to access CITES (https://speciesplus.net/)
+Version: 0.0.1
+Date: 2017-12-11
+Author: Who wrote it
+Maintainer: Who to complain to <yourfault@somewhere.net>
+Description: More about what it does (maybe more than one line)
+License: MIT
+Depends:
+  R (>= 3.0)
+Imports:
+  httr
+  jsonlite  
