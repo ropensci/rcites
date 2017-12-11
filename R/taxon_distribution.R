@@ -21,9 +21,17 @@ taxon_distribution <- function(cnx, query_taxon = "Smaug giganteus",
   tax <- sppplus_taxonconcept(cnx, query = query_taxon, appendix_only = TRUE)
   temp <- getURI(url = paste(cnx[[1]], 
                              "taxon_concepts/:", tax$id, 
-                             "/distributions", sep = ""),
+                             "/distributions.xml", sep = ""),
                  httpheader = paste("X-Authentication-Token: ",
                                     cnx[[2]], sep = ""))
+  
+  temp <- getURI(url = paste(cnx[[1]], 
+                             "taxon_concepts.xml?=", query2, 
+                             "/distributions.xml", sep = ""),
+                 httpheader = paste("X-Authentication-Token: ",
+                                    cnx[[2]], sep = ""))
+  
+  
   temp2 <- xmlToList(temp)
 }
 
