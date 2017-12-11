@@ -14,3 +14,6 @@ An r package to access CITES (https://speciesplus.net/)
 
 - [ ] Figure out how the CITES API works!
 - [ ] Set Travis / AppVeyor / Code coverage up
+- [ ] get species Taxon_concept_id
+- [ ] Query by Taxon_concept_id
+
