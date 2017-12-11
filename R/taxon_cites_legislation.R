@@ -12,7 +12,7 @@
 #' @export
 #' @examples
 #' cnx <- sppplus_connect(token = 'ErJcYxUsIApHLCLOxiJ1Zwtt')
-#' taxon_cites_legislation(cnx, taxon_id = '4521', suspension = TRUE)
+#' taxon_cites_legislation(cnx, tax_id = '4521', suspension = TRUE)
 
 taxon_cites_legislation <- function(cnx, query_taxon = "Loxodonta africana", tax_id = NULL, suspension = TRUE) {
   if (is.null(tax_id)){
