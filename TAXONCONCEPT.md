@@ -1,6 +1,8 @@
 #Description of Taxon Concept
 #Lists taxon concepts - The following taxon concept fields are returned:
 
+(Source: http://api.speciesplus.net/documentation/v1/taxon_concepts/index.html)
+
 - id
 unique identifier of a taxon concept
 
