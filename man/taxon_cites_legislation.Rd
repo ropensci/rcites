@@ -2,15 +2,19 @@
 % Please edit documentation in R/taxon_cites_legislation.R
 \name{taxon_cites_legislation}
 \alias{taxon_cites_legislation}
-\title{Access distribution data}
+\title{Access CITES legislation data from CITES species+ API}
 \usage{
 taxon_cites_legislation(cnx, query_taxon = "Loxodonta africana",
-  suspension = TRUE)
+  tax_id = NULL, citesleg_only = TRUE)
 }
 \arguments{
-\item{cnx}{the output of your sppplus_connect() function.}
+\item{cnx}{the output of your \code{sppplus_connect()} function.}
 
-\item{query}{a query... character}
+\item{query_taxon}{a query... character}
+
+\item{tax_id}{to be documented}
+
+\item{citesleg_only}{a logical to be documented}
 }
 \value{
 data frame or list...
@@ -19,6 +23,6 @@ data frame or list...
 Query CITES.
 }
 \examples{
-cnx <- sppplus_connect(token = 'ErJcYxUsIApHLCLOxiJ1Zwtt')
-taxon_cites_legislation(cnx, query_taxon = 'Loxodonta africana', suspension = TRUE)
+# cnx <- sppplus_connect(token = 'ErJcYxUsIApHLCLOxiJ1Zwtt')
+# taxon_cites_legislation(cnx, tax_id = '4521', citesleg_only = TRUE)
 }
