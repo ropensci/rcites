@@ -2,7 +2,7 @@
 #'
 #' Query CITES.
 #'
-#' @param cnx the output of your cites_connect() function.
+#' @param cnx the output of your sppplus_connect() function.
 #' @param query a query... character
 #' @param country_only a logical
 #' @return data frame or list...
@@ -14,6 +14,7 @@
 #' @examples
 #' cnx <- sppplus_connect(token = 'ErJcYxUsIApHLCLOxiJ1Zwtt')
 #' taxon_distribution(cnx, query_taxon = 'Loxodonta africana', country_only = TRUE)
+
 taxon_distribution <- function(cnx, query_taxon = "Loxodonta africana", 
                                      country_only = TRUE) {
   tax <- sppplus_taxonconcept(cnx, query = query_taxon, appendix_only = TRUE)
