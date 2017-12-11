@@ -1,11 +1,11 @@
-#' Access data...
+#' Access taxon_concept data from CITES species+ API 
 #'
-#' Query CITES.
+#' Queries CITES species+ API using connection generated from \code{\link[citesr]{sppplus_connect}}. The query string filters species+ data by taxon concept (e.g.species, genus, class)  
 #'
-#' @param cnx the output of your cites_connect() function.
-#' @param query a query... character
-#' @param appendix_only a logical
-#' @return xml so far...
+#' @param cnx species+ connection information (see \link[citesr]{sppplus_connect}})
+#' @param query character string containing the query 
+#' @param appendix_only a logical statement for querying information in the Appendix. Default is TRUE.  
+#' @return If appendix_only is TRUE, returns a dataframe with taxon and cites_listing. If appendix_only is FALSE, returns a list with all matching taxon_concepts. 
 #'
 #' @importFrom RCurl getURI
 #' @importFrom XML xmlToList

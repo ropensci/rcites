@@ -4,3 +4,4 @@
 .Ruserdata
 Makefile
 inst/tmp
+*.html
