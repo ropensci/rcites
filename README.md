@@ -10,13 +10,15 @@ This is in-develpoment but you can already query species or taxa:
 ```
 devtools::install_github("ibartomeus/citesr")
 library("citesr")
-cnx <- cites_connect(token = "ErJcYxUsIApHLCLOxiJ1Zwtt")
+cnx <- sppplus_connect(token = "ErJcYxUsIApHLCLOxiJ1Zwtt")
 #get cites status for a species
-cites_query(cnx, query = "Homo sapiens", appendix_only = TRUE)
+sppplus_taxonconcept(cnx, query = "Loxodonta africana", appendix_only = TRUE)
 #get all fields in list format
-cites_query_taxon(cnx, query = "Homo sapiens", appendix_only = FALSE) 
+sppplus_taxonconcept(cnx, query = "Loxodonta africana", appendix_only = FALSE) 
 #also work at higher order taxonomy
-cites_query_taxon(cnx, query = "Smaug giganteus", appendix_only = TRUE)
+sppplus_taxonconcept(cnx, query = "Mamalia", appendix_only = TRUE)
+#you can ask for distribution
+taxon_distribution(cnx, query_taxon = 'Loxodonta africana', country_only = TRUE)
 ```
 
 
@@ -50,15 +52,16 @@ and for code quality see [that one](https://github.com/marketplace/category/code
 - [x] Set Travis / AppVeyor / Code coverage up
 - [x] Query by Taxon
 - [ ] Add warning when species do not exists.
-- [ ] unlist info.
+- [ ] unlist info nicely
 - [ ] Better help
 - [ ] vignette
+- [ ] Add licence
+- [ ] can we do a ping?
 - expand to other APIs:
 - [ ] taxon_cites_legislation
 - [x] taxon_distribution
 - [ ] taxon_eu_legislation
 - [ ] taxon_references
-
 
 # Contributors
 
