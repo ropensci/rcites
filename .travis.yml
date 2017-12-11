@@ -1,0 +1,15 @@
+language: r
+warnings_are_errors: true
+sudo: required
+
+notifications:
+  email:
+    recipients:
+      - jonas.geschke@mfn-berlin.de
+      - kcazelle@uoguelph.ca
+
+r_packages:
+  - covr
+
+after_success:
+  - Rscript -e 'covr::codecov()'
