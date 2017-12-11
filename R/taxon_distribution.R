@@ -12,7 +12,7 @@
 #'
 #' @export
 #' @examples
-#' cnx <- cites_connect(token = 'ErJcYxUsIApHLCLOxiJ1Zwtt')
+#' cnx <- sppplus_connect(token = 'ErJcYxUsIApHLCLOxiJ1Zwtt')
 #' sppplus_taxonconcept(cnx, query = 'Smaug giganteus', appendix_only = TRUE)
 #' sppplus_taxonconcept(cnx, query = 'Homo sapiens', appendix_only = TRUE)
 
