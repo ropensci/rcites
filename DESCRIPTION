@@ -5,10 +5,10 @@ Version: 0.0.1
 Date: 2017-12-11
 Author: Who wrote it
 Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: Access the CITES Species+ database
+Description: Access the CITES Species+ database. 
 URL: https://github.com/ibartomeus/citesr
 BugReports: https://github.com/ibartomeus/citesr/issues
-License: MIT
+License: MIT + file LICENSE
 Depends:
   R (>= 3.0)
 Imports:

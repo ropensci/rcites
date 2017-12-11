@@ -16,18 +16,18 @@
 #' # cnx <- sppplus_connect(token = 'nsert your token here')
 #' # taxon_distribution(cnx, tax_id = '4521', country_only = TRUE)
 
-taxon_distribution <- function(cnx, query_taxon = "Loxodonta africana", tax_id = NULL,
+taxon_distribution <- function(cnx, query_taxon = "Loxodonta africana", tax_id = NULL, 
     country_only = TRUE) {
     if (is.null(tax_id)) {
         tax <- sppplus_taxonconcept(cnx, query = query_taxon, appendix_only = TRUE)
     } else {
         tax <- data.frame(id = tax_id)
     }
-    temp <- getURI(url = paste(cnx[[1]], "taxon_concepts/", tax$id, "/distributions.xml",
+    temp <- getURI(url = paste(cnx[[1]], "taxon_concepts/", tax$id, "/distributions.xml", 
         sep = ""), httpheader = paste("X-Authentication-Token: ", cnx[[2]], sep = ""))
     temp2 <- xmlToList(temp)
     if (country_only) {
-        data.frame(id = tax$id, taxon = query_taxon, distribution = unlist(sapply(temp2,
+        data.frame(id = tax$id, taxon = query_taxon, distribution = unlist(sapply(temp2, 
             "[", "name")), iso2 = unlist(sapply(temp2, "[", "iso-code2")))
     } else {
         temp2
