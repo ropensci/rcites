@@ -1,0 +1,11 @@
+^\.Rproj\.user$
+^.*\.Rproj$
+^appveyor\.yml$
+^\.travis\.yml$
+^\.gitignore
+^Makefile
+^pkg2date\.R
+^README\.Rmd
+^README\.gfm
+^NEWS
+^record*

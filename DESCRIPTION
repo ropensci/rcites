@@ -10,5 +10,6 @@ License: MIT
 Depends:
   R (>= 3.0)
 Imports:
-  httr
-  jsonlite  
+  httr,
+  jsonlite
+RoxygenNote: 6.0.1
