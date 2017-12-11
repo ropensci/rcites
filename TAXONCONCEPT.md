@@ -35,6 +35,7 @@ list of common names (with language given by ISO 639-1 code; only for accepted n
 
 - cites_listing
 value of current CITES listing (as per CITES Checklist). When taxon concept is removed from appendices this becomes NC. When taxon is split listed it becomes a concatenation of appendix symbols, e.g. I/II/NC (only for accepted names) [max 255 characters]
+In the event of removal from CITES appendices, a taxon is not deleted from the Species+ DB. As a historically listed taxon it remains in the database, and in most cases the value of current CITES listing becomes 'NC'. In some cases the value is affected by listed subspecies, e.g. Pseudomys fieldi has been removed from Appendix I, but since there is a listed subspecies, the current listing is 'I/NC'.
 
 - cites_listings
 list of current CITES listings with annotations (there will be more than one element in this list in case of split listings; only for accepted names) [appendix max 255 characters; annotation, hash_annotation unlimited length]
