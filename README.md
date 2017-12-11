@@ -14,3 +14,8 @@ An r package to access CITES (https://speciesplus.net/)
 
 - [ ] Figure out how the CITES API works!
 - [ ] Set Travis / AppVeyor / Code coverage up
+
+
+# Contributors
+
+- Jonas Geschke / Email: jonas.geschke@mfn-berlin.de / Git: JonasGeschke
