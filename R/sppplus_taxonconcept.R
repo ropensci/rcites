@@ -26,8 +26,9 @@ sppplus_taxonconcept <- function(cnx, query = "Smaug giganteus", appendix_only =
         message("species not listed in CITES")
     } else {
         if (appendix_only) {
-            data.frame(id = temp2$`taxon-concepts`$`taxon-concept`$id$text, taxon = temp2$`taxon-concepts`$`taxon-concept`$`full-name`, 
-                cites_listing = temp2$`taxon-concepts`$`taxon-concept`$`cites-listing`)
+            data.frame(id = temp2$`taxon-concepts`$`taxon-concept`$id$text, 
+                       taxon = temp2$`taxon-concepts`$`taxon-concept`$`full-name`,
+                       cites_listing = temp2$`taxon-concepts`$`taxon-concept`$`cites-listing`)
         } else {
             temp2
         }

@@ -27,8 +27,9 @@ taxon_distribution <- function(cnx, query_taxon = "Loxodonta africana", tax_id =
         sep = ""), httpheader = paste("X-Authentication-Token: ", cnx[[2]], sep = ""))
     temp2 <- xmlToList(temp)
     if (country_only) {
-        data.frame(id = tax$id, taxon = query_taxon, distribution = unlist(sapply(temp2, 
-            "[", "name")), iso2 = unlist(sapply(temp2, "[", "iso-code2")))
+        data.frame(id = tax$id, taxon = query_taxon,
+                   country = unlist(lapply(temp2, "[", "name")),
+                   iso2 = unlist(lapply(temp2, "[", "iso-code2")))
     } else {
         temp2
     }
