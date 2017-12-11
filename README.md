@@ -64,10 +64,10 @@ and for code quality see [that one](https://github.com/marketplace/category/code
 - Ignasi Bartomeus / Email: nacho.bartomeus@gmail.com / GitHub: ibartomeus
 
 
-# names for functions:
-- sppplus_connect
-- cites_taxonconcepts
-- cites_legislation
-- cites_distributions
-- cites_eu_legislation
-- cites_references
+# rename functions
+- [ ] sppplus_connect
+- [ ] sppplus_taxonconcept
+- [ ] taxon_cites_legislation
+- [ ] taxon_distribution
+- [ ] taxon_eu_legislation
+- [ ] taxon_references
