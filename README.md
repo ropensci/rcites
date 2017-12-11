@@ -14,11 +14,14 @@ cnx <- cites_connect(token = "ErJcYxUsIApHLCLOxiJ1Zwtt")
 #get cites status for a species
 cites_query(cnx, query = "Homo sapiens", appendix_only = TRUE)
 #get all fields in list format
-cites_query(cnx, query = "Homo sapiens", appendix_only = FALSE) 
+cites_query_taxon(cnx, query = "Homo sapiens", appendix_only = FALSE) 
 #also work at higher order taxonomy
-cites_query(cnx, query = "Smaug giganteus", appendix_only = TRUE)
+cites_query_taxon(cnx, query = "Smaug giganteus", appendix_only = TRUE)
 ```
 
+
+
+-------------------------------------------------------
 
 
 # Resources
@@ -39,12 +42,11 @@ cites_query(cnx, query = "Smaug giganteus", appendix_only = TRUE)
 NB: other similar tools does exist: for code integration see [this page](https://github.com/marketplace/category/continuous-integration)
 and for code quality see [that one](https://github.com/marketplace/category/code-quality).
 
-
 # Todo list
 
 - [x] Figure out how the CITES API works!
 - [x] write function for personal API
-- [ ] Set Travis / AppVeyor / Code coverage up
+- [x] Set Travis / AppVeyor / Code coverage up
 - [x] Query by Taxon
 - [ ] Add warning when species do not exists.
 - [ ] unlist info.
@@ -63,9 +65,9 @@ and for code quality see [that one](https://github.com/marketplace/category/code
 
 
 # rename functions
-- [ ] sppplus_connect
-- [ ] cites_taxonconcept
-- [ ] cites_legislation
-- [ ] cites_distribution
-- [ ] cites_eu_legislation
-- [ ] cites_references
+- [x] sppplus_connect
+- [x] sppplus_taxonconcept
+- [ ] taxon_cites_legislation
+- [x] taxon_distribution
+- [ ] taxon_eu_legislation
+- [ ] taxon_references

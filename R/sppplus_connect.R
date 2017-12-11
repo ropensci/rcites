@@ -10,7 +10,7 @@
 #' @examples
 #' cnx <- sppplus_connect(token = 'ErJcYxUsIApHLCLOxiJ1Zwtt')
 
-sppplus_connect <- function(url = "https://api.speciesplus.net/api/v1/taxon_concepts.xml?name=",
+sppplus_connect <- function(url = "https://api.speciesplus.net/api/v1/",
     token) {
     # check URL is up
     urlbase <- httr::handle(url)
