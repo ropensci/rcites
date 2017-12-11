@@ -2,8 +2,12 @@
 #'
 #' Query CITES.
 #'
-#' @param cnx the output of your sppplus_connect() function.
-#' @param query a query... character
+#' @param cnx the output of your \code{sppplus_connect()} function.
+#' @param query_taxon a query... character
+#' @param tax_id to be documented
+#' @param citesleg_only a logical to be documented
+#'
+#'
 #' @return data frame or list...
 #'
 #' @importFrom RCurl getURI
@@ -11,8 +15,8 @@
 #'
 #' @export
 #' @examples
-#' cnx <- sppplus_connect(token = 'ErJcYxUsIApHLCLOxiJ1Zwtt')
-#' taxon_cites_legislation(cnx, tax_id = '4521', citesleg_only = TRUE)
+#' # cnx <- sppplus_connect(token = 'ErJcYxUsIApHLCLOxiJ1Zwtt')
+#' # taxon_cites_legislation(cnx, tax_id = '4521', citesleg_only = TRUE)
 
 taxon_cites_legislation <- function(cnx, query_taxon = "Loxodonta africana", tax_id = NULL, citesleg_only = TRUE) {
   if (is.null(tax_id)){
@@ -20,8 +24,8 @@ taxon_cites_legislation <- function(cnx, query_taxon = "Loxodonta africana", tax
   } else{
     tax <- data.frame(id = tax_id)
   }
-  temp <- getURI(url = paste(cnx[[1]], 
-                             "taxon_concepts/", tax$id, 
+  temp <- getURI(url = paste(cnx[[1]],
+                             "taxon_concepts/", tax$id,
                              "/cites_legislation.xml", sep = ""),
                  httpheader = paste("X-Authentication-Token: ",
                                     cnx[[2]], sep = ""))
@@ -36,9 +40,3 @@ taxon_cites_legislation <- function(cnx, query_taxon = "Loxodonta africana", tax
     temp2
   }
 }
-
-
-
-
-
-

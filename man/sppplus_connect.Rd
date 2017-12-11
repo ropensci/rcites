@@ -7,7 +7,7 @@
 sppplus_connect(url = "https://api.speciesplus.net/api/v1/", token)
 }
 \arguments{
-\item{url}{The base URL to connect to. Default value is the Taxon connect API: https://api.speciesplus.net/api/v1/taxon_concepts.xml?name=}
+\item{url}{The base URL to connect to. Default value is the Taxon connect API: \url{\https://api.speciesplus.net/api/v1/taxon_concepts.xml?name=}}
 
 \item{token}{Your species+ API authentication token}
 }
@@ -15,10 +15,10 @@ sppplus_connect(url = "https://api.speciesplus.net/api/v1/", token)
 Returns a list of credentials for accessing CITES species+ API. The list contains the URL and token.
 }
 \description{
-Creates the connection for future CITES species+ query. 
+Creates the connection for future CITES species+ query.
 Generate your own API token from Species+ API dashboard \url{https://api.speciesplus.net}
 }
 \examples{
-#Do not run#
-cnx <- sppplus_connect(token = 'insert your token here')
+# Not run: #
+# cnx <- sppplus_connect(token = 'insert your token here')
 }
