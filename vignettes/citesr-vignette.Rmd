@@ -2,7 +2,11 @@
 title: "citesr vignette"
 author: "citesr team"
 date: "11 December 2017"
-output: html_document
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Put the title of your vignette here}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
 ---
 
 ## Set up a connection to the species plus database
@@ -19,9 +23,21 @@ After creating the user account and getting a token, you can use the sppplus_con
 This function will take a species name (in Latin) and return the CITES appendix or appendices (if applicable). 
 
 We will use the African elephant as an example. 
-
 ```{r eval=FALSE}
-
+sppplus_taxonconcept(cnx, query = 'Loxodonta africana', appendix_only = TRUE)
 ```
+
+## Use the taxon_distribution function
+
+This function will take a species name (in Latin) and return the CITES distribution of that species.
+
+We will use the African elephant as an example.
+```{r eval = FALSE}
+taxon_distribution(cnx)
+```
+
+## Use the ...
+
+
 
 
