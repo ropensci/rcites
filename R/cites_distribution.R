@@ -13,12 +13,12 @@
 #' @export
 #' @examples
 #' cnx <- cites_connect(token = 'ErJcYxUsIApHLCLOxiJ1Zwtt')
-#' cites_query_taxon(cnx, query = 'Smaug giganteus', appendix_only = TRUE)
-#' cites_query_taxon(cnx, query = 'Homo sapiens', appendix_only = TRUE)
+#' sppplus_taxonconcept(cnx, query = 'Smaug giganteus', appendix_only = TRUE)
+#' sppplus_taxonconcept(cnx, query = 'Homo sapiens', appendix_only = TRUE)
 
-cites_distribution <- function(cnx, query_taxon = "Smaug giganteus", 
+taxon_distribution <- function(cnx, query_taxon = "Smaug giganteus", 
                                      country = "Spain") {
-  tax <- cites_query_taxon(cnx, query = query_taxon, appendix_only = TRUE)
+  tax <- sppplus_taxonconcept(cnx, query = query_taxon, appendix_only = TRUE)
   temp <- getURI(url = paste(cnx[[1]], 
                              "taxon_concepts/:", tax$id, 
                              "/distributions", sep = ""),
