@@ -13,7 +13,9 @@ require("XML")
 #' 
 #' @export
 #' @examples
-#' cnx <- cites_connect(token = "ErJcYxUsIApHLCLOxiJ1Zwtt")
+#' cites_query(cnx, query = "Smaug giganteus", appendix_only = TRUE)
+#' cites_query(cnx, query = "Homo sapiens", appendix_only = TRUE)
+
 
 
 cites_query <- function(cnx, query = "Smaug giganteus", appendix_only = TRUE){
@@ -34,6 +36,6 @@ cites_query <- function(cnx, query = "Smaug giganteus", appendix_only = TRUE){
   }
 }
 
-cites_query(cnx, query = "Smaug giganteus", appendix_only = TRUE)
-cites_query(cnx, query = "Homo sapiens", appendix_only = TRUE)
+
+
 
