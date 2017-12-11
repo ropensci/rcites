@@ -29,8 +29,9 @@ taxon_cites_legislation <- function(cnx, query_taxon = "Loxodonta africana", tax
   if (citesleg_only) {
     data.frame(id = tax$id,
                taxon = query_taxon,
-               suspension = unlist(sapply(temp2, '[', 'cites-suspensions$start-notification$name')),
-               iso2 = unlist(sapply(temp2, '[', 'cites-suspensions$geo-entity$iso-code2')))
+               iso2 = temp2$`cites-suspensions`$`cites-suspension`$`geo-entity`$`iso-code2`,
+               suspension_notes = temp2$`cites-suspensions`$`cites-suspension`$notes,
+               cites_notification = temp2$`cites-suspensions`$`cites-suspension`$`start-notification`$name)
   } else {
     temp2
   }
