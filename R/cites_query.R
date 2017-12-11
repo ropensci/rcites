@@ -13,14 +13,16 @@ require("XML")
 #' 
 #' @export
 #' @examples
-#' cnx <- cites_connect(token = "ErJcYxUsIApHLCLOxiJ1Zwtt")
+#' cites_query(cnx, query = "Smaug giganteus", appendix_only = TRUE)
+#' cites_query(cnx, query = "Homo sapiens", appendix_only = TRUE)
+
 
 
 cites_query <- function(cnx, query = "Smaug giganteus", appendix_only = TRUE){
   #check is a valid name
   query2 <- gsub(pattern = " ", replacement = "%20", x = query)
-  temp <- getURI(url = paste(con[[1]], query2, sep = ""),
-         httpheader = paste("X-Authentication-Token: ", con[[2]], sep = ""))
+  temp <- getURI(url = paste(cnx[[1]], query2, sep = ""),
+         httpheader = paste("X-Authentication-Token: ", cnx[[2]], sep = ""))
   temp2 <- xmlToList(temp)
   if (temp2$pagination$`total-entries`$text == "0"){
     message("species not listed in CITES")
@@ -34,6 +36,6 @@ cites_query <- function(cnx, query = "Smaug giganteus", appendix_only = TRUE){
   }
 }
 
-cites_query(cnx, query = "Smaug giganteus", appendix_only = TRUE)
-cites_query(cnx, query = "Homo sapiens", appendix_only = TRUE)
+
+
 
