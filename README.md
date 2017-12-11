@@ -10,6 +10,16 @@ An r package to access CITES (https://speciesplus.net/)
 - [Choose a license](https://choosealicense.com/)
 - [Maelle talk](http://www.masalmon.eu/2017/12/11/goodrpackages/)
 
+## To learn more about Travis / Appveyor and Codecov
+
+- [Travis](https://docs.travis-ci.com/user/getting-started/)
+- [Travis for R (community-maintained)](https://docs.travis-ci.com/user/languages/r/)
+- [Appveyor](https://www.appveyor.com/docs/)
+- [Codecov](https://codecov.io/)
+
+NB: other similar tools does exist: for code integration see [this page](https://github.com/marketplace/category/continuous-integration)
+and for code quality see [that one](https://github.com/marketplace/category/code-quality).
+
 
 # Todo list
 
