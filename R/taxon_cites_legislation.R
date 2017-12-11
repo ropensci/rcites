@@ -12,7 +12,7 @@
 #' @export
 #' @examples
 #' cnx <- sppplus_connect(token = 'ErJcYxUsIApHLCLOxiJ1Zwtt')
-#' taxon_cites_legislation(cnx, query_taxon = 'Loxodonta africana', country_only = TRUE)
+#' taxon_cites_legislation(cnx, query_taxon = 'Loxodonta africana', suspension = TRUE)
 
 taxon_cites_legislation <- function(cnx, query_taxon = "Loxodonta africana", suspension = TRUE) {
   tax <- sppplus_taxonconcept(cnx, query = query_taxon)
@@ -25,7 +25,7 @@ taxon_cites_legislation <- function(cnx, query_taxon = "Loxodonta africana", sus
   if (suspension) {
     data.frame(id = tax$id,
                taxon = query_taxon,
-               cites-suspension = unlist(sapply(temp2, '[', 'name')),
+               suspension = unlist(sapply(temp2, '[', 'name')),
                iso2 = unlist(sapply(temp2, '[', 'iso-code2')))
   } else {
     temp2
