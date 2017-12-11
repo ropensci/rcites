@@ -29,9 +29,11 @@ taxon_cites_legislation <- function(cnx, query_taxon = "Loxodonta africana", tax
         sep = ""), httpheader = paste("X-Authentication-Token: ", cnx[[2]], sep = ""))
     temp2 <- xmlToList(temp)
     if (citesleg_only) {
-        data.frame(id = tax$id, taxon = query_taxon, iso2 = unlist(sapply(temp2$`cites-suspensions`$`cites-suspension`$`geo-entity`$`iso-code2`)), 
-            suspension_notes = unlist(sapply(temp2$`cites-suspensions`$`cites-suspension`$notes)), 
-            cites_notification = unlist(sapply(temp2$`cites-suspensions`$`cites-suspension`$`start-notification`$name)))
+        data.frame(id = tax$id,
+                   taxon = query_taxon,
+                   iso2 = sapply(temp2, "[", "temp2$`cites-suspensions`$`cites-suspension`$`geo-entity`$`iso-code2`"),
+                   suspension_notes = sapply(temp2, "[", "temp2$`cites-suspensions`$`cites-suspension`$notes"),
+                   cites_notification = sapply(temp2, "[", "temp2$`cites-suspensions`$`cites-suspension`$`start-notification`$name"))
     } else {
         temp2
     }
