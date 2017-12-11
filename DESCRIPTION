@@ -14,4 +14,4 @@ Imports:
   jsonlite,
   RCurl,
   XML
-RoxygenNote: 6.0.1
+RoxygenNote: 6.0.1.9000
