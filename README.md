@@ -29,11 +29,10 @@ and for code quality see [that one](https://github.com/marketplace/category/code
 - [ ] get species Taxon_concept_id
 - [ ] Query by Taxon_concept_id
 
-=======
-
 
 # Contributors
 
-- Jonas Geschke / Email: jonas.geschke@mfn-berlin.de / GitHub: JonasGeschke
+- Jonas Geschke / Email: jonas.geschke@mfn-berlin.de / Git: JonasGeschke
+- Marie-Bé Leduc/ Email: mledu050@uottawa.ca / Git: mbhleduc
 - Kevin Cazelles / Email: kcazelle@uoguelph.ca / GitHub: KevCaz
 - Ignasi Bartomeus / Email: nacho.bartomeus@gmail.com / GitHub: ibartomeus
