@@ -1,6 +1,6 @@
 Package: citesr
 Type: Package
-Title: An R package to access the CITES species database (https://speciesplus.net/)
+Title: An R package to access the CITES Species+ database (https://speciesplus.net/)
 Version: 0.0.1
 Date: 2017-12-11
 Author: Who wrote it

@@ -1,7 +1,7 @@
 # citesr
 [![Build Status](https://travis-ci.org/ibartomeus/citesr.svg?branch=master)](https://travis-ci.org/ibartomeus/citesr)
 
-An r package to access CITES (https://speciesplus.net/)
+An R package to access the CITES Species+ database (https://speciesplus.net/)
 
 # How it works so far.
 
@@ -27,6 +27,7 @@ cites_query(cnx, query = "Smaug giganteus", appendix_only = TRUE)
 - [Semantic versioning](https://semver.org/)
 - [Choose a license](https://choosealicense.com/)
 - [Maelle talk](http://www.masalmon.eu/2017/12/11/goodrpackages/)
+
 
 ## To learn more about Travis / Appveyor and Codecov
 
@@ -59,3 +60,12 @@ and for code quality see [that one](https://github.com/marketplace/category/code
 - Marie-Bé Leduc/ Email: mledu050@uottawa.ca / Git: mbhleduc
 - Kevin Cazelles / Email: kcazelle@uoguelph.ca / GitHub: KevCaz
 - Ignasi Bartomeus / Email: nacho.bartomeus@gmail.com / GitHub: ibartomeus
+
+
+# names for functions:
+- sppplus_connect
+- cites_taxonconcepts
+- cites_legislation
+- cites_distributions
+- cites_eu_legislation
+- cites_references
