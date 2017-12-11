@@ -66,3 +66,4 @@ and for code quality see [that one](https://github.com/marketplace/category/code
 - Marie-Bé Leduc/ Email: mledu050@uottawa.ca / Git: mbhleduc
 - Kevin Cazelles / Email: kcazelle@uoguelph.ca / GitHub: KevCaz
 - Ignasi Bartomeus / Email: nacho.bartomeus@gmail.com / GitHub: ibartomeus
+- Yasmine Verzelen / Email: yasmine.verzelen@inbo.be / GitHub: Yasmine-Verzelen
