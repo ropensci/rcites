@@ -1,6 +1,6 @@
 # citesr
 
-An r package to access CITES (https://speciesplus.net/)
+An R package to access the CITES Species+ database (https://speciesplus.net/)
 
 
 # Resources
@@ -9,6 +9,7 @@ An r package to access CITES (https://speciesplus.net/)
 - [Semantic versioning](https://semver.org/)
 - [Choose a license](https://choosealicense.com/)
 - [Maelle talk](http://www.masalmon.eu/2017/12/11/goodrpackages/)
+
 
 ## To learn more about Travis / Appveyor and Codecov
 
