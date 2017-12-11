@@ -14,10 +14,6 @@ Imports:
   jsonlite,
   RCurl,
   XML
-<<<<<<< HEAD
 RoxygenNote: 6.0.1
 Suggests: knitr, rmarkdown
 VignetteBuilder: knitr
-=======
-RoxygenNote: 6.0.1.9000
->>>>>>> origin/master
