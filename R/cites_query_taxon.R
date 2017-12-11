@@ -13,10 +13,10 @@
 #' @export
 #' @examples
 #' cnx <- cites_connect(token = 'ErJcYxUsIApHLCLOxiJ1Zwtt')
-#' cites_query_taxon(cnx, query = 'Smaug giganteus', appendix_only = TRUE)
-#' cites_query_taxon(cnx, query = 'Homo sapiens', appendix_only = TRUE)
+#' sppplus_taxonconcept(cnx, query = 'Smaug giganteus', appendix_only = TRUE)
+#' sppplus_taxonconcept(cnx, query = 'Homo sapiens', appendix_only = TRUE)
 
-cites_query_taxon <- function(cnx, query = "Smaug giganteus", appendix_only = TRUE) {
+sppplus_taxonconcept <- function(cnx, query = "Smaug giganteus", appendix_only = TRUE) {
     # check is a valid name
     query2 <- gsub(pattern = " ", replacement = "%20", x = query)
     temp <- getURI(url = paste(cnx[[1]], query2, sep = ""), httpheader = paste("X-Authentication-Token: ",
