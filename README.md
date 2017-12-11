@@ -13,6 +13,7 @@ An r package to access CITES (https://speciesplus.net/)
 # Todo list
 
 - [ ] Figure out how the CITES API works!
+- [ ] write function for personal API
 - [ ] Set Travis / AppVeyor / Code coverage up
 
 
