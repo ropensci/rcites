@@ -65,9 +65,9 @@ and for code quality see [that one](https://github.com/marketplace/category/code
 
 
 # rename functions
-- [ ] sppplus_connect
-- [ ] sppplus_taxonconcept
+- [x] sppplus_connect
+- [x] sppplus_taxonconcept
 - [ ] taxon_cites_legislation
-- [ ] taxon_distribution
+- [x] taxon_distribution
 - [ ] taxon_eu_legislation
 - [ ] taxon_references
