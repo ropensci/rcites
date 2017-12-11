@@ -1,4 +1,4 @@
-#' Access distribution data
+#' Access CITES legislation data from CITES species+ API
 #'
 #' Query CITES.
 #'
@@ -12,9 +12,9 @@
 #' @export
 #' @examples
 #' cnx <- sppplus_connect(token = 'ErJcYxUsIApHLCLOxiJ1Zwtt')
-#' taxon_cites_legislation(cnx, tax_id = '4521', suspension = TRUE)
+#' taxon_cites_legislation(cnx, tax_id = '4521', citesleg_only = TRUE)
 
-taxon_cites_legislation <- function(cnx, query_taxon = "Loxodonta africana", tax_id = NULL, suspension = TRUE) {
+taxon_cites_legislation <- function(cnx, query_taxon = "Loxodonta africana", tax_id = NULL, citesleg_only = TRUE) {
   if (is.null(tax_id)){
     tax <- sppplus_taxonconcept(cnx, query = query_taxon, appendix_only = TRUE)
   } else{
@@ -26,11 +26,11 @@ taxon_cites_legislation <- function(cnx, query_taxon = "Loxodonta africana", tax
                  httpheader = paste("X-Authentication-Token: ",
                                     cnx[[2]], sep = ""))
   temp2 <- xmlToList(temp)
-  if (suspension) {
+  if (citesleg_only) {
     data.frame(id = tax$id,
                taxon = query_taxon,
-               suspension = unlist(sapply(temp2, '[', 'name')),
-               iso2 = unlist(sapply(temp2, '[', 'iso-code2')))
+               suspension = unlist(sapply(temp2, '[', 'cites-suspensions$start-notification$name')),
+               iso2 = unlist(sapply(temp2, '[', 'cites-suspensions$geo-entity$iso-code2')))
   } else {
     temp2
   }
