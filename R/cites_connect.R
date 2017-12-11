@@ -9,9 +9,9 @@
 #' This connection object can be used to discover and access to resources.
 #' @export
 #' @examples
-#' cnx <- cites_connect(token = 'ErJcYxUsIApHLCLOxiJ1Zwtt')
+#' cnx <- sppplus_connect(token = 'ErJcYxUsIApHLCLOxiJ1Zwtt')
 
-cites_connect <- function(url = "https://api.speciesplus.net/api/v1/taxon_concepts.xml?name=",
+sppplus_connect <- function(url = "https://api.speciesplus.net/api/v1/taxon_concepts.xml?name=",
     token) {
     # check URL is up
     urlbase <- httr::handle(url)
