@@ -1,6 +1,24 @@
 # citesr
+[![Build Status](https://travis-ci.org/ibartomeus/citesr.svg?branch=master)](https://travis-ci.org/ibartomeus/citesr)
 
 An R package to access the CITES Species+ database (https://speciesplus.net/)
+
+# How it works so far.
+
+This is in-develpoment but you can already query species or taxa:
+
+```
+devtools::install_github("ibartomeus/citesr")
+library("citesr")
+cnx <- cites_connect(token = "ErJcYxUsIApHLCLOxiJ1Zwtt")
+#get cites status for a species
+cites_query(cnx, query = "Homo sapiens", appendix_only = TRUE)
+#get all fields in list format
+cites_query(cnx, query = "Homo sapiens", appendix_only = FALSE) 
+#also work at higher order taxonomy
+cites_query(cnx, query = "Smaug giganteus", appendix_only = TRUE)
+```
+
 
 
 # Resources
