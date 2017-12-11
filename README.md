@@ -23,11 +23,16 @@ and for code quality see [that one](https://github.com/marketplace/category/code
 
 # Todo list
 
-- [ ] Figure out how the CITES API works!
-- [ ] write function for personal API
+- [x] Figure out how the CITES API works!
+- [x] write function for personal API
 - [ ] Set Travis / AppVeyor / Code coverage up
-- [ ] get species Taxon_concept_id
-- [ ] Query by Taxon_concept_id
+- [x] Query by Taxon
+- [ ] Add warning when species do not exists.
+- [ ] unlist info.
+- [ ] Better help
+- [ ] expand to legislation, distribution, references, EU legislation
+- [ ] vignette
+
 
 
 # Contributors
