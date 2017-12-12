@@ -16,7 +16,7 @@
 #' # sppplus_taxonconcept(cnx, query = 'Loxodonta africana', appendix_only = TRUE)
 #' # sppplus_taxonconcept(cnx, query = 'Homo sapiens', appendix_only = TRUE)
 
-sppplus_taxonconcept <- function(cnx, query = "Smaug giganteus", appendix_only = TRUE) {
+sppplus_taxonconcept <- function(cnx, query = "Loxodonta africana", appendix_only = TRUE) {
     # we can add here a check t ensure is a valid name
     query2 <- gsub(pattern = " ", replacement = "%20", x = query)
     temp <- getURI(url = paste(cnx[[1L]], "taxon_concepts.xml?name=", query2, sep = ""), 
