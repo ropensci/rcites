@@ -24,13 +24,13 @@ taxon_distribution <- function(cnx, query_taxon = "Loxodonta africana", tax_id =
     } else {
         tax <- data.frame(id = tax_id)
     }
-    temp <- getURI(url = paste(cnx[[1]], "taxon_concepts/", tax$id, "/distributions.xml", 
+    temp <- getURI(url = paste(cnx[[1]], "taxon_concepts/", tax$tax_id, "/distributions.xml", 
         sep = ""), httpheader = paste("X-Authentication-Token: ", cnx[[2]], sep = ""))
     temp2 <- xmlParse(temp)
     temp2 <- xmlRoot(temp2)
     if (country_only) {
       temp3 <- xmlToDataFrame(unlist(temp2["api-distributions-view"]))
-      temp3$id <- tax$id
+      temp3$id <- tax$tax_id
       temp3 <- temp3[c(1,3,2,4,6)]
       names(temp3) <- c("tax_id", "country", "iso2", "note", "reference")
       temp3
