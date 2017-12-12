@@ -29,7 +29,7 @@ sppplus_taxonconcept <- function(cnx, query = "Smaug giganteus", appendix_only =
       if (appendix_only) {
         temp3 <- xmlToDataFrame(unlist(temp2[[2]]["taxon-concept"]))
         temp3 <- temp3[c(1,2,8)]
-        names(temp3) <- c("id", "species", "appendix")
+        names(temp3) <- c("tax_id", "species", "appendix")
         temp3
     } else {
         temp2
