@@ -27,10 +27,16 @@ sppplus_taxonconcept <- function(cnx, query = "Smaug giganteus", appendix_only =
     } else {
         if (appendix_only) {
             data.frame(id = temp2$`taxon-concepts`$`taxon-concept`$id$text, 
-                       taxon = temp2$`taxon-concepts`$`taxon-concept`$`full-name`,
-                       cites_listing = temp2$`taxon-concepts`$`taxon-concept`$`cites-listing`)
+                       species = temp2$`taxon-concepts`$`taxon-concept`$`full-name`,
+                       appendix = temp2$`taxon-concepts`$`taxon-concept`$`cites-listing`)
         } else {
             temp2
         }
     }
+    
+    temp3 <- xmlParse(temp)
+    temp3 <- xmlRoot(temp3)
+    temp3 <- xmlToDataFrame(unlist(temp3[[2]]["taxon-concept"]))
+    output <- temp3[c(1,2,8)]
+    names(output) <- c("id", "species", "appendix")
 }

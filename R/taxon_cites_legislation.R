@@ -16,7 +16,7 @@
 #' @export
 #' @examples
 #' # cnx <- sppplus_connect(token = 'ErJcYxUsIApHLCLOxiJ1Zwtt')
-#' # taxon_cites_legislation(cnx, tax_id = '4521', citesleg_only = TRUE)
+#' # taxon_cites_legislation(cnx, tax_id = '4521', type = 'listing OR quota OR suspension')
 
 taxon_cites_legislation <- function(cnx, query_taxon = "Loxodonta africana", tax_id = NULL, 
     citesleg_only = TRUE) {
@@ -27,18 +27,40 @@ taxon_cites_legislation <- function(cnx, query_taxon = "Loxodonta africana", tax
     }
     temp <- getURI(url = paste(cnx[[1]], "taxon_concepts/", tax$id, "/cites_legislation.xml", 
         sep = ""), httpheader = paste("X-Authentication-Token: ", cnx[[2]], sep = ""))
-    temp2 <- xmlToList(temp)
     
-    temp3 <- flattenlist(temp2)
+    temp <- xmlParse(temp)
+    temp2 <- xmlRoot(temp)
+    xmlName(temp2)
+    names(temp2)
+
+#    listings <- temp2[[1]]["cites-listing"]
+#    quotas <- temp2[[2]]["cites-quota"]
+#    suspensions <- temp2[[3]]["cites-suspension"]
     
-    if (citesleg_only) {
+    listings <- xmlToDataFrame(unlist(temp2[[1]]["cites-listing"]))
+    quotas <- xmlToDataFrame(unlist(temp2[[2]]["cites-quota"]))
+    suspensions <- xmlToDataFrame(unlist(temp2[[3]]["cites-suspension"]))
+    
+#    length(names(listings))
+#    names(listings[[3]])
+#    length(names(quotas))
+#    length(names(suspensions))
+    
+#    temp3 <- unlist(xmlSApply(listings[[1]], function(x) xmlSApply(x, xmlValue)))
+#    as.character(temp3[4]) # appendix
+#    as.character(temp3[6]) # date
+#    as.character(temp3[7]) # notes
+    
+    
+
+    if (type = "listing") {
         data.frame(id = tax$id,
-                   taxon = query_taxon,
-                   country_iso2 = unlist(lapply(temp2, "[", "cites-suspension.geo-entity.iso-code2")),
-                   suspension_date = unlist(lapply(temp2, "[", "cites-suspension.start-notification.date")),
-                   suspension_notes = unlist(lapply(temp2, "[", "cites-suspension.notes")),
-                   suspension_notification = unlist(lapply(temp2, "[", "cites-suspension.start-notification.url")))
+                   taxon = ifelse(exists("query_taxon"), query_taxon, NA),
+                   country_iso2 = unlist(lapply(listings, "[", "party")),
+                   appendix = unlist(lapply(listings, "[", "appendix")),
+                   listing_date = unlist(lapply(listings, "[", "effective-at")),
+                   listing_notes = unlist(lapply(listings, "[", "annotation")))
     } else {
-        temp2
+        print("Please select type of legislation: Listing, quota or suspension.")
     }
 }
