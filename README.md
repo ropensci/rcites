@@ -10,14 +10,14 @@ This is in-develpoment but you can already query species or taxa:
 ```
 devtools::install_github("ibartomeus/citesr")
 library("citesr")
-cnx <- sppplus_connect(token = "ErJcYxUsIApHLCLOxiJ1Zwtt")
-#get cites status for a species
+cnx <- sppplus_connect(token = "insert your token here")
+# get CITES status for a species
 sppplus_taxonconcept(cnx, query = "Loxodonta africana", appendix_only = TRUE)
-#get all fields in list format
+# get all fields in nested list format
 sppplus_taxonconcept(cnx, query = "Loxodonta africana", appendix_only = FALSE) 
-#also work at higher order taxonomy
+# also works at higher order taxonomy
 sppplus_taxonconcept(cnx, query = "Mamalia", appendix_only = TRUE)
-#you can ask for distribution
+# you can ask for distribution
 taxon_distribution(cnx, query_taxon = 'Loxodonta africana', country_only = TRUE)
 ```
 
@@ -61,8 +61,8 @@ and for code quality see [that one](https://github.com/marketplace/category/code
 - [x] write function for access to taxon concept: sppplus_taxonconcept
 - [x] Set Travis / AppVeyor / Code coverage up
 - [x] Query by Taxon
-- [ ] Add warning when species do not exists.
-- [ ] unlist info nicely
+- [x] Add warning when species do not exists.
+- [x] unlist info nicely
 - [ ] Better help
 - [ ] vignette
 - [ ] Add licence
