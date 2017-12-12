@@ -5,16 +5,16 @@
 \title{Access CITES legislation data from CITES species+ API}
 \usage{
 taxon_cites_legislation(cnx, query_taxon = "Loxodonta africana",
-  tax_id = NULL, citesleg_only = TRUE)
+  tax_id = NULL, type = "listing")
 }
 \arguments{
 \item{cnx}{the output of your \code{sppplus_connect()} function.}
 
-\item{query_taxon}{a query... character}
+\item{query_taxon}{a character vector to be documented}
 
-\item{tax_id}{to be documented}
+\item{tax_id}{to be documented.}
 
-\item{citesleg_only}{a logical to be documented}
+\item{type}{to be documented.}
 }
 \value{
 data frame or list...
@@ -24,5 +24,5 @@ Query CITES.
 }
 \examples{
 # cnx <- sppplus_connect(token = 'ErJcYxUsIApHLCLOxiJ1Zwtt')
-# taxon_cites_legislation(cnx, tax_id = '4521', citesleg_only = TRUE)
+# taxon_cites_legislation(cnx, tax_id = '4521', type = 'listing')
 }

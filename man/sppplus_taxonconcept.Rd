@@ -4,7 +4,8 @@
 \alias{sppplus_taxonconcept}
 \title{Access taxon_concept data from CITES species+ API}
 \usage{
-sppplus_taxonconcept(cnx, query = "Smaug giganteus", appendix_only = TRUE)
+sppplus_taxonconcept(cnx, query = "Loxodonta africana",
+  appendix_only = TRUE)
 }
 \arguments{
 \item{cnx}{species+ connection information (see \code{\link[citesr]{sppplus_connect}})}
@@ -21,6 +22,6 @@ Queries CITES species+ API using connection generated from \code{\link[citesr]{s
 }
 \examples{
 # cnx <- sppplus_connect(token = 'insert token here')
-# sppplus_taxonconcept(cnx, query = 'Smaug giganteus', appendix_only = TRUE)
+# sppplus_taxonconcept(cnx, query = 'Loxodonta africana', appendix_only = TRUE)
 # sppplus_taxonconcept(cnx, query = 'Homo sapiens', appendix_only = TRUE)
 }
