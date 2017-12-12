@@ -13,7 +13,7 @@
 #' @export
 #' @examples
 #' # cnx <- sppplus_connect(token = 'insert token here')
-#' # sppplus_taxonconcept(cnx, query = 'Smaug giganteus', appendix_only = TRUE)
+#' # sppplus_taxonconcept(cnx, query = 'Loxodonta africana', appendix_only = TRUE)
 #' # sppplus_taxonconcept(cnx, query = 'Homo sapiens', appendix_only = TRUE)
 
 sppplus_taxonconcept <- function(cnx, query = "Smaug giganteus", appendix_only = TRUE) {
@@ -32,7 +32,7 @@ sppplus_taxonconcept <- function(cnx, query = "Smaug giganteus", appendix_only =
         names(temp3) <- c("tax_id", "species", "appendix")
         temp3
     } else {
-        temp2
+        xmlToList(temp)
     }
     }
 
