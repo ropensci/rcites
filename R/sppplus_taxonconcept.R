@@ -21,22 +21,32 @@ sppplus_taxonconcept <- function(cnx, query = "Smaug giganteus", appendix_only =
     query2 <- gsub(pattern = " ", replacement = "%20", x = query)
     temp <- getURI(url = paste(cnx[[1L]], "taxon_concepts.xml?name=", query2, sep = ""), 
         httpheader = paste("X-Authentication-Token: ", cnx[[2L]], sep = ""))
-    temp2 <- xmlToList(temp)
-    if (temp2$pagination$`total-entries`$text == "0") {
-        message("species not listed in CITES")
+    temp2 <- xmlParse(temp)
+    temp2 <- xmlRoot(temp2)
+    if (xmlToList(unlist(temp2[[1]][[3]]))$text == "0") {
+      message("species not listed in CITES")
     } else {
-        if (appendix_only) {
-            data.frame(id = temp2$`taxon-concepts`$`taxon-concept`$id$text, 
-                       species = temp2$`taxon-concepts`$`taxon-concept`$`full-name`,
-                       appendix = temp2$`taxon-concepts`$`taxon-concept`$`cites-listing`)
-        } else {
-            temp2
-        }
+      if (appendix_only) {
+        temp2 <- xmlToDataFrame(unlist(temp2[[2]]["taxon-concept"]))
+        temp3 <- temp2[c(1,2,8)]
+        names(temp3) <- c("id", "species", "appendix")
+        temp3
+    } else {
+        temp2
     }
-    
-    temp3 <- xmlParse(temp)
-    temp3 <- xmlRoot(temp3)
-    temp3 <- xmlToDataFrame(unlist(temp3[[2]]["taxon-concept"]))
-    output <- temp3[c(1,2,8)]
-    names(output) <- c("id", "species", "appendix")
+    }
+
+#    temp2 <- xmlToList(temp)
+#    if (temp2$pagination$`total-entries`$text == "0") {
+#      message("species not listed in CITES")
+#    } else {
+#      if (appendix_only) {
+#        data.frame(id = temp2$`taxon-concepts`$`taxon-concept`$id$text, 
+#                   species = temp2$`taxon-concepts`$`taxon-concept`$`full-name`,
+#                   appendix = temp2$`taxon-concepts`$`taxon-concept`$`cites-listing`)
+#      } else {
+#        temp2
+#      }
+#    }
+
 }
