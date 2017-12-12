@@ -61,6 +61,6 @@ taxon_cites_legislation <- function(cnx, query_taxon = "Loxodonta africana", tax
                    listing_date = unlist(lapply(listings, "[", "effective-at")),
                    listing_notes = unlist(lapply(listings, "[", "annotation")))
     } else {
-        print("Please select type of legislation: Listing, quota or suspension.")
+        message("select type of legislation: listing, quota or suspension")
     }
 }
