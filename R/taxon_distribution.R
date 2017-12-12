@@ -32,6 +32,7 @@ taxon_distribution <- function(cnx, query_taxon = "Loxodonta africana", tax_id =
       temp3$id <- tax$id
       temp3 <- temp3[c(1,3,2,4,6)]
       names(temp3) <- c("tax_id", "country", "iso2", "note", "reference")
+      temp3
     } else {
       temp2
     }
