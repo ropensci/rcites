@@ -4,7 +4,7 @@
 #'
 #' @param cnx species+ connection information (see \code{\link[citesr]{sppplus_connect}}).
 #' @param tax_id character string containing the taxon id (e.g. 4521), which is returned by \code{\link[citesr]{sppplus_taxonconcept}}.
-#' @param type character string indicating type of legislation information requested. One of listing, quota and suspension.
+#' @param type character string indicating type of legislation information requested. One of listing, quota and suspension. Default is listing.
 #'
 #'
 #' @return data frame or list...
