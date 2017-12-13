@@ -34,28 +34,24 @@ taxon_cites_legislation <- function(cnx, tax_id = "4521", type = "listing") {
       } else {
         
         if (type == "listing") {
-          listing <- xmlToDataFrame(unlist(temp2[[1]]["cites-listing"]))
-          rowno <- c(1:nrow(listing))
+          listing_api <- xmlToDataFrame(unlist(temp2[[1]]["cites-listing"]))
+          rowno <- c(1:nrow(listing_api))
+          listing_df <- data.frame(matrix(NA, ncol = 9, nrow = length(rowno)))
+          names(listing_df) <- c("id", "taxon_concept_id", "is_current", "appendix", "change_type", "effective_at", "party", "annotation", "hash_annotation")
+          listing_df$taxon_concept_id <- listing_api$`taxon-concept-id`
+          listing_df$appendix <- listing_api$appendix
+          listing_df$effective_at <- listing_api$`effective-at`
+          listing_df$annotation <- listing_api$annotation
+          listing_df$hash_annotation <- listing_api$hash_annotation
           for (r in rowno) {
-            if (colnames(listing[8]) != "party") {
-              } else {
-                if (is.na(listing[r,8]) == T) {
+                if (is.na(listing_api[r,"party"]) == T) {
                   } else {
                     party <- xmlToDataFrame(unlist(temp2[[1]][[r]]["party"]))
-                    names(party) <- c("iso2", "name", "type")
-                    listing[r,8] <- as.character(party$iso2)
+                    listing_df[r,"party"] <- as.character(party$`iso-code2`)
                   }
-              }
           }
-          if (colnames(listing[8]) == "party") {
-            listing <- listing[c(2,4,8,6,7)]
-            names(listing) <- c("tax_id", "appendix", "iso2", "date", "notes")
-            } else {
-              listing$iso2 <- NA
-              listing <- listing[c(2,4,9,6,7)]
-              names(listing) <- c("tax_id", "appendix", "iso2", "date", "notes")
-              }
-          listing
+          listing_df <- listing_df[-c(1,3,5)]
+          listing_df
           } else {
             
             if (type == "quota") {
