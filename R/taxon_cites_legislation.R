@@ -4,13 +4,12 @@
 #'
 #' @param cnx species+ connection information (see \code{\link[citesr]{sppplus_connect}}).
 #' @param tax_id character string containing the taxon id (e.g. 4521), which is returned by \code{\link[citesr]{sppplus_taxonconcept}}.
-#' @param type character string indicating type of legislation information requested. One of listing, quota and suspension. Default is listing.
-#'
-#'
+#' @param type character string indicating type of legislation information requested. One of listing, quota, suspension and all. Default is listing.
 #' @return data frame or list...
 #'
 #' @importFrom RCurl getURI
 #' @importFrom XML xmlToList
+#' @importFrom XML xmlToDataFrame
 #'
 #' @export
 #' @examples
@@ -27,13 +26,11 @@ taxon_cites_legislation <- function(cnx, tax_id = "4521", type = "listing") {
     temp <- getURI(url = paste(cnx[[1]], "taxon_concepts/", tax_id, "/cites_legislation.xml",
         sep = ""), httpheader = paste("X-Authentication-Token: ", cnx[[2]], sep = ""))
 
-    temp <- xmlParse(temp)
-    temp2 <- xmlRoot(temp)
-#    xmlName(temp2)
-#    names(temp2)
+    temp2 <- xmlParse(temp)
+    temp2 <- xmlRoot(temp2)
 
-    if ( !(type %in% c("listing", "quota", "suspension"))) {
-      message("select type of legislation: listing, quota or suspension")
+    if ( !(type %in% c("listing", "quota", "suspension", "all"))) {
+      message("select type of legislation: listing, quota, suspension or all")
     } else {
     
     if (type == "listing") {
@@ -106,6 +103,10 @@ taxon_cites_legislation <- function(cnx, tax_id = "4521", type = "listing") {
           suspension <- suspension[c(2,4,7,8,3)]
           names(suspension) <- c("tax_id", "date", "iso2", "notification", "notes")
           suspension
+          }
+        } else {
+          if (type == "all") {
+            xmlToList(temp)
           }
         }
       }

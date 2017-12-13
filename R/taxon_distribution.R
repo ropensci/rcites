@@ -9,6 +9,7 @@
 #'
 #' @importFrom RCurl getURI
 #' @importFrom XML xmlToList
+#' @importFrom XML xmlToDataFrame
 #'
 #' @export
 #' @examples
