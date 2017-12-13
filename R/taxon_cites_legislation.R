@@ -34,6 +34,13 @@ taxon_cites_legislation <- function(cnx, query_taxon = "Loxodonta africana", tax
 #    xmlName(temp2)
 #    names(temp2)
 
+    if (type == "quota" & is.null(unlist(temp2[[2]]["cites-quota"])) == TRUE) {
+      message("no current quotas in place for this species")
+    } else {}
+    if (type == "suspension" & is.null(unlist(temp2[[3]]["cites-suspension"])) == TRUE) {
+      message("no current suspensions in place for this species")
+    } else {}
+    
     if (type == "listing") {
       listing <- xmlToDataFrame(unlist(temp2[[1]]["cites-listing"]))
       rowno <- c(1:nrow(listing))
@@ -82,7 +89,6 @@ taxon_cites_legislation <- function(cnx, query_taxon = "Loxodonta africana", tax
           suspension[,7] <- as.character(suspension[,7])
           suspension[,8] <- as.character(suspension[,8])
           rowno <- c(1:nrow(suspension))
-          
           for (r in rowno) {
             if (is.na(suspension[r,7]) == T) {
             } else {
@@ -90,14 +96,12 @@ taxon_cites_legislation <- function(cnx, query_taxon = "Loxodonta africana", tax
               names(geoentity) <- c("iso2", "name", "type")
               suspension[r,7] <- as.character(geoentity$iso2)
             }}
-          
           for (r in rowno) {
             if (is.na(suspension[r,8]) == T) {
             } else {
               notification <- xmlToDataFrame(unlist(temp2[[3]][[r]]["start-notification"]))
               suspension[r,8] <- as.character(notification$name)
             }}
-          
           suspension <- suspension[c(2,4,7,8,3)]
           names(suspension) <- c("tax_id", "date", "iso2", "notification", "notes")
           suspension
