@@ -3,9 +3,9 @@ Type: Package
 Title: An R package to access the CITES Species+ database (https://speciesplus.net/)
 Version: 0.0.1
 Date: 2017-12-11
-Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: Access the CITES Species+ database. 
+Author: Jonas Geschke, Ignasi Bartomeus, Kevin Cazelles et al.
+Maintainer: jonas.geschke@mfn-berlin.de, nacho.bartomeus@gmail.com, kcazelle@uoguelph.ca
+Description: Access the CITES Species+ database.
 URL: https://github.com/ibartomeus/citesr
 BugReports: https://github.com/ibartomeus/citesr/issues
 License: MIT + file LICENSE
