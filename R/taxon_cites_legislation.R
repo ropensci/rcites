@@ -34,12 +34,9 @@ taxon_cites_legislation <- function(cnx, query_taxon = "Loxodonta africana", tax
 #    xmlName(temp2)
 #    names(temp2)
 
-    if (type == "quota" & is.null(unlist(temp2[[2]]["cites-quota"])) == TRUE) {
-      message("no current quotas in place for this species")
-    } else {}
-    if (type == "suspension" & is.null(unlist(temp2[[3]]["cites-suspension"])) == TRUE) {
-      message("no current suspensions in place for this species")
-    } else {}
+    if ( !(type %in% c("listing", "quota", "suspension"))) {
+      message("select type of legislation: listing, quota or suspension")
+    } else {
     
     if (type == "listing") {
       listing <- xmlToDataFrame(unlist(temp2[[1]]["cites-listing"]))
@@ -65,6 +62,9 @@ taxon_cites_legislation <- function(cnx, query_taxon = "Loxodonta africana", tax
     } else {
       
       if (type == "quota") {
+        if (is.null(unlist(temp2[[2]]["cites-quota"])) == TRUE) {
+          message("no current quotas in place for this species")
+        } else {
         quota <- xmlToDataFrame(unlist(temp2[[2]]["cites-quota"]))
         quota[,10] <- as.character(quota[,10])
         rowno <- c(1:nrow(quota))
@@ -82,9 +82,12 @@ taxon_cites_legislation <- function(cnx, query_taxon = "Loxodonta africana", tax
         quota[,5] <- as.character(quota[,5])
         names(quota) <- c("tax_id", "date", "iso2", "quota", "notes")
         quota
-      } else {
+      }} else {
         
         if (type == "suspension") {
+          if (is.null(unlist(temp2[[3]]["cites-suspension"])) == TRUE) {
+            message("no current suspensions in place for this species")
+          } else {
           suspension <- xmlToDataFrame(unlist(temp2[[3]]["cites-suspension"]))
           suspension[,7] <- as.character(suspension[,7])
           suspension[,8] <- as.character(suspension[,8])
@@ -105,11 +108,9 @@ taxon_cites_legislation <- function(cnx, query_taxon = "Loxodonta africana", tax
           suspension <- suspension[c(2,4,7,8,3)]
           names(suspension) <- c("tax_id", "date", "iso2", "notification", "notes")
           suspension
-          
-        } else {
-                message("select type of legislation: listing, quota or suspension")
           }
         }
       }
-
+    }
+    }
 }
