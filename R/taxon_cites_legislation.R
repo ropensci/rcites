@@ -31,8 +31,8 @@ taxon_cites_legislation <- function(cnx, query_taxon = "Loxodonta africana", tax
 
     temp <- xmlParse(temp)
     temp2 <- xmlRoot(temp)
-    xmlName(temp2)
-    names(temp2)
+#    xmlName(temp2)
+#    names(temp2)
 
     if (type == "listing") {
       listing <- xmlToDataFrame(unlist(temp2[[1]]["cites-listing"]))
@@ -51,6 +51,21 @@ taxon_cites_legislation <- function(cnx, query_taxon = "Loxodonta africana", tax
       
       if (type == "quota") {
         quota <- xmlToDataFrame(unlist(temp2[[2]]["cites-quota"]))
+        quota[,10] <- as.character(quota[,10])
+        rowno <- c(1:nrow(quota))
+        for (r in rowno) {
+          if (is.na(quota[r,10]) == T) {
+          } else {
+            geoentity <- xmlToDataFrame(unlist(temp2[[2]][[r]]["geo-entity"]))
+            names(geoentity) <- c("iso2", "name", "type")
+            quota[r,10] <- as.character(geoentity$iso2)
+          }}
+        quota <- quota[c(2,4,10,3,5)]
+        quota[,1] <- as.character(quota[,1])
+        quota[,2] <- as.character(quota[,2])
+        quota[,4] <- as.character(quota[,4])
+        quota[,5] <- as.character(quota[,5])
+        names(quota) <- c("tax_id", "date", "iso2", "quota", "notes")
         quota
       } else {
         
