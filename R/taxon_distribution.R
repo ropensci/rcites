@@ -29,22 +29,17 @@ taxon_distribution <- function(cnx, query_taxon = "Loxodonta africana", tax_id =
     temp2 <- xmlParse(temp)
     temp2 <- xmlRoot(temp2)
     if (country_only) {
-      temp3 <- xmlToDataFrame(unlist(temp2["api-distributions-view"]))
-      temp3$id <- tax$tax_id
-      temp3 <- temp3[c(1,3,2,4,6)]
-      names(temp3) <- c("tax_id", "country", "iso2", "note", "reference")
-      temp3
+        temp3 <- xmlToDataFrame(unlist(temp2["api-distributions-view"]))
+        temp3$id <- tax$tax_id
+        temp3 <- temp3[c(1, 3, 2, 4, 6)]
+        names(temp3) <- c("tax_id", "country", "iso2", "note", "reference")
+        temp3
     } else {
-      xmlToList(temp)
+        xmlToList(temp)
     }
     
-#    temp2 <- xmlToList(temp)
-#    if (country_only) {
-#        data.frame(id = tax$id, taxon = query_taxon,
-#                   country = unlist(lapply(temp2, "[", "name")),
-#                   iso2 = unlist(lapply(temp2, "[", "iso-code2")))
-#    } else {
-#        temp2
-#    }
-
-    }
+    # temp2 <- xmlToList(temp) if (country_only) { data.frame(id = tax$id, taxon =
+    # query_taxon, country = unlist(lapply(temp2, '[', 'name')), iso2 =
+    # unlist(lapply(temp2, '[', 'iso-code2'))) } else { temp2 }
+    
+}

@@ -24,5 +24,6 @@ Queries CITES species+ API using connection generated from \code{\link[citesr]{s
 }
 \examples{
 # cnx <- sppplus_connect(token = 'nsert your token here')
+# taxon_distribution(cnx, query_taxon = 'Loxodonta africana', country_only = TRUE)
 # taxon_distribution(cnx, tax_id = '4521', country_only = TRUE)
 }
