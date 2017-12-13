@@ -13,7 +13,7 @@
 #'
 #' @export
 #' @examples
-#' # cnx <- sppplus_connect(token = 'nsert your token here')
+#' # cnx <- sppplus_connect(token = 'insert your token here')
 #' # taxon_distribution(cnx, query_taxon = 'Loxodonta africana', country_only = TRUE)
 #' # taxon_distribution(cnx, tax_id = '4521', country_only = TRUE)
 
@@ -22,7 +22,7 @@ taxon_distribution <- function(cnx, query_taxon = "Loxodonta africana", tax_id =
     if (is.null(tax_id)) {
         tax <- sppplus_taxonconcept(cnx, query = query_taxon, appendix_only = TRUE)
     } else {
-        tax <- data.frame(id = tax_id)
+        tax <- data.frame(tax_id = tax_id)
     }
     temp <- getURI(url = paste(cnx[[1]], "taxon_concepts/", tax$tax_id, "/distributions.xml", 
         sep = ""), httpheader = paste("X-Authentication-Token: ", cnx[[2]], sep = ""))

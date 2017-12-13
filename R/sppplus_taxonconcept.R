@@ -12,7 +12,7 @@
 #'
 #' @export
 #' @examples
-#' # cnx <- sppplus_connect(token = 'insert token here')
+#' # cnx <- sppplus_connect(token = 'insert your token here')
 #' # sppplus_taxonconcept(cnx, query = 'Loxodonta africana', appendix_only = TRUE)
 #' # sppplus_taxonconcept(cnx, query = 'Homo sapiens', appendix_only = TRUE)
 
