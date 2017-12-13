@@ -58,24 +58,23 @@ taxon_cites_legislation <- function(cnx, tax_id = "4521", type = "listing") {
               if (is.null(unlist(temp2[[2]]["cites-quota"])) == TRUE) {
                 message("no current quotas in place for this species")
                 } else {
-                  quota <- xmlToDataFrame(unlist(temp2[[2]]["cites-quota"]))
-                  quota[,10] <- as.character(quota[,10])
-                  rowno <- c(1:nrow(quota))
+                  quota_api <- xmlToDataFrame(unlist(temp2[[2]]["cites-quota"]))
+                  rowno <- c(1:nrow(quota_api))
+                  quota_df <- data.frame(matrix(NA, ncol = 9, nrow = length(rowno)))
+                  names(quota_df) <- c("id", "taxon_concept_id", "quota", "publication_date", "notes", "url", "is_current", "unit", "geo_entity")
+                  quota_df$taxon_concept_id <- quota_api$`taxon-concept-id`
+                  quota_df$quota <- quota_api$quota
+                  quota_df$publication_date <- quota_api$`publication-date`
+                  quota_df$notes <- quota_api$notes
                   for (r in rowno) {
-                    if (is.na(quota[r,10]) == T) {
+                    if (is.na(quota_api[r,"geo-entity"]) == T) {
                     } else {
                       geoentity <- xmlToDataFrame(unlist(temp2[[2]][[r]]["geo-entity"]))
-                      names(geoentity) <- c("iso2", "name", "type")
-                      quota[r,10] <- as.character(geoentity$iso2)
+                      quota_df[r,9] <- as.character(geoentity$`iso-code2`)
                     }
                   }
-                  quota <- quota[c(2,4,10,3,5)]
-                  quota[,1] <- as.character(quota[,1])
-                  quota[,2] <- as.character(quota[,2])
-                  quota[,4] <- as.character(quota[,4])
-                  quota[,5] <- as.character(quota[,5])
-                  names(quota) <- c("tax_id", "date", "iso2", "quota", "notes")
-                  quota
+                  quota_df <- quota_df[-c(1,6,7,8)]
+                  quota_df
                   }
               } else {
                 
