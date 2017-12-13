@@ -42,15 +42,26 @@ taxon_cites_legislation <- function(cnx, tax_id = "4521", type = "listing") {
           listing_df$appendix <- listing_api$appendix
           listing_df$effective_at <- listing_api$`effective-at`
           listing_df$annotation <- listing_api$annotation
-          listing_df$hash_annotation <- listing_api$hash_annotation
+          #party
           for (r in rowno) {
-                if (is.na(listing_api[r,"party"]) == T) {
-                  } else {
-                    party <- xmlToDataFrame(unlist(temp2[[1]][[r]]["party"]))
-                    listing_df[r,"party"] <- as.character(party$`iso-code2`)
-                  }
+            if (is.na(listing_api[r,"party"]) == TRUE) {
+              } else {
+                party <- xmlToDataFrame(unlist(temp2[[1]][[r]]["party"]))
+                listing_df[r,"party"] <- as.character(party$`iso-code2`)
+                }
           }
-          listing_df <- listing_df[-c(1,3,5)]
+          #hash-annotation
+          if (is.null(listing_api$`hash-annotation`) == TRUE) {
+            } else {
+              for (r in rowno) {
+                if (is.na(listing_api[r,"hash-annotation"]) == TRUE) {
+                } else {
+                  hash <- xmlToDataFrame(unlist(temp2[[1]][[r]]["hash-annotation"]))
+                  listing_df[r,"hash_annotation"] <- as.character(hash$`note`)
+                }
+              }
+            }
+          listing_df <- listing_df[-c(1,3,5,9)]
           listing_df
           } else {
             
@@ -66,6 +77,18 @@ taxon_cites_legislation <- function(cnx, tax_id = "4521", type = "listing") {
                   quota_df$quota <- quota_api$quota
                   quota_df$publication_date <- quota_api$`publication-date`
                   quota_df$notes <- quota_api$notes
+                  #unit
+                  if (is.null(quota_api$`hash-annotation`) == TRUE) {
+                    } else {
+                      for (r in rowno) {
+                        if (is.na(quota_api[r,"unit"]) == T) {
+                        } else {
+                          unit <- xmlToDataFrame(unlist(temp2[[2]][[r]]["unit"]))
+                          quota_df[r,8] <- as.character(unit$`code`)
+                        }
+                      }
+                    }
+                  #geo-entity
                   for (r in rowno) {
                     if (is.na(quota_api[r,"geo-entity"]) == T) {
                     } else {
@@ -82,28 +105,32 @@ taxon_cites_legislation <- function(cnx, tax_id = "4521", type = "listing") {
                   if (is.null(unlist(temp2[[3]]["cites-suspension"])) == TRUE) {
                     message("no current suspensions in place for this species")
                     } else {
-                      suspension <- xmlToDataFrame(unlist(temp2[[3]]["cites-suspension"]))
-                      suspension[,7] <- as.character(suspension[,7])
-                      suspension[,8] <- as.character(suspension[,8])
-                      rowno <- c(1:nrow(suspension))
+                      suspension_api <- xmlToDataFrame(unlist(temp2[[3]]["cites-suspension"]))
+                      rowno <- c(1:nrow(suspension_api))
+                      suspension_df <- data.frame(matrix(NA, ncol = 9, nrow = length(rowno)))
+                      names(suspension_df) <- c("id", "taxon_concept_id", "notes", "start_date", "is_current", "geo_entity", "applies_to_import", "notification", "notification_url")
+                      suspension_df$taxon_concept_id <- suspension_api$`taxon-concept-id`
+                      suspension_df$notes <- suspension_api$notes
+                      suspension_df$start_date <- suspension_api$`start-date`
+                      #geo-entity
                       for (r in rowno) {
-                        if (is.na(suspension[r,7]) == T) {
+                        if (is.na(suspension_api[r,7]) == T) {
                         } else {
                           geoentity <- xmlToDataFrame(unlist(temp2[[3]][[r]]["geo-entity"]))
-                          names(geoentity) <- c("iso2", "name", "type")
-                          suspension[r,7] <- as.character(geoentity$iso2)
+                          suspension_df[r,6] <- as.character(geoentity$`iso-code2`)
                         }
                       }
+                      #start-notification
                       for (r in rowno) {
-                        if (is.na(suspension[r,8]) == T) {
+                        if (is.na(suspension_api[r,8]) == T) {
                         } else {
                           notification <- xmlToDataFrame(unlist(temp2[[3]][[r]]["start-notification"]))
-                          suspension[r,8] <- as.character(notification$name)
+                          suspension_df[r,8] <- as.character(notification$name)
+                          suspension_df[r,9] <- as.character(notification$url)
                         }
                       }
-                      suspension <- suspension[c(2,4,7,8,3)]
-                      names(suspension) <- c("tax_id", "date", "iso2", "notification", "notes")
-                      suspension
+                      suspension_df <- suspension_df[-c(1,5,7)]
+                      suspension_df
                       }
                   } else {
                     
