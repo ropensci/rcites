@@ -70,7 +70,7 @@ and for code quality see [that one](https://github.com/marketplace/category/code
 - [ ] Add licence
 - [ ] can we do a ping?
 - expand to other APIs:
-- [ ] taxon_cites_legislation
+- [x] taxon_cites_legislation
 - [x] taxon_distribution
 - [ ] taxon_eu_legislation
 - [ ] taxon_references
