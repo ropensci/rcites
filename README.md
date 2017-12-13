@@ -18,7 +18,9 @@ sppplus_taxonconcept(cnx, query = "Loxodonta africana", appendix_only = FALSE)
 # also works at higher order taxonomy
 sppplus_taxonconcept(cnx, query = "Mamalia", appendix_only = TRUE)
 # you can ask for distribution
-taxon_distribution(cnx, query_taxon = 'Loxodonta africana', country_only = TRUE)
+taxon_distribution(cnx, tax_id = "4521", country_only = TRUE)
+# you can ask for the CITES legislation information, e.g. listing
+taxon_cites_legislation(cns, tax_id = "4521", type = "listing")
 ```
 
 
