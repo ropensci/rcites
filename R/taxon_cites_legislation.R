@@ -38,14 +38,22 @@ taxon_cites_legislation <- function(cnx, query_taxon = "Loxodonta africana", tax
       listing <- xmlToDataFrame(unlist(temp2[[1]]["cites-listing"]))
       rowno <- c(1:nrow(listing))
       for (r in rowno) {
+        if (colnames(listing[8]) != "party") {
+        } else {
         if (is.na(listing[r,8]) == T) {
         } else {
       party <- xmlToDataFrame(unlist(temp2[[1]][[r]]["party"]))
       names(party) <- c("iso2", "name", "type")
       listing[r,8] <- as.character(party$iso2)
-        }}
+        }}}
+      if (colnames(listing[8]) == "party") {
       listing <- listing[c(2,4,8,6,7)]
       names(listing) <- c("tax_id", "appendix", "iso2", "date", "notes")
+      } else {
+        listing$iso2 <- NA
+        listing <- listing[c(2,4,9,6,7)]
+        names(listing) <- c("tax_id", "appendix", "iso2", "date", "notes")
+      }
       listing
     } else {
       
@@ -71,15 +79,31 @@ taxon_cites_legislation <- function(cnx, query_taxon = "Loxodonta africana", tax
         
         if (type == "suspension") {
           suspension <- xmlToDataFrame(unlist(temp2[[3]]["cites-suspension"]))
+          suspension[,7] <- as.character(suspension[,7])
+          suspension[,8] <- as.character(suspension[,8])
+          rowno <- c(1:nrow(suspension))
+          
+          for (r in rowno) {
+            if (is.na(suspension[r,7]) == T) {
+            } else {
+              geoentity <- xmlToDataFrame(unlist(temp2[[3]][[r]]["geo-entity"]))
+              names(geoentity) <- c("iso2", "name", "type")
+              suspension[r,7] <- as.character(geoentity$iso2)
+            }}
+          
+          for (r in rowno) {
+            if (is.na(suspension[r,8]) == T) {
+            } else {
+              notification <- xmlToDataFrame(unlist(temp2[[3]][[r]]["start-notification"]))
+              suspension[r,8] <- as.character(notification$name)
+            }}
+          
+          suspension <- suspension[c(2,4,7,8,3)]
+          names(suspension) <- c("tax_id", "date", "iso2", "notification", "notes")
           suspension
           
         } else {
-            if (type == "suspension") {
-                suspension <- xmlToDataFrame(unlist(temp2[[3]]["cites-suspension"]))
-                suspension
-            } else {
                 message("select type of legislation: listing, quota or suspension")
-            }
           }
         }
       }
