@@ -1,11 +1,10 @@
-#' Access CITES legislation data from CITES species+ API
+#' Access distribution data from CITES species+ API
 #'
-#' Query CITES.
+#' Queries CITES species+ API using connection generated from \code{\link[citesr]{sppplus_connect}}. The query string filters species+ data by taxon concept (e.g.species, genus, class)
 #'
-#' @param cnx the output of your \code{sppplus_connect()} function.
-#' @param query_taxon a character vector to be documented
-#' @param tax_id to be documented.
-#' @param type to be documented.
+#' @param cnx species+ connection information (see \code{\link[citesr]{sppplus_connect}}).
+#' @param tax_id character string containing the taxon id (e.g. 4521), which is returned by \code{\link[citesr]{sppplus_taxonconcept}}.
+#' @param type character string indicating type of legislation information requested. One of listing, quota and suspension.
 #'
 #'
 #' @return data frame or list...
@@ -18,15 +17,14 @@
 #' # cnx <- sppplus_connect(token = 'insert your token here')
 #' # taxon_cites_legislation(cnx, tax_id = '4521', type = 'listing')
 
-taxon_cites_legislation <- function(cnx, query_taxon = "Loxodonta africana", tax_id = NULL,
-    type = "listing") {
-    if (is.null(tax_id)) {
-        tax <- sppplus_taxonconcept(cnx, query = query_taxon, appendix_only = TRUE)
-    } else {
-        tax <- data.frame(tax_id = tax_id)
-    }
+taxon_cites_legislation <- function(cnx, tax_id = "4521", type = "listing") {
+#    if (is.null(tax_id)) {
+#        tax <- sppplus_taxonconcept(cnx, query = query_taxon, appendix_only = TRUE)
+#    } else {
+#        tax <- data.frame(tax_id = tax_id)
+#    }
   
-    temp <- getURI(url = paste(cnx[[1]], "taxon_concepts/", tax$tax_id, "/cites_legislation.xml",
+    temp <- getURI(url = paste(cnx[[1]], "taxon_concepts/", tax_id, "/cites_legislation.xml",
         sep = ""), httpheader = paste("X-Authentication-Token: ", cnx[[2]], sep = ""))
 
     temp <- xmlParse(temp)
