@@ -25,7 +25,7 @@ taxon_references <- function(cnx, tax_id = "4521", type = "taxonomic") {
         temp2 <- xmlParse(temp)
         temp2 <- xmlRoot(temp2)
         if (length(temp2["api-taxon-references-view"]) == 0) {
-          message("no CITES taxonomic references for this species")
+          message("no taxonomic references for this species")
           } else {
             temp3 <- xmlToDataFrame(unlist(temp2["api-taxon-references-view"]))
             rowno <- c(1:nrow(temp3))
