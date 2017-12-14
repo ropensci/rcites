@@ -24,7 +24,7 @@ sppplus_taxonconcept <- function(cnx, query_taxon = "Loxodonta africana", append
     temp2 <- xmlParse(temp)
     temp2 <- xmlRoot(temp2)
     if (xmlToList(unlist(temp2[[1]][[3]]))$text == "0") {
-        message("species not listed in CITES")
+        message("taxon not listed in CITES")
     } else {
         if (appendix_only == TRUE) {
             temp3 <- xmlToDataFrame(unlist(temp2[[2]]["taxon-concept"]))
