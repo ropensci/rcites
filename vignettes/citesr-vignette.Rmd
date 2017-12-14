@@ -15,7 +15,7 @@ To set up a connection to the Species+/CITES database you will need an authentic
 
 After creating the user account and getting a token, you can use the sppplus_connect function.
 ```{r eval = FALSE}
- cnx <- sppplus_connect(token = 'fill-in-your-token-here')
+ cnx <- sppplus_connect(token = 'insert your token here')
 ```
 
 ## Use the cites_query_taxon function
