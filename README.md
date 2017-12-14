@@ -1,7 +1,8 @@
 # citesr
 [![Build Status](https://travis-ci.org/ibartomeus/citesr.svg?branch=master)](https://travis-ci.org/ibartomeus/citesr)
 
-An R package to access the CITES Species+ database (https://speciesplus.net/)
+An R package to access the CITES Species+ database. Reference:
+UNEP (2017). The Species+ Website. Nairobi, Kenya. Compiled by UNEP-WCMC, Cambridge, UK. Available at: www.speciesplus.net. [Accessed 11/12/2017].
 
 # How it works so far.
 
