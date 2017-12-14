@@ -53,10 +53,10 @@ taxon_references <- function(cnx, tax_id = "4521", type = "taxonomic") {
                 temp2 <- xmlRoot(temp2)
                 temp3 <- xmlToDataFrame(unlist(temp2["api-distributions-view"]))
                 rowno <- c(1:nrow(temp3))
-                didistribution_refs <- data.frame(matrix(NA, ncol = 2, nrow = length(rowno)))
-                names(didistribution_refs) <- c("tax_id", "iso2")
-                didistribution_refs$id <- as.character(tax_id)
-                didistribution_refs$iso2 <- temp3$`iso-code2`
+                distribution_refs <- data.frame(matrix(NA, ncol = 2, nrow = length(rowno)))
+                names(distribution_refs) <- c("tax_id", "iso2")
+                distribution_refs$tax_id <- as.character(tax_id)
+                distribution_refs$iso2 <- temp3$`iso-code2`
                 p <- c(0)
                 for (r in rowno) {
                   p_temp <- xmlToDataFrame(unlist(temp2[[r]][[6]]))
@@ -67,18 +67,18 @@ taxon_references <- function(cnx, tax_id = "4521", type = "taxonomic") {
                 for (c in colno) {
                   names(distref_df)[c] <- paste("reference_", c, sep = "")
                   }
-                didistribution_refs <- cbind(didistribution_refs, distref_df)
+                distribution_refs <- cbind(distribution_refs, distref_df)
                 for (r in rowno) {
                   if (length(xmlToDataFrame(unlist(temp2[[r]][[6]]))) == 0) {
                     } else {
                       p_temp <- xmlToDataFrame(unlist(temp2[[r]][[6]]))
                       refno <- c(1:nrow(p_temp))
                       for (l in refno) {
-                        didistribution_refs[r,(l+2)] <- as.character(p_temp[l,1])
+                        distribution_refs[r,(l+2)] <- as.character(p_temp[l,1])
                       }
                     }
                   }
-                distribution_references <- didistribution_refs
+                distribution_references <- distribution_refs
                 distribution_references
         }
       }
