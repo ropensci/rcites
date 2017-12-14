@@ -17,7 +17,7 @@
 #' # sppplus_taxonconcept(cnx, query_taxon = 'Homo sapiens', appendix_only = TRUE)
 
 sppplus_taxonconcept <- function(cnx, query_taxon = "Loxodonta africana", appendix_only = TRUE) {
-    # we can add here a check t ensure is a valid name
+    # we can add here a check to ensure is a valid name
     query <- gsub(pattern = " ", replacement = "%20", x = query_taxon)
     temp <- getURI(url = paste(cnx[[1]], "taxon_concepts.xml?name=", query, sep = ""),
         httpheader = paste("X-Authentication-Token: ", cnx[[2]], sep = ""))
@@ -35,11 +35,4 @@ sppplus_taxonconcept <- function(cnx, query_taxon = "Loxodonta africana", append
             xmlToList(temp)
         }
     }
-
-    # temp2 <- xmlToList(temp) if (temp2$pagination$`total-entries`$text == '0') {
-    # message('species not listed in CITES') } else { if (appendix_only) {
-    # data.frame(id = temp2$`taxon-concepts`$`taxon-concept`$id$text, species =
-    # temp2$`taxon-concepts`$`taxon-concept`$`full-name`, appendix =
-    # temp2$`taxon-concepts`$`taxon-concept`$`cites-listing`) } else { temp2 } }
-
 }
