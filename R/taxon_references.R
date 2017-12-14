@@ -43,8 +43,10 @@ taxon_references <- function(cnx, tax_id = "4521", type = "taxonomic") {
             }
             taxonomic_references <- taxonomic_refs
             taxonomic_references
-            } else {
-              if (type == "distribution") {
+            }
+        }
+      else {
+        if (type == "distribution") {
                 temp <- getURI(url = paste(cnx[[1]], "taxon_concepts/", tax_id, "/distributions.xml",
                                            sep = ""), httpheader = paste("X-Authentication-Token: ", cnx[[2]], sep = ""))
                 temp2 <- xmlParse(temp)
@@ -78,8 +80,7 @@ taxon_references <- function(cnx, tax_id = "4521", type = "taxonomic") {
                   }
                 distribution_references <- didistribution_refs
                 distribution_references
-              }
-            }
+        }
       }
     }
 }
