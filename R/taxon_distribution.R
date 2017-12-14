@@ -18,7 +18,6 @@
 taxon_distribution <- function(cnx, tax_id = "4521", country_only = TRUE) {
     temp <- getURI(url = paste(cnx[[1]], "taxon_concepts/", tax_id, "/distributions.xml",
         sep = ""), httpheader = paste("X-Authentication-Token: ", cnx[[2]], sep = ""))
-
     temp2 <- xmlParse(temp)
     temp2 <- xmlRoot(temp2)
 
