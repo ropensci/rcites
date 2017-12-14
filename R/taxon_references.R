@@ -19,7 +19,6 @@ taxon_references <- function(cnx, tax_id = "4521", type = "taxonomic") {
   if (!(type %in% c("taxonomic", "distribution"))) {
     message("select type of references: taxonomic or distribution")
     } else {
-      
       if (type == "taxonomic") {
         temp <- getURI(url = paste(cnx[[1]], "taxon_concepts/", tax_id, "/references.xml",
                                    sep = ""), httpheader = paste("X-Authentication-Token: ", cnx[[2]], sep = ""))
@@ -45,7 +44,6 @@ taxon_references <- function(cnx, tax_id = "4521", type = "taxonomic") {
             taxonomic_references <- taxonomic_refs
             taxonomic_references
             } else {
-              
               if (type == "distribution") {
                 temp <- getURI(url = paste(cnx[[1]], "taxon_concepts/", tax_id, "/distributions.xml",
                                            sep = ""), httpheader = paste("X-Authentication-Token: ", cnx[[2]], sep = ""))
@@ -53,10 +51,10 @@ taxon_references <- function(cnx, tax_id = "4521", type = "taxonomic") {
                 temp2 <- xmlRoot(temp2)
                 temp3 <- xmlToDataFrame(unlist(temp2["api-distributions-view"]))
                 rowno <- c(1:nrow(temp3))
-                distr <- data.frame(matrix(NA, ncol = 2, nrow = length(rowno)))
-                names(distr) <- c("tax_id", "iso2")
-                distr$id <- as.character(tax_id)
-                distr$iso2 <- temp3$`iso-code2`
+                didistribution_refs <- data.frame(matrix(NA, ncol = 2, nrow = length(rowno)))
+                names(didistribution_refs) <- c("tax_id", "iso2")
+                didistribution_refs$id <- as.character(tax_id)
+                didistribution_refs$iso2 <- temp3$`iso-code2`
                 p <- c(0)
                 for (r in rowno) {
                   p_temp <- xmlToDataFrame(unlist(temp2[[r]][[6]]))
@@ -67,21 +65,22 @@ taxon_references <- function(cnx, tax_id = "4521", type = "taxonomic") {
                 for (c in colno) {
                   names(distref_df)[c] <- paste("reference_", c, sep = "")
                   }
-                distr <- cbind(distr, distref_df)
+                didistribution_refs <- cbind(didistribution_refs, distref_df)
                 for (r in rowno) {
                   if (length(xmlToDataFrame(unlist(temp2[[r]][[6]]))) == 0) {
                     } else {
                       p_temp <- xmlToDataFrame(unlist(temp2[[r]][[6]]))
                       refno <- c(1:nrow(p_temp))
                       for (l in refno) {
-                        distr[r,(l+2)] <- as.character(p_temp[l,1])
+                        didistribution_refs[r,(l+2)] <- as.character(p_temp[l,1])
                       }
                     }
                   }
-                distribution_references <- distr
+                distribution_references <- didistribution_refs
                 distribution_references
               }
             }
       }
     }
 }
+      
