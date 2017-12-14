@@ -3,7 +3,7 @@
 #' Queries CITES species+ API using connection generated from \code{\link[citesr]{sppplus_connect}}. The query string filters species+ data by taxon concept (e.g.species, genus, class)
 #'
 #' @param cnx species+ connection information (see \code{\link[citesr]{sppplus_connect}}).
-#' @param tax_id character string containing the species id (e.g. 4521), which is returned by \code{\link[citesr]{sppplus_taxonconcept}}.
+#' @param tax_id character string containing a species' taxon id (e.g. 4521), which is returned by \code{\link[citesr]{sppplus_taxonconcept}}.
 #' @param type character string indicating type of references requested. One of taxonomic and distribution. Default is taxonomic.
 #' @return If type is one of taxonomic or distribution, returns a dataframe with respective references from the Species+ database. If type is distribution, check \code{\link[citesr]{taxon_distribution}} for country notes.
 #'

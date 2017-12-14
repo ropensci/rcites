@@ -3,7 +3,7 @@
 #' Queries CITES species+ API using connection generated from \code{\link[citesr]{sppplus_connect}}. The query string filters species+ data by taxon concept (e.g.species, genus, class)
 #'
 #' @param cnx species+ connection information (see \code{\link[citesr]{sppplus_connect}}).
-#' @param tax_id character string containing the species id (e.g. 4521), which is returned by \code{\link[citesr]{sppplus_taxonconcept}}.
+#' @param tax_id character string containing a species' taxon id (e.g. 4521), which is returned by \code{\link[citesr]{sppplus_taxonconcept}}.
 #' @param country_only logical statement for querying only the country information. Default is TRUE.
 #' @return If country_only is TRUE, returns a dataframe with taxon and country. If appendix_only is FALSE, returns a list with all distribution information.
 #'
