@@ -70,16 +70,15 @@ and for code quality see [that one](https://github.com/marketplace/category/code
 - [ ] vignette
 - [ ] Add licence
 - [ ] can we do a ping?
-- expand to other APIs:
-- [x] taxon_cites_legislation
-- [x] taxon_distribution
-- [ ] taxon_eu_legislation
-- [ ] taxon_references
+- [x] API: taxon_cites_legislation
+- [x] API: taxon_distribution
+- [ ] API: taxon_eu_legislation
+- [x] API: taxon_references
 
 # Contributors
 
-- Jonas Geschke / Email: jonas.geschke@mfn-berlin.de / Git: JonasGeschke
-- Marie-Bé Leduc/ Email: mledu050@uottawa.ca / Git: mbhleduc
-- Kevin Cazelles / Email: kcazelle@uoguelph.ca / GitHub: KevCaz
-- Ignasi Bartomeus / Email: nacho.bartomeus@gmail.com / GitHub: ibartomeus
-- Yasmine Verzelen / Email: yasmine.verzelen@inbo.be / GitHub: Yasmine-Verzelen
+- Jonas Geschke / Email: jonas.e.geschke at gmail.com / Git: JonasGeschke
+- Ignasi Bartomeus / Email: nacho.bartomeus at gmail.com / GitHub: ibartomeus
+- Kevin Cazelles / Email: kcazelle at uoguelph.ca / GitHub: KevCaz
+- Marie-Bé Leduc/ Email: mledu050 at uottawa.ca / Git: mbhleduc
+- Yasmine Verzelen / Email: yasmine.verzelen at inbo.be / GitHub: Yasmine-Verzelen
