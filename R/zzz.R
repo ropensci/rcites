@@ -1,8 +1,8 @@
 #' citesr: 
 #' 
-#' An r package to access CITES (https://speciesplus.net/)
+#' An R package to access the CITES Species+ database (https://speciesplus.net/)
 #' 
 #' @docType package
-#' @author all
+#' @author Jonas Geschke et al.
 #' @name citesr
 NULL
