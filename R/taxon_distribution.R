@@ -8,8 +8,7 @@
 #' @return If country_only is TRUE, returns a dataframe with taxon and country. If appendix_only is FALSE, returns a list with all distribution information.
 #'
 #' @importFrom RCurl getURI
-#' @importFrom XML xmlToList
-#' @importFrom XML xmlToDataFrame
+#' @importFrom XML xmlToList xmlToDataFrame xmlRoot xmlParse
 #'
 #' @export
 #' @examples
@@ -17,21 +16,18 @@
 #' # taxon_distribution(cnx, tax_id = '4521', country_only = TRUE)
 
 taxon_distribution <- function(cnx, tax_id = "4521", country_only = TRUE) {
-#    if (is.null(tax_id)) {
-#        tax <- sppplus_taxonconcept(cnx, query = query_taxon, appendix_only = TRUE)
-#    } else {
-#        tax <- data.frame(tax_id = tax_id)
-#    }
-  
-    temp <- getURI(url = paste(cnx[[1]], "taxon_concepts/", tax_id, "/distributions.xml", 
+    # if (is.null(tax_id)) { tax <- sppplus_taxonconcept(cnx, query = query_taxon,
+    # appendix_only = TRUE) } else { tax <- data.frame(tax_id = tax_id) }
+
+    temp <- getURI(url = paste(cnx[[1]], "taxon_concepts/", tax_id, "/distributions.xml",
         sep = ""), httpheader = paste("X-Authentication-Token: ", cnx[[2]], sep = ""))
-    
+
     temp2 <- xmlParse(temp)
     temp2 <- xmlRoot(temp2)
-    
+
     if (country_only == TRUE) {
         temp3 <- xmlToDataFrame(unlist(temp2["api-distributions-view"]))
-        temp3$id <- tax$tax_id
+        temp3$id <- tax_id
         temp3 <- temp3[c(1, 3, 2, 4, 6)]
         names(temp3) <- c("tax_id", "country", "iso2", "note", "reference")
         temp3

@@ -4,17 +4,14 @@
 \alias{taxon_distribution}
 \title{Access distribution data from CITES species+ API}
 \usage{
-taxon_distribution(cnx, query_taxon = "Loxodonta africana", tax_id = NULL,
-  country_only = TRUE)
+taxon_distribution(cnx, tax_id = "4521", country_only = TRUE)
 }
 \arguments{
-\item{cnx}{species+ connection information (see \code{\link[citesr]{sppplus_connect}})}
+\item{cnx}{species+ connection information (see \code{\link[citesr]{sppplus_connect}}).}
 
-\item{query_taxon}{character string containing the query (e.g. species). Depreciated if tax_id is provided.}
+\item{tax_id}{character string containing the taxon id (e.g. 4521), which is returned by \code{\link[citesr]{sppplus_taxonconcept}}.}
 
-\item{tax_id}{character string containing the tax id (e.g. 4521)}
-
-\item{country_only}{a logical statement for querying only the country information. Default is TRUE.}
+\item{country_only}{logical statement for querying only the country information. Default is TRUE.}
 }
 \value{
 If country_only is TRUE, returns a dataframe with taxon and country. If appendix_only is FALSE, returns a list with all distribution information.
@@ -23,7 +20,6 @@ If country_only is TRUE, returns a dataframe with taxon and country. If appendix
 Queries CITES species+ API using connection generated from \code{\link[citesr]{sppplus_connect}}. The query string filters species+ data by taxon concept (e.g.species, genus, class)
 }
 \examples{
-# cnx <- sppplus_connect(token = 'nsert your token here')
-# taxon_distribution(cnx, query_taxon = 'Loxodonta africana', country_only = TRUE)
+# cnx <- sppplus_connect(token = 'insert your token here')
 # taxon_distribution(cnx, tax_id = '4521', country_only = TRUE)
 }

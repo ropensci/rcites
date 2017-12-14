@@ -4,24 +4,24 @@
 \alias{sppplus_taxonconcept}
 \title{Access taxon_concept data from CITES species+ API}
 \usage{
-sppplus_taxonconcept(cnx, query = "Loxodonta africana",
+sppplus_taxonconcept(cnx, query_taxon = "Loxodonta africana",
   appendix_only = TRUE)
 }
 \arguments{
-\item{cnx}{species+ connection information (see \code{\link[citesr]{sppplus_connect}})}
+\item{cnx}{species+ connection information (see \code{\link[citesr]{sppplus_connect}}).}
 
-\item{query}{character string containing the query (e.g. species)}
+\item{query_taxon}{character string containing the query (e.g. species). Scientific taxa only.}
 
-\item{appendix_only}{a logical statement for querying only the appendix number information. Default is TRUE.}
+\item{appendix_only}{logical statement for querying only the taxon and CITES appendix information. Default is TRUE.}
 }
 \value{
-If appendix_only is TRUE, returns a dataframe with taxon and cites_listing. If appendix_only is FALSE, returns a list with all taxon_concept information.
+If appendix_only is TRUE, returns a dataframe with taxon and CITES appendix information. If appendix_only is FALSE, returns a list with all Species+ taxon concept information.
 }
 \description{
 Queries CITES species+ API using connection generated from \code{\link[citesr]{sppplus_connect}}. The query string filters species+ data by taxon concept (e.g.species, genus, class)
 }
 \examples{
-# cnx <- sppplus_connect(token = 'insert token here')
-# sppplus_taxonconcept(cnx, query = 'Loxodonta africana', appendix_only = TRUE)
-# sppplus_taxonconcept(cnx, query = 'Homo sapiens', appendix_only = TRUE)
+# cnx <- sppplus_connect(token = 'insert your token here')
+# sppplus_taxonconcept(cnx, query_taxon = 'Loxodonta africana', appendix_only = TRUE)
+# sppplus_taxonconcept(cnx, query_taxon = 'Homo sapiens', appendix_only = TRUE)
 }

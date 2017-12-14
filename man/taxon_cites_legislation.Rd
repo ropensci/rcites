@@ -2,27 +2,24 @@
 % Please edit documentation in R/taxon_cites_legislation.R
 \name{taxon_cites_legislation}
 \alias{taxon_cites_legislation}
-\title{Access CITES legislation data from CITES species+ API}
+\title{Access distribution data from CITES species+ API}
 \usage{
-taxon_cites_legislation(cnx, query_taxon = "Loxodonta africana",
-  tax_id = NULL, type = "listing")
+taxon_cites_legislation(cnx, tax_id = "4521", type = "listing")
 }
 \arguments{
-\item{cnx}{the output of your \code{sppplus_connect()} function.}
+\item{cnx}{species+ connection information (see \code{\link[citesr]{sppplus_connect}}).}
 
-\item{query_taxon}{a character vector to be documented}
+\item{tax_id}{character string containing the taxon id (e.g. 4521), which is returned by \code{\link[citesr]{sppplus_taxonconcept}}.}
 
-\item{tax_id}{to be documented.}
-
-\item{type}{to be documented.}
+\item{type}{character string indicating type of legislation information requested. One of listing, quota, suspension and all. Default is listing.}
 }
 \value{
-data frame or list...
+If type is one of listing, quota or suspension, returns a dataframe with respective information from the Species+ database. If type is all, returns a list with all Species+ database information.
 }
 \description{
-Query CITES.
+Queries CITES species+ API using connection generated from \code{\link[citesr]{sppplus_connect}}. The query string filters species+ data by taxon concept (e.g.species, genus, class)
 }
 \examples{
-# cnx <- sppplus_connect(token = 'ErJcYxUsIApHLCLOxiJ1Zwtt')
+# cnx <- sppplus_connect(token = 'insert your token here')
 # taxon_cites_legislation(cnx, tax_id = '4521', type = 'listing')
 }
