@@ -16,9 +16,6 @@
 #' # taxon_cites_legislation(cnx, tax_id = '4521', type = 'listing')
 
 taxon_cites_legislation <- function(cnx, tax_id = "4521", type = "listing") {
-    # if (is.null(tax_id)) { tax <- sppplus_taxonconcept(cnx, query = query_taxon,
-    # appendix_only = TRUE) } else { tax <- data.frame(tax_id = tax_id) }
-
     temp <- getURI(url = paste(cnx[[1]], "taxon_concepts/", tax_id, "/cites_legislation.xml",
         sep = ""), httpheader = paste("X-Authentication-Token: ", cnx[[2]], sep = ""))
 
