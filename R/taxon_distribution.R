@@ -16,9 +16,6 @@
 #' # taxon_distribution(cnx, tax_id = '4521', country_only = TRUE)
 
 taxon_distribution <- function(cnx, tax_id = "4521", country_only = TRUE) {
-    # if (is.null(tax_id)) { tax <- sppplus_taxonconcept(cnx, query = query_taxon,
-    # appendix_only = TRUE) } else { tax <- data.frame(tax_id = tax_id) }
-
     temp <- getURI(url = paste(cnx[[1]], "taxon_concepts/", tax_id, "/distributions.xml",
         sep = ""), httpheader = paste("X-Authentication-Token: ", cnx[[2]], sep = ""))
 
@@ -27,10 +24,28 @@ taxon_distribution <- function(cnx, tax_id = "4521", country_only = TRUE) {
 
     if (country_only == TRUE) {
         temp3 <- xmlToDataFrame(unlist(temp2["api-distributions-view"]))
-        temp3$id <- tax_id
-        temp3 <- temp3[c(1, 3, 2, 4, 6)]
-        names(temp3) <- c("tax_id", "country", "iso2", "note", "reference")
-        temp3
+        rowno <- c(1:nrow(temp3))
+        distr <- data.frame(matrix(NA, ncol = 6, nrow = length(rowno)))
+        names(distr) <- c("id", "iso2", "name", "tags",
+                               "type", "references")
+        distr$id <- as.character(tax_id)
+        distr$iso2 <- temp3$`iso-code2`
+        distr$name <- temp3$name
+        # tags
+        for (r in rowno) {
+          if (temp3[r, "tags"] == "") {
+          } else {
+            tags <- xmlToDataFrame(unlist(temp2[[r]]["tags"]))
+            if (ncol(tags) == 1) {
+              distr[r, "tags"] <- as.character(tags[1,1])
+              } else {
+                distr[r, "tags"] <- as.character(paste(tags[1,1], tags[1,2], sep = " + "))
+              }
+          }
+        }
+        distr <- distr[-c(5, 6)]
+        names(distr) <- c("tax_id", "iso2", "country", "note")
+        distr
     } else {
         xmlToList(temp)
     }
