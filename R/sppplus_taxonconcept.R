@@ -5,7 +5,7 @@
 #' @param cnx species+ connection information (see \code{\link[citesr]{sppplus_connect}}).
 #' @param query_taxon character string containing the query (e.g. species). Scientific taxa only.
 #' @param appendix_only logical statement for querying only the taxon and CITES appendix information. Default is TRUE.
-#' @return If appendix_only is TRUE, returns a dataframe with taxon and CITES appendix information. If appendix_only is FALSE, returns a list with all Species+ taxon concept information.
+#' @return If appendix_only is TRUE, returns a dataframe with species' taxon id and CITES appendix information. If appendix_only is FALSE, returns a list with all Species+ taxon concept information.
 #'
 #' @importFrom RCurl getURI
 #' @importFrom XML xmlToList xmlToDataFrame xmlParse xmlRoot
