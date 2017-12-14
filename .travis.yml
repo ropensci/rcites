@@ -5,7 +5,7 @@ sudo: required
 notifications:
   email:
     recipients:
-      - jonas.geschke@mfn-berlin.de
+      - simples.jg@gmx.de
       - kcazelle@uoguelph.ca
 
 r_packages:
