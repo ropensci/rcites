@@ -6,8 +6,8 @@
 \alias{citesr-package}
 \title{citesr:}
 \description{
-An r package to access CITES (https://speciesplus.net/)
+An R package to access the CITES Species+ database (https://speciesplus.net/)
 }
 \author{
-all
+Jonas Geschke et al.
 }

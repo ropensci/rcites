@@ -6,7 +6,7 @@ Date: 2017-12-11
 Author: Jonas Geschke [aut, cre],
     Ignasi Bartomeus [aut],
     Kevin Cazelles [ctb]
-Maintainer: Jonas Geschke <jonas.e.geschke at gmail.com>
+Maintainer: Jonas Geschke <jonas.e.geschke@gmail.com>
 Description: Access the CITES Species+ database.
 URL: https://github.com/ibartomeus/citesr
 BugReports: https://github.com/ibartomeus/citesr/issues

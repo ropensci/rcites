@@ -9,7 +9,7 @@ taxon_cites_legislation(cnx, tax_id = "4521", type = "listing")
 \arguments{
 \item{cnx}{species+ connection information (see \code{\link[citesr]{sppplus_connect}}).}
 
-\item{tax_id}{character string containing the taxon id (e.g. 4521), which is returned by \code{\link[citesr]{sppplus_taxonconcept}}.}
+\item{tax_id}{character string containing a species' taxon id (e.g. 4521), which is returned by \code{\link[citesr]{sppplus_taxonconcept}}.}
 
 \item{type}{character string indicating type of legislation information requested. One of listing, quota, suspension and all. Default is listing.}
 }

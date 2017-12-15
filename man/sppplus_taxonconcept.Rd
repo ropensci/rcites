@@ -15,7 +15,7 @@ sppplus_taxonconcept(cnx, query_taxon = "Loxodonta africana",
 \item{appendix_only}{logical statement for querying only the taxon and CITES appendix information. Default is TRUE.}
 }
 \value{
-If appendix_only is TRUE, returns a dataframe with taxon and CITES appendix information. If appendix_only is FALSE, returns a list with all Species+ taxon concept information.
+If appendix_only is TRUE, returns a dataframe with a species' taxon id and CITES appendix information. If appendix_only is FALSE, returns a list with all Species+ taxon concept information.
 }
 \description{
 Queries CITES species+ API using connection generated from \code{\link[citesr]{sppplus_connect}}. The query string filters species+ data by taxon concept (e.g.species, genus, class)
