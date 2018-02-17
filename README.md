@@ -4,9 +4,19 @@
 An R package to access the CITES Species+ database. Reference:
 UNEP (2017). The Species+ Website. Nairobi, Kenya. Compiled by UNEP-WCMC, Cambridge, UK. Available at: www.speciesplus.net. [Accessed 11/12/2017].
 
+
+
+
 # How it works so far.
 
-This is in-develpoment but you can already query species or taxa:
+## Get a token
+
+So far we require the user to get its own token, *i.e.* it must signed up on
+the species plus / cites website: https://api.speciesplus.net/
+
+## Use our R client
+
+This is in-development but you can already query species or taxa:
 
 ```
 devtools::install_github("ibartomeus/citesr")
@@ -15,7 +25,7 @@ cnx <- sppplus_connect(token = "insert your token here")
 # get CITES status for a species
 sppplus_taxonconcept(cnx, query = "Loxodonta africana", appendix_only = TRUE)
 # get all fields in nested list format
-sppplus_taxonconcept(cnx, query = "Loxodonta africana", appendix_only = FALSE) 
+sppplus_taxonconcept(cnx, query = "Loxodonta africana", appendix_only = FALSE)
 # also works at higher order taxonomy
 sppplus_taxonconcept(cnx, query = "Mamalia", appendix_only = TRUE)
 # you can ask for distribution
@@ -74,11 +84,3 @@ and for code quality see [that one](https://github.com/marketplace/category/code
 - [x] API: taxon_distribution
 - [ ] API: taxon_eu_legislation
 - [x] API: taxon_references
-
-# Contributors
-
-- Jonas Geschke / Email: jonas.e.geschke at gmail.com / Git: JonasGeschke
-- Ignasi Bartomeus / Email: nacho.bartomeus at gmail.com / GitHub: ibartomeus
-- Kevin Cazelles / Email: kcazelle at uoguelph.ca / GitHub: KevCaz
-- Marie-Bé Leduc/ Email: mledu050 at uottawa.ca / Git: mbhleduc
-- Yasmine Verzelen / Email: yasmine.verzelen at inbo.be / GitHub: Yasmine-Verzelen
