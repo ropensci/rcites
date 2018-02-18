@@ -1,0 +1,102 @@
+---
+title: "'citesr': R client for the CITES species+ API"
+output:
+    md_document
+---
+
+
+An R package to access the CITES Species+ database. Reference:
+UNEP (2017). The Species+ Website. Nairobi, Kenya. Compiled by UNEP-WCMC,
+Cambridge, UK. Available at: www.speciesplus.net. [Accessed 18/02/2017].
+
+## Current Status
+
+![](https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg)
+[![Build Status](https://travis-ci.org/ibartomeus/citesr.svg?branch=master)](https://travis-ci.org/ibartomeus/citesr)
+
+
+
+## How it works so far
+
+### Get a token
+
+So far we require the user to get its own authentication token, *i.e.* it must
+signed up on the species plus / cites website: https://api.speciesplus.net/.
+Below the variable `token` will refer to your own token, the token below
+is not working (it is the one displays on the species plus website )
+8QW6Qgh57sBG2k0gtt (https://api.speciesplus.net/documentation).
+
+
+### Installation of our R client
+
+So far the installation required the `devtools` package:
+
+```R
+devtools::install_github("ibartomeus/citesr")
+library("citesr")
+token <- "8QW6Qgh57sBG2k0gtt"
+```
+
+```{R token, echo = FALSE}
+token <- readRDS("inst/tmp/token.rds")
+```
+
+### Examples
+
+#### `sppplus_taxonconcept()`
+
+```{R status}
+# get all fields in nested list format
+sppplus_taxonconcept(token, query = "Loxodonta africana", appendix_only = TRUE)
+```
+
+```{R status2}
+# also works at higher order taxonomy
+sppplus_taxonconcept(token, query = "Mammalia", appendix_only = TRUE)
+```
+
+
+
+#### `sppplus_distribution()`
+
+```R
+# you can ask for distribution
+taxon_distribution(token, tax_id = "4521", country_only = TRUE)
+# you can ask for the CITES legislation information, e.g. listing
+taxon_cites_legislation(token, tax_id = "4521", type = "listing")
+```
+
+
+## Examples
+
+```R
+library(rworldmap)
+map1 <- taxon_distribution(token, query_taxon = 'Loxodonta africana', country_only = TRUE)
+map2 <- joinCountryData2Map(map1, joinCode="ISO2", nameJoinColumn = "iso2", nameCountryColumn = "distribution")
+mapCountryData(mapToPlot = map2, nameColumnToPlot = "taxon", mapRegion = "africa", mapTitle = "Loxodonta africana", addLegend = FALSE)
+```
+
+![](inst/Elephant.jpeg)
+
+-------------------------------------------------------
+
+
+
+
+NB: other similar tools does exist: for code integration see [this page](https://github.com/marketplace/category/continuous-integration)
+and for code quality see [that one](https://github.com/marketplace/category/code-quality).
+
+# Todo list
+
+- [x] write function for personal API: sppplus_connect
+- [x] write function for access to taxon concept: sppplus_taxonconcept
+- [x] Query by Taxon
+- [x] Add warning when species do not exists.
+- [ ] Better help
+- [ ] vignette
+- [X] Add licence
+- [ ] can we do a ping?
+- [x] API: taxon_cites_legislation
+- [x] API: taxon_distribution
+- [ ] API: taxon_eu_legislation
+- [x] API: taxon_references

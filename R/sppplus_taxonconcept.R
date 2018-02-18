@@ -29,7 +29,7 @@ sppplus_taxonconcept <- function(token, query_taxon, appendix_only = TRUE) {
     # check status
     stop_for_status(con)
     # parsed
-    res <- content(con, "parsed")
+    res <- sppplus_res(q_url, token)
     
     # output
     if (!res$pagination$total_entries) {

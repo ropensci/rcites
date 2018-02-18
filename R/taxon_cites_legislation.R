@@ -21,11 +21,7 @@
 taxon_cites_legislation <- function(token, tax_id) {
     # 
     q_url <- sppplus_url(paste0("taxon_concepts/", tax_id, "/cites_legislation.json"))
-    con <- sppplus_get(q_url, token)
-    # check status
-    stop_for_status(con)
-    # parsed
-    res <- content(con, "parsed")
+    res <- sppplus_res(q_url, token)
     
     # output
     out <- as.list(rep("", length(res)))

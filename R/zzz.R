@@ -16,3 +16,11 @@ sppplus_get <- function(q_url, token) {
     names(token) <- "X-Authentication-Token"
     httr::GET(q_url, httr::add_headers(token))
 }
+
+sppplus_res <- function(q_url, token) {
+    con <- sppplus_get(q_url, token)
+    # check status
+    stop_for_status(con)
+    # parsed
+    content(con, "parsed")
+}

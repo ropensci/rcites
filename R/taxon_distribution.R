@@ -21,12 +21,8 @@
 
 taxon_distribution <- function(token, tax_id) {
     # 
-    q_url <- sppplus_url(what = paste0("taxon_concepts/", tax_id, "/distributions.json"))
-    con <- sppplus_get(q_url, token)
-    # check status
-    stop_for_status(con)
-    # parsed
-    res <- content(con, "parsed")
+    q_url <- sppplus_url(paste0("taxon_concepts/", tax_id, "/distributions.json"))
+    res <- sppplus_res(q_url, token)
     # get a data.table; tags and references are lists that the user can easily to
     # access -- output
     as.data.table(do.call(rbind, lapply(res, rbind)))
