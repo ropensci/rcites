@@ -1,38 +1,46 @@
 #' Access taxon_concept data from CITES species+ API
 #'
-#' Queries CITES species+ API using connection generated from \code{\link[citesr]{sppplus_connect}}. The query string filters species+ data by taxon concept (e.g.species, genus, class)
+#' Queries CITES species+ API using an authentication token.
+#' The query string filters species+ data by taxon concept (e.g.species, genus, class)
 #'
-#' @param cnx species+ connection information (see \code{\link[citesr]{sppplus_connect}}).
+#' @param token Authentification token, see \url{https://api.speciesplus.net/documentation}.
 #' @param query_taxon character string containing the query (e.g. species). Scientific taxa only.
-#' @param appendix_only logical statement for querying only the taxon and CITES appendix information. Default is TRUE.
-#' @return If appendix_only is TRUE, returns a dataframe with a species' taxon id and CITES appendix information. If appendix_only is FALSE, returns a list with all Species+ taxon concept information.
+#' @param appendix_only logical statement for querying only the taxon and CITES appendix information. Default is set to \code{TRUE}.
 #'
-#' @importFrom RCurl getURI
-#' @importFrom XML xmlToList xmlToDataFrame xmlParse xmlRoot
+#' @return If appendix_only is \code{TRUE}, returns a data table with a species'
+#' taxon id and CITES appendix information. If appendix_only is \code{FALSE},
+#' returns a data.table with all Species+ taxon concept information.
+#'
+#' @importFrom httr content stop_for_status
+#' @importFrom data.table as.data.table
+#'
+#' @references
+#' \url{https://api.speciesplus.net/documentation/v1/taxon_concepts/index.html}
 #'
 #' @export
 #' @examples
-#' # cnx <- sppplus_connect(token = 'insert your token here')
-#' # sppplus_taxonconcept(cnx, query_taxon = 'Loxodonta africana', appendix_only = TRUE)
-#' # sppplus_taxonconcept(cnx, query_taxon = 'Homo sapiens', appendix_only = TRUE)
+#' # sppplus_taxonconcept(token = token, query_taxon = 'Loxodonta africana', appendix_only = TRUE)
+#' # sppplus_taxonconcept(token = token, query_taxon = 'Homo sapiens', appendix_only = TRUE)
 
-sppplus_taxonconcept <- function(cnx, query_taxon = "Loxodonta africana", appendix_only = TRUE) {
-    # we can add here a check to ensure is a valid name
+sppplus_taxonconcept <- function(token, query_taxon, appendix_only = TRUE) {
+    # 2Bdone add here a check to ensure is a valid name
     query <- gsub(pattern = " ", replacement = "%20", x = query_taxon)
-    temp <- getURI(url = paste(cnx[[1]], "taxon_concepts.xml?name=", query, sep = ""),
-        httpheader = paste("X-Authentication-Token: ", cnx[[2]], sep = ""))
-    temp2 <- xmlParse(temp)
-    temp2 <- xmlRoot(temp2)
-    if (xmlToList(unlist(temp2[[1]][[3]]))$text == "0") {
-        message("taxon not listed in CITES")
+    # 
+    q_url <- sppplus_url(paste0("taxon_concepts.json", "?name=", query))
+    res <- sppplus_res(q_url, token)
+    
+    # output
+    if (!res$pagination$total_entries) {
+        warning("taxon not listed in CITES")
+        out <- NULL
     } else {
-        if (appendix_only == TRUE) {
-            temp3 <- xmlToDataFrame(unlist(temp2[[2]]["taxon-concept"]))
-            temp3 <- temp3[c(1, 2, 8)]
-            names(temp3) <- c("tax_id", "taxon", "appendix")
-            temp3
+        tmp <- res$taxon_concept[[1L]]
+        if (appendix_only) {
+            out <- as.data.frame(tmp[c("id", "full_name", "cites_listing")])
         } else {
-            xmlToList(temp)
+            out <- tmp
+            out$common_names <- do.call(rbind, (lapply(tmp$common_names, rbind)))
         }
     }
+    as.data.table(out)
 }

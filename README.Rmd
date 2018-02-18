@@ -1,0 +1,121 @@
+---
+title: "'citesr': R client for the CITES species+ API"
+output:
+    md_document
+---
+
+
+```{r echo=FALSE}
+knitr::opts_chunk$set(
+  fig.path = "inst/assets/img/",
+  comment = "#R> ",
+  fig.width = 6,
+  fig.height = 7.5
+)
+```
+
+An R package to access the CITES Species+ database. Reference:
+UNEP (2017). The Species+ Website. Nairobi, Kenya. Compiled by UNEP-WCMC,
+Cambridge, UK. Available at: www.speciesplus.net. [Accessed 18/02/2017].
+
+## Current Status
+
+![](https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg)
+[![Build Status](https://travis-ci.org/ibartomeus/citesr.svg?branch=master)](https://travis-ci.org/ibartomeus/citesr)
+
+
+
+## How it works so far
+
+### Get a token
+
+So far we require the user to get its own authentication token, *i.e.* it must
+signed up on the species plus / cites website: https://api.speciesplus.net/.
+Below the variable `token` will refer to your own token, the token below
+is not working (it is the one displays on the species plus website )
+8QW6Qgh57sBG2k0gtt (https://api.speciesplus.net/documentation).
+
+
+### Installation of our R client
+
+So far the installation required the `devtools` package:
+
+```R
+devtools::install_github("ibartomeus/citesr")
+library("citesr")
+token <- "8QW6Qgh57sBG2k0gtt"
+```
+
+```{R token, echo = FALSE}
+token <- readRDS("inst/tmp/token.rds")
+```
+
+### Examples
+
+#### `sppplus_taxonconcept()`
+
+```{R status}
+# get all fields in nested list format
+sppplus_taxonconcept(token, query = "Loxodonta africana", appendix_only = TRUE)
+```
+
+```{R status2}
+# also works at higher order taxonomy
+sppplus_taxonconcept(token, query = "Mammalia", appendix_only = TRUE)
+```
+
+
+
+#### `sppplus_distribution()`
+
+```{R distribution}
+# you can ask for distribution
+taxon_distribution(token, tax_id = '4521', collapse_tags = ' + ')
+```
+
+#### `sppplus_distribution()`
+
+```{R legislation}
+# you can ask for the CITES legislation information, e.g. listing
+leg <- taxon_cites_legislation(token, tax_id = "4521", type = "listings")
+leg$cites_listings[1, 1:6]
+```
+
+
+#### `taxon_references()`
+
+```{R references}
+ref <- taxon_references(token, tax_id = '4521', type = 'taxonomic')
+dim(ref)
+ref$taxonomic[1, ]
+```
+
+
+
+#### Distribution map
+
+The example below requires `rworldmap`.
+
+```{R map, message = FALSE}
+library(rworldmap)
+map1 <- as.data.frame(taxon_distribution(token, '4521'))
+map2 <- joinCountryData2Map(map1, joinCode="ISO2", nameJoinColumn = "iso_code2", nameCountryColumn = "name")
+map2@data$iso2 <- unlist(lapply(map2$iso_code2, is.null))
+plot(c(-23, 62), c(45.9, -40), type = "n", main = "Loxodonta africana")
+plot(map2, add = T)
+plot(map2[!map2$iso2,], col = "#bd9a5e", add = T)
+```
+
+
+-------------------------------------------------------
+
+
+
+
+# Todo list
+
+- [ ] Better help
+- [ ] vignette
+- [ ] can we do a ping?
+- [ ] add code coverage and appveyor
+- [ ] API: taxon_eu_legislation

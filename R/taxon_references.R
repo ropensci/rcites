@@ -1,87 +1,45 @@
 #' Access distribution data from CITES species+ API
 #'
-#' Queries CITES species+ API using connection generated from \code{\link[citesr]{sppplus_connect}}. The query string filters species+ data by taxon concept (e.g.species, genus, class)
+#' Queries CITES species+ API using an authentication token. The query string
+#' filters species+ data by taxon concept (e.g. species, genus, class)
 #'
-#' @param cnx species+ connection information (see \code{\link[citesr]{sppplus_connect}}).
+#' @param token Authentification token, see \url{https://api.speciesplus.net/documentation}.
 #' @param tax_id character string containing a species' taxon id (e.g. 4521), which is returned by \code{\link[citesr]{sppplus_taxonconcept}}.
-#' @param type character string indicating type of references requested. One of taxonomic and distribution. Default is taxonomic.
-#' @return If type is one of taxonomic or distribution, returns a dataframe with respective references from the Species+ database. If type is distribution, check \code{\link[citesr]{taxon_distribution}} for country notes.
+#' @param type vector of character strings indicating the type of references requested, \code{taxonomic} or \code{distribution}.
 #'
-#' @importFrom RCurl getURI
-#' @importFrom XML xmlToList xmlToDataFrame xmlParse xmlRoot
+#' @return A list of data table with the desired references.
 #'
+#' @importFrom httr content stop_for_status
+#' @importFrom data.table as.data.table data.table
 #' @export
+#'
+#' @references
+#' \url{https://api.speciesplus.net/documentation/v1/references/index.html}
+#'
 #' @examples
-#' # cnx <- sppplus_connect(token = 'insert your token here')
-#' # taxon_references(cnx, tax_id = '4521', type = 'taxonomic')
+#' # taxon_references(token, tax_id = '4521')
+#' # taxon_references(token, tax_id = '4521', type = 'taxonomic')
 
-taxon_references <- function(cnx, tax_id = "4521", type = "taxonomic") {
-  if (!(type %in% c("taxonomic", "distribution"))) {
-    message("select type of references: taxonomic or distribution")
-    } else {
-      if (type == "taxonomic") {
-        temp <- getURI(url = paste(cnx[[1]], "taxon_concepts/", tax_id, "/references.xml",
-                                   sep = ""), httpheader = paste("X-Authentication-Token: ", cnx[[2]], sep = ""))
-        temp2 <- xmlParse(temp)
-        temp2 <- xmlRoot(temp2)
-        if (length(temp2["api-taxon-references-view"]) == 0) {
-          message("no taxonomic references for this species")
-          } else {
-            temp3 <- xmlToDataFrame(unlist(temp2["api-taxon-references-view"]))
-            rowno <- c(1:nrow(temp3))
-            taxonomic_refs <- data.frame(matrix(NA, ncol = 3, nrow = length(rowno)))
-            names(taxonomic_refs) <- c("tax_id", "reference", "cites_standard")
-            taxonomic_refs$tax_id <- as.character(tax_id)
-            taxonomic_refs$reference <- temp3$citation
-            taxonomic_refs$cites_standard <- temp3$`is-standard`
-            for (r in rowno) {
-              if (taxonomic_refs[r,3] == "true") {
-                taxonomic_refs[r,3] <- paste("CITES standard reference")
-                } else {
-                  taxonomic_refs[r,3] <- paste("other reference")
-                }
-            }
-            taxonomic_references <- taxonomic_refs
-            taxonomic_references
-            }
-        }
-      else {
-        if (type == "distribution") {
-                temp <- getURI(url = paste(cnx[[1]], "taxon_concepts/", tax_id, "/distributions.xml",
-                                           sep = ""), httpheader = paste("X-Authentication-Token: ", cnx[[2]], sep = ""))
-                temp2 <- xmlParse(temp)
-                temp2 <- xmlRoot(temp2)
-                temp3 <- xmlToDataFrame(unlist(temp2["api-distributions-view"]))
-                rowno <- c(1:nrow(temp3))
-                distribution_refs <- data.frame(matrix(NA, ncol = 2, nrow = length(rowno)))
-                names(distribution_refs) <- c("tax_id", "iso2")
-                distribution_refs$tax_id <- as.character(tax_id)
-                distribution_refs$iso2 <- temp3$`iso-code2`
-                p <- c(0)
-                for (r in rowno) {
-                  p_temp <- xmlToDataFrame(unlist(temp2[[r]][[6]]))
-                  p <- c(p, c(nrow(p_temp)))
-                  }
-                distref_df <- data.frame(matrix(NA, ncol = max(p), nrow = 1))
-                colno <- c(1:(max(p)))
-                for (c in colno) {
-                  names(distref_df)[c] <- paste("reference_", c, sep = "")
-                  }
-                distribution_refs <- cbind(distribution_refs, distref_df)
-                for (r in rowno) {
-                  if (length(xmlToDataFrame(unlist(temp2[[r]][[6]]))) == 0) {
-                    } else {
-                      p_temp <- xmlToDataFrame(unlist(temp2[[r]][[6]]))
-                      refno <- c(1:nrow(p_temp))
-                      for (l in refno) {
-                        distribution_refs[r,(l+2)] <- as.character(p_temp[l,1])
-                      }
-                    }
-                  }
-                distribution_references <- distribution_refs
-                distribution_references
-        }
-      }
+taxon_references <- function(token, tax_id = "4521", type = c("taxonomic", "distribution")) {
+    # 
+    type <- unique(type)
+    stopifnot(all(type %in% c("taxonomic", "distribution")))
+    # 
+    out <- list()
+    # 
+    if ("taxonomic" %in% type) {
+        q_url <- sppplus_url(paste0("taxon_concepts/", tax_id, "/references.json"))
+        res <- sppplus_res(q_url, token)
+        out$taxonomic <- as.data.table(do.call(rbind, lapply(res, rbind)))
     }
+    # 
+    if ("distribution" %in% type) {
+        q_url <- sppplus_url(paste0("taxon_concepts/", tax_id, "/distributions.json"))
+        res <- sppplus_res(q_url, token)
+        ref <- as.data.table(do.call(rbind, lapply(res, rbind)))
+        out$distribution <- data.table(name = rep(unlist(ref$name), unlist(lapply(ref$references, 
+            length))), reference = unlist(ref$references))
+    }
+    # output
+    out
 }
-      
