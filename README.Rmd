@@ -68,8 +68,16 @@ taxon_distribution(token, tax_id = '4521', collapse_tags = ' + ')
 
 ```{R legislation}
 # you can ask for the CITES legislation information, e.g. listing
-taxon_cites_legislation(token, tax_id = "4521", type = "listing")
+taxon_cites_legislation(token, tax_id = "4521", type = "listings")
 ```
+
+
+#### `taxon_references()`
+
+```{R references}
+taxon_references(token, tax_id = '4521', type = 'taxonomic')
+```
+
 
 
 ## Examples
