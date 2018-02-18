@@ -21,8 +21,8 @@
 
 taxon_distribution <- function(token, tax_id) {
     # 
-    url <- build_url(what = paste0("taxon_concepts/", tax_id, "/distributions.json"))
-    con <- sppplus_get(url, token)
+    q_url <- sppplus_url(what = paste0("taxon_concepts/", tax_id, "/distributions.json"))
+    con <- sppplus_get(q_url, token)
     # check status
     stop_for_status(con)
     # parsed

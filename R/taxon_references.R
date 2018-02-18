@@ -20,8 +20,8 @@
 
 taxon_references <- function(token, tax_id = "4521") {
     # 
-    url <- build_url(what = paste0("taxon_concepts/", tax_id, "/references.json"))
-    con <- sppplus_get(url, token)
+    q_url <- sppplus_url(paste0("taxon_concepts/", tax_id, "/references.json"))
+    con <- sppplus_get(q_url, token)
     # check status
     stop_for_status(con)
     # parsed

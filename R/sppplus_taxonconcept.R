@@ -24,8 +24,8 @@ sppplus_taxonconcept <- function(token, query_taxon, appendix_only = TRUE) {
     # 2Bdone add here a check to ensure is a valid name
     query <- gsub(pattern = " ", replacement = "%20", x = query_taxon)
     # 
-    url <- build_url(what = paste0("taxon_concepts.json", "?name=", query))
-    con <- sppplus_get(url, token)
+    q_url <- sppplus_url(paste0("taxon_concepts.json", "?name=", query))
+    con <- sppplus_get(q_url, token)
     # check status
     stop_for_status(con)
     # parsed
