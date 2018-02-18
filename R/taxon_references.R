@@ -26,6 +26,6 @@ taxon_references <- function(token, tax_id = "4521") {
     stop_for_status(con)
     # parsed
     res <- content(con, "parsed")
-    # out
+    # output
     as.data.table(do.call(rbind, lapply(res, rbind)))
 }

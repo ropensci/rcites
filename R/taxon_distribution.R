@@ -28,6 +28,6 @@ taxon_distribution <- function(token, tax_id) {
     # parsed
     res <- content(con, "parsed")
     # get a data.table; tags and references are lists that the user can easily to
-    # access out
+    # access -- output
     as.data.table(do.call(rbind, lapply(res, rbind)))
 }

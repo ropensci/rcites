@@ -19,20 +19,19 @@
 #' # taxon_cites_legislation(token, tax_id = '4521')
 
 taxon_cites_legislation <- function(token, tax_id) {
-    #
+    # 
     url <- build_url(what = paste0("taxon_concepts/", tax_id, "/cites_legislation.json"))
     con <- sppplus_get(url, token)
     # check status
     stop_for_status(con)
     # parsed
-    myrbind <- function(x) rbindlist(x, TRUE, TRUE)
     res <- content(con, "parsed")
-
+    
     # output
     out <- as.list(rep("", length(res)))
     names(out) <- names(res)
     out[[1L]] <- rbindlist(lapply(res[[1L]], as.data.table), T, T)
     for (i in 2:3) out[[i]] <- as.data.table(do.call(rbind, (lapply(res[[i]], rbind))))
-    #
+    # 
     out
 }
