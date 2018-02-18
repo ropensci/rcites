@@ -5,6 +5,15 @@ output:
 ---
 
 
+```{r echo=FALSE}
+knitr::opts_chunk$set(
+  fig.path = "inst/assets/img/",
+  comment = "#R> ",
+  fig.width = 6,
+  fig.height = 7.5
+)
+```
+
 An R package to access the CITES Species+ database. Reference:
 UNEP (2017). The Species+ Website. Nairobi, Kenya. Compiled by UNEP-WCMC,
 Cambridge, UK. Available at: www.speciesplus.net. [Accessed 18/02/2017].
@@ -68,48 +77,45 @@ taxon_distribution(token, tax_id = '4521', collapse_tags = ' + ')
 
 ```{R legislation}
 # you can ask for the CITES legislation information, e.g. listing
-taxon_cites_legislation(token, tax_id = "4521", type = "listings")
+leg <- taxon_cites_legislation(token, tax_id = "4521", type = "listings")
+leg$cites_listings[1, 1:6]
 ```
 
 
 #### `taxon_references()`
 
 ```{R references}
-taxon_references(token, tax_id = '4521', type = 'taxonomic')
+ref <- taxon_references(token, tax_id = '4521', type = 'taxonomic')
+dim(ref)
+ref$taxonomic[1, ]
 ```
 
 
 
-## Examples
+#### Distribution map
 
-```R
+The example below requires `rworldmap`.
+
+```{R map, message = FALSE}
 library(rworldmap)
-map1 <- taxon_distribution(token, query_taxon = 'Loxodonta africana')
-map2 <- joinCountryData2Map(map1, joinCode="ISO2", nameJoinColumn = "iso2", nameCountryColumn = "distribution")
-mapCountryData(mapToPlot = map2, nameColumnToPlot = "taxon", mapRegion = "africa", mapTitle = "Loxodonta africana", addLegend = FALSE)
+map1 <- as.data.frame(taxon_distribution(token, '4521'))
+map2 <- joinCountryData2Map(map1, joinCode="ISO2", nameJoinColumn = "iso_code2", nameCountryColumn = "name")
+map2@data$iso2 <- unlist(lapply(map2$iso_code2, is.null))
+plot(c(-23, 62), c(45.9, -40), type = "n", main = "Loxodonta africana")
+plot(map2, add = T)
+plot(map2[!map2$iso2,], col = "#bd9a5e", add = T)
 ```
 
-![](inst/Elephant.jpeg)
 
 -------------------------------------------------------
 
 
 
 
-NB: other similar tools does exist: for code integration see [this page](https://github.com/marketplace/category/continuous-integration)
-and for code quality see [that one](https://github.com/marketplace/category/code-quality).
-
 # Todo list
 
-- [x] write function for personal API: sppplus_connect
-- [x] write function for access to taxon concept: sppplus_taxonconcept
-- [x] Query by Taxon
-- [x] Add warning when species do not exists.
 - [ ] Better help
 - [ ] vignette
-- [X] Add licence
 - [ ] can we do a ping?
-- [x] API: taxon_cites_legislation
-- [x] API: taxon_distribution
+- [ ] add code coverage and appveyor
 - [ ] API: taxon_eu_legislation
-- [x] API: taxon_references

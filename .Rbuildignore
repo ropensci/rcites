@@ -11,3 +11,4 @@
 ^record*
 ^\.gitignore
 ^\.httr-oauth
+^inst/assets/
