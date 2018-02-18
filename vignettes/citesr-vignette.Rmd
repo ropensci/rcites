@@ -19,7 +19,7 @@ After creating the user account and getting a token, you can use the
 sppplus_connect function.
 
 
-```{R token, echo = FALSE}
+```{R token, eval = FALSE}
 readRDS("../inst/tmp/token.rds")
 ```
 
