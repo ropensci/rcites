@@ -117,8 +117,6 @@ plot(map2[!map2$iso2,], col = "#bd9a5e", add = T)
 
 # Todo list
 
-- [ ] Better help
+- [ ] improve documentation
 - [ ] vignette
-- [ ] can we do a ping?
-- [ ] add code coverage and appveyor
 - [ ] API: taxon_eu_legislation

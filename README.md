@@ -191,8 +191,6 @@ The example below requires `rworldmap`.
 Todo list
 =========
 
--   \[ \] Better help
+-   \[ \] improve documentation
 -   \[ \] vignette
--   \[ \] can we do a ping?
--   \[ \] add code coverage and appveyor
 -   \[ \] API: taxon\_eu\_legislation
