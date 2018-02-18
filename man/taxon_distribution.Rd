@@ -4,22 +4,23 @@
 \alias{taxon_distribution}
 \title{Access distribution data from CITES species+ API}
 \usage{
-taxon_distribution(cnx, tax_id = "4521", country_only = TRUE)
+taxon_distribution(token, tax_id)
 }
 \arguments{
-\item{cnx}{species+ connection information (see \code{\link[citesr]{sppplus_connect}}).}
+\item{token}{Authentification token, see \url{https://api.speciesplus.net/documentation}.}
 
 \item{tax_id}{character string containing a species' taxon id (e.g. 4521), which is returned by \code{\link[citesr]{sppplus_taxonconcept}}.}
-
-\item{country_only}{logical statement for querying only the country information. Default is TRUE.}
 }
 \value{
-If country_only is TRUE, returns a dataframe with taxon and country. If appendix_only is FALSE, returns a list with all distribution information.
+If country_only is \code{TRUE}, returns a dataframe with taxon and country. If appendix_only is FALSE, returns a list with all distribution information.
 }
 \description{
-Queries CITES species+ API using connection generated from \code{\link[citesr]{sppplus_connect}}. The query string filters species+ data by taxon concept (e.g.species, genus, class)
+Queries CITES species+ API using an authentication token. The query string
+filters species+ data by taxon concept (e.g. species, genus, class).
 }
 \examples{
-# cnx <- sppplus_connect(token = 'insert your token here')
-# taxon_distribution(cnx, tax_id = '4521', country_only = TRUE)
+# taxon_distribution(token, tax_id = '4521', country_only = TRUE)
+}
+\references{
+\url{https://api.speciesplus.net/documentation/v1/distributions/index.html}
 }

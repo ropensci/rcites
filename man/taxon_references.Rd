@@ -4,22 +4,23 @@
 \alias{taxon_references}
 \title{Access distribution data from CITES species+ API}
 \usage{
-taxon_references(cnx, tax_id = "4521", type = "taxonomic")
+taxon_references(token, tax_id = "4521")
 }
 \arguments{
-\item{cnx}{species+ connection information (see \code{\link[citesr]{sppplus_connect}}).}
+\item{token}{Authentification token, see \url{https://api.speciesplus.net/documentation}.}
 
 \item{tax_id}{character string containing a species' taxon id (e.g. 4521), which is returned by \code{\link[citesr]{sppplus_taxonconcept}}.}
-
-\item{type}{character string indicating type of references requested. One of taxonomic and distribution. Default is taxonomic.}
 }
 \value{
 If type is one of taxonomic or distribution, returns a dataframe with respective references from the Species+ database. If type is distribution, check \code{\link[citesr]{taxon_distribution}} for country notes.
 }
 \description{
-Queries CITES species+ API using connection generated from \code{\link[citesr]{sppplus_connect}}. The query string filters species+ data by taxon concept (e.g.species, genus, class)
+Queries CITES species+ API using an authentication token. The query string
+filters species+ data by taxon concept (e.g. species, genus, class)
 }
 \examples{
-# cnx <- sppplus_connect(token = 'insert your token here')
-# taxon_references(cnx, tax_id = '4521', type = 'taxonomic')
+# taxon_references(token, tax_id = '4521')
+}
+\references{
+\url{https://api.speciesplus.net/documentation/v1/references/index.html}
 }

@@ -9,3 +9,5 @@
 ^README\.gfm
 ^NEWS
 ^record*
+^\.gitignore
+^\.httr-oauth

@@ -5,7 +5,7 @@ Version: 0.0.1
 Date: 2017-12-11
 Author: Jonas Geschke [aut, cre],
     Ignasi Bartomeus [aut],
-    Kevin Cazelles [ctb]
+    Kevin Cazelles [aut]
 Maintainer: Jonas Geschke <jonas.e.geschke@gmail.com>
 Description: Access the CITES Species+ database.
 URL: https://github.com/ibartomeus/citesr
@@ -16,10 +16,8 @@ Depends:
 Imports:
   httr,
   jsonlite,
-  RCurl,
-  rworldmap,
-  XML,
+  data.table,
   xml2
 RoxygenNote: 6.0.1
-Suggests: knitr, rmarkdown
+Suggests: knitr, rmarkdown, rworldmap
 VignetteBuilder: knitr

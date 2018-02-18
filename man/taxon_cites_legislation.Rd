@@ -4,22 +4,23 @@
 \alias{taxon_cites_legislation}
 \title{Access distribution data from CITES species+ API}
 \usage{
-taxon_cites_legislation(cnx, tax_id = "4521", type = "listing")
+taxon_cites_legislation(token, tax_id)
 }
 \arguments{
-\item{cnx}{species+ connection information (see \code{\link[citesr]{sppplus_connect}}).}
+\item{token}{Authentification token, see \url{https://api.speciesplus.net/documentation}.}
 
 \item{tax_id}{character string containing a species' taxon id (e.g. 4521), which is returned by \code{\link[citesr]{sppplus_taxonconcept}}.}
-
-\item{type}{character string indicating type of legislation information requested. One of listing, quota, suspension and all. Default is listing.}
 }
 \value{
 If type is one of listing, quota or suspension, returns a dataframe with respective information from the Species+ database. If type is all, returns a list with all Species+ database information.
 }
 \description{
-Queries CITES species+ API using connection generated from \code{\link[citesr]{sppplus_connect}}. The query string filters species+ data by taxon concept (e.g.species, genus, class)
+Queries CITES species+ API using an authentication token.
+The query string filters species+ data by taxon concept (e.g.species, genus, class)
 }
 \examples{
-# cnx <- sppplus_connect(token = 'insert your token here')
-# taxon_cites_legislation(cnx, tax_id = '4521', type = 'listing')
+# taxon_cites_legislation(token, tax_id = '4521')
+}
+\references{
+\url{https://api.speciesplus.net/documentation/v1/cites_legislation/index.html}
 }

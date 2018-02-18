@@ -3,8 +3,12 @@
 \docType{package}
 \name{citesr}
 \alias{citesr}
+\alias{sppplus_baseurl}
 \alias{citesr-package}
 \title{citesr:}
+\usage{
+sppplus_baseurl()
+}
 \description{
 An R package to access the CITES Species+ database (https://speciesplus.net/)
 }

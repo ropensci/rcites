@@ -4,24 +4,26 @@
 \alias{sppplus_taxonconcept}
 \title{Access taxon_concept data from CITES species+ API}
 \usage{
-sppplus_taxonconcept(cnx, query_taxon = "Loxodonta africana",
-  appendix_only = TRUE)
+sppplus_taxonconcept(token, query_taxon, appendix_only = TRUE)
 }
 \arguments{
-\item{cnx}{species+ connection information (see \code{\link[citesr]{sppplus_connect}}).}
+\item{token}{Authentification token, see \url{https://api.speciesplus.net/documentation}.}
 
 \item{query_taxon}{character string containing the query (e.g. species). Scientific taxa only.}
 
-\item{appendix_only}{logical statement for querying only the taxon and CITES appendix information. Default is TRUE.}
+\item{appendix_only}{logical statement for querying only the taxon and CITES appendix information. Default is set to \code{TRUE}.}
 }
 \value{
-If appendix_only is TRUE, returns a dataframe with a species' taxon id and CITES appendix information. If appendix_only is FALSE, returns a list with all Species+ taxon concept information.
+If appendix_only is \code{TRUE}, returns a dataframe with a species' taxon id and CITES appendix information. If appendix_only is \code{FALSE}, returns a list with all Species+ taxon concept information.
 }
 \description{
-Queries CITES species+ API using connection generated from \code{\link[citesr]{sppplus_connect}}. The query string filters species+ data by taxon concept (e.g.species, genus, class)
+Queries CITES species+ API using an authentication token.
+The query string filters species+ data by taxon concept (e.g.species, genus, class)
 }
 \examples{
-# cnx <- sppplus_connect(token = 'insert your token here')
-# sppplus_taxonconcept(cnx, query_taxon = 'Loxodonta africana', appendix_only = TRUE)
-# sppplus_taxonconcept(cnx, query_taxon = 'Homo sapiens', appendix_only = TRUE)
+# sppplus_taxonconcept(token = token, query_taxon = 'Loxodonta africana', appendix_only = TRUE)
+# sppplus_taxonconcept(token = token, query_taxon = 'Homo sapiens', appendix_only = TRUE)
+}
+\references{
+\url{https://api.speciesplus.net/documentation/v1/taxon_concepts/index.html}
 }
