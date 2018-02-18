@@ -59,9 +59,14 @@ sppplus_taxonconcept(token, query = "Mammalia", appendix_only = TRUE)
 
 #### `sppplus_distribution()`
 
-```R
+```{R distribution}
 # you can ask for distribution
-taxon_distribution(token, tax_id = "4521", country_only = TRUE)
+taxon_distribution(token, tax_id = '4521', collapse_tags = ' + ')
+```
+
+#### `sppplus_distribution()`
+
+```{R legislation}
 # you can ask for the CITES legislation information, e.g. listing
 taxon_cites_legislation(token, tax_id = "4521", type = "listing")
 ```
@@ -71,7 +76,7 @@ taxon_cites_legislation(token, tax_id = "4521", type = "listing")
 
 ```R
 library(rworldmap)
-map1 <- taxon_distribution(token, query_taxon = 'Loxodonta africana', country_only = TRUE)
+map1 <- taxon_distribution(token, query_taxon = 'Loxodonta africana')
 map2 <- joinCountryData2Map(map1, joinCode="ISO2", nameJoinColumn = "iso2", nameCountryColumn = "distribution")
 mapCountryData(mapToPlot = map2, nameColumnToPlot = "taxon", mapRegion = "africa", mapTitle = "Loxodonta africana", addLegend = FALSE)
 ```

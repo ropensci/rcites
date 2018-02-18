@@ -4,22 +4,25 @@
 \alias{taxon_distribution}
 \title{Access distribution data from CITES species+ API}
 \usage{
-taxon_distribution(token, tax_id)
+taxon_distribution(token, tax_id, collapse_tags = NULL)
 }
 \arguments{
 \item{token}{Authentification token, see \url{https://api.speciesplus.net/documentation}.}
 
 \item{tax_id}{character string containing a species' taxon id (e.g. 4521), which is returned by \code{\link[citesr]{sppplus_taxonconcept}}.}
+
+\item{collapse_tags}{a string used to collapse tags. Default is set to \code{NULL} meaning that tags column's elements remains lists.}
 }
 \value{
-If country_only is \code{TRUE}, returns a dataframe with taxon and country. If appendix_only is FALSE, returns a list with all distribution information.
+A data table with all distribution information.
 }
 \description{
 Queries CITES species+ API using an authentication token. The query string
 filters species+ data by taxon concept (e.g. species, genus, class).
 }
 \examples{
-# taxon_distribution(token, tax_id = '4521', country_only = TRUE)
+# taxon_distribution(token, tax_id = '4521')
+# taxon_distribution(token, tax_id = '4521', collapse_tags = ' + ')
 }
 \references{
 \url{https://api.speciesplus.net/documentation/v1/distributions/index.html}

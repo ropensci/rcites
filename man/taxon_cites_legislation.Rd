@@ -4,15 +4,18 @@
 \alias{taxon_cites_legislation}
 \title{Access distribution data from CITES species+ API}
 \usage{
-taxon_cites_legislation(token, tax_id)
+taxon_cites_legislation(token, tax_id, type = c("listings", "quotas",
+  "suspensions"))
 }
 \arguments{
 \item{token}{Authentification token, see \url{https://api.speciesplus.net/documentation}.}
 
 \item{tax_id}{character string containing a species' taxon id (e.g. 4521), which is returned by \code{\link[citesr]{sppplus_taxonconcept}}.}
+
+\item{type}{vector of character strings indicating type of legislation information requested, values are taken among \code{listing}, \code{quota} and \code{suspension}. Default includes the three of them.}
 }
 \value{
-If type is one of listing, quota or suspension, returns a dataframe with respective information from the Species+ database. If type is all, returns a list with all Species+ database information.
+A list of the data.table requested.
 }
 \description{
 Queries CITES species+ API using an authentication token.
@@ -20,6 +23,7 @@ The query string filters species+ data by taxon concept (e.g.species, genus, cla
 }
 \examples{
 # taxon_cites_legislation(token, tax_id = '4521')
+# taxon_cites_legislation(token, tax_id = '4521', type ='listings')
 }
 \references{
 \url{https://api.speciesplus.net/documentation/v1/cites_legislation/index.html}

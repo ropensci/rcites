@@ -14,7 +14,9 @@ sppplus_taxonconcept(token, query_taxon, appendix_only = TRUE)
 \item{appendix_only}{logical statement for querying only the taxon and CITES appendix information. Default is set to \code{TRUE}.}
 }
 \value{
-If appendix_only is \code{TRUE}, returns a dataframe with a species' taxon id and CITES appendix information. If appendix_only is \code{FALSE}, returns a list with all Species+ taxon concept information.
+If appendix_only is \code{TRUE}, returns a data table with a species'
+taxon id and CITES appendix information. If appendix_only is \code{FALSE},
+returns a data.table with all Species+ taxon concept information.
 }
 \description{
 Queries CITES species+ API using an authentication token.

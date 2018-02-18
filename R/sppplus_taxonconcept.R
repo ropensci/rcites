@@ -7,7 +7,9 @@
 #' @param query_taxon character string containing the query (e.g. species). Scientific taxa only.
 #' @param appendix_only logical statement for querying only the taxon and CITES appendix information. Default is set to \code{TRUE}.
 #'
-#' @return If appendix_only is \code{TRUE}, returns a dataframe with a species' taxon id and CITES appendix information. If appendix_only is \code{FALSE}, returns a list with all Species+ taxon concept information.
+#' @return If appendix_only is \code{TRUE}, returns a data table with a species'
+#' taxon id and CITES appendix information. If appendix_only is \code{FALSE},
+#' returns a data.table with all Species+ taxon concept information.
 #'
 #' @importFrom httr content stop_for_status
 #' @importFrom data.table as.data.table
@@ -25,10 +27,6 @@ sppplus_taxonconcept <- function(token, query_taxon, appendix_only = TRUE) {
     query <- gsub(pattern = " ", replacement = "%20", x = query_taxon)
     # 
     q_url <- sppplus_url(paste0("taxon_concepts.json", "?name=", query))
-    con <- sppplus_get(q_url, token)
-    # check status
-    stop_for_status(con)
-    # parsed
     res <- sppplus_res(q_url, token)
     
     # output
