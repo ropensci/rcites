@@ -14,15 +14,18 @@ knitr::opts_chunk$set(
 )
 ```
 
+# 'citesr': R client for the CITES species+ API
+
 An R package to access the CITES Species+ database. Reference:
 UNEP (2017). The Species+ Website. Nairobi, Kenya. Compiled by UNEP-WCMC,
 Cambridge, UK. Available at: www.speciesplus.net. [Accessed 18/02/2017].
 
 ## Current Status
 
-![](https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg)
+![](https://img.shields.io/badge/inSileco-InDevelopment-d7ae67.svg)
 [![Build Status](https://travis-ci.org/ibartomeus/citesr.svg?branch=master)](https://travis-ci.org/ibartomeus/citesr)
-
+[![Build status](https://ci.appveyor.com/api/projects/status/j8u04bwan0kqpn0f?svg=true)](https://ci.appveyor.com/project/KevCaz/citesr)
+[![codecov](https://codecov.io/gh//ibartomeus/citesr/branch/master/graph/badge.svg)](https://codecov.io/gh//ibartomeus/citesr)
 
 
 ## How it works so far
