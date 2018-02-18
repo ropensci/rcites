@@ -19,5 +19,5 @@ Imports:
   data.table,
   xml2
 RoxygenNote: 6.0.1
-Suggests: knitr, rmarkdown, rworldmap
+Suggests: knitr, rmarkdown, testthat, rworldmap
 VignetteBuilder: knitr
