@@ -42,5 +42,6 @@ sppplus_taxonconcept <- function(token, query_taxon, appendix_only = TRUE) {
             out$common_names <- do.call(rbind, (lapply(tmp$common_names, rbind)))
         }
     }
+    ## output
     as.data.table(out)
 }

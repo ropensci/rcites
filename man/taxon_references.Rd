@@ -5,7 +5,7 @@
 \title{Access distribution data from CITES species+ API}
 \usage{
 taxon_references(token, tax_id = "4521", type = c("taxonomic",
-  "distribution"))
+  "distribution"), simplify = FALSE)
 }
 \arguments{
 \item{token}{Authentification token, see \url{https://api.speciesplus.net/documentation}.}
@@ -13,6 +13,8 @@ taxon_references(token, tax_id = "4521", type = c("taxonomic",
 \item{tax_id}{character string containing a species' taxon id (e.g. 4521), which is returned by \code{\link[citesr]{sppplus_taxonconcept}}.}
 
 \item{type}{vector of character strings indicating the type of references requested, \code{taxonomic} or \code{distribution}.}
+
+\item{simplify}{a logical. Should the output be simplified? In other words should columns of data.table objects be unlisted when possible? Default is set to \code{FALSE}.}
 }
 \value{
 A list of data table with the desired references.
