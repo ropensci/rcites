@@ -155,13 +155,19 @@ So far the installation required the `devtools` package:
     #R>       id taxon_concept_id is_current appendix change_type effective_at
     #R>  1: 3666             4521       TRUE       II           +   2007-09-13
 
-#### `taxon_cites_legislation()`
+#### `taxon_eu_legislation()`
 
     # you can ask for the CITES legislation information, e.g. listing
     leg_eu <- taxon_eu_legislation(token, tax_id = "4521", type = "decisions")
-    leg_eu$cites_listings[1, 1:6]
+    leg_eu$eu_decisions[1, 1:6]
 
-    #R>  NULL
+    #R>        id taxon_concept_id notes start_date is_current eu_decision_type
+    #R>  1: 26285             4521       2015-04-09       TRUE           <list>
+
+    unlist(leg_eu$eu_decisions[1, 6])
+
+    #R>  eu_decision_type.name eu_decision_type.type 
+    #R>             "Positive"    "POSITIVE_OPINION"
 
 #### `taxon_references()`
 
