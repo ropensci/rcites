@@ -76,7 +76,7 @@ sppplus_taxonconcept(token, query = "Mammalia", appendix_only = TRUE)
 taxon_distribution(token, tax_id = '4521', collapse_tags = ' + ')
 ```
 
-#### `sppplus_distribution()`
+#### `taxon_cites_legislation()`
 
 ```{R legislation}
 # you can ask for the CITES legislation information, e.g. listing
@@ -84,6 +84,13 @@ leg <- taxon_cites_legislation(token, tax_id = "4521", type = "listings")
 leg$cites_listings[1, 1:6]
 ```
 
+#### `taxon_cites_legislation()`
+
+```{R legislation_eu}
+# you can ask for the CITES legislation information, e.g. listing
+leg_eu <- taxon_eu_legislation(token, tax_id = "4521", type = "decisions")
+leg_eu$cites_listings[1, 1:6]
+```
 
 #### `taxon_references()`
 

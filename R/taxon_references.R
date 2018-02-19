@@ -19,7 +19,7 @@
 #'
 #' @examples
 #' # taxon_references(token, tax_id = '4521')
-#' # taxon_references(token, tax_id = '4521', type = 'taxonomic')
+#' # taxon_references(token, tax_id = '4521', type = 'taxonomic', simplify = T)
 
 taxon_references <- function(token, tax_id = "4521", type = c("taxonomic", "distribution"), 
     simplify = FALSE) {

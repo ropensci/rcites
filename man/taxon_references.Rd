@@ -25,7 +25,7 @@ filters species+ data by taxon concept (e.g. species, genus, class)
 }
 \examples{
 # taxon_references(token, tax_id = '4521')
-# taxon_references(token, tax_id = '4521', type = 'taxonomic')
+# taxon_references(token, tax_id = '4521', type = 'taxonomic', simplify = T)
 }
 \references{
 \url{https://api.speciesplus.net/documentation/v1/references/index.html}
