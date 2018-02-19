@@ -55,96 +55,16 @@ So far the installation required the `devtools` package:
 #### `sppplus_distribution()`
 
     # you can ask for distribution
-    taxon_distribution(token, tax_id = '4521', collapse_tags = ' + ')
+    dis <- taxon_distribution(token, tax_id = '4521', collapse_tags = ' + ')
+    head(dis)
 
-    #R>         id iso_code2                             name
-    #R>   1:  1778        ML                             Mali
-    #R>   2:  1923        GQ                Equatorial Guinea
-    #R>   3:  4429        RW                           Rwanda
-    #R>   4:  4491        GH                            Ghana
-    #R>   5:  5628        SD                            Sudan
-    #R>   6:  6724        ET                         Ethiopia
-    #R>   7:  8995        GA                            Gabon
-    #R>   8: 12983        AO                           Angola
-    #R>   9: 15554        CM                         Cameroon
-    #R>  10: 17060        BJ                            Benin
-    #R>  11: 19004        MZ                       Mozambique
-    #R>  12: 21296        ZW                         Zimbabwe
-    #R>  13: 22598        BW                         Botswana
-    #R>  14: 25648        ZA                     South Africa
-    #R>  15: 29237        DJ                         Djibouti
-    #R>  16: 34325        BF                     Burkina Faso
-    #R>  17: 36541        TZ      United Republic of Tanzania
-    #R>  18: 38501        KE                            Kenya
-    #R>  19: 39769        NG                          Nigeria
-    #R>  20: 40132        UG                           Uganda
-    #R>  21: 45272        CF         Central African Republic
-    #R>  22: 47168        SO                          Somalia
-    #R>  23: 47634        LR                          Liberia
-    #R>  24: 55428        GN                           Guinea
-    #R>  25: 55928        TG                             Togo
-    #R>  26: 56100        ZM                           Zambia
-    #R>  27: 56780        BI                          Burundi
-    #R>  28: 56987        MW                           Malawi
-    #R>  29: 60042        MR                       Mauritania
-    #R>  30: 61625        TD                             Chad
-    #R>  31: 64492        NA                          Namibia
-    #R>  32: 65619        SS                      South Sudan
-    #R>  33: 71202        CG                            Congo
-    #R>  34: 71794        CD Democratic Republic of the Congo
-    #R>  35: 72434        NE                            Niger
-    #R>  36: 72883        SN                          Senegal
-    #R>  37: 79470        SZ                        Swaziland
-    #R>  38: 79693        GM                           Gambia
-    #R>  39: 79814        ER                          Eritrea
-    #R>  40: 80906        SL                     Sierra Leone
-    #R>  41: 81799        GW                    Guinea Bissau
-    #R>  42: 82840        CI                    Côte d'Ivoire
-    #R>         id iso_code2                             name
-    #R>                        tags    type references
-    #R>   1:                   NULL COUNTRY     <list>
-    #R>   2:                   NULL COUNTRY     <list>
-    #R>   3:                   NULL COUNTRY     <list>
-    #R>   4:                   NULL COUNTRY     <list>
-    #R>   5:                   NULL COUNTRY     <list>
-    #R>   6:                   NULL COUNTRY     <list>
-    #R>   7:                   NULL COUNTRY     <list>
-    #R>   8:                   NULL COUNTRY     <list>
-    #R>   9:                   NULL COUNTRY     <list>
-    #R>  10:                   NULL COUNTRY     <list>
-    #R>  11:                   NULL COUNTRY     <list>
-    #R>  12:                   NULL COUNTRY     <list>
-    #R>  13:                   NULL COUNTRY     <list>
-    #R>  14:                   NULL COUNTRY     <list>
-    #R>  15:                extinct COUNTRY     <list>
-    #R>  16:                   NULL COUNTRY     <list>
-    #R>  17:                   NULL COUNTRY     <list>
-    #R>  18:                   NULL COUNTRY     <list>
-    #R>  19:                   NULL COUNTRY     <list>
-    #R>  20:                   NULL COUNTRY     <list>
-    #R>  21:                   NULL COUNTRY     <list>
-    #R>  22:                   NULL COUNTRY     <list>
-    #R>  23:                   NULL COUNTRY     <list>
-    #R>  24:                   NULL COUNTRY     <list>
-    #R>  25:                   NULL COUNTRY     <list>
-    #R>  26:                   NULL COUNTRY     <list>
-    #R>  27:                extinct COUNTRY     <list>
-    #R>  28:                   NULL COUNTRY     <list>
-    #R>  29:                extinct COUNTRY     <list>
-    #R>  30:                   NULL COUNTRY     <list>
-    #R>  31:                   NULL COUNTRY     <list>
-    #R>  32:                   NULL COUNTRY     <list>
-    #R>  33:                   NULL COUNTRY     <list>
-    #R>  34:                   NULL COUNTRY     <list>
-    #R>  35:                   NULL COUNTRY     <list>
-    #R>  36:                   NULL COUNTRY     <list>
-    #R>  37: extinct + reintroduced COUNTRY     <list>
-    #R>  38:                extinct COUNTRY     <list>
-    #R>  39:                   NULL COUNTRY     <list>
-    #R>  40:                   NULL COUNTRY     <list>
-    #R>  41:                   NULL COUNTRY     <list>
-    #R>  42:                   NULL COUNTRY     <list>
-    #R>                        tags    type references
+    #R>       id iso_code2              name tags    type references
+    #R>  1: 1778        ML              Mali NULL COUNTRY     <list>
+    #R>  2: 1923        GQ Equatorial Guinea NULL COUNTRY     <list>
+    #R>  3: 4429        RW            Rwanda NULL COUNTRY     <list>
+    #R>  4: 4491        GH             Ghana NULL COUNTRY     <list>
+    #R>  5: 5628        SD             Sudan NULL COUNTRY     <list>
+    #R>  6: 6724        ET          Ethiopia NULL COUNTRY     <list>
 
 #### `taxon_cites_legislation()`
 
@@ -194,7 +114,8 @@ The example below requires `rworldmap`.
     #R>  201 codes from the map weren't represented in your data
 
     map2@data$iso2 <- unlist(lapply(map2$iso_code2, is.null))
-    plot(c(-23, 62), c(45.9, -40), type = "n", main = "Loxodonta africana")
+    plot(c(-23, 62), c(45, -40), type = "n", main = "Loxodonta africana",
+      xlab = "Longitude (°C)", ylab = "Latitude (°C)")
     plot(map2, add = T)
     plot(map2[!map2$iso2,], col = "#bd9a5e", add = T)
 
