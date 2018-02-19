@@ -121,11 +121,8 @@ The example below requires `rworldmap`.
 
 ![](inst/assets/img/map-1.png)
 
-------------------------------------------------------------------------
-
 Todo list
 =========
 
 -   \[ \] improve documentation
 -   \[ \] vignette
--   \[ \] API: taxon\_eu\_legislation

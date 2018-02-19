@@ -120,13 +120,8 @@ plot(map2[!map2$iso2,], col = "#bd9a5e", add = T)
 ```
 
 
--------------------------------------------------------
-
-
-
 
 # Todo list
 
 - [ ] improve documentation
 - [ ] vignette
-- [ ] API: taxon_eu_legislation
