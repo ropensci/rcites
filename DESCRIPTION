@@ -17,6 +17,7 @@ Imports:
   httr,
   jsonlite,
   data.table,
+  methods,
   xml2
 RoxygenNote: 6.0.1
 Suggests: knitr, rmarkdown, testthat, rworldmap

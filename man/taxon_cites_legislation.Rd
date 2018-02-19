@@ -2,7 +2,7 @@
 % Please edit documentation in R/taxon_cites_legislation.R
 \name{taxon_cites_legislation}
 \alias{taxon_cites_legislation}
-\title{Access distribution data from CITES species+ API}
+\title{Access legislation data from CITES species+ API}
 \usage{
 taxon_cites_legislation(token, tax_id, type = c("listings", "quotas",
   "suspensions"))

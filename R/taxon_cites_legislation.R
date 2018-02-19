@@ -1,4 +1,4 @@
-#' Access distribution data from CITES species+ API
+#' Access legislation data from CITES species+ API
 #'
 #' Queries CITES species+ API using an authentication token.
 #' The query string filters species+ data by taxon concept (e.g.species, genus, class)
@@ -29,10 +29,9 @@ taxon_cites_legislation <- function(token, tax_id, type = c("listings", "quotas"
     q_url <- sppplus_url(paste0("taxon_concepts/", tax_id, "/cites_legislation.json"))
     res <- sppplus_res(q_url, token)
     # output
-    out <- as.list(rep("", length(res)))
-    names(out) <- names(res)
+    out <- lapply(res, function(x) "")
     out[[1L]] <- rbindlist(lapply(res[[1L]], as.data.table), T, T)
     for (i in 2:3) out[[i]] <- as.data.table(do.call(rbind, (lapply(res[[i]], rbind))))
-    # 
+    ## 
     out[paste0("cites_", type)]
 }

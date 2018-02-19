@@ -10,7 +10,7 @@ knitr::opts_chunk$set(
   fig.path = "inst/assets/img/",
   comment = "#R> ",
   fig.width = 6,
-  fig.height = 7.5
+  fig.height = 7.6
 )
 ```
 
@@ -73,10 +73,11 @@ sppplus_taxonconcept(token, query = "Mammalia", appendix_only = TRUE)
 
 ```{R distribution}
 # you can ask for distribution
-taxon_distribution(token, tax_id = '4521', collapse_tags = ' + ')
+dis <- taxon_distribution(token, tax_id = '4521', collapse_tags = ' + ')
+head(dis)
 ```
 
-#### `sppplus_distribution()`
+#### `taxon_cites_legislation()`
 
 ```{R legislation}
 # you can ask for the CITES legislation information, e.g. listing
@@ -84,6 +85,14 @@ leg <- taxon_cites_legislation(token, tax_id = "4521", type = "listings")
 leg$cites_listings[1, 1:6]
 ```
 
+#### `taxon_eu_legislation()`
+
+```{R legislation_eu}
+# you can ask for the CITES legislation information, e.g. listing
+leg_eu <- taxon_eu_legislation(token, tax_id = "4521", type = "decisions")
+leg_eu$eu_decisions[1, 1:6]
+unlist(leg_eu$eu_decisions[1, 6])
+```
 
 #### `taxon_references()`
 
@@ -104,14 +113,11 @@ library(rworldmap)
 map1 <- as.data.frame(taxon_distribution(token, '4521'))
 map2 <- joinCountryData2Map(map1, joinCode="ISO2", nameJoinColumn = "iso_code2", nameCountryColumn = "name")
 map2@data$iso2 <- unlist(lapply(map2$iso_code2, is.null))
-plot(c(-23, 62), c(45.9, -40), type = "n", main = "Loxodonta africana")
+plot(c(-23, 62), c(45, -40), type = "n", main = "Loxodonta africana",
+  xlab = "Longitude (°C)", ylab = "Latitude (°C)")
 plot(map2, add = T)
 plot(map2[!map2$iso2,], col = "#bd9a5e", add = T)
 ```
-
-
--------------------------------------------------------
-
 
 
 
@@ -119,4 +125,3 @@ plot(map2[!map2$iso2,], col = "#bd9a5e", add = T)
 
 - [ ] improve documentation
 - [ ] vignette
-- [ ] API: taxon_eu_legislation

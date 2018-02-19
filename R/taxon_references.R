@@ -6,6 +6,7 @@
 #' @param token Authentification token, see \url{https://api.speciesplus.net/documentation}.
 #' @param tax_id character string containing a species' taxon id (e.g. 4521), which is returned by \code{\link[citesr]{sppplus_taxonconcept}}.
 #' @param type vector of character strings indicating the type of references requested, \code{taxonomic} or \code{distribution}.
+#' @param simplify a logical. Should the output be simplified? In other words should columns of data.table objects be unlisted when possible? Default is set to \code{FALSE}.
 #'
 #' @return A list of data table with the desired references.
 #'
@@ -18,9 +19,10 @@
 #'
 #' @examples
 #' # taxon_references(token, tax_id = '4521')
-#' # taxon_references(token, tax_id = '4521', type = 'taxonomic')
+#' # taxon_references(token, tax_id = '4521', type = 'taxonomic', simplify = T)
 
-taxon_references <- function(token, tax_id = "4521", type = c("taxonomic", "distribution")) {
+taxon_references <- function(token, tax_id = "4521", type = c("taxonomic", "distribution"), 
+    simplify = FALSE) {
     # 
     type <- unique(type)
     stopifnot(all(type %in% c("taxonomic", "distribution")))
@@ -40,6 +42,9 @@ taxon_references <- function(token, tax_id = "4521", type = c("taxonomic", "dist
         out$distribution <- data.table(name = rep(unlist(ref$name), unlist(lapply(ref$references, 
             length))), reference = unlist(ref$references))
     }
+    ## 
+    if (simplify) 
+        lapply(out, sppplus_simplify)
     # output
     out
 }

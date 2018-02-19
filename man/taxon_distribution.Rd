@@ -4,7 +4,7 @@
 \alias{taxon_distribution}
 \title{Access distribution data from CITES species+ API}
 \usage{
-taxon_distribution(token, tax_id, collapse_tags = NULL)
+taxon_distribution(token, tax_id, collapse_tags = NULL, simplify = FALSE)
 }
 \arguments{
 \item{token}{Authentification token, see \url{https://api.speciesplus.net/documentation}.}
@@ -12,6 +12,8 @@ taxon_distribution(token, tax_id, collapse_tags = NULL)
 \item{tax_id}{character string containing a species' taxon id (e.g. 4521), which is returned by \code{\link[citesr]{sppplus_taxonconcept}}.}
 
 \item{collapse_tags}{a string used to collapse tags. Default is set to \code{NULL} meaning that tags column's elements remains lists.}
+
+\item{simplify}{a logical. Should the output be simplified? In other words should columns of data.table objects be unlisted when possible?}
 }
 \value{
 A data table with all distribution information.

@@ -3,6 +3,7 @@
 export(sppplus_taxonconcept)
 export(taxon_cites_legislation)
 export(taxon_distribution)
+export(taxon_eu_legislation)
 export(taxon_references)
 importFrom(data.table,as.data.table)
 importFrom(data.table,data.table)

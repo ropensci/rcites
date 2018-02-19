@@ -24,3 +24,12 @@ sppplus_res <- function(q_url, token) {
     # parsed
     content(con, "parsed")
 }
+
+sppplus_simplify <- function(x) {
+    for (i in 1:ncol(x)) {
+        tmp <- class(x[[i]][[1L]])
+        if (tmp != "list") 
+            data.table::set(x, j = i, value = methods::as(x[[i]], tmp))
+    }
+    invisible(NULL)
+}
