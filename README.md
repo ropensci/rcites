@@ -119,7 +119,7 @@ So far the installation requires the `devtools` package:
 
 The example below requires `rworldmap`.
 
-    library(rworldmap)
+    suppressPackageStartupMessages(library(rworldmap))
     map1 <- as.data.frame(taxon_distribution('4521', token))
     map2 <- joinCountryData2Map(map1, joinCode="ISO2", nameJoinColumn = "iso_code2", nameCountryColumn = "name")
 
@@ -135,8 +135,6 @@ The example below requires `rworldmap`.
 
 ![](inst/assets/img/map-1.png)
 
-Todo list
-=========
-
--   \[ \] improve documentation
--   \[ \] vignette
+Please note that this project is released with a [Contributor Code of
+Conduct](CONDUCT.md). By participating in this project you agree to
+abide by its terms.
