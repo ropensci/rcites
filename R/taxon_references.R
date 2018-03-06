@@ -8,9 +8,8 @@
 #' @param type vector of character strings indicating the type of references requested, \code{taxonomic} or \code{distribution}.
 #' @param simplify a logical. Should the output be simplified? In other words should columns of data.table objects be unlisted when possible? Default is set to \code{FALSE}.
 #'
-#' @return A list of data table with the desired references.
+#' @return  A list of data.table objects, one per type requested.
 #'
-#' @importFrom httr content stop_for_status
 #' @importFrom data.table as.data.table data.table
 #' @export
 #'

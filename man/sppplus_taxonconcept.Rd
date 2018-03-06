@@ -14,15 +14,17 @@ sppplus_taxonconcept(query_taxon, token = NULL, appendix_only = TRUE)
 \item{appendix_only}{a logical statement. Should  for querying only the taxon and CITES appendix information. Default is set to \code{TRUE}.}
 }
 \value{
-If appendix_only is \code{TRUE}, returns a data table with a species'
-taxon id and CITES appendix information. If appendix_only is \code{FALSE},
-returns a data.table with all Species+ taxon concept information.
+If \code{appendix_only} is \code{TRUE}, then a data table with a species'
+taxon id and CITES appendix information is returned. Otherwise,
+a object of class \code{data.table} with all Species+ taxon concept information
+is returned.
 }
 \description{
 Queries CITES species+ API using an authentication token.
 The query string filters species+ data by taxon concept (e.g. species, genus, class)
 }
 \examples{
+# Not run
 # res <- sppplus_taxonconcept(query_taxon = 'Loxodonta africana', appendix_only = TRUE)
 # res <- sppplus_taxonconcept(token = token, query_taxon = 'Homo sapiens')
 }

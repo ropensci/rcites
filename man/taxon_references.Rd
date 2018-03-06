@@ -17,7 +17,7 @@ taxon_references(tax_id, token = NULL, type = c("taxonomic",
 \item{simplify}{a logical. Should the output be simplified? In other words should columns of data.table objects be unlisted when possible? Default is set to \code{FALSE}.}
 }
 \value{
-A list of data table with the desired references.
+A list of data.table objects, one per type requested.
 }
 \description{
 Queries CITES species+ API using an authentication token. The query string

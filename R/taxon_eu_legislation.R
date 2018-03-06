@@ -7,12 +7,11 @@
 #' @param type vector of character strings indicating type of legislation information requested, values are taken among \code{listing}, \code{quota} and \code{suspension}. Default includes the three of them.
 #' @param simplify a logical. Should the output be simplified? In other words should columns of data.table objects be unlisted when possible?
 #'
-#' @return A list of one or two data.tables.
+#' @return  A list of data.table objects, one per type requested.
 #'
 #' @references
 #' \url{https://api.speciesplus.net/documentation/v1/eu_legislation/index.html}
 #'
-#' @importFrom httr content stop_for_status
 #' @importFrom data.table as.data.table
 #' @export
 #'

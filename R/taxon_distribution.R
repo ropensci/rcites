@@ -10,7 +10,6 @@
 #'
 #' @return A data table with all distribution information.
 #'
-#' @importFrom httr content stop_for_status
 #' @importFrom data.table as.data.table
 #'
 #' @references

@@ -7,12 +7,11 @@
 #' @param token Authentification token, see \url{https://api.speciesplus.net/documentation}. Default is set to \code{NULL} and require the environment variable \code{SPPPLUS_TOKEN} to be set directly in \code{.Renviron} or for the session using \code{sppplus_login()}.
 #' @param type vector of character strings indicating type of legislation information requested, values are taken among \code{listing}, \code{quota} and \code{suspension}. Default includes the three of them.
 #'
-#' @return A list of the data.table requested.
+#' @return A list of data.table objects, one per type requested.
 #'
 #' @references
 #' \url{https://api.speciesplus.net/documentation/v1/cites_legislation/index.html}
 #'
-#' @importFrom httr content stop_for_status
 #' @importFrom data.table as.data.table rbindlist
 #' @export
 #'
@@ -20,7 +19,7 @@
 #' # taxon_cites_legislation(token, tax_id = '4521')
 #' # taxon_cites_legislation(token, tax_id = '4521', type ='listings')
 
-taxon_cites_legislation <- function(token = NULL, tax_id, type = c("listings", "quotas", 
+taxon_cites_legislation <- function(tax_id, token = NULL, type = c("listings", "quotas", 
     "suspensions")) {
     # token check
     if (is.null(token)) 

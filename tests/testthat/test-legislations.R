@@ -31,3 +31,9 @@ test_that("expected values", {
   expect_equal(res3$eu_listings$taxon_concept_id[1L], tx_id)
   expect_equal(res3$eu_decisions$taxon_concept_id[1L], tx_id)
 })
+
+
+context("legislation cites")
+
+#' # taxon_cites_legislation(token, tax_id = '4521')
+#' # taxon_cites_legislation(token, tax_id = '4521', type ='listings')

@@ -17,7 +17,7 @@ taxon_eu_legislation(tax_id, token = NULL, type = c("listings",
 \item{simplify}{a logical. Should the output be simplified? In other words should columns of data.table objects be unlisted when possible?}
 }
 \value{
-A list of one or two data.tables.
+A list of data.table objects, one per type requested.
 }
 \description{
 Queries CITES species+ API using an authentication token.
