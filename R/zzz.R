@@ -28,7 +28,7 @@ sppplus_res <- function(q_url, token) {
 sppplus_simplify <- function(x) {
     for (i in 1:ncol(x)) {
         tmp <- class(x[[i]][[1L]])
-        if (tmp != "list") 
+        if (tmp != "list")
             data.table::set(x, j = i, value = methods::as(x[[i]], tmp))
     }
     invisible(NULL)
@@ -49,11 +49,18 @@ sppplus_getsecret <- function() {
 }
 
 sppplus_login <- function(token = NULL) {
-    if (is.null(token)) 
+    if (is.null(token))
         token <- readline("Enter your token: ")
     Sys.setenv(SPPPLUS_TOKEN = token)
     if (identical(token, "")) {
         message("Token is still missing!")
     } else cat("Authentication token stored for the session.\n")
     invisible(NULL)
+}
+
+# https://cran.r-project.org/web/packages/httr/vignettes/secrets.html
+skip_if_no_auth <- function() {
+    if (identical(Sys.getenv("SPPPLUS_TOKEN"), "")) {
+        skip("No authentication available")
+    }
 }

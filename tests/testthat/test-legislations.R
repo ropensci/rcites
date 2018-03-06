@@ -1,9 +1,13 @@
 context("legislation eu")
 
+
+skip_if_no_auth()
+
 tx_id <- 4521
 res1 <- taxon_eu_legislation(tax_id = tx_id)
 res2 <- taxon_eu_legislation(tax_id = tx_id, type ='listings')
 res3 <- taxon_eu_legislation(tax_id = tx_id, simplify = TRUE)
+
 
 test_that("expected output classes", {
   expect_equal(class(res1), "list")

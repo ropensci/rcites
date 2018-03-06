@@ -15,7 +15,6 @@ r_packages:
 
 before_install:
     - echo $SPPPLUS_TOKEN > Renviron
-    - chmod 0040 Renviron
 
 after_success:
   - Rscript -e 'covr::codecov()'
