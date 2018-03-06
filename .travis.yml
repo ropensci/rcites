@@ -1,15 +1,20 @@
 language: r
 warnings_are_errors: true
 sudo: required
+cache: packages
 
 notifications:
   email:
+    on_success: change
+    on_failure: change
     recipients:
-      - simples.jg@gmx.de
       - kcazelle@uoguelph.ca
 
 r_packages:
   - covr
+
+before_install:
+    - echo $SPPPLUS_TOKEN > Renviron
 
 after_success:
   - Rscript -e 'covr::codecov()'

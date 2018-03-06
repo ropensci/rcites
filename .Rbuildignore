@@ -7,7 +7,7 @@
 ^pkg2date\.R
 ^README\.Rmd
 ^README\.gfm
-^NEWS
+^CONDUCT.md
 ^record*
 ^\.gitignore
 ^\.httr-oauth
