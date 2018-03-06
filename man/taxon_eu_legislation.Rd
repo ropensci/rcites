@@ -23,8 +23,8 @@ A list of one or two data.tables.
 Queries CITES species+ API using an authentication token.
 }
 \examples{
-# taxon_eu_legislation(tax_id = '4521')
-# taxon_eu_legislation(tax_id = '4521', type ='listings')
+# res1 <- taxon_eu_legislation(tax_id = '4521')
+# res2 <- taxon_eu_legislation(tax_id = '4521', type ='listings')
 }
 \references{
 \url{https://api.speciesplus.net/documentation/v1/eu_legislation/index.html}

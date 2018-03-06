@@ -17,8 +17,8 @@
 #' @export
 #'
 #' @examples
-#' # taxon_eu_legislation(tax_id = '4521')
-#' # taxon_eu_legislation(tax_id = '4521', type ='listings')
+#' # res1 <- taxon_eu_legislation(tax_id = '4521')
+#' # res2 <- taxon_eu_legislation(tax_id = '4521', type ='listings')
 
 taxon_eu_legislation <- function(tax_id, token = NULL, type = c("listings", "decisions"), 
     simplify = FALSE) {

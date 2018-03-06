@@ -48,8 +48,9 @@ sppplus_getsecret <- function() {
     val
 }
 
-sppplus_login <- function() {
-    token <- readline("Enter your token: ")
+sppplus_login <- function(token = NULL) {
+    if (is.null(token)) 
+        token <- readline("Enter your token: ")
     Sys.setenv(SPPPLUS_TOKEN = token)
     if (identical(token, "")) {
         message("Token is still missing!")

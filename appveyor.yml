@@ -10,6 +10,10 @@ init:
 install:
   ps: Bootstrap
 
+before_build:
+  - echo $SPPPLUS_TOKEN > Renviron
+  - chmod 0040 Renviron
+
 # Adapt as necessary starting from here
 build_script:
   - travis-tool.sh install_deps
