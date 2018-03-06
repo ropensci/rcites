@@ -1,11 +1,11 @@
 #' Access taxon_concept data from CITES species+ API
 #'
 #' Queries CITES species+ API using an authentication token.
-#' The query string filters species+ data by taxon concept (e.g.species, genus, class)
+#' The query string filters species+ data by taxon concept (e.g. species, genus, class)
 #'
-#' @param token Authentification token, see \url{https://api.speciesplus.net/documentation}.
 #' @param query_taxon character string containing the query (e.g. species). Scientific taxa only.
-#' @param appendix_only logical statement for querying only the taxon and CITES appendix information. Default is set to \code{TRUE}.
+#' @param token Authentification token, see \url{https://api.speciesplus.net/documentation}. Default is set to \code{NULL} and require the environment variable \code{SPPPLUS_TOKEN} to be set directly in \code{.Renviron} or for the session using \code{sppplus_login()}.
+#' @param appendix_only a logical statement. Should  for querying only the taxon and CITES appendix information. Default is set to \code{TRUE}.
 #'
 #' @return If appendix_only is \code{TRUE}, returns a data table with a species'
 #' taxon id and CITES appendix information. If appendix_only is \code{FALSE},
@@ -19,10 +19,13 @@
 #'
 #' @export
 #' @examples
-#' # sppplus_taxonconcept(token = token, query_taxon = 'Loxodonta africana', appendix_only = TRUE)
-#' # sppplus_taxonconcept(token = token, query_taxon = 'Homo sapiens', appendix_only = TRUE)
+#' # res <- sppplus_taxonconcept(query_taxon = 'Loxodonta africana', appendix_only = TRUE)
+#' # res <- sppplus_taxonconcept(token = token, query_taxon = 'Homo sapiens')
 
-sppplus_taxonconcept <- function(token, query_taxon, appendix_only = TRUE) {
+sppplus_taxonconcept <- function(query_taxon, token = NULL, appendix_only = TRUE) {
+    # token check
+    if (is.null(token)) 
+        token = sppplus_getsecret()
     # 2Bdone add here a check to ensure is a valid name
     query <- gsub(pattern = " ", replacement = "%20", x = query_taxon)
     # 

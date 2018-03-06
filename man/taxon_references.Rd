@@ -4,13 +4,13 @@
 \alias{taxon_references}
 \title{Access distribution data from CITES species+ API}
 \usage{
-taxon_references(token, tax_id = "4521", type = c("taxonomic",
+taxon_references(tax_id, token = NULL, type = c("taxonomic",
   "distribution"), simplify = FALSE)
 }
 \arguments{
-\item{token}{Authentification token, see \url{https://api.speciesplus.net/documentation}.}
-
 \item{tax_id}{character string containing a species' taxon id (e.g. 4521), which is returned by \code{\link[citesr]{sppplus_taxonconcept}}.}
+
+\item{token}{Authentification token, see \url{https://api.speciesplus.net/documentation}. Default is set to \code{NULL} and require the environment variable \code{SPPPLUS_TOKEN} to be set directly in \code{.Renviron} or for the session using \code{sppplus_login()}.}
 
 \item{type}{vector of character strings indicating the type of references requested, \code{taxonomic} or \code{distribution}.}
 

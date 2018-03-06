@@ -3,8 +3,8 @@
 #' Queries CITES species+ API using an authentication token. The query string
 #' filters species+ data by taxon concept (e.g. species, genus, class)
 #'
-#' @param token Authentification token, see \url{https://api.speciesplus.net/documentation}.
 #' @param tax_id character string containing a species' taxon id (e.g. 4521), which is returned by \code{\link[citesr]{sppplus_taxonconcept}}.
+#' @param token Authentification token, see \url{https://api.speciesplus.net/documentation}. Default is set to \code{NULL} and require the environment variable \code{SPPPLUS_TOKEN} to be set directly in \code{.Renviron} or for the session using \code{sppplus_login()}.
 #' @param type vector of character strings indicating the type of references requested, \code{taxonomic} or \code{distribution}.
 #' @param simplify a logical. Should the output be simplified? In other words should columns of data.table objects be unlisted when possible? Default is set to \code{FALSE}.
 #'
@@ -21,8 +21,11 @@
 #' # taxon_references(token, tax_id = '4521')
 #' # taxon_references(token, tax_id = '4521', type = 'taxonomic', simplify = T)
 
-taxon_references <- function(token, tax_id = "4521", type = c("taxonomic", "distribution"), 
+taxon_references <- function(tax_id, token = NULL, type = c("taxonomic", "distribution"), 
     simplify = FALSE) {
+    # token check
+    if (is.null(token)) 
+        token = sppplus_getsecret()
     # 
     type <- unique(type)
     stopifnot(all(type %in% c("taxonomic", "distribution")))

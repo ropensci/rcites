@@ -4,14 +4,14 @@
 \alias{sppplus_taxonconcept}
 \title{Access taxon_concept data from CITES species+ API}
 \usage{
-sppplus_taxonconcept(token, query_taxon, appendix_only = TRUE)
+sppplus_taxonconcept(query_taxon, token = NULL, appendix_only = TRUE)
 }
 \arguments{
-\item{token}{Authentification token, see \url{https://api.speciesplus.net/documentation}.}
-
 \item{query_taxon}{character string containing the query (e.g. species). Scientific taxa only.}
 
-\item{appendix_only}{logical statement for querying only the taxon and CITES appendix information. Default is set to \code{TRUE}.}
+\item{token}{Authentification token, see \url{https://api.speciesplus.net/documentation}. Default is set to \code{NULL} and require the environment variable \code{SPPPLUS_TOKEN} to be set directly in \code{.Renviron} or for the session using \code{sppplus_login()}.}
+
+\item{appendix_only}{a logical statement. Should  for querying only the taxon and CITES appendix information. Default is set to \code{TRUE}.}
 }
 \value{
 If appendix_only is \code{TRUE}, returns a data table with a species'
@@ -20,11 +20,11 @@ returns a data.table with all Species+ taxon concept information.
 }
 \description{
 Queries CITES species+ API using an authentication token.
-The query string filters species+ data by taxon concept (e.g.species, genus, class)
+The query string filters species+ data by taxon concept (e.g. species, genus, class)
 }
 \examples{
-# sppplus_taxonconcept(token = token, query_taxon = 'Loxodonta africana', appendix_only = TRUE)
-# sppplus_taxonconcept(token = token, query_taxon = 'Homo sapiens', appendix_only = TRUE)
+# res <- sppplus_taxonconcept(query_taxon = 'Loxodonta africana', appendix_only = TRUE)
+# res <- sppplus_taxonconcept(token = token, query_taxon = 'Homo sapiens')
 }
 \references{
 \url{https://api.speciesplus.net/documentation/v1/taxon_concepts/index.html}

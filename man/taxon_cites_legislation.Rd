@@ -4,11 +4,11 @@
 \alias{taxon_cites_legislation}
 \title{Access legislation data from CITES species+ API}
 \usage{
-taxon_cites_legislation(token, tax_id, type = c("listings", "quotas",
+taxon_cites_legislation(token = NULL, tax_id, type = c("listings", "quotas",
   "suspensions"))
 }
 \arguments{
-\item{token}{Authentification token, see \url{https://api.speciesplus.net/documentation}.}
+\item{token}{Authentification token, see \url{https://api.speciesplus.net/documentation}. Default is set to \code{NULL} and require the environment variable \code{SPPPLUS_TOKEN} to be set directly in \code{.Renviron} or for the session using \code{sppplus_login()}.}
 
 \item{tax_id}{character string containing a species' taxon id (e.g. 4521), which is returned by \code{\link[citesr]{sppplus_taxonconcept}}.}
 

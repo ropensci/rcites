@@ -4,13 +4,13 @@
 \alias{taxon_eu_legislation}
 \title{Access to EU legislation data from CITES species+ API}
 \usage{
-taxon_eu_legislation(token, tax_id, type = c("listings", "decisions"),
-  simplify = FALSE)
+taxon_eu_legislation(tax_id, token = NULL, type = c("listings",
+  "decisions"), simplify = FALSE)
 }
 \arguments{
-\item{token}{Authentification token, see \url{https://api.speciesplus.net/documentation}.}
-
 \item{tax_id}{character string containing a species' taxon id (e.g. 4521), which is returned by \code{\link[citesr]{sppplus_taxonconcept}}.}
+
+\item{token}{Authentification token, see \url{https://api.speciesplus.net/documentation}. Default is set to \code{NULL} and require the environment variable \code{SPPPLUS_TOKEN} to be set directly in \code{.Renviron} or for the session using \code{sppplus_login()}.}
 
 \item{type}{vector of character strings indicating type of legislation information requested, values are taken among \code{listing}, \code{quota} and \code{suspension}. Default includes the three of them.}
 
@@ -23,8 +23,8 @@ A list of one or two data.tables.
 Queries CITES species+ API using an authentication token.
 }
 \examples{
-# taxon_eu_legislation(token, tax_id = '4521')
-# taxon_eu_legislation(token, tax_id = '4521', type ='listings')
+# taxon_eu_legislation(tax_id = '4521')
+# taxon_eu_legislation(tax_id = '4521', type ='listings')
 }
 \references{
 \url{https://api.speciesplus.net/documentation/v1/eu_legislation/index.html}

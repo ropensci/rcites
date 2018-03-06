@@ -8,27 +8,29 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
 ---
 
+
+```{r setup, echo = FALSE}
+NOT_CRAN <- identical(tolower(Sys.getenv("NOT_CRAN")), "true")
+knitr::opts_chunk$set(purl = NOT_CRAN)
+```
+<!-- https://cran.r-project.org/web/packages/httr/vignettes/secrets.html -->
+
 ## Set up a connection to the species plus database
 
-To set up a connection to the Species+/CITES database you will need an
-authentication token. You can get a token from [here](http://api.speciesplus.net/users/sign_up)
-by registering as a user of the Species+/CITES API.
-
-After creating the user account and getting a token, you can use the
-sppplus_connect function.
+To set up a connection to the Species+/CITES database an authentication token
+is required, you need to sign up on the [Species+/CITES API](http://api.speciesplus.net/users/sign_up)
+website.
 
 
-```{R token, eval = FALSE}
-readRDS("../inst/tmp/token.rds")
-```
+
 
 ## Use the cites_query_taxon function
 
 This function will take a species name (in Latin) and return the CITES appendix or appendices (if applicable).
 
 We will use the African elephant as an example.
-```{r eval=FALSE}
-sppplus_taxonconcept(cnx, query = 'Loxodonta africana', appendix_only = TRUE)
+```{r eval=FALSE, eval = NOT_CRAN}
+# sppplus_taxonconcept(query = 'Loxodonta africana', appendix_only = TRUE)
 ```
 
 ## Use the taxon_distribution function
