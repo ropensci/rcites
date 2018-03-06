@@ -22,23 +22,24 @@ How it works
 ### Get a token
 
 So far, the user must get its own authentication token, *i.e.* it must
-signed up on the species plus / cites website:
-<https://api.speciesplus.net/>. You basically have three options once
-you got the token:
+signed up on the species+/cites website: <https://api.speciesplus.net/>.
+You basically have three options once you got the token:
 
-1.  Set an environment variable `SPPPLUS_TOKEN` in your
+1.  set an environment variable `SPPPLUS_TOKEN` in your
     [`.Renviron`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Startup.html)
-    file (preferred).
+    file (preferred);
 
 2.  use `sppplus_login()`; you will be able to interactively set up
-    `SPPPLUS_TOKEN` but it will last only for the current R session.
+    `SPPPLUS_TOKEN` for the current R session (meaning you will have to
+    do it again during the next session).
 
-3.  use the `token` argument of the functions.
+3.  use the `token` argument of the functions, *i.e.* pass the token to
+    all of your function calls.
 
 For the sack of clarity we use a variable `token` below. If you have
-opted for 1 or 2 then you can ignore this parameter. Note that value
-`8QW6Qgh57sBG2k0gtt` is not working, it is actually the one displays on
-the species plus website, see
+opted for 1 or 2 then you can ignore this parameter (*i.e.*
+`token=NULL`). Note that value `8QW6Qgh57sBG2k0gtt` is not working, it
+is actually the one displayed on the species plus website, see
 <https://api.speciesplus.net/documentation>.
 
 ### Installation of our R client
@@ -48,7 +49,7 @@ So far the installation requires the `devtools` package:
     devtools::install_github("ibartomeus/citesr")
     library("citesr")
     token <- "8QW6Qgh57sBG2k0gtt"
-    # instead you can use `sppplus_login` and ignore `token`
+    # alternatively use `sppplus_login` and ignore `token`
 
 ### Examples
 
@@ -68,7 +69,7 @@ So far the installation requires the `devtools` package:
 
 #### `sppplus_distribution()`
 
-    # you can ask for distribution
+    # get distribution information
     dis <- taxon_distribution(tax_id = '4521', token, collapse_tags = ' + ')
     head(dis)
 
@@ -82,7 +83,7 @@ So far the installation requires the `devtools` package:
 
 #### `taxon_cites_legislation()`
 
-    # you can ask for the CITES legislation information, e.g. listing
+    # you can ask for the CITES legislation information, e.g. listings
     leg <- taxon_cites_legislation(tax_id = "4521", token, type = "listings")
     leg$cites_listings[1L, 1L:6L]
 
