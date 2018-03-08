@@ -26,25 +26,26 @@ signed up on the species+/cites website: <https://api.speciesplus.net/>.
 You basically have three options once you got the token:
 
 1.  set an environment variable `SPPPLUS_TOKEN` in your
-    [`.Renviron`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Startup.html)
+    [`Renviron`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Startup.html)
     file (preferred);
 
 2.  use `sppplus_login()`; you will be able to interactively set up
     `SPPPLUS_TOKEN` for the current R session (meaning you will have to
-    do it again during the next session).
+    do it again during the next session);
 
 3.  use the `token` argument of the functions, *i.e.* pass the token to
     all of your function calls.
 
 For the sack of clarity we use a variable `token` below. If you have
-opted for 1 or 2 then you can ignore this parameter (*i.e.*
-`token=NULL`). Note that value `8QW6Qgh57sBG2k0gtt` is not working, it
-is actually the one displayed on the species plus website, see
+opted for option 1 or 2 then this parameter could be ignored (*i.e.* the
+default value `token=NULL` will be used). Note that `8QW6Qgh57sBG2k0gtt`
+used in what is following is not working, it is actually the one
+displayed on the species+/cites API website, see
 <https://api.speciesplus.net/documentation>.
 
-### Installation of our R client
+### Installation of the R client
 
-So far the installation requires the `devtools` package:
+So far, the installation requires the `devtools` package:
 
     devtools::install_github("ibartomeus/citesr")
     library("citesr")
@@ -135,6 +136,17 @@ The example below requires `rworldmap`.
     plot(map2[!map2$iso2,], col = "#bd9a5e", add = T)
 
 ![](inst/assets/img/map-1.png)
+
+Contributors
+------------
+
+-   Code contributors:
+    <https://github.com/ibartomeus/citesr/graphs/contributors>
+
+-   All contributors: [FVFaleiro](https://github.com/FVFaleiro)
+
+Code of Conduct
+---------------
 
 Please note that this project is released with a [Contributor Code of
 Conduct](CONDUCT.md). By participating in this project you agree to

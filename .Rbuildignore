@@ -12,3 +12,4 @@
 ^\.gitignore
 ^\.httr-oauth
 ^inst/assets/
+^\.github/
