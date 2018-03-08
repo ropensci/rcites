@@ -14,7 +14,8 @@ r_packages:
   - covr
 
 before_install:
-    - echo $SPPPLUS_TOKEN\nNOT_CRAN = "true"' > Renviron
+    - echo $SPPPLUS_TOKEN > Renviron
+    - echo '\nNOT_CRAN = "true"' >> Renviron
 
 after_success:
   - Rscript -e 'covr::codecov()'

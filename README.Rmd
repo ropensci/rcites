@@ -136,10 +136,21 @@ plot(map2[!map2$iso2,], col = "#bd9a5e", add = T)
 
 ## Contributors
 
-- Code contributors: https://github.com/ibartomeus/citesr/graphs/contributors
+### Code contributors
 
-- All contributors: [FVFaleiro](https://github.com/FVFaleiro)
+https://github.com/ibartomeus/citesr/graphs/contributors
 
+### All contributors
+
+- Reporting issues: [FVFaleiro](https://github.com/FVFaleiro);
+
+
+
+## Ressources
+
+- [taxize](https://github.com/ropensci/taxize) as it was a nice package that helped very
+much structuring this one
+- Managing secret very helpful vignette https://cran.r-project.org/web/packages/httr/vignettes/secrets.html
 
 
 
