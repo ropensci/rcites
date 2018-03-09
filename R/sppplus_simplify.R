@@ -19,34 +19,33 @@ sppplus_simplify <- function(x) {
         if (cla_col[i] %in% c("character", "integer", "logical", "numeric")) 
             data.table::set(x, j = i, value = methods::as(x[[i]], cla_col[i]))
     }
+    # 
+    spc <- c("geo_entity", "start_notification", "start_event", "decision_type")
+    tst <- names(x) %in% spc
+    if (sum(tst)) {
+        nid <- names(x)[tst]
+        for (i in nid) {
+            tmp <- sppplus_special_case(x[[i]], i)
+            x[, `:=`(names(tmp), tmp)]
+        }
+        x[, `:=`((nid), NULL)]
+    }
+    # uses only references so output is invisible
     invisible(NULL)
 }
 
 
-# 'geo_entity'
-sppplus_geo_entity <- function(x) {
+# res1 <- taxon_cites_legislation(tax_id = '4521')
+# sppplus_simplify(res1$cites_suspensions) names(res1$cites_suspensions)
+
+
+
+# replace
+sppplus_special_case <- function(x, case) {
     out <- do.call(rbind.data.frame, lapply(x, function(y) do.call(cbind.data.frame, 
         y)))
-    names(out) <- paste0("geo_entity_", names(out))
+    if ("date" %in% names(out)) 
+        out$date <- as.Date(out$date)
+    names(out) <- paste0(case, "_", names(out))
     out
 }
-
-# 'start_notification' / 'start_event'
-sppplus_start_event <- function(x) {
-    out <- do.call(rbind.data.frame, lapply(x, function(y) do.call(cbind.data.frame, 
-        y)))
-    out$date <- as.Date(out$date)
-    names(out) <- paste0("start_event_", names(out))
-    out
-}
-
-# 'decision_type'
-sppplus_decision_type <- function(x) {
-    out <- do.call(rbind.data.frame, lapply(x, function(y) do.call(cbind.data.frame, 
-        y)))
-    out$date <- as.Date(out$date)
-    names(out) <- paste0("start_event_", names(out))
-    out
-}
-
-# sppplus_start_event(res3$eu_decisions$start_event) df3[,foo:=NULL]
