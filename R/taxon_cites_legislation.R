@@ -17,7 +17,7 @@
 #' @export
 #'
 #' @examples
-#' # not run
+#' # not run:
 #' # res1 <- taxon_cites_legislation(tax_id = '4521')
 #' # res2 <- taxon_cites_legislation(tax_id = '4521', type ='listings')
 #' #
@@ -45,7 +45,7 @@ taxon_cites_legislation <- function(tax_id, token = NULL, type = c("listings", "
     for (i in 2:3) {
         if (nmt[i] %in% type) {
             out[[i]] <- as.data.table(do.call(rbind, (lapply(res[[i]], rbind))))
-            if (simplify) 
+            if (isTRUE(simplify)) 
                 lapply(out[i], sppplus_simplify)
         }
     }

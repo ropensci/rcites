@@ -25,14 +25,6 @@ sppplus_res <- function(q_url, token) {
     httr::content(con, "parsed")
 }
 
-sppplus_simplify <- function(x) {
-    cla_col <- sapply(x, function(y) class(y[[1L]]))
-    for (i in 1:ncol(x)) {
-        if (cla_col[i] %in% c("character", "integer", "logical", "numeric")) 
-            data.table::set(x, j = i, value = methods::as(x[[i]], cla_col[i]))
-    }
-    invisible(NULL)
-}
 
 # https://cran.r-project.org/web/packages/httr/vignettes/secrets.html
 sppplus_getsecret <- function() {

@@ -17,8 +17,9 @@
 #' \url{https://api.speciesplus.net/documentation/v1/references/index.html}
 #'
 #' @examples
-#' # taxon_references(token, tax_id = '4521')
-#' # taxon_references(token, tax_id = '4521', type = 'taxonomic', simplify = T)
+#' # not run:
+#' # res1 <- taxon_references(tax_id = '4521')
+#' # res2 <- taxon_references(tax_id = '4521', type = 'taxonomic', simplify = T)
 
 taxon_references <- function(tax_id, token = NULL, type = c("taxonomic", "distribution"), 
     simplify = FALSE) {
@@ -45,7 +46,7 @@ taxon_references <- function(tax_id, token = NULL, type = c("taxonomic", "distri
             length))), reference = unlist(ref$references))
     }
     ## 
-    if (simplify) 
+    if (isTRUE(simplify)) 
         lapply(out, sppplus_simplify)
     # output
     out

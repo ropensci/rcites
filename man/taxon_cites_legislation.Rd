@@ -24,7 +24,7 @@ Queries CITES species+ API using an authentication token.
 The query string filters species+ data by taxon concept (e.g.species, genus, class)
 }
 \examples{
-# not run
+# not run:
 # res1 <- taxon_cites_legislation(tax_id = '4521')
 # res2 <- taxon_cites_legislation(tax_id = '4521', type ='listings')
 #

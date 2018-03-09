@@ -18,8 +18,9 @@
 #' @export
 #'
 #' @examples
-#' # taxon_distribution(tax_id = '4521')
-#' # taxon_distribution(tax_id = '4521', collapse_tags = ' + ')
+#' # not run:
+#' # res1 <- taxon_distribution(tax_id = '4521')
+#' # res2 <- taxon_distribution(tax_id = '4521', collapse_tags = ' + ')
 
 taxon_distribution <- function(tax_id, token = NULL, collapse_tags = NULL, simplify = FALSE) {
     # token check
@@ -35,7 +36,7 @@ taxon_distribution <- function(tax_id, token = NULL, collapse_tags = NULL, simpl
         out$tags <- lapply(out$tags, function(x) if (length(x) > 0) 
             paste(unlist(x), collapse = collapse_tags))
     ## 
-    if (simplify) 
+    if (isTRUE(simplify)) 
         sppplus_simplify(out)
     # output
     out

@@ -19,9 +19,9 @@
 #'
 #' @export
 #' @examples
-#' # Not run
-#' # res <- sppplus_taxonconcept(query_taxon = 'Loxodonta africana', appendix_only = TRUE)
-#' # res <- sppplus_taxonconcept(token = token, query_taxon = 'Homo sapiens')
+#' # Not run:
+#' # res1 <- sppplus_taxonconcept(query_taxon = 'Loxodonta africana', appendix_only = TRUE)
+#' # res2 <- sppplus_taxonconcept(token = token, query_taxon = 'Homo sapiens')
 
 sppplus_taxonconcept <- function(query_taxon, token = NULL, appendix_only = TRUE) {
     # token check

@@ -23,7 +23,7 @@ A list of data.table objects, one per type requested.
 Queries CITES species+ API using an authentication token.
 }
 \examples{
-# not run
+# not run:
 # res1 <- taxon_eu_legislation(tax_id = '4521')
 # res2 <- taxon_eu_legislation(tax_id = '4521', type ='listings')
 # res3 <- taxon_eu_legislation(tax_id = '4521', type ='listings', simplify = T)

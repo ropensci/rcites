@@ -24,8 +24,9 @@ Queries CITES species+ API using an authentication token. The query string
 filters species+ data by taxon concept (e.g. species, genus, class)
 }
 \examples{
-# taxon_references(token, tax_id = '4521')
-# taxon_references(token, tax_id = '4521', type = 'taxonomic', simplify = T)
+# not run:
+# res1 <- taxon_references(tax_id = '4521')
+# res2 <- taxon_references(tax_id = '4521', type = 'taxonomic', simplify = T)
 }
 \references{
 \url{https://api.speciesplus.net/documentation/v1/references/index.html}
