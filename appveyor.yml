@@ -11,8 +11,8 @@ install:
   ps: Bootstrap
 
 before_build:
-    - echo $SPPPLUS_TOKEN > Renviron
-    - echo '\nNOT_CRAN = "true"' >> Renviron
+    - echo $SPPPLUS_TOKEN > .Renviron
+    - echo '\nNOT_CRAN = "true"' >> .Renviron
 
 
 

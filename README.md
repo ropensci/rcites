@@ -26,7 +26,7 @@ signed up on the species+/cites website: <https://api.speciesplus.net/>.
 You basically have three options once you got the token:
 
 1.  set an environment variable `SPPPLUS_TOKEN` in your
-    [`Renviron`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Startup.html)
+    [`.Renviron`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Startup.html)
     file (preferred);
 
 2.  use `sppplus_login()`; you will be able to interactively set up
