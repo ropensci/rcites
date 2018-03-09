@@ -1,7 +1,7 @@
 context("wong token")
 
 token <- "wrong"
-Sys.sleep(2)
+Sys.sleep(4)
 msg <- "Unauthorized (HTTP 401)"
 
 test_that("expected errors", {

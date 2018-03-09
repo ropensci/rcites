@@ -13,3 +13,4 @@
 ^\.httr-oauth
 ^inst/assets/
 ^\.github/
+^Renviron
