@@ -33,7 +33,17 @@ test_that("expected values", {
 })
 
 
+Sys.sleep(.5)
 context("legislation cites")
 
-#' # taxon_cites_legislation(token, tax_id = '4521')
-#' # taxon_cites_legislation(token, tax_id = '4521', type ='listings')
+res4 <- taxon_cites_legislation(tax_id = tx_id)
+res5 <- taxon_cites_legislation(tax_id = tx_id, type ='listings')
+res6 <- taxon_cites_legislation(tax_id = tx_id, simplify = TRUE)
+
+test_that("expected output classes", {
+  expect_equal(class(res4), "list")
+  expect_equal(class(res5), "list")
+  expect_equal(class(res6), "list")
+  expect_true(all(class(res4$cites_listings) == c("data.table", "data.frame")))
+  expect_equal(class(res5$cites_listings$id), "integer")
+})

@@ -148,9 +148,8 @@ https://github.com/ibartomeus/citesr/graphs/contributors
 
 ## Ressources
 
-- [taxize](https://github.com/ropensci/taxize) as it was a nice package that helped very
-much structuring this one
-- Managing secret very helpful vignette https://cran.r-project.org/web/packages/httr/vignettes/secrets.html
+- The structure of this repo/package was inspired by [taxize](https://github.com/ropensci/taxize);
+- Managing secret very helpful vignette https://cran.r-project.org/web/packages/httr/vignettes/secrets.html.
 
 
 

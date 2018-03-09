@@ -26,10 +26,10 @@ sppplus_res <- function(q_url, token) {
 }
 
 sppplus_simplify <- function(x) {
+    cla_col <- sapply(x, function(y) class(y[[1L]]))
     for (i in 1:ncol(x)) {
-        tmp <- class(x[[i]][[1L]])
-        if (tmp != "list") 
-            data.table::set(x, j = i, value = methods::as(x[[i]], tmp))
+        if (cla_col[i] %in% c("character", "integer", "logical", "numeric")) 
+            data.table::set(x, j = i, value = methods::as(x[[i]], cla_col[i]))
     }
     invisible(NULL)
 }

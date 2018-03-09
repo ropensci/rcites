@@ -1,8 +1,10 @@
 context("wong token")
 
 token <- "wrong"
+Sys.sleep(2)
+msg <- "Unauthorized (HTTP 401)"
 
 test_that("expected errors", {
-  expect_error(sppplus_taxonconcept(query_taxon = 'Loxodonta africana', token), 'Unauthorized (HTTP 401)', fixed = TRUE)
-  expect_error(taxon_cites_legislation(tax_id = '4521', token), 'Unauthorized (HTTP 401)', fixed = TRUE)
+  expect_error(sppplus_taxonconcept(query_taxon = 'Loxodonta africana', token), msg, fixed = TRUE)
+  expect_error(taxon_cites_legislation(tax_id = '4521', token), msg, fixed = TRUE)
 })

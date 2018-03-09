@@ -14,7 +14,7 @@ taxon_eu_legislation(tax_id, token = NULL, type = c("listings",
 
 \item{type}{vector of character strings indicating type of legislation information requested, values are taken among \code{listing}, \code{quota} and \code{suspension}. Default includes the three of them.}
 
-\item{simplify}{a logical. Should the output be simplified? In other words should columns of data.table objects be unlisted when possible?}
+\item{simplify}{a logical. Should the output be simplified? In other words, should columns of data.table objects returned be unlisted when they are actualist list made of single elements?}
 }
 \value{
 A list of data.table objects, one per type requested.
@@ -23,8 +23,10 @@ A list of data.table objects, one per type requested.
 Queries CITES species+ API using an authentication token.
 }
 \examples{
+# not run
 # res1 <- taxon_eu_legislation(tax_id = '4521')
 # res2 <- taxon_eu_legislation(tax_id = '4521', type ='listings')
+# res3 <- taxon_eu_legislation(tax_id = '4521', type ='listings', simplify = T)
 }
 \references{
 \url{https://api.speciesplus.net/documentation/v1/eu_legislation/index.html}

@@ -140,10 +140,21 @@ The example below requires `rworldmap`.
 Contributors
 ------------
 
--   Code contributors:
-    <https://github.com/ibartomeus/citesr/graphs/contributors>
+### Code contributors
 
--   All contributors: [FVFaleiro](https://github.com/FVFaleiro)
+<https://github.com/ibartomeus/citesr/graphs/contributors>
+
+### All contributors
+
+-   Reporting issues: [FVFaleiro](https://github.com/FVFaleiro);
+
+Ressources
+----------
+
+-   The structure of this repo/package was inspired by
+    [taxize](https://github.com/ropensci/taxize);
+-   Managing secret very helpful vignette
+    <https://cran.r-project.org/web/packages/httr/vignettes/secrets.html>.
 
 Code of Conduct
 ---------------
