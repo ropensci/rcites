@@ -134,6 +134,8 @@ plot(map2, add = T)
 plot(map2[!map2$iso2,], col = "#bd9a5e", add = T)
 ```
 
+
+
 ## Contributors
 
 ### Code contributors

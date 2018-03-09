@@ -16,8 +16,8 @@ A data table with a simplified structure.
 Simplify the structure of cites/species+ API outputs.
 }
 \details{
-For the sake of generality, API outputs are parsed and stored in
-data.table objects whose columns are lists. Most of the lists are actually
-well-structured and can actually be stored as columns of integer, date,
-characters strings, etc. This function handles such simplifications.
+For the sake of generality, CITES Species+ API outputs are parsed
+and stored in data.table objects whose columns are lists. Most of the lists
+are actually well-structured and can actually be stored as columns of integer,
+date, characters strings, etc. This function handles such simplifications.
 }

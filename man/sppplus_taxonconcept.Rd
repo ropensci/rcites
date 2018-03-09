@@ -9,7 +9,7 @@ sppplus_taxonconcept(query_taxon, token = NULL, appendix_only = TRUE)
 \arguments{
 \item{query_taxon}{character string containing the query (e.g. species). Scientific taxa only.}
 
-\item{token}{Authentification token, see \url{https://api.speciesplus.net/documentation}. Default is set to \code{NULL} and require the environment variable \code{SPPPLUS_TOKEN} to be set directly in \code{.Renviron} or for the session using \code{sppplus_login()}.}
+\item{token}{Authentification token, see \url{https://api.speciesplus.net/documentation}. Default is set to \code{NULL} and require the environment variable \code{SPPPLUS_TOKEN} to be set directly in \code{Renviron} or for the session using \code{sppplus_login()}.}
 
 \item{appendix_only}{a logical statement. Should  for querying only the taxon and CITES appendix information. Default is set to \code{TRUE}.}
 }
@@ -20,8 +20,8 @@ a object of class \code{data.table} with all Species+ taxon concept information
 is returned.
 }
 \description{
-Queries CITES species+ API using an authentication token.
-The query string filters species+ data by taxon concept (e.g. species, genus, class)
+Queries CITES Species+ API using an authentication token.
+The query string filters Species+ data by taxon concept (e.g. species, genus, class)
 }
 \examples{
 # Not run:
