@@ -21,8 +21,8 @@
 #' # res1 <- taxon_references(tax_id = '4521')
 #' # res2 <- taxon_references(tax_id = '4521', type = 'taxonomic', simplify = T)
 
-taxon_references <- function(tax_id, token = NULL, type = c("taxonomic", "distribution"), 
-    simplify = FALSE) {
+taxon_references <- function(tax_id, type = c("taxonomic", "distribution"), simplify = FALSE, 
+    token = NULL) {
     # token check
     if (is.null(token)) 
         token = sppplus_getsecret()

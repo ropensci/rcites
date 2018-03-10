@@ -1,7 +1,7 @@
 #' Access distribution data from CITES species+ API
 #'
 #' Queries CITES species+ API using an authentication token. The query string
-#' filters species+ data by taxon concept (e.g. species, genus, class).
+#' filters Species+ data by taxon concept (e.g. species, genus, class).
 #'
 #' @param tax_id character string containing a species' taxon id (e.g. 4521), which is returned by \code{\link[citesr]{sppplus_taxonconcept}}.
 #' @param token Authentification token, see \url{https://api.speciesplus.net/documentation}. Default is set to \code{NULL} and require the environment variable \code{SPPPLUS_TOKEN} to be set directly in \code{.Renviron} or for the session using \code{sppplus_login()}.
@@ -20,9 +20,9 @@
 #' @examples
 #' # not run:
 #' # res1 <- taxon_distribution(tax_id = '4521')
-#' # res2 <- taxon_distribution(tax_id = '4521', collapse_tags = ' + ')
+#' # res2 <- taxon_distribution(tax_id = '4521', collapse_tags = ' + ', simplify = T)
 
-taxon_distribution <- function(tax_id, token = NULL, collapse_tags = NULL, simplify = FALSE) {
+taxon_distribution <- function(tax_id, collapse_tags = NULL, simplify = FALSE, token = NULL) {
     # token check
     if (is.null(token)) 
         token = sppplus_getsecret()

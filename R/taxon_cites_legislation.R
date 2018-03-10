@@ -22,8 +22,8 @@
 #' # res2 <- taxon_cites_legislation(tax_id = '4521', type ='listings')
 #' #
 
-taxon_cites_legislation <- function(tax_id, token = NULL, type = c("listings", "quotas", 
-    "suspensions"), simplify = FALSE) {
+taxon_cites_legislation <- function(tax_id, type = c("listings", "quotas", "suspensions"), 
+    simplify = FALSE, token = NULL) {
     # check token
     if (is.null(token)) 
         token = sppplus_getsecret()

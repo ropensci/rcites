@@ -1,6 +1,6 @@
 #' Simplify outputs
 #'
-#' Simplify the structure of cites/species+ API outputs.
+#' Simplify the structure of CITES Species+ API outputs.
 #'
 #' @param x a data.table to be simplified.
 #'

@@ -1,18 +1,22 @@
 #' Access taxon_concept data from CITES species+ API
 #'
 #' Queries CITES Species+ API using an authentication token.
-#' The query string filters Species+ data by taxon concept (e.g. species, genus, class)
+#' The query string filters CITES/Species+ data by taxon concept (e.g. species,
+#' genus, class)
 #'
 #' @param query_taxon character string containing the query (e.g. species). Scientific taxa only.
-#' @param token Authentification token, see \url{https://api.speciesplus.net/documentation}. Default is set to \code{NULL} and require the environment variable \code{SPPPLUS_TOKEN} to be set directly in \code{Renviron} or for the session using \code{sppplus_login()}.
-#' @param appendix_only a logical statement. Should  for querying only the taxon and CITES appendix information. Default is set to \code{TRUE}.
+#' @param appendix_only a logical. If \code{TRUE} then taxon identifier and the
+#' CITES appendix information are the only data returned (default is \code{FALSE}).
+#' @param token Authentification token, see \url{https://api.speciesplus.net/documentation}.
+#' Default is set to \code{NULL} and requires the environment variable \code{SPPPLUS_TOKEN}
+#' to be set directly in \code{Renviron} or for the session using \code{sppplus_login()}.
 #'
-#' @return If \code{appendix_only} is \code{TRUE}, then a data table with a species'
+#' @return If \code{appendix_only} is \code{TRUE}, then a data frame with a species'
 #' taxon id and CITES appendix information is returned. Otherwise,
-#' a object of class \code{data.table} with all Species+ taxon concept information
-#' is returned.
+#' an object of class \code{data.table} with all CITES Species+ taxon_concept
+#' information is returned.
 #'
-#' @importFrom data.table as.data.table
+#' @importFrom data.table as.data.table :=
 #'
 #' @references
 #' \url{https://api.speciesplus.net/documentation/v1/taxon_concepts/index.html}
@@ -20,31 +24,44 @@
 #' @export
 #' @examples
 #' # Not run:
-#' # res1 <- sppplus_taxonconcept(query_taxon = 'Loxodonta africana', appendix_only = TRUE)
-#' # res2 <- sppplus_taxonconcept(token = token, query_taxon = 'Homo sapiens')
+#' # res1 <- sppplus_taxonconcept(query_taxon = 'Loxodonta africana')
+#' # res2 <- sppplus_taxonconcept(query_taxon = 'Loxodonta africana', appendix_only = TRUE)
 
-sppplus_taxonconcept <- function(query_taxon, token = NULL, appendix_only = TRUE) {
+sppplus_taxonconcept <- function(query_taxon, appendix_only = FALSE, token = NULL) {
     # token check
-    if (is.null(token)) 
+    if (is.null(token))
         token = sppplus_getsecret()
     # 2Bdone: add here a check to ensure is a valid name
     query <- gsub(pattern = " ", replacement = "%20", x = query_taxon)
-    # 
+    #
     q_url <- sppplus_url(paste0("taxon_concepts.json", "?name=", query))
     res <- sppplus_res(q_url, token)
-    
+
     if (!res$pagination$total_entries) {
-        warning("taxon not listed in CITES")
+        warning("taxon not listed")
         out <- NULL
     } else {
-        tmp <- res$taxon_concept[[1L]]
         if (isTRUE(appendix_only)) {
+            tmp <- res$taxon_concepts[[1L]]
             out <- as.data.frame(tmp[c("id", "full_name", "cites_listing")])
         } else {
-            out <- tmp
-            out$common_names <- do.call(rbind, (lapply(tmp$common_names, rbind)))
+            out <- list()
+            out$all <- as.data.table(do.call(rbind, lapply(res$taxon_concepts, rbind)))
+            #
+            if ("synonyms" %in% names(out$all)) {
+                out$synonyms <- do.call(rbind, out$all$synonyms[[1L]])
+                out$all[, `:=`("synonyms", NULL)]
+            }
+            if ("common_names" %in% names(out$all)) {
+                out$common_names <- do.call(rbind, out$all$common_names[[1L]])
+                out$all[, `:=`("common_names", NULL)]
+            }
+            if ("higher_taxa" %in% names(out$all)) {
+                out$higher_taxa <- do.call(cbind, out$all$higher_taxa)
+                out$all[, `:=`("higher_taxa", NULL)]
+            }
         }
     }
-    ## output
-    as.data.table(out)
+    #
+    out
 }

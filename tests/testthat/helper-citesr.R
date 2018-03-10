@@ -4,5 +4,3 @@ skip_if_no_auth <- function() {
         skip("No authentication available")
     }
 }
-
-sw <- function(x) suppressWarnings(x)

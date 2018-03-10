@@ -4,29 +4,33 @@
 \alias{sppplus_taxonconcept}
 \title{Access taxon_concept data from CITES species+ API}
 \usage{
-sppplus_taxonconcept(query_taxon, token = NULL, appendix_only = TRUE)
+sppplus_taxonconcept(query_taxon, appendix_only = FALSE, token = NULL)
 }
 \arguments{
 \item{query_taxon}{character string containing the query (e.g. species). Scientific taxa only.}
 
-\item{token}{Authentification token, see \url{https://api.speciesplus.net/documentation}. Default is set to \code{NULL} and require the environment variable \code{SPPPLUS_TOKEN} to be set directly in \code{Renviron} or for the session using \code{sppplus_login()}.}
+\item{appendix_only}{a logical. If \code{TRUE} then taxon identifier and the
+CITES appendix information are the only data returned (default is \code{FALSE}).}
 
-\item{appendix_only}{a logical statement. Should  for querying only the taxon and CITES appendix information. Default is set to \code{TRUE}.}
+\item{token}{Authentification token, see \url{https://api.speciesplus.net/documentation}.
+Default is set to \code{NULL} and requires the environment variable \code{SPPPLUS_TOKEN}
+to be set directly in \code{Renviron} or for the session using \code{sppplus_login()}.}
 }
 \value{
-If \code{appendix_only} is \code{TRUE}, then a data table with a species'
+If \code{appendix_only} is \code{TRUE}, then a data frame with a species'
 taxon id and CITES appendix information is returned. Otherwise,
-a object of class \code{data.table} with all Species+ taxon concept information
-is returned.
+an object of class \code{data.table} with all CITES Species+ taxon_concept
+information is returned.
 }
 \description{
 Queries CITES Species+ API using an authentication token.
-The query string filters Species+ data by taxon concept (e.g. species, genus, class)
+The query string filters CITES/Species+ data by taxon concept (e.g. species,
+genus, class)
 }
 \examples{
 # Not run:
-# res1 <- sppplus_taxonconcept(query_taxon = 'Loxodonta africana', appendix_only = TRUE)
-# res2 <- sppplus_taxonconcept(token = token, query_taxon = 'Homo sapiens')
+# res1 <- sppplus_taxonconcept(query_taxon = 'Loxodonta africana')
+# res2 <- sppplus_taxonconcept(query_taxon = 'Loxodonta africana', appendix_only = TRUE)
 }
 \references{
 \url{https://api.speciesplus.net/documentation/v1/taxon_concepts/index.html}

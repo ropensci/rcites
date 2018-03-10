@@ -13,7 +13,7 @@ sppplus_simplify(x)
 A data table with a simplified structure.
 }
 \description{
-Simplify the structure of cites/species+ API outputs.
+Simplify the structure of CITES Species+ API outputs.
 }
 \details{
 For the sake of generality, CITES Species+ API outputs are parsed
