@@ -8,9 +8,7 @@ output:
 ```{r echo=FALSE}
 knitr::opts_chunk$set(
   fig.path = "inst/assets/img/",
-  comment = "#R> ",
-  fig.width = 6,
-  fig.height = 7.6
+  comment = "#R> "
 )
 ```
 
@@ -18,7 +16,7 @@ knitr::opts_chunk$set(
 
 An R package to access the CITES Species+ database. Reference:
 UNEP (2017). The Species+ Website. Nairobi, Kenya. Compiled by UNEP-WCMC,
-Cambridge, UK. Available at: www.speciesplus.net. [Accessed 18/02/2017].
+Cambridge, UK. Available at: www.speciesplus.net. [Accessed 11/03/2018].
 
 ## Current Status
 
@@ -32,23 +30,23 @@ Cambridge, UK. Available at: www.speciesplus.net. [Accessed 18/02/2017].
 
 ### Get a token
 
-So far, the user must get its own authentication token, *i.e.* it must
-signed up on the species+/cites website: https://api.speciesplus.net/.
-You basically have three options once you got the token:
+So far, the user must get its own authentication token, *i.e.* the user must
+sign up on the species+/cites website: https://api.speciesplus.net/.
+Once the token obtain, the user has three options:
 
-1. set an environment variable `SPPPLUS_TOKEN` in your [`.Renviron`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Startup.html) file (preferred);
+1. set an environment variable `SPPPLUS_TOKEN` in  [`.Renviron`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Startup.html) file (preferred);
 
-2. use `sppplus_login()`; you will be able to interactively set up `SPPPLUS_TOKEN`
+2. use `sppplus_login()`, *i.e.* interactively set `SPPPLUS_TOKEN` up
 for the current R session (meaning you will have to do it again during the next session);
 
-3. use the `token` argument of the functions, *i.e.* pass the token to all of your
+3. use the `token` argument of the functions, *i.e.* pass the token to every
 function calls.
 
 
-For the sack of clarity we use a variable `token` below. If you have opted
-for option 1 or 2 then this parameter could be ignored (*i.e.* the default
+For the sack of clarity we use a variable `token` below. If option 1 or 2 has
+been chosen then this parameter could be ignored (*i.e.* the default
 value `token=NULL` will be used). Note that `8QW6Qgh57sBG2k0gtt` used in what
-is following is not working, it is actually the one displayed on the
+is following is not working, it is actually the token displayed on the
 species+/cites API website, see https://api.speciesplus.net/documentation.
 
 
@@ -60,12 +58,12 @@ So far, the installation requires the `devtools` package:
 ```R
 devtools::install_github("ibartomeus/citesr")
 library("citesr")
-token <- "8QW6Qgh57sBG2k0gtt"
-# alternatively use `sppplus_login` and ignore `token`
+mytoken <- "8QW6Qgh57sBG2k0gtt"
+# alternatively, use `sppplus_login()` and ignore `token`
 ```
 
 ```{R token, echo = FALSE}
-token <- readRDS("inst/tmp/token.rds")
+mytoken <- readRDS("inst/tmp/token.rds")
 ```
 
 ### Examples
@@ -73,13 +71,13 @@ token <- readRDS("inst/tmp/token.rds")
 #### `sppplus_taxonconcept()`
 
 ```{R status}
-# get all fields in nested list format
-sppplus_taxonconcept(query = "Loxodonta africana", token, appendix_only = TRUE)
+# retrieve a taxon concept id and more
+sppplus_taxonconcept(query = "Loxodonta africana", token = mytoken)
 ```
 
 ```{R status2}
 # also works at higher order taxonomy
-sppplus_taxonconcept(query = "Mammalia", token, appendix_only = TRUE)
+sppplus_taxonconcept(query = "Mammalia", appendix_only = TRUE, token = mytoken)
 ```
 
 
@@ -88,7 +86,7 @@ sppplus_taxonconcept(query = "Mammalia", token, appendix_only = TRUE)
 
 ```{R distribution}
 # get distribution information
-dis <- taxon_distribution(tax_id = '4521', token, collapse_tags = ' + ')
+dis <- taxon_distribution(tax_id = "4521", collapse_tags = " + ", token = mytoken)
 head(dis)
 ```
 
@@ -96,36 +94,37 @@ head(dis)
 
 ```{R legislation}
 # you can ask for the CITES legislation information, e.g. listings
-leg <- taxon_cites_legislation(tax_id = "4521", token, type = "listings")
+leg <- taxon_cites_legislation(tax_id = "4521", type = "listings", token = mytoken)
 leg$cites_listings[1L, 1L:6L]
 ```
 
 #### `taxon_eu_legislation()`
 
 ```{R legislation_eu}
-# you can ask for the CITES legislation information, e.g. listing
-leg_eu <- taxon_eu_legislation(tax_id = "4521", token, type = "decisions")
+# you can ask for the CITES legislation information
+leg_eu <- taxon_eu_legislation(tax_id = "4521", type = "decisions", token = mytoken)
 leg_eu$eu_decisions[1L, 1L:6L]
 unlist(leg_eu$eu_decisions[1L, 6L])
 ```
 
 #### `taxon_references()`
 
+Note that `simplify = TRUE` simplifies the structure of the output.
+
 ```{R references}
-ref <- taxon_references(tax_id = '4521', token, type = 'taxonomic')
-dim(ref)
-ref$taxonomic[1L, ]
+ref <- taxon_references(tax_id = '4521', type = 'taxonomic', token = mytoken)
+ref$taxonomic$citation[1L]
 ```
 
 
 
 #### Distribution map
 
-The example below requires `rworldmap`.
+The example below requires the package `rworldmap`.
 
 ```{R map, message = FALSE}
 suppressPackageStartupMessages(library(rworldmap))
-map1 <- as.data.frame(taxon_distribution('4521', token))
+map1 <- as.data.frame(taxon_distribution('4521', mytoken))
 map2 <- joinCountryData2Map(map1, joinCode="ISO2", nameJoinColumn = "iso_code2", nameCountryColumn = "name")
 map2@data$iso2 <- unlist(lapply(map2$iso_code2, is.null))
 plot(c(-23, 62), c(45, -40), type = "n", main = "Loxodonta africana",

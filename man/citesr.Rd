@@ -10,5 +10,5 @@
 spplus_baseurl()
 }
 \description{
-An R packagee to access the CITES Species+ database (https://speciesplus.net/)
+An R package to access the CITES Species+ database (https://speciesplus.net/)
 }

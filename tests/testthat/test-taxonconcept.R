@@ -3,7 +3,7 @@ context("taxon concept")
 skip_on_cran()
 skip_if_no_auth()
 
-Sys.sleep(5)
+Sys.sleep(6)
 
 res1 <- sppplus_taxonconcept(query_taxon = tx_nm)
 res2 <- sppplus_taxonconcept(query_taxon = tx_nm, appendix_only = TRUE)

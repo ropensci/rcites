@@ -40,7 +40,7 @@ sppplus_getsecret <- function() {
 }
 
 sppplus_login <- function(token = NULL) {
-    if (is.null(token))
+    if (is.null(token)) 
         token <- readline("Enter your token: ")
     Sys.setenv(SPPPLUS_TOKEN = token)
     if (identical(token, "")) {

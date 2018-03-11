@@ -45,7 +45,7 @@ taxon_cites_legislation <- function(tax_id, type = c("listings", "quotas", "susp
     out <- lapply(res, function(x) "")
     if ("listings" %in% type) {
         out[[1L]] <- rbindlist(lapply(res[[1L]], as.data.table), TRUE, TRUE)
-        if (simplify) 
+        if (isTRUE(simplify)) 
             lapply(out[1L], sppplus_simplify)
     }
     ## 

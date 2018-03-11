@@ -35,8 +35,7 @@ taxon_distribution <- function(tax_id, collapse_tags = NULL, simplify = FALSE, t
     # 
     q_url <- sppplus_url(paste0("taxon_concepts/", tax_id, "/distributions.json"))
     res <- sppplus_res(q_url, token)
-    # get a data.table; tags and references are lists that the user can easily to
-    # access
+    # get a data.table; tags and references are lists.
     out <- as.data.table(do.call(rbind, lapply(res, rbind)))
     if (!is.null(collapse_tags)) 
         out$tags <- lapply(out$tags, function(x) if (length(x) > 0) 
