@@ -3,9 +3,15 @@
 #' Queries CITES species+ API using an authentication token.
 #'
 #' @param tax_id character string containing a species' taxon id (e.g. 4521), which is returned by \code{\link[citesr]{sppplus_taxonconcept}}.
-#' @param token Authentification token, see \url{https://api.speciesplus.net/documentation}. Default is set to \code{NULL} and require the environment variable \code{SPPPLUS_TOKEN} to be set directly in \code{.Renviron} or for the session using \code{sppplus_login()}.
 #' @param type vector of character strings indicating type of legislation information requested, values are taken among \code{listing}, \code{quota} and \code{suspension}. Default includes the three of them.
-#' @param simplify a logical. Should the output be simplified? In other words, should columns of data.table objects returned be unlisted when they are actualist list made of single elements?
+#' @param simplify a logical. Should the output be simplified? In other words,
+#' should columns of data.table objects returned be unlisted when they are
+#' actualist list made of single elements?
+#' @param token a character string containing the authentification token, see
+#' \url{https://api.speciesplus.net/documentation}. Default is set to
+#' \code{NULL} and requires the environment variable \code{SPPPLUS_TOKEN} to be
+#' set directly in \code{Renviron}. Alternatively \code{sppplus_login()} can
+#' be used to set \code{SPPPLUS_TOKEN} for the current session.
 #'
 #' @return  A list of data.table objects, one per type requested.
 #'

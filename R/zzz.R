@@ -1,8 +1,8 @@
 #' citesr:
 #'
-#' An R package to access the CITES Species+ database (https://speciesplus.net/)
+#' An R packe to access the CITES Species+ database (https://speciesplus.net/)
 #'
-#' @docType package
+#' @docType pack
 #' @author Jonas Geschke et al.
 #' @name citesr
 
@@ -26,7 +26,7 @@ sppplus_res <- function(q_url, token) {
 }
 
 
-# https://cran.r-project.org/web/packages/httr/vignettes/secrets.html
+# https://cran.r-project.org/web/packes/httr/vignettes/secrets.html
 sppplus_getsecret <- function() {
     val <- Sys.getenv("SPPPLUS_TOKEN")
     if (identical(val, "")) {

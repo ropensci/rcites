@@ -7,25 +7,27 @@
 sppplus_taxonconcept(query_taxon, appendix_only = FALSE, token = NULL)
 }
 \arguments{
-\item{query_taxon}{character string containing the query (e.g. species). Scientific taxa only.}
+\item{query_taxon}{a character string containing the query (e.g. species). Scientific taxa only.}
 
 \item{appendix_only}{a logical. If \code{TRUE} then taxon identifier and the
 CITES appendix information are the only data returned (default is \code{FALSE}).}
 
-\item{token}{Authentification token, see \url{https://api.speciesplus.net/documentation}.
-Default is set to \code{NULL} and requires the environment variable \code{SPPPLUS_TOKEN}
-to be set directly in \code{Renviron} or for the session using \code{sppplus_login()}.}
+\item{token}{a character string containing the authentification token, see
+\url{https://api.speciesplus.net/documentation}. Default is set to
+\code{NULL} and requires the environment variable \code{SPPPLUS_TOKEN} to be
+set directly in \code{Renviron}. Alternatively \code{sppplus_login()} can
+be used to set \code{SPPPLUS_TOKEN} for the current session.}
 }
 \value{
 If \code{appendix_only} is \code{TRUE}, then a data frame with a species'
-taxon id and CITES appendix information is returned. Otherwise,
-an object of class \code{data.table} with all CITES Species+ taxon_concept
+taxon id and CITES appendix information is returned. Otherwise, a list of
+objects of class \code{data.table} with all CITES Species+ taxon_concept
 information is returned.
 }
 \description{
 Queries CITES Species+ API using an authentication token.
 The query string filters CITES/Species+ data by taxon concept (e.g. species,
-genus, class)
+genus, class).
 }
 \examples{
 # Not run:

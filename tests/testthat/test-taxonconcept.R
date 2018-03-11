@@ -5,10 +5,8 @@ skip_if_no_auth()
 
 Sys.sleep(4)
 
-tx_nm <- "Loxodonta africana"
 res1 <- sppplus_taxonconcept(query_taxon = tx_nm)
 res2 <- sppplus_taxonconcept(query_taxon = tx_nm, appendix_only = TRUE)
-cl_dt <- c("data.table", "data.frame")
 nm1 <- c("all", "synonyms", "common_names", "higher_taxa")
 
 test_that("expected classes", {

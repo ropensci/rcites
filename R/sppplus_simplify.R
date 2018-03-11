@@ -1,15 +1,18 @@
 #' Simplify outputs
 #'
+#' @description
 #' Simplify the structure of CITES Species+ API outputs.
 #'
 #' @param x a data.table to be simplified.
 #'
 #' @return A data table with a simplified structure.
 #'
-#' @details For the sake of generality, CITES Species+ API outputs are parsed
+#' @details
+#' For the sake of generality, CITES Species+ API outputs are parsed
 #' and stored in data.table objects whose columns are lists. Most of the lists
 #' are actually well-structured and can actually be stored as columns of integer,
-#' date, characters strings, etc. This function handles such simplifications.
+#' date, characters strings, etc. The goal of \code{sppplus_simplify} is to
+#' handle such simplifications.
 #'
 #' @importFrom data.table :=
 #' @export
@@ -36,12 +39,7 @@ sppplus_simplify <- function(x) {
 }
 
 
-# res1 <- taxon_cites_legislation(tax_id = '4521')
-# sppplus_simplify(res1$cites_suspensions) names(res1$cites_suspensions)
 
-
-
-# replace
 sppplus_special_case <- function(x, case) {
     out <- do.call(rbind.data.frame, lapply(x, function(y) do.call(cbind.data.frame, 
         y)))

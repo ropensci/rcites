@@ -1,12 +1,19 @@
-#' Access distribution data from CITES species+ API
+#' Access reference data from CITES species+ API
 #'
 #' Queries CITES species+ API using an authentication token. The query string
-#' filters species+ data by taxon concept (e.g. species, genus, class)
+#' filters species+ data by taxon concept (e.g. species, genus, class).
 #'
 #' @param tax_id character string containing a species' taxon id (e.g. 4521), which is returned by \code{\link[citesr]{sppplus_taxonconcept}}.
-#' @param token Authentification token, see \url{https://api.speciesplus.net/documentation}. Default is set to \code{NULL} and require the environment variable \code{SPPPLUS_TOKEN} to be set directly in \code{.Renviron} or for the session using \code{sppplus_login()}.
-#' @param type vector of character strings indicating the type of references requested, \code{taxonomic} or \code{distribution}.
-#' @param simplify a logical. Should the output be simplified? In other words should columns of data.table objects be unlisted when possible? Default is set to \code{FALSE}.
+#' @param type vector of character strings indicating the type of references
+#' requested, \code{taxonomic} or \code{distribution}.
+#' @param simplify a logical. Should the output be simplified? In other words,
+#' should columns of data.table objects returned be unlisted when they are
+#' actualist list made of single elements?
+#' @param token a character string containing the authentification token, see
+#' \url{https://api.speciesplus.net/documentation}. Default is set to
+#' \code{NULL} and requires the environment variable \code{SPPPLUS_TOKEN} to be
+#' set directly in \code{Renviron}. Alternatively \code{sppplus_login()} can
+#' be used to set \code{SPPPLUS_TOKEN} for the current session.
 #'
 #' @return  A list of data.table objects, one per type requested.
 #'

@@ -1,5 +1,5 @@
 context("wrong type")
-tx_id <- 4521
+
 token <- "wrong"
 
 test_that("expected output classes", {

@@ -19,5 +19,6 @@ Simplify the structure of CITES Species+ API outputs.
 For the sake of generality, CITES Species+ API outputs are parsed
 and stored in data.table objects whose columns are lists. Most of the lists
 are actually well-structured and can actually be stored as columns of integer,
-date, characters strings, etc. This function handles such simplifications.
+date, characters strings, etc. The goal of \code{sppplus_simplify} is to
+handle such simplifications.
 }

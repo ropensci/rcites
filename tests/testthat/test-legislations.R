@@ -3,8 +3,6 @@ context("legislation eu")
 skip_on_cran()
 skip_if_no_auth()
 
-tx_id <- 4521
-cl_dt <- c("data.table", "data.frame")
 res1 <- taxon_eu_legislation(tax_id = tx_id)
 res2 <- taxon_eu_legislation(tax_id = tx_id, type ='listings')
 res3 <- taxon_eu_legislation(tax_id = tx_id, simplify = TRUE)

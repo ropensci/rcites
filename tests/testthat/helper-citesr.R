@@ -4,3 +4,9 @@ skip_if_no_auth <- function() {
         skip("No authentication available")
     }
 }
+
+cl_dt <- c("data.table", "data.frame")
+
+tx_nm <- "Loxodonta africana"
+
+tx_id <- 4521

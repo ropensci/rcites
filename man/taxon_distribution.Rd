@@ -12,9 +12,15 @@ taxon_distribution(tax_id, collapse_tags = NULL, simplify = FALSE,
 
 \item{collapse_tags}{a string used to collapse tags. Default is set to \code{NULL} meaning that tags column's elements remains lists.}
 
-\item{simplify}{a logical. Should the output be simplified? In other words should columns of data.table objects be unlisted when possible?}
+\item{simplify}{a logical. Should the output be simplified? In other words,
+should columns of data.table objects returned be unlisted when they are
+actualist list made of single elements?}
 
-\item{token}{Authentification token, see \url{https://api.speciesplus.net/documentation}. Default is set to \code{NULL} and require the environment variable \code{SPPPLUS_TOKEN} to be set directly in \code{.Renviron} or for the session using \code{sppplus_login()}.}
+\item{token}{a character string containing the authentification token, see
+\url{https://api.speciesplus.net/documentation}. Default is set to
+\code{NULL} and requires the environment variable \code{SPPPLUS_TOKEN} to be
+set directly in \code{Renviron}. Alternatively \code{sppplus_login()} can
+be used to set \code{SPPPLUS_TOKEN} for the current session.}
 }
 \value{
 A data table with all distribution information.
