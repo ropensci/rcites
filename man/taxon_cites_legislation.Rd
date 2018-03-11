@@ -8,7 +8,8 @@ taxon_cites_legislation(tax_id, type = c("listings", "quotas", "suspensions"),
   simplify = FALSE, token = NULL)
 }
 \arguments{
-\item{tax_id}{character string containing a species' taxon id (e.g. 4521), which is returned by \code{\link[citesr]{sppplus_taxonconcept}}.}
+\item{tax_id}{character string containing a species' taxon concept identifier
+(see \code{\link[citesr]{sppplus_taxonconcept}}).}
 
 \item{type}{vector of character strings indicating type of legislation information requested, values are taken among \code{listing}, \code{quota} and \code{suspension}. Default includes the three of them.}
 
@@ -26,8 +27,8 @@ be used to set \code{SPPPLUS_TOKEN} for the current session.}
 A list of data.table objects, one per type requested.
 }
 \description{
-Queries CITES species+ API using an authentication token.
-The query string filters species+ data by taxon concept (e.g.species, genus, class)
+Queries current CITES appendix listings and reservations, CITES quotas,
+and CITES suspensions for a given taxon concept identifier.
 }
 \examples{
 # not run:

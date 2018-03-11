@@ -2,13 +2,14 @@
 % Please edit documentation in R/taxon_distribution.R
 \name{taxon_distribution}
 \alias{taxon_distribution}
-\title{Access distribution data from CITES species+ API}
+\title{Access distribution data from CITES Species+ API}
 \usage{
 taxon_distribution(tax_id, collapse_tags = NULL, simplify = FALSE,
   token = NULL)
 }
 \arguments{
-\item{tax_id}{character string containing a species' taxon id (e.g. 4521), which is returned by \code{\link[citesr]{sppplus_taxonconcept}}.}
+\item{tax_id}{character string containing a species' taxon concept identifier
+(see \code{\link[citesr]{sppplus_taxonconcept}}).}
 
 \item{collapse_tags}{a string used to collapse tags. Default is set to \code{NULL} meaning that tags column's elements remains lists.}
 
@@ -26,8 +27,7 @@ be used to set \code{SPPPLUS_TOKEN} for the current session.}
 A data table with all distribution information.
 }
 \description{
-Queries CITES species+ API using an authentication token. The query string
-filters Species+ data by taxon concept (e.g. species, genus, class).
+Queries distributions data available for a given taxon concept.
 }
 \examples{
 # not run:

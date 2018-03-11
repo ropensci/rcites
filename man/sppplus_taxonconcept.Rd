@@ -22,7 +22,8 @@ be used to set \code{SPPPLUS_TOKEN} for the current session.}
 If \code{appendix_only} is \code{TRUE}, then a data frame with a species'
 taxon id and CITES appendix information is returned. Otherwise, a list of
 objects of class \code{data.table} with all CITES Species+ taxon_concept
-information is returned.
+information is returned. Importantly enough, this functions returns the
+taxon concept identifier that is required by the \code{taxon_*()} functions.
 }
 \description{
 Queries CITES Species+ API using an authentication token.

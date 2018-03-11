@@ -1,9 +1,9 @@
 #' Access reference data from CITES species+ API
 #'
-#' Queries CITES species+ API using an authentication token. The query string
-#' filters species+ data by taxon concept (e.g. species, genus, class).
+#' Queries available references for a given taxon concept.
 #'
-#' @param tax_id character string containing a species' taxon id (e.g. 4521), which is returned by \code{\link[citesr]{sppplus_taxonconcept}}.
+#' @param tax_id character string containing a species' taxon concept identifier
+#' (see \code{\link[citesr]{sppplus_taxonconcept}}).
 #' @param type vector of character strings indicating the type of references
 #' requested, \code{taxonomic} or \code{distribution}.
 #' @param simplify a logical. Should the output be simplified? In other words,

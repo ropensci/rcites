@@ -1,9 +1,9 @@
-#' Access distribution data from CITES species+ API
+#' Access distribution data from CITES Species+ API
 #'
-#' Queries CITES species+ API using an authentication token. The query string
-#' filters Species+ data by taxon concept (e.g. species, genus, class).
+#' Queries distributions data available for a given taxon concept.
 #'
-#' @param tax_id character string containing a species' taxon id (e.g. 4521), which is returned by \code{\link[citesr]{sppplus_taxonconcept}}.
+#' @param tax_id character string containing a species' taxon concept identifier
+#' (see \code{\link[citesr]{sppplus_taxonconcept}}).
 #' @param collapse_tags a string used to collapse tags. Default is set to \code{NULL} meaning that tags column's elements remains lists.
 #' @param simplify a logical. Should the output be simplified? In other words,
 #' should columns of data.table objects returned be unlisted when they are

@@ -1,8 +1,10 @@
 #' Access to EU legislation data from CITES species+ API
 #'
-#' Queries CITES species+ API using an authentication token.
+#' Queries current EU annex listings, SRG opinions, and EU suspensions for a
+#' given taxon concept.
 #'
-#' @param tax_id character string containing a species' taxon id (e.g. 4521), which is returned by \code{\link[citesr]{sppplus_taxonconcept}}.
+#' @param tax_id character string containing a species' taxon concept identifier
+#' (see \code{\link[citesr]{sppplus_taxonconcept}}).
 #' @param type vector of character strings indicating type of legislation information requested, values are taken among \code{listing}, \code{quota} and \code{suspension}. Default includes the three of them.
 #' @param simplify a logical. Should the output be simplified? In other words,
 #' should columns of data.table objects returned be unlisted when they are
