@@ -1,12 +1,11 @@
 Package: citesr
 Type: Package
 Title: An R package to access the CITES Species+ database (https://speciesplus.net/)
-Version: 0.0.1
+Version: 0.1.1
 Date: 2017-12-11
-Author: Jonas Geschke [aut, cre],
-    Ignasi Bartomeus [aut],
-    Kevin Cazelles [aut]
-Maintainer: Jonas Geschke <jonas.e.geschke@gmail.com>
+Authors@R: c(person("Jonas", "Geschke", role = c("aut", "cre"), email = "jonas.e.geschke@gmail.com"),
+  person("Ignasi", "Bartomeus", role = c("aut"), comment = c(ORCID = "0000-0001-7893-4389")),
+  person("Kevin", "Cazelles", role = c("aut"), comment = c(ORCID = "0000-0001-6619-9874")))
 Description: Access the CITES Species+ database.
 URL: https://github.com/ibartomeus/citesr
 BugReports: https://github.com/ibartomeus/citesr/issues
@@ -17,8 +16,7 @@ Imports:
   httr,
   jsonlite,
   data.table,
-  methods,
-  xml2
+  methods
 RoxygenNote: 6.0.1
 Suggests: knitr, rmarkdown, testthat, rworldmap
 VignetteBuilder: knitr

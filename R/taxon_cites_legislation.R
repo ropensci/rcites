@@ -1,11 +1,19 @@
 #' Access legislation data from CITES species+ API
 #'
-#' Queries CITES species+ API using an authentication token.
-#' The query string filters species+ data by taxon concept (e.g.species, genus, class)
+#' Queries current CITES appendix listings and reservations, CITES quotas,
+#' and CITES suspensions for a given taxon concept identifier.
 #'
-#' @param tax_id character string containing a species' taxon id (e.g. 4521), which is returned by \code{\link[citesr]{sppplus_taxonconcept}}.
-#' @param token Authentification token, see \url{https://api.speciesplus.net/documentation}. Default is set to \code{NULL} and require the environment variable \code{SPPPLUS_TOKEN} to be set directly in \code{.Renviron} or for the session using \code{sppplus_login()}.
+#' @param tax_id character string containing a species' taxon concept identifier
+#' (see \code{\link[citesr]{sppplus_taxonconcept}}).
 #' @param type vector of character strings indicating type of legislation information requested, values are taken among \code{listing}, \code{quota} and \code{suspension}. Default includes the three of them.
+#' @param simplify a logical. Should the output be simplified? In other words,
+#' should columns of data.table objects returned be unlisted when they are
+#' actualist list made of single elements?
+#' @param token a character string containing the authentification token, see
+#' \url{https://api.speciesplus.net/documentation}. Default is set to
+#' \code{NULL} and requires the environment variable \code{SPPPLUS_TOKEN} to be
+#' set directly in \code{Renviron}. Alternatively \code{sppplus_login()} can
+#' be used to set \code{SPPPLUS_TOKEN} for the current session.
 #'
 #' @return A list of data.table objects, one per type requested.
 #'
@@ -16,24 +24,38 @@
 #' @export
 #'
 #' @examples
-#' # taxon_cites_legislation(token, tax_id = '4521')
-#' # taxon_cites_legislation(token, tax_id = '4521', type ='listings')
+#' # not run:
+#' # res1 <- taxon_cites_legislation(tax_id = '4521')
+#' # res2 <- taxon_cites_legislation(tax_id = '4521', type ='listings')
+#' #
 
-taxon_cites_legislation <- function(tax_id, token = NULL, type = c("listings", "quotas", 
-    "suspensions")) {
-    # token check
+taxon_cites_legislation <- function(tax_id, type = c("listings", "quotas", "suspensions"), 
+    simplify = FALSE, token = NULL) {
+    # check token
     if (is.null(token)) 
         token = sppplus_getsecret()
     # 
-    type <- unique(type)
     stopifnot(all(type %in% c("listings", "quotas", "suspensions")))
+    type <- unique(type)
+    nmt <- c("listings", "quotas", "suspensions")
     # 
     q_url <- sppplus_url(paste0("taxon_concepts/", tax_id, "/cites_legislation.json"))
     res <- sppplus_res(q_url, token)
     # output
     out <- lapply(res, function(x) "")
-    out[[1L]] <- rbindlist(lapply(res[[1L]], as.data.table), T, T)
-    for (i in 2:3) out[[i]] <- as.data.table(do.call(rbind, (lapply(res[[i]], rbind))))
+    if ("listings" %in% type) {
+        out[[1L]] <- rbindlist(lapply(res[[1L]], as.data.table), TRUE, TRUE)
+        if (isTRUE(simplify)) 
+            lapply(out[1L], sppplus_simplify)
+    }
     ## 
+    for (i in 2:3) {
+        if (nmt[i] %in% type) {
+            out[[i]] <- as.data.table(do.call(rbind, (lapply(res[[i]], rbind))))
+            if (isTRUE(simplify)) 
+                lapply(out[i], sppplus_simplify)
+        }
+    }
+    # 
     out[paste0("cites_", type)]
 }

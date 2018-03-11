@@ -5,4 +5,8 @@ skip_if_no_auth <- function() {
     }
 }
 
-sw <- function(x) suppressWarnings(x)
+cl_dt <- c("data.table", "data.frame")
+tx_nm <- "Loxodonta africana"
+tx_id <- 4521
+
+ut_pause <- function() Sys.sleep(2)

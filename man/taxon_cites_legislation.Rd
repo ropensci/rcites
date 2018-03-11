@@ -4,26 +4,37 @@
 \alias{taxon_cites_legislation}
 \title{Access legislation data from CITES species+ API}
 \usage{
-taxon_cites_legislation(tax_id, token = NULL, type = c("listings", "quotas",
-  "suspensions"))
+taxon_cites_legislation(tax_id, type = c("listings", "quotas", "suspensions"),
+  simplify = FALSE, token = NULL)
 }
 \arguments{
-\item{tax_id}{character string containing a species' taxon id (e.g. 4521), which is returned by \code{\link[citesr]{sppplus_taxonconcept}}.}
-
-\item{token}{Authentification token, see \url{https://api.speciesplus.net/documentation}. Default is set to \code{NULL} and require the environment variable \code{SPPPLUS_TOKEN} to be set directly in \code{.Renviron} or for the session using \code{sppplus_login()}.}
+\item{tax_id}{character string containing a species' taxon concept identifier
+(see \code{\link[citesr]{sppplus_taxonconcept}}).}
 
 \item{type}{vector of character strings indicating type of legislation information requested, values are taken among \code{listing}, \code{quota} and \code{suspension}. Default includes the three of them.}
+
+\item{simplify}{a logical. Should the output be simplified? In other words,
+should columns of data.table objects returned be unlisted when they are
+actualist list made of single elements?}
+
+\item{token}{a character string containing the authentification token, see
+\url{https://api.speciesplus.net/documentation}. Default is set to
+\code{NULL} and requires the environment variable \code{SPPPLUS_TOKEN} to be
+set directly in \code{Renviron}. Alternatively \code{sppplus_login()} can
+be used to set \code{SPPPLUS_TOKEN} for the current session.}
 }
 \value{
 A list of data.table objects, one per type requested.
 }
 \description{
-Queries CITES species+ API using an authentication token.
-The query string filters species+ data by taxon concept (e.g.species, genus, class)
+Queries current CITES appendix listings and reservations, CITES quotas,
+and CITES suspensions for a given taxon concept identifier.
 }
 \examples{
-# taxon_cites_legislation(token, tax_id = '4521')
-# taxon_cites_legislation(token, tax_id = '4521', type ='listings')
+# not run:
+# res1 <- taxon_cites_legislation(tax_id = '4521')
+# res2 <- taxon_cites_legislation(tax_id = '4521', type ='listings')
+#
 }
 \references{
 \url{https://api.speciesplus.net/documentation/v1/cites_legislation/index.html}

@@ -12,6 +12,3 @@ spplus_baseurl()
 \description{
 An R package to access the CITES Species+ database (https://speciesplus.net/)
 }
-\author{
-Jonas Geschke et al.
-}

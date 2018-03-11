@@ -1,29 +1,38 @@
 #' Access taxon_concept data from CITES species+ API
 #'
-#' Queries CITES species+ API using an authentication token.
-#' The query string filters species+ data by taxon concept (e.g. species, genus, class)
+#' @description
+#' Queries CITES Species+ API using an authentication token.
+#' The query string filters CITES/Species+ data by taxon concept (e.g. species,
+#' genus, class).
 #'
-#' @param query_taxon character string containing the query (e.g. species). Scientific taxa only.
-#' @param token Authentification token, see \url{https://api.speciesplus.net/documentation}. Default is set to \code{NULL} and require the environment variable \code{SPPPLUS_TOKEN} to be set directly in \code{.Renviron} or for the session using \code{sppplus_login()}.
-#' @param appendix_only a logical statement. Should  for querying only the taxon and CITES appendix information. Default is set to \code{TRUE}.
+#' @param query_taxon a character string containing the query (e.g. species). Scientific taxa only.
+#' @param appendix_only a logical. If \code{TRUE} then taxon identifier and the
+#' CITES appendix information are the only data returned (default is \code{FALSE}).
+#' @param token a character string containing the authentification token, see
+#' \url{https://api.speciesplus.net/documentation}. Default is set to
+#' \code{NULL} and requires the environment variable \code{SPPPLUS_TOKEN} to be
+#' set directly in \code{Renviron}. Alternatively \code{sppplus_login()} can
+#' be used to set \code{SPPPLUS_TOKEN} for the current session.
 #'
-#' @return If \code{appendix_only} is \code{TRUE}, then a data table with a species'
-#' taxon id and CITES appendix information is returned. Otherwise,
-#' a object of class \code{data.table} with all Species+ taxon concept information
-#' is returned.
+#' @return
+#' If \code{appendix_only} is \code{TRUE}, then a data frame with a species'
+#' taxon id and CITES appendix information is returned. Otherwise, a list of
+#' objects of class \code{data.table} with all CITES Species+ taxon_concept
+#' information is returned. Importantly enough, this functions returns the
+#' taxon concept identifier that is required by the \code{taxon_*()} functions.
 #'
-#' @importFrom data.table as.data.table
+#' @importFrom data.table as.data.table :=
 #'
 #' @references
 #' \url{https://api.speciesplus.net/documentation/v1/taxon_concepts/index.html}
-#'
+#'git
 #' @export
 #' @examples
-#' # Not run
-#' # res <- sppplus_taxonconcept(query_taxon = 'Loxodonta africana', appendix_only = TRUE)
-#' # res <- sppplus_taxonconcept(token = token, query_taxon = 'Homo sapiens')
+#' # Not run:
+#' # res1 <- sppplus_taxonconcept(query_taxon = 'Loxodonta africana')
+#' # res2 <- sppplus_taxonconcept(query_taxon = 'Loxodonta africana', appendix_only = TRUE)
 
-sppplus_taxonconcept <- function(query_taxon, token = NULL, appendix_only = TRUE) {
+sppplus_taxonconcept <- function(query_taxon, appendix_only = FALSE, token = NULL) {
     # token check
     if (is.null(token)) 
         token = sppplus_getsecret()
@@ -34,17 +43,30 @@ sppplus_taxonconcept <- function(query_taxon, token = NULL, appendix_only = TRUE
     res <- sppplus_res(q_url, token)
     
     if (!res$pagination$total_entries) {
-        warning("taxon not listed in CITES")
+        warning("taxon not listed")
         out <- NULL
     } else {
-        tmp <- res$taxon_concept[[1L]]
         if (isTRUE(appendix_only)) {
-            out <- as.data.frame(tmp[c("id", "full_name", "cites_listing")])
+            tmp <- res$taxon_concepts[[1L]]
+            out <- as.data.table(tmp[c("id", "full_name", "cites_listing")])
         } else {
-            out <- tmp
-            out$common_names <- do.call(rbind, (lapply(tmp$common_names, rbind)))
+            out <- list()
+            out$all <- as.data.table(do.call(rbind, lapply(res$taxon_concepts, rbind)))
+            # 
+            if ("synonyms" %in% names(out$all)) {
+                out$synonyms <- as.data.table(do.call(rbind, out$all$synonyms[[1L]]))
+                out$all[, `:=`("synonyms", NULL)]
+            }
+            if ("common_names" %in% names(out$all)) {
+                out$common_names <- as.data.table(do.call(rbind, out$all$common_names[[1L]]))
+                out$all[, `:=`("common_names", NULL)]
+            }
+            if ("higher_taxa" %in% names(out$all)) {
+                out$higher_taxa <- as.data.table(do.call(cbind, out$all$higher_taxa))
+                out$all[, `:=`("higher_taxa", NULL)]
+            }
         }
     }
-    ## output
-    as.data.table(out)
+    # 
+    out
 }

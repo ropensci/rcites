@@ -2,30 +2,37 @@
 % Please edit documentation in R/taxon_distribution.R
 \name{taxon_distribution}
 \alias{taxon_distribution}
-\title{Access distribution data from CITES species+ API}
+\title{Access distribution data from CITES Species+ API}
 \usage{
-taxon_distribution(tax_id, token = NULL, collapse_tags = NULL,
-  simplify = FALSE)
+taxon_distribution(tax_id, collapse_tags = NULL, simplify = FALSE,
+  token = NULL)
 }
 \arguments{
-\item{tax_id}{character string containing a species' taxon id (e.g. 4521), which is returned by \code{\link[citesr]{sppplus_taxonconcept}}.}
-
-\item{token}{Authentification token, see \url{https://api.speciesplus.net/documentation}. Default is set to \code{NULL} and require the environment variable \code{SPPPLUS_TOKEN} to be set directly in \code{.Renviron} or for the session using \code{sppplus_login()}.}
+\item{tax_id}{character string containing a species' taxon concept identifier
+(see \code{\link[citesr]{sppplus_taxonconcept}}).}
 
 \item{collapse_tags}{a string used to collapse tags. Default is set to \code{NULL} meaning that tags column's elements remains lists.}
 
-\item{simplify}{a logical. Should the output be simplified? In other words should columns of data.table objects be unlisted when possible?}
+\item{simplify}{a logical. Should the output be simplified? In other words,
+should columns of data.table objects returned be unlisted when they are
+actualist list made of single elements?}
+
+\item{token}{a character string containing the authentification token, see
+\url{https://api.speciesplus.net/documentation}. Default is set to
+\code{NULL} and requires the environment variable \code{SPPPLUS_TOKEN} to be
+set directly in \code{Renviron}. Alternatively \code{sppplus_login()} can
+be used to set \code{SPPPLUS_TOKEN} for the current session.}
 }
 \value{
 A data table with all distribution information.
 }
 \description{
-Queries CITES species+ API using an authentication token. The query string
-filters species+ data by taxon concept (e.g. species, genus, class).
+Queries distributions data available for a given taxon concept.
 }
 \examples{
-# taxon_distribution(tax_id = '4521')
-# taxon_distribution(tax_id = '4521', collapse_tags = ' + ')
+# not run:
+# res1 <- taxon_distribution(tax_id = '4521')
+# res2 <- taxon_distribution(tax_id = '4521', collapse_tags = ' + ', simplify = T)
 }
 \references{
 \url{https://api.speciesplus.net/documentation/v1/distributions/index.html}
