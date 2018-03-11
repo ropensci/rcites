@@ -190,7 +190,7 @@ The example below requires the package `rworldmap`.
     plot(map2, add = T)
     plot(map2[!map2$iso2,], col = "#bd9a5e", add = T)
 
-![](inst/assets/img/map-1.png)
+<img src="inst/assets/img/map-1.png" style="display: block; margin: auto;" />
 
 Contributors
 ------------

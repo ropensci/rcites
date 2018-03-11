@@ -122,7 +122,7 @@ ref$taxonomic$citation[1L]
 
 The example below requires the package `rworldmap`.
 
-```{R map, message = FALSE}
+```{R map, message = FALSE, fig.width = 6.4, fig.height = 8, fig.align="center"}
 suppressPackageStartupMessages(library(rworldmap))
 map1 <- as.data.frame(taxon_distribution('4521', mytoken))
 map2 <- joinCountryData2Map(map1, joinCode="ISO2", nameJoinColumn = "iso_code2", nameCountryColumn = "name")

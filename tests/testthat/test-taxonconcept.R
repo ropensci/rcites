@@ -3,9 +3,9 @@ context("taxon concept")
 skip_on_cran()
 skip_if_no_auth()
 
-Sys.sleep(6)
-
+Sys.sleep(1)
 res1 <- sppplus_taxonconcept(query_taxon = tx_nm)
+Sys.sleep(1)
 res2 <- sppplus_taxonconcept(query_taxon = tx_nm, appendix_only = TRUE)
 nm1 <- c("all", "synonyms", "common_names", "higher_taxa")
 

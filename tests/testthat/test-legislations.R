@@ -3,8 +3,11 @@ context("legislation eu")
 skip_on_cran()
 skip_if_no_auth()
 
+ut_pause()
 res1 <- taxon_eu_legislation(tax_id = tx_id)
+ut_pause()
 res2 <- taxon_eu_legislation(tax_id = tx_id, type ='listings')
+ut_pause()
 res3 <- taxon_eu_legislation(tax_id = tx_id, simplify = TRUE)
 #
 nm1 <- c("id", "taxon_concept_id", "is_current", "annex", "change_type", "effective_at", "annotation")
@@ -39,11 +42,13 @@ test_that("expected values", {
 
 
 
-Sys.sleep(5)
 context("legislation cites")
 
+ut_pause()
 res4 <- taxon_cites_legislation(tax_id = tx_id)
+ut_pause()
 res5 <- taxon_cites_legislation(tax_id = tx_id, type ='listings')
+ut_pause()
 res6 <- taxon_cites_legislation(tax_id = tx_id, simplify = TRUE)
 
 test_that("expected output classes", {

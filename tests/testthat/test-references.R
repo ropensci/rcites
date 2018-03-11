@@ -2,10 +2,12 @@ context("references")
 
 skip_on_cran()
 skip_if_no_auth()
-Sys.sleep(5)
 
+ut_pause()
 res1 <- taxon_references(tax_id = tx_id)
+ut_pause()
 res2 <- taxon_references(tax_id = tx_id, type = 'taxonomic')
+ut_pause()
 res3 <- taxon_references(tax_id = tx_id, simplify = T)
 
 
