@@ -20,7 +20,7 @@
 #'
 #' @references
 #' \url{https://api.speciesplus.net/documentation/v1/taxon_concepts/index.html}
-#'
+#'git
 #' @export
 #' @examples
 #' # Not run:
@@ -29,39 +29,39 @@
 
 sppplus_taxonconcept <- function(query_taxon, appendix_only = FALSE, token = NULL) {
     # token check
-    if (is.null(token))
+    if (is.null(token)) 
         token = sppplus_getsecret()
     # 2Bdone: add here a check to ensure is a valid name
     query <- gsub(pattern = " ", replacement = "%20", x = query_taxon)
-    #
+    # 
     q_url <- sppplus_url(paste0("taxon_concepts.json", "?name=", query))
     res <- sppplus_res(q_url, token)
-
+    
     if (!res$pagination$total_entries) {
         warning("taxon not listed")
         out <- NULL
     } else {
         if (isTRUE(appendix_only)) {
             tmp <- res$taxon_concepts[[1L]]
-            out <- as.data.frame(tmp[c("id", "full_name", "cites_listing")])
+            out <- as.data.table(tmp[c("id", "full_name", "cites_listing")])
         } else {
             out <- list()
             out$all <- as.data.table(do.call(rbind, lapply(res$taxon_concepts, rbind)))
-            #
+            # 
             if ("synonyms" %in% names(out$all)) {
-                out$synonyms <- do.call(rbind, out$all$synonyms[[1L]])
+                out$synonyms <- as.data.table(do.call(rbind, out$all$synonyms[[1L]]))
                 out$all[, `:=`("synonyms", NULL)]
             }
             if ("common_names" %in% names(out$all)) {
-                out$common_names <- do.call(rbind, out$all$common_names[[1L]])
+                out$common_names <- as.data.table(do.call(rbind, out$all$common_names[[1L]]))
                 out$all[, `:=`("common_names", NULL)]
             }
             if ("higher_taxa" %in% names(out$all)) {
-                out$higher_taxa <- do.call(cbind, out$all$higher_taxa)
+                out$higher_taxa <- as.data.table(do.call(cbind, out$all$higher_taxa))
                 out$all[, `:=`("higher_taxa", NULL)]
             }
         }
     }
-    #
+    # 
     out
 }
