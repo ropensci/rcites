@@ -39,7 +39,7 @@ test_that("expected values", {
 
 
 
-Sys.sleep(4)
+Sys.sleep(5)
 context("legislation cites")
 
 res4 <- taxon_cites_legislation(tax_id = tx_id)

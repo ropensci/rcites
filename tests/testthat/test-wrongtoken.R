@@ -1,6 +1,6 @@
 context("wong token")
 
-Sys.sleep(4)
+Sys.sleep(5)
 token <- "wrong"
 msg <- "Unauthorized (HTTP 401)"
 
