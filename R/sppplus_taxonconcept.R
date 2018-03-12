@@ -43,7 +43,7 @@ sppplus_taxonconcept <- function(query_taxon, appendix_only = FALSE, token = NUL
     res <- sppplus_res(q_url, token)
     
     if (!res$pagination$total_entries) {
-        warning("taxon not listed")
+        warning("Taxon not listed.")
         out <- NULL
     } else {
         if (isTRUE(appendix_only)) {

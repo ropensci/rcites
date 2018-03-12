@@ -8,6 +8,8 @@ res1 <- sppplus_taxonconcept(query_taxon = tx_nm)
 Sys.sleep(1)
 res2 <- sppplus_taxonconcept(query_taxon = tx_nm, appendix_only = TRUE)
 nm1 <- c("all", "synonyms", "common_names", "higher_taxa")
+Sys.sleep(1)
+res_null <- suppressWarnings(sppplus_taxonconcept(query_taxon = "Homo sapiens"))
 
 test_that("expected classes", {
   expect_equal(class(res1), "list")
@@ -16,6 +18,8 @@ test_that("expected classes", {
   expect_true(all(class(res1$higher_taxa) == cl_dt))
   expect_true(all(class(res1$common_names) == cl_dt))
   expect_true(all(class(res2) == cl_dt))
+  expect_true(is.null(res_null))
+  expect_warning(sppplus_taxonconcept(query_taxon = "Homo sapiens"), "Taxon not listed.", fixed = TRUE)
 })
 
 test_that("expected output names", {

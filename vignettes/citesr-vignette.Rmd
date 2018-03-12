@@ -1,7 +1,7 @@
 ---
 title: "Get started with citesr"
 author: "citesr team"
-date: "11 December 2017"
+date: 12-03-2018
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Put the title of your vignette here}
@@ -15,31 +15,29 @@ knitr::opts_chunk$set(purl = NOT_CRAN)
 ```
 <!-- https://cran.r-project.org/web/packages/httr/vignettes/secrets.html -->
 
+
 ## Set up a connection to the species plus database
 
 To set up a connection to the Species+/CITES database an authentication token
-is required, you need to sign up on the [Species+/CITES API](http://api.speciesplus.net/users/sign_up)
-website.
+is required. Therefore to use `citesr`, the user must first sign up on the
+[Species+/CITES API website](http://api.speciesplus.net/users/sign_up).
+Below we assume that the user already possesses a token and consider it
+to be `8QW6Qgh57sBG2k0gtt` (as used on the API documentation see
+https://api.speciesplus.net/documentation).
+
+To use the set the token the user can use one of the three options available below
+
+1. set an environment variable `SPPPLUS_TOKEN` in  [`.Renviron`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Startup.html) file (preferred);
+
+2. use `sppplus_login()`, *i.e.* interactively set `SPPPLUS_TOKEN` up
+for the current R session (meaning you will have to do it again during the next session);
+
+![](inst/assets/img/sppplus_login.png)
+
+3. use the `token` argument of the functions, *i.e.* pass the token to every
+function calls.
 
 
+## Retrieve a taxon concept identifier 
 
-
-## Use the cites_query_taxon function
-
-This function will take a species name (in Latin) and return the CITES appendix or appendices (if applicable).
-
-We will use the African elephant as an example.
-```{r eval=FALSE, eval = NOT_CRAN}
-# sppplus_taxonconcept(query = 'Loxodonta africana', appendix_only = TRUE)
-```
-
-## Use the taxon_distribution function
-
-This function will take a species name (in Latin) and return the CITES distribution of that species.
-
-We will use the African elephant as an example.
-```{r eval = FALSE}
-taxon_distribution(cnx)
-```
-
-## Use the ...
+##
