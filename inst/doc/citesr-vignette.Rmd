@@ -16,7 +16,6 @@ knitr::opts_chunk$set(
   fig.align='center',
   comment="#> "
 )
-library(citesr)
 ```
 
 
@@ -55,6 +54,7 @@ name of the taxon. Let us start by requesting the identifier of the
 African bush elephant, *i.e.* *Loxodonta africana*.
 
 ```{r qtxla}
+library(citesr)
 res1 <- sppplus_taxonconcept(query_taxon = "Loxodonta africana")
 res1
 ```
