@@ -39,7 +39,7 @@ ensure so the user has three options:
 2. use `sppplus_login()`, *i.e.* interactively set `SPPPLUS_TOKEN` up
 for the current R session (meaning a login will be needed for the next session);
 
-![Figure 1](../inst/assets/img/sppplus_login.png){width="100%"}
+![Figure 1](img/sppplus_login.png){width="100%"}
 
 3. use the `token` argument of the functions, *i.e.* the token is passed to every
 function calls.
@@ -54,6 +54,7 @@ name of the taxon. Let us start by requesting the identifier of the
 African bush elephant, *i.e.* *Loxodonta africana*.
 
 ```{r qtxla}
+library(citesr)
 res1 <- sppplus_taxonconcept(query_taxon = "Loxodonta africana")
 res1
 ```
@@ -77,7 +78,7 @@ res3
 Also if the taxon is not listed a warning message should come yup to assert so:
 
 ```{r qtxhs}
-res <- sppplus_taxonconcept(query = "Hono Sapiens")
+res <- sppplus_taxonconcept(query = "Homo Sapiens")
 ```
 
 For what follows we should keep in mind:

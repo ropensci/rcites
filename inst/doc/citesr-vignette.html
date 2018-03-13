@@ -290,8 +290,9 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <section id="retrieve-a-taxon-concept-identifier" class="level2">
 <h2>Retrieve a taxon concept identifier</h2>
 <p>To efficiently query information from the CITES Species+ database, the user first needs to retrieve the unique identifier of a taxon concept (<a href="https://api.speciesplus.net/documentation/v1/taxon_concepts/index.html" class="uri">https://api.speciesplus.net/documentation/v1/taxon_concepts/index.html</a>). To do so, the user should first call <code>sppplus_taxon()</code> and provide the scientific name of the taxon. Let us start by requesting the identifier of the African bush elephant, <em>i.e.</em> <em>Loxodonta africana</em>.</p>
-<pre class="sourceCode r" id="cb1"><code class="sourceCode r"><div class="sourceLine" id="cb1-1" data-line-number="1">res1 &lt;-<span class="st"> </span><span class="kw">sppplus_taxonconcept</span>(<span class="dt">query_taxon =</span> <span class="st">&quot;Loxodonta africana&quot;</span>)</div>
-<div class="sourceLine" id="cb1-2" data-line-number="2">res1</div></code></pre>
+<pre class="sourceCode r" id="cb1"><code class="sourceCode r"><div class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(citesr)</div>
+<div class="sourceLine" id="cb1-2" data-line-number="2">res1 &lt;-<span class="st"> </span><span class="kw">sppplus_taxonconcept</span>(<span class="dt">query_taxon =</span> <span class="st">&quot;Loxodonta africana&quot;</span>)</div>
+<div class="sourceLine" id="cb1-3" data-line-number="3">res1</div></code></pre>
 <pre><code>#&gt;  $all
 #&gt;       id          full_name        author_year    rank name_status
 #&gt;  1: 4521 Loxodonta africana (Blumenbach, 1797) SPECIES           A
@@ -326,8 +327,8 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 #&gt;  1: 2015-05-07T15:10:59.252Z   TRUE            II
 #&gt;  2: 2016-09-23T15:30:46.749Z  FALSE          NULL</code></pre>
 <p>Also if the taxon is not listed a warning message should come yup to assert so:</p>
-<pre class="sourceCode r" id="cb7"><code class="sourceCode r"><div class="sourceLine" id="cb7-1" data-line-number="1">res &lt;-<span class="st"> </span><span class="kw">sppplus_taxonconcept</span>(<span class="dt">query =</span> <span class="st">&quot;Hono Sapiens&quot;</span>)</div></code></pre>
-<pre><code>#&gt;  Warning in sppplus_taxonconcept(query = &quot;Hono Sapiens&quot;): Taxon not listed.</code></pre>
+<pre class="sourceCode r" id="cb7"><code class="sourceCode r"><div class="sourceLine" id="cb7-1" data-line-number="1">res &lt;-<span class="st"> </span><span class="kw">sppplus_taxonconcept</span>(<span class="dt">query =</span> <span class="st">&quot;Homo Sapiens&quot;</span>)</div></code></pre>
+<pre><code>#&gt;  Warning in sppplus_taxonconcept(query = &quot;Homo Sapiens&quot;): Taxon not listed.</code></pre>
 <p>For what follows we should keep in mind:</p>
 <table>
 <thead>
