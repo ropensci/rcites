@@ -25,18 +25,18 @@
 #'
 #' @references
 #' \url{https://api.speciesplus.net/documentation/v1/taxon_concepts/index.html}
-#'git
+#'
 #' @export
 #' @examples
 #' # Not run:
 #' # res1 <- sppplus_taxonconcept(query_taxon = 'Loxodonta africana')
 #' # res2 <- sppplus_taxonconcept(query_taxon = 'Loxodonta africana', appendix_only = TRUE)
+#' # res3 <- sppplus_taxonconcept(query_taxon = 'Amazilia versicolor')
 
 sppplus_taxonconcept <- function(query_taxon, appendix_only = FALSE, token = NULL) {
     # token check
     if (is.null(token)) 
         token = sppplus_getsecret()
-    # 2Bdone: add here a check to ensure is a valid name
     query <- gsub(pattern = " ", replacement = "%20", x = query_taxon)
     # 
     q_url <- sppplus_url(paste0("taxon_concepts.json", "?name=", query))
@@ -46,24 +46,25 @@ sppplus_taxonconcept <- function(query_taxon, appendix_only = FALSE, token = NUL
         warning("Taxon not listed.")
         out <- NULL
     } else {
+        nm <- c("id", "full_name", "author_year", "rank", "name_status", "updated_at", 
+            "active", "cites_listing")
+        tmp <- as.data.table(do.call(rbind, lapply(res$taxon_concepts, function(x) rbind(x[nm]))))
+        sppplus_simplify(tmp)
         if (isTRUE(appendix_only)) {
-            tmp <- res$taxon_concepts[[1L]]
-            out <- as.data.table(tmp[c("id", "full_name", "cites_listing")])
+            out <- tmp
         } else {
             out <- list()
-            out$all <- as.data.table(do.call(rbind, lapply(res$taxon_concepts, rbind)))
+            out$all <- tmp
+            tmp <- res$taxon_concepts[[1L]]
             # 
-            if ("synonyms" %in% names(out$all)) {
-                out$synonyms <- as.data.table(do.call(rbind, out$all$synonyms[[1L]]))
-                out$all[, `:=`("synonyms", NULL)]
+            if ("synonyms" %in% names(tmp)) {
+                out$synonyms <- as.data.table(do.call(cbind, tmp$synonyms[[1L]]))
             }
-            if ("common_names" %in% names(out$all)) {
-                out$common_names <- as.data.table(do.call(rbind, out$all$common_names[[1L]]))
-                out$all[, `:=`("common_names", NULL)]
+            if ("common_names" %in% names(tmp)) {
+                out$common_names <- as.data.table(do.call(cbind, tmp$common_names[[1L]]))
             }
-            if ("higher_taxa" %in% names(out$all)) {
-                out$higher_taxa <- as.data.table(do.call(cbind, out$all$higher_taxa))
-                out$all[, `:=`("higher_taxa", NULL)]
+            if ("higher_taxa" %in% names(tmp)) {
+                out$higher_taxa <- as.data.table(do.call(cbind, tmp$higher_taxa))
             }
         }
     }

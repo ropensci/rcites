@@ -1,9 +1,8 @@
-## ----eval = FALSE--------------------------------------------------------
-#   cnx <- sppplus_connect(token = 'fill-in-your-token-here')
-
-## ----eval=FALSE----------------------------------------------------------
-#  sppplus_taxonconcept(cnx, query = 'Loxodonta africana', appendix_only = TRUE)
-
-## ----eval = FALSE--------------------------------------------------------
-#  taxon_distribution(cnx)
+## ----setup, echo = FALSE-------------------------------------------------
+NOT_CRAN <- identical(tolower(Sys.getenv("NOT_CRAN")), "true")
+knitr::opts_chunk$set(
+  purl = NOT_CRAN,
+  fig.align='center',
+  comment="#> "
+)
 

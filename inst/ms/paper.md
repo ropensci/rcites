@@ -8,7 +8,7 @@ tags:
 authors:
 - name: Jonas Geschke
   orcid: 0000-0000-0000-1234
-  affiliation: 1 # (Multiple affiliations must be quoted)
+  affiliation: 1
 - name: Kevin Cazelles
   orcid: 0000-0001-6619-9874
   affiliation: 2 # (Multiple affiliations must be quoted)
@@ -26,6 +26,7 @@ date: 14 February 2016
 bibliography: biblio.bib
 ---
 
+
 # Summary
 
 - A summary describing the high-level functionality and purpose of the software
@@ -42,5 +43,6 @@ format.
 This is an example citation [@figshare_archive].
 
 Figures can be included like this: ![Fidgit deposited in figshare.](figshare_article.png)
+
 
 # References

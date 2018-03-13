@@ -11,33 +11,97 @@ vignette: >
 
 ```{r setup, echo = FALSE}
 NOT_CRAN <- identical(tolower(Sys.getenv("NOT_CRAN")), "true")
-knitr::opts_chunk$set(purl = NOT_CRAN)
+knitr::opts_chunk$set(
+  purl = NOT_CRAN,
+  fig.align='center',
+  comment="#> "
+)
 ```
+
+
 <!-- https://cran.r-project.org/web/packages/httr/vignettes/secrets.html -->
 
 
 ## Set up a connection to the species plus database
 
-To set up a connection to the Species+/CITES database an authentication token
-is required. Therefore to use `citesr`, the user must first sign up on the
+To set up a connection to the Species+/CITES database, an authentication token
+is required and will be granted once the user have signed up on the
 [Species+/CITES API website](http://api.speciesplus.net/users/sign_up).
-Below we assume that the user already possesses a token and consider it
+Below, we assume that the user already possesses a token and consider it
 to be `8QW6Qgh57sBG2k0gtt` (as used on the API documentation see
 https://api.speciesplus.net/documentation).
 
-To use the set the token the user can use one of the three options available below
+The token should actually be passed to the header of all URL requests. To
+ensure so the user has three options:
 
 1. set an environment variable `SPPPLUS_TOKEN` in  [`.Renviron`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Startup.html) file (preferred);
 
 2. use `sppplus_login()`, *i.e.* interactively set `SPPPLUS_TOKEN` up
-for the current R session (meaning you will have to do it again during the next session);
+for the current R session (meaning a login will be needed for the next session);
 
-![](inst/assets/img/sppplus_login.png)
+![Figure 1](../inst/assets/img/sppplus_login.png){width="100%"}
 
-3. use the `token` argument of the functions, *i.e.* pass the token to every
+3. use the `token` argument of the functions, *i.e.* the token is passed to every
 function calls.
 
 
-## Retrieve a taxon concept identifier 
+## Retrieve a taxon concept identifier
 
-##
+To efficiently query information from the CITES Species+ database, the user
+first needs to retrieve the unique identifier of a taxon concept (https://api.speciesplus.net/documentation/v1/taxon_concepts/index.html). To do
+so, the user should first call `sppplus_taxon()` and provide the scientific
+name of the taxon. Let us start by requesting the identifier of the
+African bush elephant, *i.e.* *Loxodonta africana*.
+
+```{r qtxla}
+res1 <- sppplus_taxonconcept(query_taxon = "Loxodonta africana")
+res1
+```
+
+`res1` is a list of data.table object with different information pertaining
+to the naming of the taxon. If you however only need many details, setting
+`appendix_only` to `TRUE` will return the first data.table, `all`, for instance:
+
+```{r qtxla2}
+res2 <- sppplus_taxonconcept(query_taxon = "Loxodonta africana", appendix_only = TRUE)
+res2
+```
+For other taxon, there might be more than one identifier, in such a case the user
+should have a look at the `active` column.
+
+```{r qtxav}
+res3 <- sppplus_taxonconcept(query = "Amazilia versicolor", appendix_only = TRUE)
+res3
+```
+
+Also if the taxon is not listed a warning message should come yup to assert so:
+
+```{r qtxhs}
+res <- sppplus_taxonconcept(query = "Hono Sapiens")
+```
+
+For what follows we should keep in mind:
+
+|name                | identifier|
+|:-------------------|:----------|
+|Loxodonta africana  | 4521      |
+|Amazilia versicolor | 3210      |
+
+
+
+## Query legislation information
+
+```{r}
+leg1 <- taxon_cites_legislation(tax_id = '4521')
+leg2 <- taxon_eu_legislation(tax_id = '3210', simplify = T)
+```
+
+## Query distribution information
+
+See map in README.
+
+## Query references information
+
+```{r}
+ref2 <- taxon_references(tax_id = '3210', simplify = T)
+```

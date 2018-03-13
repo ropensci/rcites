@@ -1,39 +1,107 @@
 ---
 title: "Get started with citesr"
 author: "citesr team"
-date: "11 December 2017"
+date: 12-03-2018
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Put the title of your vignette here}
   %\VignetteEngine{knitr::rmarkdown}
-  \usepackage[utf8]{inputenc}
 ---
+
+
+```{r setup, echo = FALSE}
+NOT_CRAN <- identical(tolower(Sys.getenv("NOT_CRAN")), "true")
+knitr::opts_chunk$set(
+  purl = NOT_CRAN,
+  fig.align='center',
+  comment="#> "
+)
+```
+
+
+<!-- https://cran.r-project.org/web/packages/httr/vignettes/secrets.html -->
+
 
 ## Set up a connection to the species plus database
 
-To set up a connection to the Species+/CITES database you will need an authentication token. You can get a token from [here](http://api.speciesplus.net/users/sign_up) by registering as a user of the Species+/CITES API.
+To set up a connection to the Species+/CITES database, an authentication token
+is required and will be granted once the user have signed up on the
+[Species+/CITES API website](http://api.speciesplus.net/users/sign_up).
+Below, we assume that the user already possesses a token and consider it
+to be `8QW6Qgh57sBG2k0gtt` (as used on the API documentation see
+https://api.speciesplus.net/documentation).
 
-After creating the user account and getting a token, you can use the sppplus_connect function.
-```{r eval = FALSE}
- cnx <- sppplus_connect(token = 'fill-in-your-token-here')
+The token should actually be passed to the header of all URL requests. To
+ensure so the user has three options:
+
+1. set an environment variable `SPPPLUS_TOKEN` in  [`.Renviron`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Startup.html) file (preferred);
+
+2. use `sppplus_login()`, *i.e.* interactively set `SPPPLUS_TOKEN` up
+for the current R session (meaning a login will be needed for the next session);
+
+![Figure 1](../inst/assets/img/sppplus_login.png){width="100%"}
+
+3. use the `token` argument of the functions, *i.e.* the token is passed to every
+function calls.
+
+
+## Retrieve a taxon concept identifier
+
+To efficiently query information from the CITES Species+ database, the user
+first needs to retrieve the unique identifier of a taxon concept (https://api.speciesplus.net/documentation/v1/taxon_concepts/index.html). To do
+so, the user should first call `sppplus_taxon()` and provide the scientific
+name of the taxon. Let us start by requesting the identifier of the
+African bush elephant, *i.e.* *Loxodonta africana*.
+
+```{r qtxla}
+res1 <- sppplus_taxonconcept(query_taxon = "Loxodonta africana")
+res1
 ```
 
-## Use the cites_query_taxon function
+`res1` is a list of data.table object with different information pertaining
+to the naming of the taxon. If you however only need many details, setting
+`appendix_only` to `TRUE` will return the first data.table, `all`, for instance:
 
-This function will take a species name (in Latin) and return the CITES appendix or appendices (if applicable).
+```{r qtxla2}
+res2 <- sppplus_taxonconcept(query_taxon = "Loxodonta africana", appendix_only = TRUE)
+res2
+```
+For other taxon, there might be more than one identifier, in such a case the user
+should have a look at the `active` column.
 
-We will use the African elephant as an example.
-```{r eval=FALSE}
-sppplus_taxonconcept(cnx, query = 'Loxodonta africana', appendix_only = TRUE)
+```{r qtxav}
+res3 <- sppplus_taxonconcept(query = "Amazilia versicolor", appendix_only = TRUE)
+res3
 ```
 
-## Use the taxon_distribution function
+Also if the taxon is not listed a warning message should come yup to assert so:
 
-This function will take a species name (in Latin) and return the CITES distribution of that species.
-
-We will use the African elephant as an example.
-```{r eval = FALSE}
-taxon_distribution(cnx)
+```{r qtxhs}
+res <- sppplus_taxonconcept(query = "Hono Sapiens")
 ```
 
-## Use the ...
+For what follows we should keep in mind:
+
+|name                | identifier|
+|:-------------------|:----------|
+|Loxodonta africana  | 4521      |
+|Amazilia versicolor | 3210      |
+
+
+
+## Query legislation information
+
+```{r}
+leg1 <- taxon_cites_legislation(tax_id = '4521')
+leg2 <- taxon_eu_legislation(tax_id = '3210', simplify = T)
+```
+
+## Query distribution information
+
+See map in README.
+
+## Query references information
+
+```{r}
+ref2 <- taxon_references(tax_id = '3210', simplify = T)
+```
