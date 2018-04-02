@@ -5,10 +5,10 @@
 #' @docType package
 #' @name citesr
 
-spplus_baseurl <- function() "https://api.speciesplus.net/api/v1/"
+sppplus_baseurl <- function() "https://api.speciesplus.net/api/v1/"
 
 sppplus_url <- function(what) {
-    paste0(spplus_baseurl(), what)
+    paste0(sppplus_baseurl(), what)
 }
 
 sppplus_get <- function(q_url, token) {

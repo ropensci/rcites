@@ -12,5 +12,6 @@
 ^\.gitignore
 ^\.httr-oauth
 ^inst/assets/
+^inst/ms/
 ^\.github/
 ^\.Renviron

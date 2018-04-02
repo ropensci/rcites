@@ -34,7 +34,7 @@ So far, the user must get its own authentication token, *i.e.* the user must
 sign up on the species+/cites website: https://api.speciesplus.net/.
 Once the token obtain, the user has three options:
 
-1. set an environment variable `SPPPLUS_TOKEN` in  [`.Renviron`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Startup.html) file (preferred);
+1. set an environment variable `SPPPLUS_TOKEN` in [`.Renviron`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Startup.html) file (preferred);
 
 2. use `sppplus_login()`, *i.e.* interactively set `SPPPLUS_TOKEN` up
 for the current R session (meaning you will have to do it again during the next session);
