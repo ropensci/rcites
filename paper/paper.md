@@ -17,12 +17,13 @@ authors:
 affiliations:
 - name: Museum für Naturkunde - Leibniz Institute for Evolution and Biodiversity Science
   index: 1
-- name: ?
+- name: affiliation
   index: 2
-- name: ?
+- name: affiliation
   index: 3
 date: 04 April 2018
 bibliography: paper.bib
+output: pdf_document
 ---
 
 # Summary
@@ -41,13 +42,5 @@ for a diverse, non-specialist audience
 - A list of key references including a link to the software archive
 - Mentions (if applicable) of any ongoing research projects using the software
 or recent scholarly publications enabled by it
-
-Citations to entries in paper.bib should be in
-[rMarkdown](http://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html)
-format.
-
-This is an example citation [@figshare_archive].
-
-Figures can be included like this: ![Fidgit deposited in figshare.](figshare_article.png)
 
 # References
