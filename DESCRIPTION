@@ -3,7 +3,7 @@ Type: Package
 Title: An R package to access the CITES Species+ database (https://speciesplus.net/)
 Version: 0.1.1
 Date: 2017-12-11
-Authors@R: c(person("Jonas", "Geschke", role = c("aut", "cre"), email = "jonas.e.geschke@gmail.com"),
+Authors@R: c(person("Jonas", "Geschke", role = c("aut", "cre"), email = "jonas.e.geschke@gmail.com", comment = c(ORCID = "0000-0002-5654-9313")),
   person("Ignasi", "Bartomeus", role = c("aut"), comment = c(ORCID = "0000-0001-7893-4389")),
   person("Kevin", "Cazelles", role = c("aut"), comment = c(ORCID = "0000-0001-6619-9874")))
 Description: Access the CITES Species+ database.
