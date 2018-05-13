@@ -13,8 +13,8 @@ vignette: >
 NOT_CRAN <- identical(tolower(Sys.getenv("NOT_CRAN")), "true")
 knitr::opts_chunk$set(
   purl = NOT_CRAN,
-  fig.align='center',
-  comment="#> "
+  fig.align = "center",
+  comment = "#> "
 )
 ```
 
@@ -25,11 +25,11 @@ knitr::opts_chunk$set(
 ## Set up a connection to the species plus database
 
 To set up a connection to the Species+/CITES database, an authentication token
-is required and will be granted once the user have signed up on the
+is required. To obtain a token, the user must sign up on the
 [Species+/CITES API website](http://api.speciesplus.net/users/sign_up).
-Below, we assume that the user already possesses a token and consider it
-to be `8QW6Qgh57sBG2k0gtt` (as used on the API documentation see
-https://api.speciesplus.net/documentation).
+Below, we assume that the user already possesses a token and we assume that
+its value is `8QW6Qgh57sBG2k0gtt` as on the API documentation see
+https://api.speciesplus.net/documentation.
 
 The token should actually be passed to the header of all URL requests. To
 ensure so the user has three options:
@@ -39,7 +39,7 @@ ensure so the user has three options:
 2. use `sppplus_login()`, *i.e.* interactively set `SPPPLUS_TOKEN` up
 for the current R session (meaning a login will be needed for the next session);
 
-![Figure 1](img/sppplus_login.png){width="100%"}
+![Figure 1](img/sppplus_login.png){width="80%"}
 
 3. use the `token` argument of the functions, *i.e.* the token is passed to every
 function calls.
@@ -99,10 +99,27 @@ leg2 <- taxon_eu_legislation(tax_id = '3210', simplify = T)
 
 ## Query distribution information
 
-See map in README.
+Below we retrieve the distriution information of *Loxodonta africana*:
+`taxon_distribution()` and map it with the help of the
+`rworldmap` package: 
+
+```{R map, message = FALSE, fig.width = 6.4, fig.height = 7.6, fig.align="center"}
+par(las = 1)
+suppressPackageStartupMessages(library(rworldmap))
+map1 <- as.data.frame(taxon_distribution('4521'))
+map2 <- joinCountryData2Map(map1, joinCode="ISO2", nameJoinColumn = "iso_code2", nameCountryColumn = "name")
+map2@data$iso2 <- unlist(lapply(map2$iso_code2, is.null))
+plot(c(-23, 62), c(45, -40), type = "n", main = "Loxodonta africana",
+  xlab = "Longitude", ylab = "Latitude")
+plot(map2, add = T)
+plot(map2[!map2$iso2,], col = "#bd9a5e", add = T)
+```
 
 ## Query references information
 
 ```{r}
 ref2 <- taxon_references(tax_id = '3210', simplify = T)
+length(ref2$distribution$reference)
+length(ref2$taxonomic$citation)
+ref2$taxonomic$citation
 ```

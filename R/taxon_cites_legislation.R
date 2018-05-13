@@ -27,7 +27,6 @@
 #' # not run:
 #' # res1 <- taxon_cites_legislation(tax_id = '4521')
 #' # res2 <- taxon_cites_legislation(tax_id = '4521', type ='listings')
-#' #
 
 taxon_cites_legislation <- function(tax_id, type = c("listings", "quotas", "suspensions"), 
     simplify = FALSE, token = NULL) {

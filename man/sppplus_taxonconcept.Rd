@@ -15,7 +15,7 @@ CITES appendix information are the only data returned (default is \code{FALSE}).
 \item{token}{a character string containing the authentification token, see
 \url{https://api.speciesplus.net/documentation}. Default is set to
 \code{NULL} and requires the environment variable \code{SPPPLUS_TOKEN} to be
-set directly in \code{Renviron}. Alternatively \code{sppplus_login()} can
+set directly in \code{Renviron}. Alternatively, \code{sppplus_login()} can
 be used to set \code{SPPPLUS_TOKEN} for the current session.}
 }
 \value{

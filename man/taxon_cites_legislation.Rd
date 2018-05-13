@@ -34,7 +34,6 @@ and CITES suspensions for a given taxon concept identifier.
 # not run:
 # res1 <- taxon_cites_legislation(tax_id = '4521')
 # res2 <- taxon_cites_legislation(tax_id = '4521', type ='listings')
-#
 }
 \references{
 \url{https://api.speciesplus.net/documentation/v1/cites_legislation/index.html}
