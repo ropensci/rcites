@@ -15,13 +15,13 @@ authors:
   orcid: 0000-0001-6619-9874
   affiliation: 3
 affiliations:
-- name: Museum für Naturkunde - Leibniz Institute for Evolution and Biodiversity Science
-  index: 1
-- name: affiliation
-  index: 2
-- name: affiliation
-  index: 3
-date: 04 April 2018
+  - name: "Museum für Naturkunde - Leibniz Institute for Research on Evolution and Biodiversity Berlin, Germany"
+    index: 1
+  - name:  Department of Integrative Biology, University Of Guelph, Guelph, Ontario, Canada N1G 2W1.
+    index: 2
+  - name: "Estacion Biologica de Donana (EBD-CSIC), Avda. Americo Vespucio s/n, Isla de la Cartuja, E-41092 Sevilla, Spain"
+    index: 3
+date: 13 May 2018
 bibliography: paper.bib
 output: pdf_document
 ---
