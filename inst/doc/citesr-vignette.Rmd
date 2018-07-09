@@ -25,16 +25,18 @@ knitr::opts_chunk$set(
 ## Set up a connection to the species plus database
 
 To set up a connection to the Species+/CITES database, an authentication token
-is required. To obtain a token, the user must sign up on the
+is required. To obtain such a token, the user must sign up on the
 [Species+/CITES API website](http://api.speciesplus.net/users/sign_up).
-Below, we assume that the user already possesses a token and we assume that
-its value is `8QW6Qgh57sBG2k0gtt` as on the API documentation see
-https://api.speciesplus.net/documentation.
+Below, we assume that the user already possesses a token and that its
+value is `8QW6Qgh57sBG2k0gtt` just as on the API documentation (see
+https://api.speciesplus.net/documentation for more details).
 
-The token should actually be passed to the header of all URL requests. To
-ensure so the user has three options:
+A token is actually mandatory as it should be passed to the header of all URL
+requests. They are three different ways to use the token in citesr:
 
-1. set an environment variable `SPPPLUS_TOKEN` in  [`.Renviron`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Startup.html) file (preferred);
+1. set an environment variable `SPPPLUS_TOKEN` in
+[`.Renviron`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Startup.html)
+file (preferred);
 
 2. use `sppplus_login()`, *i.e.* interactively set `SPPPLUS_TOKEN` up
 for the current R session (meaning a login will be needed for the next session);
@@ -48,7 +50,7 @@ function calls.
 ## Retrieve a taxon concept identifier
 
 To efficiently query information from the CITES Species+ database, the user
-first needs to retrieve the unique identifier of a taxon concept (https://api.speciesplus.net/documentation/v1/taxon_concepts/index.html). To do
+first needs to retrieve the unique identifier of taxon concept considered (https://api.speciesplus.net/documentation/v1/taxon_concepts/index.html). To do
 so, the user should first call `sppplus_taxon()` and provide the scientific
 name of the taxon. Let us start by requesting the identifier of the
 African bush elephant, *i.e.* *Loxodonta africana*.
@@ -101,7 +103,7 @@ leg2 <- taxon_eu_legislation(tax_id = '3210', simplify = T)
 
 Below we retrieve the distriution information of *Loxodonta africana*:
 `taxon_distribution()` and map it with the help of the
-`rworldmap` package: 
+`rworldmap` package:
 
 ```{R map, message = FALSE, fig.width = 6.4, fig.height = 7.6, fig.align="center"}
 par(las = 1)
