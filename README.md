@@ -1,4 +1,4 @@
-‘citesr’: R client for the CITES Speciesplus API
+citesr: An R package to access the CITES Speciesplus database
 =============================================
 
 An R package to access the CITES Speciesplus database (https://speciesplus.net/)
@@ -40,7 +40,7 @@ as the default behavior is to look for such an environment variable
 actually the token displayed on the Speciesplus API website and does
 not work (see <https://api.speciesplus.net/documentation>).
 
-### Installation of the R client
+### Installation of the R package
 
 So far, the installation requires the `devtools` package:
 
