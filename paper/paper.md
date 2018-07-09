@@ -43,4 +43,6 @@ for a diverse, non-specialist audience
 - Mentions (if applicable) of any ongoing research projects using the software
 or recent scholarly publications enabled by it
 
+JOSS welcomes submissions from broadly diverse research areas. For this reason, we request that authors include in the paper some sentences that would explain the software functionality and domain of use to a non-specialist reader. Your submission should probably be somewhere between 250-1000 words.
+
 # References
