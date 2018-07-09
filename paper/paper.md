@@ -40,7 +40,7 @@ In 2013, the UNEP World Conservation Monitoring Centre (UNEP-WCMC) and the CITES
 
 With citesr we provide an R package that gives access to the Speciesplus database. We provide functions to directly access the species' country-wise distribution, the species' legislation status within CITES, as well as the species' legislation status within the EU. The package is available at https://github.com/ibartomeus/citesr.
 
-Citesr may support researchers and national authorities in more efficiently dealing with taxonomy information of endangered species, their legislation status as well as their distribution range and trade status. Recent publications with use of the Speciesplus database include Robinson and Pablo [-@Robinson:2018], Hensz and Soberón [-@Hensz:2018] as well as Hinsley and Roberts [-@Hinsley:2018].
+Citesr may support researchers and national authorities in more efficiently dealing with taxonomy information of endangered species, their legislation status as well as their distribution range and trade status. Recent publications with data extraction from the Speciesplus database illustrate how citesr can be used [@Robinson:2018, @Hensz:2018, @Hinsley:2018].
 
 # Acknowledgements
 
