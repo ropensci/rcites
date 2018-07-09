@@ -23,24 +23,30 @@ affiliations:
     index: 3
 date: 09 July 2018
 bibliography: paper.bib
-output: pdf_document
 ---
 
 # Introduction
 
-In 1992, the United Nations Conference on Environment and Development (UNCED) took place in Rio de Janeiro. This conference also is known as Rio Conference, where three major agreements were agreed on: The Convention on Biological Diversity (CBD), the Framework Convention on Climate Change (UNFCCC) and the United Nations Convention to Combat Desertification (UNCCD). With this, biodiversity, its conservation and sustainable use got a highly discussed policital issue.
+Biodiversity, its conservation and sustainable use are a highly policital issue.
 
-However, the issue of endangered species and their trade already was politically important far before the Rio Conference with its broad media response. CITES, the Convention on International Trade in Endangered Species of Wild Fauna and Flora, already was established in 1975 [@CITES_about]. On the CBD website, CITES is listed as one of the eight main international conventions relevant to biodiversity [@CBD_biodiv-conv]. It aims to monitor and regulate the trade of endangered spcies so that their trade does not threaten the survival of the species [@CITES_about].
+CITES, the Convention on International Trade in Endangered Species of Wild Fauna and Flora, is a multilateral environmental agreement that was established in 1975 [@CITES_about] and today is one of the eight main international agreements relevant to biodiversity [@CBD_biodiv-conv]. It aims to monitor and regulate the trade of endangered spcies so that their trade does not threaten the survival of the species in the wild [@CITES_about].
 
 # The Speciesplus database
 
-In 2013, the UNEP World Conservation Monitoring Centre (UNEP-WCMC) and the CITES Secretariat initiated a partnership funded by UNEP, the European Commission and the CITES Secretariat, which puts together a comprehensive database of not only CITES listed species and their status within CITES but also the species' status within the EU legislation and last but not least the species' status within the Convention on the Conservation of Migratory Species of Wild Animals (CMS) [@Speciesplus_about]. The database, called Species+ or Speciesplus, is publicly availably at https://speciesplus.net.
+In 2013, the UNEP World Conservation Monitoring Centre (UNEP-WCMC) and the CITES Secretariat initiated a partnership funded by UNEP, the European Commission and the CITES Secretariat. Together, they created Speciesplus (or Species+), a comprehensive database of not only CITES listed species and their status within CITES but also the species' status within the EU legislation and last but not least the species' status within the Convention on the Conservation of Migratory Species of Wild Animals (CMS) [@Speciesplus_about]. Speciesplus is publicly availably at https://speciesplus.net [@UNEP].
 
-# The citesr package
+# The ``citesr`` package
 
-With citesr we provide an R package that gives access to the Speciesplus database. We provide functions to directly access the species' country-wise distribution, the species' legislation status within CITES, as well as the species' legislation status within the EU. The package is available at https://github.com/ibartomeus/citesr.
+With ``citesr`` we provide an R package that gives access to the Speciesplus database. We provide functions to
 
-Citesr may support researchers and national authorities in more efficiently dealing with taxonomy information of endangered species, their legislation status as well as their distribution range and trade status. Recent publications with data extraction from the Speciesplus database illustrate how citesr can be used [@Robinson:2018, @Hensz:2018, @Hinsley:2018].
+1. access the Speciesplus taxon concept,
+2. get a species' legislation status, both from CITES and from the European Union,
+3. get a species' country-wise distribution range, as listed in Speciesplus, and
+4. get the references that a Speciesplus listing is based on.
+
+``citesr`` is available at Github (https://github.com/ibartomeus/citesr) and CRAN (?).
+
+``citesr`` may support researchers and national authorities in more efficiently dealing with taxonomy information of endangered species and their legislation status. Recent publications with data extraction from the Speciesplus database illustrate in what kind of research the package may be of help [@Hinsley:2018; @Robinson:2018].
 
 # Acknowledgements
 
@@ -48,14 +54,16 @@ Many thanks to the British Ecological Society for bringing us together during th
 
 
 ----- just for background info -----
-- A summary describing the high-level functionality and purpose of the software
-for a diverse, non-specialist audience
-- A clear statement of need that illustrates the purpose of the software
-- A list of key references including a link to the software archive
-- Mentions (if applicable) of any ongoing research projects using the software
-or recent scholarly publications enabled by it
-
 JOSS welcomes submissions from broadly diverse research areas. For this reason, we request that authors include in the paper some sentences that would explain the software functionality and domain of use to a non-specialist reader. Your submission should probably be somewhere between 250-1000 words.
+
+In addition, your paper should include:
+
+A list of the authors of the software and their affiliations
+A summary describing the high-level functionality and purpose of the software for a diverse, non-specialist audience
+A clear statement of need that illustrates the purpose of the software
+A list of key references including a link to the software archive
+Mentions (if applicable) of any ongoing research projects using the software or recent scholarly publications enabled by it
+
 https://joss.readthedocs.io/en/latest/submitting.html
 ----- just for background info -----
 

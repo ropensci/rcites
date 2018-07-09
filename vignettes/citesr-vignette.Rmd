@@ -24,15 +24,15 @@ knitr::opts_chunk$set(
 
 ## Set up a connection to the species plus database
 
-To set up a connection to the Species+/CITES database, an authentication token
+To set up a connection to the CITES Speciesplus database, an authentication token
 is required. To obtain such a token, the user must sign up on the
-[Species+/CITES API website](http://api.speciesplus.net/users/sign_up).
+[Speciesplus API website](http://api.speciesplus.net/users/sign_up).
 Below, we assume that the user already possesses a token and that its
 value is `8QW6Qgh57sBG2k0gtt` just as on the API documentation (see
 https://api.speciesplus.net/documentation for more details).
 
 A token is actually mandatory as it should be passed to the header of all URL
-requests. They are three different ways to use the token in citesr:
+requests. They are three different ways to use the token in ``citesr``:
 
 1. set an environment variable `SPPPLUS_TOKEN` in
 [`.Renviron`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Startup.html)
@@ -49,7 +49,7 @@ function calls.
 
 ## Retrieve a taxon concept identifier
 
-To efficiently query information from the CITES Species+ database, the user
+To efficiently query information from the CITES Speciesplus database, the user
 first needs to retrieve the unique identifier of taxon concept considered (https://api.speciesplus.net/documentation/v1/taxon_concepts/index.html). To do
 so, the user should first call `sppplus_taxon()` and provide the scientific
 name of the taxon. Let us start by requesting the identifier of the

@@ -1,6 +1,6 @@
 Package: citesr
 Type: Package
-Title: An R package to access the CITES Species+ database (https://speciesplus.net/)
+Title: An R package to access the CITES Speciesplus database (https://speciesplus.net/)
 Version: 0.1.1
 Date: 2017-12-11
 Authors@R: c(person("Jonas", "Geschke", role = c("aut", "cre"), email = "jonas.e.geschke@gmail.com", comment = c(ORCID = "0000-0002-5654-9313")),

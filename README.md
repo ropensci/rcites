@@ -1,10 +1,7 @@
-‘citesr’: R client for the CITES species+ API
+‘citesr’: R client for the CITES Speciesplus API
 =============================================
 
-An R package to access the CITES Species+ database. Reference: UNEP
-(2017). The Species+ Website. Nairobi, Kenya. Compiled by UNEP-WCMC,
-Cambridge, UK. Available at: www.speciesplus.net. \[Accessed
-11/03/2018\].
+An R package to access the CITES Speciesplus database (https://speciesplus.net/)
 
 Current Status
 --------------
@@ -22,7 +19,7 @@ How it works
 ### Get a token
 
 So far, the user must get its own authentication token and therefore
-sign up on the species+/cites website: <https://api.speciesplus.net/>.
+sign up on the Speciesplus website: <https://api.speciesplus.net/>.
 Once a token obtained, the user has three options:
 
 1.  set an environment variable `SPPPLUS_TOKEN` in
@@ -40,7 +37,7 @@ For the sack of clarity we use a variable `token` below. If either
 option 1 or 2 has been chosen then `token` does not need to be specified
 as the default behavior is to look for such an environment variable
 `SPPPLUS_TOKEN`. Note that `8QW6Qgh57sBG2k0gtt` used in our examples is
-actually the token displayed on the species+/cites API website and does
+actually the token displayed on the Speciesplus API website and does
 not work (see <https://api.speciesplus.net/documentation>).
 
 ### Installation of the R client
