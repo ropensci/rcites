@@ -1,9 +1,10 @@
 ---
 title: 'citesr: An R package to access the CITES Speciesplus database'
 tags:
-- CITES
-- trade
+- CITES species+
+- taxonomy
 - endangered species
+- illegal wildlife trade
 authors:
 - name: Jonas Geschke
   orcid: 0000-0002-5654-9313
@@ -46,7 +47,7 @@ With ``citesr`` we provide an R package that gives access to the Speciesplus dat
 
 ``citesr`` is available at Github (https://github.com/ibartomeus/citesr) and CRAN (?).
 
-``citesr`` may support researchers and national authorities in more efficiently dealing with taxonomy information of endangered species and their legislation status. Recent publications with data extraction from the Speciesplus database illustrate in what kind of research the package may be of help [@Hinsley:2018; @Robinson:2018].
+``citesr`` may support researchers and national authorities in more efficiently dealing with taxonomy information of endangered species and their legislation status. Recent publications with data extraction from the Speciesplus database illustrate in what kind of research the package may be of help [@Hinsley:2018; @Robinson:2018]. In the spirit of CITES, taxonomic research in regard to illegal wildlife trade may be pointed out especially [@Zhou:2016; @Ingram:2015; @Zhou:2015].
 
 # Acknowledgements
 
