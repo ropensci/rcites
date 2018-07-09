@@ -48,3 +48,5 @@ sppplus_login <- function(token = NULL) {
     } else cat("Authentication token stored for the session.\n")
     invisible(NULL)
 }
+
+sppplus_forgetsecret <- function() Sys.unsetenv("SPPPLUS_TOKEN")

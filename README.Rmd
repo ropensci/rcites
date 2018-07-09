@@ -30,9 +30,9 @@ Cambridge, UK. Available at: www.speciesplus.net. [Accessed 11/03/2018].
 
 ### Get a token
 
-So far, the user must get its own authentication token, *i.e.* the user must
+So far, the user must get its own authentication token and therefore
 sign up on the species+/cites website: https://api.speciesplus.net/.
-Once the token obtain, the user has three options:
+Once a token obtained, the user has three options:
 
 1. set an environment variable `SPPPLUS_TOKEN` in [`.Renviron`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Startup.html) file (preferred);
 
@@ -43,11 +43,11 @@ for the current R session (meaning you will have to do it again during the next 
 function calls.
 
 
-For the sack of clarity we use a variable `token` below. If option 1 or 2 has
-been chosen then this parameter could be ignored (*i.e.* the default
-value `token=NULL` will be used). Note that `8QW6Qgh57sBG2k0gtt` used in what
-is following is not working, it is actually the token displayed on the
-species+/cites API website, see https://api.speciesplus.net/documentation.
+For the sack of clarity we use a variable `token` below. If either option 1 or 2 has
+been chosen then `token` does not need to be specified as the default behavior
+is to look for such an environment variable `SPPPLUS_TOKEN`. Note that
+`8QW6Qgh57sBG2k0gtt` used in our examples is actually the token displayed on the
+species+/cites API website and does not work (see https://api.speciesplus.net/documentation).
 
 
 
@@ -128,7 +128,7 @@ map1 <- as.data.frame(taxon_distribution('4521', mytoken))
 map2 <- joinCountryData2Map(map1, joinCode="ISO2", nameJoinColumn = "iso_code2", nameCountryColumn = "name")
 map2@data$iso2 <- unlist(lapply(map2$iso_code2, is.null))
 plot(c(-23, 62), c(45, -40), type = "n", main = "Loxodonta africana",
-  xlab = "Longitude (°C)", ylab = "Latitude (°C)")
+  xlab = "Longitude", ylab = "Latitude")
 plot(map2, add = T)
 plot(map2[!map2$iso2,], col = "#bd9a5e", add = T)
 ```
