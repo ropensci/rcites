@@ -5,6 +5,7 @@ tags:
 - taxonomy
 - endangered species
 - illegal wildlife trade
+- species legislation
 authors:
 - name: Jonas Geschke
   orcid: 0000-0002-5654-9313
@@ -18,11 +19,11 @@ authors:
 affiliations:
   - name: "Museum für Naturkunde - Leibniz Institute for Research on Evolution and Biodiversity Berlin, Germany"
     index: 1
-  - name:  Department of Integrative Biology, University Of Guelph, Guelph, Ontario, Canada N1G 2W1.
+  - name:  "Department of Integrative Biology, University Of Guelph, Guelph, Ontario, Canada"
     index: 2
-  - name: "Estacion Biologica de Donana (EBD-CSIC), Avda. Americo Vespucio s/n, Isla de la Cartuja, E-41092 Sevilla, Spain"
+  - name: "Estacion Biologica de Donana, Avda. Americo Vespucio, Isla de la Cartuja, Sevilla, Spain"
     index: 3
-date: 09 July 2018
+date: 10 July 2018
 bibliography: paper.bib
 ---
 
@@ -51,7 +52,7 @@ With ``citesr`` we provide an R package that gives access to the Speciesplus dat
 
 # Acknowledgements
 
-Many thanks to the British Ecological Society for bringing us together during the "Ecology Hackathon: Developing R Packages for Accessing, Synthesizing and Analysing Ecological Data" part of the BES, GFÖ, NecoV and EEF Joint Annual Meeting 2017 "Ecology Across Borders". Also, thanks to our hackathon group for the fruitful discussions about the very early stages of the package.
+Many thanks to the British Ecological Society for bringing us together during the "Ecology Hackathon: Developing R Packages for Accessing, Synthesizing and Analysing Ecological Data", part of the BES, GFÖ, NecoV and EEF Joint Annual Meeting 2017 "Ecology Across Borders". Also, thanks to our hackathon group for the fruitful discussions about the very early stages of the package.
 
 
 ----- just for background info -----
