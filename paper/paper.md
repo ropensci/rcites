@@ -46,7 +46,7 @@ With ``citesr`` we provide an R package that gives access to the Speciesplus dat
 3. get a species' country-wise distribution range, as listed in Speciesplus, and
 4. get the references that a Speciesplus listing is based on.
 
-``citesr`` is available at Github (https://github.com/ibartomeus/citesr).
+``citesr`` is available at Github (https://github.com/ibartomeus/citesr) and on CRAN (link to come).
 
 ``citesr`` may support researchers and national authorities in more efficiently dealing with taxonomy information of endangered species and their legislation status. Recent publications with data extraction from the Speciesplus database illustrate in what kind of research the package may be of help [@Hinsley:2018; @Robinson:2018]. In the spirit of CITES, taxonomic research in regard to illegal wildlife trade may be pointed out especially [@Zhou:2016; @Ingram:2015; @Zhou:2015].
 
