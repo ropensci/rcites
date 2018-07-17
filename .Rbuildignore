@@ -16,3 +16,5 @@
 ^\.github/
 ^\.Renviron
 ^paper/
+^news.md
+^inst/_pkgdown.
