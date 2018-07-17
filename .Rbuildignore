@@ -1,3 +1,4 @@
+^docs$
 ^\.Rproj\.user$
 ^.*\.Rproj$
 ^appveyor\.yml$
@@ -9,7 +10,6 @@
 ^README\.gfm
 ^CONDUCT.md
 ^record*
-^\.gitignore
 ^\.httr-oauth
 ^inst/assets/
 ^inst/ms/
