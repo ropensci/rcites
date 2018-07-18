@@ -2,7 +2,7 @@
 % Please edit documentation in R/taxon_eu_legislation.R
 \name{taxon_eu_legislation}
 \alias{taxon_eu_legislation}
-\title{Access to EU legislation data from CITES species+ API}
+\title{Access EU legislation data from CITES species+ API}
 \usage{
 taxon_eu_legislation(tax_id, type = c("listings", "decisions"),
   simplify = FALSE, token = NULL)
