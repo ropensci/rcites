@@ -40,8 +40,7 @@ In 2013, the UNEP World Conservation Monitoring Centre (UNEP-WCMC) and the CITES
 
 # The ``citesr`` R package
 
-With ``citesr`` we provide an R client to the Species+/CITES Checklist API,
-in other words a R package that gives access to the Speciesplus database.
+With ``citesr``, we provide an R client to the Species+/CITES Checklist API, giving access to the Speciesplus database.
 We provide functions to:
 
 1. access the Speciesplus taxon concept, and thereafter
