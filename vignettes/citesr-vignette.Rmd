@@ -27,9 +27,13 @@ knitr::opts_chunk$set(
 To set up a connection to the CITES Speciesplus database, an authentication token
 is required. To obtain such a token, the user must sign up on the
 [Speciesplus API website](http://api.speciesplus.net/users/sign_up).
+<<<<<<< HEAD
 Below, we assume that the user already possesses a token. For iluastrative purposes
 we will use the generic token value `8QW6Qgh57sBG2k0gtt` just as on the API
 documentation, but each user should obtain it's own token to run the code below (see
+=======
+Below, we assume that the user already possesses a token. For iluastrative purposes  we will use the generic token value `8QW6Qgh57sBG2*****` just as on the API documentation, but each user should obtain it's own token to run the code below (see
+>>>>>>> master
 https://api.speciesplus.net/documentation for more details).
 
 A token is actually mandatory as it should be passed to the header of all URL
