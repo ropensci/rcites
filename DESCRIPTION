@@ -6,7 +6,8 @@ Date: 2017-12-11
 Authors@R: c(person("Jonas", "Geschke", role = c("aut", "cre"), email = "jonas.e.geschke@gmail.com", comment = c(ORCID = "0000-0002-5654-9313")),
   person("Kevin", "Cazelles", role = c("aut"), comment = c(ORCID = "0000-0001-6619-9874")),
   person("Ignasi", "Bartomeus", role = c("aut"), comment = c(ORCID = "0000-0001-7893-4389")),
-  person("Yasmine", "Verzelen", role = c("ctb")))
+  person("Yasmine", "Verzelen", role = c("ctb")),
+  person("Jonathan", "Goldenberg", role = c("ctb")))
 Description: Access the CITES Species+ database.
 URL: https://github.com/ibartomeus/citesr
 BugReports: https://github.com/ibartomeus/citesr/issues
