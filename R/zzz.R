@@ -5,6 +5,8 @@
 #' @docType package
 #' @name citesr
 
+## Helper functions
+
 sppplus_baseurl <- function() "https://api.speciesplus.net/api/v1/"
 
 sppplus_url <- function(what) {
@@ -24,7 +26,6 @@ sppplus_res <- function(q_url, token) {
     httr::content(con, "parsed")
 }
 
-
 # https://cran.r-project.org/web/packes/httr/vignettes/secrets.html
 sppplus_getsecret <- function() {
     val <- Sys.getenv("SPPPLUS_TOKEN")
@@ -39,14 +40,5 @@ sppplus_getsecret <- function() {
     val
 }
 
-sppplus_login <- function(token = NULL) {
-    if (is.null(token)) 
-        token <- readline("Enter your token: ")
-    Sys.setenv(SPPPLUS_TOKEN = token)
-    if (identical(token, "")) {
-        message("Token is still missing!")
-    } else cat("Authentication token stored for the session.\n")
-    invisible(NULL)
-}
 
 sppplus_forgetsecret <- function() Sys.unsetenv("SPPPLUS_TOKEN")
