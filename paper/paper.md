@@ -6,22 +6,23 @@ tags:
 - endangered species
 - illegal wildlife trade
 - species legislation
+- species distribution
 authors:
 - name: Jonas Geschke
   orcid: 0000-0002-5654-9313
   affiliation: 1
-- name: Ignasi Bartomeus
-  orcid: 0000-0001-7893-4389
-  affiliation: 2
 - name: Kevin Cazelles
   orcid: 0000-0001-6619-9874
+  affiliation: 2
+- name: Ignasi Bartomeus
+  orcid: 0000-0001-7893-4389
   affiliation: 3
 affiliations:
   - name: "Museum für Naturkunde - Leibniz Institute for Research on Evolution and Biodiversity Berlin, Germany"
     index: 1
-  - name: "Estacion Biologica de Donana, Avda. Americo Vespucio, Isla de la Cartuja, Sevilla, Spain"
-    index: 2
   - name:  "Department of Integrative Biology, University Of Guelph, Guelph, Ontario, Canada"
+    index: 2
+  - name: "Estación Biológica de Doñana, Avda. Americo Vespucio, Isla de la Cartuja, Sevilla, Spain"
     index: 3
 date: 17 July 2018
 bibliography: paper.bib
@@ -30,27 +31,26 @@ bibliography: paper.bib
 
 # Introduction
 
-Biodiversity, its conservation and sustainable use are a highly political issue.
-
-CITES, the Convention on International Trade in Endangered Species of Wild Fauna and Flora, is a multilateral environmental agreement that was established in 1975 [@CITES_about] and today is one of the eight main international agreements relevant to biodiversity [@CBD_biodiv-conv]. It aims to monitor and regulate the trade of endangered species so that their trade does not threaten the survival of the species in the wild [@CITES_about].
+The conservation of biodiversity is a complex problem strongly tight to political actions. CITES, the Convention on International Trade in Endangered Species of Wild Fauna and Flora, is a multilateral environmental agreement that was established in 1975 [@CITES_about] that aims to monitor and regulate the trade of endangered species so that their trade does not threaten the survival of the species in the wild [@CITES_about]. CITES is one of the eight main international agreements relevant to biodiversity [@CBD_biodiv-conv] and constitutes a key tool for conservationists, scientists and policy makers.
 
 # The Speciesplus database
 
-In 2013, the UNEP World Conservation Monitoring Centre (UNEP-WCMC) and the CITES Secretariat initiated a partnership funded by UNEP, the European Commission and the CITES Secretariat. Together, they created Speciesplus (or Species+), a comprehensive database of not only CITES listed species and their status within CITES but also the species' status within the EU legislation and last but not least the species' status within the Convention on the Conservation of Migratory Species of Wild Animals (CMS) [@Speciesplus_about]. Speciesplus is publicly available at https://speciesplus.net [@UNEP].
+In 2013, the UNEP World Conservation Monitoring Centre (UNEP-WCMC) and the CITES Secretariat initiated a partnership funded by UNEP, the European Commission and the CITES Secretariat. Together, they created Speciesplus (or Species+), a comprehensive database of not only CITES listed species and their regulation status within CITES but also the species' status within the EU legislation and last but not least the species' status within the Convention on the Conservation of Migratory Species of Wild Animals (CMS) [@Speciesplus_about]. Speciesplus is publicly available at https://speciesplus.net [@UNEP]. 
 
 # The ``citesr`` R package
 
-With ``citesr``, we provide an R client to the Species+/CITES Checklist API, giving access to the Speciesplus database.
+With ``citesr``, we provide an R [@R] client to the Species+/CITES Checklist API, giving access to the Speciesplus database. The ability to query the Speciesplus database directly from one of the most used programming lenguages for data analysis will improve the efficiency and reproducibility of biodiversity conservation analysis workflows.
+
 We provide functions to:
 
 1. access the Speciesplus taxon concept, and thereafter
 2. get a species' legislation status, both from CITES and from the European Union,
 3. get a species' country-wise distribution range, as listed in Speciesplus, and
-4. get the references that a Speciesplus listing is based on.
+4. get the references on which a Speciesplus listing is based.
 
 ``citesr`` is available at Github (https://github.com/ibartomeus/citesr) and on CRAN (link to come).
 
-``citesr`` may support researchers and national authorities in more efficiently dealing with taxonomy information of endangered species and their legislation status. Recent publications with data extraction from the Speciesplus database illustrate in what kind of research the package may be of help [@Hinsley:2018; @Robinson:2018]. In the spirit of CITES, taxonomic research in regard to illegal wildlife trade may be pointed out especially [@Zhou:2016; @Ingram:2015; @Zhou:2015].
+``citesr`` will support researchers and national authorities in more efficiently dealing with taxonomy information of endangered species and their legislation status. Recent publications with data extraction from the Speciesplus database illustrate in what kind of research the package may be of help [@Hinsley:2018; @Robinson:2018]. In the spirit of CITES, taxonomic research in regard to illegal wildlife trade may be pointed out especially [@Zhou:2016; @Ingram:2015; @Zhou:2015].
 
 
 # Acknowledgments
