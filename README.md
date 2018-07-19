@@ -28,7 +28,7 @@ devtools::install_github("ibartomeus/citesr")
 library("citesr")
 ```
 
-See the vignette for details on how to use the package: [vignette](https://ibartomeus.github.io/citesr/)
+See the vignette for details on how to use the package: [vignette](https://ibartomeus.github.io/citesr/articles/citesr-vignette.html)
 
 ## Contributors
 
