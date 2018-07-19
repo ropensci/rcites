@@ -21,12 +21,23 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+
+
+
+<meta property="og:title" content="Access legislation data from CITES species+ API — taxon_cites_legislation" />
+
+<meta property="og:description" content="Queries current CITES appendix listings and reservations, CITES quotas,
+and CITES suspensions for a given taxon concept identifier." />
+<meta name="twitter:card" content="summary" />
+
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -49,8 +60,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">citesr</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">citesr</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.1</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -75,7 +90,7 @@
   </ul>
 </li>
 <li>
-  <a href="../news/index.html">News</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -87,6 +102,7 @@
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -94,27 +110,31 @@
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Access legislation data from CITES species+ API</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ibartomeus/citesr/blob/master/R/taxon_cites_legislation.R'><code>R/taxon_cites_legislation.R</code></a></small>
+    <div class="hidden name"><code>taxon_cites_legislation.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>Queries current CITES appendix listings and reservations, CITES quotas,
 and CITES suspensions for a given taxon concept identifier.</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>taxon_cites_legislation</span>(<span class='no'>tax_id</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"listings"</span>, <span class='st'>"quotas"</span>, <span class='st'>"suspensions"</span>),
   <span class='kw'>simplify</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>token</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>tax_id</th>
       <td><p>character string containing a species' taxon concept identifier
-(see <code>sppplus_taxonconcept</code>).</p></td>
+(see <code><a href='sppplus_taxonconcept.html'>sppplus_taxonconcept</a></code>).</p></td>
     </tr>
     <tr>
       <th>type</th>
@@ -124,14 +144,14 @@ and CITES suspensions for a given taxon concept identifier.</p>
       <th>simplify</th>
       <td><p>a logical. Should the output be simplified? In other words,
 should columns of data.table objects returned be unlisted when they are
-actualist list made of single elements?</p></td>
+lists made of single elements?</p></td>
     </tr>
     <tr>
       <th>token</th>
       <td><p>a character string containing the authentification token, see
 <a href='https://api.speciesplus.net/documentation'>https://api.speciesplus.net/documentation</a>. Default is set to
 <code>NULL</code> and requires the environment variable <code>SPPPLUS_TOKEN</code> to be
-set directly in <code>Renviron</code>. Alternatively <code>sppplus_login()</code> can
+set directly in <code>Renviron</code>. Alternatively <code><a href='sppplus_login.html'>sppplus_login()</a></code> can
 be used to set <code>SPPPLUS_TOKEN</code> for the current session.</p></td>
     </tr>
     </table>
@@ -168,7 +188,7 @@ be used to set <code>SPPPLUS_TOKEN</code> for the current session.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Jonas Geschke, Ignasi Bartomeus, Kevin Cazelles.</p>
+  <p>Developed by Jonas Geschke, Kevin Cazelles, Ignasi Bartomeus.</p>
 </div>
 
 <div class="pkgdown">
@@ -178,5 +198,8 @@ be used to set <code>SPPPLUS_TOKEN</code> for the current session.</p></td>
       </footer>
    </div>
 
+  
+
   </body>
 </html>
+

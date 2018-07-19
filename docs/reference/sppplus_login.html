@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>citesr: — citesr • citesr</title>
+<title>Login helper function — sppplus_login • citesr</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="citesr: — citesr" />
+<meta property="og:title" content="Login helper function — sppplus_login" />
 
-<meta property="og:description" content="An R package to access the CITES Species+ database (https://speciesplus.net/)" />
+<meta property="og:description" content="This function sets the authentification token for the current session." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -112,25 +112,48 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>citesr:</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ibartomeus/citesr/blob/master/R/zzz.R'><code>R/zzz.R</code></a></small>
-    <div class="hidden name"><code>citesr.Rd</code></div>
+    <h1>Login helper function</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ibartomeus/citesr/blob/master/R/sppplus_login.R'><code>R/sppplus_login.R</code></a></small>
+    <div class="hidden name"><code>sppplus_login.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>An R package to access the CITES Species+ database (https://speciesplus.net/)</p>
+    <p>This function sets the authentification token for the current session.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>sppplus_baseurl</span>()</pre>
-        
+    <pre class="usage"><span class='fu'>sppplus_login</span>(<span class='kw'>token</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>token</th>
+      <td><p>a character string containing you token. If `NULL` then the
+token can be passed interactively.</p></td>
+    </tr>
+    </table>
+    
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
+    <p><a href='https://api.speciesplus.net/documentation'>https://api.speciesplus.net/documentation</a></p>
+    
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'># not run:
+# sppplus_login('8QW6Qgh57sBG2k0gtt')
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-                </ul>
+      <li><a href="#arguments">Arguments</a></li>
+      
+      <li><a href="#references">References</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

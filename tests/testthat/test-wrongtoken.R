@@ -13,8 +13,4 @@ test_that("expected errors", {
   expect_error(sppplus_res(q_url, token), msg, fixed = TRUE)
   ut_pause()
   expect_error(sppplus_taxonconcept(query_taxon = 'Loxodonta africana', token = token), msg, fixed = TRUE)
-  ut_pause()
-  expect_error(taxon_cites_legislation(tax_id = tx_id, token = token), msg, fixed = TRUE)
-  ut_pause()
-  expect_error(taxon_cites_legislation(tax_id = tx_id, token = token), msg, fixed = TRUE)
 })

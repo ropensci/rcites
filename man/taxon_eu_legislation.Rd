@@ -2,7 +2,7 @@
 % Please edit documentation in R/taxon_eu_legislation.R
 \name{taxon_eu_legislation}
 \alias{taxon_eu_legislation}
-\title{Access to EU legislation data from CITES species+ API}
+\title{Access EU legislation data from CITES species+ API}
 \usage{
 taxon_eu_legislation(tax_id, type = c("listings", "decisions"),
   simplify = FALSE, token = NULL)
@@ -15,7 +15,7 @@ taxon_eu_legislation(tax_id, type = c("listings", "decisions"),
 
 \item{simplify}{a logical. Should the output be simplified? In other words,
 should columns of data.table objects returned be unlisted when they are
-actualist list made of single elements?}
+lists made of single elements?}
 
 \item{token}{a character string containing the authentification token, see
 \url{https://api.speciesplus.net/documentation}. Default is set to

@@ -1,17 +1,10 @@
----
-title: "citesr: An R package to access the CITES Speciesplus database"
-output:
-    md_document
----
-
-
 # citesr
 
 An R package to access the CITES Speciesplus database (https://speciesplus.net/)
 
+
 ## Current Status
 
-![](https://img.shields.io/badge/citesr-InDevelopment-d7ae67.svg)
 [![Build Status](https://travis-ci.org/ibartomeus/citesr.svg?branch=master)](https://travis-ci.org/ibartomeus/citesr)
 [![Build status](https://ci.appveyor.com/api/projects/status/j8u04bwan0kqpn0f?svg=true)](https://ci.appveyor.com/project/KevCaz/citesr)
 [![codecov](https://codecov.io/gh/ibartomeus/citesr/branch/master/graph/badge.svg)](https://codecov.io/gh/ibartomeus/citesr)
@@ -47,8 +40,10 @@ See the vignette for details on how to use the package: [vignette](https://ibart
 
 ## Resources
 
-- The structure of this repository/package was inspired by [taxize](https://github.com/ropensci/taxize);
-- "Managing secrets" is a very helpful vignette for dealing with tokens https://cran.r-project.org/web/packages/httr/vignettes/secrets.html.
+Building this package we benefited from:
+
+- [taxize](https://github.com/ropensci/taxize) that helps a lot in structuring this repository/package,
+- the [Managing secret](the structure of this repository/package was inspired by) a very helpful vignette.
 
 
 

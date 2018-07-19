@@ -18,7 +18,7 @@
 <![endif]-->
 </head>
 <body>
-    <div class="container template-article">
+    <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
@@ -77,122 +77,38 @@
 
       
       </header><div class="row">
-  <div class="col-md-9 contents">
-    
-
-    
-    
-<div id="citesr" class="section level1">
+  <div class="contents col-md-9">
+    <div id="citesr" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#citesr" class="anchor"></a>citesr</h1></div>
 <p>An R package to access the CITES Speciesplus database (<a href="https://speciesplus.net/" class="uri">https://speciesplus.net/</a>)</p>
 <div id="current-status" class="section level2">
 <h2 class="hasAnchor">
 <a href="#current-status" class="anchor"></a>Current Status</h2>
-<p><img src="https://img.shields.io/badge/citesr-InDevelopment-d7ae67.svg"><a href="https://travis-ci.org/ibartomeus/citesr"><img src="https://travis-ci.org/ibartomeus/citesr.svg?branch=master" alt="Build Status"></a> <a href="https://ci.appveyor.com/project/KevCaz/citesr"><img src="https://ci.appveyor.com/api/projects/status/j8u04bwan0kqpn0f?svg=true" alt="Build status"></a> <a href="https://codecov.io/gh/ibartomeus/citesr"><img src="https://codecov.io/gh/ibartomeus/citesr/branch/master/graph/badge.svg" alt="codecov"></a></p>
+<p><a href="https://travis-ci.org/ibartomeus/citesr"><img src="https://travis-ci.org/ibartomeus/citesr.svg?branch=master" alt="Build Status"></a> <a href="https://ci.appveyor.com/project/KevCaz/citesr"><img src="https://ci.appveyor.com/api/projects/status/j8u04bwan0kqpn0f?svg=true" alt="Build status"></a> <a href="https://codecov.io/gh/ibartomeus/citesr"><img src="https://codecov.io/gh/ibartomeus/citesr/branch/master/graph/badge.svg" alt="codecov"></a></p>
 </div>
-<div id="how-it-works" class="section level2">
+<div id="key-features" class="section level2">
 <h2 class="hasAnchor">
-<a href="#how-it-works" class="anchor"></a>How it works</h2>
-<div id="get-a-token" class="section level3">
+<a href="#key-features" class="anchor"></a>Key features</h2>
+<ul>
+<li>sppplus_taxonconcept: <a href="https://api.speciesplus.net/documentation/v1/taxon_concepts/index.html">retrieve a taxon concept</a>
+</li>
+<li>taxon_distribution: <a href="https://api.speciesplus.net/documentation/v1/distributions/index.html">access distribution data</a>
+</li>
+<li>taxon_eu_legislation: <a href="https://api.speciesplus.net/documentation/v1/eu_legislation/index.html">access EU legislation data</a>
+</li>
+<li>taxon_cites_legislation: <a href="https://api.speciesplus.net/documentation/v1/cites_legislation/index.html">Access legislation data</a>
+</li>
+<li>taxon_references: <a href="https://api.speciesplus.net/documentation/v1/references/index.html">access reference data</a>
+</li>
+</ul>
+<div id="installation" class="section level3">
 <h3 class="hasAnchor">
-<a href="#get-a-token" class="anchor"></a>Get a token</h3>
-<p>So far, the user must get its own authentication token and therefore sign up on the Speciesplus website: <a href="https://api.speciesplus.net/" class="uri">https://api.speciesplus.net/</a>. Once a token obtained, the user has three options:</p>
-<ol style="list-style-type: decimal">
-<li><p>set an environment variable <code>SPPPLUS_TOKEN</code> in <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/Startup.html"><code>.Renviron</code></a> file (preferred);</p></li>
-<li><p>use <code>sppplus_login()</code>, <em>i.e.</em> interactively set <code>SPPPLUS_TOKEN</code> up for the current R session (meaning you will have to do it again during the next session);</p></li>
-<li><p>use the <code>token</code> argument of the functions, <em>i.e.</em> pass the token to every function calls.</p></li>
-</ol>
-<p>For the sack of clarity we use a variable <code>token</code> below. If either option 1 or 2 has been chosen then <code>token</code> does not need to be specified as the default behavior is to look for such an environment variable <code>SPPPLUS_TOKEN</code>. Note that <code>8QW6Qgh57sBG2k0gtt</code> used in our examples is actually the token displayed on the Speciesplus API website and does not work (see <a href="https://api.speciesplus.net/documentation" class="uri">https://api.speciesplus.net/documentation</a>).</p>
-</div>
-<div id="installation-of-the-r-package" class="section level3">
-<h3 class="hasAnchor">
-<a href="#installation-of-the-r-package" class="anchor"></a>Installation of the R package</h3>
+<a href="#installation" class="anchor"></a>Installation</h3>
 <p>So far, the installation requires the <code>devtools</code> package:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"ibartomeus/citesr"</span>)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(<span class="st">"citesr"</span>)</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3">mytoken &lt;-<span class="st"> "8QW6Qgh57sBG2k0gtt"</span></a>
-<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="co"># alternatively, use `sppplus_login()` and ignore `token`</span></a></code></pre></div>
-</div>
-<div id="examples" class="section level3">
-<h3 class="hasAnchor">
-<a href="#examples" class="anchor"></a>Examples</h3>
-<div id="sppplus_taxonconcept" class="section level4">
-<h4 class="hasAnchor">
-<a href="#sppplus_taxonconcept" class="anchor"></a><code><a href="reference/sppplus_taxonconcept.html">sppplus_taxonconcept()</a></code>
-</h4>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># retrieve a taxon concept id and more</span></a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw"><a href="reference/sppplus_taxonconcept.html">sppplus_taxonconcept</a></span>(<span class="dt">query =</span> <span class="st">"Loxodonta africana"</span>, <span class="dt">token =</span> mytoken)</a></code></pre></div>
-<pre><code>#R&gt;  $all
-#R&gt;       id          full_name        author_year    rank name_status
-#R&gt;  1: 4521 Loxodonta africana (Blumenbach, 1797) SPECIES           A
-#R&gt;                   updated_at active cites_listing
-#R&gt;  1: 2018-07-02T12:15:37.364Z   TRUE          I/II
-#R&gt;  
-#R&gt;  $synonyms
-#R&gt;        id          full_name      author_year    rank
-#R&gt;  1: 37069 Loxodonta cyclotis (Matschie, 1900) SPECIES
-#R&gt;  
-#R&gt;  $common_names
-#R&gt;        name language
-#R&gt;  1: Olifant       AF
-#R&gt;  
-#R&gt;  $higher_taxa
-#R&gt;      kingdom   phylum    class       order       family
-#R&gt;  1: Animalia Chordata Mammalia Proboscidea Elephantidae</code></pre>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co"># also works at higher order taxonomy</span></a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw"><a href="reference/sppplus_taxonconcept.html">sppplus_taxonconcept</a></span>(<span class="dt">query =</span> <span class="st">"Mammalia"</span>, <span class="dt">appendix_only =</span> <span class="ot">TRUE</span>, <span class="dt">token =</span> mytoken)</a></code></pre></div>
-<pre><code>#R&gt;     id full_name author_year  rank name_status               updated_at
-#R&gt;  1: 34  Mammalia             CLASS           A 2018-06-05T16:03:15.818Z
-#R&gt;     active cites_listing
-#R&gt;  1:   TRUE   I/II/III/NC</code></pre>
-</div>
-<div id="sppplus_distribution" class="section level4">
-<h4 class="hasAnchor">
-<a href="#sppplus_distribution" class="anchor"></a><code>sppplus_distribution()</code>
-</h4>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="co"># get distribution information</span></a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="co"># dis &lt;- taxon_distribution(tax_id = "4521", collapse_tags = " + ", token = mytoken)</span></a>
-<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="co"># head(dis)</span></a></code></pre></div>
-</div>
-<div id="taxon_cites_legislation" class="section level4">
-<h4 class="hasAnchor">
-<a href="#taxon_cites_legislation" class="anchor"></a><code><a href="reference/taxon_cites_legislation.html">taxon_cites_legislation()</a></code>
-</h4>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="co"># you can ask for the CITES legislation information, e.g. listings</span></a>
-<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="co"># leg &lt;- taxon_cites_legislation(tax_id = "4521", type = "listings", token = mytoken)</span></a>
-<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="co"># leg$cites_listings[1L, 1L:6L]</span></a></code></pre></div>
-</div>
-<div id="taxon_eu_legislation" class="section level4">
-<h4 class="hasAnchor">
-<a href="#taxon_eu_legislation" class="anchor"></a><code><a href="reference/taxon_eu_legislation.html">taxon_eu_legislation()</a></code>
-</h4>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="co"># you can ask for the CITES legislation information</span></a>
-<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="co"># leg_eu &lt;- taxon_eu_legislation(tax_id = "4521", type = "decisions", token = mytoken)</span></a>
-<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="co"># leg_eu$eu_decisions[1L, 1L:6L]</span></a>
-<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="co"># unlist(leg_eu$eu_decisions[1L, 6L])</span></a></code></pre></div>
-</div>
-<div id="taxon_references" class="section level4">
-<h4 class="hasAnchor">
-<a href="#taxon_references" class="anchor"></a><code><a href="reference/taxon_references.html">taxon_references()</a></code>
-</h4>
-<p>Note that <code>simplify = TRUE</code> simplifies the structure of the output.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="co"># ref &lt;- taxon_references(tax_id = '4521', type = 'taxonomic', token = mytoken)</span></a>
-<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="co"># ref$taxonomic$citation[1L]</span></a></code></pre></div>
-</div>
-<div id="distribution-map" class="section level4">
-<h4 class="hasAnchor">
-<a href="#distribution-map" class="anchor"></a>Distribution map</h4>
-<p>The example below requires the package <code>rworldmap</code>.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">suppressPackageStartupMessages</span>(<span class="kw">library</span>(rworldmap))</a>
-<a class="sourceLine" id="cb10-2" data-line-number="2">map1 &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw"><a href="reference/taxon_distribution.html">taxon_distribution</a></span>(<span class="st">'4521'</span>, mytoken))</a>
-<a class="sourceLine" id="cb10-3" data-line-number="3">map2 &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/rworldmap/topics/joinCountryData2Map">joinCountryData2Map</a></span>(map1, <span class="dt">joinCode=</span><span class="st">"ISO2"</span>, <span class="dt">nameJoinColumn =</span> <span class="st">"iso_code2"</span>, <span class="dt">nameCountryColumn =</span> <span class="st">"name"</span>)</a>
-<a class="sourceLine" id="cb10-4" data-line-number="4">map2<span class="op">@</span>data<span class="op">$</span>iso2 &lt;-<span class="st"> </span><span class="kw">unlist</span>(<span class="kw">lapply</span>(map2<span class="op">$</span>iso_code2, is.null))</a>
-<a class="sourceLine" id="cb10-5" data-line-number="5"><span class="kw">plot</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">23</span>, <span class="dv">62</span>), <span class="kw">c</span>(<span class="dv">45</span>, <span class="dv">-40</span>), <span class="dt">type =</span> <span class="st">"n"</span>, <span class="dt">main =</span> <span class="st">"Loxodonta africana"</span>,</a>
-<a class="sourceLine" id="cb10-6" data-line-number="6">  <span class="dt">xlab =</span> <span class="st">"Longitude"</span>, <span class="dt">ylab =</span> <span class="st">"Latitude"</span>)</a>
-<a class="sourceLine" id="cb10-7" data-line-number="7"><span class="kw">plot</span>(map2, <span class="dt">add =</span> T)</a>
-<a class="sourceLine" id="cb10-8" data-line-number="8"><span class="kw">plot</span>(map2[<span class="op">!</span>map2<span class="op">$</span>iso2,], <span class="dt">col =</span> <span class="st">"#bd9a5e"</span>, <span class="dt">add =</span> T)</a></code></pre></div>
-</div>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(<span class="st">"citesr"</span>)</a></code></pre></div>
+<p>See the vignette for details on how to use the package: <a href="">LINK NEEDED</a></p>
 </div>
 </div>
 <div id="contributors" class="section level2">
@@ -201,22 +117,21 @@
 <div id="code-contributors" class="section level3">
 <h3 class="hasAnchor">
 <a href="#code-contributors" class="anchor"></a>Code contributors</h3>
-<p><a href="https://github.com/ibartomeus/citesr/graphs/contributors" class="uri">https://github.com/ibartomeus/citesr/graphs/contributors</a></p>
-</div>
-<div id="all-contributors" class="section level3">
-<h3 class="hasAnchor">
-<a href="#all-contributors" class="anchor"></a>All contributors</h3>
 <ul>
+<li>Main contributors: <a href="https://github.com/ibartomeus/citesr/graphs/contributors" class="uri">https://github.com/ibartomeus/citesr/graphs/contributors</a>
+</li>
 <li>Reporting issues: <a href="https://github.com/FVFaleiro">FVFaleiro</a>;</li>
 </ul>
 </div>
 </div>
-<div id="ressources" class="section level2">
+<div id="resources" class="section level2">
 <h2 class="hasAnchor">
-<a href="#ressources" class="anchor"></a>Ressources</h2>
+<a href="#resources" class="anchor"></a>Resources</h2>
+<p>Building this package we benefited from:</p>
 <ul>
-<li>The structure of this repo/package was inspired by <a href="https://github.com/ropensci/taxize">taxize</a>;</li>
-<li>Managing secret very helpful vignette <a href="https://cran.r-project.org/web/packages/httr/vignettes/secrets.html" class="uri">https://cran.r-project.org/web/packages/httr/vignettes/secrets.html</a>.</li>
+<li>
+<a href="https://github.com/ropensci/taxize">taxize</a> that helps a lot in structuring this repository/package,</li>
+<li>the <a href="the%20structure%20of%20this%20repository/package%20was%20inspired%20by">Managing secret</a> a very helpful vignette.</li>
 </ul>
 </div>
 <div id="code-of-conduct" class="section level2">
@@ -227,7 +142,7 @@
 </div>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+  <div class="col-md-3" id="sidebar">
     <div class="links">
 <h2>Links</h2>
 <ul class="list-unstyled">
@@ -255,18 +170,18 @@
 <h2>Developers</h2>
 <ul class="list-unstyled">
 <li>Jonas Geschke <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-5654-9313" target="orcid.widget"><img src="https://members.orcid.org/sites/default/files/vector_iD_icon.svg" class="orcid" height="16"></a> </li>
-<li>Ignasi Bartomeus <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0001-7893-4389" target="orcid.widget"><img src="https://members.orcid.org/sites/default/files/vector_iD_icon.svg" class="orcid" height="16"></a> </li>
 <li>Kevin Cazelles <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0001-6619-9874" target="orcid.widget"><img src="https://members.orcid.org/sites/default/files/vector_iD_icon.svg" class="orcid" height="16"></a> </li>
+<li>Ignasi Bartomeus <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0001-7893-4389" target="orcid.widget"><img src="https://members.orcid.org/sites/default/files/vector_iD_icon.svg" class="orcid" height="16"></a> </li>
+<li><a href="authors.html">All authors...</a></li>
 </ul>
 </div>
 
-      </div>
-
+  </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Jonas Geschke, Ignasi Bartomeus, Kevin Cazelles.</p>
+  <p>Developed by Jonas Geschke, Kevin Cazelles, Ignasi Bartomeus.</p>
 </div>
 
 <div class="pkgdown">
