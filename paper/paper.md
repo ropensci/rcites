@@ -31,7 +31,7 @@ bibliography: paper.bib
 
 # Introduction
 
-The conservation of biodiversity is a complex problem strongly tight to political actions. CITES, the Convention on International Trade in Endangered Species of Wild Fauna and Flora, is a multilateral environmental agreement that was established in 1975 [@CITES_about] that aims to monitor and regulate the trade of endangered species so that their trade does not threaten the survival of the species in the wild [@CITES_about]. CITES is one of the eight main international agreements relevant to biodiversity [@CBD_biodiv-conv] and constitutes a key tool for conservationists, scientists and policy makers.
+The conservation of biodiversity is a complex problem strongly tight to political actions. CITES, the Convention on International Trade in Endangered Species of Wild Fauna and Flora, is a multilateral environmental agreement that was established in 1975 [@CITES_about] and aims to monitor and regulate the trade of endangered species so that their trade does not threaten the survival of the species in the wild [@CITES_about]. CITES is one of the eight main international agreements relevant to biodiversity [@CBD_biodiv-conv] and constitutes a key tool for conservationists, scientists and policy makers.
 
 # The Speciesplus database
 
@@ -39,7 +39,7 @@ In 2013, the UNEP World Conservation Monitoring Centre (UNEP-WCMC) and the CITES
 
 # The ``citesr`` R package
 
-With ``citesr``, we provide an R [@R] client to the Species+/CITES Checklist API, giving access to the Speciesplus database. The ability to query the Speciesplus database directly from one of the most used programming lenguages for data analysis will improve the efficiency and reproducibility of biodiversity conservation analysis workflows.
+With ``citesr`` we provide an R [@R] client to the Species+/CITES Checklist API, giving access to the Speciesplus database. The ability to query the Speciesplus database directly from one of the most used programming languages for data analysts will improve the efficiency and reproducibility of biodiversity conservation analysis workflows.
 
 We provide functions to:
 
@@ -57,25 +57,5 @@ We provide functions to:
 
 Many thanks to the British Ecological Society for bringing us together during the "Ecology Hackathon: Developing R Packages for Accessing, Synthesizing and Analysing Ecological Data", part of the BES, GFÖ, NecoV and EEF Joint Annual Meeting 2017 "Ecology Across Borders". Also, thanks to our hackathon group for the fruitful discussions about the very early stages of the package.
 
-
-
-
-
-
-
-
------ just for background info -----
-JOSS welcomes submissions from broadly diverse research areas. For this reason, we request that authors include in the paper some sentences that would explain the software functionality and domain of use to a non-specialist reader. Your submission should probably be somewhere between 250-1000 words.
-
-In addition, your paper should include:
-
-A list of the authors of the software and their affiliations
-A summary describing the high-level functionality and purpose of the software for a diverse, non-specialist audience
-A clear statement of need that illustrates the purpose of the software
-A list of key references including a link to the software archive
-Mentions (if applicable) of any ongoing research projects using the software or recent scholarly publications enabled by it
-
-https://joss.readthedocs.io/en/latest/submitting.html
------ just for background info -----
 
 # References
