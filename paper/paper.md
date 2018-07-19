@@ -1,5 +1,22 @@
 ---
 title: 'citesr: An R package to access the CITES Speciesplus database'
+authors:
+- name: Jonas Geschke
+  affiliation: 1
+  orcid: 0000-0002-5654-9313
+- name: Kevin Cazelles
+  affiliation: 2
+  orcid: 0000-0001-6619-9874
+- name: Ignasi Bartomeus
+  affiliation: 3
+  orcid: 0000-0001-7893-4389
+affiliations:
+- index: 1
+  name: Museum für Naturkunde - Leibniz Institute for Research on Evolution and Biodiversity Berlin, Germany
+- index: 2
+  name: Department of Integrative Biology, University Of Guelph, Guelph, Ontario, Canada
+- index: 3
+  name: Estacion Biologica de Donana, Avda. Americo Vespucio, Isla de la Cartuja, Sevilla, Spain
 tags:
 - CITES species+
 - taxonomy
@@ -7,24 +24,7 @@ tags:
 - illegal wildlife trade
 - species legislation
 - species distribution
-authors:
-- name: Jonas Geschke
-  orcid: 0000-0002-5654-9313
-  affiliation: 1
-- name: Kevin Cazelles
-  orcid: 0000-0001-6619-9874
-  affiliation: 2
-- name: Ignasi Bartomeus
-  orcid: 0000-0001-7893-4389
-  affiliation: 3
-affiliations:
-  - name: "Museum für Naturkunde - Leibniz Institute for Research on Evolution and Biodiversity Berlin, Germany"
-    index: 1
-  - name:  "Department of Integrative Biology, University Of Guelph, Guelph, Ontario, Canada"
-    index: 2
-  - name: "Estación Biológica de Doñana, Avda. Americo Vespucio, Isla de la Cartuja, Sevilla, Spain"
-    index: 3
-date: 17 July 2018
+date: 18 July 2018
 bibliography: paper.bib
 ---
 
@@ -39,7 +39,7 @@ In 2013, the UNEP World Conservation Monitoring Centre (UNEP-WCMC) and the CITES
 
 # The ``citesr`` R package
 
-With ``citesr`` we provide an R [@R] client to the Species+/CITES Checklist API, giving access to the Speciesplus database. The ability to query the Speciesplus database directly from one of the most used programming languages for data analysts will improve the efficiency and reproducibility of biodiversity conservation analysis workflows.
+With ``citesr`` we provide an R [@R] client to the Species+/CITES Checklist API, giving access to the Speciesplus database. The ability to query the Speciesplus database directly from one of the most used programming languages for data analyses will improve the efficiency and reproducibility of biodiversity conservation analysis workflows.
 
 We provide functions to:
 
