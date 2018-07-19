@@ -26,10 +26,9 @@ So far, the installation requires the `devtools` package:
 ```R
 devtools::install_github("ibartomeus/citesr")
 library("citesr")
-mytoken <- "8QW6Qgh57sBG2k0gtt"
-# alternatively, use `sppplus_login()` and ignore `token`
 ```
 
+See the vignette for details on how to use the package: [LINK NEEDED]()
 
 ## Contributors
 
@@ -41,10 +40,15 @@ mytoken <- "8QW6Qgh57sBG2k0gtt"
 
 ## Resources
 
+<<<<<<< HEAD
 Building this package we benefited from:
 
 - [taxize](https://github.com/ropensci/taxize) that helps a lot in structuring this repository/package,
 - the [Managing secret](the structure of this repository/package was inspired by) a very helpful vignette.
+=======
+- The structure of this repository/package was inspired by [taxize](https://github.com/ropensci/taxize);
+- "Managing secrets" is a very helpful vignette for dealing with tokens https://cran.r-project.org/web/packages/httr/vignettes/secrets.html.
+>>>>>>> master
 
 
 

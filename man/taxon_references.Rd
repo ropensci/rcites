@@ -16,7 +16,7 @@ requested, \code{taxonomic} or \code{distribution}.}
 
 \item{simplify}{a logical. Should the output be simplified? In other words,
 should columns of data.table objects returned be unlisted when they are
-actualist list made of single elements?}
+lists made of single elements?}
 
 \item{token}{a character string containing the authentification token, see
 \url{https://api.speciesplus.net/documentation}. Default is set to

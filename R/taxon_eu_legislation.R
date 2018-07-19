@@ -8,7 +8,7 @@
 #' @param type vector of character strings indicating type of legislation information requested, values are taken among \code{listing}, \code{quota} and \code{suspension}. Default includes the three of them.
 #' @param simplify a logical. Should the output be simplified? In other words,
 #' should columns of data.table objects returned be unlisted when they are
-#' actualist list made of single elements?
+#' lists made of single elements?
 #' @param token a character string containing the authentification token, see
 #' \url{https://api.speciesplus.net/documentation}. Default is set to
 #' \code{NULL} and requires the environment variable \code{SPPPLUS_TOKEN} to be
