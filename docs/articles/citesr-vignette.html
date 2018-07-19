@@ -82,7 +82,7 @@
       <h1>Get started with citesr</h1>
                         <h4 class="author">citesr team</h4>
             
-            <h4 class="date">12-03-2018</h4>
+            <h4 class="date">07-18-2018</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ibartomeus/citesr/blob/master/vignettes/citesr-vignette.Rmd"><code>vignettes/citesr-vignette.Rmd</code></a></small>
       <div class="hidden name"><code>citesr-vignette.Rmd</code></div>
@@ -99,13 +99,8 @@
 <p>A token is actually mandatory as it should be passed to the header of all URL requests. They are three different ways to use the token in <code>citesr</code>:</p>
 <ol style="list-style-type: decimal">
 <li><p>set an environment variable <code>SPPPLUS_TOKEN</code> in <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/Startup.html"><code>.Renviron</code></a> file (preferred);</p></li>
-<li><p>use <code>sppplus_login()</code>, <em>i.e.</em> interactively set <code>SPPPLUS_TOKEN</code> up for the current R session (meaning a login will be needed for the next session);</p></li>
-</ol>
-<div class="figure">
-<img src="img/sppplus_login.png" alt="Figure 1" style="width:80.0%"><p class="caption">Figure 1</p>
-</div>
-<ol start="3" style="list-style-type: decimal">
-<li>use the <code>token</code> argument of the functions, <em>i.e.</em> the token is passed to every function calls.</li>
+<li><p>use <code>sppplus_login()</code>, <em>i.e.</em> interactively set <code>SPPPLUS_TOKEN</code> up for the current R session (meaning a login will be needed the next session);</p></li>
+<li><p>use the <code>token</code> argument of the functions, <em>i.e.</em> the token is passed to every function calls.</p></li>
 </ol>
 </div>
 <div id="retrieve-a-taxon-concept-identifier" class="section level2">
@@ -126,8 +121,8 @@
 #&gt;  1: 37069 Loxodonta cyclotis (Matschie, 1900) SPECIES
 #&gt;  
 #&gt;  $common_names
-#&gt;       name language
-#&gt;  1: Haathi       UR
+#&gt;        name language
+#&gt;  1: Olifant       AF
 #&gt;  
 #&gt;  $higher_taxa
 #&gt;      kingdom   phylum    class       order       family
@@ -148,7 +143,7 @@
 #&gt;                   updated_at active cites_listing
 #&gt;  1: 2015-05-07T15:10:59.252Z   TRUE            II
 #&gt;  2: 2016-09-23T15:30:46.749Z  FALSE          NULL</code></pre>
-<p>Also if the taxon is not listed a warning message should come yup to assert so:</p>
+<p>Also, if the taxon is not listed a warning message should come up:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">res &lt;-<span class="st"> </span><span class="kw"><a href="../reference/sppplus_taxonconcept.html">sppplus_taxonconcept</a></span>(<span class="dt">query =</span> <span class="st">"Homo Sapiens"</span>)</a></code></pre></div>
 <pre><code>#&gt;  Warning in sppplus_taxonconcept(query = "Homo Sapiens"): Taxon not listed.</code></pre>
 <p>For what follows we should keep in mind:</p>
@@ -190,7 +185,7 @@
 <a class="sourceLine" id="cb12-2" data-line-number="2"><span class="kw">plot</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">23</span>, <span class="dv">62</span>), <span class="kw">c</span>(<span class="dv">45</span>, <span class="dv">-40</span>), <span class="dt">type =</span> <span class="st">"n"</span>, <span class="dt">main =</span> <span class="st">"Loxodonta africana"</span>,</a>
 <a class="sourceLine" id="cb12-3" data-line-number="3">  <span class="dt">xlab =</span> <span class="st">"Longitude"</span>, <span class="dt">ylab =</span> <span class="st">"Latitude"</span>)</a>
 <a class="sourceLine" id="cb12-4" data-line-number="4"><span class="kw">plot</span>(map2, <span class="dt">add =</span> T)</a>
-<a class="sourceLine" id="cb12-5" data-line-number="5"><span class="kw">plot</span>(map2[<span class="op">!</span>map2<span class="op">$</span>iso2,], <span class="dt">col =</span> <span class="st">"#bd9a5e"</span>, <span class="dt">add =</span> T)</a></code></pre></div>
+<a class="sourceLine" id="cb12-5" data-line-number="5"><span class="kw">plot</span>(map2[<span class="op">!</span>map2<span class="op">$</span>iso2,], <span class="dt">col =</span> <span class="st">"#bda25d"</span>, <span class="dt">add =</span> T)</a></code></pre></div>
 <p><img src="citesr-vignette_files/figure-html/map-1.png" width="614.4" style="display: block; margin: auto;"></p>
 </div>
 <div id="query-references-information" class="section level2">
@@ -206,6 +201,39 @@
 #&gt;  [2] "Dickinson, E.C. (ed.) 2003. The Howard &amp; Moore Complete Checklist of the Birds of the World. 3rd Edition. Christopher Helm. London."                                        
 #&gt;  [3] "Meyer de Schauensee, R. 1982. A guide to the birds of South America. Academy of Natural Sciences. Philadelphia."</code></pre>
 </div>
+<div id="query-more-than-one-species-at-a-time" class="section level2">
+<h2 class="hasAnchor">
+<a href="#query-more-than-one-species-at-a-time" class="anchor"></a>Query more than one species at a time</h2>
+<p>Currenlty, there is no specific way to do so, the user should simply loop over a vector of species:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1">vc_sp &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">"Amazilia versicolor"</span>, <span class="st">"Loxodonta africana"</span>)</a>
+<a class="sourceLine" id="cb19-2" data-line-number="2">res &lt;-<span class="st"> </span><span class="kw">lapply</span>(vc_sp, <span class="cf">function</span>(x) <span class="kw"><a href="../reference/sppplus_taxonconcept.html">sppplus_taxonconcept</a></span>(<span class="dt">query_taxon =</span> x, <span class="dt">appendix_only =</span> <span class="ot">TRUE</span>))</a>
+<a class="sourceLine" id="cb19-3" data-line-number="3"><span class="kw">do.call</span>(rbind, res)</a></code></pre></div>
+<pre><code>#&gt;        id           full_name        author_year    rank name_status
+#&gt;  1:  3210 Amazilia versicolor   (Vieillot, 1818) SPECIES           A
+#&gt;  2: 65789 Amazilia versicolor   (Vieillot, 1818) SPECIES           S
+#&gt;  3:  4521  Loxodonta africana (Blumenbach, 1797) SPECIES           A
+#&gt;                   updated_at active cites_listing
+#&gt;  1: 2015-05-07T15:10:59.252Z   TRUE            II
+#&gt;  2: 2016-09-23T15:30:46.749Z  FALSE          NULL
+#&gt;  3: 2018-07-02T12:15:37.364Z   TRUE          I/II</code></pre>
+<p>or a vector of identifier:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">vc_id &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">4521</span>, <span class="dv">3210</span>)</a>
+<a class="sourceLine" id="cb21-2" data-line-number="2">res &lt;-<span class="st"> </span><span class="kw">lapply</span>(vc_id,</a>
+<a class="sourceLine" id="cb21-3" data-line-number="3">    <span class="cf">function</span>(x) <span class="kw">unlist</span>(</a>
+<a class="sourceLine" id="cb21-4" data-line-number="4">      <span class="kw"><a href="../reference/taxon_eu_legislation.html">taxon_eu_legislation</a></span>(<span class="dt">tax_id =</span> x, <span class="dt">type =</span> <span class="st">"listings"</span>, <span class="dt">simplify =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb21-5" data-line-number="5">    )[<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>]</a>
+<a class="sourceLine" id="cb21-6" data-line-number="6">    )</a>
+<a class="sourceLine" id="cb21-7" data-line-number="7"><span class="kw">do.call</span>(rbind, res)</a></code></pre></div>
+<pre><code>#&gt;       eu_listings.id1 eu_listings.id2 eu_listings.taxon_concept_id1
+#&gt;  [1,] "27868"         "27801"         "4521"                       
+#&gt;  [2,] "27900"         "3210"          "TRUE"                       
+#&gt;       eu_listings.taxon_concept_id2 eu_listings.is_current1
+#&gt;  [1,] "4521"                        "TRUE"                 
+#&gt;  [2,] "B"                           "+"                    
+#&gt;       eu_listings.is_current2
+#&gt;  [1,] "TRUE"                 
+#&gt;  [2,] "2017-02-04"</code></pre>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -218,6 +246,7 @@
       <li><a href="#query-legislation-information">Query legislation information</a></li>
       <li><a href="#query-distribution-information">Query distribution information</a></li>
       <li><a href="#query-references-information">Query references information</a></li>
+      <li><a href="#query-more-than-one-species-at-a-time">Query more than one species at a time</a></li>
       </ul>
 </div>
       </div>
