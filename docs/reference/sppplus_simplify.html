@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Simplify outputs — sppplus_simplify • citesr</title>
+<title>Simplify Species+/CITES Checklist API outputs — sppplus_simplify • citesr</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Simplify outputs — sppplus_simplify" />
+<meta property="og:title" content="Simplify Species+/CITES Checklist API outputs — sppplus_simplify" />
 
-<meta property="og:description" content="Simplify the structure of CITES Species+ API outputs." />
+<meta property="og:description" content="Simplify the structure of Species+/CITES Checklist API outputs." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -107,14 +107,14 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Simplify outputs</h1>
+    <h1>Simplify Species+/CITES Checklist API outputs</h1>
     
     <div class="hidden name"><code>sppplus_simplify.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Simplify the structure of CITES Species+ API outputs.</p>
+    <p>Simplify the structure of Species+/CITES Checklist API outputs.</p>
     
     </div>
 
@@ -136,9 +136,9 @@
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>For the sake of generality, CITES Species+ API outputs are parsed
-and stored in data.table objects. It often happens that the columns
-of those objects are lists. Most of the lists are actually well-structured
-and can actually be stored as columns of integer,
+and stored in `data.table` objects. It often happens that the columns
+of those objects are objects of class `list`. Most of these lists are
+actually well-structured and can actually be stored as columns of integer,
 date, characters strings, etc. The goal of <code>sppplus_simplify</code> is to
 handle such simplifications.</p>
     

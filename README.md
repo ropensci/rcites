@@ -45,7 +45,7 @@ See the vignette for details on how to use the package: [vignette](https://ibart
 While creating this package, we greatly benefited from:
 
 - [taxize](https://github.com/ropensci/taxize) that helps a lot in structuring this repository/package,
-- the [Managing secret](the structure of this repository/package was inspired by) a very helpful vignette.
+- the [Managing secret](https://cran.r-project.org/web/packages/httr/vignettes/secrets.html), a very helpful vignette for packages dealing with API.
 
 
 
