@@ -17,9 +17,11 @@
 sppplus_login <- function(token = NULL) {
     if (is.null(token)) 
         token <- readline("Enter your token: ")
-    Sys.setenv(SPPPLUS_TOKEN = token)
     if (identical(token, "")) {
         message("no token provided")
-    } else cat("Authentication token stored for the session.\n")
+    } else {
+        Sys.setenv(SPPPLUS_TOKEN = token)
+        cat("Authentication token stored for the session.\n")
+    }
     invisible(NULL)
 }
