@@ -6,7 +6,7 @@ An R package to access the CITES Speciesplus database (https://speciesplus.net/)
 ## Current Status
 
 [![Build Status](https://travis-ci.org/ibartomeus/citesr.svg?branch=master)](https://travis-ci.org/ibartomeus/citesr)
-[![Build status](https://ci.appveyor.com/api/projects/status/j8u04bwan0kqpn0f?svg=true)](https://ci.appveyor.com/project/KevCaz/citesr)
+[![Build status](https://ci.appveyor.com/api/projects/status/xrnpjvfwbhehhrfc/branch/master?svg=true)](https://ci.appveyor.com/project/KevCaz/citesr-v5385/branch/master)
 [![codecov](https://codecov.io/gh/ibartomeus/citesr/branch/master/graph/badge.svg)](https://codecov.io/gh/ibartomeus/citesr)
 
 
