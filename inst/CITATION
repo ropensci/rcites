@@ -10,7 +10,7 @@ bibentry(bibtype = "Manual",
                     person("Ignasi", "Bartomeus"),
                     person("Marie-Bé", "Leduc"),
                     person("Jonathan", "Goldenberg"),
-                    person("Yasmine", "Verzelen"))
+                    person("Yasmine", "Verzelen")),
          year = year,
          note = note,
          url = "https://ibartomeus.github.io/citesr/")
