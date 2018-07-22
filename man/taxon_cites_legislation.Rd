@@ -2,7 +2,7 @@
 % Please edit documentation in R/taxon_cites_legislation.R
 \name{taxon_cites_legislation}
 \alias{taxon_cites_legislation}
-\title{Access legislation data from CITES species+ API}
+\title{Get current CITES appendix listings and reservations.}
 \usage{
 taxon_cites_legislation(tax_id, type = c("listings", "quotas", "suspensions"),
   simplify = FALSE, token = NULL)
@@ -27,8 +27,8 @@ be used to set \code{SPPPLUS_TOKEN} for the current session.}
 A list of data.table objects, one per type requested.
 }
 \description{
-Queries current CITES appendix listings and reservations, CITES quotas,
-and CITES suspensions for a given taxon concept identifier.
+Retrieve current CITES appendix listings and reservations, CITES quotas, and
+CITES suspensions for a given taxon concept.
 }
 \examples{
 # not run:

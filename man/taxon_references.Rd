@@ -2,7 +2,7 @@
 % Please edit documentation in R/taxon_references.R
 \name{taxon_references}
 \alias{taxon_references}
-\title{Access reference data from CITES species+ API}
+\title{Get references for a given taxon concept}
 \usage{
 taxon_references(tax_id, type = c("taxonomic", "distribution"),
   simplify = FALSE, token = NULL)
@@ -28,7 +28,7 @@ be used to set \code{SPPPLUS_TOKEN} for the current session.}
 A list of data.table objects, one per type requested.
 }
 \description{
-Queries available references for a given taxon concept.
+Retrieve available references for a given taxon concept.
 }
 \examples{
 # not run:

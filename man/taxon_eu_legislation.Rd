@@ -2,7 +2,7 @@
 % Please edit documentation in R/taxon_eu_legislation.R
 \name{taxon_eu_legislation}
 \alias{taxon_eu_legislation}
-\title{Access EU legislation data from CITES species+ API}
+\title{Get current EU annex listings, SRG opinions, and EU suspensions.}
 \usage{
 taxon_eu_legislation(tax_id, type = c("listings", "decisions"),
   simplify = FALSE, token = NULL)
@@ -27,8 +27,8 @@ be used to set \code{SPPPLUS_TOKEN} for the current session.}
 A list of data.table objects, one per type requested.
 }
 \description{
-Queries current EU annex listings, SRG opinions, and EU suspensions for a
-given taxon concept.
+Retrieve current EU annex listings, SRG opinions, and EU suspensions for a
+given taxon concept (identifier must be known).
 }
 \examples{
 # not run:

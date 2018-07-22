@@ -2,12 +2,12 @@
 % Please edit documentation in R/sppplus_taxonconcept.R
 \name{sppplus_taxonconcept}
 \alias{sppplus_taxonconcept}
-\title{Access taxon_concept data from CITES species+ API}
+\title{Get taxon concepts for a search term.}
 \usage{
 sppplus_taxonconcept(query_taxon, appendix_only = FALSE, token = NULL)
 }
 \arguments{
-\item{query_taxon}{a character string containing the query (e.g. species). Scientific taxa only.}
+\item{query_taxon}{a character string containing the query (e.g. species). Scientific taxa only (max 255 characters).}
 
 \item{appendix_only}{a logical. If \code{TRUE} then taxon identifier and the
 CITES appendix information are the only data returned (default is \code{FALSE}).}
@@ -26,9 +26,7 @@ information is returned. Importantly enough, this functions returns the
 taxon concept identifier that is required by the \code{taxon_*()} functions.
 }
 \description{
-Queries CITES Species+ API using an authentication token.
-The query string filters CITES/Species+ data by taxon concept (e.g. species,
-genus, class).
+Retrieve the taxon concept of a specific taxon (scientific name).
 }
 \examples{
 # Not run:

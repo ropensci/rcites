@@ -1,7 +1,7 @@
-#' Simplify outputs
+#' Simplify Species+/CITES Checklist API outputs
 #'
 #' @description
-#' Simplify the structure of CITES Species+ API outputs.
+#' Simplify the structure of Species+/CITES Checklist API outputs.
 #'
 #' @param x a data.table object to be simplified.
 #'
@@ -9,9 +9,9 @@
 #'
 #' @details
 #' For the sake of generality, CITES Species+ API outputs are parsed
-#' and stored in data.table objects. It often happens that the columns
-#' of those objects are lists. Most of the lists are actually well-structured
-#' and can actually be stored as columns of integer,
+#' and stored in `data.table` objects. It often happens that the columns
+#' of those objects are objects of class `list`. Most of these lists are
+#' actually well-structured and can actually be stored as columns of integer,
 #' date, characters strings, etc. The goal of \code{sppplus_simplify} is to
 #' handle such simplifications.
 #'

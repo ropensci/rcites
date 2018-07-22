@@ -2,7 +2,7 @@
 % Please edit documentation in R/taxon_distribution.R
 \name{taxon_distribution}
 \alias{taxon_distribution}
-\title{Access distribution data from CITES Species+ API}
+\title{Get distributions data available for a given taxon concept.}
 \usage{
 taxon_distribution(tax_id, collapse_tags = NULL, simplify = FALSE,
   token = NULL)
@@ -27,7 +27,8 @@ be used to set \code{SPPPLUS_TOKEN} for the current session.}
 A data table with all distribution information.
 }
 \description{
-Queries distributions data available for a given taxon concept.
+Retrieve distributions data available for a given taxon concept for which the
+the taxon identifier is known.
 }
 \examples{
 # not run:

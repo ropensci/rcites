@@ -1,11 +1,9 @@
-#' Access taxon_concept data from CITES species+ API
+#' Get taxon concepts for a search term.
 #'
 #' @description
-#' Queries CITES Species+ API using an authentication token.
-#' The query string filters CITES/Species+ data by taxon concept (e.g. species,
-#' genus, class).
+#' Retrieve the taxon concept of a specific taxon (scientific name).
 #'
-#' @param query_taxon a character string containing the query (e.g. species). Scientific taxa only.
+#' @param query_taxon a character string containing the query (e.g. species). Scientific taxa only (max 255 characters).
 #' @param appendix_only a logical. If \code{TRUE} then taxon identifier and the
 #' CITES appendix information are the only data returned (default is \code{FALSE}).
 #' @param token a character string containing the authentification token, see

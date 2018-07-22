@@ -1,6 +1,6 @@
-#' Access reference data from CITES species+ API
+#' Get references for a given taxon concept
 #'
-#' Queries available references for a given taxon concept.
+#' Retrieve available references for a given taxon concept.
 #'
 #' @param tax_id character string containing a species' taxon concept identifier
 #' (see \code{\link[citesr]{sppplus_taxonconcept}}).
@@ -15,7 +15,7 @@
 #' set directly in \code{Renviron}. Alternatively \code{sppplus_login()} can
 #' be used to set \code{SPPPLUS_TOKEN} for the current session.
 #'
-#' @return  A list of data.table objects, one per type requested.
+#' @return A list of data.table objects, one per type requested.
 #'
 #' @importFrom data.table as.data.table data.table
 #' @export

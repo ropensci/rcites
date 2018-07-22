@@ -27,11 +27,7 @@ knitr::opts_chunk$set(
 To set up a connection to the CITES Speciesplus database, an authentication token
 is required. To obtain such a token, the user must sign up on the
 [Speciesplus API website](http://api.speciesplus.net/users/sign_up).
-<<<<<<< HEAD
-Below, we assume that the user already possesses a token and that its
-value is `8QW6Qgh57sBG2k0gtt` just as on the API documentation (see
-=======
-Below, we assume that the user already possesses a token. For iluastrative purposes  we will use the generic token value `8QW6Qgh57sBG2k0gtt` just as on the API documentation, but each user should obtain it's own token to run the code below (see
+Below, we assume that the user already possesses a token. For illustrative purposes  we will use the generic token value `8QW6Qgh57sBG2k0gtt` just as on the API documentation, but each user should obtain it's own token to run the code below (see
 >>>>>>> master
 https://api.speciesplus.net/documentation for more details).
 
@@ -42,14 +38,8 @@ requests. They are three different ways to use the token in ``citesr``:
 [`.Renviron`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Startup.html)
 file (preferred);
 
-2. use `sppplus_login()`, *i.e.* interactively set `SPPPLUS_TOKEN` up
-<<<<<<< HEAD
-for the current R session (meaning a login will be needed the next session);
-=======
-for the current R session (meaning a new login will be needed for the next session);
-
-![Figure 1](img/sppplus_login.png){width="80%"}
->>>>>>> master
+2. use `sppplus_login()`, *i.e.* interactively set `SPPPLUS_TOKEN` up for the
+current R session (meaning login wille be required in future R sessions);
 
 3. use the `token` argument of the functions, *i.e.* the token is passed manually to every function calls.
 
@@ -65,7 +55,7 @@ African bush elephant, *i.e.* *Loxodonta africana*.
 ```{r qtxla}
 #devtools::install_github("ibartomeus/citesr")
 library(citesr)
-res1 <- sppplus_taxonconcept(query_taxon = "Loxodonta africana") 
+res1 <- sppplus_taxonconcept(query_taxon = "Loxodonta africana")
 res1
 ```
 
@@ -85,11 +75,8 @@ res3 <- sppplus_taxonconcept(query = "Amazilia versicolor", appendix_only = TRUE
 res3
 ```
 
-<<<<<<< HEAD
 Also, if the taxon is not listed a warning message should come up:
-=======
-Also if the taxon is not listed a warning message should come up to assert so:
->>>>>>> master
+
 
 ```{r qtxhs}
 res <- sppplus_taxonconcept(query = "Homo Sapiens")

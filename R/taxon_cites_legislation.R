@@ -1,7 +1,7 @@
-#' Access legislation data from CITES species+ API
+#' Get current CITES appendix listings and reservations.
 #'
-#' Queries current CITES appendix listings and reservations, CITES quotas,
-#' and CITES suspensions for a given taxon concept identifier.
+#' Retrieve current CITES appendix listings and reservations, CITES quotas, and
+#' CITES suspensions for a given taxon concept.
 #'
 #' @param tax_id character string containing a species' taxon concept identifier
 #' (see \code{\link[citesr]{sppplus_taxonconcept}}).

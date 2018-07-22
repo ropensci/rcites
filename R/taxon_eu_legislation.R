@@ -1,7 +1,7 @@
-#' Access EU legislation data from CITES species+ API
+#' Get current EU annex listings, SRG opinions, and EU suspensions.
 #'
-#' Queries current EU annex listings, SRG opinions, and EU suspensions for a
-#' given taxon concept.
+#' Retrieve current EU annex listings, SRG opinions, and EU suspensions for a
+#' given taxon concept (identifier must be known).
 #'
 #' @param tax_id character string containing a species' taxon concept identifier
 #' (see \code{\link[citesr]{sppplus_taxonconcept}}).

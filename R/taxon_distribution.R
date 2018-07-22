@@ -1,6 +1,7 @@
-#' Access distribution data from CITES Species+ API
+#' Get distributions data available for a given taxon concept.
 #'
-#' Queries distributions data available for a given taxon concept.
+#' Retrieve distributions data available for a given taxon concept for which the
+#' the taxon identifier is known.
 #'
 #' @param tax_id character string containing a species' taxon concept identifier
 #' (see \code{\link[citesr]{sppplus_taxonconcept}}).

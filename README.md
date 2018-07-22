@@ -1,6 +1,7 @@
 # citesr
 
-An R package to access the CITES Speciesplus database (https://speciesplus.net/)
+An R package to access information from the centralized portal [Species+](https://speciesplus.net/)
+via the [Species+/CITES Checklist API](https://api.speciesplus.net/documentation/v1.html).
 
 
 ## Current Status
@@ -52,3 +53,6 @@ While creating this package, we greatly benefited from:
 
 Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md).
 By participating in this project you agree to abide by its terms.
+
+Also, please read the terms and Conditions of Use of Species+ Data:
+https://speciesplus.net/terms-of-use.
