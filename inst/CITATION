@@ -8,8 +8,9 @@ bibentry(bibtype = "Manual",
          author = c(person("Jonas", "Geschke"),
                     person("Kevin", "Cazelles"),
                     person("Ignasi", "Bartomeus"),
-                    person("Yasmine", "Verzelen"),
-                    person("Jonathan", "Goldenberg")),
+                    person("Marie-Bé", "Leduc"),
+                    person("Jonathan", "Goldenberg"),
+                    person("Yasmine", "Verzelen"))
          year = year,
          note = note,
          url = "https://ibartomeus.github.io/citesr/")
