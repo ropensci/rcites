@@ -1,7 +1,7 @@
 ---
 title: "Get started with rcites"
 author: "rcites team"
-date: 12-03-2018
+date: 07-18-2018
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Put the title of your vignette here}
@@ -27,19 +27,25 @@ knitr::opts_chunk$set(
 To set up a connection to the CITES Speciesplus database, an authentication token
 is required. To obtain such a token, the user must sign up on the
 [Speciesplus API website](http://api.speciesplus.net/users/sign_up).
-Below, we assume that the user already possesses a token. For illustrative purposes  we will use the generic token value `8QW6Qgh57sBG2k0gtt` just as on the API documentation, but each user should obtain it's own token to run the code below (see
->>>>>>> master
+Below, we assume that the user already possesses a token. For illustrative purposes
+we will use the generic token value `8QW6Qgh57sBG2k0gtt` just as on the API
+documentation, but each user should obtain his own token to run the code below (see
 https://api.speciesplus.net/documentation for more details).
 
 A token is actually mandatory as it should be passed to the header of all URL
-requests. They are three different ways to use the token in ``rcites``:
+requests. They are three different ways to use such token in `rcites`:
 
 1. set an environment variable `SPPPLUS_TOKEN` in
 [`.Renviron`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Startup.html)
 file (preferred);
 
+
 2. use `sppplus_login()`, *i.e.* interactively set `SPPPLUS_TOKEN` up for the
-current R session (meaning login wille be required in future R sessions);
+current R session (meaning a login will be required for the future R sessions);
+
+```r
+sppplus_login("8QW6Qgh57sBG2k0gtt")
+```
 
 3. use the `token` argument of the functions, *i.e.* the token is passed manually to every function calls.
 
@@ -53,11 +59,18 @@ name of the taxon. Let us start by requesting the identifier of the
 African bush elephant, *i.e.* *Loxodonta africana*.
 
 ```{r qtxla}
-#devtools::install_github("ibartomeus/rcites")
 library(rcites)
 res1 <- sppplus_taxonconcept(query_taxon = "Loxodonta africana")
 res1
 ```
+
+Note that if you chose options 3 regarding the connection:
+
+```r
+res1 <- sppplus_taxonconcept(query_taxon = "Loxodonta africana", token = "8QW6Qgh57sBG2k0gtt")
+```
+
+
 
 `res1` is a list of data.table object with different information pertaining
 to the naming of the taxon. If you however only need many details, setting
@@ -76,7 +89,6 @@ res3
 ```
 
 Also, if the taxon is not listed a warning message should come up:
-
 
 ```{r qtxhs}
 res <- sppplus_taxonconcept(query = "Homo Sapiens")
