@@ -1,4 +1,4 @@
-Package: rcites
+Package: citesr
 Type: Package
 Title: An R package to access the CITES Speciesplus database (https://speciesplus.net/)
 Version: 0.1.0
