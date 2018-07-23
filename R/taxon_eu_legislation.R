@@ -4,7 +4,7 @@
 #' given taxon concept (identifier must be known).
 #'
 #' @param tax_id character string containing a species' taxon concept identifier
-#' (see \code{\link[rcites]{sppplus_taxonconcept}}).
+#' (see \code{\link[citesr]{sppplus_taxonconcept}}).
 #' @param type vector of character strings indicating type of legislation information requested, values are taken among \code{listing}, \code{quota} and \code{suspension}. Default includes the three of them.
 #' @param simplify a logical. Should the output be simplified? In other words,
 #' should columns of data.table objects returned be unlisted when they are

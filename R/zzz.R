@@ -1,9 +1,9 @@
-#' rcites:
+#' citesr:
 #'
 #' An R package to access the CITES Species+ database (https://speciesplus.net/)
 #'
 #' @docType package
-#' @name rcites
+#' @name citesr
 
 ## Helper functions
 
