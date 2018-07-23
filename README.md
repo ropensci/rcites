@@ -1,7 +1,8 @@
 # citesr
 
-An R package to access information from the centralized portal [Species+](https://speciesplus.net/)
-via the [Species+/CITES Checklist API](https://api.speciesplus.net/documentation/v1.html).
+An R package to access information from the [Species+](https://speciesplus.net/) portal via the [Species+/CITES Checklist API](https://api.speciesplus.net/documentation/v1.html).
+
+When citing please refer to the citation of the package as well as the release paper.
 
 
 ## Current Status
