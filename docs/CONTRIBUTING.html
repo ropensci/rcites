@@ -58,7 +58,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">citesr</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.1</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0</span>
       </span>
     </div>
 
@@ -146,14 +146,14 @@
 <p>To add tests, go to the folder <code>tests/testthat/</code>. Tests are generally organized as individual files for each exported function from the package (that is, listed as an export in the <code>NAMESPACE</code> file). If you are adding a new exported function, add a new test file. If you are changing an existing function, work in the tests file for that function, unless it doesn’t have tests, in which case make a new test file.</p>
 <p>The book R packages book provides <a href="http://r-pkgs.had.co.nz/tests.html">a chapter on testing in general</a>. Do consult that first if you aren’t familiar with testing in R.</p>
 <p>The easiest set up to run tests is from within an R session:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(devtools)
-<span class="kw">library</span>(testthat)
-<span class="co"># loads the package</span>
-<span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/load_all">load_all</a></span>()</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(devtools)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(testthat)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="co"># loads the package</span></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/load_all">load_all</a></span>()</a></code></pre></div>
 <p>To test an individual test file</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/testthat/topics/test_file">test_file</a></span>(<span class="st">"tests/testthat/test-foobar.R"</span>)</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="http://www.rdocumentation.org/packages/testthat/topics/test_file">test_file</a></span>(<span class="st">"tests/testthat/test-foobar.R"</span>)</a></code></pre></div>
 <p>To run all tests</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">devtools::<span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/test">test</a></span>()</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/test">test</a></span>()</a></code></pre></div>
 <p>If you are running tests that have <code><a href="http://www.rdocumentation.org/packages/testthat/topics/skip">skip_on_cran()</a></code> in them, set <code>Sys.setenv(NOT_CRAN = "true")</code> prior to running tests.</p>
 </div>
 <div id="making-changes" class="section level3">
