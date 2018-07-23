@@ -9,9 +9,9 @@ Authors@R: c(person("Jonas", "Geschke", role = c("aut", "cre"), email = "jonas.e
   person("Jonathan", "Goldenberg", role = c("ctb")),
   person("Marie-Bé", "Leduc", role = c("ctb")),
   person("Yasmine", "Verzelen", role = c("ctb")))
-Description: Access the CITES Species+ database.
-URL: https://ibartomeus.github.io/rcites/
-BugReports: https://github.com/ibartomeus/rcites/issues
+Description: An R package to access information from the Speciesplus database via the Species+/CITES Checklist API.
+URL: https://ibartomeus.github.io/citesr/
+BugReports: https://github.com/ibartomeus/citesr/issues
 License: MIT + file LICENSE
 Depends:
   R (>= 3.1.0)
