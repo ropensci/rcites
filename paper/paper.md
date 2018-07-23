@@ -1,22 +1,18 @@
 ---
-title: 'citesr: An R package to access the CITES Speciesplus database'
+title: 'rcites: An R package to access the CITES Speciesplus database'
 authors:
-- name: Jonas Geschke
-  affiliation: 1
+- affiliation: 1
+  name: Jonas Geschke
   orcid: 0000-0002-5654-9313
-- name: Kevin Cazelles
-  affiliation: 2
+- affiliation: 2
+  name: Kevin Cazelles
   orcid: 0000-0001-6619-9874
-- name: Ignasi Bartomeus
-  affiliation: 3
+- affiliation: 3
+  name: Ignasi Bartomeus
   orcid: 0000-0001-7893-4389
-affiliations:
-- index: 1
-  name: Museum für Naturkunde - Leibniz Institute for Research on Evolution and Biodiversity Berlin, Germany
-- index: 2
-  name: Department of Integrative Biology, University Of Guelph, Guelph, Ontario, Canada
-- index: 3
-  name: Estacion Biologica de Donana, Avda. Americo Vespucio, Isla de la Cartuja, Sevilla, Spain
+date: "18 July 2018"
+output: pdf_document
+bibliography: paper.bib
 tags:
 - CITES species+
 - taxonomy
@@ -24,8 +20,16 @@ tags:
 - illegal wildlife trade
 - species legislation
 - species distribution
-date: 18 July 2018
-bibliography: paper.bib
+affiliations:
+- index: 1
+  name: Museum für Naturkunde - Leibniz Institute for Research on Evolution and Biodiversity
+    Berlin, Germany
+- index: 2
+  name: Department of Integrative Biology, University Of Guelph, Guelph, Ontario,
+    Canada
+- index: 3
+  name: Estacion Biologica de Donana, Avda. Americo Vespucio, Isla de la Cartuja,
+    Sevilla, Spain
 ---
 
 
@@ -37,9 +41,9 @@ The conservation of biodiversity is a complex problem strongly tight to politica
 
 In 2013, the UNEP World Conservation Monitoring Centre (UNEP-WCMC) and the CITES Secretariat initiated a partnership funded by UNEP, the European Commission and the CITES Secretariat. Together, they created Speciesplus (or Species+), a comprehensive database of not only CITES listed species and their regulation status within CITES but also the species' status within the EU legislation and last but not least the species' status within the Convention on the Conservation of Migratory Species of Wild Animals (CMS) [@Speciesplus_about]. Speciesplus is publicly available at https://speciesplus.net [@UNEP]. 
 
-# The ``citesr`` R package
+# The ``rcites`` R package
 
-With ``citesr`` we provide an R [@R] client to the Species+/CITES Checklist API, giving access to the Speciesplus database. The ability to query the Speciesplus database directly from one of the most used programming languages for data analyses will improve the efficiency and reproducibility of biodiversity conservation analysis workflows.
+With ``rcites`` we provide an R [@R] client to the Species+/CITES Checklist API, giving access to the Speciesplus database. The ability to query the Speciesplus database directly from one of the most used programming languages for data analyses will improve the efficiency and reproducibility of biodiversity conservation analysis workflows.
 
 We provide functions to:
 
@@ -48,9 +52,11 @@ We provide functions to:
 3. get a species' country-wise distribution range, as listed in Speciesplus, and
 4. get the references on which a Speciesplus listing is based.
 
-``citesr`` is available at Github (https://github.com/ibartomeus/citesr) and on CRAN (link to come).
+``rcites`` is available at Github (https://github.com/ibartomeus/rcites) and on CRAN (link to come).
 
-``citesr`` will support researchers and national authorities in more efficiently dealing with taxonomy information of endangered species and their legislation status. Recent publications with data extraction from the Speciesplus database illustrate in what kind of research the package may be of help [@Hinsley:2018; @Robinson:2018]. In the spirit of CITES, taxonomic research in regard to illegal wildlife trade may be pointed out especially [@Zhou:2016; @Ingram:2015; @Zhou:2015].
+``rcites`` will support researchers and national authorities in more efficiently dealing with taxonomy information of endangered species and their legislation status.
+
+Recent publications with data extraction from the Speciesplus database illustrate in what kind of research the package may be of help [@Hinsley:2018; @Robinson:2018]. In the spirit of CITES, taxonomic research in regard to illegal wildlife trade may be pointed out especially [@Zhou:2016; @Ingram:2015; @Zhou:2015].
 
 
 # Acknowledgments

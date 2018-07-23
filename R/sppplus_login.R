@@ -12,7 +12,7 @@
 #'
 #' @examples
 #' # not run:
-#' # sppplus_login('8QW6Qgh57sBG2k0gtt')
+#' # sppplus_login('8QW6Qgh57sBG2*****')
 
 sppplus_login <- function(token = NULL) {
     if (is.null(token)) 

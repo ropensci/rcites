@@ -1,4 +1,4 @@
-Package: citesr
+Package: rcites
 Type: Package
 Title: An R package to access the CITES Speciesplus database (https://speciesplus.net/)
 Version: 0.1.1
@@ -10,8 +10,8 @@ Authors@R: c(person("Jonas", "Geschke", role = c("aut", "cre"), email = "jonas.e
   person("Marie-Bé", "Leduc", role = c("ctb")),
   person("Yasmine", "Verzelen", role = c("ctb")))
 Description: Access the CITES Species+ database.
-URL: https://ibartomeus.github.io/citesr/
-BugReports: https://github.com/ibartomeus/citesr/issues
+URL: https://ibartomeus.github.io/rcites/
+BugReports: https://github.com/ibartomeus/rcites/issues
 License: MIT + file LICENSE
 Depends:
   R (>= 3.1.0)

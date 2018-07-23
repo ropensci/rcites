@@ -3,7 +3,7 @@
 #' Retrieve available references for a given taxon concept.
 #'
 #' @param tax_id character string containing a species' taxon concept identifier
-#' (see \code{\link[citesr]{sppplus_taxonconcept}}).
+#' (see \code{\link[rcites]{sppplus_taxonconcept}}).
 #' @param type vector of character strings indicating the type of references
 #' requested, \code{taxonomic} or \code{distribution}.
 #' @param simplify a logical. Should the output be simplified? In other words,

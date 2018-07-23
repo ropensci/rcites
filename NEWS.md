@@ -1,4 +1,4 @@
-# citesr 0.1.1
+# rcites 0.1.1
 
 First release
 
