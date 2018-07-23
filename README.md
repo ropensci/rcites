@@ -1,4 +1,4 @@
-# rcites <img src="inst/cites-sticker.png" height="120" align="right"/>
+# rcites <img src="inst/rcites_logo.png" width="130" height="150" align="right"/>
 
 An R package to access information from the [Speciesplus](https://speciesplus.net/) database via the [Species+/CITES Checklist API](https://api.speciesplus.net/documentation/v1.html).
 
@@ -24,7 +24,7 @@ When citing, please refer to the citation of the package as well as the release 
 ### Installation
 
 So far, the only version available is the development version that could be
-installed vias the `devtools` package:
+installed via the `devtools` package:
 
 ```R
 devtools::install_github("ibartomeus/rcites")

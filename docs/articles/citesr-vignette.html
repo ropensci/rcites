@@ -52,7 +52,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/rcites-vignette.html">Get started with rcites</a>
+      <a href="../articles/citesr-vignette.html">Get started with rcites</a>
     </li>
   </ul>
 </li>
@@ -78,7 +78,7 @@
             <h4 class="date">07-18-2018</h4>
       
       
-      <div class="hidden name"><code>rcites-vignette.Rmd</code></div>
+      <div class="hidden name"><code>citesr-vignette.Rmd</code></div>
 
     </div>
 
@@ -103,10 +103,9 @@
 <h2 class="hasAnchor">
 <a href="#retrieve-a-taxon-concept-identifier" class="anchor"></a>Retrieve a taxon concept identifier</h2>
 <p>To efficiently query information from the CITES Speciesplus database, the user first needs to retrieve the unique identifier of taxon concept considered (<a href="https://api.speciesplus.net/documentation/v1/taxon_concepts/index.html" class="uri">https://api.speciesplus.net/documentation/v1/taxon_concepts/index.html</a>). To do so, the user should first call <code>sppplus_taxon()</code> and provide the scientific name of the taxon. Let us start by requesting the identifier of the African bush elephant, <em>i.e.</em> <em>Loxodonta africana</em>.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co">#devtools::install_github("ibartomeus/rcites")</span></a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">library</span>(rcites)</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3">res1 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/sppplus_taxonconcept.html">sppplus_taxonconcept</a></span>(<span class="dt">query_taxon =</span> <span class="st">"Loxodonta africana"</span>)</a>
-<a class="sourceLine" id="cb2-4" data-line-number="4">res1</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">library</span>(rcites)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">res1 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/sppplus_taxonconcept.html">sppplus_taxonconcept</a></span>(<span class="dt">query_taxon =</span> <span class="st">"Loxodonta africana"</span>)</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">res1</a></code></pre></div>
 <pre><code>#&gt;  $all
 #&gt;       id          full_name        author_year    rank name_status
 #&gt;  1: 4521 Loxodonta africana (Blumenbach, 1797) SPECIES           A
@@ -185,7 +184,7 @@
 <a class="sourceLine" id="cb14-3" data-line-number="3">  <span class="dt">xlab =</span> <span class="st">"Longitude"</span>, <span class="dt">ylab =</span> <span class="st">"Latitude"</span>)</a>
 <a class="sourceLine" id="cb14-4" data-line-number="4"><span class="kw">plot</span>(map2, <span class="dt">add =</span> T)</a>
 <a class="sourceLine" id="cb14-5" data-line-number="5"><span class="kw">plot</span>(map2[<span class="op">!</span>map2<span class="op">$</span>iso2,], <span class="dt">col =</span> <span class="st">"#bda25d"</span>, <span class="dt">add =</span> T)</a></code></pre></div>
-<p><img src="rcites-vignette_files/figure-html/map-1.png" width="614.4" style="display: block; margin: auto;"></p>
+<p><img src="citesr-vignette_files/figure-html/map-1.png" width="614.4" style="display: block; margin: auto;"></p>
 </div>
 <div id="query-references-information" class="section level2">
 <h2 class="hasAnchor">
