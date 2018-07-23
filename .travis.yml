@@ -8,6 +8,7 @@ matrix:
   include:
     - os: linux
       r: oldrel
+      env: NOT_CRAN=false
     - os: linux
       r: release
       env: R_CODECOV=true
