@@ -12,7 +12,7 @@ matrix:
       r: release
       env: R_CODECOV=true
     - os: linux
-      os: devel
+      r: devel
 
 
 notifications:
