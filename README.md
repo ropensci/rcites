@@ -7,9 +7,9 @@ When citing, please refer to the citation of the package as well as the release 
 
 ## Current Status
 
-[![Build Status](https://travis-ci.org/ibartomeus/rcites.svg?branch=master)](https://travis-ci.org/ibartomeus/rcites)
+[![Build Status](https://travis-ci.org/ibartomeus/citesr.svg?branch=master)](https://travis-ci.org/ibartomeus/citesr)
 [![Build status](https://ci.appveyor.com/api/projects/status/xrnpjvfwbhehhrfc/branch/master?svg=true)](https://ci.appveyor.com/project/KevCaz/rcites-v5385/branch/master)
-[![codecov](https://codecov.io/gh/ibartomeus/rcites/branch/master/graph/badge.svg)](https://codecov.io/gh/ibartomeus/rcites)
+[![codecov](https://codecov.io/gh/ibartomeus/citesr/branch/master/graph/badge.svg)](https://codecov.io/gh/ibartomeus/citesr)
 
 
 ## Key features
