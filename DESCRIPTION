@@ -10,7 +10,7 @@ Authors@R: c(person("Jonas", "Geschke", role = c("aut", "cre"), email = "jonas.e
   person("Marie-Bé", "Leduc", role = c("ctb")),
   person("Yasmine", "Verzelen", role = c("ctb")))
 Description: A programmatic interface to the Species+ <https://speciesplus.net/> database via the Species+/CITES Checklist API <https://api.speciesplus.net/>.
-URL: https://ibartomeus.github.io/rcites/
+URL: https://ibartomeus.github.io/rcites/, https://github.com/ibartomeus/rcites
 BugReports: https://github.com/ibartomeus/rcites/issues
 License: MIT + file LICENSE
 Depends:
