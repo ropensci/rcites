@@ -1,4 +1,4 @@
-# rcites <img src="inst/rcites_logo.png" width="130" height="150" align="right"/>
+# rcites <img src="man/figures/rcites_logo.png" width="130" height="150" align="right"/>
 
 An R package to access information from the [Speciesplus](https://speciesplus.net/) database via the [Species+/CITES Checklist API](https://api.speciesplus.net/documentation/v1.html).
 
