@@ -2,7 +2,7 @@
 
 An R package to access information from the [Speciesplus](https://speciesplus.net/) database via the [Species+/CITES Checklist API](https://api.speciesplus.net/documentation/v1.html).
 
-When citing please refer to the citation of the package as well as the release paper.
+When citing, please refer to the citation of the package as well as the release paper.
 
 
 ## Current Status
