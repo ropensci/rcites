@@ -27,16 +27,16 @@ So far, the only version available is the development version that could be
 installed vias the `devtools` package:
 
 ```R
-devtools::install_github("ibartomeus/rcites")
-library("rcites")
+devtools::install_github("ibartomeus/citesr")
+library("citesr")
 ```
 
-See the vignette for details on how to use the package: [vignette](https://ibartomeus.github.io/rcites/articles/rcites-vignette.html)
+See the vignette for details on how to use the package: [vignette](https://ibartomeus.github.io/citesr/articles/citesr-vignette.html)
 
 
 ## Contributors
 
-- Main contributors: https://github.com/ibartomeus/rcites/graphs/contributors
+- Main contributors: https://github.com/ibartomeus/citesr/graphs/contributors
 - Reporting issues:
   - [FVFaleiro](https://github.com/FVFaleiro);
 
