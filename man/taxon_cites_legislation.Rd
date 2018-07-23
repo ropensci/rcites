@@ -9,7 +9,7 @@ taxon_cites_legislation(tax_id, type = c("listings", "quotas", "suspensions"),
 }
 \arguments{
 \item{tax_id}{character string containing a species' taxon concept identifier
-(see \code{\link[citesr]{sppplus_taxonconcept}}).}
+(see \code{\link[rcites]{sppplus_taxonconcept}}).}
 
 \item{type}{vector of character strings indicating type of legislation information requested, values are taken among \code{listing}, \code{quota} and \code{suspension}. Default includes the three of them.}
 

@@ -9,7 +9,7 @@ taxon_references(tax_id, type = c("taxonomic", "distribution"),
 }
 \arguments{
 \item{tax_id}{character string containing a species' taxon concept identifier
-(see \code{\link[citesr]{sppplus_taxonconcept}}).}
+(see \code{\link[rcites]{sppplus_taxonconcept}}).}
 
 \item{type}{vector of character strings indicating the type of references
 requested, \code{taxonomic} or \code{distribution}.}

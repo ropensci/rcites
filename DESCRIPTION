@@ -1,6 +1,6 @@
-Package: citesr
+Package: rcites
 Type: Package
-Title: An R package to access the CITES Speciesplus database (https://speciesplus.net/)
+Title: R interface to the Species+ database
 Version: 0.1.0
 Date: 2018-07-23
 Authors@R: c(person("Jonas", "Geschke", role = c("aut", "cre"), email = "jonas.e.geschke@gmail.com", comment = c(ORCID = "0000-0002-5654-9313")),
@@ -9,9 +9,9 @@ Authors@R: c(person("Jonas", "Geschke", role = c("aut", "cre"), email = "jonas.e
   person("Jonathan", "Goldenberg", role = c("ctb")),
   person("Marie-Bé", "Leduc", role = c("ctb")),
   person("Yasmine", "Verzelen", role = c("ctb")))
-Description: An R package to access information from the Speciesplus database via the Species+/CITES Checklist API.
-URL: https://ibartomeus.github.io/citesr/
-BugReports: https://github.com/ibartomeus/citesr/issues
+Description: A programmatic interface to the Species+ <https://speciesplus.net/> database via the Species+/CITES Checklist API <https://api.speciesplus.net/>.
+URL: https://ibartomeus.github.io/rcites/
+BugReports: https://github.com/ibartomeus/rcites/issues
 License: MIT + file LICENSE
 Depends:
   R (>= 3.1.0)

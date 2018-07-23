@@ -9,7 +9,7 @@ taxon_distribution(tax_id, collapse_tags = NULL, simplify = FALSE,
 }
 \arguments{
 \item{tax_id}{character string containing a species' taxon concept identifier
-(see \code{\link[citesr]{sppplus_taxonconcept}}).}
+(see \code{\link[rcites]{sppplus_taxonconcept}}).}
 
 \item{collapse_tags}{a string used to collapse tags. Default is set to \code{NULL} meaning that tags column's elements remains lists.}
 

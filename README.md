@@ -1,4 +1,4 @@
-# citesr
+# rcites <img src="inst/cites-sticker.png" height="120" align="right"/>
 
 An R package to access information from the [Speciesplus](https://speciesplus.net/) database via the [Species+/CITES Checklist API](https://api.speciesplus.net/documentation/v1.html).
 
@@ -7,9 +7,9 @@ When citing, please refer to the citation of the package as well as the release 
 
 ## Current Status
 
-[![Build Status](https://travis-ci.org/ibartomeus/citesr.svg?branch=master)](https://travis-ci.org/ibartomeus/citesr)
-[![Build status](https://ci.appveyor.com/api/projects/status/xrnpjvfwbhehhrfc/branch/master?svg=true)](https://ci.appveyor.com/project/KevCaz/citesr-v5385/branch/master)
-[![codecov](https://codecov.io/gh/ibartomeus/citesr/branch/master/graph/badge.svg)](https://codecov.io/gh/ibartomeus/citesr)
+[![Build Status](https://travis-ci.org/ibartomeus/rcites.svg?branch=master)](https://travis-ci.org/ibartomeus/rcites)
+[![Build status](https://ci.appveyor.com/api/projects/status/xrnpjvfwbhehhrfc/branch/master?svg=true)](https://ci.appveyor.com/project/KevCaz/rcites-v5385/branch/master)
+[![codecov](https://codecov.io/gh/ibartomeus/rcites/branch/master/graph/badge.svg)](https://codecov.io/gh/ibartomeus/rcites)
 
 
 ## Key features
@@ -27,16 +27,16 @@ So far, the only version available is the development version that could be
 installed vias the `devtools` package:
 
 ```R
-devtools::install_github("ibartomeus/citesr")
-library("citesr")
+devtools::install_github("ibartomeus/rcites")
+library("rcites")
 ```
 
-See the vignette for details on how to use the package: [vignette](https://ibartomeus.github.io/citesr/articles/citesr-vignette.html)
+See the vignette for details on how to use the package: [vignette](https://ibartomeus.github.io/rcites/articles/rcites-vignette.html)
 
 
 ## Contributors
 
-- Main contributors: https://github.com/ibartomeus/citesr/graphs/contributors
+- Main contributors: https://github.com/ibartomeus/rcites/graphs/contributors
 - Reporting issues:
   - [FVFaleiro](https://github.com/FVFaleiro);
 

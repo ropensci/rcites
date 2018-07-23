@@ -10,10 +10,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<meta name="author" content="citesr team" />
+<meta name="author" content="rcites team" />
 
 
-<title>Get started with citesr</title>
+<title>Get started with rcites</title>
 
 
 
@@ -277,8 +277,8 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 
 
 
-<h1 class="title toc-ignore">Get started with citesr</h1>
-<h4 class="author"><em>citesr team</em></h4>
+<h1 class="title toc-ignore">Get started with rcites</h1>
+<h4 class="author"><em>rcites team</em></h4>
 <h4 class="date"><em>12-03-2018</em></h4>
 
 
@@ -287,7 +287,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <div id="set-up-a-connection-to-the-species-plus-database" class="section level2">
 <h2>Set up a connection to the species plus database</h2>
 <p>To set up a connection to the CITES Speciesplus database, an authentication token is required. To obtain such a token, the user must sign up on the <a href="http://api.speciesplus.net/users/sign_up">Speciesplus API website</a>. Below, we assume that the user already possesses a token and that its value is <code>8QW6Qgh57sBG2k0gtt</code> just as on the API documentation (see <a href="https://api.speciesplus.net/documentation" class="uri">https://api.speciesplus.net/documentation</a> for more details).</p>
-<p>A token is actually mandatory as it should be passed to the header of all URL requests. They are three different ways to use the token in <code>citesr</code>:</p>
+<p>A token is actually mandatory as it should be passed to the header of all URL requests. They are three different ways to use the token in <code>rcites</code>:</p>
 <ol style="list-style-type: decimal">
 <li><p>set an environment variable <code>SPPPLUS_TOKEN</code> in <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/Startup.html"><code>.Renviron</code></a> file (preferred);</p></li>
 <li><p>use <code>sppplus_login()</code>, <em>i.e.</em> interactively set <code>SPPPLUS_TOKEN</code> up for the current R session (meaning a login will be needed the next session);</p></li>
@@ -297,7 +297,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <div id="retrieve-a-taxon-concept-identifier" class="section level2">
 <h2>Retrieve a taxon concept identifier</h2>
 <p>To efficiently query information from the CITES Speciesplus database, the user first needs to retrieve the unique identifier of taxon concept considered (<a href="https://api.speciesplus.net/documentation/v1/taxon_concepts/index.html" class="uri">https://api.speciesplus.net/documentation/v1/taxon_concepts/index.html</a>). To do so, the user should first call <code>sppplus_taxon()</code> and provide the scientific name of the taxon. Let us start by requesting the identifier of the African bush elephant, <em>i.e.</em> <em>Loxodonta africana</em>.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(citesr)</a>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(rcites)</a>
 <a class="sourceLine" id="cb1-2" data-line-number="2">res1 &lt;-<span class="st"> </span><span class="kw">sppplus_taxonconcept</span>(<span class="dt">query_taxon =</span> <span class="st">&quot;Loxodonta africana&quot;</span>)</a>
 <a class="sourceLine" id="cb1-3" data-line-number="3">res1</a></code></pre></div>
 <pre><code>#&gt;  $all

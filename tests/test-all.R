@@ -1,4 +1,4 @@
 library(testthat)
-library(citesr)
+library(rcites)
 
-test_check("citesr")
+test_check("rcites")

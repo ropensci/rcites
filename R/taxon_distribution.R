@@ -4,7 +4,7 @@
 #' the taxon identifier is known.
 #'
 #' @param tax_id character string containing a species' taxon concept identifier
-#' (see \code{\link[citesr]{sppplus_taxonconcept}}).
+#' (see \code{\link[rcites]{sppplus_taxonconcept}}).
 #' @param collapse_tags a string used to collapse tags. Default is set to \code{NULL} meaning that tags column's elements remains lists.
 #' @param simplify a logical. Should the output be simplified? In other words,
 #' should columns of data.table objects returned be unlisted when they are

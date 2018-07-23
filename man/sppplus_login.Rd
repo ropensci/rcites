@@ -15,7 +15,7 @@ This function sets the authentification token for the current session.
 }
 \examples{
 # not run:
-# sppplus_login('8QW6Qgh57sBG2k0gtt')
+# sppplus_login('8QW6Qgh57sBG2*****')
 }
 \references{
 \url{https://api.speciesplus.net/documentation}

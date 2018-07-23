@@ -1,5 +1,5 @@
 <<<<<<< HEAD
-# citesr 0.1.0
+# rcites 0.1.0
 >>>>>>> 832d3e3b049a424c66072c3b2d269107708d4df0
 
 First release
