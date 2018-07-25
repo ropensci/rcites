@@ -1,6 +1,6 @@
 # rcites <img src="man/figures/rcites_logo.png" width="130" height="150" align="right"/>
 
-An R package to access information from the [Speciesplus](https://speciesplus.net/) database via the [Species+/CITES Checklist API](https://api.speciesplus.net/documentation/v1.html).
+An R package to access information from the [Speciesplus](https://speciesplus.net/) database via the [Species+/CITES Checklist API](https://api.speciesplus.net/documentation/v1.html). The package is available for download from [CRAN](link to come) (stable version) and [Github](https://github.com/ibartomeus/rcites) (development version).
 
 When citing, please refer to the citation of the package as well as the release paper.
 
