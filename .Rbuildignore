@@ -15,7 +15,8 @@
 ^inst/ms/
 ^\.github/
 ^\.Renviron
-^paper/
+^paper.bib
+^paper.md
 ^news.md
 ^inst/_pkgdown.
 ^cran-comments.md
