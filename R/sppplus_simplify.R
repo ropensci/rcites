@@ -21,7 +21,7 @@
 sppplus_simplify <- function(x) {
     if (dim(x)[1L]) {
         cla_col <- sapply(x, function(y) class(y[[1L]]))
-        for (i in 1:ncol(x)) {
+        for (i in seq_len(ncol(x))) {
             if (cla_col[i] %in% c("character", "integer", "logical", "numeric")) 
                 data.table::set(x, j = i, value = methods::as(x[[i]], cla_col[i]))
         }

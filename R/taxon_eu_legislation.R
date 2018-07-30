@@ -34,7 +34,7 @@ taxon_eu_legislation <- function(tax_id, type = c("listings", "decisions"), simp
     token = NULL) {
     # token
     if (is.null(token)) 
-        token = sppplus_getsecret()
+        token <- sppplus_getsecret()
     # 
     type <- unique(type)
     stopifnot(all(type %in% c("listings", "decisions")))

@@ -33,7 +33,7 @@ taxon_cites_legislation <- function(tax_id, type = c("listings", "quotas", "susp
     simplify = FALSE, token = NULL) {
     # check token
     if (is.null(token)) 
-        token = sppplus_getsecret()
+        token <- sppplus_getsecret()
     # 
     stopifnot(all(type %in% c("listings", "quotas", "suspensions")))
     type <- unique(type)

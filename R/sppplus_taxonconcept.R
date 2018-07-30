@@ -35,7 +35,7 @@
 sppplus_taxonconcept <- function(query_taxon, appendix_only = FALSE, token = NULL) {
     # token check
     if (is.null(token)) 
-        token = sppplus_getsecret()
+        token <- sppplus_getsecret()
     query <- gsub(pattern = " ", replacement = "%20", x = query_taxon)
     # 
     q_url <- sppplus_url(paste0("taxon_concepts.json", "?name=", query))

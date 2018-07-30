@@ -1,3 +1,13 @@
+# rcites 0.1.1.9000
+
+- follow `goodpractice`:
+
+  - use '<-' for assignment instead of '=',
+  - omit "Date" in DESCRIPTION,
+  - avoid 1:length(...), 1:nrow(...), 1:ncol(...),
+  - remove ‘jsonlite’ from DESCRIPTION.
+
+
 # rcites 0.1.0
 
 First release

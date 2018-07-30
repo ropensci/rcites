@@ -32,7 +32,7 @@
 taxon_distribution <- function(tax_id, collapse_tags = NULL, simplify = FALSE, token = NULL) {
     # token check
     if (is.null(token)) 
-        token = sppplus_getsecret()
+        token <- sppplus_getsecret()
     # 
     q_url <- sppplus_url(paste0("taxon_concepts/", tax_id, "/distributions.json"))
     res <- sppplus_res(q_url, token)
