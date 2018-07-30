@@ -10,8 +10,7 @@ authors:
 - affiliation: 3
   name: Ignasi Bartomeus
   orcid: 0000-0001-7893-4389
-date: "18 July 2018"
-output: pdf_document
+date: "24 July 2018"
 bibliography: paper.bib
 tags:
 - CITES species+
@@ -22,14 +21,11 @@ tags:
 - species distribution
 affiliations:
 - index: 1
-  name: Museum für Naturkunde - Leibniz Institute for Research on Evolution and Biodiversity
-    Berlin, Germany
+  name: Museum für Naturkunde - Leibniz Institute for Research on Evolution and Biodiversity Berlin, Germany
 - index: 2
-  name: Department of Integrative Biology, University Of Guelph, Guelph, Ontario,
-    Canada
+  name: Department of Integrative Biology, University Of Guelph, Guelph, Ontario, Canada
 - index: 3
-  name: Estacion Biologica de Donana, Avda. Americo Vespucio, Isla de la Cartuja,
-    Sevilla, Spain
+  name: Estacion Biologica de Donana, Avda. Americo Vespucio, Isla de la Cartuja, Sevilla, Spain
 ---
 
 
@@ -52,7 +48,7 @@ We provide functions to:
 3. get a species' country-wise distribution range, as listed in Speciesplus, and
 4. get the references on which a Speciesplus listing is based.
 
-``rcites`` is available at Github (https://github.com/ibartomeus/rcites) and on CRAN (link to come).
+General information on ``rcites`` can be found at https://ibartomeus.github.io/rcites/. The package is available for download from CRAN (stable version; link to come) and Github (development version; https://github.com/ibartomeus/rcites).
 
 ``rcites`` will support researchers and national authorities in more efficiently dealing with taxonomy information of endangered species and their legislation status.
 
