@@ -165,10 +165,7 @@ be used to set <code>SPPPLUS_TOKEN</code> for the current session.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'># not run:
-# res1 <- taxon_references(tax_id = '4521')
-# res2 <- taxon_references(tax_id = '4521', type = 'taxonomic', simplify = T)
-</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>res1</span> <span class='kw'>&lt;-</span> <span class='fu'>taxon_references</span>(<span class='kw'>tax_id</span> <span class='kw'>=</span> <span class='st'>'4521'</span>)</div><div class='output co'>#&gt; <span class='error'>Error in sppplus_res(q_url, token): Too Many Requests (RFC 6585) (HTTP 429).</span></div><div class='input'><span class='no'>res2</span> <span class='kw'>&lt;-</span> <span class='fu'>taxon_references</span>(<span class='kw'>tax_id</span> <span class='kw'>=</span> <span class='st'>'4521'</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>'taxonomic'</span>, <span class='kw'>simplify</span> <span class='kw'>=</span> <span class='no'>T</span>)</div><div class='output co'>#&gt; <span class='error'>Error in sppplus_res(q_url, token): Too Many Requests (RFC 6585) (HTTP 429).</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
