@@ -17,16 +17,18 @@
 #'
 #' @return A list of data.table objects, one per type requested.
 #'
-#' @importFrom data.table as.data.table data.table
-#' @export
-#'
 #' @references
 #' \url{https://api.speciesplus.net/documentation/v1/references/index.html}
 #'
+#'
+#' @importFrom data.table as.data.table data.table
+#' @export
+#'
 #' @examples
-#' # not run:
-#' # res1 <- taxon_references(tax_id = '4521')
-#' # res2 <- taxon_references(tax_id = '4521', type = 'taxonomic', simplify = T)
+#' \donttest{
+#' res1 <- taxon_references(tax_id = '4521')
+#' res2 <- taxon_references(tax_id = '4521', type = 'taxonomic', simplify = T)
+#' }
 
 taxon_references <- function(tax_id, type = c("taxonomic", "distribution"), simplify = FALSE, 
     token = NULL) {

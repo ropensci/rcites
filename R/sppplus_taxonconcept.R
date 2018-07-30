@@ -19,17 +19,18 @@
 #' information is returned. Importantly enough, this functions returns the
 #' taxon concept identifier that is required by the \code{taxon_*()} functions.
 #'
-#' @importFrom data.table as.data.table :=
-#'
 #' @references
 #' \url{https://api.speciesplus.net/documentation/v1/taxon_concepts/index.html}
 #'
+#' @importFrom data.table as.data.table :=
 #' @export
+#'
 #' @examples
-#' # Not run:
-#' # res1 <- sppplus_taxonconcept(query_taxon = 'Loxodonta africana')
-#' # res2 <- sppplus_taxonconcept(query_taxon = 'Loxodonta africana', appendix_only = TRUE)
-#' # res3 <- sppplus_taxonconcept(query_taxon = 'Amazilia versicolor')
+#' \donttest{
+#' res1 <- sppplus_taxonconcept(query_taxon = 'Loxodonta africana')
+#' res2 <- sppplus_taxonconcept(query_taxon = 'Loxodonta africana', appendix_only = TRUE)
+#' res3 <- sppplus_taxonconcept(query_taxon = 'Amazilia versicolor')
+#' }
 
 sppplus_taxonconcept <- function(query_taxon, appendix_only = FALSE, token = NULL) {
     # token check

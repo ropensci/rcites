@@ -31,10 +31,11 @@ Retrieve current EU annex listings, SRG opinions, and EU suspensions for a
 given taxon concept (identifier must be known).
 }
 \examples{
-# not run:
-# res1 <- taxon_eu_legislation(tax_id = '4521')
-# res2 <- taxon_eu_legislation(tax_id = '4521', type ='listings')
-# res3 <- taxon_eu_legislation(tax_id = '4521', type ='listings', simplify = T)
+\donttest{
+res1 <- taxon_eu_legislation(tax_id = '4521')
+res2 <- taxon_eu_legislation(tax_id = '4521', type ='listings')
+res3 <- taxon_eu_legislation(tax_id = '4521', type ='listings', simplify = T)
+}
 }
 \references{
 \url{https://api.speciesplus.net/documentation/v1/eu_legislation/index.html}

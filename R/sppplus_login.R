@@ -11,8 +11,9 @@
 #' @export
 #'
 #' @examples
-#' # not run:
-#' # sppplus_login('8QW6Qgh57sBG2*****')
+#' \donttest{
+#'  sppplus_login()
+#' }
 
 sppplus_login <- function(token = NULL) {
     if (is.null(token)) 
