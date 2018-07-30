@@ -31,9 +31,10 @@ Retrieve distributions data available for a given taxon concept for which the
 the taxon identifier is known.
 }
 \examples{
-# not run:
-# res1 <- taxon_distribution(tax_id = '4521')
-# res2 <- taxon_distribution(tax_id = '4521', collapse_tags = ' + ', simplify = T)
+\donttest{
+ res1 <- taxon_distribution(tax_id = '4521')
+ res2 <- taxon_distribution(tax_id = '4521', collapse_tags = ' + ', simplify = T)
+}
 }
 \references{
 \url{https://api.speciesplus.net/documentation/v1/distributions/index.html}

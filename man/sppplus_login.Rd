@@ -14,8 +14,9 @@ token can be passed interactively.}
 This function sets the authentification token for the current session.
 }
 \examples{
-# not run:
-# sppplus_login('8QW6Qgh57sBG2*****')
+\donttest{
+ sppplus_login()
+}
 }
 \references{
 \url{https://api.speciesplus.net/documentation}

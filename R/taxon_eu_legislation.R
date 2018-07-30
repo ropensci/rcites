@@ -24,10 +24,11 @@
 #' @export
 #'
 #' @examples
-#' # not run:
-#' # res1 <- taxon_eu_legislation(tax_id = '4521')
-#' # res2 <- taxon_eu_legislation(tax_id = '4521', type ='listings')
-#' # res3 <- taxon_eu_legislation(tax_id = '4521', type ='listings', simplify = T)
+#' \donttest{
+#' res1 <- taxon_eu_legislation(tax_id = '4521')
+#' res2 <- taxon_eu_legislation(tax_id = '4521', type ='listings')
+#' res3 <- taxon_eu_legislation(tax_id = '4521', type ='listings', simplify = T)
+#' }
 
 taxon_eu_legislation <- function(tax_id, type = c("listings", "decisions"), simplify = FALSE, 
     token = NULL) {

@@ -31,9 +31,10 @@ A list of data.table objects, one per type requested.
 Retrieve available references for a given taxon concept.
 }
 \examples{
-# not run:
-# res1 <- taxon_references(tax_id = '4521')
-# res2 <- taxon_references(tax_id = '4521', type = 'taxonomic', simplify = T)
+\donttest{
+res1 <- taxon_references(tax_id = '4521')
+res2 <- taxon_references(tax_id = '4521', type = 'taxonomic', simplify = T)
+}
 }
 \references{
 \url{https://api.speciesplus.net/documentation/v1/references/index.html}

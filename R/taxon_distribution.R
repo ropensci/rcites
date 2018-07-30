@@ -17,17 +17,17 @@
 #'
 #' @return A data table with all distribution information.
 #'
-#' @importFrom data.table as.data.table
-#'
 #' @references
 #' \url{https://api.speciesplus.net/documentation/v1/distributions/index.html}
 #'
+#' @importFrom data.table as.data.table
 #' @export
 #'
 #' @examples
-#' # not run:
-#' # res1 <- taxon_distribution(tax_id = '4521')
-#' # res2 <- taxon_distribution(tax_id = '4521', collapse_tags = ' + ', simplify = T)
+#' \donttest{
+#'  res1 <- taxon_distribution(tax_id = '4521')
+#'  res2 <- taxon_distribution(tax_id = '4521', collapse_tags = ' + ', simplify = T)
+#' }
 
 taxon_distribution <- function(tax_id, collapse_tags = NULL, simplify = FALSE, token = NULL) {
     # token check

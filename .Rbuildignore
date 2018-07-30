@@ -19,3 +19,4 @@
 ^news.md
 ^inst/_pkgdown.
 ^cran-comments.md
+^_pkgdown\.yml$

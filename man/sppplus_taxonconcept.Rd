@@ -29,10 +29,11 @@ taxon concept identifier that is required by the \code{taxon_*()} functions.
 Retrieve the taxon concept of a specific taxon (scientific name).
 }
 \examples{
-# Not run:
-# res1 <- sppplus_taxonconcept(query_taxon = 'Loxodonta africana')
-# res2 <- sppplus_taxonconcept(query_taxon = 'Loxodonta africana', appendix_only = TRUE)
-# res3 <- sppplus_taxonconcept(query_taxon = 'Amazilia versicolor')
+\donttest{
+res1 <- sppplus_taxonconcept(query_taxon = 'Loxodonta africana')
+res2 <- sppplus_taxonconcept(query_taxon = 'Loxodonta africana', appendix_only = TRUE)
+res3 <- sppplus_taxonconcept(query_taxon = 'Amazilia versicolor')
+}
 }
 \references{
 \url{https://api.speciesplus.net/documentation/v1/taxon_concepts/index.html}

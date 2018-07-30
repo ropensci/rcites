@@ -1,5 +1,8 @@
 ## This is our first submission
 
+NB: Following the first review, I now use \donttest{} instead of commenting out
+examples.
+
 ## Test environments
 
 * local OS X install (10.13.6), R 3.5.1
@@ -9,6 +12,7 @@
 
 
 ## R CMD check results
+
 There were no ERRORs or WARNINGs.
 
 1 NOTE, New submission:
