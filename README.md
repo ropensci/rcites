@@ -12,7 +12,7 @@ When citing, please refer to the citation of the package as well as the release 
 [![codecov](https://codecov.io/gh/ibartomeus/rcites/branch/master/graph/badge.svg)](https://codecov.io/gh/ibartomeus/rcites)
 
 [![CRAN status](https://www.r-pkg.org/badges/version/rcites)](https://www.r-pkg.org/badges/version/rcites)
-[![CRAN downloads](https://cranlogs.r-pkg.org/badges/rcites)](https://cran.r-project.org/package=rcites)
+[![CRAN downloads](https://cranlogs.r-pkg.org/badges/grand-total/rcites)](https://cran.r-project.org/package=rcites)
 
 ## Key features
 
