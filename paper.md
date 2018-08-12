@@ -10,7 +10,7 @@ authors:
 - affiliation: 3
   name: Ignasi Bartomeus
   orcid: 0000-0001-7893-4389
-date: "24 July 2018"
+date: "12 August 2018"
 bibliography: paper.bib
 tags:
 - CITES species+
@@ -48,7 +48,7 @@ We provide functions to:
 3. get a species' country-wise distribution range, as listed in Speciesplus, and
 4. get the references on which a Speciesplus listing is based.
 
-General information on ``rcites`` can be found at https://ibartomeus.github.io/rcites/. The package is available for download from CRAN (stable version; link to come) and Github (development version; https://github.com/ibartomeus/rcites).
+General information on ``rcites`` can be found at https://ibartomeus.github.io/rcites/. The package is available for download from CRAN (stable version; https://cran.r-project.org/package=rcites) and Github (development version; https://github.com/ibartomeus/rcites).
 
 ``rcites`` will support researchers and national authorities in more efficiently dealing with taxonomy information of endangered species and their legislation status.
 
