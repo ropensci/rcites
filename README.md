@@ -7,7 +7,7 @@ When citing, please refer to the citation of the package as well as the release 
 
 ## Current Status
 
-[![Build Status](https://travis-ci.org/ibartomeus/rcites.svg?branch=master)](https://travis-ci.org/ibartomeus/rcites)
+[![Build status](https://travis-ci.org/ibartomeus/rcites.svg?branch=master)](https://travis-ci.org/ibartomeus/rcites)
 [![Build status](https://ci.appveyor.com/api/projects/status/bsd3c7mv12xv959j/branch/master?svg=true)](https://ci.appveyor.com/project/KevCaz/rcites/branch/master)
 [![codecov](https://codecov.io/gh/ibartomeus/rcites/branch/master/graph/badge.svg)](https://codecov.io/gh/ibartomeus/rcites)
 [![CRAN status](https://www.r-pkg.org/badges/version/rcites)](https://www.r-pkg.org/badges/version/rcites)
@@ -25,8 +25,14 @@ When citing, please refer to the citation of the package as well as the release 
 
 ### Installation
 
-So far, the only version available is the development version that could be
-installed via the `devtools` package:
+The package can be installed from CRAN:
+
+```R
+install.packages("rcites")
+library("rcites")
+```
+
+The development version can be installed via the `devtools` package:
 
 ```R
 devtools::install_github("ibartomeus/rcites")
