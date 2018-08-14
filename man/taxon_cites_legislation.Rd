@@ -4,8 +4,8 @@
 \alias{taxon_cites_legislation}
 \title{Get current CITES appendix listings and reservations.}
 \usage{
-taxon_cites_legislation(tax_id, type = c("listings", "quotas", "suspensions"),
-  simplify = FALSE, token = NULL)
+taxon_cites_legislation(tax_id, type = c("listings", "quotas",
+  "suspensions"), simplify = FALSE, token = NULL)
 }
 \arguments{
 \item{tax_id}{character string containing a species' taxon concept identifier

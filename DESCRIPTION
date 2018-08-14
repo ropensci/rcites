@@ -19,6 +19,6 @@ Imports:
   data.table,
   methods
 Encoding: UTF-8
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.0
 Suggests: knitr, rmarkdown, testthat, rworldmap
 VignetteBuilder: knitr

@@ -5,7 +5,7 @@
 #'
 #' @param x a data.table object to be simplified.
 #'
-#' @return A data.table object  with a simplified structure.
+#' @return A data.table object with a simplified structure.
 #'
 #' @details
 #' For the sake of generality, CITES Species+ API outputs are parsed
@@ -19,13 +19,16 @@
 #' @export
 
 sppplus_simplify <- function(x) {
-    if (dim(x)[1L]) {
-        cla_col <- sapply(x, function(y) class(y[[1L]]))
+    # check
+    stopifnot("data.table" %in% class(x))
+    #
+    if (nrow(x)) {
+        cla_col <- apply(x, 2, function(y) class(y[[1L]]))
         for (i in seq_len(ncol(x))) {
-            if (cla_col[i] %in% c("character", "integer", "logical", "numeric")) 
+            if (cla_col[i] %in% c("character", "integer", "logical", "numeric"))
                 data.table::set(x, j = i, value = methods::as(x[[i]], cla_col[i]))
         }
-        # 
+        #
         spc <- c("geo_entity", "start_notification", "start_event", "decision_type")
         tst <- names(x) %in% spc
         if (sum(tst)) {
@@ -36,7 +39,7 @@ sppplus_simplify <- function(x) {
             }
             x[, `:=`((nid), NULL)]
         }
-        # uses only references so output is invisible
+        # uses only references so no output
         invisible(NULL)
     }
 }
@@ -44,9 +47,9 @@ sppplus_simplify <- function(x) {
 
 
 sppplus_special_case <- function(x, case) {
-    out <- do.call(rbind.data.frame, lapply(x, function(y) do.call(cbind.data.frame, 
+    out <- do.call(rbind.data.frame, lapply(x, function(y) do.call(cbind.data.frame,
         y)))
-    if ("date" %in% names(out)) 
+    if ("date" %in% names(out))
         out$date <- as.Date(out$date)
     names(out) <- paste0(case, "_", names(out))
     out

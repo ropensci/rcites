@@ -34,28 +34,30 @@
 
 sppplus_taxonconcept <- function(query_taxon, appendix_only = FALSE, token = NULL) {
     # token check
-    if (is.null(token)) 
+    if (is.null(token))
         token <- sppplus_getsecret()
     query <- gsub(pattern = " ", replacement = "%20", x = query_taxon)
-    # 
+    #
     q_url <- sppplus_url(paste0("taxon_concepts.json", "?name=", query))
     res <- sppplus_res(q_url, token)
-    
+
     if (!res$pagination$total_entries) {
         warning("Taxon not listed.")
         out <- NULL
     } else {
-        nm <- c("id", "full_name", "author_year", "rank", "name_status", "updated_at", 
+        nm <- c("id", "full_name", "author_year", "rank", "name_status", "updated_at",
             "active", "cites_listing")
         tmp <- as.data.table(do.call(rbind, lapply(res$taxon_concepts, function(x) rbind(x[nm]))))
+        #
         sppplus_simplify(tmp)
+        #
         if (isTRUE(appendix_only)) {
             out <- tmp
         } else {
             out <- list()
             out$all <- tmp
             tmp <- res$taxon_concepts[[1L]]
-            # 
+            #
             if ("synonyms" %in% names(tmp)) {
                 out$synonyms <- as.data.table(do.call(cbind, tmp$synonyms[[1L]]))
             }
@@ -67,6 +69,6 @@ sppplus_taxonconcept <- function(query_taxon, appendix_only = FALSE, token = NUL
             }
         }
     }
-    # 
+    #
     out
 }
