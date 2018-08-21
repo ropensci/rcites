@@ -1,10 +1,12 @@
-#' rcites:
+#' rcites
 #'
 #' A programmatic interface to the Species+ <https://speciesplus.net/> database
 #' via the Species+/CITES Checklist API <https://api.speciesplus.net/>.
 #'
 #' @docType package
 #' @name rcites
+#' @keywords internal
+"_PACKAGE"
 
 ## Helper functions
 
