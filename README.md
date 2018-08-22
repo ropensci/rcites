@@ -17,18 +17,13 @@ An R package to access information from the [Speciesplus](https://speciesplus.ne
 Background information about [CITES](https://cites.org), the Convention on International Trade in Endangered Species of Wild Fauna and Flora, and the Speciesplus database, as well as basic information about the aim of `rcites` can be found in the [release paper](link to come).
 
 
-### Citation information
-
-When citing, please refer to both the [package citation](https://ibartomeus.github.io/rcites/authors.html) and the [release paper](link to come).
-
-
 ### Key features
 
-- sppplus_taxonconcept(): [retrieve a taxon concept](https://api.speciesplus.net/documentation/v1/taxon_concepts/index.html)
-- taxon_cites_legislation(): [access CITES legislation data](https://api.speciesplus.net/documentation/v1/cites_legislation/index.html)
-- taxon_eu_legislation(): [access EU legislation data](https://api.speciesplus.net/documentation/v1/eu_legislation/index.html)
-- taxon_distribution(): [access a species' distribution data](https://api.speciesplus.net/documentation/v1/distributions/index.html)
-- taxon_references(): [access a listing reference data](https://api.speciesplus.net/documentation/v1/references/index.html)
+- sppplus_taxonconcept( ): [retrieve a taxon concept](https://api.speciesplus.net/documentation/v1/taxon_concepts/index.html)
+- taxon_cites_legislation( ): [access CITES legislation data](https://api.speciesplus.net/documentation/v1/cites_legislation/index.html)
+- taxon_eu_legislation( ): [access EU legislation data](https://api.speciesplus.net/documentation/v1/eu_legislation/index.html)
+- taxon_distribution( ): [access a taxon distribution data](https://api.speciesplus.net/documentation/v1/distributions/index.html)
+- taxon_references( ): [access a listing reference data](https://api.speciesplus.net/documentation/v1/references/index.html)
 
 
 ### Installation
@@ -54,9 +49,14 @@ Please see the vignette for details on how to use the package:
 [Get started with rcites](https://ibartomeus.github.io/rcites/articles/rcites-vignette.html)
 
 
+### Citation information
+
+When citing, please refer to both the [package citation](https://ibartomeus.github.io/rcites/authors.html) and the [release paper](link to come). Thank you.
+
+
 ## Contributors
 
-- Main contributors: https://github.com/ibartomeus/rcites/graphs/contributors
+- [Main contributors](https://github.com/ibartomeus/rcites/graphs/contributors)
 - Reporting issues:
   - [FVFaleiro](https://github.com/FVFaleiro);
 
