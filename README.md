@@ -1,16 +1,6 @@
-# rcites <img src="man/figures/rcites_logo.png" width="130" height="150" align="right"/>
+<img src="man/figures/rcites_logo.png" width="130" height="150" align="right"/>
 
-An R package to access information from the [Speciesplus](https://speciesplus.net/) database via the [Species+/CITES Checklist API](https://api.speciesplus.net/documentation/v1.html). The package is available for download from [CRAN](https://cran.r-project.org/package=rcites) (stable version) and [Github](https://github.com/ibartomeus/rcites) (development version).
-
-Background information about CITES, the Convention on International Trade in Endangered Species of Wild Fauna and Flora, and the Speciesplus database, as well as basic information about the aim of `rcites` can be found in the [release paper](link to come).
-
-
-## Citation information
-
-When citing, please refer to both the [package citation](https://ibartomeus.github.io/rcites/authors.html) and the [release paper](link to come).
-
-
-## Current Status
+### Current Status
 
 [![Build status](https://travis-ci.org/ibartomeus/rcites.svg?branch=master)](https://travis-ci.org/ibartomeus/rcites)
 [![Build status](https://ci.appveyor.com/api/projects/status/bsd3c7mv12xv959j/branch/master?svg=true)](https://ci.appveyor.com/project/KevCaz/rcites/branch/master)
@@ -20,7 +10,19 @@ When citing, please refer to both the [package citation](https://ibartomeus.gith
 [![CRAN downloads](https://cranlogs.r-pkg.org/badges/grand-total/rcites)](https://cran.r-project.org/package=rcites)
 
 
-## Key features
+# rcites
+
+An R package to access information from the [Speciesplus](https://speciesplus.net/) database via the [Species+/CITES Checklist API](https://api.speciesplus.net/documentation/v1.html). The package is available for download from [CRAN](https://cran.r-project.org/package=rcites) (stable version) and [Github](https://github.com/ibartomeus/rcites) (development version).
+
+Background information about [CITES](https://cites.org), the Convention on International Trade in Endangered Species of Wild Fauna and Flora, and the Speciesplus database, as well as basic information about the aim of `rcites` can be found in the [release paper](link to come).
+
+
+### Citation information
+
+When citing, please refer to both the [package citation](https://ibartomeus.github.io/rcites/authors.html) and the [release paper](link to come).
+
+
+### Key features
 
 - sppplus_taxonconcept(): [retrieve a taxon concept](https://api.speciesplus.net/documentation/v1/taxon_concepts/index.html)
 - taxon_cites_legislation(): [access CITES legislation data](https://api.speciesplus.net/documentation/v1/cites_legislation/index.html)
