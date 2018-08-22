@@ -2,7 +2,12 @@
 
 An R package to access information from the [Speciesplus](https://speciesplus.net/) database via the [Species+/CITES Checklist API](https://api.speciesplus.net/documentation/v1.html). The package is available for download from [CRAN](https://cran.r-project.org/package=rcites) (stable version) and [Github](https://github.com/ibartomeus/rcites) (development version).
 
-When citing, please refer to the citation of the package as well as the release paper.
+Background information about CITES, the Convention on International Trade in Endangered Species of Wild Fauna and Flora, and the Speciesplus database, as well as basic information about the aim of `rcites` can be found in the [release paper](link to come).
+
+
+## Citation information
+
+When citing, please refer to both the [package citation](https://ibartomeus.github.io/rcites/authors.html) and the [release paper](link to come).
 
 
 ## Current Status
@@ -17,11 +22,11 @@ When citing, please refer to the citation of the package as well as the release 
 
 ## Key features
 
-- sppplus_taxonconcept: [retrieve a taxon concept](https://api.speciesplus.net/documentation/v1/taxon_concepts/index.html)
-- taxon_distribution: [access distribution data](https://api.speciesplus.net/documentation/v1/distributions/index.html)
-- taxon_eu_legislation: [access EU legislation data](https://api.speciesplus.net/documentation/v1/eu_legislation/index.html)
-- taxon_cites_legislation: [Access legislation data](https://api.speciesplus.net/documentation/v1/cites_legislation/index.html)
-- taxon_references: [access reference data](https://api.speciesplus.net/documentation/v1/references/index.html)
+- sppplus_taxonconcept(): [retrieve a taxon concept](https://api.speciesplus.net/documentation/v1/taxon_concepts/index.html)
+- taxon_cites_legislation(): [access CITES legislation data](https://api.speciesplus.net/documentation/v1/cites_legislation/index.html)
+- taxon_eu_legislation(): [access EU legislation data](https://api.speciesplus.net/documentation/v1/eu_legislation/index.html)
+- taxon_distribution(): [access a species' distribution data](https://api.speciesplus.net/documentation/v1/distributions/index.html)
+- taxon_references(): [access a listing reference data](https://api.speciesplus.net/documentation/v1/references/index.html)
 
 
 ### Installation
@@ -40,7 +45,11 @@ devtools::install_github("ibartomeus/rcites")
 library("rcites")
 ```
 
-See the vignette for details on how to use the package: [vignette](https://ibartomeus.github.io/rcites/articles/rcites-vignette.html)
+
+### Setup requirements and use
+
+Please see the vignette for details on how to use the package:
+[Get started with rcites](https://ibartomeus.github.io/rcites/articles/rcites-vignette.html)
 
 
 ## Contributors
@@ -52,11 +61,11 @@ See the vignette for details on how to use the package: [vignette](https://ibart
 
 ## Resources
 
-While creating this package, we greatly benefited from:
+An other package dealing with data from and about CITES is [cites](https://github.com/ecohealthalliance/cites/), dealing with the CITES wildlife trade database.
 
+While creating this package, we greatly benefited from:
 1. [taxize](https://github.com/ropensci/taxize) that helps a lot in structuring this repository/package,
 2. the `httr` vignette: [Managing secrets](https://cran.r-project.org/web/packages/httr/vignettes/secrets.html), extremely helpful for packages dealing with API.
-
 
 
 ## Code of Conduct
