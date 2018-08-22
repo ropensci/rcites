@@ -14,7 +14,7 @@
 
 An R package to access information from the [Speciesplus](https://speciesplus.net/) database via the [Species+/CITES Checklist API](https://api.speciesplus.net/documentation/v1.html). The package is available for download from [CRAN](https://cran.r-project.org/package=rcites) (stable version) and [Github](https://github.com/ibartomeus/rcites) (development version).
 
-Background information about [CITES](https://cites.org), the Convention on International Trade in Endangered Species of Wild Fauna and Flora, and the Speciesplus database, as well as basic information about the aim of `rcites` can be found in the [release paper](link to come).
+Please check the [release paper](link to come) for background information about the Convention on International Trade in Endangered Species of Wild Fauna and Flora [CITES](https://cites.org), the Speciesplus database and basic information about the aim of `rcites`.
 
 
 ### Key features
@@ -63,7 +63,7 @@ When citing, please refer to both the [package citation](https://ibartomeus.gith
 
 ## Resources
 
-An other package dealing with data from and about CITES is [cites](https://github.com/ecohealthalliance/cites/), dealing with the CITES wildlife trade database.
+An other package dealing with data from and about CITES, providing access to its wildlife trade database: [cites](https://github.com/ecohealthalliance/cites/)
 
 While creating this package, we greatly benefited from:
 1. [taxize](https://github.com/ropensci/taxize) that helps a lot in structuring this repository/package,
