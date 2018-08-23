@@ -14,12 +14,12 @@
 
 An R package to access information from the [Speciesplus](https://speciesplus.net/) database via the [Species+/CITES Checklist API](https://api.speciesplus.net/documentation/v1.html). The package is available for download from [CRAN](https://cran.r-project.org/package=rcites) (stable version) and [Github](https://github.com/ibartomeus/rcites) (development version).
 
-Please check the [release paper](link to come) for background information about the Convention on International Trade in Endangered Species of Wild Fauna and Flora [CITES](https://cites.org), the Speciesplus database and basic information about the aim of `rcites`.
+Please see the [release paper](link to come) for background information about the Convention on International Trade in Endangered Species of Wild Fauna and Flora ([CITES](https://cites.org)), the Speciesplus database and basic information about the aim of the package.
 
 
 ### Key features
 
-- sppplus_taxonconcept( ): [retrieve a taxon concept](https://api.speciesplus.net/documentation/v1/taxon_concepts/index.html)
+- sppplus_taxonconcept( ): [access the Speciesplus taxon concept](https://api.speciesplus.net/documentation/v1/taxon_concepts/index.html)  and retrieve a taxon id
 - taxon_cites_legislation( ): [access CITES legislation data](https://api.speciesplus.net/documentation/v1/cites_legislation/index.html)
 - taxon_eu_legislation( ): [access EU legislation data](https://api.speciesplus.net/documentation/v1/eu_legislation/index.html)
 - taxon_distribution( ): [access a taxon distribution data](https://api.speciesplus.net/documentation/v1/distributions/index.html)
@@ -51,7 +51,7 @@ Please see the vignette for details on how to use the package:
 
 ### Citation information
 
-When citing, please refer to both the [package citation](https://ibartomeus.github.io/rcites/authors.html) and the [release paper](link to come). Thank you.
+When citing, please refer to both the [package citation](https://ibartomeus.github.io/rcites/authors.html) and the [release paper](link to come).
 
 
 ## Contributors
