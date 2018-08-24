@@ -2,7 +2,7 @@
 % Please edit documentation in R/print.R
 \name{print.spp_raw}
 \alias{print.spp_raw}
-\title{Print the result of a GitHub API call}
+\title{Print the result of a Species+ API call}
 \usage{
 \method{print}{spp_raw}(x, ...)
 }
@@ -15,5 +15,5 @@
 The JSON result.
 }
 \description{
-Print the result of a GitHub API call
+Print the result of a Species+ API call
 }

@@ -46,10 +46,14 @@ rcites_getsecret <- function() {
     val
 }
 
-
-
 # 
 rcites_forgetsecret <- function() Sys.unsetenv("SPECIESPLUS_TOKEN")
+
+# pagination
+rcites_numberpages <- function(x) {
+    x$total_entries%/%x$per_page + (x$total_entries%/%x$per_page > 0)
+}
+
 
 # simplify list
 rcites_simplifylist_rbind <- function(x) {

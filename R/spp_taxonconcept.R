@@ -40,8 +40,9 @@ spp_taxonconcept <- function(query_taxon, appendix_only = FALSE, token = NULL, r
     # 
     q_url <- rcites_url("taxon_concepts.json", "?name=", query)
     tmp <- rcites_res(q_url, token)
+    pag <- rcites_numberpages(tmp$pagination)
     # empty output
-    if (!tmp$pagination$total_entries) {
+    if (!pag) {
         warning("Taxon not listed.")
         out <- NULL
     } else {
