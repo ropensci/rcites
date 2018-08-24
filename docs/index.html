@@ -52,7 +52,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="articles/citesr-vignette.html">Get started with rcites</a>
+      <a href="articles/rcites-vignette.html">Get started with rcites</a>
     </li>
   </ul>
 </li>
@@ -78,47 +78,59 @@
       
       </header><div class="row">
   <div class="contents col-md-9">
-    <div id="rcites" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#rcites" class="anchor"></a>rcites <img src="reference/figures/rcites_logo.png" width="130" height="150" align="right">
-</h1></div>
-<p>An R package to access information from the <a href="https://speciesplus.net/">Speciesplus</a> database via the <a href="https://api.speciesplus.net/documentation/v1.html">Species+/CITES Checklist API</a>. The package is available for download from <a href="link%20to%20come">CRAN</a> (stable version) and <a href="https://github.com/ibartomeus/rcites">Github</a> (development version).</p>
-<p>When citing, please refer to the citation of the package as well as the release paper.</p>
-<div id="current-status" class="section level2">
-<h2 class="hasAnchor">
-<a href="#current-status" class="anchor"></a>Current Status</h2>
-<p><a href="https://travis-ci.org/ibartomeus/rcites"><img src="https://travis-ci.org/ibartomeus/rcites.svg?branch=master" alt="Build Status"></a> <a href="https://ci.appveyor.com/project/KevCaz/rcites/branch/master"><img src="https://ci.appveyor.com/api/projects/status/bsd3c7mv12xv959j/branch/master?svg=true" alt="Build status"></a> <a href="https://codecov.io/gh/ibartomeus/rcites"><img src="https://codecov.io/gh/ibartomeus/rcites/branch/master/graph/badge.svg" alt="codecov"></a> <a href="https://www.r-pkg.org/badges/version/rcites"><img src="https://www.r-pkg.org/badges/version/rcites" alt="CRAN status"></a> <a href="https://cran.r-project.org/package=rcites"><img src="https://cranlogs.r-pkg.org/badges/grand-total/rcites" alt="CRAN downloads"></a></p>
+    
+<p><img src="reference/figures/rcites_logo.png" width="130" height="150" align="right"></p>
+<div id="current-status" class="section level3">
+<h3 class="hasAnchor">
+<a href="#current-status" class="anchor"></a>Current Status</h3>
+<p><a href="https://travis-ci.org/ibartomeus/rcites"><img src="https://travis-ci.org/ibartomeus/rcites.svg?branch=master" alt="Build status"></a> <a href="https://ci.appveyor.com/project/KevCaz/rcites/branch/master"><img src="https://ci.appveyor.com/api/projects/status/bsd3c7mv12xv959j/branch/master?svg=true" alt="Build status"></a> <a href="https://codecov.io/gh/ibartomeus/rcites"><img src="https://codecov.io/gh/ibartomeus/rcites/branch/master/graph/badge.svg" alt="codecov"></a> <a href="https://github.com/ropensci/onboarding/issues/244"><img src="https://badges.ropensci.org/244_status.svg" alt="ROpenSci status"></a> <a href="https://www.r-pkg.org/badges/version/rcites"><img src="https://www.r-pkg.org/badges/version/rcites" alt="CRAN status"></a> <a href="https://cran.r-project.org/package=rcites"><img src="https://cranlogs.r-pkg.org/badges/grand-total/rcites" alt="CRAN downloads"></a></p>
 </div>
-<div id="key-features" class="section level2">
-<h2 class="hasAnchor">
-<a href="#key-features" class="anchor"></a>Key features</h2>
-<ul>
-<li>sppplus_taxonconcept: <a href="https://api.speciesplus.net/documentation/v1/taxon_concepts/index.html">retrieve a taxon concept</a>
-</li>
-<li>taxon_distribution: <a href="https://api.speciesplus.net/documentation/v1/distributions/index.html">access distribution data</a>
-</li>
-<li>taxon_eu_legislation: <a href="https://api.speciesplus.net/documentation/v1/eu_legislation/index.html">access EU legislation data</a>
-</li>
-<li>taxon_cites_legislation: <a href="https://api.speciesplus.net/documentation/v1/cites_legislation/index.html">Access legislation data</a>
-</li>
-<li>taxon_references: <a href="https://api.speciesplus.net/documentation/v1/references/index.html">access reference data</a>
-</li>
-</ul>
+<div id="rcites" class="section level1">
+<div class="page-header"><h1 class="hasAnchor">
+<a href="#rcites" class="anchor"></a>rcites</h1></div>
+<p>An R package to access information from the <a href="https://speciesplus.net/">Speciesplus</a> database via the <a href="https://api.speciesplus.net/documentation/v1.html">Species+/CITES Checklist API</a>. The package is available for download from <a href="https://cran.r-project.org/package=rcites">CRAN</a> (stable version) and <a href="https://github.com/ibartomeus/rcites">Github</a> (development version).</p>
+<p>Please see the <a href="link%20to%20come">release paper</a> for background information about the Convention on International Trade in Endangered Species of Wild Fauna and Flora (<a href="https://cites.org">CITES</a>), the Speciesplus database and basic information about the aim of the package.</p>
 <div id="installation" class="section level3">
 <h3 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h3>
-<p>So far, the only version available is the development version that could be installed via the <code>devtools</code> package:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"ibartomeus/rcites"</span>)</a>
+<p>The package can be installed from CRAN:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">"rcites"</span>)</a>
 <a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(<span class="st">"rcites"</span>)</a></code></pre></div>
-<p>See the vignette for details on how to use the package: <a href="https://ibartomeus.github.io/rcites/articles/rcites-vignette.html">vignette</a></p>
+<p>The development version can be installed via the <code>devtools</code> package:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"ibartomeus/rcites"</span>)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">library</span>(<span class="st">"rcites"</span>)</a></code></pre></div>
 </div>
+<div id="setup-requirements-and-use" class="section level3">
+<h3 class="hasAnchor">
+<a href="#setup-requirements-and-use" class="anchor"></a>Setup requirements and use</h3>
+<p>To set up a connection to the CITES Speciesplus database, a personal authentication token is required. Please see the vignette for details how to get a token and how to set the token for package use: <a href="https://ibartomeus.github.io/rcites/articles/rcites-vignette.html">Get started with rcites</a></p>
+</div>
+<div id="key-features" class="section level3">
+<h3 class="hasAnchor">
+<a href="#key-features" class="anchor"></a>Key features</h3>
+<p>Once the token is set, the package has five key features:</p>
+<ul>
+<li>spp_taxonconcept( ): <a href="https://api.speciesplus.net/documentation/v1/taxon_concepts/index.html">access the Speciesplus taxon concept</a> and retrieve a taxon id</li>
+<li>spp_cites_legislation( ): <a href="https://api.speciesplus.net/documentation/v1/cites_legislation/index.html">access CITES legislation data</a>
+</li>
+<li>spp_eu_legislation( ): <a href="https://api.speciesplus.net/documentation/v1/eu_legislation/index.html">access EU legislation data</a>
+</li>
+<li>spp_distribution( ): <a href="https://api.speciesplus.net/documentation/v1/distributions/index.html">access a taxon distribution data</a>
+</li>
+<li>spp_references( ): <a href="https://api.speciesplus.net/documentation/v1/references/index.html">access a listing reference data</a>
+</li>
+</ul>
+</div>
+<div id="citation-information" class="section level3">
+<h3 class="hasAnchor">
+<a href="#citation-information" class="anchor"></a>Citation information</h3>
+<p>When citing, please refer to both the <a href="https://ibartomeus.github.io/rcites/authors.html">package citation</a> and the <a href="link%20to%20come">release paper</a>.</p>
 </div>
 <div id="contributors" class="section level2">
 <h2 class="hasAnchor">
 <a href="#contributors" class="anchor"></a>Contributors</h2>
 <ul>
-<li>Main contributors: <a href="https://github.com/ibartomeus/rcites/graphs/contributors" class="uri">https://github.com/ibartomeus/rcites/graphs/contributors</a>
-</li>
+<li><a href="https://github.com/ibartomeus/rcites/graphs/contributors">Main contributors</a></li>
 <li>Reporting issues:
 <ul>
 <li>
@@ -130,6 +142,7 @@
 <div id="resources" class="section level2">
 <h2 class="hasAnchor">
 <a href="#resources" class="anchor"></a>Resources</h2>
+<p>An other package dealing with data from and about CITES, providing access to its wildlife trade database: <a href="https://github.com/ecohealthalliance/cites/">cites</a></p>
 <p>While creating this package, we greatly benefited from:</p>
 <ol>
 <li>
@@ -144,12 +157,15 @@
 <p>Also, please read the terms and Conditions of Use of Species+ Data: <a href="https://speciesplus.net/terms-of-use" class="uri">https://speciesplus.net/terms-of-use</a>.</p>
 </div>
 </div>
+
   </div>
 
   <div class="col-md-3" id="sidebar">
     <div class="links">
 <h2>Links</h2>
 <ul class="list-unstyled">
+<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=rcites">https://​cloud.r-project.org/​package=rcites</a>
+</li>
 <li>Browse source code at <br><a href="https://github.com/ibartomeus/rcites">https://​github.com/​ibartomeus/​rcites</a>
 </li>
 <li>Report a bug at <br><a href="https://github.com/ibartomeus/rcites/issues">https://​github.com/​ibartomeus/​rcites/​issues</a>

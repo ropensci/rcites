@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Changelog • rcites</title>
+<title>Simplify Species+/CITES Checklist API outputs — rcites_simplify • rcites</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,7 +30,10 @@
 
 
 
-<meta property="og:title" content="Changelog" />
+<meta property="og:title" content="Simplify Species+/CITES Checklist API outputs — rcites_simplify" />
+
+<meta property="og:description" content="Simplify the structure of Species+/CITES Checklist API outputs." />
+<meta name="twitter:card" content="summary" />
 
 
 
@@ -46,7 +49,7 @@
   </head>
 
   <body>
-    <div class="container template-news">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -109,73 +112,54 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Changelog <small></small></h1>
-      <small>Source: <a href='https://github.com/ibartomeus/rcites/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
+    <h1>Simplify Species+/CITES Checklist API outputs</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ibartomeus/rcites/blob/master/R/rcites_simplify.R'><code>R/rcites_simplify.R</code></a></small>
+    <div class="hidden name"><code>rcites_simplify.Rd</code></div>
     </div>
 
-    <div id="rcites-0-1-1-9000" class="section level1">
-<h1 class="page-header">
-<a href="#rcites-0-1-1-9000" class="anchor"></a>rcites 0.1.1.9000<small> Unreleased </small>
-</h1>
-<ul>
-<li>
-<p>change function names:</p>
-<ul>
-<li>set_token instead of sppplus_login</li>
-<li>spp_taxonconcept instead of sppplus_taxonconcept</li>
-<li>spp_cites_legislation instead of taxon_cites_legislation</li>
-<li>spp_eu_legislation instead of taxon_eu_legislation</li>
-<li>spp_distribution instead of taxon_distribution</li>
-<li>spp_references instead of taxon_references</li>
-<li>rcites_simplify instead of sppplus_simplify</li>
-<li>rcites_ instead of sppplus_ for helper functions</li>
-</ul>
-</li>
-<li>
-<p>follow <code>goodpractice</code>:</p>
-<ul>
-<li>use ‘&lt;-’ for assignment instead of ‘=’,</li>
-<li>omit “Date” in DESCRIPTION,</li>
-<li>avoid 1:length(…), 1:nrow(…), 1:ncol(…),</li>
-<li>remove ‘jsonlite’ from DESCRIPTION.</li>
-</ul>
-</li>
-</ul>
-</div>
-    <div id="rcites-0-1-0" class="section level1">
-<h1 class="page-header">
-<a href="#rcites-0-1-0" class="anchor"></a>rcites 0.1.0<small> 2018-08-11 </small>
-</h1>
-<p>First release</p>
-<div id="features" class="section level2">
-<h2 class="hasAnchor">
-<a href="#features" class="anchor"></a>Features</h2>
-<ul>
-<li>spp_taxonconcept( ): <a href="https://api.speciesplus.net/documentation/v1/taxon_concepts/index.html">access the Speciesplus taxon concept</a>
-</li>
-<li>spp_cites_legislation( ): <a href="https://api.speciesplus.net/documentation/v1/cites_legislation/index.html">access CITES legislation data</a>
-</li>
-<li>spp_eu_legislation( ): <a href="https://api.speciesplus.net/documentation/v1/eu_legislation/index.html">access EU legislation data</a>
-</li>
-<li>spp_distribution( ): <a href="https://api.speciesplus.net/documentation/v1/distributions/index.html">access a taxon distribution data</a>
-</li>
-<li>spp_references( ): <a href="https://api.speciesplus.net/documentation/v1/references/index.html">access a listing reference data</a>
-</li>
-</ul>
-</div>
-</div>
-  </div>
+    <div class="ref-description">
+    
+    <p>Simplify the structure of Species+/CITES Checklist API outputs.</p>
+    
+    </div>
 
+    <pre class="usage"><span class='fu'>rcites_simplify</span>(<span class='no'>x</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>x</th>
+      <td><p>a data.table object to be simplified.</p></td>
+    </tr>
+    </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A data.table object with a simplified structure.</p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>For the sake of generality, CITES Species+ API outputs are parsed
+and stored in `data.table` objects. It often happens that the columns
+of those objects are objects of class `list`. Most of these lists are
+actually well-structured and can actually be stored as columns of integer,
+date, characters strings, etc. The goal of <code>rcites_simplify</code> is to
+handle such simplifications.</p>
+    
+
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <div id="tocnav">
-      <h2>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-        <li><a href="#rcites-0-1-1-9000">0.1.1.9000</a></li>
-        <li><a href="#rcites-0-1-0">0.1.0</a></li>
-      </ul>
-    </div>
-  </div>
+    <h2>Contents</h2>
+    <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
+      
+      <li><a href="#value">Value</a></li>
 
+      <li><a href="#details">Details</a></li>
+          </ul>
+
+  </div>
 </div>
 
       <footer>

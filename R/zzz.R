@@ -41,7 +41,7 @@ rcites_getsecret <- function() {
     A token is required to use the species + API, see
     https://api.speciesplus.net/documentation
     ")
-      set_token()
+        set_token()
     }
     val
 }
@@ -49,12 +49,12 @@ rcites_getsecret <- function() {
 # 
 rcites_forgetsecret <- function() Sys.unsetenv("SPECIESPLUS_TOKEN")
 
-#
+# 
 rcites_specialcase <- function(x, case) {
-  out <- do.call(rbind.data.frame, lapply(x, function(y) do.call(cbind.data.frame,
-                                                                 y)))
-  if ("date" %in% names(out))
-    out$date <- as.Date(out$date)
-  names(out) <- paste0(case, "_", names(out))
-  out
+    out <- do.call(rbind.data.frame, lapply(x, function(y) do.call(cbind.data.frame, 
+        y)))
+    if ("date" %in% names(out)) 
+        out$date <- as.Date(out$date)
+    names(out) <- paste0(case, "_", names(out))
+    out
 }

@@ -43,7 +43,7 @@ spp_distribution <- function(taxon_id, collapse_tags = NULL, simplify = FALSE, t
             paste(unlist(x), collapse = collapse_tags))
     ## 
     if (isTRUE(simplify)) 
-      rcites_simplify(out)
+        rcites_simplify(out)
     # output
     out
 }

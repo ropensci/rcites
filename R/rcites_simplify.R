@@ -21,14 +21,14 @@
 rcites_simplify <- function(x) {
     # check
     stopifnot("data.table" %in% class(x))
-    #
+    # 
     if (nrow(x)) {
         cla_col <- apply(x, 2, function(y) class(y[[1L]]))
         for (i in seq_len(ncol(x))) {
-            if (cla_col[i] %in% c("character", "integer", "logical", "numeric"))
+            if (cla_col[i] %in% c("character", "integer", "logical", "numeric")) 
                 data.table::set(x, j = i, value = methods::as(x[[i]], cla_col[i]))
         }
-        #
+        # 
         spc <- c("geo_entity", "start_notification", "start_event", "decision_type")
         tst <- names(x) %in% spc
         if (sum(tst)) {
