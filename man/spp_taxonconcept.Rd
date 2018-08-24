@@ -4,7 +4,8 @@
 \alias{spp_taxonconcept}
 \title{Get taxon concepts for a search term.}
 \usage{
-spp_taxonconcept(query_taxon, appendix_only = FALSE, token = NULL)
+spp_taxonconcept(query_taxon, appendix_only = FALSE, token = NULL,
+  raw = FALSE)
 }
 \arguments{
 \item{query_taxon}{a character string containing the query (e.g. species). Scientific taxa only (max 255 characters).}
@@ -17,6 +18,8 @@ CITES appendix information are the only data returned (default is \code{FALSE}).
 \code{NULL} and requires the environment variable \code{SPECIESPLUS_TOKEN} to be
 set directly in \code{Renviron}. Alternatively, \code{set_token()} can
 be used to set \code{SPECIESPLUS_TOKEN} for the current session.}
+
+\item{raw}{a logical. Should raw data be returned?}
 }
 \value{
 If \code{appendix_only} is \code{TRUE}, then a data frame with a species'

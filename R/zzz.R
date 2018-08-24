@@ -37,7 +37,7 @@ rcites_getsecret <- function() {
     val <- Sys.getenv("SPECIESPLUS_TOKEN")
     if (identical(val, "")) {
         message("
-    `SPECIESPLUS_TOKEN` env var has not been set.
+    `SPECIESPLUS_TOKEN` env var has not been set yet.
     A token is required to use the species + API, see
     https://api.speciesplus.net/documentation
     ")
@@ -46,8 +46,20 @@ rcites_getsecret <- function() {
     val
 }
 
+
+
 # 
 rcites_forgetsecret <- function() Sys.unsetenv("SPECIESPLUS_TOKEN")
+
+# simplify list
+rcites_simplifylist_rbind <- function(x) {
+    data.frame(do.call(rbind, x), stringsAsFactors = FALSE)
+}
+
+# simplify list
+rcites_simplifylist_cbind <- function(x) {
+    data.frame(do.call(cbind, x), stringsAsFactors = FALSE)
+}
 
 # 
 rcites_specialcase <- function(x, case) {
