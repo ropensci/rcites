@@ -27,7 +27,7 @@ r_packages:
   - covr
 
 before_install:
-    - echo $SPPPLUS_TOKEN > .Renviron
+    - echo $SPECIESPLUS_TOKEN > .Renviron
     - echo 'NOT_CRAN = "true"' >> .Renviron
     - cat .Renviron
 
