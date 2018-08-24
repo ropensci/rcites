@@ -42,7 +42,7 @@ spp_references <- function(taxon_id, type = c("taxonomic", "distribution"), simp
     out <- list()
     # 
     if ("taxonomic" %in% type) {
-        q_url <- rcites_url(paste0("taxon_concepts/", taxon_id, "/references.json"))
+        q_url <- rcites_url("taxon_concepts/", taxon_id, "/references.json")
         res <- rcites_res(q_url, token)
         out$taxonomic <- as.data.table(do.call(rbind, lapply(res, rbind)))
     }

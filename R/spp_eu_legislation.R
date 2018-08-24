@@ -39,7 +39,7 @@ spp_eu_legislation <- function(taxon_id, type = c("listings", "decisions"), simp
     type <- unique(type)
     stopifnot(all(type %in% c("listings", "decisions")))
     # 
-    q_url <- rcites_url(paste0("taxon_concepts/", taxon_id, "/eu_legislation.json"))
+    q_url <- rcites_url("taxon_concepts/", taxon_id, "/eu_legislation.json")
     res <- rcites_res(q_url, token)
     # output
     out <- lapply(res, function(x) as.data.table(do.call(rbind, (lapply(x, rbind)))))

@@ -39,7 +39,7 @@ spp_cites_legislation <- function(taxon_id, type = c("listings", "quotas", "susp
     type <- unique(type)
     nmt <- c("listings", "quotas", "suspensions")
     # 
-    q_url <- rcites_url(paste0("taxon_concepts/", taxon_id, "/cites_legislation.json"))
+    q_url <- rcites_url("taxon_concepts/", taxon_id, "/cites_legislation.json")
     res <- rcites_res(q_url, token)
     # output
     out <- lapply(res, function(x) "")

@@ -38,7 +38,7 @@ spp_taxonconcept <- function(query_taxon, appendix_only = FALSE, token = NULL) {
         token <- rcites_getsecret()
     query <- gsub(pattern = " ", replacement = "%20", x = query_taxon)
     # 
-    q_url <- rcites_url(paste0("taxon_concepts.json", "?name=", query))
+    q_url <- rcites_url("taxon_concepts.json", "?name=", query)
     res <- rcites_res(q_url, token)
     
     if (!res$pagination$total_entries) {

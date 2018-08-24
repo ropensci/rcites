@@ -13,8 +13,8 @@
 rcites_baseurl <- function() "https://api.speciesplus.net/api/v1/"
 
 # 
-rcites_url <- function(what) {
-    paste0(rcites_baseurl(), what)
+rcites_url <- function(...) {
+    paste0(rcites_baseurl(), ...)
 }
 
 # 

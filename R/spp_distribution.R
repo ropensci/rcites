@@ -34,7 +34,7 @@ spp_distribution <- function(taxon_id, collapse_tags = NULL, simplify = FALSE, t
     if (is.null(token)) 
         token <- rcites_getsecret()
     # 
-    q_url <- rcites_url(paste0("taxon_concepts/", taxon_id, "/distributions.json"))
+    q_url <- rcites_url("taxon_concepts/", taxon_id, "/distributions.json")
     res <- rcites_res(q_url, token)
     # get a data.table; tags and references are lists.
     out <- as.data.table(do.call(rbind, lapply(res, rbind)))
