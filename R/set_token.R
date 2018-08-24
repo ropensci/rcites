@@ -12,16 +12,16 @@
 #'
 #' @examples
 #' \donttest{
-#'  sppplus_login()
+#'  set_token()
 #' }
 
-sppplus_login <- function(token = NULL) {
+set_token <- function(token = NULL) {
     if (is.null(token)) 
         token <- readline("Enter your token: ")
     if (identical(token, "")) {
         message("no token provided")
     } else {
-        Sys.setenv(SPPPLUS_TOKEN = token)
+        Sys.setenv(SPECIESPLUS_TOKEN = token)
         cat("Authentication token stored for the session.\n")
     }
     invisible(NULL)

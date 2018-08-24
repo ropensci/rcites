@@ -4,15 +4,15 @@ skip_on_cran()
 skip_if_no_auth()
 
 ut_pause()
-res1 <- sppplus_taxonconcept(query_taxon = tx_nm)
+res1 <- spp_taxonconcept(query_taxon = tx_nm)
 ut_pause()
-res2 <- sppplus_taxonconcept(query_taxon = tx_nm, appendix_only = TRUE)
+res2 <- spp_taxonconcept(query_taxon = tx_nm, appendix_only = TRUE)
 nm1 <- c("id", "full_name", "author_year", "rank", "name_status", "updated_at", "active", "cites_listing")
 nm2 <- c("all", "synonyms", "common_names", "higher_taxa")
 ut_pause()
-res_null <- suppressWarnings(sppplus_taxonconcept(query_taxon = "Homo sapiens"))
+res_null <- suppressWarnings(spp_taxonconcept(query_taxon = "Homo sapiens"))
 ut_pause()
-res3 <- sppplus_taxonconcept(query_taxon = "Amazilia versicolor")
+res3 <- spp_taxonconcept(query_taxon = "Amazilia versicolor")
 
 
 test_that("expected classes", {
@@ -24,7 +24,7 @@ test_that("expected classes", {
   expect_true(all(class(res2) == cl_dt))
   expect_true(is.null(res_null))
   ut_pause()
-  expect_warning(sppplus_taxonconcept(query_taxon = "Homo sapiens"), "Taxon not listed.", fixed = TRUE)
+  expect_warning(spp_taxonconcept(query_taxon = "Homo sapiens"), "Taxon not listed.", fixed = TRUE)
 })
 
 test_that("expected output names", {

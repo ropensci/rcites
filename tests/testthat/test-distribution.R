@@ -5,9 +5,9 @@ skip_if_no_auth()
 
 
 ut_pause()
-res1 <- taxon_distribution(tax_id = tx_id)
+res1 <- spp_distribution(taxon_id = tx_id)
 ut_pause()
-res2 <- taxon_distribution(tax_id = '4521', collapse_tags = ' + ', simplify = T)
+res2 <- spp_distribution(taxon_id = '4521', collapse_tags = ' + ', simplify = T)
 
 
 test_that("expected output classes", {

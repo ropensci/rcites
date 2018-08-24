@@ -4,11 +4,11 @@ skip_on_cran()
 skip_if_no_auth()
 
 ut_pause()
-res1 <- taxon_references(tax_id = tx_id)
+res1 <- spp_references(taxon_id = tx_id)
 ut_pause()
-res2 <- taxon_references(tax_id = tx_id, type = 'taxonomic')
+res2 <- spp_references(taxon_id = tx_id, type = 'taxonomic')
 ut_pause()
-res3 <- taxon_references(tax_id = tx_id, simplify = T)
+res3 <- spp_references(taxon_id = tx_id, simplify = T)
 
 
 test_that("expected output classes", {

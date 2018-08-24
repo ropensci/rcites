@@ -10,22 +10,22 @@
 
 ## Helper functions
 
-sppplus_baseurl <- function() "https://api.speciesplus.net/api/v1/"
+rcites_baseurl <- function() "https://api.speciesplus.net/api/v1/"
 
 # 
-sppplus_url <- function(what) {
-    paste0(sppplus_baseurl(), what)
+rcites_url <- function(what) {
+    paste0(rcites_baseurl(), what)
 }
 
 # 
-sppplus_get <- function(q_url, token) {
+rcites_get <- function(q_url, token) {
     names(token) <- "X-Authentication-Token"
     httr::GET(q_url, httr::add_headers(token))
 }
 
 # 
-sppplus_res <- function(q_url, token) {
-    con <- sppplus_get(q_url, token)
+rcites_res <- function(q_url, token) {
+    con <- rcites_get(q_url, token)
     # check status
     httr::stop_for_status(con)
     # parsed
@@ -33,18 +33,28 @@ sppplus_res <- function(q_url, token) {
 }
 
 # See https://cran.r-project.org/web/packes/httr/vignettes/secrets.html
-sppplus_getsecret <- function() {
-    val <- Sys.getenv("SPPPLUS_TOKEN")
+rcites_getsecret <- function() {
+    val <- Sys.getenv("SPECIESPLUS_TOKEN")
     if (identical(val, "")) {
         message("
-    `SPPPLUS_TOKEN` env var has not been set.
+    `SPECIESPLUS_TOKEN` env var has not been set.
     A token is required to use the species + API, see
     https://api.speciesplus.net/documentation
     ")
-        sppplus_login()
+      set_token()
     }
     val
 }
 
 # 
-sppplus_forgetsecret <- function() Sys.unsetenv("SPPPLUS_TOKEN")
+rcites_forgetsecret <- function() Sys.unsetenv("SPECIESPLUS_TOKEN")
+
+#
+rcites_specialcase <- function(x, case) {
+  out <- do.call(rbind.data.frame, lapply(x, function(y) do.call(cbind.data.frame,
+                                                                 y)))
+  if ("date" %in% names(out))
+    out$date <- as.Date(out$date)
+  names(out) <- paste0(case, "_", names(out))
+  out
+}

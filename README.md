@@ -17,15 +17,6 @@ An R package to access information from the [Speciesplus](https://speciesplus.ne
 Please see the [release paper](link to come) for background information about the Convention on International Trade in Endangered Species of Wild Fauna and Flora ([CITES](https://cites.org)), the Speciesplus database and basic information about the aim of the package.
 
 
-### Key features
-
-- sppplus_taxonconcept( ): [access the Speciesplus taxon concept](https://api.speciesplus.net/documentation/v1/taxon_concepts/index.html)  and retrieve a taxon id
-- taxon_cites_legislation( ): [access CITES legislation data](https://api.speciesplus.net/documentation/v1/cites_legislation/index.html)
-- taxon_eu_legislation( ): [access EU legislation data](https://api.speciesplus.net/documentation/v1/eu_legislation/index.html)
-- taxon_distribution( ): [access a taxon distribution data](https://api.speciesplus.net/documentation/v1/distributions/index.html)
-- taxon_references( ): [access a listing reference data](https://api.speciesplus.net/documentation/v1/references/index.html)
-
-
 ### Installation
 
 The package can be installed from CRAN:
@@ -45,8 +36,19 @@ library("rcites")
 
 ### Setup requirements and use
 
-Please see the vignette for details on how to use the package:
+To set up a connection to the CITES Speciesplus database, a personal authentication token is required. Please see the vignette for details how to get a token and how to set the token for package use:
 [Get started with rcites](https://ibartomeus.github.io/rcites/articles/rcites-vignette.html)
+
+
+### Key features
+
+Once the token is set, the package has five key features:
+
+- spp_taxonconcept( ): [access the Speciesplus taxon concept](https://api.speciesplus.net/documentation/v1/taxon_concepts/index.html)  and retrieve a taxon id
+- spp_cites_legislation( ): [access CITES legislation data](https://api.speciesplus.net/documentation/v1/cites_legislation/index.html)
+- spp_eu_legislation( ): [access EU legislation data](https://api.speciesplus.net/documentation/v1/eu_legislation/index.html)
+- spp_distribution( ): [access a taxon distribution data](https://api.speciesplus.net/documentation/v1/distributions/index.html)
+- spp_references( ): [access a listing reference data](https://api.speciesplus.net/documentation/v1/references/index.html)
 
 
 ### Citation information

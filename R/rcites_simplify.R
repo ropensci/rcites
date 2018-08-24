@@ -12,13 +12,13 @@
 #' and stored in `data.table` objects. It often happens that the columns
 #' of those objects are objects of class `list`. Most of these lists are
 #' actually well-structured and can actually be stored as columns of integer,
-#' date, characters strings, etc. The goal of \code{sppplus_simplify} is to
+#' date, characters strings, etc. The goal of \code{rcites_simplify} is to
 #' handle such simplifications.
 #'
 #' @importFrom data.table :=
 #' @export
 
-sppplus_simplify <- function(x) {
+rcites_simplify <- function(x) {
     # check
     stopifnot("data.table" %in% class(x))
     #
@@ -34,7 +34,7 @@ sppplus_simplify <- function(x) {
         if (sum(tst)) {
             nid <- names(x)[tst]
             for (i in nid) {
-                tmp <- sppplus_special_case(x[[i]], i)
+                tmp <- rcites_specialcase(x[[i]], i)
                 x[, `:=`(names(tmp), tmp)]
             }
             x[, `:=`((nid), NULL)]
@@ -42,15 +42,4 @@ sppplus_simplify <- function(x) {
         # uses only references so no output
         invisible(NULL)
     }
-}
-
-
-
-sppplus_special_case <- function(x, case) {
-    out <- do.call(rbind.data.frame, lapply(x, function(y) do.call(cbind.data.frame,
-        y)))
-    if ("date" %in% names(out))
-        out$date <- as.Date(out$date)
-    names(out) <- paste0(case, "_", names(out))
-    out
 }

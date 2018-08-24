@@ -1,6 +1,6 @@
 # https://cran.r-project.org/web/packages/httr/vignettes/secrets.html
 skip_if_no_auth <- function() {
-    if (identical(Sys.getenv("SPPPLUS_TOKEN"), "")) {
+    if (identical(Sys.getenv("SPECIESPLUS_TOKEN"), "")) {
         skip("No authentication available")
     }
 }

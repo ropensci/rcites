@@ -2,7 +2,7 @@ context("helper function")
 
 
 test_that("basic functioning", {
-  expect_equal(sppplus_baseurl(), "https://api.speciesplus.net/api/v1/")
-  expect_equal(sppplus_url("extra"), "https://api.speciesplus.net/api/v1/extra")
-  expect_message(sppplus_login(""), "no token provided")
+  expect_equal(rcites_baseurl(), "https://api.speciesplus.net/api/v1/")
+  expect_equal(rcites_url("extra"), "https://api.speciesplus.net/api/v1/extra")
+  expect_message(set_token(""), "no token provided")
 })

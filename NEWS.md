@@ -1,5 +1,16 @@
 # rcites 0.1.1.9000
 
+- change function names:
+
+  - set_token instead of sppplus_login
+  - spp_taxonconcept instead of sppplus_taxonconcept
+  - spp_cites_legislation instead of taxon_cites_legislation
+  - spp_eu_legislation instead of taxon_eu_legislation
+  - spp_distribution instead of taxon_distribution
+  - spp_references instead of taxon_references
+  - rcites_simplify instead of sppplus_simplify
+  - rcites_ instead of sppplus_ for helper functions
+
 - follow `goodpractice`:
 
   - use '<-' for assignment instead of '=',
@@ -14,8 +25,8 @@ First release
 
 ## Features
 
-- sppplus_taxonconcept: [retrieve a taxon concept](https://api.speciesplus.net/documentation/v1/taxon_concepts/index.html)
-- taxon_distribution: [get distribution data](https://api.speciesplus.net/documentation/v1/distributions/index.html)
-- taxon_eu_legislation: [get EU legislation data](https://api.speciesplus.net/documentation/v1/eu_legislation/index.html)
-- taxon_cites_legislation: [get legislation data](https://api.speciesplus.net/documentation/v1/cites_legislation/index.html)
-- taxon_references: [get reference data](https://api.speciesplus.net/documentation/v1/references/index.html)
+- spp_taxonconcept( ): [access the Speciesplus taxon concept](https://api.speciesplus.net/documentation/v1/taxon_concepts/index.html)
+- spp_cites_legislation( ): [access CITES legislation data](https://api.speciesplus.net/documentation/v1/cites_legislation/index.html)
+- spp_eu_legislation( ): [access EU legislation data](https://api.speciesplus.net/documentation/v1/eu_legislation/index.html)
+- spp_distribution( ): [access a taxon distribution data](https://api.speciesplus.net/documentation/v1/distributions/index.html)
+- spp_references( ): [access a listing reference data](https://api.speciesplus.net/documentation/v1/references/index.html)
