@@ -43,9 +43,9 @@ spp_distribution <- function(taxon_id,
         token <- rcites_getsecret()
     # set query_string
     language <- match.arg(language)
-    if (scope == "en"){la <- NULL}
-    if (scope == "fr"){la <- "language=fr"}
-    if (scope == "es"){la <- "language=es"}
+    if (language == "en"){la <- NULL}
+    if (language == "fr"){la <- "language=fr"}
+    if (language == "es"){la <- "language=es"}
     query_string <- paste0(
       if(is.null(la)){} else {"?"},
       la)
