@@ -30,8 +30,10 @@
 #' res2 <- spp_references(taxon_id = '4521', type = 'taxonomic', simplify = T)
 #' }
 
-spp_references <- function(taxon_id, type = c("taxonomic", "distribution"), simplify = FALSE, 
-    token = NULL) {
+spp_references <- function(taxon_id, 
+                           type = c("taxonomic", "distribution"), 
+                           simplify = FALSE, 
+                           token = NULL) {
     # token check
     if (is.null(token)) 
         token <- rcites_getsecret()

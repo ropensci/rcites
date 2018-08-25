@@ -32,7 +32,9 @@
 #' res3 <- spp_taxonconcept(query_taxon = 'Amazilia versicolor')
 #' }
 
-spp_taxonconcept <- function(query_taxon, appendix_only = FALSE, token = NULL) {
+spp_taxonconcept <- function(query_taxon, 
+                             appendix_only = FALSE, 
+                             token = NULL) {
     # token check
     if (is.null(token)) 
         token <- rcites_getsecret()
