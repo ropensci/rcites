@@ -56,9 +56,9 @@ spp_eu_legislation <- function(taxon_id,
     if (scope == "historic"){sc <- "scope=historic"}
     if (scope == "all"){sc <- "scope=all"}
     language <- match.arg(language)
-    if (scope == "en"){la <- NULL}
-    if (scope == "fr"){la <- "language=fr"}
-    if (scope == "es"){la <- "language=es"}
+    if (language == "en"){la <- NULL}
+    if (language == "fr"){la <- "language=fr"}
+    if (language == "es"){la <- "language=es"}
     query_string <- paste0(
       if(is.null(sc) & is.null(la)){} else {"?"}, 
       sc, 
