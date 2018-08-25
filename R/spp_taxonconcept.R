@@ -30,6 +30,7 @@
 #' res1 <- spp_taxonconcept(query_taxon = 'Loxodonta africana')
 #' res2 <- spp_taxonconcept(query_taxon = 'Loxodonta africana', appendix_only = TRUE)
 #' res3 <- spp_taxonconcept(query_taxon = 'Amazilia versicolor')
+#' res4 <- spp_taxonconcept(query_taxon = 'Amazilia')
 #' }
 
 spp_taxonconcept <- function(query_taxon, appendix_only = FALSE, token = NULL, raw = FALSE) {
