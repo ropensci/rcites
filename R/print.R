@@ -11,3 +11,15 @@
 print.spp_raw <- function(x, ...) {
     print(toJSON(unclass(x), pretty = TRUE, auto_unbox = TRUE))
 }
+
+
+#' @describeIn print Print method for object of class spp_taxon
+#' @export
+#' @method print spp_taxon
+print.spp_taxon <- function(x, ...) {
+    cat("General info:\n")
+    print(x$general)
+
+    cat("\n\nClassification info:\n")
+    print(x$higher_taxa)
+}

@@ -30,8 +30,8 @@
 #' res3 <- spp_eu_legislation(taxon_id = '4521', type ='listings', simplify = T)
 #' }
 
-spp_eu_legislation <- function(taxon_id, type = c("listings", "decisions"), simplify = FALSE, 
-    token = NULL) {
+spp_eu_legislation <- function(taxon_id, type = c("listings", "decisions"), 
+    simplify = FALSE, token = NULL) {
     # token
     if (is.null(token)) 
         token <- rcites_getsecret()
@@ -42,7 +42,8 @@ spp_eu_legislation <- function(taxon_id, type = c("listings", "decisions"), simp
     q_url <- rcites_url("taxon_concepts/", taxon_id, "/eu_legislation.json")
     res <- rcites_res(q_url, token)
     # output
-    out <- lapply(res, function(x) as.data.table(do.call(rbind, (lapply(x, rbind)))))
+    out <- lapply(res, function(x) as.data.table(do.call(rbind, (lapply(x, 
+        rbind)))))
     ## 
     out <- out[paste0("eu_", type)]
     ## 

@@ -29,8 +29,8 @@
 #' res2 <- spp_cites_legislation(taxon_id = '4521', type ='listings')
 #' }
 
-spp_cites_legislation <- function(taxon_id, type = c("listings", "quotas", "suspensions"), 
-    simplify = FALSE, token = NULL) {
+spp_cites_legislation <- function(taxon_id, type = c("listings", "quotas", 
+    "suspensions"), simplify = FALSE, token = NULL) {
     # check token
     if (is.null(token)) 
         token <- rcites_getsecret()
@@ -44,14 +44,16 @@ spp_cites_legislation <- function(taxon_id, type = c("listings", "quotas", "susp
     # output
     out <- lapply(res, function(x) "")
     if ("listings" %in% type) {
-        out[[1L]] <- rbindlist(lapply(res[[1L]], as.data.table), TRUE, TRUE)
+        out[[1L]] <- rbindlist(lapply(res[[1L]], as.data.table), TRUE, 
+            TRUE)
         if (isTRUE(simplify)) 
             lapply(out[1L], rcites_simplify)
     }
     ## 
     for (i in 2:3) {
         if (nmt[i] %in% type) {
-            out[[i]] <- as.data.table(do.call(rbind, (lapply(res[[i]], rbind))))
+            out[[i]] <- as.data.table(do.call(rbind, (lapply(res[[i]], 
+                rbind))))
             if (isTRUE(simplify)) 
                 lapply(out[i], rcites_simplify)
         }

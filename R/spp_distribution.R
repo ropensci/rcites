@@ -29,7 +29,8 @@
 #'  res2 <- spp_distribution(taxon_id = '4521', collapse_tags = ' + ', simplify = T)
 #' }
 
-spp_distribution <- function(taxon_id, collapse_tags = NULL, simplify = FALSE, token = NULL) {
+spp_distribution <- function(taxon_id, collapse_tags = NULL, simplify = FALSE, 
+    token = NULL) {
     # token check
     if (is.null(token)) 
         token <- rcites_getsecret()
