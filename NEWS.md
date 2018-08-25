@@ -1,5 +1,11 @@
 # rcites 0.1.1.9000
 
+- add function parameters:
+
+  - scope and language to spp_cites_legislation
+  - scope and language to spp_eu_legislation
+  - language to spp_distribution
+
 - change function names:
 
   - set_token instead of sppplus_login
