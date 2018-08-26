@@ -4,7 +4,7 @@ author: "rcites team"
 date: 07-18-2018
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Put the title of your vignette here}
+  %\VignetteIndexEntry{Get started with rcites}
   %\VignetteEngine{knitr::rmarkdown}
 ---
 
@@ -40,11 +40,10 @@ requests. They are three different ways to use such token in `rcites`:
 [`.Renviron`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Startup.html)
 file (preferred);
 
-
-2. use `sppplus_login()`, *i.e.* interactively set `SPECIESPLUS_TOKEN` up for the
+2. use `set_token()`, *i.e.* interactively set `SPECIESPLUS_TOKEN` up for the
 current R session (meaning a login will be required for the future R sessions);
 
-```r
+```{r}
 set_token("8QW6Qgh57sBG2k0gtt")
 ```
 
@@ -59,7 +58,7 @@ so, the user should first call `spp_taxonconcept()` and provide the scientific
 name of the taxon. Let us start by requesting the identifier of the
 African bush elephant, *i.e.* *Loxodonta africana*.
 
-```{r qtxla}
+```{r}
 library(rcites)
 res1 <- spp_taxonconcept(query_taxon = "Loxodonta africana")
 res1
@@ -67,16 +66,15 @@ res1
 
 Note that if you chose options 3 regarding the connection:
 
-```r
+```{r}
 res1 <- spp_taxonconcept(query_taxon = "Loxodonta africana", token = "8QW6Qgh57sBG2k0gtt")
 ```
-
 
 `res1` is a list of data.table object with different information pertaining
 to the naming of the taxon. If you however only need many details, setting
 `appendix_only` to `TRUE` will return the first data.table, `all`, for instance:
 
-```{r qtxla2}
+```{r}
 res2 <- spp_taxonconcept(query_taxon = "Loxodonta africana", appendix_only = TRUE)
 res2
 ```
@@ -84,16 +82,17 @@ res2
 For other taxon, there might be more than one identifier, in such a case the user
 should have a look at the `active` column.
 
-```{r qtxav}
+```{r}
 res3 <- spp_taxonconcept(query = "Amazilia versicolor", appendix_only = TRUE)
 res3
 ```
 
 Also, if the taxon is not listed a warning message should come up:
 
-```{r qtxhs}
+```{r}
 res <- spp_taxonconcept(query = "Homo Sapiens")
 ```
+
 
 For what follows we should keep in mind:
 
@@ -106,8 +105,8 @@ For what follows we should keep in mind:
 ## Query legislation information
 
 ```{r}
-leg1 <- spp_cites_legislation(taxon_id = '4521')
-leg2 <- spp_cites_legislation(taxon_id = '3210', simplify = T)
+leg1 <- spp_cites_legislation(taxon_id = "4521")
+leg2 <- spp_cites_legislation(taxon_id = "3210", simplify = T)
 ```
 
 
@@ -120,7 +119,7 @@ Below we retrieve the distriution information of *Loxodonta africana*:
 ```{R map, message = FALSE, fig.width = 6.4, fig.height = 7.6, fig.align="center"}
 par(las = 1)
 suppressPackageStartupMessages(library(rworldmap))
-map1 <- as.data.frame(spp_distribution('4521'))
+map1 <- as.data.frame(spp_distribution("4521"))
 map2 <- joinCountryData2Map(map1, joinCode="ISO2", nameJoinColumn = "iso_code2", nameCountryColumn = "name")
 map2@data$iso2 <- unlist(lapply(map2$iso_code2, is.null))
 plot(c(-23, 62), c(45, -40), type = "n", main = "Loxodonta africana",
@@ -133,7 +132,7 @@ plot(map2[!map2$iso2,], col = "#bda25d", add = T)
 ## Query references information
 
 ```{r}
-ref2 <- spp_references(taxon_id = '3210', simplify = T)
+ref2 <- spp_references(taxon_id = "3210", simplify = T)
 length(ref2$distribution$reference)
 length(ref2$taxonomic$citation)
 ref2$taxonomic$citation
