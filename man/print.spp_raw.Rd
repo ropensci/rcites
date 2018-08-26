@@ -2,7 +2,7 @@
 % Please edit documentation in R/print.R
 \name{print.spp_raw}
 \alias{print.spp_raw}
-\title{Print the result of a Species+ API call}
+\title{print}
 \usage{
 \method{print}{spp_raw}(x, ...)
 }

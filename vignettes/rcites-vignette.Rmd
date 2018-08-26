@@ -77,7 +77,7 @@ to the naming of the taxon. If you however only need many details, setting
 `appendix_only` to `TRUE` will return the first data.table, `all`, for instance:
 
 ```{r qtxla2}
-res2 <- spp_taxonconcept(query_taxon = "Loxodonta africana", appendix_only = TRUE)
+res2 <- spp_taxonconcept(query_taxon = "Loxodonta africana")
 res2
 ```
 
@@ -85,7 +85,7 @@ For other taxon, there might be more than one identifier, in such a case the use
 should have a look at the `active` column.
 
 ```{r qtxav}
-res3 <- spp_taxonconcept(query = "Amazilia versicolor", appendix_only = TRUE)
+res3 <- spp_taxonconcept(query = "Amazilia versicolor")
 res3
 ```
 
@@ -147,7 +147,7 @@ over a vector of species:
 
 ```{r}
 vc_sp <- c("Amazilia versicolor", "Loxodonta africana")
-res <- lapply(vc_sp, function(x) spp_taxonconcept(query_taxon = x, appendix_only = TRUE))
+res <- lapply(vc_sp, function(x) spp_taxonconcept(query_taxon = x))
 do.call(rbind, res)
 ```
 

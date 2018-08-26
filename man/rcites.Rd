@@ -32,6 +32,7 @@ Other contributors:
   \item Jonathan Goldenberg [contributor]
   \item Marie-Bé Leduc [contributor]
   \item Yasmine Verzelen [contributor]
+  \item Noam Ross [reviewer]
 }
 
 }

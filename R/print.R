@@ -1,7 +1,10 @@
+#' print
+#'
 #' Print the result of a Species+ API call
 #'
 #' @param x The result object.
 #' @param ... Ignored.
+#'
 #' @return The JSON result.
 #'
 #' @importFrom jsonlite prettify toJSON
@@ -22,4 +25,10 @@ print.spp_taxon <- function(x, ...) {
 
     cat("\n\nClassification info:\n")
     print(x$higher_taxa)
+
+    cat("\n\nClassification info:\n")
+    print(x$synonyms)
+
+    cat("\n\nClassification info:\n")
+    print(x$accepted_names, 10)
 }
