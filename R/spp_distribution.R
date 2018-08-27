@@ -5,7 +5,11 @@
 #'
 #' @param taxon_id character string containing a species' taxon concept identifier
 #' (see \code{\link[rcites]{spp_taxonconcept}}).
-#' @param collapse_tags a string used to collapse tags. Default is set to \code{NULL} meaning that tags column's elements remains lists.
+#' @param language vector of character strings indicating the language for the
+#' names of distributions, values are taken among \code{en} (English),
+#' \code{fr} (French) and \code{es} (Spanish). Default is \code{en}.
+#' @param collapse_tags a string used to collapse tags.
+#' Default is set to \code{NULL} meaning that tags column's elements remains lists.
 #' @param simplify a logical. Should the output be simplified? In other words,
 #' should columns of data.table objects returned be unlisted when they are
 #' lists made of single elements?
@@ -29,21 +33,32 @@
 #'  res2 <- spp_distribution(taxon_id = '4521', collapse_tags = ' + ', simplify = T)
 #' }
 
-spp_distribution <- function(taxon_id, collapse_tags = NULL, simplify = FALSE, 
-    token = NULL) {
+spp_distribution <- function(taxon_id,
+                             language = c("en", "fr", "es"),
+                             collapse_tags = NULL,
+                             simplify = FALSE,
+                             token = NULL) {
     # token check
-    if (is.null(token)) 
+    if (is.null(token))
         token <- rcites_getsecret()
-    # 
-    q_url <- rcites_url("taxon_concepts/", taxon_id, "/distributions.json")
+    # set query_string
+    language <- match.arg(language)
+    if (language == "en"){la <- NULL}
+    if (language == "fr"){la <- "language=fr"}
+    if (language == "es"){la <- "language=es"}
+    query_string <- paste0(
+      if(is.null(la)){} else {"?"},
+      la)
+    #
+    q_url <- rcites_url(paste0("taxon_concepts/", taxon_id, "/distributions.json", query_string))
     res <- rcites_res(q_url, token)
     # get a data.table; tags and references are lists.
     out <- as.data.table(do.call(rbind, lapply(res, rbind)))
-    if (!is.null(collapse_tags)) 
-        out$tags <- lapply(out$tags, function(x) if (length(x) > 0) 
+    if (!is.null(collapse_tags))
+        out$tags <- lapply(out$tags, function(x) if (length(x) > 0)
             paste(unlist(x), collapse = collapse_tags))
-    ## 
-    if (isTRUE(simplify)) 
+    ##
+    if (isTRUE(simplify))
         rcites_simplify(out)
     # output
     out

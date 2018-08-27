@@ -1,0 +1,103 @@
+---
+title: "Speciesplus information about the African bush elephant"
+author: "rcites team"
+date: 08-26-2018
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Speciesplus information about the African bush elephant}
+  %\VignetteEngine{knitr::rmarkdown}
+---
+
+
+```{r setup, echo = FALSE}
+NOT_CRAN <- identical(tolower(Sys.getenv("NOT_CRAN")), "true")
+knitr::opts_chunk$set(
+  purl = NOT_CRAN,
+  eval = NOT_CRAN,
+  fig.align = "center",
+  comment = "#> "
+)
+```
+
+
+<!-- https://cran.r-project.org/web/packages/httr/vignettes/secrets.html -->
+
+
+# Introduction and setup
+
+In [Get started with rcites](https://ibartomeus.github.io/rcites/articles/get_started.html), we explained how to get a token and set it up for general access to the CITES Speciesplus database. Also, we very briefly introduced to how to code the key features of `rcites`. With this article, we aim to further introduce to the functionality and workflows of `rcites`. For this, we use the African bush elephant (*Loxodonta africana*, hereafter "elephant") as case example. The elephant not only is a highly endangered species that is illegally traded globally but also a flashship species of nature conservation and the logo species of CITES.
+
+To start, we do some basic set up. This is calling the package and setting the token.
+
+```{r}
+library(rcites)
+set_token("8QW6Qgh57sBG2k0gtt")
+```
+
+
+# Retrieve the taxon id
+
+In order to access Speciesplus information about the elephant, we first need to retreive its Speciesplus taxon identifier. For this, we use the `spp_taxonconcept()` function and look for the elephant's scientific name, *Loxodonta africana*, as `query_taxon` argument.
+
+```{r}
+elephant_taxonconcept <- spp_taxonconcept(query_taxon = "Loxodonta africana")
+```
+
+Text about taxonconcept outcomes to come ...
+
+
+## Map the elephant's distribution
+
+Before taking more insights into the legislation status of the elephant, we have a look at where the elephant actually occurs naturally. For this, we can access the elephant's distribution information with the `spp_distribution()` function. Thereafter, we can map the distribution with the help of the `rworldmap` package.
+
+```{r map, message = FALSE, fig.width = 6.4, fig.height = 7.6, fig.align="center"}
+if("rworldmap" %in% rownames(installed.packages()) == FALSE){
+  install.packages("rworldmap")} # installing `rworldmap` if not installed yet
+suppressPackageStartupMessages(library(rworldmap))
+
+par(las = 1)
+map1 <- as.data.frame(spp_distribution(taxon_id = "4521"))
+map2 <- joinCountryData2Map(map1, 
+                            joinCode="ISO2", 
+                            nameJoinColumn = "iso_code2", 
+                            nameCountryColumn = "name")
+map2@data$iso2 <- unlist(lapply(map2$iso_code2, is.null))
+plot(c(-23, 62), c(45, -40), 
+     type = "n", 
+     main = "Loxodonta africana",
+     xlab = "Longitude", 
+     ylab = "Latitude")
+plot(map2, add = T)
+plot(map2[!map2$iso2,], col = "#bda25d", add = T)
+```
+
+
+## Access the legislation status
+
+The functions `spp_cites_legislation()` and `spp_eu_legislation()` provide access to the legislation status information of the elephant, within 1. CITES in the overall and 2. the European Union.
+
+First, we have a look at the CITES legislation status:
+
+```{r}
+elephant_cites <- spp_cites_legislation(taxon_id = "4521")
+```
+
+Text about CITES legislation outcomes to come ...
+
+Code and Text about EU legislation outcomes to come ...
+
+Can we make some nice map about trade directions (as a combination of map2 and the legislation data)?
+
+
+## Access the elephant's Speciesplus reference data
+
+Last but not least, especially scientists will probably be interested in what references the Speciesplus information about the elephant is based on. For this, we can access the Speciesplus reference data with the `spp_references()` function. Within the function, we can select to access either the taxonomic or distribution references with the `type` argument.
+
+```{r}
+elephant_ref_tax <- spp_references(taxon_id = "4521", type = "taxonomic")
+elephant_ref_distr <- spp_references(taxon_id = "4521", type = "distribution")
+```
+
+Text about references outcomes to come ...
+
+

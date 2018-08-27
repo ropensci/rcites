@@ -5,7 +5,15 @@
 #'
 #' @param taxon_id character string containing a species' taxon concept identifier
 #' (see \code{\link[rcites]{spp_taxonconcept}}).
-#' @param type vector of character strings indicating type of legislation information requested, values are taken among \code{listing}, \code{quota} and \code{suspension}. Default includes the three of them.
+#' @param type vector of character strings indicating the type of legislation
+#' information requested, values are taken among \code{listings}, \code{quotas} and
+#' \code{suspensions}. Default includes the three of them.
+#' @param scope vector of character strings indicating the time scope of legislation,
+#' values are taken among \code{current}, \code{historic} and \code{all}.
+#' Default is \code{current}.
+#' @param language vector of character strings indicating the language for the
+#' text of legislation notes, values are taken among \code{en} (English),
+#' \code{fr} (French) and \code{es} (Spanish). Default is \code{en}.
 #' @param simplify a logical. Should the output be simplified? In other words,
 #' should columns of data.table objects returned be unlisted when they are
 #' lists made of single elements?
@@ -29,35 +37,53 @@
 #' res2 <- spp_cites_legislation(taxon_id = '4521', type ='listings')
 #' }
 
-spp_cites_legislation <- function(taxon_id, type = c("listings", "quotas", 
-    "suspensions"), simplify = FALSE, token = NULL) {
+spp_cites_legislation <- function(taxon_id,
+                                  type = c("listings", "quotas", "suspensions"),
+                                  scope = c("current", "historic", "all"),
+                                  language = c("en", "fr", "es"),
+                                  simplify = FALSE,
+                                  token = NULL) {
     # check token
-    if (is.null(token)) 
+    if (is.null(token))
         token <- rcites_getsecret()
-    # 
+    #
     stopifnot(all(type %in% c("listings", "quotas", "suspensions")))
     type <- unique(type)
     nmt <- c("listings", "quotas", "suspensions")
-    # 
-    q_url <- rcites_url("taxon_concepts/", taxon_id, "/cites_legislation.json")
+    # set query_string
+    scope <- match.arg(scope)
+    if (scope == "current"){sc <- NULL}
+    if (scope == "historic"){sc <- "scope=historic"}
+    if (scope == "all"){sc <- "scope=all"}
+    language <- match.arg(language)
+    if (language == "en"){la <- NULL}
+    if (language == "fr"){la <- "language=fr"}
+    if (language == "es"){la <- "language=es"}
+    query_string <- paste0(
+      if(is.null(sc) & is.null(la)){} else {"?"},
+      sc,
+      if(!is.null(sc) & !is.null(la)){"&"} else {},
+      la)
+    #
+    q_url <- rcites_url(paste0("taxon_concepts/", taxon_id, "/cites_legislation.json", query_string))
     res <- rcites_res(q_url, token)
     # output
     out <- lapply(res, function(x) "")
     if ("listings" %in% type) {
-        out[[1L]] <- rbindlist(lapply(res[[1L]], as.data.table), TRUE, 
+        out[[1L]] <- rbindlist(lapply(res[[1L]], as.data.table), TRUE,
             TRUE)
-        if (isTRUE(simplify)) 
+        if (isTRUE(simplify))
             lapply(out[1L], rcites_simplify)
     }
-    ## 
+    ##
     for (i in 2:3) {
         if (nmt[i] %in% type) {
-            out[[i]] <- as.data.table(do.call(rbind, (lapply(res[[i]], 
+            out[[i]] <- as.data.table(do.call(rbind, (lapply(res[[i]],
                 rbind))))
-            if (isTRUE(simplify)) 
+            if (isTRUE(simplify))
                 lapply(out[i], rcites_simplify)
         }
     }
-    # 
+    #
     out[paste0("cites_", type)]
 }
