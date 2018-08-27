@@ -30,34 +30,32 @@
 #' res2 <- spp_references(taxon_id = '4521', type = 'taxonomic', simplify = T)
 #' }
 
-spp_references <- function(taxon_id,
-                           type = c("taxonomic", "distribution"),
-                           simplify = FALSE,
-                           token = NULL) {
+spp_references <- function(taxon_id, type = c("taxonomic", "distribution"), 
+    simplify = FALSE, token = NULL) {
     # token check
-    if (is.null(token))
+    if (is.null(token)) 
         token <- rcites_getsecret()
-    #
+    # 
     type <- unique(type)
     stopifnot(all(type %in% c("taxonomic", "distribution")))
-    #
+    # 
     out <- list()
-    #
+    # 
     if ("taxonomic" %in% type) {
         q_url <- rcites_url("taxon_concepts/", taxon_id, "/references.json")
         res <- rcites_res(q_url, token)
         out$taxonomic <- as.data.table(do.call(rbind, lapply(res, rbind)))
     }
-    #
+    # 
     if ("distribution" %in% type) {
         q_url <- rcites_url(paste0("taxon_concepts/", taxon_id, "/distributions.json"))
         res <- rcites_res(q_url, token)
         ref <- as.data.table(do.call(rbind, lapply(res, rbind)))
-        out$distribution <- data.table(name = rep(unlist(ref$name), unlist(lapply(ref$references,
+        out$distribution <- data.table(name = rep(unlist(ref$name), unlist(lapply(ref$references, 
             length))), reference = unlist(ref$references))
     }
-    ##
-    if (isTRUE(simplify))
+    ## 
+    if (isTRUE(simplify)) 
         lapply(out, rcites_simplify)
     # output
     out

@@ -10,21 +10,21 @@
 
 ## Helper functions
 
-#
+# 
 rcites_baseurl <- function() "https://api.speciesplus.net/api/v1/"
 
-#
+# 
 rcites_url <- function(...) {
     paste0(rcites_baseurl(), ...)
 }
 
-#
+# 
 rcites_get <- function(q_url, token) {
     names(token) <- "X-Authentication-Token"
     httr::GET(q_url, httr::add_headers(token))
 }
 
-#
+# 
 rcites_res <- function(q_url, token) {
     con <- rcites_get(q_url, token)
     # check status
@@ -33,33 +33,43 @@ rcites_res <- function(q_url, token) {
     httr::content(con, "parsed")
 }
 
-#
+# 
 rcites_timestamp <- function(x) {
-  # ISO 8601 format
-  # https://stackoverflow.com/questions/29517896/current-time-in-iso-8601-format
-  tm <- as.POSIXlt(x, tz = "UTC")
-  strftime(tm , "%Y-%m-%dT%H:%M:%S")
+    # ISO 8601 format
+    # https://stackoverflow.com/questions/29517896/current-time-in-iso-8601-format
+    tm <- as.POSIXlt(x, tz = "UTC")
+    strftime(tm, "%Y-%m-%dT%H:%M:%S")
 }
 
-#
+# 
 rcites_lang <- function(x) {
-  out <- match.arg(x, c("en", "fr", "es"))
-  if (out == "en") out <- "" else out <- paste0("?language=", out)
-  out
+    out <- match.arg(x, c("en", "fr", "es"))
+    if (out == "en") 
+        out <- NULL else out <- paste0("language=", out)
+    out
+}
+
+# 
+rcites_scope <- function(x) {
+    out <- match.arg(x, c("current", "historic", "all"))
+    if (out == "current") 
+        out <- NULL else out <- paste0("scope=", out)
+    out
 }
 
 # auto pagination
-rcites_autopagination <- function(q_url, per_page, seq_page, tot_page,
+rcites_autopagination <- function(q_url, per_page, seq_page, tot_page, 
     token, verbose = TRUE) {
     out <- list()
-    q_url_0 <- gsub(q_url, pattern = "page=[[:digit:]]+\\&per_page=[[:digit:]]+$",
+    q_url_0 <- gsub(q_url, pattern = "page=[[:digit:]]+\\&per_page=[[:digit:]]+$", 
         replacement = "")
     # grepl('\\.json?', pat = '\\.json\\?$')
     for (i in seq_along(seq_page)) {
-        if (verbose)
-            cat("Retrieving info from page ", seq_page[i], "/", tot_page, "\r")
-        q_url_new <- paste0(q_url_0, "page=", seq_page[i], "&per_page=",
-        min(per_page, 500))
+        if (verbose) 
+            cat("Retrieving info from page ", seq_page[i], "/", tot_page, 
+                "\r")
+        q_url_new <- paste0(q_url_0, "page=", seq_page[i], "&per_page=", 
+            min(per_page, 500))
         out[[i]] <- rcites_res(q_url_new, token)
     }
     if (verbose) {
@@ -69,9 +79,9 @@ rcites_autopagination <- function(q_url, per_page, seq_page, tot_page,
     out
 }
 
-#
+# 
 rcites_print_df <- function(x, nrows = 10) {
-  print(x[seq_len(min(nrow(x), nrows)),])
+    print(x[seq_len(min(nrow(x), nrows)), ])
 }
 
 # See https://cran.r-project.org/web/packes/httr/vignettes/secrets.html
@@ -96,7 +106,7 @@ rcites_numberpages <- function(x) {
     x$total_entries%/%x$per_page + (x$total_entries%%x$per_page > 0)
 }
 
-# add 'author_year field
+# add author_year
 rcites_addauthor <- function(x) {
     if (!"author_year" %in% names(x)) {
         x["author_year"] <- NA_character_
@@ -104,11 +114,11 @@ rcites_addauthor <- function(x) {
     x
 }
 
-#
+# 
 rcites_specialcase <- function(x, case) {
-    out <- do.call(rbind.data.frame, lapply(x, function(y) do.call(cbind.data.frame,
+    out <- do.call(rbind.data.frame, lapply(x, function(y) do.call(cbind.data.frame, 
         y)))
-    if ("date" %in% names(out))
+    if ("date" %in% names(out)) 
         out$date <- as.Date(out$date)
     names(out) <- paste0(case, "_", names(out))
     out
@@ -118,7 +128,7 @@ rcites_specialcase <- function(x, case) {
 
 ## helper functions for spp_taxonconcept()
 
-rcites_taxonconcept_request <- function(x, token, taxonomy, with_descendants,
+rcites_taxonconcept_request <- function(x, token, taxonomy, with_descendants, 
     page, per_page, updated_since = NULL, language = NULL) {
     # deal with blank space
     tmp <- gsub(pattern = " ", replacement = "%20", x = x)
@@ -127,15 +137,15 @@ rcites_taxonconcept_request <- function(x, token, taxonomy, with_descendants,
     } else {
         query <- paste0("name=", tmp)
     }
-    #
+    # 
     taxo <- ifelse(taxonomy == "CMS", "taxonomy=CMS", "")
     wdes <- ifelse(with_descendants, "with_descendants=true", "")
-    lng <- ifelse(is.null(language), "",
-      paste0("language=", paste(language, collapse = ",")))
-    tim <- ifelse(is.null(updated_since), "",
-      paste0("updated_since=", rcites_timestamp(updated_since)))
+    lng <- ifelse(is.null(language), "", paste0("language=", paste(language, 
+        collapse = ",")))
+    tim <- ifelse(is.null(updated_since), "", paste0("updated_since=", 
+        rcites_timestamp(updated_since)))
     pag <- paste0("page=", page, "&per_page=", min(per_page, 500))
-    #
+    # 
     ele <- c(query, wdes, taxo, tim, lng, pag)
     # out_put
     rcites_url("taxon_concepts.json?", paste(ele[ele != ""], collapse = "&"))
@@ -145,9 +155,9 @@ rcites_taxonconcept_allentries <- function(x, sp_nm) {
     tmp <- lapply(lapply(x, function(x) x[!names(x) %in% sp_nm]), unlist)
     # author_year may be missing
     tmp2 <- lapply(tmp, rcites_addauthor)
-    #
+    # 
     tmp <- lapply(tmp2, function(x) x[names(tmp2[[1L]])])
-    #
+    # 
     data.frame(do.call(rbind, tmp))
 }
 
@@ -165,9 +175,11 @@ rcites_taxonconcept_special_cases <- function(x, name, identifier) {
     tmp2 <- lapply(tmp[wch], function(x) do.call(rbind, x))
     sz <- unlist(lapply(tmp2, nrow))
     out <- data.frame(do.call(rbind, tmp2))
-    if (name == "synonym") names(out)[1] <- "id_synonym"
+    if (name == "synonym") 
+        names(out)[1] <- "id_synonym"
     out <- cbind(id = rep(identifier[wch], sz), out)
-    if (name == "accepted_names") names(out)[1] <- "id_synonym"
+    if (name == "accepted_names") 
+        names(out)[1] <- "id_synonym"
     class(out) <- c("tbl_df", "tbl", "data.frame")
     out
 }

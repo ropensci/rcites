@@ -34,56 +34,45 @@
 #' @examples
 #' \donttest{
 #' res1 <- spp_cites_legislation(taxon_id = '4521')
-#' res2 <- spp_cites_legislation(taxon_id = '4521', type ='listings')
+#' res2 <- spp_cites_legislation(taxon_id = '4521', type = 'listings', language = 'rh')
 #' }
 
-spp_cites_legislation <- function(taxon_id,
-                                  type = c("listings", "quotas", "suspensions"),
-                                  scope = c("current", "historic", "all"),
-                                  language = c("en", "fr", "es"),
-                                  simplify = FALSE,
-                                  token = NULL) {
+spp_cites_legislation <- function(taxon_id, type = c("listings", "quotas", 
+    "suspensions"), scope = c("current", "historic", "all"), language = c("en", 
+    "fr", "es"), simplify = FALSE, token = NULL) {
     # check token
-    if (is.null(token))
+    if (is.null(token)) 
         token <- rcites_getsecret()
-    #
+    # 
     stopifnot(all(type %in% c("listings", "quotas", "suspensions")))
     type <- unique(type)
     nmt <- c("listings", "quotas", "suspensions")
     # set query_string
-    scope <- match.arg(scope)
-    if (scope == "current"){sc <- NULL}
-    if (scope == "historic"){sc <- "scope=historic"}
-    if (scope == "all"){sc <- "scope=all"}
-    language <- match.arg(language)
-    if (language == "en"){la <- NULL}
-    if (language == "fr"){la <- "language=fr"}
-    if (language == "es"){la <- "language=es"}
-    query_string <- paste0(
-      if(is.null(sc) & is.null(la)){} else {"?"},
-      sc,
-      if(!is.null(sc) & !is.null(la)){"&"} else {},
-      la)
-    #
-    q_url <- rcites_url(paste0("taxon_concepts/", taxon_id, "/cites_legislation.json", query_string))
+    query_string <- paste(c(rcites_lang(language), rcites_scope(scope)), 
+        collapse = "&")
+    if (query_string != "") 
+        query_string <- paste0("?", query_string)
+    # 
+    q_url <- rcites_url(paste0("taxon_concepts/", taxon_id, "/cites_legislation.json", 
+        query_string))
     res <- rcites_res(q_url, token)
     # output
     out <- lapply(res, function(x) "")
     if ("listings" %in% type) {
-        out[[1L]] <- rbindlist(lapply(res[[1L]], as.data.table), TRUE,
+        out[[1L]] <- rbindlist(lapply(res[[1L]], as.data.table), TRUE, 
             TRUE)
-        if (isTRUE(simplify))
+        if (isTRUE(simplify)) 
             lapply(out[1L], rcites_simplify)
     }
-    ##
+    ## 
     for (i in 2:3) {
         if (nmt[i] %in% type) {
-            out[[i]] <- as.data.table(do.call(rbind, (lapply(res[[i]],
+            out[[i]] <- as.data.table(do.call(rbind, (lapply(res[[i]], 
                 rbind))))
-            if (isTRUE(simplify))
+            if (isTRUE(simplify)) 
                 lapply(out[i], rcites_simplify)
         }
     }
-    #
+    # 
     out[paste0("cites_", type)]
 }

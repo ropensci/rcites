@@ -33,25 +33,26 @@
 #'  res2 <- spp_distribution(taxon_id = '4521', collapse_tags = ' + ', simplify = T)
 #' }
 
-spp_distribution <- function(taxon_id,
-                             language = "en",
-                             collapse_tags = NULL,
-                             simplify = FALSE,
-                             token = NULL) {
+spp_distribution <- function(taxon_id, language = "en", collapse_tags = NULL, 
+    simplify = FALSE, token = NULL) {
     # token check
-    if (is.null(token))
+    if (is.null(token)) 
         token <- rcites_getsecret()
     # set query_string
-    q_url <- rcites_url(paste0("taxon_concepts/", taxon_id,
-      "/distributions.json", rcites_lang(language)))
+    tmp <- rcites_lang(language)
+    if (!is.null(tmp)) 
+        tmp <- paste0("?", tmp)
+    q_url <- rcites_url("taxon_concepts/", taxon_id, "/distributions.json", 
+        tmp)
+    # get results
     res <- rcites_res(q_url, token)
     # get a data.table; tags and references are lists.
     out <- as.data.table(do.call(rbind, lapply(res, rbind)))
-    if (!is.null(collapse_tags))
-        out$tags <- lapply(out$tags, function(x) if (length(x) > 0)
+    if (!is.null(collapse_tags)) 
+        out$tags <- lapply(out$tags, function(x) if (length(x) > 0) 
             paste(unlist(x), collapse = collapse_tags))
-    ##
-    if (isTRUE(simplify))
+    ## 
+    if (isTRUE(simplify)) 
         rcites_simplify(out)
     # output
     out

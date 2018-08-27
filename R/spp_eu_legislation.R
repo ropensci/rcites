@@ -38,43 +38,31 @@
 #' res3 <- spp_eu_legislation(taxon_id = '4521', type ='listings', simplify = T)
 #' }
 
-spp_eu_legislation <- function(taxon_id,
-                               type = c("listings", "decisions"),
-                               scope = c("current", "historic", "all"),
-                               language = c("en", "fr", "es"),
-                               simplify = FALSE,
-                               token = NULL) {
-    # token
-    if (is.null(token))
+spp_eu_legislation <- function(taxon_id, type = c("listings", "decisions"), 
+    scope = "current", language = "en", simplify = FALSE, token = NULL) {
+    # token check
+    if (is.null(token)) 
         token <- rcites_getsecret()
-    #
+    # type check
     type <- unique(type)
     stopifnot(all(type %in% c("listings", "decisions")))
     # set query_string
-    scope <- match.arg(scope)
-    if (scope == "current"){sc <- NULL}
-    if (scope == "historic"){sc <- "scope=historic"}
-    if (scope == "all"){sc <- "scope=all"}
-    language <- match.arg(language)
-    if (language == "en"){la <- NULL}
-    if (language == "fr"){la <- "language=fr"}
-    if (language == "es"){la <- "language=es"}
-    query_string <- paste0(
-      if(is.null(sc) & is.null(la)){} else {"?"},
-      sc,
-      if(!is.null(sc) & !is.null(la)){"&"} else {},
-      la)
-    #
-    q_url <- rcites_url(paste0("taxon_concepts/", taxon_id, "/eu_legislation.json", query_string))
+    query_string <- paste(c(rcites_lang(language), rcites_scope(scope)), 
+        collapse = "&")
+    if (query_string != "") 
+        query_string <- paste0("?", query_string)
+    # 
+    q_url <- rcites_url(paste0("taxon_concepts/", taxon_id, "/eu_legislation.json", 
+        query_string))
     res <- rcites_res(q_url, token)
     # output
-    out <- lapply(res, function(x) as.data.table(do.call(rbind, (lapply(x,
+    out <- lapply(res, function(x) as.data.table(do.call(rbind, (lapply(x, 
         rbind)))))
-    ##
+    ## 
     out <- out[paste0("eu_", type)]
-    ##
-    if (isTRUE(simplify))
+    ## 
+    if (isTRUE(simplify)) 
         lapply(out, rcites_simplify)
-    ##
+    ## 
     out
 }

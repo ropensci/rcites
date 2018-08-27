@@ -5,8 +5,8 @@
 \title{Get current EU annex listings, SRG opinions, and EU suspensions.}
 \usage{
 spp_eu_legislation(taxon_id, type = c("listings", "decisions"),
-  scope = c("current", "historic", "all"), language = c("en", "fr",
-  "es"), simplify = FALSE, token = NULL)
+  scope = "current", language = "en", simplify = FALSE,
+  token = NULL)
 }
 \arguments{
 \item{taxon_id}{character string containing a species' taxon concept identifier

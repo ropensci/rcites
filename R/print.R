@@ -20,18 +20,18 @@ print.spp_raw <- function(x, ...) {
 #' @export
 #' @method print spp_taxon
 print.spp_taxon <- function(x, ...) {
-
+    
     cat("General info:\n")
     rcites_print_df(x$general)
-
+    
     cat("\n\nClassification info:\n")
     rcites_print_df(x$higher_taxa)
-
+    
     cat("\n\nSynonyms:\n")
     rcites_print_df(x$synonyms)
-
+    
     cat("\n\nCommon names:\n")
     rcites_print_df(x$common_names)
-
+    
     # add a note of what's available
 }
