@@ -52,7 +52,7 @@ Retrieve the taxon concept of a specific taxon (scientific name).
 res1 <- spp_taxonconcept(query_taxon = 'Loxodonta africana')
 res2 <- spp_taxonconcept(query_taxon = 'Loxodonta africana', raw = TRUE)
 res3 <- spp_taxonconcept(query_taxon = 'Amazilia versicolor')
-res4 <- spp_taxonconcept(query_taxon = '', taxonomy = 'CMS', seq_page = c(1,2))
+res4 <- spp_taxonconcept(query_taxon = '', taxonomy = 'CMS', seq_page = 1:5, language = "EN")
 res5 <- spp_taxonconcept(query_taxon = '', seq_page = c(44))
 }
 }

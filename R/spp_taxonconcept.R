@@ -41,7 +41,7 @@
 #' res1 <- spp_taxonconcept(query_taxon = 'Loxodonta africana')
 #' res2 <- spp_taxonconcept(query_taxon = 'Loxodonta africana', raw = TRUE)
 #' res3 <- spp_taxonconcept(query_taxon = 'Amazilia versicolor')
-#' res4 <- spp_taxonconcept(query_taxon = '', taxonomy = 'CMS', seq_page = c(1,2))
+#' res4 <- spp_taxonconcept(query_taxon = '', taxonomy = 'CMS', seq_page = 1:5, language = "EN")
 #' res5 <- spp_taxonconcept(query_taxon = '', seq_page = c(44))
 #' }
 
@@ -52,15 +52,7 @@ spp_taxonconcept <- function(query_taxon, taxonomy = "CITES",
     if (is.null(token))
         token <- rcites_getsecret()
     # taxonomy check
-    if (taxonomy == "CMS") {
-        taxo <- "CMS"
-    } else {
-        if (taxonomy != "CITES") {
-            warning("taxonomy only accepts either 'CITES' or 'CMS',
-        values set to 'CITES'")
-        }
-        taxo <- "CITES"
-    }
+    taxonomy <- match.arg(taxonomy, c("CITES", "CMS"))
     # request
     if (is.null(seq_page)) {
       f_page <- 1
@@ -68,8 +60,8 @@ spp_taxonconcept <- function(query_taxon, taxonomy = "CITES",
       seq_page <- sort(unique(as.integer(seq_page)))
       f_page <- unique(seq_page[1L])
     }
-    q_url <- rcites_request_taxonconcept(query_taxon, token, taxonomy = taxo,
-          with_descendants, f_page, per_page, language = NULL)
+    q_url <- rcites_taxonconcept_request(query_taxon, token, taxonomy,
+          with_descendants, f_page, per_page, language)
     # results
     tmp <- rcites_res(q_url, token)
     # number of pages
@@ -103,7 +95,7 @@ spp_taxonconcept <- function(query_taxon, taxonomy = "CITES",
                 "cites_listings", "accepted_names")
             ## output
             out <- list()
-            out$all_id <- rcites_getallentries_taxonconcept(tmp2, sp_nm)
+            out$all_id <- rcites_taxonconcept_allentries(tmp2, sp_nm)
             out$all_id$updated_at <- as.POSIXlt(out$all_id$updated_at,
                 format = "%Y-%m-%dT%H:%M:%OS")
             out$all_id$active <- as.logical(out$all_id$active)
@@ -113,16 +105,19 @@ spp_taxonconcept <- function(query_taxon, taxonomy = "CITES",
 
 
             ## special cases NB add id
-            out$higher_taxa <- rcites_simplify_higher_taxa(tmp2[id], out$general$id)
-            out$synonyms <- rcites_simplify_special_cases(tmp2[id],
+            out$higher_taxa <- rcites_taxonconcept_higher_taxa(tmp2[id], out$general$id)
+            out$synonyms <- rcites_taxonconcept_special_cases(tmp2[id],
               name = "synonyms", out$general$id)
-            out$common_names <- rcites_simplify_special_cases(tmp2[id],
+            out$common_names <- rcites_taxonconcept_special_cases(tmp2[id],
               name = "common_names", out$general$id)
+            ##
+            out$accepted_names <- rcites_taxonconcept_special_cases(tmp2[!id],
+              name = "accepted_names", out$all_id$id[!id])
 
             ## Extra output if taxonomy is set to CITES
-            if (taxo == "CITES") {
+            if (taxonomy == "CITES") {
                 out$general$cites_listing <- unlist(lapply(tmp2[id], function(x) x$cites_listing))
-                out$cites_listings <- rcites_simplify_special_cases(tmp2[id],
+                out$cites_listings <- rcites_taxonconcept_special_cases(tmp2[id],
                   name = "cites_listings", out$general$id)
             }
 
@@ -135,65 +130,3 @@ spp_taxonconcept <- function(query_taxon, taxonomy = "CITES",
     #
     out
 }
-
-
-rcites_request_taxonconcept <- function(x, token, taxonomy, with_descendants,
-    page, per_page, language = NULL) {
-    # deal with blank space
-    tmp <- gsub(pattern = " ", replacement = "%20", x = x)
-    if (tmp == "") {
-        query <- ""
-    } else {
-        query <- paste0("name=", tmp)
-    }
-    #
-    taxo <- ifelse(taxonomy == "CMS", "taxonomy=CMS", "")
-    wdes <- ifelse(with_descendants, "with_descendants=true", "")
-    lng <- ifelse(is.null(language), "", paste(language, collapse = ","))
-    pag <- paste0("page=", page, "&per_page=", min(per_page, 500))
-    #
-    ele <- c(query, wdes, taxo, lng, pag)
-    # out_put
-    rcites_url("taxon_concepts.json?", paste(ele[ele != ""], collapse = "&"))
-}
-
-rcites_getallentries_taxonconcept <- function(x, sp_nm) {
-    tmp <- lapply(lapply(x, function(x) x[!names(x) %in% sp_nm]), unlist)
-    # author_year may be missing
-    tmp2 <- lapply(tmp, rcites_addauthor)
-    #
-    tmp <- lapply(tmp2, function(x) x[names(tmp2[[1L]])])
-    #
-    data.frame(do.call(rbind, tmp))
-}
-
-rcites_simplify_higher_taxa <- function(x, identifier) {
-    tmp <- lapply(x, function(y) y[["higher_taxa"]])
-    wch <- which(unlist(lapply(tmp, length)) > 0)
-    out <- data.frame(id = identifier[wch], do.call(rbind, tmp[wch]))
-    class(out) <- c("tbl_df", "tbl", "data.frame")
-    out
-}
-
-rcites_simplify_special_cases <- function(x, name, identifier) {
-    tmp <- lapply(x, function(y) y[[name]])
-    wch <- which(unlist(lapply(tmp, length)) > 0)
-    tmp2 <- lapply(tmp[wch], function(x) do.call(rbind, x))
-    sz <- unlist(lapply(tmp2, nrow))
-    out <- data.frame(do.call(rbind, tmp2))
-    if (name == "synonym") names(out)[1] <- "id_synonym"
-    out <- cbind(id = rep(identifier[wch], sz), out)
-    class(out) <- c("tbl_df", "tbl", "data.frame")
-    out
-}
-
-# rcites_simplify_common_names <- function(x, identifier) {
-#     tmp <- lapply(x, function(y) y[["common_names"]])
-#     wch <- which(unlist(lapply(tmp, length)) > 0)
-#     tmp2 <- lapply(tmp[wch], function(x) do.call(rbind, x))
-#     sz <- unlist(lapply(tmp2, nrow))
-#     out <- data.frame(do.call(rbind, tmp2))
-#     out <- cbind(id = rep(identifier[wch], sz), out)
-#     class(out) <- c("tbl_df", "tbl", "data.frame")
-#     out
-# }

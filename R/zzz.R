@@ -39,6 +39,11 @@ rcites_autopagination <- function(q_url, per_page, seq_page, tot_page,
 }
 
 #
+rcites_print_df <- function(x, nrows = 10) {
+  print(x[seq_len(min(nrow(x), nrows)),])
+}
+
+#
 rcites_get <- function(q_url, token) {
     names(token) <- "X-Authentication-Token"
     httr::GET(q_url, httr::add_headers(token))
@@ -90,5 +95,61 @@ rcites_specialcase <- function(x, case) {
     if ("date" %in% names(out))
         out$date <- as.Date(out$date)
     names(out) <- paste0(case, "_", names(out))
+    out
+}
+
+
+
+## helper functions for spp_taxonconcept()
+
+rcites_taxonconcept_request <- function(x, token, taxonomy, with_descendants,
+    page, per_page, language = NULL) {
+    # deal with blank space
+    tmp <- gsub(pattern = " ", replacement = "%20", x = x)
+    if (tmp == "") {
+        query <- ""
+    } else {
+        query <- paste0("name=", tmp)
+    }
+    #
+    taxo <- ifelse(taxonomy == "CMS", "taxonomy=CMS", "")
+    wdes <- ifelse(with_descendants, "with_descendants=true", "")
+    lng <- ifelse(is.null(language), "",
+      paste0("language=", paste(language, collapse = ",")))
+    pag <- paste0("page=", page, "&per_page=", min(per_page, 500))
+    #
+    ele <- c(query, wdes, taxo, lng, pag)
+    # out_put
+    rcites_url("taxon_concepts.json?", paste(ele[ele != ""], collapse = "&"))
+}
+
+rcites_taxonconcept_allentries <- function(x, sp_nm) {
+    tmp <- lapply(lapply(x, function(x) x[!names(x) %in% sp_nm]), unlist)
+    # author_year may be missing
+    tmp2 <- lapply(tmp, rcites_addauthor)
+    #
+    tmp <- lapply(tmp2, function(x) x[names(tmp2[[1L]])])
+    #
+    data.frame(do.call(rbind, tmp))
+}
+
+rcites_taxonconcept_higher_taxa <- function(x, identifier) {
+    tmp <- lapply(x, function(y) y[["higher_taxa"]])
+    wch <- which(unlist(lapply(tmp, length)) > 0)
+    out <- data.frame(id = identifier[wch], do.call(rbind, tmp[wch]))
+    class(out) <- c("tbl_df", "tbl", "data.frame")
+    out
+}
+
+rcites_taxonconcept_special_cases <- function(x, name, identifier) {
+    tmp <- lapply(x, function(y) y[[name]])
+    wch <- which(unlist(lapply(tmp, length)) > 0)
+    tmp2 <- lapply(tmp[wch], function(x) do.call(rbind, x))
+    sz <- unlist(lapply(tmp2, nrow))
+    out <- data.frame(do.call(rbind, tmp2))
+    if (name == "synonym") names(out)[1] <- "id_synonym"
+    out <- cbind(id = rep(identifier[wch], sz), out)
+    if (name == "accepted_names") names(out)[1] <- "id_synonym"
+    class(out) <- c("tbl_df", "tbl", "data.frame")
     out
 }
