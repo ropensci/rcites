@@ -11,7 +11,9 @@
 #' include higher taxa?
 #' @param language filter languages returned for common names. Value should be a
 #' vector of sting including one or more country codes. Default is set to `NULL`,
-# showing all available languages.
+#' showing all available languages.
+#' @param updated_since a timestamp. Only objects updated after (and including)
+#' this timestamp will be pulled.
 #' @param per_page a integer that indicates how many objects are returned per
 #' page for paginated responses. Default set to 500 which is the maximum.
 #' @param seq_page a vector of integer that contains page numbers. Default is
@@ -46,8 +48,8 @@
 #' }
 
 spp_taxonconcept <- function(query_taxon, taxonomy = "CITES",
-  with_descendants = FALSE, language = NULL, per_page = 500, seq_page = NULL,
-  raw = FALSE, token = NULL, verbose = TRUE) {
+  with_descendants = FALSE, language = NULL, updated_since = NULL,
+  per_page = 500, seq_page = NULL, raw = FALSE, token = NULL, verbose = TRUE) {
     # token check
     if (is.null(token))
         token <- rcites_getsecret()
@@ -61,7 +63,7 @@ spp_taxonconcept <- function(query_taxon, taxonomy = "CITES",
       f_page <- unique(seq_page[1L])
     }
     q_url <- rcites_taxonconcept_request(query_taxon, token, taxonomy,
-          with_descendants, f_page, per_page, language)
+          with_descendants, f_page, per_page, updated_since, language)
     # results
     tmp <- rcites_res(q_url, token)
     # number of pages
@@ -103,8 +105,7 @@ spp_taxonconcept <- function(query_taxon, taxonomy = "CITES",
             id <- which(out$all_id$active)
             out$general <- out$all_id[out$all_id$active, ]
 
-
-            ## special cases NB add id
+            ##
             out$higher_taxa <- rcites_taxonconcept_higher_taxa(tmp2[id], out$general$id)
             out$synonyms <- rcites_taxonconcept_special_cases(tmp2[id],
               name = "synonyms", out$general$id)

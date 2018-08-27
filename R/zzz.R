@@ -39,6 +39,14 @@ rcites_autopagination <- function(q_url, per_page, seq_page, tot_page,
 }
 
 #
+rcites_timestamp <- function(x) {
+  # ISO 8601 format
+  # https://stackoverflow.com/questions/29517896/current-time-in-iso-8601-format
+  tm <- as.POSIXlt(x, tz = "UTC")
+  strftime(tm , "%Y-%m-%dT%H:%M:%S")
+}
+
+#
 rcites_print_df <- function(x, nrows = 10) {
   print(x[seq_len(min(nrow(x), nrows)),])
 }
@@ -103,7 +111,7 @@ rcites_specialcase <- function(x, case) {
 ## helper functions for spp_taxonconcept()
 
 rcites_taxonconcept_request <- function(x, token, taxonomy, with_descendants,
-    page, per_page, language = NULL) {
+    page, per_page, updated_since = NULL, language = NULL) {
     # deal with blank space
     tmp <- gsub(pattern = " ", replacement = "%20", x = x)
     if (tmp == "") {
@@ -116,9 +124,11 @@ rcites_taxonconcept_request <- function(x, token, taxonomy, with_descendants,
     wdes <- ifelse(with_descendants, "with_descendants=true", "")
     lng <- ifelse(is.null(language), "",
       paste0("language=", paste(language, collapse = ",")))
+    tim <- ifelse(is.null(updated_since), "",
+      paste0("updated_since=", rcites_timestamp(updated_since)))
     pag <- paste0("page=", page, "&per_page=", min(per_page, 500))
     #
-    ele <- c(query, wdes, taxo, lng, pag)
+    ele <- c(query, wdes, taxo, tim, lng, pag)
     # out_put
     rcites_url("taxon_concepts.json?", paste(ele[ele != ""], collapse = "&"))
 }

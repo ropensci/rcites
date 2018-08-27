@@ -5,8 +5,9 @@
 \title{Get taxon concepts for a search term.}
 \usage{
 spp_taxonconcept(query_taxon, taxonomy = "CITES",
-  with_descendants = FALSE, language = NULL, per_page = 500,
-  seq_page = NULL, raw = FALSE, token = NULL, verbose = TRUE)
+  with_descendants = FALSE, language = NULL, updated_since = NULL,
+  per_page = 500, seq_page = NULL, raw = FALSE, token = NULL,
+  verbose = TRUE)
 }
 \arguments{
 \item{query_taxon}{a character string containing the query (e.g. species).
@@ -19,7 +20,11 @@ Scientific taxa only (max 255 characters).}
 include higher taxa?}
 
 \item{language}{filter languages returned for common names. Value should be a
-vector of sting including one or more country codes. Default is set to `NULL`,}
+vector of sting including one or more country codes. Default is set to `NULL`,
+showing all available languages.}
+
+\item{updated_since}{a timestamp. Only objects updated after (and including)
+this timestamp will be pulled.}
 
 \item{per_page}{a integer that indicates how many objects are returned per
 page for paginated responses. Default set to 500 which is the maximum.}
