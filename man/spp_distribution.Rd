@@ -4,14 +4,19 @@
 \alias{spp_distribution}
 \title{Get distributions data available for a given taxon concept.}
 \usage{
-spp_distribution(taxon_id, collapse_tags = NULL, simplify = FALSE,
-  token = NULL)
+spp_distribution(taxon_id, language = "en", collapse_tags = NULL,
+  simplify = FALSE, token = NULL)
 }
 \arguments{
 \item{taxon_id}{character string containing a species' taxon concept identifier
 (see \code{\link[rcites]{spp_taxonconcept}}).}
 
-\item{collapse_tags}{a string used to collapse tags. Default is set to \code{NULL} meaning that tags column's elements remains lists.}
+\item{language}{vector of character strings indicating the language for the
+names of distributions, values are taken among \code{en} (English),
+\code{fr} (French) and \code{es} (Spanish). Default is \code{en}.}
+
+\item{collapse_tags}{a string used to collapse tags.
+Default is set to \code{NULL} meaning that tags column's elements remains lists.}
 
 \item{simplify}{a logical. Should the output be simplified? In other words,
 should columns of data.table objects returned be unlisted when they are

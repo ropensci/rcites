@@ -27,7 +27,7 @@ knitr::opts_chunk$set(
 
 ## Get your personal token
 To set up a connection to the CITES Speciesplus database, an authentication token
-is required. Each user should obtain his or her own personal token 
+is required. Each user should obtain his or her own personal token
 to run the code below (see https://api.speciesplus.net/documentation for more details).
 To obtain a token, sign up on the [Speciesplus API website](http://api.speciesplus.net/users/sign_up).
 
@@ -46,11 +46,11 @@ file (preferred);
 2. use `set_token()`, *i.e.* interactively set `SPECIESPLUS_TOKEN` up for the
 current R session (meaning a login will be required for the future R sessions);
 
-```{r}
+```{r, eval = FALSE}
 set_token("8QW6Qgh57sBG2k0gtt")
 ```
 
-3. use the `token` argument of the functions, *i.e.* the token is passed manually 
+3. use the `token` argument of the functions, *i.e.* the token is passed manually
 to every function calls.
 
 
@@ -59,7 +59,7 @@ to every function calls.
 ## Access the Speciesplus taxon concept and retrieve a taxon id
 
 To efficiently query information from the CITES Speciesplus database, you
-first need to retrieve the unique taxon identifier `taxon_id` from the [Speciesplus taxon concept](https://api.speciesplus.net/documentation/v1/taxon_concepts/index.html). 
+first need to retrieve the unique taxon identifier `taxon_id` from the [Speciesplus taxon concept](https://api.speciesplus.net/documentation/v1/taxon_concepts/index.html).
 To do so, you should first call `spp_taxonconcept()` and provide the scientific
 name of the taxon you look for. Let us start by requesting the identifier of the
 African bush elephant, *i.e.* *Loxodonta africana*.
@@ -73,17 +73,17 @@ res1
 Note regarding the token:
 If you chose option 3 the code needs to look as follows.
 
-```{r}
+```{r, eval = FALSE}
 res1 <- spp_taxonconcept(query_taxon = "Loxodonta africana", token = "8QW6Qgh57sBG2k0gtt")
 ```
 
 `res1` is a list of data.table object with different information pertaining
-to the naming of the taxon. If you however only need first details about 
-the species" CITES listing, setting `appendix_only` to `TRUE` will return 
+to the naming of the taxon. If you however only need first details about
+the species" CITES listing, setting `appendix_only` to `TRUE` will return
 the first data.table, `all`, for instance.
 
 ```{r}
-res2 <- spp_taxonconcept(query_taxon = "Loxodonta africana", appendix_only = TRUE)
+res2 <- spp_taxonconcept(query_taxon = "Loxodonta africana")#, appendix_only = TRUE)
 res2
 ```
 
@@ -91,7 +91,7 @@ For other taxon, there might be more than one identifier, in such a case you
 should have a look at the `active` column.
 
 ```{r}
-res3 <- spp_taxonconcept(query = "Amazilia versicolor", appendix_only = TRUE)
+res3 <- spp_taxonconcept(query = "Amazilia versicolor")#, appendix_only = TRUE)
 res3
 ```
 
@@ -135,7 +135,7 @@ distr <- spp_distribution("4521")
 
 ## Access a listing reference data
 
-```{r}
+```{r, eval = FALSE}
 ref <- spp_references(taxon_id = "3210", simplify = T)
 length(ref$distribution$reference)
 length(ref$taxonomic$citation)
@@ -148,13 +148,13 @@ ref$taxonomic$citation
 Currently, there is no direct way to access more than one species at a time.
 In order to do so, you should therefore loop over a vector of species or a vector of identifier.
 
-```{r}
+```{r, eval = FALSE}
 vc_sp <- c("Amazilia versicolor", "Loxodonta africana")
-res <- lapply(vc_sp, function(x) spp_taxonconcept(query_taxon = x, appendix_only = TRUE))
+res <- lapply(vc_sp, function(x) spp_taxonconcept(query_taxon = x)#, appendix_only = TRUE))
 do.call(rbind, res)
 ```
 
-```{r}
+```{r, eval = FALSE}
 vc_id <- c(4521, 3210)
 res <- lapply(vc_id,
     function(x) unlist(
@@ -169,7 +169,7 @@ do.call(rbind, res)
 
 The `rcites_simplify()` function can be used for an outcome that is easier to read. It can be either called directly within an access function having the `spp_` prefix, through having `simplify = TRUE` or used afterwards.
 
-```{r}
+```{r, eval = FALSE}
 leg2 <- rcites_simplify(leg1)
 ```
 

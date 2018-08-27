@@ -5,13 +5,24 @@
 \title{Get current CITES appendix listings and reservations.}
 \usage{
 spp_cites_legislation(taxon_id, type = c("listings", "quotas",
-  "suspensions"), simplify = FALSE, token = NULL)
+  "suspensions"), scope = c("current", "historic", "all"),
+  language = c("en", "fr", "es"), simplify = FALSE, token = NULL)
 }
 \arguments{
 \item{taxon_id}{character string containing a species' taxon concept identifier
 (see \code{\link[rcites]{spp_taxonconcept}}).}
 
-\item{type}{vector of character strings indicating type of legislation information requested, values are taken among \code{listing}, \code{quota} and \code{suspension}. Default includes the three of them.}
+\item{type}{vector of character strings indicating the type of legislation
+information requested, values are taken among \code{listings}, \code{quotas} and
+\code{suspensions}. Default includes the three of them.}
+
+\item{scope}{vector of character strings indicating the time scope of legislation,
+values are taken among \code{current}, \code{historic} and \code{all}.
+Default is \code{current}.}
+
+\item{language}{vector of character strings indicating the language for the
+text of legislation notes, values are taken among \code{en} (English),
+\code{fr} (French) and \code{es} (Spanish). Default is \code{en}.}
 
 \item{simplify}{a logical. Should the output be simplified? In other words,
 should columns of data.table objects returned be unlisted when they are

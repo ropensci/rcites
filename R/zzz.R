@@ -10,11 +10,42 @@
 
 ## Helper functions
 
+#
 rcites_baseurl <- function() "https://api.speciesplus.net/api/v1/"
 
 #
 rcites_url <- function(...) {
     paste0(rcites_baseurl(), ...)
+}
+
+#
+rcites_get <- function(q_url, token) {
+    names(token) <- "X-Authentication-Token"
+    httr::GET(q_url, httr::add_headers(token))
+}
+
+#
+rcites_res <- function(q_url, token) {
+    con <- rcites_get(q_url, token)
+    # check status
+    httr::stop_for_status(con)
+    # parsed
+    httr::content(con, "parsed")
+}
+
+#
+rcites_timestamp <- function(x) {
+  # ISO 8601 format
+  # https://stackoverflow.com/questions/29517896/current-time-in-iso-8601-format
+  tm <- as.POSIXlt(x, tz = "UTC")
+  strftime(tm , "%Y-%m-%dT%H:%M:%S")
+}
+
+#
+rcites_lang <- function(x) {
+  out <- match.arg(x, c("en", "fr", "es"))
+  if (out == "en") out <- "" else out <- paste0("?language=", out)
+  out
 }
 
 # auto pagination
@@ -39,31 +70,8 @@ rcites_autopagination <- function(q_url, per_page, seq_page, tot_page,
 }
 
 #
-rcites_timestamp <- function(x) {
-  # ISO 8601 format
-  # https://stackoverflow.com/questions/29517896/current-time-in-iso-8601-format
-  tm <- as.POSIXlt(x, tz = "UTC")
-  strftime(tm , "%Y-%m-%dT%H:%M:%S")
-}
-
-#
 rcites_print_df <- function(x, nrows = 10) {
   print(x[seq_len(min(nrow(x), nrows)),])
-}
-
-#
-rcites_get <- function(q_url, token) {
-    names(token) <- "X-Authentication-Token"
-    httr::GET(q_url, httr::add_headers(token))
-}
-
-#
-rcites_res <- function(q_url, token) {
-    con <- rcites_get(q_url, token)
-    # check status
-    httr::stop_for_status(con)
-    # parsed
-    httr::content(con, "parsed")
 }
 
 # See https://cran.r-project.org/web/packes/httr/vignettes/secrets.html
@@ -80,7 +88,7 @@ rcites_getsecret <- function() {
     val
 }
 
-#
+# remove secret
 rcites_forgetsecret <- function() Sys.unsetenv("SPECIESPLUS_TOKEN")
 
 # pagination

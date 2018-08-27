@@ -34,7 +34,7 @@
 #' }
 
 spp_distribution <- function(taxon_id,
-                             language = c("en", "fr", "es"),
+                             language = "en",
                              collapse_tags = NULL,
                              simplify = FALSE,
                              token = NULL) {
@@ -42,15 +42,8 @@ spp_distribution <- function(taxon_id,
     if (is.null(token))
         token <- rcites_getsecret()
     # set query_string
-    language <- match.arg(language)
-    if (language == "en"){la <- NULL}
-    if (language == "fr"){la <- "language=fr"}
-    if (language == "es"){la <- "language=es"}
-    query_string <- paste0(
-      if(is.null(la)){} else {"?"},
-      la)
-    #
-    q_url <- rcites_url(paste0("taxon_concepts/", taxon_id, "/distributions.json", query_string))
+    q_url <- rcites_url(paste0("taxon_concepts/", taxon_id,
+      "/distributions.json", rcites_lang(language)))
     res <- rcites_res(q_url, token)
     # get a data.table; tags and references are lists.
     out <- as.data.table(do.call(rbind, lapply(res, rbind)))

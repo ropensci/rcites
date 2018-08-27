@@ -31,7 +31,7 @@ To start, we do some basic set up. This is calling the package and setting the t
 
 ```{r}
 library(rcites)
-set_token("8QW6Qgh57sBG2k0gtt")
+# set_token("8QW6Qgh57sBG2k0gtt")
 ```
 
 
@@ -57,15 +57,15 @@ suppressPackageStartupMessages(library(rworldmap))
 
 par(las = 1)
 map1 <- as.data.frame(spp_distribution(taxon_id = "4521"))
-map2 <- joinCountryData2Map(map1, 
-                            joinCode="ISO2", 
-                            nameJoinColumn = "iso_code2", 
+map2 <- joinCountryData2Map(map1,
+                            joinCode="ISO2",
+                            nameJoinColumn = "iso_code2",
                             nameCountryColumn = "name")
 map2@data$iso2 <- unlist(lapply(map2$iso_code2, is.null))
-plot(c(-23, 62), c(45, -40), 
-     type = "n", 
+plot(c(-23, 62), c(45, -40),
+     type = "n",
      main = "Loxodonta africana",
-     xlab = "Longitude", 
+     xlab = "Longitude",
      ylab = "Latitude")
 plot(map2, add = T)
 plot(map2[!map2$iso2,], col = "#bda25d", add = T)
@@ -99,5 +99,3 @@ elephant_ref_distr <- spp_references(taxon_id = "4521", type = "distribution")
 ```
 
 Text about references outcomes to come ...
-
-
