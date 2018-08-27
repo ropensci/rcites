@@ -46,7 +46,7 @@ file (preferred);
 2. use `set_token()`, *i.e.* interactively set `SPECIESPLUS_TOKEN` up for the
 current R session (meaning a login will be required for the future R sessions);
 
-```{r}
+```{r, eval = FALSE}
 set_token("8QW6Qgh57sBG2k0gtt")
 ```
 
@@ -73,7 +73,7 @@ res1
 Note regarding the token:
 If you chose option 3 the code needs to look as follows.
 
-```{r}
+```{r, eval = FALSE}
 res1 <- spp_taxonconcept(query_taxon = "Loxodonta africana", token = "8QW6Qgh57sBG2k0gtt")
 ```
 

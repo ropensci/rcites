@@ -29,7 +29,7 @@ In [Get started with rcites](https://ibartomeus.github.io/rcites/articles/get_st
 
 To start, we do some basic set up. This is calling the package and setting the token.
 
-```{r}
+```{r, eval = FALSE}
 library(rcites)
 set_token("8QW6Qgh57sBG2k0gtt")
 ```
