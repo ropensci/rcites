@@ -1,21 +1,28 @@
 # rcites 0.1.1.9000
 
+- new features:
+  - `spp_taxonconcept()`
+  - outputs:
+    - spp_raw
+
 - add function parameters:
 
-  - scope and language to spp_cites_legislation
-  - scope and language to spp_eu_legislation
-  - language to spp_distribution
+  - `taxonomy`, `with_descendants`, `language`, `updated_since`, `per_page`,
+  `seq_page`, `raw`, `verbose` in `spp_taxonconcept()`
+  - `scope` and `language` to `spp_cites_legislation()`
+  - `scope` and `language` to `spp_eu_legislation()`
+  - `language` to `spp_distribution()`
 
 - change function names:
 
-  - set_token instead of sppplus_login
-  - spp_taxonconcept instead of sppplus_taxonconcept
-  - spp_cites_legislation instead of taxon_cites_legislation
-  - spp_eu_legislation instead of taxon_eu_legislation
-  - spp_distribution instead of taxon_distribution
-  - spp_references instead of taxon_references
-  - rcites_simplify instead of sppplus_simplify
-  - rcites_ instead of sppplus_ for helper functions
+  - `set_token()` instead of sppplus_login
+  - `spp_taxonconcept()` instead of sppplus_taxonconcept
+  - `spp_cites_legislation()` instead of taxon_cites_legislation
+  - `spp_eu_legislation()` instead of taxon_eu_legislation
+  - `spp_distribution()` instead of taxon_distribution
+  - `spp_references()` instead of taxon_references
+  - `rcites_simplify()` instead of sppplus_simplify
+  - `rcites_ instead()` of sppplus_ for helper functions
 
 - follow `goodpractice`:
 

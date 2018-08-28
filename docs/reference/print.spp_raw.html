@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get current EU annex listings, SRG opinions, and EU suspensions. — spp_eu_legislation • rcites</title>
+<title>print — print.spp_raw • rcites</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,10 +30,9 @@
 
 
 
-<meta property="og:title" content="Get current EU annex listings, SRG opinions, and EU suspensions. — spp_eu_legislation" />
+<meta property="og:title" content="print — print.spp_raw" />
 
-<meta property="og:description" content="Retrieve current EU annex listings, SRG opinions, and EU suspensions for a
-given taxon concept (identifier must be known)." />
+<meta property="og:description" content="Print the result of a Species+ API call" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -119,77 +118,38 @@ given taxon concept (identifier must be known)." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get current EU annex listings, SRG opinions, and EU suspensions.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ibartomeus/rcites/blob/master/R/spp_eu_legislation.R'><code>R/spp_eu_legislation.R</code></a></small>
-    <div class="hidden name"><code>spp_eu_legislation.Rd</code></div>
+    <h1>print</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ibartomeus/rcites/blob/master/R/print.R'><code>R/print.R</code></a></small>
+    <div class="hidden name"><code>print.spp_raw.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Retrieve current EU annex listings, SRG opinions, and EU suspensions for a
-given taxon concept (identifier must be known).</p>
+    <p>Print the result of a Species+ API call</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>spp_eu_legislation</span>(<span class='no'>taxon_id</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"listings"</span>, <span class='st'>"decisions"</span>),
-  <span class='kw'>scope</span> <span class='kw'>=</span> <span class='st'>"current"</span>, <span class='kw'>language</span> <span class='kw'>=</span> <span class='st'>"en"</span>, <span class='kw'>simplify</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>token</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='co'># S3 method for spp_raw</span>
+<span class='fu'>print</span>(<span class='no'>x</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>taxon_id</th>
-      <td><p>character string containing a species' taxon concept identifier
-(see <code><a href='spp_taxonconcept.html'>spp_taxonconcept</a></code>).</p></td>
+      <th>x</th>
+      <td><p>The result object.</p></td>
     </tr>
     <tr>
-      <th>type</th>
-      <td><p>vector of character strings indicating the type of legislation
-information requested, values are taken among <code>listings</code> and <code>decisions</code>.
-Default includes the two of them.</p></td>
-    </tr>
-    <tr>
-      <th>scope</th>
-      <td><p>vector of character strings indicating the time scope of legislation,
-values are taken among <code>current</code>, <code>historic</code> and <code>all</code>.
-Default is <code>current</code>.</p></td>
-    </tr>
-    <tr>
-      <th>language</th>
-      <td><p>vector of character strings indicating the language for the
-text of legislation notes, values are taken among <code>en</code> (English),
-<code>fr</code> (French) and <code>es</code> (Spanish). Default is <code>en</code>.</p></td>
-    </tr>
-    <tr>
-      <th>simplify</th>
-      <td><p>a logical. Should the output be simplified? In other words,
-should columns of data.table objects returned be unlisted when they are
-lists made of single elements?</p></td>
-    </tr>
-    <tr>
-      <th>token</th>
-      <td><p>a character string containing the authentification token, see
-<a href='https://api.speciesplus.net/documentation'>https://api.speciesplus.net/documentation</a>. Default is set to
-<code>NULL</code> and requires the environment variable <code>SPECIESPLUS_TOKEN</code> to be
-set directly in <code>Renviron</code>. Alternatively <code><a href='set_token.html'>set_token()</a></code> can
-be used to set <code>SPECIESPLUS_TOKEN</code> for the current session.</p></td>
+      <th>...</th>
+      <td><p>Ignored.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A list of data.table objects, one per type requested.</p>
-    
-    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
-
-    <p><a href='https://api.speciesplus.net/documentation/v1/eu_legislation/index.html'>https://api.speciesplus.net/documentation/v1/eu_legislation/index.html</a></p>
+    <p>The JSON result.</p>
     
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>res1</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_eu_legislation</span>(<span class='kw'>taxon_id</span> <span class='kw'>=</span> <span class='st'>'4521'</span>)
-<span class='no'>res2</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_eu_legislation</span>(<span class='kw'>taxon_id</span> <span class='kw'>=</span> <span class='st'>'4521'</span>, <span class='kw'>type</span> <span class='kw'>=</span><span class='st'>'listings'</span>)
-<span class='no'>res3</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_eu_legislation</span>(<span class='kw'>taxon_id</span> <span class='kw'>=</span> <span class='st'>'4521'</span>, <span class='kw'>type</span> <span class='kw'>=</span><span class='st'>'listings'</span>, <span class='kw'>simplify</span> <span class='kw'>=</span> <span class='no'>T</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -197,11 +157,7 @@ be used to set <code>SPECIESPLUS_TOKEN</code> for the current session.</p></td>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-
-      <li><a href="#references">References</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+          </ul>
 
   </div>
 </div>

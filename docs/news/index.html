@@ -58,7 +58,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rcites</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0.9000</span>
       </span>
     </div>
 
@@ -80,6 +80,12 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/elephant.html">Speciesplus information about the African bush elephant</a>
+    </li>
+    <li>
+      <a href="../articles/get_started.html">Get started with rcites</a>
+    </li>
     <li>
       <a href="../articles/rcites-vignette.html">Get started with rcites</a>
     </li>
@@ -118,17 +124,47 @@
 <a href="#rcites-0-1-1-9000" class="anchor"></a>rcites 0.1.1.9000<small> Unreleased </small>
 </h1>
 <ul>
+<li>new features:
+<ul>
+<li><code><a href="../reference/spp_taxonconcept.html">spp_taxonconcept()</a></code></li>
+</ul>
+</li>
+<li>
+<p>add function parameters:</p>
+<ul>
+<li>
+<code>taxonomy</code>, <code>with_descendants</code>, <code>language</code>, <code>updated_since</code>, <code>per_page</code>, <code>seq_page</code>, <code>raw</code>, <code>verbose</code> in <code><a href="../reference/spp_taxonconcept.html">spp_taxonconcept()</a></code>
+</li>
+<li>
+<code>scope</code> and <code>language</code> to <code><a href="../reference/spp_cites_legislation.html">spp_cites_legislation()</a></code>
+</li>
+<li>
+<code>scope</code> and <code>language</code> to <code><a href="../reference/spp_eu_legislation.html">spp_eu_legislation()</a></code>
+</li>
+<li>
+<code>language</code> to <code><a href="../reference/spp_distribution.html">spp_distribution()</a></code>
+</li>
+</ul>
+</li>
 <li>
 <p>change function names:</p>
 <ul>
-<li>set_token instead of sppplus_login</li>
-<li>spp_taxonconcept instead of sppplus_taxonconcept</li>
-<li>spp_cites_legislation instead of taxon_cites_legislation</li>
-<li>spp_eu_legislation instead of taxon_eu_legislation</li>
-<li>spp_distribution instead of taxon_distribution</li>
-<li>spp_references instead of taxon_references</li>
-<li>rcites_simplify instead of sppplus_simplify</li>
-<li>rcites_ instead of sppplus_ for helper functions</li>
+<li>
+<code><a href="../reference/set_token.html">set_token()</a></code> instead of sppplus_login</li>
+<li>
+<code><a href="../reference/spp_taxonconcept.html">spp_taxonconcept()</a></code> instead of sppplus_taxonconcept</li>
+<li>
+<code><a href="../reference/spp_cites_legislation.html">spp_cites_legislation()</a></code> instead of taxon_cites_legislation</li>
+<li>
+<code><a href="../reference/spp_eu_legislation.html">spp_eu_legislation()</a></code> instead of taxon_eu_legislation</li>
+<li>
+<code><a href="../reference/spp_distribution.html">spp_distribution()</a></code> instead of taxon_distribution</li>
+<li>
+<code><a href="../reference/spp_references.html">spp_references()</a></code> instead of taxon_references</li>
+<li>
+<code><a href="../reference/rcites_simplify.html">rcites_simplify()</a></code> instead of sppplus_simplify</li>
+<li>
+<code>rcites_ instead()</code> of sppplus_ for helper functions</li>
 </ul>
 </li>
 <li>
