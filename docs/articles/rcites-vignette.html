@@ -151,7 +151,7 @@
 <h2 class="hasAnchor">
 <a href="#query-legislation-information" class="anchor"></a>Query legislation information</h2>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">leg1 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/spp_cites_legislation.html">spp_cites_legislation</a></span>(<span class="dt">taxon_id =</span> <span class="st">"4521"</span>)</a>
-<a class="sourceLine" id="cb7-2" data-line-number="2">leg2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/spp_cites_legislation.html">spp_cites_legislation</a></span>(<span class="dt">taxon_id =</span> <span class="st">"3210"</span>, <span class="dt">simplify =</span> T)</a></code></pre></div>
+<a class="sourceLine" id="cb7-2" data-line-number="2">leg2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/spp_cites_legislation.html">spp_cites_legislation</a></span>(<span class="dt">taxon_id =</span> <span class="st">"3210"</span>)</a></code></pre></div>
 </div>
 <div id="query-distribution-information" class="section level2">
 <h2 class="hasAnchor">
@@ -170,7 +170,7 @@
 <div id="query-references-information" class="section level2">
 <h2 class="hasAnchor">
 <a href="#query-references-information" class="anchor"></a>Query references information</h2>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">ref2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/spp_references.html">spp_references</a></span>(<span class="dt">taxon_id =</span> <span class="st">"3210"</span>, <span class="dt">simplify =</span> T)</a>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">ref2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/spp_references.html">spp_references</a></span>(<span class="dt">taxon_id =</span> <span class="st">"3210"</span>)</a>
 <a class="sourceLine" id="cb9-2" data-line-number="2"><span class="kw">length</span>(ref2<span class="op">$</span>distribution<span class="op">$</span>reference)</a>
 <a class="sourceLine" id="cb9-3" data-line-number="3"><span class="kw">length</span>(ref2<span class="op">$</span>taxonomic<span class="op">$</span>citation)</a>
 <a class="sourceLine" id="cb9-4" data-line-number="4">ref2<span class="op">$</span>taxonomic<span class="op">$</span>citation</a></code></pre></div>
@@ -185,11 +185,10 @@
 <p>or a vector of identifier:</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">vc_id &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">4521</span>, <span class="dv">3210</span>)</a>
 <a class="sourceLine" id="cb11-2" data-line-number="2">res &lt;-<span class="st"> </span><span class="kw">lapply</span>(vc_id,</a>
-<a class="sourceLine" id="cb11-3" data-line-number="3">    <span class="cf">function</span>(x) <span class="kw">unlist</span>(</a>
-<a class="sourceLine" id="cb11-4" data-line-number="4">      <span class="kw"><a href="../reference/spp_eu_legislation.html">spp_eu_legislation</a></span>(<span class="dt">taxon_id =</span> x, <span class="dt">type =</span> <span class="st">"listings"</span>, <span class="dt">simplify =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb11-5" data-line-number="5">    )[<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>]</a>
-<a class="sourceLine" id="cb11-6" data-line-number="6">    )</a>
-<a class="sourceLine" id="cb11-7" data-line-number="7"><span class="kw">do.call</span>(rbind, res)</a></code></pre></div>
+<a class="sourceLine" id="cb11-3" data-line-number="3">    <span class="cf">function</span>(x)</a>
+<a class="sourceLine" id="cb11-4" data-line-number="4">      <span class="kw"><a href="../reference/spp_eu_legislation.html">spp_eu_legislation</a></span>(<span class="dt">taxon_id =</span> x)</a>
+<a class="sourceLine" id="cb11-5" data-line-number="5">    )</a>
+<a class="sourceLine" id="cb11-6" data-line-number="6"><span class="kw">do.call</span>(rbind, res)</a></code></pre></div>
 </div>
   </div>
 

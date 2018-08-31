@@ -124,9 +124,33 @@
 <a href="#rcites-0-1-1-9000" class="anchor"></a>rcites 0.1.1.9000<small> Unreleased </small>
 </h1>
 <ul>
-<li>new features:
+<li>
+<p>new features:</p>
 <ul>
-<li><code><a href="../reference/spp_taxonconcept.html">spp_taxonconcept()</a></code></li>
+<li>
+<code><a href="../reference/spp_taxonconcept.html">spp_taxonconcept()</a></code> now includes an auto-pagination.</li>
+<li>Functions now returns S3 objects for which a print method is defined for all these objects:
+<ul>
+<li>
+<code>spp_raw</code> class is defined for all functions including the argument <code>raw</code>, it returns the parsed output from the API as a list object.<br>
+</li>
+<li>
+<code>spp_taxonconcept</code> returns an object of class <code>spp_taxon</code>
+</li>
+<li>
+<code>spp_cites_legislation</code> returns an object of class <code>spp_cites_leg</code>
+</li>
+<li>
+<code>spp_eu_legislation</code> returns an object of class <code>spp_eu_leg</code>
+</li>
+<li>
+<code>spp_distributions</code> returns an object of class <code>spp_distr</code>
+</li>
+<li>
+<code>spp_references</code> returns an object of class <code>spp_refs</code>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>
@@ -136,13 +160,13 @@
 <code>taxonomy</code>, <code>with_descendants</code>, <code>language</code>, <code>updated_since</code>, <code>per_page</code>, <code>seq_page</code>, <code>raw</code>, <code>verbose</code> in <code><a href="../reference/spp_taxonconcept.html">spp_taxonconcept()</a></code>
 </li>
 <li>
-<code>scope</code> and <code>language</code> to <code><a href="../reference/spp_cites_legislation.html">spp_cites_legislation()</a></code>
+<code>scope</code>, <code>language</code> and <code>raw</code> to <code><a href="../reference/spp_cites_legislation.html">spp_cites_legislation()</a></code>
 </li>
 <li>
-<code>scope</code> and <code>language</code> to <code><a href="../reference/spp_eu_legislation.html">spp_eu_legislation()</a></code>
+<code>scope</code>, <code>language</code> and <code>raw</code> to <code><a href="../reference/spp_eu_legislation.html">spp_eu_legislation()</a></code>
 </li>
 <li>
-<code>language</code> to <code><a href="../reference/spp_distributions.html">spp_distributions()</a></code>
+<code>language</code> and <code>raw</code> to <code><a href="../reference/spp_distributions.html">spp_distributions()</a></code>
 </li>
 </ul>
 </li>
@@ -150,21 +174,28 @@
 <p>change function names:</p>
 <ul>
 <li>
-<code><a href="../reference/set_token.html">set_token()</a></code> instead of sppplus_login</li>
+<code><a href="../reference/set_token.html">set_token()</a></code> instead of <code>sppplus_login()</code>
+</li>
 <li>
-<code><a href="../reference/spp_taxonconcept.html">spp_taxonconcept()</a></code> instead of sppplus_taxonconcept</li>
+<code><a href="../reference/spp_taxonconcept.html">spp_taxonconcept()</a></code> instead of <code>sppplus_taxonconcept()</code>
+</li>
 <li>
-<code><a href="../reference/spp_cites_legislation.html">spp_cites_legislation()</a></code> instead of taxon_cites_legislation</li>
+<code><a href="../reference/spp_cites_legislation.html">spp_cites_legislation()</a></code> instead of <code>taxon_cites_legislation()</code>
+</li>
 <li>
-<code><a href="../reference/spp_eu_legislation.html">spp_eu_legislation()</a></code> instead of taxon_eu_legislation</li>
+<code><a href="../reference/spp_eu_legislation.html">spp_eu_legislation()</a></code> instead of <code>taxon_eu_legislation()</code>
+</li>
 <li>
-<code><a href="../reference/spp_distributions.html">spp_distributions()</a></code> instead of taxon_distribution</li>
+<code><a href="../reference/spp_distributions.html">spp_distributions()</a></code> instead of <code>taxon_distribution()</code>
+</li>
 <li>
-<code><a href="../reference/spp_references.html">spp_references()</a></code> instead of taxon_references</li>
+<code><a href="../reference/spp_references.html">spp_references()</a></code> instead of <code>taxon_references()</code>
+</li>
 <li>
-<code><a href="../reference/rcites_simplify.html">rcites_simplify()</a></code> instead of sppplus_simplify</li>
+<code>rcites_simplify()</code> instead of <code>sppplus_simplify()</code>
+</li>
 <li>
-<code>rcites_ instead()</code> of sppplus_ for helper functions</li>
+<code>rcites_</code> instead of <code>sppplus_</code> for helper functions</li>
 </ul>
 </li>
 <li>
@@ -173,7 +204,6 @@
 <li>use ‘&lt;-’ for assignment instead of ‘=’,</li>
 <li>omit “Date” in DESCRIPTION,</li>
 <li>avoid 1:length(…), 1:nrow(…), 1:ncol(…),</li>
-<li>remove ‘jsonlite’ from DESCRIPTION.</li>
 </ul>
 </li>
 </ul>

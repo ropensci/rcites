@@ -7,12 +7,11 @@
   these objects:
     - `spp_raw` class is defined for all functions including the argument `raw`,
     it returns the parsed output from the API as a list object.  
-    - `spp_taxonconcept` returns an object of class `spp_spp_taxon`
+    - `spp_taxonconcept` returns an object of class `spp_taxon`
     - `spp_cites_legislation` returns an object of class `spp_cites_leg`
     - `spp_eu_legislation` returns an object of class `spp_eu_leg`
     - `spp_distributions` returns an object of class `spp_distr`
-    - `spp_references` returns an object of class `spp_distr`
-  - all S# objects  ()
+    - `spp_references` returns an object of class `spp_refs`
 
 
 - add function parameters:

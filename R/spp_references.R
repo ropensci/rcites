@@ -38,7 +38,7 @@ spp_references <- function(taxon_id, raw = FALSE, token = NULL) {
     } else {
         out <- list()
         out$references <- rcites_simplify_decisions(tmp)
-        class(out) <- c("spp_ref")
+        class(out) <- c("spp_refs")
     }
     #
     out

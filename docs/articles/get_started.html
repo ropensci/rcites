@@ -163,13 +163,13 @@
 <h2 class="hasAnchor">
 <a href="#access-cites-legislation-data" class="anchor"></a>Access CITES legislation data</h2>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">leg1 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/spp_cites_legislation.html">spp_cites_legislation</a></span>(<span class="dt">taxon_id =</span> <span class="st">"4521"</span>)</a>
-<a class="sourceLine" id="cb7-2" data-line-number="2">leg2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/spp_cites_legislation.html">spp_cites_legislation</a></span>(<span class="dt">taxon_id =</span> <span class="st">"3210"</span>, <span class="dt">simplify =</span> T)</a></code></pre></div>
+<a class="sourceLine" id="cb7-2" data-line-number="2">leg2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/spp_cites_legislation.html">spp_cites_legislation</a></span>(<span class="dt">taxon_id =</span> <span class="st">"3210"</span>)</a></code></pre></div>
 </div>
 <div id="access-eu-legislation-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#access-eu-legislation-data" class="anchor"></a>Access EU legislation data</h2>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">leg3 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/spp_eu_legislation.html">spp_eu_legislation</a></span>(<span class="dt">taxon_id =</span> <span class="st">"4521"</span>)</a>
-<a class="sourceLine" id="cb8-2" data-line-number="2">leg4 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/spp_eu_legislation.html">spp_eu_legislation</a></span>(<span class="dt">taxon_id =</span> <span class="st">"3210"</span>, <span class="dt">simplify =</span> T)</a></code></pre></div>
+<a class="sourceLine" id="cb8-2" data-line-number="2">leg4 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/spp_eu_legislation.html">spp_eu_legislation</a></span>(<span class="dt">taxon_id =</span> <span class="st">"3210"</span>, <span class="dt">scope =</span> <span class="st">"all"</span>)</a></code></pre></div>
 </div>
 <div id="access-a-taxon-distribution-data" class="section level2">
 <h2 class="hasAnchor">
@@ -179,7 +179,7 @@
 <div id="access-a-listing-reference-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#access-a-listing-reference-data" class="anchor"></a>Access a listing reference data</h2>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">ref &lt;-<span class="st"> </span><span class="kw"><a href="../reference/spp_references.html">spp_references</a></span>(<span class="dt">taxon_id =</span> <span class="st">"3210"</span>, <span class="dt">simplify =</span> T)</a>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">ref &lt;-<span class="st"> </span><span class="kw"><a href="../reference/spp_references.html">spp_references</a></span>(<span class="dt">taxon_id =</span> <span class="st">"3210"</span>)</a>
 <a class="sourceLine" id="cb10-2" data-line-number="2"><span class="kw">length</span>(ref<span class="op">$</span>distribution<span class="op">$</span>reference)</a>
 <a class="sourceLine" id="cb10-3" data-line-number="3"><span class="kw">length</span>(ref<span class="op">$</span>taxonomic<span class="op">$</span>citation)</a>
 <a class="sourceLine" id="cb10-4" data-line-number="4">ref<span class="op">$</span>taxonomic<span class="op">$</span>citation</a></code></pre></div>
@@ -194,16 +194,15 @@
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">vc_id &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">4521</span>, <span class="dv">3210</span>)</a>
 <a class="sourceLine" id="cb12-2" data-line-number="2">res &lt;-<span class="st"> </span><span class="kw">lapply</span>(vc_id,</a>
 <a class="sourceLine" id="cb12-3" data-line-number="3">    <span class="cf">function</span>(x) <span class="kw">unlist</span>(</a>
-<a class="sourceLine" id="cb12-4" data-line-number="4">      <span class="kw"><a href="../reference/spp_eu_legislation.html">spp_eu_legislation</a></span>(<span class="dt">taxon_id =</span> x, <span class="dt">type =</span> <span class="st">"listings"</span>, <span class="dt">simplify =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb12-4" data-line-number="4">      <span class="kw"><a href="../reference/spp_eu_legislation.html">spp_eu_legislation</a></span>(<span class="dt">taxon_id =</span> x)</a>
 <a class="sourceLine" id="cb12-5" data-line-number="5">    )[<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>]</a>
-<a class="sourceLine" id="cb12-6" data-line-number="6">    )</a>
-<a class="sourceLine" id="cb12-7" data-line-number="7"><span class="kw">do.call</span>(rbind, res)</a></code></pre></div>
+<a class="sourceLine" id="cb12-6" data-line-number="6">)</a></code></pre></div>
 </div>
 <div id="use-of-the-simplify-function" class="section level2">
 <h2 class="hasAnchor">
 <a href="#use-of-the-simplify-function" class="anchor"></a>Use of the simplify function</h2>
-<p>The <code><a href="../reference/rcites_simplify.html">rcites_simplify()</a></code> function can be used for an outcome that is easier to read. It can be either called directly within an access function having the <code>spp_</code> prefix, through having <code>simplify = TRUE</code> or used afterwards.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">leg2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/rcites_simplify.html">rcites_simplify</a></span>(leg1)</a></code></pre></div>
+<p>The <code>rcites_simplify()</code> function can be used for an outcome that is easier to read. It can be either called directly within an access function having the <code>spp_</code> prefix, through having <code>simplify = TRUE</code> or used afterwards.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">leg2 &lt;-<span class="st"> </span><span class="kw">rcites_simplify</span>(leg1)</a></code></pre></div>
 </div>
 </div>
 <div id="for-a-full-package-workflow" class="section level1">

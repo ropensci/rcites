@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get taxon concepts for a search term. — spp_taxonconcept • rcites</title>
+<title>Get distributions data available for a given taxon concept. — spp_distributions • rcites</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,10 @@
 
 
 
-<meta property="og:title" content="Get taxon concepts for a search term. — spp_taxonconcept" />
+<meta property="og:title" content="Get distributions data available for a given taxon concept. — spp_distributions" />
 
-<meta property="og:description" content="Retrieve the taxon concept of a specific taxon (scientific name)." />
+<meta property="og:description" content="Retrieve distributions data available for a given taxon concept for which the
+the taxon identifier is known." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -118,60 +119,34 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get taxon concepts for a search term.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ibartomeus/rcites/blob/master/R/spp_taxonconcept.R'><code>R/spp_taxonconcept.R</code></a></small>
-    <div class="hidden name"><code>spp_taxonconcept.Rd</code></div>
+    <h1>Get distributions data available for a given taxon concept.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ibartomeus/rcites/blob/master/R/spp_distributions.R'><code>R/spp_distributions.R</code></a></small>
+    <div class="hidden name"><code>spp_distributions.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Retrieve the taxon concept of a specific taxon (scientific name).</p>
+    <p>Retrieve distributions data available for a given taxon concept for which the
+the taxon identifier is known.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>spp_taxonconcept</span>(<span class='no'>query_taxon</span>, <span class='kw'>taxonomy</span> <span class='kw'>=</span> <span class='st'>"CITES"</span>,
-  <span class='kw'>with_descendants</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>language</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>updated_since</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>per_page</span> <span class='kw'>=</span> <span class='fl'>500</span>, <span class='kw'>seq_page</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>raw</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>token</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>spp_distributions</span>(<span class='no'>taxon_id</span>, <span class='kw'>language</span> <span class='kw'>=</span> <span class='st'>"en"</span>, <span class='kw'>raw</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>token</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>query_taxon</th>
-      <td><p>a character string containing the query (e.g. species).
-Scientific taxa only (max 255 characters).</p></td>
-    </tr>
-    <tr>
-      <th>taxonomy</th>
-      <td><p>filter taxon concepts by taxonomy, accepts either 'CITES' or
-'CMS' as its value. Defaults set to 'CITES'.</p></td>
-    </tr>
-    <tr>
-      <th>with_descendants</th>
-      <td><p>a logical. Should the search by name be broadened to
-include higher taxa?</p></td>
+      <th>taxon_id</th>
+      <td><p>character string containing a species' taxon concept identifier
+(see <code><a href='spp_taxonconcept.html'>spp_taxonconcept</a></code>).</p></td>
     </tr>
     <tr>
       <th>language</th>
-      <td><p>filter languages returned for common names. Value should be a
-vector of sting including one or more country codes. Default is set to `NULL`,
-showing all available languages.</p></td>
-    </tr>
-    <tr>
-      <th>updated_since</th>
-      <td><p>a timestamp. Only objects updated after (and including)
-this timestamp will be pulled.</p></td>
-    </tr>
-    <tr>
-      <th>per_page</th>
-      <td><p>a integer that indicates how many objects are returned per
-page for paginated responses. Default set to 500 which is the maximum.</p></td>
-    </tr>
-    <tr>
-      <th>seq_page</th>
-      <td><p>a vector of integer that contains page numbers. Default is
-set to `NULL`, i.e. all pages are accessed.</p></td>
+      <td><p>vector of character strings indicating the language for the
+names of distributions, values are taken among <code>en</code> (English),
+<code>fr</code> (French) and <code>es</code> (Spanish). Default is <code>en</code>.</p></td>
     </tr>
     <tr>
       <th>raw</th>
@@ -182,26 +157,23 @@ set to `NULL`, i.e. all pages are accessed.</p></td>
       <td><p>a character string containing the authentification token, see
 <a href='https://api.speciesplus.net/documentation'>https://api.speciesplus.net/documentation</a>. Default is set to
 <code>NULL</code> and requires the environment variable <code>SPECIESPLUS_TOKEN</code> to be
-set directly in <code>Renviron</code>. Alternatively, <code><a href='set_token.html'>set_token()</a></code> can
+set directly in <code>Renviron</code>. Alternatively <code><a href='set_token.html'>set_token()</a></code> can
 be used to set <code>SPECIESPLUS_TOKEN</code> for the current session.</p></td>
-    </tr>
-    <tr>
-      <th>verbose</th>
-      <td><p>a logical. Should extra information be reported on progress?</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>To be added</p>
+    <p>A data frame with all distribution information.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p><a href='https://api.speciesplus.net/documentation/v1/taxon_concepts/index.html'>https://api.speciesplus.net/documentation/v1/taxon_concepts/index.html</a></p>
+    <p><a href='https://api.speciesplus.net/documentation/v1/distributions/index.html'>https://api.speciesplus.net/documentation/v1/distributions/index.html</a></p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>res1</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_taxonconcept</span>(<span class='kw'>query_taxon</span> <span class='kw'>=</span> <span class='st'>'Loxodonta africana'</span>)</div><div class='output co'>#&gt; <span class='error'>Error in rcites_res(q_url, token): Too Many Requests (RFC 6585) (HTTP 429).</span></div><div class='input'><span class='no'>res2</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_taxonconcept</span>(<span class='kw'>query_taxon</span> <span class='kw'>=</span> <span class='st'>'Loxodonta africana'</span>, <span class='kw'>raw</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='error'>Error in rcites_res(q_url, token): Too Many Requests (RFC 6585) (HTTP 429).</span></div><div class='input'><span class='no'>res3</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_taxonconcept</span>(<span class='kw'>query_taxon</span> <span class='kw'>=</span> <span class='st'>'Amazilia versicolor'</span>)</div><div class='output co'>#&gt; <span class='error'>Error in rcites_res(q_url, token): Too Many Requests (RFC 6585) (HTTP 429).</span></div><div class='input'><span class='no'>res4</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_taxonconcept</span>(<span class='kw'>query_taxon</span> <span class='kw'>=</span> <span class='st'>''</span>, <span class='kw'>taxonomy</span> <span class='kw'>=</span> <span class='st'>'CMS'</span>, <span class='kw'>seq_page</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>5</span>, <span class='kw'>language</span> <span class='kw'>=</span> <span class='st'>'EN'</span>)</div><div class='output co'>#&gt; <span class='error'>Error in rcites_res(q_url, token): Too Many Requests (RFC 6585) (HTTP 429).</span></div><div class='input'><span class='no'>res5</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_taxonconcept</span>(<span class='kw'>query_taxon</span> <span class='kw'>=</span> <span class='st'>''</span>, <span class='kw'>seq_page</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>44</span>))</div><div class='output co'>#&gt; <span class='error'>Error in rcites_res(q_url, token): Too Many Requests (RFC 6585) (HTTP 429).</span></div></pre>
+    <pre class="examples"><div class='input'> <span class='no'>res1</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_distributions</span>(<span class='kw'>taxon_id</span> <span class='kw'>=</span> <span class='st'>'4521'</span>)
+ <span class='no'>res2</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_distributions</span>(<span class='kw'>taxon_id</span> <span class='kw'>=</span> <span class='st'>'4521'</span>, <span class='kw'>collapse_tags</span> <span class='kw'>=</span> <span class='st'>' + '</span>)</div><div class='output co'>#&gt; <span class='error'>Error in spp_distributions(taxon_id = "4521", collapse_tags = " + "): unused argument (collapse_tags = " + ")</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
