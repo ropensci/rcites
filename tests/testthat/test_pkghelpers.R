@@ -1,7 +1,15 @@
 context("helper function")
 
+## General helpers
 
-pag <- list(per_page = 500, total_entries = 501)
+test_that("basic functioning", {
+  expect_equal(rcites_url(tx_id), "https://api.speciesplus.net/api/v1/4521")
+})
+
+
+
+
+# pag <- list(per_page = 500, total_entries = 501)
 
 # test_that("basic functioning", {
 #   expect_equal(rcites_numberpages(pag), 2)

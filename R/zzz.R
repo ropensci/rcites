@@ -40,14 +40,14 @@ rcites_timestamp <- function(x) {
 
 rcites_lang <- function(x) {
     out <- match.arg(x, c("en", "fr", "es"))
-    if (out == "en")
+    if (out == "en") 
         out <- NULL else out <- paste0("language=", out)
     out
 }
 
 rcites_scope <- function(x) {
     out <- match.arg(x, c("current", "historic", "all"))
-    if (out == "current")
+    if (out == "current") 
         out <- NULL else out <- paste0("scope=", out)
     out
 }
@@ -76,17 +76,17 @@ rcites_forgetsecret <- function() Sys.unsetenv("SPECIESPLUS_TOKEN")
 ## Pagination helpers
 
 # auto pagination
-rcites_autopagination <- function(q_url, per_page, seq_page, tot_page,
+rcites_autopagination <- function(q_url, per_page, seq_page, tot_page, 
     token, verbose = TRUE) {
     out <- list()
-    q_url_0 <- gsub(q_url, pattern = "page=[[:digit:]]+\\&per_page=[[:digit:]]+$",
+    q_url_0 <- gsub(q_url, pattern = "page=[[:digit:]]+\\&per_page=[[:digit:]]+$", 
         replacement = "")
     # grepl('\\.json?', pat = '\\.json\\?$')
     for (i in seq_along(seq_page)) {
-        if (verbose)
-            cat("Retrieving info from page ", seq_page[i], "/", tot_page,
+        if (verbose) 
+            cat("Retrieving info from page ", seq_page[i], "/", tot_page, 
                 "\r")
-        q_url_new <- paste0(q_url_0, "page=", seq_page[i], "&per_page=",
+        q_url_new <- paste0(q_url_0, "page=", seq_page[i], "&per_page=", 
             min(per_page, 500))
         out[[i]] <- rcites_res(q_url_new, token)
     }
@@ -114,12 +114,12 @@ rcites_addauthor <- function(x) {
     x
 }
 
-#
+# 
 rcites_simplify_listings <- function(x) {
     # these fields may or may not be included, so I removed them
     vc_nm <- c("party", "hash_annotation", "annotation")
     tmp <- lapply(x, function(y) data.frame(do.call(cbind, y)))
-    out <- do.call(rbind, lapply(tmp, function(y) y[, which(!names(y) %in%
+    out <- do.call(rbind, lapply(tmp, function(y) y[, which(!names(y) %in% 
         vc_nm)]))
     rownames(out) <- NULL
     class(out) <- c("tbl_df", "tbl", "data.frame")
@@ -135,7 +135,7 @@ r_cites_null_to_na <- function(x) {
     }
 }
 
-#
+# 
 rcites_simplify_decisions <- function(x) {
     # these fields may or may not be included so I removed them
     tmp0 <- lapply(lapply(x, r_cites_null_to_na), unlist)
@@ -145,22 +145,22 @@ rcites_simplify_decisions <- function(x) {
     out
 }
 
-#
+# 
 rcites_simplify_distributions <- function(x) {
     # these fields may or may not be included so I removed them
     tmp <- lapply(x, r_cites_null_to_na)
     out <- list()
-    out$distributions <- data.frame(do.call(rbind, lapply(tmp, function(y) data.frame(rbind(unlist(y[!names(y) %in%
+    out$distributions <- data.frame(do.call(rbind, lapply(tmp, function(y) data.frame(rbind(unlist(y[!names(y) %in% 
         c("tags", "references")]))))))
-    out$distributions$tags <- unlist(lapply(tmp, function(y) paste(y$tags,
+    out$distributions$tags <- unlist(lapply(tmp, function(y) paste(y$tags, 
         collapse = ", ")))
     rownames(out$distributions) <- NULL
-
+    
     tmp2 <- lapply(tmp, function(y) cbind(y[["references"]]))
-    out$references <- data.frame(id = rep(out$distributions$id, unlist(lapply(tmp2,
-        length))), reference = do.call(rbind, tmp2))
+    out$references <- data.frame(id = rep(out$distributions$id, unlist(lapply(tmp2, 
+        length))), reference = unlist(do.call(rbind, tmp2)[, 1L]))
     rownames(out$distributions) <- rownames(out$references) <- NULL
-    class(out$distributions) <- class(out$references) <- c("tbl_df", "tbl",
+    class(out$distributions) <- class(out$references) <- c("tbl_df", "tbl", 
         "data.frame")
     out
 }
@@ -168,30 +168,31 @@ rcites_simplify_distributions <- function(x) {
 
 ## print helpers
 
-#
+# 
 rcites_print_df <- function(x, nrows = 10) {
-    if("tibble" %in% .packages()) {
-      print(x)
+    if ("tibble" %in% .packages()) {
+        print(x)
     } else {
-      tmp <- min(nrow(x), nrows)
-      print(x[seq_len(tmp), ])
-      if (tmp < nrow(x)) cat("-------Truncated-------\n")
+        tmp <- min(nrow(x), nrows)
+        print(x[seq_len(tmp), ])
+        if (tmp < nrow(x)) 
+            cat("-------Truncated-------\n")
     }
 }
 
-#
+# 
 rcites_print_df_rm <- function(x, col_rm = "", nrows = 10) {
-  rcites_print_df(x[, !names(x) %in% col_rm])
-  id <- which(col_rm %in% names(x))
-  if (length(id))
-      cat("Field(s) not printed: ", paste(col_rm[id], collapse = ", "),
-          "\n")
+    rcites_print_df(x[, !names(x) %in% col_rm])
+    id <- which(col_rm %in% names(x))
+    if (length(id)) 
+        cat("Field(s) not printed: ", paste(col_rm[id], collapse = ", "), 
+            "\n")
 }
 
 
 ## spp_taxonconcept() helpers
 
-rcites_taxonconcept_request <- function(x, token, taxonomy, with_descendants,
+rcites_taxonconcept_request <- function(x, token, taxonomy, with_descendants, 
     page, per_page, updated_since = NULL, language = NULL) {
     # deal with blank space
     tmp <- gsub(pattern = " ", replacement = "%20", x = x)
@@ -200,15 +201,15 @@ rcites_taxonconcept_request <- function(x, token, taxonomy, with_descendants,
     } else {
         query <- paste0("name=", tmp)
     }
-    #
+    # 
     taxo <- ifelse(taxonomy == "CMS", "taxonomy=CMS", "")
     wdes <- ifelse(with_descendants, "with_descendants=true", "")
-    lng <- ifelse(is.null(language), "", paste0("language=", paste(language,
+    lng <- ifelse(is.null(language), "", paste0("language=", paste(language, 
         collapse = ",")))
-    tim <- ifelse(is.null(updated_since), "", paste0("updated_since=",
+    tim <- ifelse(is.null(updated_since), "", paste0("updated_since=", 
         rcites_timestamp(updated_since)))
     pag <- paste0("page=", page, "&per_page=", min(per_page, 500))
-    #
+    # 
     ele <- c(query, wdes, taxo, tim, lng, pag)
     # out_put
     rcites_url("taxon_concepts.json?", paste(ele[ele != ""], collapse = "&"))
@@ -218,9 +219,9 @@ rcites_taxonconcept_allentries <- function(x, sp_nm) {
     tmp <- lapply(lapply(x, function(x) x[!names(x) %in% sp_nm]), unlist)
     # author_year may be missing
     tmp2 <- lapply(tmp, rcites_addauthor)
-    #
+    # 
     tmp <- lapply(tmp2, function(x) x[names(tmp2[[1L]])])
-    #
+    # 
     data.frame(do.call(rbind, tmp))
 }
 
@@ -238,10 +239,10 @@ rcites_taxonconcept_special_cases <- function(x, name, identifier) {
     tmp2 <- lapply(tmp[wch], function(x) do.call(rbind, x))
     sz <- unlist(lapply(tmp2, nrow))
     out <- data.frame(do.call(rbind, tmp2))
-    if (name == "synonym")
+    if (name == "synonym") 
         names(out)[1L] <- "id_synonym"
     out <- cbind(id = rep(identifier[wch], sz), out)
-    if (name == "accepted_names")
+    if (name == "accepted_names") 
         names(out)[1L] <- "id_synonym"
     class(out) <- c("tbl_df", "tbl", "data.frame")
     out

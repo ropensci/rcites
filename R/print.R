@@ -33,6 +33,8 @@ print.spp_taxon <- function(x, ...) {
     cat("\nCommon names:\n")
     rcites_print_df(x$common_names)
 
+    cat("\nInformation available:", paste(paste0("$", names(x)), collapse = ", "), 
+        "\n")
     # add a note of what's available
 }
 
@@ -60,12 +62,12 @@ print.spp_cites_leg <- function(x, ...) {
     cat("Cites listings ($cites_listings):\n")
     rcites_print_df_rm(x$cites_listings, col_rm = c("annotation", "hash_annotation"))
 
-    cat("Cites quotas ($cites_quotas):\n")
+    cat("\nCites quotas ($cites_quotas):\n")
     rcites_print_df_rm(x$cites_quotas, col_rm = c("notes", "url"))
 
-    cat("Cites suspensions ($cites_suspensions):\n")
-    rcites_print_df_rm(x$cites_suspensions, col_rm = c("notes",
-      paste0("start_notification.", c("name", "date", "url"))))
+    cat("\nCites suspensions ($cites_suspensions):\n")
+    rcites_print_df_rm(x$cites_suspensions, col_rm = c("notes", paste0("start_notification.",
+        c("name", "date", "url"))))
 }
 
 
@@ -79,13 +81,13 @@ print.spp_refs <- function(x, ...) {
 }
 
 
-# #' @describeIn print Print method for object of class `spp_refs`
-# #' @export
-# #' @method print spp_refs
-# print.spp_distr <- function(x, ...) {
-#   cat("Distributions ($distributions):\n")
-#   rcites_print_df(x$references)
-#
-#   cat("References ($references):\n")
-#   rcites_print_df_rm((x$references)
-# }
+#' @describeIn print Print method for object of class `spp_refs`
+#' @export
+#' @method print spp_refs
+print.spp_distr <- function(x, ...) {
+    cat("Distributions ($distributions):\n")
+    rcites_print_df(x$distributions)
+
+    cat("\nReferences ($references):\n")
+    rcites_print_df_rm(x$references)
+}

@@ -8,4 +8,4 @@ skip_if_no_auth <- function() {
 tx_nm <- "Loxodonta africana"
 tx_id <- 4521
 
-ut_pause <- function() Sys.sleep(5)
+ut_pause <- function() Sys.sleep(4)
