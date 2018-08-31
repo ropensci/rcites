@@ -4,8 +4,8 @@
 \alias{spp_distributions}
 \title{Get distributions data available for a given taxon concept.}
 \usage{
-spp_distributions(taxon_id, language = "en", collapse_tags = NULL,
-  raw = FALSE, token = NULL)
+spp_distributions(taxon_id, language = "en", raw = FALSE,
+  token = NULL)
 }
 \arguments{
 \item{taxon_id}{character string containing a species' taxon concept identifier
@@ -14,6 +14,8 @@ spp_distributions(taxon_id, language = "en", collapse_tags = NULL,
 \item{language}{vector of character strings indicating the language for the
 names of distributions, values are taken among \code{en} (English),
 \code{fr} (French) and \code{es} (Spanish). Default is \code{en}.}
+
+\item{raw}{a logical. Should raw data be returned?}
 
 \item{token}{a character string containing the authentification token, see
 \url{https://api.speciesplus.net/documentation}. Default is set to

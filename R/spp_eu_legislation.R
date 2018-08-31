@@ -32,22 +32,22 @@
 #' res3 <- spp_eu_legislation(taxon_id = '4521', scope = 'all', language='fr')
 #' }
 
-spp_eu_legislation <- function(taxon_id, scope = "current", language = "en",
+spp_eu_legislation <- function(taxon_id, scope = "current", language = "en", 
     raw = FALSE, token = NULL) {
     ## token check
-    if (is.null(token))
+    if (is.null(token)) 
         token <- rcites_getsecret()
     ## create query_string
-    query_string <- paste(c(rcites_lang(language), rcites_scope(scope)),
+    query_string <- paste(c(rcites_lang(language), rcites_scope(scope)), 
         collapse = "&")
-    if (query_string != "")
+    if (query_string != "") 
         query_string <- paste0("?", query_string)
     ## create url
-    q_url <- rcites_url("taxon_concepts/", taxon_id, "/eu_legislation.json",
+    q_url <- rcites_url("taxon_concepts/", taxon_id, "/eu_legislation.json", 
         query_string)
     ## get_res
     tmp <- rcites_res(q_url, token)
-
+    
     ## outputs
     if (raw) {
         out <- tmp
@@ -58,6 +58,6 @@ spp_eu_legislation <- function(taxon_id, scope = "current", language = "en",
         out$eu_decisions <- rcites_simplify_decisions(tmp$eu_decisions)
         class(out) <- c("spp_eu_leg")
     }
-    ##
+    ## 
     out
 }
