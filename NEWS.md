@@ -1,9 +1,19 @@
 # rcites 0.1.1.9000
 
 - new features:
-  - `spp_taxonconcept()`
-  - outputs:
-    - spp_raw
+
+  - `spp_taxonconcept()` now includes an auto-pagination.
+  - Functions now returns S3 objects for which a print method is defined for all
+  these objects:
+    - `spp_raw` class is defined for all functions including the argument `raw`,
+    it returns the parsed output from the API as a list object.  
+    - `spp_taxonconcept` returns an object of class `spp_spp_taxon`
+    - `spp_cites_legislation` returns an object of class `spp_cites_leg`
+    - `spp_eu_legislation` returns an object of class `spp_eu_leg`
+    - `spp_distributions` returns an object of class `spp_distr`
+    - `spp_references` returns an object of class `spp_distr`
+  - all S# objects  ()
+
 
 - add function parameters:
 
@@ -29,7 +39,6 @@
   - use '<-' for assignment instead of '=',
   - omit "Date" in DESCRIPTION,
   - avoid 1:length(...), 1:nrow(...), 1:ncol(...),
-  - remove ‘jsonlite’ from DESCRIPTION.
 
 
 # rcites 0.1.0

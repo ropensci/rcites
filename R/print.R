@@ -16,42 +16,68 @@ print.spp_raw <- function(x, ...) {
 }
 
 
-#' @describeIn print Print method for object of class spp_taxon
+#' @describeIn print Print method for object of class `spp_taxon`
 #' @export
 #' @method print spp_taxon
 print.spp_taxon <- function(x, ...) {
-    
+
     cat("General info:\n")
     rcites_print_df(x$general)
-    
+
     cat("\nClassification info:\n")
     rcites_print_df(x$higher_taxa)
-    
+
     cat("\nSynonyms:\n")
     rcites_print_df(x$synonyms)
-    
+
     cat("\nCommon names:\n")
     rcites_print_df(x$common_names)
-    
+
     # add a note of what's available
 }
 
 
-#' @describeIn print Print method for object of class spp_eu_leg
+#' @describeIn print Print method for object of class `spp_eu_leg`
 #' @export
 #' @method print spp_eu_leg
 print.spp_eu_leg <- function(x, ...) {
-    
-    cat("EU Listings:\n")
-    rcites_print_df(x$eu_listings[, names(x$eu_listings) != "annotation"])
-    cat("Field not printed: `annotation`\n")
-    
-    cat("\nEU decisions:\n")
+
+    cat("EU listings ($eu_listings):\n")
+    rcites_print_df_rm(x$eu_listings, col_rm = c("annotation", "hash_annotation"))
+
+    cat("\nEU decisions ($eu_decisions):\n")
     npr <- c("notes", "eu_decision_type.description", "start_event.url")
-    rcites_print_df(x$eu_decisions[, !names(x$eu_decisions) %in% npr])
-    id <- which(npr %in% names(x$eu_decisions))
-    if (length(id)) 
-        cat("Field(s) not printed: ", paste(npr[id], collapse = ", "), 
-            "\n")
+    rcites_print_df_rm(x$eu_decisions, col_rm = npr)
     # add a note of what's available
 }
+
+
+#' @describeIn print Print method for object of class `spp_cites_leg`
+#' @export
+#' @method print spp_cites_leg
+print.spp_cites_leg <- function(x, ...) {
+
+    cat("Cites listings ($cites_listings):\n")
+    rcites_print_df_rm(x$cites_listings, col_rm = c("annotation", "hash_annotation"))
+
+    cat("Cites quotas ($cites_quotas):\n")
+    rcites_print_df_rm(x$cites_quotas, col_rm = c("notes", "url"))
+
+    cat("Cites suspensions ($cites_suspensions):\n")
+    rcites_print_df_rm(x$cites_suspensions, col_rm = c("notes",
+      paste0("start_notification.", c("name", "date", "url"))))
+}
+
+
+
+# #' @describeIn print Print method for object of class `spp_cites_leg`
+# #' @export
+# #' @method print spp_cites_leg
+# print.spp_ref <- function(x, ...) {
+#
+#     cat("Cites listings ($eu_listings):\n")
+#     rcites_print_df_rm(x$cites_listings, col_rm = c("annotation", "hash_annotation"))
+#
+#     cat("Cites quotas ($eu_quotas):\n")
+#     rcites_print_df_rm(x$cites_quotas, col_rm = c("note", "url"))
+# }

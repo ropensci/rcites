@@ -37,7 +37,7 @@ CITES suspensions for a given taxon concept.
 \examples{
 \donttest{
 res1 <- spp_cites_legislation(taxon_id = 4521)
-res2 <- spp_cites_legislation(taxon_id = 4521, language = 'rh')
+res2 <- spp_cites_legislation(taxon_id = 4521, language = 'fr')
 }
 }
 \references{
