@@ -43,11 +43,7 @@ be used to set \code{SPECIESPLUS_TOKEN} for the current session.}
 \item{verbose}{a logical. Should extra information be reported on progress?}
 }
 \value{
-If \code{appendix_only} is \code{TRUE}, then a data frame with a species'
-taxon id and CITES appendix information is returned. Otherwise, a list of
-objects of class \code{data.table} with all CITES Species+ taxon_concept
-information is returned. Importantly enough, this functions returns the
-taxon concept identifier that is required by the \code{spp_*()} functions.
+To be added
 }
 \description{
 Retrieve the taxon concept of a specific taxon (scientific name).

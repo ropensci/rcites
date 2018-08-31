@@ -4,17 +4,12 @@
 \alias{spp_cites_legislation}
 \title{Get current CITES appendix listings and reservations.}
 \usage{
-spp_cites_legislation(taxon_id, type = c("listings", "quotas",
-  "suspensions"), scope = c("current", "historic", "all"),
-  language = c("en", "fr", "es"), simplify = FALSE, token = NULL)
+spp_cites_legislation(taxon_id, scope = "current", language = "en",
+  raw = FALSE, token = NULL)
 }
 \arguments{
 \item{taxon_id}{character string containing a species' taxon concept identifier
 (see \code{\link[rcites]{spp_taxonconcept}}).}
-
-\item{type}{vector of character strings indicating the type of legislation
-information requested, values are taken among \code{listings}, \code{quotas} and
-\code{suspensions}. Default includes the three of them.}
 
 \item{scope}{vector of character strings indicating the time scope of legislation,
 values are taken among \code{current}, \code{historic} and \code{all}.
@@ -24,9 +19,7 @@ Default is \code{current}.}
 text of legislation notes, values are taken among \code{en} (English),
 \code{fr} (French) and \code{es} (Spanish). Default is \code{en}.}
 
-\item{simplify}{a logical. Should the output be simplified? In other words,
-should columns of data.table objects returned be unlisted when they are
-lists made of single elements?}
+\item{raw}{a logical. Should raw data be returned?}
 
 \item{token}{a character string containing the authentification token, see
 \url{https://api.speciesplus.net/documentation}. Default is set to
@@ -35,7 +28,7 @@ set directly in \code{Renviron}. Alternatively \code{set_token()} can
 be used to set \code{SPECIESPLUS_TOKEN} for the current session.}
 }
 \value{
-A list of data.table objects, one per type requested.
+A list of objects one per type requested.
 }
 \description{
 Retrieve current CITES appendix listings and reservations, CITES quotas, and
@@ -43,8 +36,8 @@ CITES suspensions for a given taxon concept.
 }
 \examples{
 \donttest{
-res1 <- spp_cites_legislation(taxon_id = '4521')
-res2 <- spp_cites_legislation(taxon_id = '4521', type = 'listings', language = 'rh')
+res1 <- spp_cites_legislation(taxon_id = 4521)
+res2 <- spp_cites_legislation(taxon_id = 4521, language = 'rh')
 }
 }
 \references{

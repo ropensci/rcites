@@ -3,8 +3,8 @@ context("taxon concept")
 skip_on_cran()
 skip_if_no_auth()
 
-ut_pause()
-res1 <- spp_taxonconcept(query_taxon = tx_nm)
+# ut_pause()
+# res1 <- spp_taxonconcept(query_taxon = tx_nm)
 
 
 

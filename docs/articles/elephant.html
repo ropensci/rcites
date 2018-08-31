@@ -115,13 +115,13 @@
 <div id="map-the-elephants-distribution" class="section level2">
 <h2 class="hasAnchor">
 <a href="#map-the-elephants-distribution" class="anchor"></a>Map the elephant’s distribution</h2>
-<p>Before taking more insights into the legislation status of the elephant, we have a look at where the elephant actually occurs naturally. For this, we can access the elephant’s distribution information with the <code><a href="../reference/spp_distribution.html">spp_distribution()</a></code> function. Thereafter, we can map the distribution with the help of the <code>rworldmap</code> package.</p>
+<p>Before taking more insights into the legislation status of the elephant, we have a look at where the elephant actually occurs naturally. For this, we can access the elephant’s distribution information with the <code><a href="../reference/spp_distributions.html">spp_distributions()</a></code> function. Thereafter, we can map the distribution with the help of the <code>rworldmap</code> package.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="cf">if</span>(<span class="st">"rworldmap"</span> <span class="op">%in%</span><span class="st"> </span><span class="kw">rownames</span>(<span class="kw">installed.packages</span>()) <span class="op">==</span><span class="st"> </span><span class="ot">FALSE</span>){</a>
 <a class="sourceLine" id="cb3-2" data-line-number="2">  <span class="kw">install.packages</span>(<span class="st">"rworldmap"</span>)} <span class="co"># installing `rworldmap` if not installed yet</span></a>
 <a class="sourceLine" id="cb3-3" data-line-number="3"><span class="kw">suppressPackageStartupMessages</span>(<span class="kw">library</span>(rworldmap))</a>
 <a class="sourceLine" id="cb3-4" data-line-number="4"></a>
 <a class="sourceLine" id="cb3-5" data-line-number="5"><span class="kw">par</span>(<span class="dt">las =</span> <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb3-6" data-line-number="6">map1 &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw"><a href="../reference/spp_distribution.html">spp_distribution</a></span>(<span class="dt">taxon_id =</span> <span class="st">"4521"</span>))</a>
+<a class="sourceLine" id="cb3-6" data-line-number="6">map1 &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw"><a href="../reference/spp_distributions.html">spp_distributions</a></span>(<span class="dt">taxon_id =</span> <span class="st">"4521"</span>))</a>
 <a class="sourceLine" id="cb3-7" data-line-number="7">map2 &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/rworldmap/topics/joinCountryData2Map">joinCountryData2Map</a></span>(map1,</a>
 <a class="sourceLine" id="cb3-8" data-line-number="8">                            <span class="dt">joinCode=</span><span class="st">"ISO2"</span>,</a>
 <a class="sourceLine" id="cb3-9" data-line-number="9">                            <span class="dt">nameJoinColumn =</span> <span class="st">"iso_code2"</span>,</a>

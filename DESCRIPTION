@@ -17,7 +17,6 @@ Depends:
   R (>= 3.1.0)
 Imports:
   httr,
-  data.table,
   jsonlite,
   methods
 Encoding: UTF-8

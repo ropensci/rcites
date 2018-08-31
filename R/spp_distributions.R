@@ -8,52 +8,45 @@
 #' @param language vector of character strings indicating the language for the
 #' names of distributions, values are taken among \code{en} (English),
 #' \code{fr} (French) and \code{es} (Spanish). Default is \code{en}.
-#' @param collapse_tags a string used to collapse tags.
-#' Default is set to \code{NULL} meaning that tags column's elements remains lists.
-#' @param simplify a logical. Should the output be simplified? In other words,
-#' should columns of data.table objects returned be unlisted when they are
-#' lists made of single elements?
 #' @param token a character string containing the authentification token, see
 #' \url{https://api.speciesplus.net/documentation}. Default is set to
 #' \code{NULL} and requires the environment variable \code{SPECIESPLUS_TOKEN} to be
 #' set directly in \code{Renviron}. Alternatively \code{set_token()} can
 #' be used to set \code{SPECIESPLUS_TOKEN} for the current session.
 #'
-#' @return A data table with all distribution information.
+#' @return A data frame with all distribution information.
 #'
 #' @references
 #' \url{https://api.speciesplus.net/documentation/v1/distributions/index.html}
 #'
-#' @importFrom data.table as.data.table
 #' @export
 #'
 #' @examples
 #' \donttest{
-#'  res1 <- spp_distribution(taxon_id = '4521')
-#'  res2 <- spp_distribution(taxon_id = '4521', collapse_tags = ' + ', simplify = T)
+#'  res1 <- spp_distributions(taxon_id = '4521')
+#'  res2 <- spp_distributions(taxon_id = '4521', collapse_tags = ' + ')
 #' }
 
-spp_distribution <- function(taxon_id, language = "en", collapse_tags = NULL, 
-    simplify = FALSE, token = NULL) {
+spp_distributions <- function(taxon_id, language = "en", collapse_tags = NULL,
+    raw = FALSE, token = NULL) {
     # token check
-    if (is.null(token)) 
+    if (is.null(token))
         token <- rcites_getsecret()
     # set query_string
     tmp <- rcites_lang(language)
-    if (!is.null(tmp)) 
+    if (!is.null(tmp))
         tmp <- paste0("?", tmp)
-    q_url <- rcites_url("taxon_concepts/", taxon_id, "/distributions.json", 
+    q_url <- rcites_url("taxon_concepts/", taxon_id, "/distributions.json",
         tmp)
     # get results
     res <- rcites_res(q_url, token)
-    # get a data.table; tags and references are lists.
-    out <- as.data.table(do.call(rbind, lapply(res, rbind)))
-    if (!is.null(collapse_tags)) 
-        out$tags <- lapply(out$tags, function(x) if (length(x) > 0) 
-            paste(unlist(x), collapse = collapse_tags))
-    ## 
-    if (isTRUE(simplify)) 
-        rcites_simplify(out)
-    # output
+    ## outputs
+    if (raw) {
+        out <- res
+        class(out) <- c("list", "spp_raw")
+    } else {
+        out <- rcites_simplify_distributions(res)
+        class(out) <- c("spp_cites_ref")
+    }
     out
 }
