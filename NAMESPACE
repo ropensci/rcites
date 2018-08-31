@@ -3,6 +3,7 @@
 S3method(print,spp_cites_leg)
 S3method(print,spp_eu_leg)
 S3method(print,spp_raw)
+S3method(print,spp_refs)
 S3method(print,spp_taxon)
 export(set_token)
 export(spp_cites_legislation)

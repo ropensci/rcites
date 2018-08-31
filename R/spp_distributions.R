@@ -25,7 +25,7 @@
 #' @examples
 #' \donttest{
 #'  res1 <- spp_distributions(taxon_id = '4521')
-#'  res2 <- spp_distributions(taxon_id = '4521', collapse_tags = ' + ')
+#'  res2 <- spp_distributions(taxon_id = '4521', raw = TRUE)
 #' }
 
 spp_distributions <- function(taxon_id, language = "en", raw = FALSE, token = NULL) {

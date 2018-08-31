@@ -170,9 +170,13 @@ rcites_simplify_distributions <- function(x) {
 
 #
 rcites_print_df <- function(x, nrows = 10) {
-    tmp <- min(nrow(x), nrows)
-    print(x[seq_len(tmp), ])
-    if (tmp < nrow(x)) cat("-------Truncated-------\n")
+    if("tibble" %in% .packages()) {
+      print(x)
+    } else {
+      tmp <- min(nrow(x), nrows)
+      print(x[seq_len(tmp), ])
+      if (tmp < nrow(x)) cat("-------Truncated-------\n")
+    }
 }
 
 #

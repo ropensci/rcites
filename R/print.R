@@ -70,14 +70,22 @@ print.spp_cites_leg <- function(x, ...) {
 
 
 
-# #' @describeIn print Print method for object of class `spp_cites_leg`
+#' @describeIn print Print method for object of class `spp_refs`
+#' @export
+#' @method print spp_refs
+print.spp_refs <- function(x, ...) {
+    cat("References ($references):\n")
+    rcites_print_df(x$references)
+}
+
+
+# #' @describeIn print Print method for object of class `spp_refs`
 # #' @export
-# #' @method print spp_cites_leg
-# print.spp_ref <- function(x, ...) {
+# #' @method print spp_refs
+# print.spp_distr <- function(x, ...) {
+#   cat("Distributions ($distributions):\n")
+#   rcites_print_df(x$references)
 #
-#     cat("Cites listings ($eu_listings):\n")
-#     rcites_print_df_rm(x$cites_listings, col_rm = c("annotation", "hash_annotation"))
-#
-#     cat("Cites quotas ($eu_quotas):\n")
-#     rcites_print_df_rm(x$cites_quotas, col_rm = c("note", "url"))
+#   cat("References ($references):\n")
+#   rcites_print_df_rm((x$references)
 # }
