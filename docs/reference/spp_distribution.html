@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get distributions data available for a given taxon concept. — spp_distribution • rcites</title>
+<title>Get distributions data available for a given taxon concept. — spp_distributions • rcites</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,7 +30,7 @@
 
 
 
-<meta property="og:title" content="Get distributions data available for a given taxon concept. — spp_distribution" />
+<meta property="og:title" content="Get distributions data available for a given taxon concept. — spp_distributions" />
 
 <meta property="og:description" content="Retrieve distributions data available for a given taxon concept for which the
 the taxon identifier is known." />
@@ -62,7 +62,7 @@ the taxon identifier is known." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rcites</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0.9000</span>
       </span>
     </div>
 
@@ -84,6 +84,12 @@ the taxon identifier is known." />
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/elephant.html">Speciesplus information about the African bush elephant</a>
+    </li>
+    <li>
+      <a href="../articles/get_started.html">Get started with rcites</a>
+    </li>
     <li>
       <a href="../articles/rcites-vignette.html">Get started with rcites</a>
     </li>
@@ -114,8 +120,8 @@ the taxon identifier is known." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Get distributions data available for a given taxon concept.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ibartomeus/rcites/blob/master/R/spp_distribution.R'><code>R/spp_distribution.R</code></a></small>
-    <div class="hidden name"><code>spp_distribution.Rd</code></div>
+    <small class="dont-index">Source: <a href='https://github.com/ibartomeus/rcites/blob/master/R/spp_distributions.R'><code>R/spp_distributions.R</code></a></small>
+    <div class="hidden name"><code>spp_distributions.Rd</code></div>
     </div>
 
     <div class="ref-description">
@@ -125,8 +131,8 @@ the taxon identifier is known.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>spp_distribution</span>(<span class='no'>taxon_id</span>, <span class='kw'>collapse_tags</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>simplify</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>token</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>spp_distributions</span>(<span class='no'>taxon_id</span>, <span class='kw'>language</span> <span class='kw'>=</span> <span class='st'>"en"</span>, <span class='kw'>collapse_tags</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>simplify</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>token</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -137,8 +143,15 @@ the taxon identifier is known.</p>
 (see <code><a href='spp_taxonconcept.html'>spp_taxonconcept</a></code>).</p></td>
     </tr>
     <tr>
+      <th>language</th>
+      <td><p>vector of character strings indicating the language for the
+names of distributions, values are taken among <code>en</code> (English),
+<code>fr</code> (French) and <code>es</code> (Spanish). Default is <code>en</code>.</p></td>
+    </tr>
+    <tr>
       <th>collapse_tags</th>
-      <td><p>a string used to collapse tags. Default is set to <code>NULL</code> meaning that tags column's elements remains lists.</p></td>
+      <td><p>a string used to collapse tags.
+Default is set to <code>NULL</code> meaning that tags column's elements remains lists.</p></td>
     </tr>
     <tr>
       <th>simplify</th>
@@ -166,8 +179,8 @@ be used to set <code>SPECIESPLUS_TOKEN</code> for the current session.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'> <span class='no'>res1</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_distribution</span>(<span class='kw'>taxon_id</span> <span class='kw'>=</span> <span class='st'>'4521'</span>)
- <span class='no'>res2</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_distribution</span>(<span class='kw'>taxon_id</span> <span class='kw'>=</span> <span class='st'>'4521'</span>, <span class='kw'>collapse_tags</span> <span class='kw'>=</span> <span class='st'>' + '</span>, <span class='kw'>simplify</span> <span class='kw'>=</span> <span class='no'>T</span>)</div></pre>
+    <pre class="examples"><div class='input'> <span class='no'>res1</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_distributions</span>(<span class='kw'>taxon_id</span> <span class='kw'>=</span> <span class='st'>'4521'</span>)
+ <span class='no'>res2</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_distributions</span>(<span class='kw'>taxon_id</span> <span class='kw'>=</span> <span class='st'>'4521'</span>, <span class='kw'>collapse_tags</span> <span class='kw'>=</span> <span class='st'>' + '</span>, <span class='kw'>simplify</span> <span class='kw'>=</span> <span class='no'>T</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

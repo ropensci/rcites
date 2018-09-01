@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get current EU annex listings, SRG opinions, and EU suspensions. — spp_eu_legislation • rcites</title>
+<title>Get distributions data available for a given taxon concept. — spp_distributions • rcites</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,10 +30,10 @@
 
 
 
-<meta property="og:title" content="Get current EU annex listings, SRG opinions, and EU suspensions. — spp_eu_legislation" />
+<meta property="og:title" content="Get distributions data available for a given taxon concept. — spp_distributions" />
 
-<meta property="og:description" content="Retrieve current EU annex listings, SRG opinions, and EU suspensions for a
-given taxon concept (identifier must be known)." />
+<meta property="og:description" content="Retrieve distributions data available for a given taxon concept for which the
+the taxon identifier is known." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -119,20 +119,20 @@ given taxon concept (identifier must be known)." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get current EU annex listings, SRG opinions, and EU suspensions.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ibartomeus/rcites/blob/master/R/spp_eu_legislation.R'><code>R/spp_eu_legislation.R</code></a></small>
-    <div class="hidden name"><code>spp_eu_legislation.Rd</code></div>
+    <h1>Get distributions data available for a given taxon concept.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ibartomeus/rcites/blob/master/R/spp_distributions.R'><code>R/spp_distributions.R</code></a></small>
+    <div class="hidden name"><code>spp_distributions.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Retrieve current EU annex listings, SRG opinions, and EU suspensions for a
-given taxon concept (identifier must be known).</p>
+    <p>Retrieve distributions data available for a given taxon concept for which the
+the taxon identifier is known.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>spp_eu_legislation</span>(<span class='no'>taxon_id</span>, <span class='kw'>scope</span> <span class='kw'>=</span> <span class='st'>"current"</span>, <span class='kw'>language</span> <span class='kw'>=</span> <span class='st'>"en"</span>,
-  <span class='kw'>raw</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>token</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>spp_distributions</span>(<span class='no'>taxon_id</span>, <span class='kw'>language</span> <span class='kw'>=</span> <span class='st'>"en"</span>, <span class='kw'>raw</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>token</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -143,15 +143,9 @@ given taxon concept (identifier must be known).</p>
 (see <code><a href='spp_taxonconcept.html'>spp_taxonconcept</a></code>).</p></td>
     </tr>
     <tr>
-      <th>scope</th>
-      <td><p>vector of character strings indicating the time scope of legislation,
-values are taken among <code>current</code>, <code>historic</code> and <code>all</code>.
-Default is <code>current</code>.</p></td>
-    </tr>
-    <tr>
       <th>language</th>
       <td><p>vector of character strings indicating the language for the
-text of legislation notes, values are taken among <code>en</code> (English),
+names of distributions, values are taken among <code>en</code> (English),
 <code>fr</code> (French) and <code>es</code> (Spanish). Default is <code>en</code>.</p></td>
     </tr>
     <tr>
@@ -170,17 +164,16 @@ be used to set <code>SPECIESPLUS_TOKEN</code> for the current session.</p></td>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A list of objects, one per type requested.</p>
+    <p>A data frame with all distribution information.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p><a href='https://api.speciesplus.net/documentation/v1/eu_legislation/index.html'>https://api.speciesplus.net/documentation/v1/eu_legislation/index.html</a></p>
+    <p><a href='https://api.speciesplus.net/documentation/v1/distributions/index.html'>https://api.speciesplus.net/documentation/v1/distributions/index.html</a></p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>res1</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_eu_legislation</span>(<span class='kw'>taxon_id</span> <span class='kw'>=</span> <span class='st'>'4521'</span>)
-<span class='no'>res2</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_eu_legislation</span>(<span class='kw'>taxon_id</span> <span class='kw'>=</span> <span class='st'>'4521'</span>, <span class='kw'>scope</span> <span class='kw'>=</span> <span class='st'>'historic'</span>)
-<span class='no'>res3</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_eu_legislation</span>(<span class='kw'>taxon_id</span> <span class='kw'>=</span> <span class='st'>'4521'</span>, <span class='kw'>scope</span> <span class='kw'>=</span> <span class='st'>'all'</span>, <span class='kw'>language</span><span class='kw'>=</span><span class='st'>'fr'</span>)</div></pre>
+    <pre class="examples"><div class='input'> <span class='no'>res1</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_distributions</span>(<span class='kw'>taxon_id</span> <span class='kw'>=</span> <span class='st'>'4521'</span>)
+ <span class='no'>res2</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_distributions</span>(<span class='kw'>taxon_id</span> <span class='kw'>=</span> <span class='st'>'4521'</span>, <span class='kw'>raw</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

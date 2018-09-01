@@ -62,7 +62,7 @@ CITES suspensions for a given taxon concept." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rcites</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0.9000</span>
       </span>
     </div>
 
@@ -84,6 +84,12 @@ CITES suspensions for a given taxon concept." />
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/elephant.html">Speciesplus information about the African bush elephant</a>
+    </li>
+    <li>
+      <a href="../articles/get_started.html">Get started with rcites</a>
+    </li>
     <li>
       <a href="../articles/rcites-vignette.html">Get started with rcites</a>
     </li>
@@ -125,8 +131,8 @@ CITES suspensions for a given taxon concept.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>spp_cites_legislation</span>(<span class='no'>taxon_id</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"listings"</span>, <span class='st'>"quotas"</span>,
-  <span class='st'>"suspensions"</span>), <span class='kw'>simplify</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>token</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>spp_cites_legislation</span>(<span class='no'>taxon_id</span>, <span class='kw'>scope</span> <span class='kw'>=</span> <span class='st'>"current"</span>, <span class='kw'>language</span> <span class='kw'>=</span> <span class='st'>"en"</span>,
+  <span class='kw'>raw</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>token</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -137,14 +143,20 @@ CITES suspensions for a given taxon concept.</p>
 (see <code><a href='spp_taxonconcept.html'>spp_taxonconcept</a></code>).</p></td>
     </tr>
     <tr>
-      <th>type</th>
-      <td><p>vector of character strings indicating type of legislation information requested, values are taken among <code>listing</code>, <code>quota</code> and <code>suspension</code>. Default includes the three of them.</p></td>
+      <th>scope</th>
+      <td><p>vector of character strings indicating the time scope of legislation,
+values are taken among <code>current</code>, <code>historic</code> and <code>all</code>.
+Default is <code>current</code>.</p></td>
     </tr>
     <tr>
-      <th>simplify</th>
-      <td><p>a logical. Should the output be simplified? In other words,
-should columns of data.table objects returned be unlisted when they are
-lists made of single elements?</p></td>
+      <th>language</th>
+      <td><p>vector of character strings indicating the language for the
+text of legislation notes, values are taken among <code>en</code> (English),
+<code>fr</code> (French) and <code>es</code> (Spanish). Default is <code>en</code>.</p></td>
+    </tr>
+    <tr>
+      <th>raw</th>
+      <td><p>a logical. Should raw data be returned?</p></td>
     </tr>
     <tr>
       <th>token</th>
@@ -158,7 +170,7 @@ be used to set <code>SPECIESPLUS_TOKEN</code> for the current session.</p></td>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A list of data.table objects, one per type requested.</p>
+    <p>A list of objects one per type requested.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
@@ -166,8 +178,7 @@ be used to set <code>SPECIESPLUS_TOKEN</code> for the current session.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>res1</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_cites_legislation</span>(<span class='kw'>taxon_id</span> <span class='kw'>=</span> <span class='st'>'4521'</span>)
-<span class='no'>res2</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_cites_legislation</span>(<span class='kw'>taxon_id</span> <span class='kw'>=</span> <span class='st'>'4521'</span>, <span class='kw'>type</span> <span class='kw'>=</span><span class='st'>'listings'</span>)</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>res1</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_cites_legislation</span>(<span class='kw'>taxon_id</span> <span class='kw'>=</span> <span class='fl'>4521</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: invalid factor level, NA generated</span></div><div class='output co'>#&gt; <span class='warning'>Warning: invalid factor level, NA generated</span></div><div class='output co'>#&gt; <span class='warning'>Warning: invalid factor level, NA generated</span></div><div class='input'><span class='no'>res2</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_cites_legislation</span>(<span class='kw'>taxon_id</span> <span class='kw'>=</span> <span class='fl'>4521</span>, <span class='kw'>language</span> <span class='kw'>=</span> <span class='st'>'fr'</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: invalid factor level, NA generated</span></div><div class='output co'>#&gt; <span class='warning'>Warning: invalid factor level, NA generated</span></div><div class='output co'>#&gt; <span class='warning'>Warning: invalid factor level, NA generated</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

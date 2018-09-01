@@ -1,13 +1,14 @@
 Package: rcites
 Type: Package
 Title: R Interface to the Species+ Database
-Version: 0.1.0
+Version: 0.1.0.9000
 Authors@R: c(person("Jonas", "Geschke", role = c("aut"), email = "jonas.e.geschke@gmail.com", comment = c(ORCID = "0000-0002-5654-9313")),
   person("Kevin", "Cazelles", role = c("aut", "cre"), email = "kevin.cazelles@gmail.com", comment = c(ORCID = "0000-0001-6619-9874")),
   person("Ignasi", "Bartomeus", role = c("aut"), comment = c(ORCID = "0000-0001-7893-4389")),
   person("Jonathan", "Goldenberg", role = c("ctb")),
   person("Marie-Bé", "Leduc", role = c("ctb")),
-  person("Yasmine", "Verzelen", role = c("ctb")))
+  person("Yasmine", "Verzelen", role = c("ctb")),
+  person("Noam", "Ross", role = c("rev")))
 Description: A programmatic interface to the Species+ <https://speciesplus.net/> database via the Species+/CITES Checklist API <https://api.speciesplus.net/>.
 URL: https://ibartomeus.github.io/rcites/, https://github.com/ibartomeus/rcites
 BugReports: https://github.com/ibartomeus/rcites/issues
@@ -16,9 +17,9 @@ Depends:
   R (>= 3.1.0)
 Imports:
   httr,
-  data.table,
+  jsonlite,
   methods
 Encoding: UTF-8
 RoxygenNote: 6.1.0
-Suggests: knitr, rmarkdown, testthat, rworldmap
+Suggests: knitr, testthat, tibble, rmarkdown, rworldmap
 VignetteBuilder: knitr

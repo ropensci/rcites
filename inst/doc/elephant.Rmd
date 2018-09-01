@@ -51,7 +51,7 @@ Text about taxonconcept outcomes to come ...
 
 Before taking more insights into the legislation status of the elephant, we have a look at where the elephant actually occurs naturally. For this, we can access the elephant's distribution information with the `spp_distributions()` function. Thereafter, we can map the distribution with the help of the `rworldmap` package.
 
-```{r map, eval = FALSE, message = FALSE, fig.width = 6.4, fig.height = 7.6, fig.align="center"}
+```{r map, message = FALSE, fig.width = 6.4, fig.height = 7.6, fig.align="center"}
 if("rworldmap" %in% rownames(installed.packages()) == FALSE){
   install.packages("rworldmap")} # installing `rworldmap` if not installed yet
 suppressPackageStartupMessages(library(rworldmap))

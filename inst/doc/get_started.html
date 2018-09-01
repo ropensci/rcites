@@ -284,10 +284,16 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 
 
 <!-- https://cran.r-project.org/web/packages/httr/vignettes/secrets.html -->
-<div id="set-up-a-connection-to-the-species-plus-database" class="section level2">
-<h2>Set up a connection to the species plus database</h2>
-<p>To set up a connection to the CITES Speciesplus database, an authentication token is required. To obtain such a token, the user must sign up on the <a href="http://api.speciesplus.net/users/sign_up">Speciesplus API website</a>. Below, we assume that the user already possesses a token. For illustrative purposes we will use the generic token value <code>8QW6Qgh57sBG2k0gtt</code> just as on the API documentation, but each user should obtain his own token to run the code below (see <a href="https://api.speciesplus.net/documentation" class="uri">https://api.speciesplus.net/documentation</a> for more details).</p>
-<p>A token is actually mandatory as it should be passed to the header of all URL requests. They are three different ways to use such token in <code>rcites</code>:</p>
+<div id="set-up-a-connection-to-the-speciesplus-database" class="section level1">
+<h1>Set up a connection to the Speciesplus database</h1>
+<div id="get-your-personal-token" class="section level2">
+<h2>Get your personal token</h2>
+<p>To set up a connection to the CITES Speciesplus database, an authentication token is required. Each user should obtain his or her own personal token to run the code below (see <a href="https://api.speciesplus.net/documentation" class="uri">https://api.speciesplus.net/documentation</a> for more details). To obtain a token, sign up on the <a href="http://api.speciesplus.net/users/sign_up">Speciesplus API website</a>.</p>
+</div>
+<div id="set-the-token" class="section level2">
+<h2>Set the token</h2>
+<p>Now, we assume that you already have a token. For illustrative purposes, we will use the generic token value <code>8QW6Qgh57sBG2k0gtt</code> for the API documentation.</p>
+<p>A token is mandatory and needs to be passed to the header of all URL requests. They are three different ways to set the token in <code>rcites</code>:</p>
 <ol style="list-style-type: decimal">
 <li><p>set an environment variable <code>SPECIESPLUS_TOKEN</code> in <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/Startup.html"><code>.Renviron</code></a> file (preferred);</p></li>
 <li><p>use <code>set_token()</code>, <em>i.e.</em> interactively set <code>SPECIESPLUS_TOKEN</code> up for the current R session (meaning a login will be required for the future R sessions);</p></li>
@@ -297,22 +303,25 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <li>use the <code>token</code> argument of the functions, <em>i.e.</em> the token is passed manually to every function calls.</li>
 </ol>
 </div>
-<div id="retrieve-a-taxon-concept-identifier" class="section level2">
-<h2>Retrieve a taxon concept identifier</h2>
-<p>To efficiently query information from the CITES Speciesplus database, the user first needs to retrieve the unique identifier of taxon concept considered (<a href="https://api.speciesplus.net/documentation/v1/taxon_concepts/index.html" class="uri">https://api.speciesplus.net/documentation/v1/taxon_concepts/index.html</a>). To do so, the user should first call <code>spp_taxonconcept()</code> and provide the scientific name of the taxon. Let us start by requesting the identifier of the African bush elephant, <em>i.e.</em> <em>Loxodonta africana</em>.</p>
+</div>
+<div id="use-of-key-features" class="section level1">
+<h1>Use of key features</h1>
+<div id="access-the-speciesplus-taxon-concept-and-retrieve-a-taxon-id" class="section level2">
+<h2>Access the Speciesplus taxon concept and retrieve a taxon id</h2>
+<p>To efficiently query information from the CITES Speciesplus database, you first need to retrieve the unique taxon identifier <code>taxon_id</code> from the <a href="https://api.speciesplus.net/documentation/v1/taxon_concepts/index.html">Speciesplus taxon concept</a>. To do so, you should first call <code>spp_taxonconcept()</code> and provide the scientific name of the taxon you look for. Let us start by requesting the identifier of the African bush elephant, <em>i.e.</em> <em>Loxodonta africana</em>.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">library</span>(rcites)</a>
 <a class="sourceLine" id="cb2-2" data-line-number="2">res1 &lt;-<span class="st"> </span><span class="kw">spp_taxonconcept</span>(<span class="dt">query_taxon =</span> <span class="st">&quot;Loxodonta africana&quot;</span>)</a>
 <a class="sourceLine" id="cb2-3" data-line-number="3">res1</a></code></pre></div>
-<p>Note that if you chose options 3 regarding the connection:</p>
+<p>Note regarding the token: If you chose option 3 the code needs to look as follows.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">res1 &lt;-<span class="st"> </span><span class="kw">spp_taxonconcept</span>(<span class="dt">query_taxon =</span> <span class="st">&quot;Loxodonta africana&quot;</span>, <span class="dt">token =</span> <span class="st">&quot;8QW6Qgh57sBG2k0gtt&quot;</span>)</a></code></pre></div>
-<p><code>res1</code> is a list of data.table object with different information pertaining to the naming of the taxon. If you however only need many details, setting <code>appendix_only</code> to <code>TRUE</code> will return the first data.table, <code>all</code>, for instance:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">res2 &lt;-<span class="st"> </span><span class="kw">spp_taxonconcept</span>(<span class="dt">query_taxon =</span> <span class="st">&quot;Loxodonta africana&quot;</span>)</a>
+<p><code>res1</code> is a list of data.table object with different information pertaining to the naming of the taxon. If you however only need first details about the species&quot; CITES listing, setting <code>appendix_only</code> to <code>TRUE</code> will return the first data.table, <code>all</code>, for instance.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">res2 &lt;-<span class="st"> </span><span class="kw">spp_taxonconcept</span>(<span class="dt">query_taxon =</span> <span class="st">&quot;Loxodonta africana&quot;</span>)<span class="co">#, appendix_only = TRUE)</span></a>
 <a class="sourceLine" id="cb4-2" data-line-number="2">res2</a></code></pre></div>
-<p>For other taxon, there might be more than one identifier, in such a case the user should have a look at the <code>active</code> column.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">res3 &lt;-<span class="st"> </span><span class="kw">spp_taxonconcept</span>(<span class="dt">query =</span> <span class="st">&quot;Amazilia versicolor&quot;</span>)</a>
+<p>For other taxon, there might be more than one identifier, in such a case you should have a look at the <code>active</code> column.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">res3 &lt;-<span class="st"> </span><span class="kw">spp_taxonconcept</span>(<span class="dt">query =</span> <span class="st">&quot;Amazilia versicolor&quot;</span>)<span class="co">#, appendix_only = TRUE)</span></a>
 <a class="sourceLine" id="cb5-2" data-line-number="2">res3</a></code></pre></div>
-<p>Also, if the taxon is not listed a warning message should come up:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">res &lt;-<span class="st"> </span><span class="kw">spp_taxonconcept</span>(<span class="dt">query =</span> <span class="st">&quot;Homo Sapiens&quot;</span>)</a></code></pre></div>
+<p>Also, if the taxon is not listed, a warning message should come up.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">res4 &lt;-<span class="st"> </span><span class="kw">spp_taxonconcept</span>(<span class="dt">query =</span> <span class="st">&quot;Homo Sapiens&quot;</span>)</a></code></pre></div>
 <p>For what follows we should keep in mind:</p>
 <table>
 <thead>
@@ -333,44 +342,49 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 </tbody>
 </table>
 </div>
-<div id="query-legislation-information" class="section level2">
-<h2>Query legislation information</h2>
+<div id="access-cites-legislation-data" class="section level2">
+<h2>Access CITES legislation data</h2>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">leg1 &lt;-<span class="st"> </span><span class="kw">spp_cites_legislation</span>(<span class="dt">taxon_id =</span> <span class="st">&quot;4521&quot;</span>)</a>
 <a class="sourceLine" id="cb7-2" data-line-number="2">leg2 &lt;-<span class="st"> </span><span class="kw">spp_cites_legislation</span>(<span class="dt">taxon_id =</span> <span class="st">&quot;3210&quot;</span>)</a></code></pre></div>
 </div>
-<div id="query-distribution-information" class="section level2">
-<h2>Query distribution information</h2>
-<p>Below we retrieve the distriution information of <em>Loxodonta africana</em>: <code>spp_distributions()</code> and map it with the help of the <code>rworldmap</code> package:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">las =</span> <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="kw">suppressPackageStartupMessages</span>(<span class="kw">library</span>(rworldmap))</a>
-<a class="sourceLine" id="cb8-3" data-line-number="3">map1 &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw">spp_distributions</span>(<span class="st">&quot;4521&quot;</span>))</a>
-<a class="sourceLine" id="cb8-4" data-line-number="4">map2 &lt;-<span class="st"> </span><span class="kw">joinCountryData2Map</span>(map1, <span class="dt">joinCode=</span><span class="st">&quot;ISO2&quot;</span>, <span class="dt">nameJoinColumn =</span> <span class="st">&quot;iso_code2&quot;</span>, <span class="dt">nameCountryColumn =</span> <span class="st">&quot;name&quot;</span>)</a>
-<a class="sourceLine" id="cb8-5" data-line-number="5">map2<span class="op">@</span>data<span class="op">$</span>iso2 &lt;-<span class="st"> </span><span class="kw">unlist</span>(<span class="kw">lapply</span>(map2<span class="op">$</span>iso_code2, is.null))</a>
-<a class="sourceLine" id="cb8-6" data-line-number="6"><span class="kw">plot</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">23</span>, <span class="dv">62</span>), <span class="kw">c</span>(<span class="dv">45</span>, <span class="dv">-40</span>), <span class="dt">type =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Loxodonta africana&quot;</span>,</a>
-<a class="sourceLine" id="cb8-7" data-line-number="7">  <span class="dt">xlab =</span> <span class="st">&quot;Longitude&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Latitude&quot;</span>)</a>
-<a class="sourceLine" id="cb8-8" data-line-number="8"><span class="kw">plot</span>(map2, <span class="dt">add =</span> T)</a>
-<a class="sourceLine" id="cb8-9" data-line-number="9"><span class="kw">plot</span>(map2[<span class="op">!</span>map2<span class="op">$</span>iso2,], <span class="dt">col =</span> <span class="st">&quot;#bda25d&quot;</span>, <span class="dt">add =</span> T)</a></code></pre></div>
+<div id="access-eu-legislation-data" class="section level2">
+<h2>Access EU legislation data</h2>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">leg3 &lt;-<span class="st"> </span><span class="kw">spp_eu_legislation</span>(<span class="dt">taxon_id =</span> <span class="st">&quot;4521&quot;</span>)</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2">leg4 &lt;-<span class="st"> </span><span class="kw">spp_eu_legislation</span>(<span class="dt">taxon_id =</span> <span class="st">&quot;3210&quot;</span>, <span class="dt">scope =</span> <span class="st">&quot;all&quot;</span>)</a></code></pre></div>
 </div>
-<div id="query-references-information" class="section level2">
-<h2>Query references information</h2>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">ref2 &lt;-<span class="st"> </span><span class="kw">spp_references</span>(<span class="dt">taxon_id =</span> <span class="st">&quot;3210&quot;</span>)</a>
-<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="kw">length</span>(ref2<span class="op">$</span>distribution<span class="op">$</span>reference)</a>
-<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="kw">length</span>(ref2<span class="op">$</span>taxonomic<span class="op">$</span>citation)</a>
-<a class="sourceLine" id="cb9-4" data-line-number="4">ref2<span class="op">$</span>taxonomic<span class="op">$</span>citation</a></code></pre></div>
+<div id="access-a-taxon-distribution-data" class="section level2">
+<h2>Access a taxon distribution data</h2>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">distr &lt;-<span class="st"> </span><span class="kw">spp_distributions</span>(<span class="st">&quot;4521&quot;</span>)</a></code></pre></div>
+</div>
+<div id="access-a-listing-reference-data" class="section level2">
+<h2>Access a listing reference data</h2>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">ref &lt;-<span class="st"> </span><span class="kw">spp_references</span>(<span class="dt">taxon_id =</span> <span class="st">&quot;3210&quot;</span>)</a>
+<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="kw">length</span>(ref<span class="op">$</span>distribution<span class="op">$</span>reference)</a>
+<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="kw">length</span>(ref<span class="op">$</span>taxonomic<span class="op">$</span>citation)</a>
+<a class="sourceLine" id="cb10-4" data-line-number="4">ref<span class="op">$</span>taxonomic<span class="op">$</span>citation</a></code></pre></div>
 </div>
 <div id="query-more-than-one-species-at-a-time" class="section level2">
 <h2>Query more than one species at a time</h2>
-<p>Currenlty, there is no specific way to do so, the user should simply loop over a vector of species:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">vc_sp &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Amazilia versicolor&quot;</span>, <span class="st">&quot;Loxodonta africana&quot;</span>)</a>
-<a class="sourceLine" id="cb10-2" data-line-number="2">res &lt;-<span class="st"> </span><span class="kw">lapply</span>(vc_sp, <span class="cf">function</span>(x) <span class="kw">spp_taxonconcept</span>(<span class="dt">query_taxon =</span> x))</a>
-<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="kw">do.call</span>(rbind, res)</a></code></pre></div>
-<p>or a vector of identifier:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">vc_id &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">4521</span>, <span class="dv">3210</span>)</a>
-<a class="sourceLine" id="cb11-2" data-line-number="2">res &lt;-<span class="st"> </span><span class="kw">lapply</span>(vc_id,</a>
-<a class="sourceLine" id="cb11-3" data-line-number="3">    <span class="cf">function</span>(x)</a>
-<a class="sourceLine" id="cb11-4" data-line-number="4">      <span class="kw">spp_eu_legislation</span>(<span class="dt">taxon_id =</span> x)</a>
-<a class="sourceLine" id="cb11-5" data-line-number="5">    )</a>
-<a class="sourceLine" id="cb11-6" data-line-number="6"><span class="kw">do.call</span>(rbind, res)</a></code></pre></div>
+<p>Currently, there is no direct way to access more than one species at a time. In order to do so, you should therefore loop over a vector of species or a vector of identifier.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">vc_sp &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Amazilia versicolor&quot;</span>, <span class="st">&quot;Loxodonta africana&quot;</span>)</a>
+<a class="sourceLine" id="cb11-2" data-line-number="2">res &lt;-<span class="st"> </span><span class="kw">lapply</span>(vc_sp, <span class="cf">function</span>(x) <span class="kw">spp_taxonconcept</span>(<span class="dt">query_taxon =</span> x)<span class="co">#, appendix_only = TRUE))</span></a>
+<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="kw">do.call</span>(rbind, res)</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">vc_id &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">4521</span>, <span class="dv">3210</span>)</a>
+<a class="sourceLine" id="cb12-2" data-line-number="2">res &lt;-<span class="st"> </span><span class="kw">lapply</span>(vc_id,</a>
+<a class="sourceLine" id="cb12-3" data-line-number="3">    <span class="cf">function</span>(x) <span class="kw">unlist</span>(</a>
+<a class="sourceLine" id="cb12-4" data-line-number="4">      <span class="kw">spp_eu_legislation</span>(<span class="dt">taxon_id =</span> x)</a>
+<a class="sourceLine" id="cb12-5" data-line-number="5">    )[<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>]</a>
+<a class="sourceLine" id="cb12-6" data-line-number="6">)</a></code></pre></div>
+</div>
+<div id="use-of-the-simplify-function" class="section level2">
+<h2>Use of the simplify function</h2>
+<p>The <code>rcites_simplify()</code> function can be used for an outcome that is easier to read. It can be either called directly within an access function having the <code>spp_</code> prefix, through having <code>simplify = TRUE</code> or used afterwards.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">leg2 &lt;-<span class="st"> </span><span class="kw">rcites_simplify</span>(leg1)</a></code></pre></div>
+</div>
+</div>
+<div id="for-a-full-package-workflow" class="section level1">
+<h1>For a full package workflow …</h1>
+<p>… have a look at the second vinette part, showcasing the full <a href="https://ibartomeus.github.io/rcites/articles/elephant.html">Speciesplus information about the African bush elephant</a>.</p>
 </div>
 
 

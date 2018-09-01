@@ -4,28 +4,22 @@
 \alias{spp_references}
 \title{Get references for a given taxon concept}
 \usage{
-spp_references(taxon_id, type = c("taxonomic", "distribution"),
-  simplify = FALSE, token = NULL)
+spp_references(taxon_id, raw = FALSE, token = NULL)
 }
 \arguments{
 \item{taxon_id}{character string containing a species' taxon concept identifier
 (see \code{\link[rcites]{spp_taxonconcept}}).}
 
-\item{type}{vector of character strings indicating the type of references
-requested, \code{taxonomic} or \code{distribution}.}
-
-\item{simplify}{a logical. Should the output be simplified? In other words,
-should columns of data.table objects returned be unlisted when they are
-lists made of single elements?}
+\item{raw}{a logical. Should raw data be returned?}
 
 \item{token}{a character string containing the authentification token, see
 \url{https://api.speciesplus.net/documentation}. Default is set to
 \code{NULL} and requires the environment variable \code{SPECIESPLUS_TOKEN} to be
-set directly in \code{Renviron}. Alternatively \code{set_token()} can
+set directly in \code{Renviron}. Alternatively, \code{set_token()} can
 be used to set \code{SPECIESPLUS_TOKEN} for the current session.}
 }
 \value{
-A list of data.table objects, one per type requested.
+A list of objects, one per type requested.
 }
 \description{
 Retrieve available references for a given taxon concept.
@@ -33,7 +27,7 @@ Retrieve available references for a given taxon concept.
 \examples{
 \donttest{
 res1 <- spp_references(taxon_id = '4521')
-res2 <- spp_references(taxon_id = '4521', type = 'taxonomic', simplify = T)
+res2 <- spp_references(taxon_id = '4521', raw = TRUE)
 }
 }
 \references{

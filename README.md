@@ -44,11 +44,11 @@ To set up a connection to the CITES Speciesplus database, a personal authenticat
 
 Once the token is set, the package has five key features:
 
-- spp_taxonconcept( ): [access the Speciesplus taxon concept](https://api.speciesplus.net/documentation/v1/taxon_concepts/index.html)  and retrieve a taxon id
-- spp_cites_legislation( ): [access CITES legislation data](https://api.speciesplus.net/documentation/v1/cites_legislation/index.html)
-- spp_eu_legislation( ): [access EU legislation data](https://api.speciesplus.net/documentation/v1/eu_legislation/index.html)
-- spp_distribution( ): [access a taxon distribution data](https://api.speciesplus.net/documentation/v1/distributions/index.html)
-- spp_references( ): [access a listing reference data](https://api.speciesplus.net/documentation/v1/references/index.html)
+- `spp_taxonconcept()`: [access the Speciesplus taxon concept](https://api.speciesplus.net/documentation/v1/taxon_concepts/index.html) and retrieve a taxon id
+- `spp_cites_legislation()`: [access CITES legislation data](https://api.speciesplus.net/documentation/v1/cites_legislation/index.html)
+- `spp_eu_legislation()`: [access EU legislation data](https://api.speciesplus.net/documentation/v1/eu_legislation/index.html)
+- `spp_distributions()`: [access a taxon distribution data](https://api.speciesplus.net/documentation/v1/distributions/index.html)
+- `spp_references()`: [access a listing reference data](https://api.speciesplus.net/documentation/v1/references/index.html)
 
 
 ### Citation information

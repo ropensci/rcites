@@ -61,7 +61,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rcites</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0.9000</span>
       </span>
     </div>
 
@@ -83,6 +83,12 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/elephant.html">Speciesplus information about the African bush elephant</a>
+    </li>
+    <li>
+      <a href="../articles/get_started.html">Get started with rcites</a>
+    </li>
     <li>
       <a href="../articles/rcites-vignette.html">Get started with rcites</a>
     </li>
@@ -123,19 +129,53 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>spp_taxonconcept</span>(<span class='no'>query_taxon</span>, <span class='kw'>appendix_only</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>token</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>spp_taxonconcept</span>(<span class='no'>query_taxon</span>, <span class='kw'>taxonomy</span> <span class='kw'>=</span> <span class='st'>"CITES"</span>,
+  <span class='kw'>with_descendants</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>language</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>updated_since</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>per_page</span> <span class='kw'>=</span> <span class='fl'>500</span>, <span class='kw'>seq_page</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>raw</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>token</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>query_taxon</th>
-      <td><p>a character string containing the query (e.g. species). Scientific taxa only (max 255 characters).</p></td>
+      <td><p>a character string containing the query (e.g. species).
+Scientific taxa only (max 255 characters).</p></td>
     </tr>
     <tr>
-      <th>appendix_only</th>
-      <td><p>a logical. If <code>TRUE</code> then taxon identifier and the
-CITES appendix information are the only data returned (default is <code>FALSE</code>).</p></td>
+      <th>taxonomy</th>
+      <td><p>filter taxon concepts by taxonomy, accepts either 'CITES' or
+'CMS' as its value. Defaults set to 'CITES'.</p></td>
+    </tr>
+    <tr>
+      <th>with_descendants</th>
+      <td><p>a logical. Should the search by name be broadened to
+include higher taxa?</p></td>
+    </tr>
+    <tr>
+      <th>language</th>
+      <td><p>filter languages returned for common names. Value should be a
+vector of sting including one or more country codes. Default is set to `NULL`,
+showing all available languages.</p></td>
+    </tr>
+    <tr>
+      <th>updated_since</th>
+      <td><p>a timestamp. Only objects updated after (and including)
+this timestamp will be pulled.</p></td>
+    </tr>
+    <tr>
+      <th>per_page</th>
+      <td><p>a integer that indicates how many objects are returned per
+page for paginated responses. Default set to 500 which is the maximum.</p></td>
+    </tr>
+    <tr>
+      <th>seq_page</th>
+      <td><p>a vector of integer that contains page numbers. Default is
+set to `NULL`, i.e. all pages are accessed.</p></td>
+    </tr>
+    <tr>
+      <th>raw</th>
+      <td><p>a logical. Should raw data be returned?</p></td>
     </tr>
     <tr>
       <th>token</th>
@@ -145,15 +185,15 @@ CITES appendix information are the only data returned (default is <code>FALSE</c
 set directly in <code>Renviron</code>. Alternatively, <code><a href='set_token.html'>set_token()</a></code> can
 be used to set <code>SPECIESPLUS_TOKEN</code> for the current session.</p></td>
     </tr>
+    <tr>
+      <th>verbose</th>
+      <td><p>a logical. Should extra information be reported on progress?</p></td>
+    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>If <code>appendix_only</code> is <code>TRUE</code>, then a data frame with a species'
-taxon id and CITES appendix information is returned. Otherwise, a list of
-objects of class <code>data.table</code> with all CITES Species+ taxon_concept
-information is returned. Importantly enough, this functions returns the
-taxon concept identifier that is required by the <code>spp_*()</code> functions.</p>
+    <p>To be added</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
@@ -161,7 +201,9 @@ taxon concept identifier that is required by the <code>spp_*()</code> functions.
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>res1</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_taxonconcept</span>(<span class='kw'>query_taxon</span> <span class='kw'>=</span> <span class='st'>'Loxodonta africana'</span>)</div><div class='output co'>#&gt; <span class='error'>Error in rcites_res(q_url, token): Too Many Requests (RFC 6585) (HTTP 429).</span></div><div class='input'><span class='no'>res2</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_taxonconcept</span>(<span class='kw'>query_taxon</span> <span class='kw'>=</span> <span class='st'>'Loxodonta africana'</span>, <span class='kw'>appendix_only</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='error'>Error in rcites_res(q_url, token): Too Many Requests (RFC 6585) (HTTP 429).</span></div><div class='input'><span class='no'>res3</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_taxonconcept</span>(<span class='kw'>query_taxon</span> <span class='kw'>=</span> <span class='st'>'Amazilia versicolor'</span>)</div><div class='output co'>#&gt; <span class='error'>Error in rcites_res(q_url, token): Too Many Requests (RFC 6585) (HTTP 429).</span></div></pre>
+    <pre class="examples"><div class='input'><span class='no'>res1</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_taxonconcept</span>(<span class='kw'>query_taxon</span> <span class='kw'>=</span> <span class='st'>'Loxodonta africana'</span>)</div><div class='output co'>#&gt; <span class='error'>Error in rcites_res(q_url, token): Too Many Requests (RFC 6585) (HTTP 429).</span></div><div class='input'><span class='no'>res2</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_taxonconcept</span>(<span class='kw'>query_taxon</span> <span class='kw'>=</span> <span class='st'>'Loxodonta africana'</span>, <span class='kw'>raw</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='error'>Error in rcites_res(q_url, token): Too Many Requests (RFC 6585) (HTTP 429).</span></div><div class='input'><span class='no'>res3</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_taxonconcept</span>(<span class='kw'>query_taxon</span> <span class='kw'>=</span> <span class='st'>'Amazilia versicolor'</span>)
+<span class='no'>res4</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_taxonconcept</span>(<span class='kw'>query_taxon</span> <span class='kw'>=</span> <span class='st'>''</span>, <span class='kw'>taxonomy</span> <span class='kw'>=</span> <span class='st'>'CMS'</span>, <span class='kw'>seq_page</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>5</span>, <span class='kw'>language</span> <span class='kw'>=</span> <span class='st'>'EN'</span>)</div><div class='output co'>#&gt; Retrieving info from page  2 / 6 Retrieving info from page  3 / 6 Retrieving info from page  4 / 6 Retrieving info from page  5 / 6 
+#&gt; Done!</div><div class='input'><span class='no'>res5</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_taxonconcept</span>(<span class='kw'>query_taxon</span> <span class='kw'>=</span> <span class='st'>''</span>, <span class='kw'>seq_page</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>44</span>))</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

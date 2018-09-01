@@ -58,7 +58,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rcites</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0.9000</span>
       </span>
     </div>
 
@@ -80,6 +80,12 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/elephant.html">Speciesplus information about the African bush elephant</a>
+    </li>
+    <li>
+      <a href="../articles/get_started.html">Get started with rcites</a>
+    </li>
     <li>
       <a href="../articles/rcites-vignette.html">Get started with rcites</a>
     </li>
@@ -119,16 +125,77 @@
 </h1>
 <ul>
 <li>
+<p>new features:</p>
+<ul>
+<li>
+<code><a href="../reference/spp_taxonconcept.html">spp_taxonconcept()</a></code> now includes an auto-pagination.</li>
+<li>Functions now returns S3 objects for which a print method is defined for all these objects:
+<ul>
+<li>
+<code>spp_raw</code> class is defined for all functions including the argument <code>raw</code>, it returns the parsed output from the API as a list object.<br>
+</li>
+<li>
+<code>spp_taxonconcept</code> returns an object of class <code>spp_taxon</code>
+</li>
+<li>
+<code>spp_cites_legislation</code> returns an object of class <code>spp_cites_leg</code>
+</li>
+<li>
+<code>spp_eu_legislation</code> returns an object of class <code>spp_eu_leg</code>
+</li>
+<li>
+<code>spp_distributions</code> returns an object of class <code>spp_distr</code>
+</li>
+<li>
+<code>spp_references</code> returns an object of class <code>spp_refs</code>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>add function parameters:</p>
+<ul>
+<li>
+<code>taxonomy</code>, <code>with_descendants</code>, <code>language</code>, <code>updated_since</code>, <code>per_page</code>, <code>seq_page</code>, <code>raw</code>, <code>verbose</code> in <code><a href="../reference/spp_taxonconcept.html">spp_taxonconcept()</a></code>
+</li>
+<li>
+<code>scope</code>, <code>language</code> and <code>raw</code> to <code><a href="../reference/spp_cites_legislation.html">spp_cites_legislation()</a></code>
+</li>
+<li>
+<code>scope</code>, <code>language</code> and <code>raw</code> to <code><a href="../reference/spp_eu_legislation.html">spp_eu_legislation()</a></code>
+</li>
+<li>
+<code>language</code> and <code>raw</code> to <code><a href="../reference/spp_distributions.html">spp_distributions()</a></code>
+</li>
+</ul>
+</li>
+<li>
 <p>change function names:</p>
 <ul>
-<li>set_token instead of sppplus_login</li>
-<li>spp_taxonconcept instead of sppplus_taxonconcept</li>
-<li>spp_cites_legislation instead of taxon_cites_legislation</li>
-<li>spp_eu_legislation instead of taxon_eu_legislation</li>
-<li>spp_distribution instead of taxon_distribution</li>
-<li>spp_references instead of taxon_references</li>
-<li>rcites_simplify instead of sppplus_simplify</li>
-<li>rcites_ instead of sppplus_ for helper functions</li>
+<li>
+<code><a href="../reference/set_token.html">set_token()</a></code> instead of <code>sppplus_login()</code>
+</li>
+<li>
+<code><a href="../reference/spp_taxonconcept.html">spp_taxonconcept()</a></code> instead of <code>sppplus_taxonconcept()</code>
+</li>
+<li>
+<code><a href="../reference/spp_cites_legislation.html">spp_cites_legislation()</a></code> instead of <code>taxon_cites_legislation()</code>
+</li>
+<li>
+<code><a href="../reference/spp_eu_legislation.html">spp_eu_legislation()</a></code> instead of <code>taxon_eu_legislation()</code>
+</li>
+<li>
+<code><a href="../reference/spp_distributions.html">spp_distributions()</a></code> instead of <code>taxon_distribution()</code>
+</li>
+<li>
+<code><a href="../reference/spp_references.html">spp_references()</a></code> instead of <code>taxon_references()</code>
+</li>
+<li>
+<code>rcites_simplify()</code> instead of <code>sppplus_simplify()</code>
+</li>
+<li>
+<code>rcites_</code> instead of <code>sppplus_</code> for helper functions</li>
 </ul>
 </li>
 <li>
@@ -137,7 +204,6 @@
 <li>use ‘&lt;-’ for assignment instead of ‘=’,</li>
 <li>omit “Date” in DESCRIPTION,</li>
 <li>avoid 1:length(…), 1:nrow(…), 1:ncol(…),</li>
-<li>remove ‘jsonlite’ from DESCRIPTION.</li>
 </ul>
 </li>
 </ul>
@@ -157,7 +223,7 @@
 </li>
 <li>spp_eu_legislation( ): <a href="https://api.speciesplus.net/documentation/v1/eu_legislation/index.html">access EU legislation data</a>
 </li>
-<li>spp_distribution( ): <a href="https://api.speciesplus.net/documentation/v1/distributions/index.html">access a taxon distribution data</a>
+<li>spp_distributions( ): <a href="https://api.speciesplus.net/documentation/v1/distributions/index.html">access a taxon distribution data</a>
 </li>
 <li>spp_references( ): <a href="https://api.speciesplus.net/documentation/v1/references/index.html">access a listing reference data</a>
 </li>

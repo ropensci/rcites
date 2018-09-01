@@ -4,18 +4,22 @@
 \alias{spp_eu_legislation}
 \title{Get current EU annex listings, SRG opinions, and EU suspensions.}
 \usage{
-spp_eu_legislation(taxon_id, type = c("listings", "decisions"),
-  simplify = FALSE, token = NULL)
+spp_eu_legislation(taxon_id, scope = "current", language = "en",
+  raw = FALSE, token = NULL)
 }
 \arguments{
 \item{taxon_id}{character string containing a species' taxon concept identifier
 (see \code{\link[rcites]{spp_taxonconcept}}).}
 
-\item{type}{vector of character strings indicating type of legislation information requested, values are taken among \code{listing}, \code{quota} and \code{suspension}. Default includes the three of them.}
+\item{scope}{vector of character strings indicating the time scope of legislation,
+values are taken among \code{current}, \code{historic} and \code{all}.
+Default is \code{current}.}
 
-\item{simplify}{a logical. Should the output be simplified? In other words,
-should columns of data.table objects returned be unlisted when they are
-lists made of single elements?}
+\item{language}{vector of character strings indicating the language for the
+text of legislation notes, values are taken among \code{en} (English),
+\code{fr} (French) and \code{es} (Spanish). Default is \code{en}.}
+
+\item{raw}{a logical. Should raw data be returned?}
 
 \item{token}{a character string containing the authentification token, see
 \url{https://api.speciesplus.net/documentation}. Default is set to
@@ -24,7 +28,7 @@ set directly in \code{Renviron}. Alternatively \code{set_token()} can
 be used to set \code{SPECIESPLUS_TOKEN} for the current session.}
 }
 \value{
-A list of data.table objects, one per type requested.
+A list of objects, one per type requested.
 }
 \description{
 Retrieve current EU annex listings, SRG opinions, and EU suspensions for a
@@ -33,8 +37,8 @@ given taxon concept (identifier must be known).
 \examples{
 \donttest{
 res1 <- spp_eu_legislation(taxon_id = '4521')
-res2 <- spp_eu_legislation(taxon_id = '4521', type ='listings')
-res3 <- spp_eu_legislation(taxon_id = '4521', type ='listings', simplify = T)
+res2 <- spp_eu_legislation(taxon_id = '4521', scope = 'historic')
+res3 <- spp_eu_legislation(taxon_id = '4521', scope = 'all', language='fr')
 }
 }
 \references{

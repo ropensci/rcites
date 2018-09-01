@@ -4,26 +4,46 @@
 \alias{spp_taxonconcept}
 \title{Get taxon concepts for a search term.}
 \usage{
-spp_taxonconcept(query_taxon, appendix_only = FALSE, token = NULL)
+spp_taxonconcept(query_taxon, taxonomy = "CITES",
+  with_descendants = FALSE, language = NULL, updated_since = NULL,
+  per_page = 500, seq_page = NULL, raw = FALSE, token = NULL,
+  verbose = TRUE)
 }
 \arguments{
-\item{query_taxon}{a character string containing the query (e.g. species). Scientific taxa only (max 255 characters).}
+\item{query_taxon}{a character string containing the query (e.g. species).
+Scientific taxa only (max 255 characters).}
 
-\item{appendix_only}{a logical. If \code{TRUE} then taxon identifier and the
-CITES appendix information are the only data returned (default is \code{FALSE}).}
+\item{taxonomy}{filter taxon concepts by taxonomy, accepts either 'CITES' or
+'CMS' as its value. Defaults set to 'CITES'.}
+
+\item{with_descendants}{a logical. Should the search by name be broadened to
+include higher taxa?}
+
+\item{language}{filter languages returned for common names. Value should be a
+vector of sting including one or more country codes. Default is set to `NULL`,
+showing all available languages.}
+
+\item{updated_since}{a timestamp. Only objects updated after (and including)
+this timestamp will be pulled.}
+
+\item{per_page}{a integer that indicates how many objects are returned per
+page for paginated responses. Default set to 500 which is the maximum.}
+
+\item{seq_page}{a vector of integer that contains page numbers. Default is
+set to `NULL`, i.e. all pages are accessed.}
+
+\item{raw}{a logical. Should raw data be returned?}
 
 \item{token}{a character string containing the authentification token, see
 \url{https://api.speciesplus.net/documentation}. Default is set to
 \code{NULL} and requires the environment variable \code{SPECIESPLUS_TOKEN} to be
 set directly in \code{Renviron}. Alternatively, \code{set_token()} can
 be used to set \code{SPECIESPLUS_TOKEN} for the current session.}
+
+\item{verbose}{a logical. Should extra information be reported on progress?}
 }
 \value{
-If \code{appendix_only} is \code{TRUE}, then a data frame with a species'
-taxon id and CITES appendix information is returned. Otherwise, a list of
-objects of class \code{data.table} with all CITES Species+ taxon_concept
-information is returned. Importantly enough, this functions returns the
-taxon concept identifier that is required by the \code{spp_*()} functions.
+To be added
 }
 \description{
 Retrieve the taxon concept of a specific taxon (scientific name).
@@ -31,8 +51,10 @@ Retrieve the taxon concept of a specific taxon (scientific name).
 \examples{
 \donttest{
 res1 <- spp_taxonconcept(query_taxon = 'Loxodonta africana')
-res2 <- spp_taxonconcept(query_taxon = 'Loxodonta africana', appendix_only = TRUE)
+res2 <- spp_taxonconcept(query_taxon = 'Loxodonta africana', raw = TRUE)
 res3 <- spp_taxonconcept(query_taxon = 'Amazilia versicolor')
+res4 <- spp_taxonconcept(query_taxon = '', taxonomy = 'CMS', seq_page = 1:5, language = 'EN')
+res5 <- spp_taxonconcept(query_taxon = '', seq_page = c(44))
 }
 }
 \references{

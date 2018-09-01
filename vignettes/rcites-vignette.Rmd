@@ -116,7 +116,7 @@ Below we retrieve the distriution information of *Loxodonta africana*:
 `spp_distributions()` and map it with the help of the
 `rworldmap` package:
 
-```{R map, message = FALSE, fig.width = 6.4, fig.height = 7.6, fig.align="center"}
+```{R map, eval = FALSE, message = FALSE, fig.width = 6.4, fig.height = 7.6, fig.align="center"}
 par(las = 1)
 suppressPackageStartupMessages(library(rworldmap))
 map1 <- as.data.frame(spp_distributions("4521"))
