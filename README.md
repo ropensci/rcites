@@ -51,6 +51,14 @@ Once the token is set, the package has five key features:
 - `spp_references()`: [access a listing reference data](https://api.speciesplus.net/documentation/v1/references/index.html)
 
 
+### Prefix information
+
+The package functions have three different prexifes:
+- `set_` for `set_token()` to initially set the API token
+- `spp_` for functions that access data from the CITES Speciesplus database
+- `rcites_` for helper functions that are called within the key features
+
+
 ### Citation information
 
 When citing, please refer to both the [package citation](https://ibartomeus.github.io/rcites/authors.html) and the [release paper](link to come).
