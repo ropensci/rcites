@@ -2,8 +2,8 @@
 #'
 #' This function sets the authentification token for the current session.
 #'
-#' @param token a character string containing you token. If `NULL` then the
-#' token can be passed interactively.
+#' @param token a character string (with quotes) containing you token. If `NULL` then the
+#' token can be passed without quotes (not as character string) after a prompt.
 #'
 #' @references
 #' \url{https://api.speciesplus.net/documentation}
