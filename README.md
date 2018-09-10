@@ -55,7 +55,7 @@ Once the token is set, the package has five key features:
 
 The package functions have three different prexifes:
 - `set_` for `set_token()` to initially set the API token
-- `spp_` for the key features that access data from the CITES Speciesplus database
+- `spp_` for the key features
 - `rcites_` for helper functions that are called within the key features
 
 
