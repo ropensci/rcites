@@ -54,7 +54,7 @@ set_token("8QW6Qgh57sBG2k0gtt")
 ```
 
 3. use the `token` argument of the functions, *i.e.* the token is passed manually
-to every function calls.
+to each function call.
 
 
 # Use of key features

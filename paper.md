@@ -57,7 +57,7 @@ Recent publications with data extraction from the Speciesplus database illustrat
 
 # Acknowledgments
 
-Many thanks to the British Ecological Society for bringing us together during the "Ecology Hackathon: Developing R Packages for Accessing, Synthesizing and Analysing Ecological Data", part of the BES, GFÖ, NecoV and EEF Joint Annual Meeting 2017 "Ecology Across Borders". Also, thanks to our hackathon group for the fruitful discussions and contributions to the package.
+Many thanks to the British Ecological Society for bringing us together during the "Ecology Hackathon: Developing R Packages for Accessing, Synthesizing and Analysing Ecological Data", part of the BES, GfÖ, NecoV and EEF Joint Annual Meeting 2017 "Ecology Across Borders". Also, thanks to our hackathon group for the fruitful discussions and contributions to the package.
 
 
 # References

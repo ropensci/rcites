@@ -127,9 +127,9 @@ rcites_simplify_listings <- function(x) {
 }
 
 # convert null to na
-r_cites_null_to_na <- function(x) {
+rcites_null_to_na <- function(x) {
     if (is.list(x)) {
-        return(lapply(x, r_cites_null_to_na))
+        return(lapply(x, rcites_null_to_na))
     } else {
         return(ifelse(is.null(x), NA, x))
     }
@@ -138,7 +138,7 @@ r_cites_null_to_na <- function(x) {
 #
 rcites_simplify_decisions <- function(x) {
     # these fields may or may not be included so I removed them
-    tmp0 <- lapply(lapply(x, r_cites_null_to_na), unlist)
+    tmp0 <- lapply(lapply(x, rcites_null_to_na), unlist)
     out <- data.frame(do.call(rbind, lapply(tmp0, function(y) data.frame(rbind(y)))))
     rownames(out) <- NULL
     class(out) <- c("tbl_df", "tbl", "data.frame")
@@ -148,7 +148,7 @@ rcites_simplify_decisions <- function(x) {
 #
 rcites_simplify_distributions <- function(x) {
     # these fields may or may not be included so I removed them
-    tmp <- lapply(x, r_cites_null_to_na)
+    tmp <- lapply(x, rcites_null_to_na)
     out <- list()
     out$distributions <- data.frame(do.call(rbind, lapply(tmp, function(y) data.frame(rbind(unlist(y[!names(y) %in%
         c("tags", "references")]))))))
