@@ -35,7 +35,7 @@ test_that("base URL", {
 
 ## Output helper
 
-ls_ex <- r_cites_null_to_na(list("A", list("A", NULL)))
+ls_ex <- rcites_null_to_na(list("A", list("A", NULL)))
 
 
 test_that("base URL", {

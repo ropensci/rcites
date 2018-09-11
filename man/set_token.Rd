@@ -7,8 +7,8 @@
 set_token(token = NULL)
 }
 \arguments{
-\item{token}{a character string containing you token. If `NULL` then the
-token can be passed interactively.}
+\item{token}{a character string (with quotes) containing you token. If `NULL` then the
+token can be passed without quotes (not as character string) after a prompt.}
 }
 \description{
 This function sets the authentification token for the current session.
