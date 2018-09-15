@@ -33,6 +33,7 @@ Other contributors:
   \item Marie-Bé Leduc [contributor]
   \item Yasmine Verzelen [contributor]
   \item Noam Ross [reviewer]
+  \item Margaret Siple [reviewer]
 }
 
 }
