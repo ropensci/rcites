@@ -28,13 +28,15 @@
 #'
 #' @return
 #' If `raw=TRUE`, then a object of class `spp_raw` is returned, which is essentially
-#' a list of lists. If `raw=FALSE`, then a object of class `spp_taxon is returned
-#' it is a collection of five data frames:
-#' 1. general
-#' 2. higher_taxa
-#' 3.
-#' 4. accepted_names
-#' 5.results If then `NULL` is returned with a warning message. Othe
+#' a list of lists. If `raw=FALSE`, then a object of class `spp_taxon` is returned,
+#' it is a collection of seven data frames:
+#' 1. `all_id`: general information for all entries, including non-active taxon concepts,
+#' 2. `general`: includes general information for active taxon concepts,
+#' 3. `higher_taxa`: includes taxonomy information,
+#' 4. `accepted_names`: list of accepted names (only for synonyms),
+#' 5. `common_names`: list of common names (only for accepted names),
+#' 6. `synonyms`: list of synonyms (only for accepted names),
+#' 7. `cites_listing`: list of current CITES listings with annotations (missing if `taxonomy == "CMS"`).
 #'
 #' @references
 #' \url{https://api.speciesplus.net/documentation/v1/taxon_concepts/index.html}
@@ -105,16 +107,16 @@ spp_taxonconcept <- function(query_taxon, taxonomy = "CITES", with_descendants =
             id <- which(out$all_id$active)
             out$general <- out$all_id[out$all_id$active, ]
 
-            ##
+            ## Classification
             out$higher_taxa <- rcites_taxonconcept_higher_taxa(tmp2[id],
                 out$general$id)
-            out$synonyms <- rcites_taxonconcept_special_cases(tmp2[id],
-                name = "synonyms", out$general$id)
-            out$common_names <- rcites_taxonconcept_special_cases(tmp2[id],
-                name = "common_names", out$general$id)
-            ##
+            ## Names
             out$accepted_names <- rcites_taxonconcept_special_cases(tmp2[!id],
                 name = "accepted_names", out$all_id$id[!id])
+            out$common_names <- rcites_taxonconcept_special_cases(tmp2[id],
+                name = "common_names", out$general$id)
+            out$synonyms <- rcites_taxonconcept_special_cases(tmp2[id],
+                name = "synonyms", out$general$id)
 
             ## Extra output if taxonomy is set to CITES
             if (taxonomy == "CITES") {

@@ -44,13 +44,15 @@ be used to set \code{SPECIESPLUS_TOKEN} for the current session.}
 }
 \value{
 If `raw=TRUE`, then a object of class `spp_raw` is returned, which is essentially
-a list of lists. If `raw=FALSE`, then a object of class `spp_taxon is returned
-it is a collection of five data frames:
-1. general
-2. higher_taxa
-3.
-4. accepted_names
-5.results If then `NULL` is returned with a warning message. Othe
+a list of lists. If `raw=FALSE`, then a object of class `spp_taxon` is returned,
+it is a collection of seven data frames:
+1. `all_id`: general information for all entries, including non-active taxon concepts,
+2. `general`: includes general information for active taxon concepts,
+3. `higher_taxa`: includes taxonomy information,
+4. `accepted_names`: list of accepted names (only for synonyms),
+5. `common_names`: list of common names (only for accepted names),
+6. `synonyms`: list of synonyms (only for accepted names),
+7. `cites_listing`: list of current CITES listings with annotations (missing if `taxonomy == "CMS"`).
 }
 \description{
 Retrieve the taxon concept of a specific taxon (scientific name).
