@@ -3,21 +3,15 @@ context("references")
 skip_on_cran()
 skip_if_no_auth()
 
-# ut_pause()
-# res1 <- spp_references(taxon_id = tx_id)
-# ut_pause()
-# res2 <- spp_references(taxon_id = tx_id,)
-# ut_pause()
-# res3 <- spp_references(taxon_id = tx_id)
-# #
-#
+res1 <- spp_references(taxon_id = '4521')
+res2 <- spp_references(taxon_id = '4521', raw = TRUE)
+ut_pause()
+
 # test_that("expected output classes", {
-#   expect_equal(class(res1), "list")
-#   expect_equal(class(res2), "list")
-#   expect_equal(class(res3), "list")
-#   expect_true(all(class(res1$taxonomic) == cl_dt))
-#   expect_equal(class(res1$taxonomic$id), "list")
-#   expect_equal(class(res3$taxonomic$id), "integer")
+#   expect_equal(class(res1), "spp_refs")
+#   expect_equal(class(res1[1L]), "list")
+#   expect_true(all(unlist(lapply(res1, function(x) all(class(x) == cl_df)))))
+#
 # })
 #
 # test_that("expected output names", {

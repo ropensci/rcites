@@ -34,6 +34,7 @@ the taxon identifier is known.
 \donttest{
  res1 <- spp_distributions(taxon_id = '4521')
  res2 <- spp_distributions(taxon_id = '4521', raw = TRUE)
+ res3 <- spp_distributions(taxon_id = '4521', language = "fr")
 }
 }
 \references{

@@ -1,14 +1,21 @@
-context("legislation eu")
+context("Legislations")
 
 skip_on_cran()
 skip_if_no_auth()
-# 
+#
+# res1 <- spp_cites_legislation(taxon_id = tx_nm)
+# res2 <- spp_cites_legislation(taxon_id = tx_nm, raw = TRUE)
 # ut_pause()
-# res1 <- spp_eu_legislation(taxon_id = tx_id)
+# res3 <- spp_cites_legislation(taxon_id = tx_nm, scope = 'all')
+# res4 <- spp_cites_legislation(taxon_id = tx_nm, language = 'fr')
 # ut_pause()
-# res2 <- spp_eu_legislation(taxon_id = tx_id)
+#
+# res5 <- spp_eu_legislation(taxon_id = tx_nm)
+# res6 <- spp_eu_legislation(taxon_id = tx_nm, raw = TRUE)
+# res7 <- spp_eu_legislation(taxon_id = tx_nm, scope = 'all')
+# res8 <- spp_eu_legislation(taxon_id = tx_nm, language = 'fr')
 # ut_pause()
-# res3 <- spp_eu_legislation(taxon_id = tx_id)
+
 # #
 # nm1 <- c("id", "taxon_concept_id", "is_current", "annex", "change_type", "effective_at", "annotation")
 # nm2 <- c("id", "taxon_concept_id", "notes", "start_date", "is_current", "eu_decision_type", "geo_entity", "start_event", "source", "term")
@@ -38,11 +45,6 @@ skip_if_no_auth()
 # })
 #
 
-
-
-
-
-context("legislation cites")
 
 # ut_pause()
 # res4 <- spp_cites_legislation(taxon_id = tx_id)
