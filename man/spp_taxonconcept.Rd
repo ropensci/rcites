@@ -23,7 +23,7 @@ include higher taxa?}
 vector of sting including one or more country codes. Default is set to `NULL`,
 showing all available languages.}
 
-\item{updated_since}{a timestamp. Only objects updated after (and including)
+\item{updated_since}{a timestamp. Only entries updated after (and including)
 this timestamp will be pulled.}
 
 \item{per_page}{a integer that indicates how many objects are returned per
@@ -58,10 +58,9 @@ Retrieve the taxon concept of a specific taxon (scientific name).
 \examples{
 \donttest{
 res1 <- spp_taxonconcept(query_taxon = 'Loxodonta africana')
-res2 <- spp_taxonconcept(query_taxon = 'Loxodonta africana', raw = TRUE)
-res3 <- spp_taxonconcept(query_taxon = 'Amazilia versicolor')
-res4 <- spp_taxonconcept(query_taxon = '', taxonomy = 'CMS', seq_page = 1:5, language = 'EN')
-res5 <- spp_taxonconcept(query_taxon = '', seq_page = c(44))
+res2 <- spp_taxonconcept(query_taxon = 'Amazilia versicolor', raw = TRUE)
+res3 <- spp_taxonconcept(query_taxon = '', taxonomy = 'CMS', seq_page = 1:5, language = 'EN')
+res4 <- spp_taxonconcept(query_taxon = '', seq_page = c(44))
 }
 }
 \references{
