@@ -20,22 +20,21 @@ print.spp_raw <- function(x, ...) {
 #' @export
 #' @method print spp_taxon
 print.spp_taxon <- function(x, ...) {
-
-    cat("General info:\n")
+    
+    rcites_print_title("General info:", "\n")
     rcites_print_df(x$general)
-
-    cat("\nClassification info:\n")
+    
+    rcites_print_title("Classification:", "\n", "\n")
     rcites_print_df(x$higher_taxa)
-
-    cat("\nSynonyms:\n")
+    
+    rcites_print_title("Synonyms:", "\n", "\n")
     rcites_print_df(x$synonyms)
-
-    cat("\nCommon names:\n")
+    
+    rcites_print_title("Common names:", "\n", "\n")
     rcites_print_df(x$common_names)
-
+    
     cat("\nInformation available:", paste(paste0("$", names(x)), collapse = ", "), 
         "\n")
-    # add a note of what's available
 }
 
 
@@ -43,14 +42,13 @@ print.spp_taxon <- function(x, ...) {
 #' @export
 #' @method print spp_eu_leg
 print.spp_eu_leg <- function(x, ...) {
-
-    cat("EU listings ($eu_listings):\n")
+    
+    rcites_print_title("EU listings ($eu_listings):", "\n")
     rcites_print_df_rm(x$eu_listings, col_rm = c("annotation", "hash_annotation"))
-
-    cat("\nEU decisions ($eu_decisions):\n")
+    
+    rcites_print_title("EU decisions ($eu_decisions):", "\n", "\n")
     npr <- c("notes", "eu_decision_type.description", "start_event.url")
     rcites_print_df_rm(x$eu_decisions, col_rm = npr)
-    # add a note of what's available
 }
 
 
@@ -58,15 +56,16 @@ print.spp_eu_leg <- function(x, ...) {
 #' @export
 #' @method print spp_cites_leg
 print.spp_cites_leg <- function(x, ...) {
-
-    cat("Cites listings ($cites_listings):\n")
+    
+    rcites_print_title("Cites listings ($cites_listings):", "\n")
     rcites_print_df_rm(x$cites_listings, col_rm = c("annotation", "hash_annotation"))
-
-    cat("\nCites quotas ($cites_quotas):\n")
+    
+    rcites_print_title("Cites quotas ($cites_quotas):", "\n", "\n")
     rcites_print_df_rm(x$cites_quotas, col_rm = c("notes", "url"))
-
-    cat("\nCites suspensions ($cites_suspensions):\n")
-    rcites_print_df_rm(x$cites_suspensions, col_rm = c("notes", paste0("start_notification.",
+    
+    rcites_print_title("Cites suspensions ($cites_suspensions):", "\n", 
+        "\n")
+    rcites_print_df_rm(x$cites_suspensions, col_rm = c("notes", paste0("start_notification.", 
         c("name", "date", "url"))))
 }
 
@@ -76,7 +75,7 @@ print.spp_cites_leg <- function(x, ...) {
 #' @export
 #' @method print spp_refs
 print.spp_refs <- function(x, ...) {
-    cat("References ($references):\n")
+    rcites_print_title("References ($references):", "\n")
     rcites_print_df(x$references)
 }
 
@@ -85,9 +84,9 @@ print.spp_refs <- function(x, ...) {
 #' @export
 #' @method print spp_refs
 print.spp_distr <- function(x, ...) {
-    cat("Distributions ($distributions):\n")
+    rcites_print_title("Distributions ($distributions):", "\n")
     rcites_print_df(x$distributions)
-
-    cat("\nReferences ($references):\n")
+    
+    rcites_print_title("References ($references):", "\n", "\n")
     rcites_print_df_rm(x$references)
 }

@@ -16,7 +16,7 @@ This function sets the authentification token for the current session.
 \examples{
 \donttest{
  # NB the token below is not working
- set_token("8QW6Qgh57sBG2k0gtt")
+ set_token('8QW6Qgh57sBG2k0gtt')
  # interactively
  set_token()
 }

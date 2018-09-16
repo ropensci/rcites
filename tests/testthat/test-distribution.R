@@ -4,11 +4,6 @@ skip_on_cran()
 skip_if_no_auth()
 
 
-# ut_pause()
-# res1 <- spp_distributions(taxon_id = tx_id)
-# ut_pause()
-# res2 <- spp_distributions(taxon_id = '4521', collapse_tags = ' + ')
-
 
 # test_that("expected output classes", {
 #   expect_equal(class(res1), cl_dt)

@@ -43,7 +43,14 @@ be used to set \code{SPECIESPLUS_TOKEN} for the current session.}
 \item{verbose}{a logical. Should extra information be reported on progress?}
 }
 \value{
-To be added
+If `raw=TRUE`, then a object of class `spp_raw` is returned, which is essentially
+a list of lists. If `raw=FALSE`, then a object of class `spp_taxon is returned
+it is a collection of five data frames:
+1. general
+2. higher_taxa
+3.
+4. accepted_names
+5.results If then `NULL` is returned with a warning message. Othe
 }
 \description{
 Retrieve the taxon concept of a specific taxon (scientific name).

@@ -27,7 +27,14 @@
 #' @param verbose a logical. Should extra information be reported on progress?
 #'
 #' @return
-#' To be added 
+#' If `raw=TRUE`, then a object of class `spp_raw` is returned, which is essentially
+#' a list of lists. If `raw=FALSE`, then a object of class `spp_taxon is returned
+#' it is a collection of five data frames:
+#' 1. general
+#' 2. higher_taxa
+#' 3.
+#' 4. accepted_names
+#' 5.results If then `NULL` is returned with a warning message. Othe
 #'
 #' @references
 #' \url{https://api.speciesplus.net/documentation/v1/taxon_concepts/index.html}
@@ -67,7 +74,7 @@ spp_taxonconcept <- function(query_taxon, taxonomy = "CITES", with_descendants =
     # 
     if (!pag) {
         warning("Taxon not listed.")
-        out <- NULL
+        return(NULL)
     } else {
         if (pag > 1) {
             if (is.null(seq_page)) {
@@ -81,11 +88,10 @@ spp_taxonconcept <- function(query_taxon, taxonomy = "CITES", with_descendants =
                 tmp2 <- c(tmp$taxon_concepts, do.call(c, lapply(res, function(x) x$taxon_concepts)))
             } else tmp2 <- tmp$taxon_concepts
         } else tmp2 <- tmp$taxon_concepts
-        # auto pagination to be added here if (pag>1) rcites_autopagination()
-        # should be stored in tmp$taxon_concepts
+        # outputs
         if (raw) {
-            out <- tmp2
-            class(out) <- c("list", "spp_raw")
+            class(tmp2) <- c("list", "spp_raw")
+            return(tmp2)
         } else {
             ## special cases
             sp_nm <- c("synonyms", "higher_taxa", "common_names", "cites_listing", 
