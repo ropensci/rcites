@@ -137,7 +137,7 @@ the taxon identifier is known.</p>
     <tr>
       <th>taxon_id</th>
       <td><p>character string containing a species' taxon concept identifier
-(see <code><a href='spp_taxonconcept.html'>spp_taxonconcept</a></code>).</p></td>
+(see <code><a href='spp_taxonconcept.html'>spp_taxonconcept()</a></code>).</p></td>
     </tr>
     <tr>
       <th>language</th>
@@ -154,14 +154,21 @@ names of distributions, values are taken among <code>en</code> (English),
       <td><p>a character string containing the authentification token, see
 <a href='https://api.speciesplus.net/documentation'>https://api.speciesplus.net/documentation</a>. Default is set to
 <code>NULL</code> and requires the environment variable <code>SPECIESPLUS_TOKEN</code> to be
-set directly in <code>Renviron</code>. Alternatively <code><a href='set_token.html'>set_token()</a></code> can
+set directly in <code>Renviron</code>. Alternatively, <code><a href='set_token.html'>set_token()</a></code> can
 be used to set <code>SPECIESPLUS_TOKEN</code> for the current session.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A data frame with all distribution information.</p>
+    <p>If <code>raw</code> is set to <code>TRUE</code> then an object of class <code>spp_raw</code> is returned
+which is essentially the list of lists (see option <code>as = "parsed"</code> in <code><a href='http://www.rdocumentation.org/packages/httr/topics/content'>httr::content()</a></code>).
+Otherwise, an object of class <code>spp_distr</code> is returned which is a list of two
+data frames:</p><ol>
+<li><p><code>distributions</code>: lists distributions for a given taxon concept,</p></li>
+<li><p><code>references</code>: lists the corresponding references.</p></li>
+</ol>
+
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
