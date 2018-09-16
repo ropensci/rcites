@@ -6,10 +6,10 @@
 #' (see \code{\link[rcites]{spp_taxonconcept}}).
 #' @param raw a logical. Should raw data be returned?
 #' @param token a character string containing the authentification token, see
-#' \url{https://api.speciesplus.net/documentation}. Default is set to
-#' \code{NULL} and requires the environment variable \code{SPECIESPLUS_TOKEN} to be
-#' set directly in \code{Renviron}. Alternatively, \code{set_token()} can
-#' be used to set \code{SPECIESPLUS_TOKEN} for the current session.
+#' <https://api.speciesplus.net/documentation>. Default is set to
+#' `NULL` and requires the environment variable `SPECIESPLUS_TOKEN` to be
+#' set directly in `Renviron`. Alternatively, [set_token()] can
+#' be used to set `SPECIESPLUS_TOKEN` for the current session.
 #'
 #' @return A list of objects, one per type requested.
 #'
@@ -26,7 +26,7 @@
 
 spp_references <- function(taxon_id, raw = FALSE, token = NULL) {
     # token check
-    if (is.null(token)) 
+    if (is.null(token))
         token <- rcites_getsecret()
     # id check
     rcites_checkid(taxon_id)
@@ -43,6 +43,6 @@ spp_references <- function(taxon_id, raw = FALSE, token = NULL) {
         out$references <- rcites_simplify_decisions(tmp)
         class(out) <- c("spp_refs")
     }
-    # 
+    #
     out
 }

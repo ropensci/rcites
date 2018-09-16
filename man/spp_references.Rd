@@ -15,7 +15,7 @@ spp_references(taxon_id, raw = FALSE, token = NULL)
 \item{token}{a character string containing the authentification token, see
 \url{https://api.speciesplus.net/documentation}. Default is set to
 \code{NULL} and requires the environment variable \code{SPECIESPLUS_TOKEN} to be
-set directly in \code{Renviron}. Alternatively, \code{set_token()} can
+set directly in \code{Renviron}. Alternatively, \code{\link[=set_token]{set_token()}} can
 be used to set \code{SPECIESPLUS_TOKEN} for the current session.}
 }
 \value{

@@ -8,12 +8,12 @@ spp_eu_legislation(taxon_id, scope = "current", language = "en",
   raw = FALSE, token = NULL)
 }
 \arguments{
-\item{taxon_id}{character string containing a species' taxon concept identifier
-(see \code{\link[rcites]{spp_taxonconcept}}).}
+\item{taxon_id}{character string containing a species' taxon concept
+identifier (see \code{\link[rcites]{spp_taxonconcept}}).}
 
 \item{scope}{vector of character strings indicating the time scope of legislation,
 values are taken among \code{current}, \code{historic} and \code{all}.
-Default is \code{current}.}
+Default is set to \code{current}.}
 
 \item{language}{vector of character strings indicating the language for the
 text of legislation notes, values are taken among \code{en} (English),
@@ -24,7 +24,7 @@ text of legislation notes, values are taken among \code{en} (English),
 \item{token}{a character string containing the authentification token, see
 \url{https://api.speciesplus.net/documentation}. Default is set to
 \code{NULL} and requires the environment variable \code{SPECIESPLUS_TOKEN} to be
-set directly in \code{Renviron}. Alternatively \code{set_token()} can
+set directly in \code{Renviron}. Alternatively, \code{\link[=set_token]{set_token()}} can
 be used to set \code{SPECIESPLUS_TOKEN} for the current session.}
 }
 \value{

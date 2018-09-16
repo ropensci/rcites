@@ -9,7 +9,7 @@ spp_cites_legislation(taxon_id, scope = "current", language = "en",
 }
 \arguments{
 \item{taxon_id}{character string containing a species' taxon concept identifier
-(see \code{\link[rcites]{spp_taxonconcept}}).}
+(see \code{\link[=spp_taxonconcept]{spp_taxonconcept()}}).}
 
 \item{scope}{vector of character strings indicating the time scope of legislation,
 values are taken among \code{current}, \code{historic} and \code{all}.
@@ -24,11 +24,11 @@ text of legislation notes, values are taken among \code{en} (English),
 \item{token}{a character string containing the authentification token, see
 \url{https://api.speciesplus.net/documentation}. Default is set to
 \code{NULL} and requires the environment variable \code{SPECIESPLUS_TOKEN} to be
-set directly in \code{Renviron}. Alternatively \code{set_token()} can
+set directly in \code{Renviron}. Alternatively, \code{\link[=set_token]{set_token()}} can
 be used to set \code{SPECIESPLUS_TOKEN} for the current session.}
 }
 \value{
-A list of objects one per type requested.
+An object of class `` that is a list of three data frames:
 }
 \description{
 Retrieve current CITES appendix listings and reservations, CITES quotas, and

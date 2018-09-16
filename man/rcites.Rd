@@ -6,8 +6,8 @@
 \alias{rcites-package}
 \title{rcites}
 \description{
-A programmatic interface to the Species+ <https://speciesplus.net/> database
-via the Species+/CITES Checklist API <https://api.speciesplus.net/>.
+A programmatic interface to the Species+ \url{https://speciesplus.net/} database
+via the Species+/CITES Checklist API \url{https://api.speciesplus.net/}.
 }
 \seealso{
 Useful links:

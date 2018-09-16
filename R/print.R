@@ -1,23 +1,26 @@
-#' print
+#' Print methods for objects of class `spp_*`
 #'
-#' Print the result of a Species+ API call
+#' Print the outputs of a Species+ API call
 #'
 #' @param x The result object.
 #' @param ... Ignored.
 #'
+#' @name print.spp
+#'
 #' @return The JSON result.
 #'
 #' @importFrom jsonlite prettify toJSON
-#' @export
-#' @method print spp_raw
+NULL
 
+
+#' @rdname print.spp
+#' @method print spp_raw
 print.spp_raw <- function(x, ...) {
     print(toJSON(unclass(x), pretty = TRUE, auto_unbox = TRUE))
 }
 
 
-#' @describeIn print Print method for object of class `spp_taxon`
-#' @export
+#' @rdname print.spp
 #' @method print spp_taxon
 print.spp_taxon <- function(x, ...) {
 
@@ -38,9 +41,8 @@ print.spp_taxon <- function(x, ...) {
 }
 
 
-#' @describeIn print Print method for object of class `spp_eu_leg`
-#' @export
 #' @method print spp_eu_leg
+#' @rdname print.spp
 print.spp_eu_leg <- function(x, ...) {
 
     rcites_print_title("EU listings ($eu_listings):", "\n")
@@ -52,9 +54,8 @@ print.spp_eu_leg <- function(x, ...) {
 }
 
 
-#' @describeIn print Print method for object of class `spp_cites_leg`
-#' @export
 #' @method print spp_cites_leg
+#' @rdname print.spp
 print.spp_cites_leg <- function(x, ...) {
 
     rcites_print_title("Cites listings ($cites_listings):", "\n")
@@ -70,19 +71,16 @@ print.spp_cites_leg <- function(x, ...) {
 }
 
 
-
-#' @describeIn print Print method for object of class `spp_refs`
-#' @export
 #' @method print spp_refs
+#' @rdname print.spp
 print.spp_refs <- function(x, ...) {
     rcites_print_title("References ($references):", "\n")
     rcites_print_df(x$references)
 }
 
 
-#' @describeIn print Print method for object of class `spp_refs`
-#' @export
 #' @method print spp_refs
+#' @rdname print.spp
 print.spp_distr <- function(x, ...) {
     rcites_print_title("Distributions ($distributions):", "\n")
     rcites_print_df(x$distributions)

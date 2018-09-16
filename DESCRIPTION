@@ -24,3 +24,4 @@ Encoding: UTF-8
 RoxygenNote: 6.1.0
 Suggests: knitr, testthat, tibble, rmarkdown, rworldmap
 VignetteBuilder: knitr
+Roxygen: list(markdown = TRUE)

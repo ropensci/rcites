@@ -9,7 +9,7 @@ spp_distributions(taxon_id, language = "en", raw = FALSE,
 }
 \arguments{
 \item{taxon_id}{character string containing a species' taxon concept identifier
-(see \code{\link[rcites]{spp_taxonconcept}}).}
+(see \code{\link[=spp_taxonconcept]{spp_taxonconcept()}}).}
 
 \item{language}{vector of character strings indicating the language for the
 names of distributions, values are taken among \code{en} (English),
@@ -20,7 +20,7 @@ names of distributions, values are taken among \code{en} (English),
 \item{token}{a character string containing the authentification token, see
 \url{https://api.speciesplus.net/documentation}. Default is set to
 \code{NULL} and requires the environment variable \code{SPECIESPLUS_TOKEN} to be
-set directly in \code{Renviron}. Alternatively \code{set_token()} can
+set directly in \code{Renviron}. Alternatively, \code{set_token()} can
 be used to set \code{SPECIESPLUS_TOKEN} for the current session.}
 }
 \value{

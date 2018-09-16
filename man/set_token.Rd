@@ -7,7 +7,7 @@
 set_token(token = NULL)
 }
 \arguments{
-\item{token}{a character string (with quotes) containing you token. If `NULL` then the
+\item{token}{a character string (with quotes) containing you token. If \code{NULL} then the
 token can be passed without quotes (not as character string) after a prompt.}
 }
 \description{
