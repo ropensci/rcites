@@ -37,6 +37,8 @@ spp_cites_legislation <- function(taxon_id, scope = "current", language = "en",
     ## token check
     if (is.null(token))
         token <- rcites_getsecret()
+    # id check  
+    rcites_checkid(taxon_id)
     ## create query_string
     query_string <- paste(c(rcites_lang(language), rcites_scope(scope)),
         collapse = "&")

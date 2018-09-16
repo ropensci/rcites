@@ -33,6 +33,8 @@ spp_distributions <- function(taxon_id, language = "en", raw = FALSE, token = NU
     # token check
     if (is.null(token))
         token <- rcites_getsecret()
+    # id check  
+    rcites_checkid(taxon_id)
     # set query_string
     tmp <- rcites_lang(language)
     if (!is.null(tmp))
