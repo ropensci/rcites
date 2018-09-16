@@ -32,20 +32,20 @@
 #' res3 <- spp_cites_legislation(taxon_id = 4521, language = 'fr')
 #' }
 
-spp_cites_legislation <- function(taxon_id, scope = "current", language = "en",
+spp_cites_legislation <- function(taxon_id, scope = "current", language = "en", 
     raw = FALSE, token = NULL) {
     ## token check
-    if (is.null(token))
+    if (is.null(token)) 
         token <- rcites_getsecret()
-    # id check  
+    # id check
     rcites_checkid(taxon_id)
     ## create query_string
-    query_string <- paste(c(rcites_lang(language), rcites_scope(scope)),
+    query_string <- paste(c(rcites_lang(language), rcites_scope(scope)), 
         collapse = "&")
-    if (query_string != "")
+    if (query_string != "") 
         query_string <- paste0("?", query_string)
     ## create url
-    q_url <- rcites_url("taxon_concepts/", taxon_id, "/cites_legislation.json",
+    q_url <- rcites_url("taxon_concepts/", taxon_id, "/cites_legislation.json", 
         query_string)
     ## get_res
     tmp <- rcites_res(q_url, token)

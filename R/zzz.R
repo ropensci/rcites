@@ -52,11 +52,11 @@ rcites_scope <- function(x) {
 }
 
 rcites_checkid <- function(taxon_id) {
-  # id check
-  if (!grepl(taxon_id, pattern = "^[0-9]*$")) {
-    stop('The taxon concept identifier is made of digits only.')
-  }
-  invisible(NULL)
+    # id check
+    if (!grepl(taxon_id, pattern = "^[0-9]*$")) {
+        stop("The taxon concept identifier is made of digits only.")
+    }
+    invisible(NULL)
 }
 
 ## Secret helpers
@@ -124,8 +124,13 @@ rcites_simplify_listings <- function(x) {
     # these fields may or may not be included, so I removed them
     vc_nm <- c("party", "hash_annotation", "annotation")
     tmp <- lapply(x, function(y) data.frame(do.call(cbind, y)))
-    out <- do.call(rbind, lapply(tmp, function(y) y[, which(!names(y) %in%
-        vc_nm)]))
+    out <- data.frame(
+      apply(
+        do.call(rbind, lapply(tmp, function(y) y[, which(!names(y) %in%
+        vc_nm)])), 2, unlist)
+      )
+    if ("is_current" %in% names(out))
+        out$is_current <- as.logical(out$is_current)
     rownames(out) <- NULL
     class(out) <- c("tbl_df", "tbl", "data.frame")
     out

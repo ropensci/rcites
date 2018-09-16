@@ -89,9 +89,6 @@
     <li>
       <a href="../articles/get_started.html">Get started with rcites</a>
     </li>
-    <li>
-      <a href="../articles/rcites-vignette.html">Get started with rcites</a>
-    </li>
   </ul>
 </li>
 <li>
@@ -160,7 +157,7 @@ showing all available languages.</p></td>
     </tr>
     <tr>
       <th>updated_since</th>
-      <td><p>a timestamp. Only objects updated after (and including)
+      <td><p>a timestamp. Only entries updated after (and including)
 this timestamp will be pulled.</p></td>
     </tr>
     <tr>
@@ -193,7 +190,16 @@ be used to set <code>SPECIESPLUS_TOKEN</code> for the current session.</p></td>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>To be added</p>
+    <p>If `raw=TRUE`, then a object of class `spp_raw` is returned, which is essentially
+a list of lists. If `raw=FALSE`, then a object of class `spp_taxon` is returned,
+it is a collection of seven data frames:
+1. `all_id`: general information for all entries, including non-active taxon concepts,
+2. `general`: includes general information for active taxon concepts,
+3. `higher_taxa`: includes taxonomy information,
+4. `accepted_names`: list of accepted names (only for synonyms),
+5. `common_names`: list of common names (only for accepted names),
+6. `synonyms`: list of synonyms (only for accepted names),
+7. `cites_listing`: list of current CITES listings with annotations (missing if `taxonomy == 'CMS'`).</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
@@ -201,9 +207,7 @@ be used to set <code>SPECIESPLUS_TOKEN</code> for the current session.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>res1</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_taxonconcept</span>(<span class='kw'>query_taxon</span> <span class='kw'>=</span> <span class='st'>'Loxodonta africana'</span>)</div><div class='output co'>#&gt; <span class='error'>Error in rcites_res(q_url, token): Too Many Requests (RFC 6585) (HTTP 429).</span></div><div class='input'><span class='no'>res2</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_taxonconcept</span>(<span class='kw'>query_taxon</span> <span class='kw'>=</span> <span class='st'>'Loxodonta africana'</span>, <span class='kw'>raw</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='error'>Error in rcites_res(q_url, token): Too Many Requests (RFC 6585) (HTTP 429).</span></div><div class='input'><span class='no'>res3</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_taxonconcept</span>(<span class='kw'>query_taxon</span> <span class='kw'>=</span> <span class='st'>'Amazilia versicolor'</span>)
-<span class='no'>res4</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_taxonconcept</span>(<span class='kw'>query_taxon</span> <span class='kw'>=</span> <span class='st'>''</span>, <span class='kw'>taxonomy</span> <span class='kw'>=</span> <span class='st'>'CMS'</span>, <span class='kw'>seq_page</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>5</span>, <span class='kw'>language</span> <span class='kw'>=</span> <span class='st'>'EN'</span>)</div><div class='output co'>#&gt; Retrieving info from page  2 / 6 Retrieving info from page  3 / 6 Retrieving info from page  4 / 6 Retrieving info from page  5 / 6 
-#&gt; Done!</div><div class='input'><span class='no'>res5</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_taxonconcept</span>(<span class='kw'>query_taxon</span> <span class='kw'>=</span> <span class='st'>''</span>, <span class='kw'>seq_page</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>44</span>))</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>res1</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_taxonconcept</span>(<span class='kw'>query_taxon</span> <span class='kw'>=</span> <span class='st'>'Loxodonta africana'</span>)</div><div class='output co'>#&gt; <span class='error'>Error in rcites_res(q_url, token): Too Many Requests (RFC 6585) (HTTP 429).</span></div><div class='input'><span class='no'>res2</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_taxonconcept</span>(<span class='kw'>query_taxon</span> <span class='kw'>=</span> <span class='st'>'Amazilia versicolor'</span>, <span class='kw'>raw</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='error'>Error in rcites_res(q_url, token): Too Many Requests (RFC 6585) (HTTP 429).</span></div><div class='input'><span class='no'>res3</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_taxonconcept</span>(<span class='kw'>query_taxon</span> <span class='kw'>=</span> <span class='st'>''</span>, <span class='kw'>taxonomy</span> <span class='kw'>=</span> <span class='st'>'CMS'</span>, <span class='kw'>seq_page</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>5</span>, <span class='kw'>language</span> <span class='kw'>=</span> <span class='st'>'EN'</span>)</div><div class='output co'>#&gt; <span class='error'>Error in rcites_res(q_url, token): Too Many Requests (RFC 6585) (HTTP 429).</span></div><div class='input'><span class='no'>res4</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_taxonconcept</span>(<span class='kw'>query_taxon</span> <span class='kw'>=</span> <span class='st'>''</span>, <span class='kw'>seq_page</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>44</span>))</div><div class='output co'>#&gt; <span class='error'>Error in rcites_res(q_url, token): Too Many Requests (RFC 6585) (HTTP 429).</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -26,9 +26,9 @@
 
 spp_references <- function(taxon_id, raw = FALSE, token = NULL) {
     # token check
-    if (is.null(token))
+    if (is.null(token)) 
         token <- rcites_getsecret()
-    # id check  
+    # id check
     rcites_checkid(taxon_id)
     ## create url
     q_url <- rcites_url("taxon_concepts/", taxon_id, "/references.json")
@@ -43,6 +43,6 @@ spp_references <- function(taxon_id, raw = FALSE, token = NULL) {
         out$references <- rcites_simplify_decisions(tmp)
         class(out) <- c("spp_refs")
     }
-    #
+    # 
     out
 }

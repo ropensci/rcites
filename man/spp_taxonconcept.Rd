@@ -52,7 +52,7 @@ it is a collection of seven data frames:
 4. `accepted_names`: list of accepted names (only for synonyms),
 5. `common_names`: list of common names (only for accepted names),
 6. `synonyms`: list of synonyms (only for accepted names),
-7. `cites_listing`: list of current CITES listings with annotations (missing if `taxonomy == "CMS"`).
+7. `cites_listing`: list of current CITES listings with annotations (missing if `taxonomy == 'CMS'`).
 }
 \description{
 Retrieve the taxon concept of a specific taxon (scientific name).

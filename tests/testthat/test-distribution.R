@@ -8,7 +8,7 @@ res1 <- spp_distributions(taxon_id = '4521')
 res2 <- spp_distributions(taxon_id = '4521', raw = TRUE)
 res3 <- spp_distributions(taxon_id = '4521', language = "fr")
 res4 <- spp_distributions(taxon_id = '4521', language = "es")
-ut_pause()
+ut_pause(5)
 
 
 lang_GQ <- c("Equatorial Guinea", "Guinée équatoriale", "Guinea Ecuatorial")
