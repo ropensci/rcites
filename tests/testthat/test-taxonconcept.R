@@ -1,10 +1,5 @@
 context("Taxon concept")
 
-## General helpers
-test_that("General helpers", {
-  expect_error(spp_taxonconcept(query_taxon = tx_nm, taxonomy = "WRONG"))
-})
-
 skip_on_cran()
 skip_if_no_auth()
 
@@ -47,4 +42,5 @@ test_that("Expected behaviour", {
   expect_true(all(res5$general$updated_at > "2016-01-01"))
   ut_pause()
   expect_warning(spp_taxonconcept(query_taxon = "Homo sapiens"), "Taxon not listed.", fixed = TRUE)
+  expect_error(spp_taxonconcept(query_taxon = tx_nm, taxonomy = "WRONG"))
 })
