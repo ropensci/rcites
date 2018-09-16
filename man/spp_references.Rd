@@ -15,11 +15,18 @@ spp_references(taxon_id, raw = FALSE, token = NULL)
 \item{token}{a character string containing the authentification token, see
 \url{https://api.speciesplus.net/documentation}. Default is set to
 \code{NULL} and requires the environment variable \code{SPECIESPLUS_TOKEN} to be
-set directly in \code{Renviron}. Alternatively, \code{\link[=set_token]{set_token()}} can
-be used to set \code{SPECIESPLUS_TOKEN} for the current session.}
+set directly in \code{Renviron}. Alternatively, \code{\link[=set_token]{set_token()}} can be used to set
+\code{SPECIESPLUS_TOKEN} for the current session.}
 }
 \value{
-A list of objects, one per type requested.
+If \code{raw} is set to \code{TRUE} then an object of class \code{spp_raw} is returned
+which is essentially the list of lists (see option \code{as = "parsed"} in \code{\link[httr:content]{httr::content()}}).
+Otherwise an object of class \code{spp_refs} is returned which is a list of one
+data frame:
+\itemize{
+\item \code{references} that includes the identifier of the reference and the
+corresponding citation.
+}
 }
 \description{
 Retrieve available references for a given taxon concept.

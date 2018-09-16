@@ -5,15 +5,17 @@ skip_if_no_auth()
 #
 res1 <- spp_cites_legislation(taxon_id = tx_id)
 res2 <- spp_cites_legislation(taxon_id = tx_id, raw = TRUE)
+ut_pause()
 res3 <- spp_cites_legislation(taxon_id = tx_id, scope = 'all')
 res4 <- spp_cites_legislation(taxon_id = tx_id, language = 'fr')
 ut_pause()
 #
 res5 <- spp_eu_legislation(taxon_id = tx_id)
 res6 <- spp_eu_legislation(taxon_id = tx_id, raw = TRUE)
+ut_pause()
 res7 <- spp_eu_legislation(taxon_id = tx_id, scope = 'all')
 res8 <- spp_eu_legislation(taxon_id = tx_id, language = 'fr')
-ut_pause(5)
+ut_pause()
 
 
 #

@@ -18,8 +18,13 @@
 #' set directly in `Renviron`. Alternatively, [set_token()] can
 #' be used to set `SPECIESPLUS_TOKEN` for the current session.
 #'
-#' @return An object of class `` that is a list of three data frames:
-#'
+#' @return If `raw` is set to `TRUE` then an object of class `spp_raw` is returned
+#' which is essentially the list of lists (see option `as = "parsed"` in [httr::content()]).
+#' Otherwise, an object of class `spp_cites_leg` is returned which is a list of three
+#' data frames:
+#'  1. `cites_listings`: lists CITES annex listings EU suspensions,
+#'  2. `cites_quotas`: lists CITES quotas,
+#'  3. `cites_suspensions`: lists CITES suspensions.
 #'
 #' @references
 #' \url{https://api.speciesplus.net/documentation/v1/cites_legislation/index.html}

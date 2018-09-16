@@ -1,4 +1,4 @@
-context("taxon concept")
+context("Taxon concept")
 
 ## General helpers
 test_that("General helpers", {
@@ -18,14 +18,14 @@ ut_pause()
 res2 <- spp_taxonconcept(query_taxon = tx_nm, raw = TRUE)
 ut_pause()
 
-res3 <- spp_taxonconcept(query_taxon = '', taxonomy = 'CMS', seq_page = 1:2,
+res3 <- spp_taxonconcept(query_taxon = '', taxonomy = 'CMS', pages = 1:2,
   language = 'EN', verbose = FALSE)
 ut_pause()
 
-res4 <- spp_taxonconcept(query_taxon = '', seq_page = c(44), with_descendants = FALSE)
+res4 <- spp_taxonconcept(query_taxon = '', pages = c(44), with_descendants = FALSE)
 ut_pause()
 
-res5 <- spp_taxonconcept(query_taxon = '', seq_page = 1, updated_since = "2016-01-01")
+res5 <- spp_taxonconcept(query_taxon = '', pages = 1, updated_since = "2016-01-01")
 ut_pause()
 
 

@@ -15,7 +15,12 @@
 #' set directly in `Renviron`. Alternatively, \code{set_token()} can
 #' be used to set `SPECIESPLUS_TOKEN` for the current session.
 #'
-#' @return A data frame with all distribution information.
+#' @return If `raw` is set to `TRUE` then an object of class `spp_raw` is returned
+#' which is essentially the list of lists (see option `as = "parsed"` in [httr::content()]).
+#' Otherwise, an object of class `spp_distr` is returned which is a list of two
+#' data frames:
+#' 1. `distributions`: lists distributions for a given taxon concept,
+#' 2. `references`: lists the corresponding references.
 #'
 #' @references
 #' \url{https://api.speciesplus.net/documentation/v1/distributions/index.html}

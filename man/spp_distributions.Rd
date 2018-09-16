@@ -24,7 +24,14 @@ set directly in \code{Renviron}. Alternatively, \code{set_token()} can
 be used to set \code{SPECIESPLUS_TOKEN} for the current session.}
 }
 \value{
-A data frame with all distribution information.
+If \code{raw} is set to \code{TRUE} then an object of class \code{spp_raw} is returned
+which is essentially the list of lists (see option \code{as = "parsed"} in \code{\link[httr:content]{httr::content()}}).
+Otherwise, an object of class \code{spp_distr} is returned which is a list of two
+data frames:
+\enumerate{
+\item \code{distributions}: lists distributions for a given taxon concept,
+\item \code{references}: lists the corresponding references.
+}
 }
 \description{
 Retrieve distributions data available for a given taxon concept for which the

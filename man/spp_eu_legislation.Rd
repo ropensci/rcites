@@ -28,7 +28,14 @@ set directly in \code{Renviron}. Alternatively, \code{\link[=set_token]{set_toke
 be used to set \code{SPECIESPLUS_TOKEN} for the current session.}
 }
 \value{
-A list of objects, one per type requested.
+If \code{raw} is set to \code{TRUE} then an object of class \code{spp_raw} is returned
+which is essentially the list of lists (see option \code{as = "parsed"} in \code{\link[httr:content]{httr::content()}}).
+Otherwise, an object of class \code{spp_eu_leg} is returned which is a list of two
+data frames:
+\enumerate{
+\item \code{eu_listings}: lists EU annex listings EU suspensions,
+\item \code{eu_decisions}: lists EU decisions
+}
 }
 \description{
 Retrieve current EU annex listings, SRG opinions, and EU suspensions for a

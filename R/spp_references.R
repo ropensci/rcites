@@ -8,10 +8,15 @@
 #' @param token a character string containing the authentification token, see
 #' <https://api.speciesplus.net/documentation>. Default is set to
 #' `NULL` and requires the environment variable `SPECIESPLUS_TOKEN` to be
-#' set directly in `Renviron`. Alternatively, [set_token()] can
-#' be used to set `SPECIESPLUS_TOKEN` for the current session.
+#' set directly in `Renviron`. Alternatively, [set_token()] can be used to set
+#' `SPECIESPLUS_TOKEN` for the current session.
 #'
-#' @return A list of objects, one per type requested.
+#' @return If `raw` is set to `TRUE` then an object of class `spp_raw` is returned
+#' which is essentially the list of lists (see option `as = "parsed"` in [httr::content()]).
+#' Otherwise an object of class `spp_refs` is returned which is a list of one
+#' data frame:
+#' * `references` that includes the identifier of the reference and the
+#' corresponding citation.
 #'
 #' @references
 #' \url{https://api.speciesplus.net/documentation/v1/references/index.html}

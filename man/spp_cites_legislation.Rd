@@ -28,7 +28,15 @@ set directly in \code{Renviron}. Alternatively, \code{\link[=set_token]{set_toke
 be used to set \code{SPECIESPLUS_TOKEN} for the current session.}
 }
 \value{
-An object of class `` that is a list of three data frames:
+If \code{raw} is set to \code{TRUE} then an object of class \code{spp_raw} is returned
+which is essentially the list of lists (see option \code{as = "parsed"} in \code{\link[httr:content]{httr::content()}}).
+Otherwise, an object of class \code{spp_cites_leg} is returned which is a list of three
+data frames:
+\enumerate{
+\item \code{cites_listings}: lists CITES annex listings EU suspensions,
+\item \code{cites_quotas}: lists CITES quotas,
+\item \code{cites_suspensions}: lists CITES suspensions.
+}
 }
 \description{
 Retrieve current CITES appendix listings and reservations, CITES quotas, and

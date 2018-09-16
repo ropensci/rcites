@@ -18,7 +18,12 @@
 #' set directly in `Renviron`. Alternatively, [set_token()] can
 #' be used to set `SPECIESPLUS_TOKEN` for the current session.
 #'
-#' @return A list of objects, one per type requested.
+#' @return If `raw` is set to `TRUE` then an object of class `spp_raw` is returned
+#' which is essentially the list of lists (see option `as = "parsed"` in [httr::content()]).
+#' Otherwise, an object of class `spp_eu_leg` is returned which is a list of two
+#' data frames:
+#'  1. `eu_listings`: lists EU annex listings EU suspensions,
+#'  2. `eu_decisions`: lists EU decisions
 #'
 #' @references
 #' \url{https://api.speciesplus.net/documentation/v1/eu_legislation/index.html}
@@ -49,7 +54,6 @@ spp_eu_legislation <- function(taxon_id, scope = "current", language = "en",
         query_string)
     ## get_res
     tmp <- rcites_res(q_url, token)
-
     ## outputs
     if (raw) {
         out <- tmp
