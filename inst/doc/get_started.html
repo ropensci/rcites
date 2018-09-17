@@ -296,11 +296,11 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <p>A token is mandatory and needs to be passed to the header of all URL requests. They are three different ways to set the token in <code>rcites</code>:</p>
 <ol style="list-style-type: decimal">
 <li><p>set an environment variable <code>SPECIESPLUS_TOKEN</code> in <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/Startup.html"><code>.Renviron</code></a> file (preferred);</p></li>
-<li><p>use <code>set_token()</code>, <em>i.e.</em> interactively set <code>SPECIESPLUS_TOKEN</code> up for the current R session (meaning a login will be required for the future R sessions);</p></li>
+<li><p>use <code>set_token()</code> to set up the token as character string (with quotes). If not entered in the function, the token can be passed without quotes (not as character string) after a prompt. This way, the token <code>SPECIESPLUS_TOKEN</code> is interactively set up for the current R session (meaning a login will be required for the future R sessions);</p></li>
 </ol>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">set_token</span>(<span class="st">&quot;8QW6Qgh57sBG2k0gtt&quot;</span>)</a></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
-<li>use the <code>token</code> argument of the functions, <em>i.e.</em> the token is passed manually to every function calls.</li>
+<li>use the <code>token</code> argument of the functions, <em>i.e.</em> the token is passed manually to each function call.</li>
 </ol>
 </div>
 </div>

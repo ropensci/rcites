@@ -299,30 +299,28 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <div id="map-the-elephants-distribution" class="section level2">
 <h2>Map the elephant’s distribution</h2>
 <p>Before taking more insights into the legislation status of the elephant, we have a look at where the elephant actually occurs naturally. For this, we can access the elephant’s distribution information with the <code>spp_distributions()</code> function. Thereafter, we can map the distribution with the help of the <code>rworldmap</code> package.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="cf">if</span>(<span class="st">&quot;rworldmap&quot;</span> <span class="op">%in%</span><span class="st"> </span><span class="kw">rownames</span>(<span class="kw">installed.packages</span>()) <span class="op">==</span><span class="st"> </span><span class="ot">FALSE</span>){</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2">  <span class="kw">install.packages</span>(<span class="st">&quot;rworldmap&quot;</span>)} <span class="co"># installing `rworldmap` if not installed yet</span></a>
-<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="kw">suppressPackageStartupMessages</span>(<span class="kw">library</span>(rworldmap))</a>
-<a class="sourceLine" id="cb3-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="kw">par</span>(<span class="dt">las =</span> <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb3-6" data-line-number="6">map1 &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw">spp_distributions</span>(<span class="dt">taxon_id =</span> <span class="st">&quot;4521&quot;</span>))</a>
-<a class="sourceLine" id="cb3-7" data-line-number="7">map2 &lt;-<span class="st"> </span><span class="kw">joinCountryData2Map</span>(map1,</a>
-<a class="sourceLine" id="cb3-8" data-line-number="8">                            <span class="dt">joinCode=</span><span class="st">&quot;ISO2&quot;</span>,</a>
-<a class="sourceLine" id="cb3-9" data-line-number="9">                            <span class="dt">nameJoinColumn =</span> <span class="st">&quot;iso_code2&quot;</span>,</a>
-<a class="sourceLine" id="cb3-10" data-line-number="10">                            <span class="dt">nameCountryColumn =</span> <span class="st">&quot;name&quot;</span>)</a>
-<a class="sourceLine" id="cb3-11" data-line-number="11">map2<span class="op">@</span>data<span class="op">$</span>iso2 &lt;-<span class="st"> </span><span class="kw">unlist</span>(<span class="kw">lapply</span>(map2<span class="op">$</span>iso_code2, is.null))</a>
-<a class="sourceLine" id="cb3-12" data-line-number="12"><span class="kw">plot</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">23</span>, <span class="dv">62</span>), <span class="kw">c</span>(<span class="dv">45</span>, <span class="dv">-40</span>),</a>
-<a class="sourceLine" id="cb3-13" data-line-number="13">     <span class="dt">type =</span> <span class="st">&quot;n&quot;</span>,</a>
-<a class="sourceLine" id="cb3-14" data-line-number="14">     <span class="dt">main =</span> <span class="st">&quot;Loxodonta africana&quot;</span>,</a>
-<a class="sourceLine" id="cb3-15" data-line-number="15">     <span class="dt">xlab =</span> <span class="st">&quot;Longitude&quot;</span>,</a>
-<a class="sourceLine" id="cb3-16" data-line-number="16">     <span class="dt">ylab =</span> <span class="st">&quot;Latitude&quot;</span>)</a>
-<a class="sourceLine" id="cb3-17" data-line-number="17"><span class="kw">plot</span>(map2, <span class="dt">add =</span> T)</a>
-<a class="sourceLine" id="cb3-18" data-line-number="18"><span class="kw">plot</span>(map2[<span class="op">!</span>map2<span class="op">$</span>iso2,], <span class="dt">col =</span> <span class="st">&quot;#bda25d&quot;</span>, <span class="dt">add =</span> T)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">library</span>(rworldmap)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="kw">par</span>(<span class="dt">las =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">ele_distr &lt;-<span class="st"> </span><span class="kw">spp_distributions</span>(<span class="dt">taxon_id =</span> <span class="st">&quot;4521&quot;</span>)<span class="op">$</span>distributions</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">map2 &lt;-<span class="st"> </span><span class="kw">joinCountryData2Map</span>(ele_distr,</a>
+<a class="sourceLine" id="cb3-6" data-line-number="6">                            <span class="dt">joinCode=</span><span class="st">&quot;ISO2&quot;</span>,</a>
+<a class="sourceLine" id="cb3-7" data-line-number="7">                            <span class="dt">nameJoinColumn =</span> <span class="st">&quot;iso_code2&quot;</span>,</a>
+<a class="sourceLine" id="cb3-8" data-line-number="8">                            <span class="dt">nameCountryColumn =</span> <span class="st">&quot;name&quot;</span>)</a>
+<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="kw">plot</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">23</span>, <span class="dv">62</span>), <span class="kw">c</span>(<span class="dv">45</span>, <span class="dv">-40</span>),</a>
+<a class="sourceLine" id="cb3-10" data-line-number="10">     <span class="dt">type =</span> <span class="st">&quot;n&quot;</span>,</a>
+<a class="sourceLine" id="cb3-11" data-line-number="11">     <span class="dt">main =</span> <span class="st">&quot;Loxodonta africana&quot;</span>,</a>
+<a class="sourceLine" id="cb3-12" data-line-number="12">     <span class="dt">xlab =</span> <span class="st">&quot;Longitude&quot;</span>,</a>
+<a class="sourceLine" id="cb3-13" data-line-number="13">     <span class="dt">ylab =</span> <span class="st">&quot;Latitude&quot;</span>)</a>
+<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="kw">plot</span>(map2, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb3-15" data-line-number="15"><span class="kw">plot</span>(map2[<span class="op">!</span><span class="kw">is.na</span>(map2<span class="op">$</span>iso_code2),], <span class="dt">col =</span> <span class="st">&quot;#bda25d&quot;</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 </div>
 <div id="access-the-legislation-status" class="section level2">
 <h2>Access the legislation status</h2>
 <p>The functions <code>spp_cites_legislation()</code> and <code>spp_eu_legislation()</code> provide access to the legislation status information of the elephant, within 1. CITES in the overall and 2. the European Union.</p>
 <p>First, we have a look at the CITES legislation status:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">elephant_cites &lt;-<span class="st"> </span><span class="kw">spp_cites_legislation</span>(<span class="dt">taxon_id =</span> <span class="st">&quot;4521&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">elephant_cites &lt;-<span class="st"> </span><span class="kw">spp_cites_legislation</span>(<span class="dt">taxon_id =</span> <span class="st">&quot;4521&quot;</span>)</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">elephant_cites</a></code></pre></div>
 <p>Text about CITES legislation outcomes to come …</p>
 <p>Code and Text about EU legislation outcomes to come …</p>
 <p>Can we make some nice map about trade directions (as a combination of map2 and the legislation data)?</p>
@@ -330,8 +328,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <div id="access-the-elephants-speciesplus-reference-data" class="section level2">
 <h2>Access the elephant’s Speciesplus reference data</h2>
 <p>Last but not least, especially scientists will probably be interested in what references the Speciesplus information about the elephant is based on. For this, we can access the Speciesplus reference data with the <code>spp_references()</code> function. Within the function, we can select to access either the taxonomic or distribution references with the <code>type</code> argument.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">elephant_ref_tax &lt;-<span class="st"> </span><span class="kw">spp_references</span>(<span class="dt">taxon_id =</span> <span class="st">&quot;4521&quot;</span>)</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2">elephant_ref_distr &lt;-<span class="st"> </span><span class="kw">spp_references</span>(<span class="dt">taxon_id =</span> <span class="st">&quot;4521&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">elephant_refs &lt;-<span class="st"> </span><span class="kw">spp_references</span>(<span class="dt">taxon_id =</span> <span class="st">&quot;4521&quot;</span>)</a></code></pre></div>
 <p>Text about references outcomes to come …</p>
 </div>
 </div>

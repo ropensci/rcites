@@ -20,8 +20,6 @@ knitr::opts_chunk$set(
 ```
 
 
-<!-- https://cran.r-project.org/web/packages/httr/vignettes/secrets.html -->
-
 
 # Set up a connection to the Speciesplus database
 
@@ -43,10 +41,10 @@ requests. They are three different ways to set the token in `rcites`:
 [`.Renviron`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Startup.html)
 file (preferred);
 
-2. use `set_token()` to set up the token as character string (with quotes). If not 
-entered in the function, the token can be passed without quotes (not as character 
-string) after a prompt. This way, the token `SPECIESPLUS_TOKEN` is interactively 
-set up for the current R session (meaning a login will be required for the future 
+2. use `set_token()` to set up the token as character string (with quotes). If not
+entered in the function, the token can be passed without quotes (not as character
+string) after a prompt. This way, the token `SPECIESPLUS_TOKEN` is interactively
+set up for the current R session (meaning a login will be required for the future
 R sessions);
 
 ```{r, eval = FALSE}
