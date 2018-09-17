@@ -89,9 +89,6 @@
     <li>
       <a href="../articles/get_started.html">Get started with rcites</a>
     </li>
-    <li>
-      <a href="../articles/rcites-vignette.html">Get started with rcites</a>
-    </li>
   </ul>
 </li>
 <li>
@@ -148,14 +145,21 @@
       <td><p>a character string containing the authentification token, see
 <a href='https://api.speciesplus.net/documentation'>https://api.speciesplus.net/documentation</a>. Default is set to
 <code>NULL</code> and requires the environment variable <code>SPECIESPLUS_TOKEN</code> to be
-set directly in <code>Renviron</code>. Alternatively, <code><a href='set_token.html'>set_token()</a></code> can
-be used to set <code>SPECIESPLUS_TOKEN</code> for the current session.</p></td>
+set directly in <code>Renviron</code>. Alternatively, <code><a href='set_token.html'>set_token()</a></code> can be used to set
+<code>SPECIESPLUS_TOKEN</code> for the current session.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A list of objects, one per type requested.</p>
+    <p>If <code>raw</code> is set to <code>TRUE</code> then an object of class <code>spp_raw</code> is returned
+which is essentially the list of lists (see option <code>as = "parsed"</code> in <code><a href='http://www.rdocumentation.org/packages/httr/topics/content'>httr::content()</a></code>).
+Otherwise an object of class <code>spp_refs</code> is returned which is a list of one
+data frame:</p><ul>
+<li><p><code>references</code> that includes the identifier of the reference and the
+corresponding citation.</p></li>
+</ul>
+
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
@@ -163,7 +167,7 @@ be used to set <code>SPECIESPLUS_TOKEN</code> for the current session.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>res1</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_references</span>(<span class='kw'>taxon_id</span> <span class='kw'>=</span> <span class='st'>'4521'</span>)</div><div class='output co'>#&gt; <span class='error'>Error in rcites_res(q_url, token): Too Many Requests (RFC 6585) (HTTP 429).</span></div><div class='input'><span class='no'>res2</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_references</span>(<span class='kw'>taxon_id</span> <span class='kw'>=</span> <span class='st'>'4521'</span>, <span class='kw'>raw</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='error'>Error in rcites_res(q_url, token): Too Many Requests (RFC 6585) (HTTP 429).</span></div></pre>
+    <pre class="examples"><div class='input'><span class='no'>res1</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_references</span>(<span class='kw'>taxon_id</span> <span class='kw'>=</span> <span class='st'>'4521'</span>)</div><div class='output co'>#&gt; <span class='error'>Error in rcites_res(q_url, token): Too Many Requests (RFC 6585) (HTTP 429).</span></div><div class='input'><span class='no'>res2</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_references</span>(<span class='kw'>taxon_id</span> <span class='kw'>=</span> <span class='st'>'4521'</span>, <span class='kw'>raw</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='error'>Error in rcites_res(q_url, token): Unauthorized (HTTP 401).</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

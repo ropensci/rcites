@@ -11,7 +11,9 @@ matrix:
       env: NOT_CRAN=false
     - os: linux
       r: release
-      env: R_CODECOV=true
+      env:
+        - R_CODECOV=true
+          NOT_CRAN=false
     - os: linux
       r: devel
 

@@ -8,12 +8,12 @@ spp_eu_legislation(taxon_id, scope = "current", language = "en",
   raw = FALSE, token = NULL)
 }
 \arguments{
-\item{taxon_id}{character string containing a species' taxon concept identifier
-(see \code{\link[rcites]{spp_taxonconcept}}).}
+\item{taxon_id}{character string containing a species' taxon concept
+identifier (see \code{\link[rcites]{spp_taxonconcept}}).}
 
 \item{scope}{vector of character strings indicating the time scope of legislation,
 values are taken among \code{current}, \code{historic} and \code{all}.
-Default is \code{current}.}
+Default is set to \code{current}.}
 
 \item{language}{vector of character strings indicating the language for the
 text of legislation notes, values are taken among \code{en} (English),
@@ -24,11 +24,18 @@ text of legislation notes, values are taken among \code{en} (English),
 \item{token}{a character string containing the authentification token, see
 \url{https://api.speciesplus.net/documentation}. Default is set to
 \code{NULL} and requires the environment variable \code{SPECIESPLUS_TOKEN} to be
-set directly in \code{Renviron}. Alternatively \code{set_token()} can
+set directly in \code{Renviron}. Alternatively, \code{\link[=set_token]{set_token()}} can
 be used to set \code{SPECIESPLUS_TOKEN} for the current session.}
 }
 \value{
-A list of objects, one per type requested.
+If \code{raw} is set to \code{TRUE} then an object of class \code{spp_raw} is returned
+which is essentially the list of lists (see option \code{as = "parsed"} in \code{\link[httr:content]{httr::content()}}).
+Otherwise, an object of class \code{spp_eu_leg} is returned which is a list of two
+data frames:
+\enumerate{
+\item \code{eu_listings}: lists EU annex listings EU suspensions,
+\item \code{eu_decisions}: lists EU decisions
+}
 }
 \description{
 Retrieve current EU annex listings, SRG opinions, and EU suspensions for a

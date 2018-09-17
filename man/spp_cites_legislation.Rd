@@ -9,7 +9,7 @@ spp_cites_legislation(taxon_id, scope = "current", language = "en",
 }
 \arguments{
 \item{taxon_id}{character string containing a species' taxon concept identifier
-(see \code{\link[rcites]{spp_taxonconcept}}).}
+(see \code{\link[=spp_taxonconcept]{spp_taxonconcept()}}).}
 
 \item{scope}{vector of character strings indicating the time scope of legislation,
 values are taken among \code{current}, \code{historic} and \code{all}.
@@ -24,11 +24,19 @@ text of legislation notes, values are taken among \code{en} (English),
 \item{token}{a character string containing the authentification token, see
 \url{https://api.speciesplus.net/documentation}. Default is set to
 \code{NULL} and requires the environment variable \code{SPECIESPLUS_TOKEN} to be
-set directly in \code{Renviron}. Alternatively \code{set_token()} can
+set directly in \code{Renviron}. Alternatively, \code{\link[=set_token]{set_token()}} can
 be used to set \code{SPECIESPLUS_TOKEN} for the current session.}
 }
 \value{
-A list of objects one per type requested.
+If \code{raw} is set to \code{TRUE} then an object of class \code{spp_raw} is returned
+which is essentially the list of lists (see option \code{as = "parsed"} in \code{\link[httr:content]{httr::content()}}).
+Otherwise, an object of class \code{spp_cites_leg} is returned which is a list of three
+data frames:
+\enumerate{
+\item \code{cites_listings}: lists CITES annex listings EU suspensions,
+\item \code{cites_quotas}: lists CITES quotas,
+\item \code{cites_suspensions}: lists CITES suspensions.
+}
 }
 \description{
 Retrieve current CITES appendix listings and reservations, CITES quotas, and
@@ -37,7 +45,8 @@ CITES suspensions for a given taxon concept.
 \examples{
 \donttest{
 res1 <- spp_cites_legislation(taxon_id = 4521)
-res2 <- spp_cites_legislation(taxon_id = 4521, language = 'fr')
+res2 <- spp_cites_legislation(taxon_id = 4521, scope = 'all')
+res3 <- spp_cites_legislation(taxon_id = 4521, language = 'fr')
 }
 }
 \references{

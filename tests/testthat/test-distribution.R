@@ -1,29 +1,32 @@
-context("distribution")
+context("Distribution")
 
 skip_on_cran()
 skip_if_no_auth()
 
 
-# ut_pause()
-# res1 <- spp_distributions(taxon_id = tx_id)
-# ut_pause()
-# res2 <- spp_distributions(taxon_id = '4521', collapse_tags = ' + ')
+res1 <- spp_distributions(taxon_id = '4521')
+res2 <- spp_distributions(taxon_id = '4521', raw = TRUE)
+res3 <- spp_distributions(taxon_id = '4521', language = "fr")
+res4 <- spp_distributions(taxon_id = '4521', language = "es")
+ut_pause(5)
 
 
-# test_that("expected output classes", {
-#   expect_equal(class(res1), cl_dt)
-#   expect_equal(class(res2), cl_dt)
-#   expect_true(all(class(res1$id) == "list"))
-#   expect_true(all(class(res2$id) == "integer"))
-#   expect_true(all(class(res1$references) == "list"))
-#   expect_true(all(class(res2$references) == "list"))
-# })
-#
-# test_that("expected output names", {
-#   expect_true(all(names(res1) == c("id", "iso_code2", "name", "tags", "type", "references")))
-# })
-#
-# test_that("expected output", {
-#   expect_true(!any(grepl(unlist(res1$tags), pattern = " \\+ ")))
-#   expect_true(any(grepl(unlist(res2$tags), pattern = " \\+ ")))
-# })
+lang_GQ <- c("Equatorial Guinea", "Guinée équatoriale", "Guinea Ecuatorial")
+lang_en <- lang_GQ %in% res1$distributions$name
+lang_fr <- lang_GQ %in% res3$distributions$name
+lang_es <- lang_GQ %in% res4$distributions$name
+
+test_that("Expected classes", {
+  expect_equal(class(res1), "spp_distr")
+  expect_equal(class(res1[1L]), "list")
+  expect_true(all(unlist(lapply(res1, function(x) all(class(x) == cl_df)))))
+  expect_true(all(class(res2) == cl_raw))
+  expect_true(all(names(res1[[1L]]) == c("id", "iso_code2", "name", "type", "tags")))
+  expect_true(all(names(res1[[2L]]) == c("id", "reference")))
+})
+
+test_that("Language", {
+  expect_true(all(lang_en == c(TRUE, FALSE, FALSE)))
+  expect_true(all(lang_fr == c(FALSE, TRUE, FALSE)))
+  expect_true(all(lang_es == c(FALSE, FALSE, TRUE)))
+})

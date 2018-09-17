@@ -4,5 +4,4 @@ pkgdown_sha: ~
 articles:
   elephant: elephant.html
   get_started: get_started.html
-  rcites-vignette: rcites-vignette.html
 

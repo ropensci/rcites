@@ -6,7 +6,7 @@
 \usage{
 spp_taxonconcept(query_taxon, taxonomy = "CITES",
   with_descendants = FALSE, language = NULL, updated_since = NULL,
-  per_page = 500, seq_page = NULL, raw = FALSE, token = NULL,
+  per_page = 500, pages = NULL, raw = FALSE, token = NULL,
   verbose = TRUE)
 }
 \arguments{
@@ -14,23 +14,23 @@ spp_taxonconcept(query_taxon, taxonomy = "CITES",
 Scientific taxa only (max 255 characters).}
 
 \item{taxonomy}{filter taxon concepts by taxonomy, accepts either 'CITES' or
-'CMS' as its value. Defaults set to 'CITES'.}
+'CMS' as its value. Default sets to 'CITES'.}
 
 \item{with_descendants}{a logical. Should the search by name be broadened to
 include higher taxa?}
 
 \item{language}{filter languages returned for common names. Value should be a
-vector of sting including one or more country codes. Default is set to `NULL`,
+vector of sting including one or more country codes. Default is set to \code{NULL},
 showing all available languages.}
 
-\item{updated_since}{a timestamp. Only objects updated after (and including)
+\item{updated_since}{a timestamp. Only entries updated after (and including)
 this timestamp will be pulled.}
 
 \item{per_page}{a integer that indicates how many objects are returned per
 page for paginated responses. Default set to 500 which is the maximum.}
 
-\item{seq_page}{a vector of integer that contains page numbers. Default is
-set to `NULL`, i.e. all pages are accessed.}
+\item{pages}{a vector of integer that contains page numbers. Default is
+set to \code{NULL}, i.e. all pages are accessed.}
 
 \item{raw}{a logical. Should raw data be returned?}
 
@@ -43,7 +43,18 @@ be used to set \code{SPECIESPLUS_TOKEN} for the current session.}
 \item{verbose}{a logical. Should extra information be reported on progress?}
 }
 \value{
-To be added
+If \code{raw=TRUE}, then a object of class \code{spp_raw} is returned, which is essentially
+a list of lists. If \code{raw=FALSE}, then a object of class \code{spp_taxon} is returned,
+it is a collection of seven data frames:
+\enumerate{
+\item \code{all_id}: general information for all entries, including non-active taxon concepts,
+\item \code{general}: includes general information for active taxon concepts,
+\item \code{higher_taxa}: includes taxonomy information,
+\item \code{accepted_names}: list of accepted names (only for synonyms),
+\item \code{common_names}: list of common names (only for accepted names),
+\item \code{synonyms}: list of synonyms (only for accepted names),
+\item \code{cites_listing}: list of current CITES listings with annotations (missing if \code{taxonomy == 'CMS'}).
+}
 }
 \description{
 Retrieve the taxon concept of a specific taxon (scientific name).
@@ -51,10 +62,9 @@ Retrieve the taxon concept of a specific taxon (scientific name).
 \examples{
 \donttest{
 res1 <- spp_taxonconcept(query_taxon = 'Loxodonta africana')
-res2 <- spp_taxonconcept(query_taxon = 'Loxodonta africana', raw = TRUE)
-res3 <- spp_taxonconcept(query_taxon = 'Amazilia versicolor')
-res4 <- spp_taxonconcept(query_taxon = '', taxonomy = 'CMS', seq_page = 1:5, language = 'EN')
-res5 <- spp_taxonconcept(query_taxon = '', seq_page = c(44))
+res2 <- spp_taxonconcept(query_taxon = 'Amazilia versicolor', raw = TRUE)
+res3 <- spp_taxonconcept(query_taxon = '', taxonomy = 'CMS', pages = 1:5, language = 'EN')
+res4 <- spp_taxonconcept(query_taxon = '', pages = c(44))
 }
 }
 \references{

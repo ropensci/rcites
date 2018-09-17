@@ -1,68 +1,59 @@
-context("legislation eu")
+context("Legislations")
 
 skip_on_cran()
 skip_if_no_auth()
-# 
-# ut_pause()
-# res1 <- spp_eu_legislation(taxon_id = tx_id)
-# ut_pause()
-# res2 <- spp_eu_legislation(taxon_id = tx_id)
-# ut_pause()
-# res3 <- spp_eu_legislation(taxon_id = tx_id)
-# #
-# nm1 <- c("id", "taxon_concept_id", "is_current", "annex", "change_type", "effective_at", "annotation")
-# nm2 <- c("id", "taxon_concept_id", "notes", "start_date", "is_current", "eu_decision_type", "geo_entity", "start_event", "source", "term")
-
-# test_that("expected output classes", {
-#   expect_equal(class(res1), "list")
-#   expect_equal(class(res2), "list")
-#   expect_equal(class(res3), "list")
-#   expect_true(all(class(res2$eu_listings) == cl_dt))
-#   expect_equal(class(res2$eu_listings$id), "list")
-#   expect_equal(class(res3$eu_listings$id), "integer")
-#   expect_equal(class(res3$eu_decisions$start_event_date), "Date")
-# })
 #
-# test_that("expected output names", {
-#   expect_true(all(names(res1) == c("eu_listings", "eu_decisions")))
-#   expect_true(names(res2) == "eu_listings")
-#   expect_true(all(names(res2$eu_listings) == names(res1$eu_listings)))
-#   expect_true(all(names(res1$eu_listings) == nm1))
-#   expect_true(all(names(res1$eu_decisions) == nm2))
-#   expect_true(sum(grepl(names(res3$eu_decisions), pattern = "geo_entity_")) == 3)
-# })
+res1 <- spp_cites_legislation(taxon_id = tx_id)
+res2 <- spp_cites_legislation(taxon_id = tx_id, raw = TRUE)
+ut_pause()
+res3 <- spp_cites_legislation(taxon_id = tx_id, scope = 'all')
+res4 <- spp_cites_legislation(taxon_id = tx_id, language = 'fr')
+ut_pause()
 #
-# test_that("expected values", {
-#   expect_equal(res3$eu_listings$taxon_concept_id[1L], tx_id)
-#   expect_equal(res3$eu_decisions$taxon_concept_id[1L], tx_id)
-# })
+res5 <- spp_eu_legislation(taxon_id = tx_id)
+res6 <- spp_eu_legislation(taxon_id = tx_id, raw = TRUE)
+ut_pause()
+res7 <- spp_eu_legislation(taxon_id = tx_id, scope = 'all')
+res8 <- spp_eu_legislation(taxon_id = tx_id, language = 'fr')
+ut_pause()
+
+
+#
+nm_ci <- c("cites_listings", "cites_quotas", "cites_suspensions")
+nm_eu <- c("eu_listings",  "eu_decisions")
+
+test_that("Expected classes", {
+  expect_equal(class(res1), "spp_cites_leg")
+  expect_equal(class(res1[1L]), "list")
+  expect_true(all(unlist(lapply(res1, function(x) all(class(x) == cl_df)))))
+  #
+  expect_equal(class(res5), "spp_eu_leg")
+  expect_equal(class(res5[1L]), "list")
+  expect_true(all(unlist(lapply(res5, function(x) all(class(x) == cl_df)))))
+  #
+  expect_true(all(class(res2) == cl_raw))
+  expect_true(all(class(res6) == cl_raw))
+  #
+})
 #
 
+test_that("Expected behaviour", {
+ expect_true(all(res1$cites_listings$is_current))
+ expect_true(!all(res3$cites_listings$is_current))
+ expect_true(all(res5$eu_listings$is_current))
+ expect_true(!all(res7$eu_listings$is_current))
+})
 
 
+lang_en_ci <- c("Guinea", "Guinée") %in% res1$cites_suspensions$geo_entity.name
+lang_fr_ci <- c("Guinea", "Guinée") %in% res4$cites_suspensions$geo_entity.name
 
+lang_en_eu <- c("Ethiopia", "Ethiopie") %in% res5$eu_decisions$geo_entity.name
+lang_fr_eu <- c("Ethiopia", "Ethiopie") %in% res8$eu_decisions$geo_entity.name
 
-context("legislation cites")
-
-# ut_pause()
-# res4 <- spp_cites_legislation(taxon_id = tx_id)
-# ut_pause()
-# res5 <- spp_cites_legislation(taxon_id = tx_id, type ='listings')
-# ut_pause()
-# res6 <- spp_cites_legislation(taxon_id = tx_id, simplify = TRUE)
-
-# test_that("expected output classes", {
-#   expect_equal(class(res4), "list")
-#   expect_equal(class(res5), "list")
-#   expect_equal(class(res6), "list")
-#   expect_true(all(class(res4$cites_listings) == cl_dt))
-#   expect_equal(class(res5$cites_listings$id), "integer")
-# })
-#
-# test_that("expected output names", {
-#   expect_true(all(names(res4) == c("cites_listings", "cites_quotas", "cites_suspensions")))
-#   expect_true(names(res5) == "cites_listings")
-#   expect_true(all(names(res4$cites_listings) == names(res5$cites_listings)))
-#   expect_true(sum(grepl(names(res6$cites_suspensions), pattern = "geo_entity_")) == 3)
-#   expect_true(sum(grepl(names(res6$cites_suspensions), pattern = "start_notification_")) == 3)
-# })
+test_that("Language", {
+  expect_true(all(lang_en_ci == c(TRUE, FALSE)))
+  expect_true(all(lang_fr_ci == c(FALSE, TRUE)))
+  expect_true(all(lang_en_eu == c(TRUE, FALSE)))
+  expect_true(all(lang_fr_eu == c(FALSE, TRUE)))
+})

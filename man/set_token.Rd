@@ -7,7 +7,7 @@
 set_token(token = NULL)
 }
 \arguments{
-\item{token}{a character string (with quotes) containing you token. If `NULL` then the
+\item{token}{a character string (with quotes) containing you token. If \code{NULL} then the
 token can be passed without quotes (not as character string) after a prompt.}
 }
 \description{
@@ -16,7 +16,7 @@ This function sets the authentification token for the current session.
 \examples{
 \donttest{
  # NB the token below is not working
- set_token("8QW6Qgh57sBG2k0gtt")
+ set_token('8QW6Qgh57sBG2k0gtt')
  # interactively
  set_token()
 }

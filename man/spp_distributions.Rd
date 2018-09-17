@@ -9,7 +9,7 @@ spp_distributions(taxon_id, language = "en", raw = FALSE,
 }
 \arguments{
 \item{taxon_id}{character string containing a species' taxon concept identifier
-(see \code{\link[rcites]{spp_taxonconcept}}).}
+(see \code{\link[=spp_taxonconcept]{spp_taxonconcept()}}).}
 
 \item{language}{vector of character strings indicating the language for the
 names of distributions, values are taken among \code{en} (English),
@@ -20,11 +20,18 @@ names of distributions, values are taken among \code{en} (English),
 \item{token}{a character string containing the authentification token, see
 \url{https://api.speciesplus.net/documentation}. Default is set to
 \code{NULL} and requires the environment variable \code{SPECIESPLUS_TOKEN} to be
-set directly in \code{Renviron}. Alternatively \code{set_token()} can
+set directly in \code{Renviron}. Alternatively, \code{set_token()} can
 be used to set \code{SPECIESPLUS_TOKEN} for the current session.}
 }
 \value{
-A data frame with all distribution information.
+If \code{raw} is set to \code{TRUE} then an object of class \code{spp_raw} is returned
+which is essentially the list of lists (see option \code{as = "parsed"} in \code{\link[httr:content]{httr::content()}}).
+Otherwise, an object of class \code{spp_distr} is returned which is a list of two
+data frames:
+\enumerate{
+\item \code{distributions}: lists distributions for a given taxon concept,
+\item \code{references}: lists the corresponding references.
+}
 }
 \description{
 Retrieve distributions data available for a given taxon concept for which the
@@ -34,6 +41,7 @@ the taxon identifier is known.
 \donttest{
  res1 <- spp_distributions(taxon_id = '4521')
  res2 <- spp_distributions(taxon_id = '4521', raw = TRUE)
+ res3 <- spp_distributions(taxon_id = '4521', language = 'fr')
 }
 }
 \references{
