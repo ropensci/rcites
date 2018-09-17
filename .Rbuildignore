@@ -12,7 +12,6 @@
 ^record*
 ^\.httr-oauth
 ^inst/assets/
-^inst/ms/
 ^inst/tmp/
 ^\.github/
 ^\.Renviron
