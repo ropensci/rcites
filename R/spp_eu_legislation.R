@@ -19,7 +19,7 @@
 #' be used to set `SPECIESPLUS_TOKEN` for the current session.
 #'
 #' @return If `raw` is set to `TRUE` then an object of class `spp_raw` is returned
-#' which is essentially the list of lists (see option `as = "parsed"` in [httr::content()]).
+#' which is essentially the list of lists (see option `as = 'parsed'` in [httr::content()]).
 #' Otherwise, an object of class `spp_eu_leg` is returned which is a list of two
 #' data frames:
 #'  1. `eu_listings`: lists EU annex listings EU suspensions,
@@ -38,20 +38,20 @@
 #' res4 <- spp_eu_legislation(taxon_id = '4521', scope = 'all', language='fr')
 #' }
 
-spp_eu_legislation <- function(taxon_id, scope = "current", language = "en",
+spp_eu_legislation <- function(taxon_id, scope = "current", language = "en", 
     raw = FALSE, token = NULL) {
     ## token check
-    if (is.null(token))
+    if (is.null(token)) 
         token <- rcites_getsecret()
     # id check
     rcites_checkid(taxon_id)
     ## create query_string
-    query_string <- paste(c(rcites_lang(language), rcites_scope(scope)),
+    query_string <- paste(c(rcites_lang(language), rcites_scope(scope)), 
         collapse = "&")
-    if (query_string != "")
+    if (query_string != "") 
         query_string <- paste0("?", query_string)
     ## create url
-    q_url <- rcites_url("taxon_concepts/", taxon_id, "/eu_legislation.json",
+    q_url <- rcites_url("taxon_concepts/", taxon_id, "/eu_legislation.json", 
         query_string)
     ## get_res
     tmp <- rcites_res(q_url, token)
@@ -65,6 +65,6 @@ spp_eu_legislation <- function(taxon_id, scope = "current", language = "en",
         out$eu_decisions <- rcites_simplify_decisions(tmp$eu_decisions)
         class(out) <- c("spp_eu_leg")
     }
-    ##
+    ## 
     out
 }

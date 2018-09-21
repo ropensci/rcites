@@ -16,7 +16,7 @@
 #' be used to set `SPECIESPLUS_TOKEN` for the current session.
 #'
 #' @return If `raw` is set to `TRUE` then an object of class `spp_raw` is returned
-#' which is essentially the list of lists (see option `as = "parsed"` in [httr::content()]).
+#' which is essentially the list of lists (see option `as = 'parsed'` in [httr::content()]).
 #' Otherwise, an object of class `spp_distr` is returned which is a list of two
 #' data frames:
 #' 1. `distributions`: lists distributions for a given taxon concept,
@@ -36,15 +36,15 @@
 
 spp_distributions <- function(taxon_id, language = "en", raw = FALSE, token = NULL) {
     # token check
-    if (is.null(token))
+    if (is.null(token)) 
         token <- rcites_getsecret()
     # id check
     rcites_checkid(taxon_id)
     # set query_string
     tmp <- rcites_lang(language)
-    if (!is.null(tmp))
+    if (!is.null(tmp)) 
         tmp <- paste0("?", tmp)
-    q_url <- rcites_url("taxon_concepts/", taxon_id, "/distributions.json",
+    q_url <- rcites_url("taxon_concepts/", taxon_id, "/distributions.json", 
         tmp)
     # get results
     res <- rcites_res(q_url, token)

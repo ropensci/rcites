@@ -25,7 +25,7 @@ be used to set \code{SPECIESPLUS_TOKEN} for the current session.}
 }
 \value{
 If \code{raw} is set to \code{TRUE} then an object of class \code{spp_raw} is returned
-which is essentially the list of lists (see option \code{as = "parsed"} in \code{\link[httr:content]{httr::content()}}).
+which is essentially the list of lists (see option \code{as = 'parsed'} in \code{\link[httr:content]{httr::content()}}).
 Otherwise, an object of class \code{spp_distr} is returned which is a list of two
 data frames:
 \enumerate{

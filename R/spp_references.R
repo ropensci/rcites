@@ -12,7 +12,7 @@
 #' `SPECIESPLUS_TOKEN` for the current session.
 #'
 #' @return If `raw` is set to `TRUE` then an object of class `spp_raw` is returned
-#' which is essentially the list of lists (see option `as = "parsed"` in [httr::content()]).
+#' which is essentially the list of lists (see option `as = 'parsed'` in [httr::content()]).
 #' Otherwise an object of class `spp_refs` is returned which is a list of one
 #' data frame:
 #' * `references` that includes the identifier of the reference and the
@@ -31,7 +31,7 @@
 
 spp_references <- function(taxon_id, raw = FALSE, token = NULL) {
     # token check
-    if (is.null(token))
+    if (is.null(token)) 
         token <- rcites_getsecret()
     # id check
     rcites_checkid(taxon_id)
@@ -48,6 +48,6 @@ spp_references <- function(taxon_id, raw = FALSE, token = NULL) {
         out$references <- rcites_simplify_decisions(tmp)
         class(out) <- c("spp_refs")
     }
-    #
+    # 
     out
 }

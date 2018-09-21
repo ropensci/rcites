@@ -39,12 +39,15 @@ test_that("Expected classes", {
 })
 #
 
-test_that("is_current", {
- # expect_true(all(res1$eu_suspensions$is_current))
- # expect_true(!all(res3$cites_suspensions$is_current))
+test_that("logical", {
+ expect_true(all(res1$cites_listings$is_current))
+ expect_true(!all(res3$cites_listings$is_current))
  expect_true(all(res5$eu_listings$is_current))
  expect_true(all(res5b$eu_listings$is_current))
  expect_true(!all(res7$eu_listings$is_current))
+ #
+ expect_true(class(res1$cites_suspensions$applies_to_import) == "logical")
+ expect_true(class(res1$cites_quotas$public_display) == "logical")
 })
 
 test_that("Expected number of entries", {
