@@ -4,6 +4,7 @@ skip_on_cran()
 skip_if_no_auth()
 #
 res1 <- spp_cites_legislation(taxon_id = tx_id)
+res1b <- spp_cites_legislation(taxon_id = tx_id2)
 res2 <- spp_cites_legislation(taxon_id = tx_id, raw = TRUE)
 ut_pause()
 res3 <- spp_cites_legislation(taxon_id = tx_id, scope = 'all')
@@ -11,6 +12,7 @@ res4 <- spp_cites_legislation(taxon_id = tx_id, language = 'fr')
 ut_pause()
 #
 res5 <- spp_eu_legislation(taxon_id = tx_id)
+res5b <- spp_eu_legislation(taxon_id = tx_id2)
 res6 <- spp_eu_legislation(taxon_id = tx_id, raw = TRUE)
 ut_pause()
 res7 <- spp_eu_legislation(taxon_id = tx_id, scope = 'all')
@@ -37,17 +39,24 @@ test_that("Expected classes", {
 })
 #
 
-test_that("Expected behaviour", {
- expect_true(all(res1$cites_listings$is_current))
- expect_true(!all(res3$cites_listings$is_current))
+test_that("is_current", {
+ # expect_true(all(res1$eu_suspensions$is_current))
+ # expect_true(!all(res3$cites_suspensions$is_current))
  expect_true(all(res5$eu_listings$is_current))
+ expect_true(all(res5b$eu_listings$is_current))
  expect_true(!all(res7$eu_listings$is_current))
 })
+
+test_that("Expected number of entries", {
+ expect_equal(nrow(res5$eu_listings), 2)
+ expect_equal(nrow(res5b$eu_listings), 1)
+})
+
 
 
 lang_en_ci <- c("Guinea", "Guinée") %in% res1$cites_suspensions$geo_entity.name
 lang_fr_ci <- c("Guinea", "Guinée") %in% res4$cites_suspensions$geo_entity.name
-
+#
 lang_en_eu <- c("Ethiopia", "Ethiopie") %in% res5$eu_decisions$geo_entity.name
 lang_fr_eu <- c("Ethiopia", "Ethiopie") %in% res8$eu_decisions$geo_entity.name
 

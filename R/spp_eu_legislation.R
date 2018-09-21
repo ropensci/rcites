@@ -33,8 +33,9 @@
 #' @examples
 #' \donttest{
 #' res1 <- spp_eu_legislation(taxon_id = '4521')
-#' res2 <- spp_eu_legislation(taxon_id = '4521', scope = 'historic')
-#' res3 <- spp_eu_legislation(taxon_id = '4521', scope = 'all', language='fr')
+#' res2 <- spp_eu_legislation(taxon_id = '3210')
+#' res3 <- spp_eu_legislation(taxon_id = '4521', scope = 'historic')
+#' res4 <- spp_eu_legislation(taxon_id = '4521', scope = 'all', language='fr')
 #' }
 
 spp_eu_legislation <- function(taxon_id, scope = "current", language = "en",

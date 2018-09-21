@@ -7,6 +7,7 @@ skip_if_no_auth <- function() {
 
 tx_nm <- "Loxodonta africana"
 tx_id <- 4521
+tx_id2 <- "3210"
 cl_df <- c("tbl_df", "tbl",  "data.frame")
 cl_raw <- c("list", "spp_raw")
 

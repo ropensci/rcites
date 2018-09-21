@@ -47,9 +47,10 @@
 #' \donttest{
 #' res1 <- spp_taxonconcept(query_taxon = 'Loxodonta africana')
 #' res2 <- spp_taxonconcept(query_taxon = 'Amazilia versicolor', raw = TRUE)
-#' res3 <- spp_taxonconcept(query_taxon = '', taxonomy = 'CMS', pages = 1:5, language = 'EN')
+#' res3 <- spp_taxonconcept(query_taxon = '', taxonomy = 'CMS', pages = 1:3, language = 'EN')
 #' res4 <- spp_taxonconcept(query_taxon = '', pages = c(44))
 #' }
+
 
 spp_taxonconcept <- function(query_taxon, taxonomy = "CITES", with_descendants = FALSE,
     language = NULL, updated_since = NULL, per_page = 500, pages = NULL,
