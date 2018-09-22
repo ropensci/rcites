@@ -27,7 +27,10 @@ test_that("Base URL", {
 
 ## Outputs helper
 ls_ex <- rcites_null_to_na(list("A", list("A", NULL)))
+df1 <- data.frame(is_current = c(1, 0), wrong = letters[1:2])
+res1 <- rcites_to_logical(df1)
 
 test_that("Outputs helpers", {
   expect_true(is.na(ls_ex[[2L]][[2L]]))
+  expect_true(all(res1$is_current == c(TRUE, FALSE)))
 })
