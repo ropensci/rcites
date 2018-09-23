@@ -203,7 +203,22 @@ rcites_simplify_distributions <- function(x) {
 }
 
 
+
 ## print helpers
+
+rcites_print_shorten <- function(x, stop = 20) {
+  unlist(
+    lapply(x,
+      function(y) ifelse(nchar(y) > (stop + 5),
+        paste0(substring(y, 1, stop), " [...]"), y)
+    )
+  )
+}
+
+
+
+
+
 rcites_print_title <- function(x, after = "", before = "") {
     cat(before, x, "\n", paste(rep("-", nchar(x)), collapse = ""), after,
         sep = "")
