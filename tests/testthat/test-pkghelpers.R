@@ -25,7 +25,7 @@ test_that("Base URL", {
 })
 
 
-## Outputs helper
+## Outputs helpers
 ls_ex <- rcites_null_to_na(list("A", list("A", NULL)))
 df1 <- data.frame(is_current = c(1, 0), wrong = letters[1:2])
 res1 <- rcites_to_logical(df1)
@@ -33,4 +33,14 @@ res1 <- rcites_to_logical(df1)
 test_that("Outputs helpers", {
   expect_true(is.na(ls_ex[[2L]][[2L]]))
   expect_true(all(res1$is_current == c(TRUE, FALSE)))
+})
+
+## Prin helpers
+str <- paste(letters[1:26], collapse="")
+str2 <- paste(letters[1:25], collapse="")
+rcites_print_shorten(str)
+test_that("Print helpers", {
+  expect_equal(rcites_print_shorten(str), paste0(substring(str, 1, 20), "[...]"))
+  expect_equal(rcites_print_shorten(str2), str2)
+  expect_equal(rcites_print_shorten(str, 4), "abcd[...]")
 })

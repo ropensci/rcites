@@ -210,7 +210,7 @@ rcites_print_shorten <- function(x, stop = 20) {
   unlist(
     lapply(x,
       function(y) ifelse(nchar(y) > (stop + 5),
-        paste0(substring(y, 1, stop), " [...]"), y)
+        paste0(substring(y, 1, stop), "[...]"), y)
     )
   )
 }

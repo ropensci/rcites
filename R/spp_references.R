@@ -26,12 +26,13 @@
 #' @examples
 #' \donttest{
 #' res1 <- spp_references(taxon_id = '4521')
-#' res2 <- spp_references(taxon_id = '4521', raw = TRUE)
+#' res2 <- spp_references(taxon_id = '3210')
+#' res3 <- spp_references(taxon_id = '4521', raw = TRUE)
 #' }
 
 spp_references <- function(taxon_id, raw = FALSE, token = NULL) {
     # token check
-    if (is.null(token)) 
+    if (is.null(token))
         token <- rcites_getsecret()
     # id check
     rcites_checkid(taxon_id)
@@ -48,6 +49,6 @@ spp_references <- function(taxon_id, raw = FALSE, token = NULL) {
         out$references <- rcites_simplify_decisions(tmp)
         class(out) <- c("spp_refs")
     }
-    # 
+    #
     out
 }
