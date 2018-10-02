@@ -10,6 +10,7 @@
 
 # Helper functions
 
+
 ## General helpers
 
 rcites_baseurl <- function() "https://api.speciesplus.net/api/v1/"
@@ -59,7 +60,9 @@ rcites_checkid <- function(taxon_id) {
     invisible(NULL)
 }
 
-## Secret helpers
+
+####################
+## Secret helpers ##
 
 # See https://cran.r-project.org/web/packes/httr/vignettes/secrets.html
 rcites_getsecret <- function() {
@@ -75,20 +78,18 @@ rcites_getsecret <- function() {
     val
 }
 
-# remove secret
 rcites_forgetsecret <- function() Sys.unsetenv("SPECIESPLUS_TOKEN")
 
 
-
+####################
 ## Pagination helpers
 
-# auto pagination
 rcites_autopagination <- function(q_url, per_page, pages, tot_page, token,
     verbose = TRUE) {
     out <- list()
     q_url_0 <- gsub(q_url, pattern = "page=[[:digit:]]+\\&per_page=[[:digit:]]+$",
         replacement = "")
-    # grepl('\\.json?', pat = '\\.json\\?$')
+    #
     for (i in seq_along(pages)) {
         if (verbose)
             cat("Retrieving info from page ", pages[i], "/", tot_page,
@@ -97,20 +98,19 @@ rcites_autopagination <- function(q_url, per_page, pages, tot_page, token,
             500))
         out[[i]] <- rcites_res(q_url_new, token)
     }
-    if (verbose) {
-        cat("\nDone!\n")
-    }
+    if (verbose)
+      cat("\nDone!\n")
+    #
     out
 }
 
-#
 rcites_numberpages <- function(x) {
     x$total_entries%/%x$per_page + (x$total_entries%%x$per_page > 0)
 }
 
 
 
-
+##################
 ## Outputs helpers
 
 # add author_year
@@ -143,7 +143,6 @@ rcites_to_logical <- function(x) {
     }
     x
 }
-
 
 # assign class and reset rownames
 rcites_assign_class <- function(x) {
@@ -214,10 +213,6 @@ rcites_print_shorten <- function(x, stop = 20) {
     )
   )
 }
-
-
-
-
 
 rcites_print_title <- function(x, after = "", before = "") {
     cat(before, x, "\n", paste(rep("-", nchar(x)), collapse = ""), after,

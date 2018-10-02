@@ -67,8 +67,12 @@ When citing, please refer to both the [package citation](https://ibartomeus.gith
 ## Contributors
 
 - [Main contributors](https://github.com/ibartomeus/rcites/graphs/contributors)
-- Reporting issues:
+- Reviewers of the package:
+  - [Noam Ross](https://github.com/noamross)
+  - [Margaret Siple](https://github.com/mcsiple)
+- Reporting issue(s):
   - [FVFaleiro](https://github.com/FVFaleiro);
+
 
 
 ## Resources
@@ -78,6 +82,7 @@ An other package dealing with data from and about CITES, providing access to its
 While creating this package, we greatly benefited from:
 1. [taxize](https://github.com/ropensci/taxize) that helps a lot in structuring this repository/package,
 2. the `httr` vignette: [Managing secrets](https://cran.r-project.org/web/packages/httr/vignettes/secrets.html), extremely helpful for packages dealing with API.
+
 
 
 ## Code of Conduct
