@@ -10,7 +10,7 @@
 #' @param with_descendants a logical. Should the search by name be broadened to
 #' include higher taxa?
 #' @param language filter languages returned for common names. Value should be a
-#' vector of sting including one or more country codes. Default is set to `NULL`,
+#' vector of character strings including one or more country codes. Default is set to `NULL`,
 #' showing all available languages.
 #' @param updated_since a timestamp. Only entries updated after (and including)
 #' this timestamp will be pulled.
@@ -28,7 +28,7 @@
 #'
 #' @return
 #' If `raw=TRUE`, then a object of class `spp_raw` is returned, which is essentially
-#' a list of lists. If `raw=FALSE`, then a object of class `spp_taxon` is returned,
+#' a list of lists. If `raw=FALSE`, then an object of class `spp_taxon` is returned,
 #' it is a collection of seven data frames:
 #' 1. `all_id`: general information for all entries, including non-active taxon concepts,
 #' 2. `general`: includes general information for active taxon concepts,
@@ -48,17 +48,17 @@
 #' res1 <- spp_taxonconcept(query_taxon = 'Loxodonta africana')
 #' res2 <- spp_taxonconcept(query_taxon = 'Amazilia versicolor', raw = TRUE)
 #' res3 <- spp_taxonconcept(query_taxon = '', taxonomy = 'CMS', pages = 1:3, language = 'EN')
-#' res4 <- spp_taxonconcept(query_taxon = '', pages = c(44))
+#' res4 <- spp_taxonconcept(query_taxon = '', pages = 44)
 #' }
 
 
-spp_taxonconcept <- function(query_taxon, taxonomy = "CITES", with_descendants = FALSE, 
-    language = NULL, updated_since = NULL, per_page = 500, pages = NULL, 
+spp_taxonconcept <- function(query_taxon, taxonomy = "CITES", with_descendants = FALSE,
+    language = NULL, updated_since = NULL, per_page = 500, pages = NULL,
     raw = FALSE, token = NULL, verbose = TRUE) {
     # taxonomy check
     taxonomy <- match.arg(taxonomy, c("CITES", "CMS"))
     # token check
-    if (is.null(token)) 
+    if (is.null(token))
         token <- rcites_getsecret()
     # request
     if (is.null(pages)) {
@@ -67,25 +67,23 @@ spp_taxonconcept <- function(query_taxon, taxonomy = "CITES", with_descendants =
         pages <- sort(unique(as.integer(pages)))
         f_page <- unique(pages[1L])
     }
-    q_url <- rcites_taxonconcept_request(query_taxon, token, taxonomy, 
+    q_url <- rcites_taxonconcept_request(query_taxon, token, taxonomy,
         with_descendants, f_page, per_page, updated_since, language)
     # results
     tmp <- rcites_res(q_url, token)
     # number of pages
     pag <- rcites_numberpages(tmp$pagination)
-    # 
+    #
     if (!pag) {
         warning("Taxon not listed.")
         return(NULL)
     } else {
         if (pag > 1) {
-            if (is.null(pages)) {
-                pages <- seq_len(pag)
-            } else {
-                pages <- pages[pages <= pag]
-            }
+            pages <- ifelse(is.null(pages), seq_len(pag), pages[pages <= pag])
+            if (!length(pages))
+              stop("Only page 1-", pag, " are available.")
             if (length(pages) > 1) {
-                res <- rcites_autopagination(q_url, per_page, pages[-1L], 
+                res <- rcites_autopagination(q_url, per_page, pages[-1L],
                   pag, token, verbose)
                 tmp2 <- c(tmp$taxon_concepts, do.call(c, lapply(res, function(x) x$taxon_concepts)))
             } else tmp2 <- tmp$taxon_concepts
@@ -96,42 +94,41 @@ spp_taxonconcept <- function(query_taxon, taxonomy = "CITES", with_descendants =
             return(tmp2)
         } else {
             ## special cases
-            sp_nm <- c("synonyms", "higher_taxa", "common_names", "cites_listing", 
+            sp_nm <- c("synonyms", "higher_taxa", "common_names", "cites_listing",
                 "cites_listings", "accepted_names")
             ## output
             out <- list()
             out$all_id <- rcites_taxonconcept_allentries(tmp2, sp_nm)
-            out$all_id$updated_at <- as.POSIXlt(out$all_id$updated_at, 
+            out$all_id$updated_at <- as.POSIXlt(out$all_id$updated_at,
                 format = "%Y-%m-%dT%H:%M:%OS")
             out$all_id$active <- as.logical(out$all_id$active)
             ## extract active only
             id <- which(out$all_id$active)
             out$general <- out$all_id[out$all_id$active, ]
-            
+
             ## Classification
-            out$higher_taxa <- rcites_taxonconcept_higher_taxa(tmp2[id], 
+            out$higher_taxa <- rcites_taxonconcept_higher_taxa(tmp2[id],
                 out$general$id)
             ## Names
-            out$accepted_names <- rcites_taxonconcept_special_cases(tmp2[!id], 
+            out$accepted_names <- rcites_taxonconcept_special_cases(tmp2[!id],
                 name = "accepted_names", out$all_id$id[!id])
-            out$common_names <- rcites_taxonconcept_special_cases(tmp2[id], 
+            out$common_names <- rcites_taxonconcept_special_cases(tmp2[id],
                 name = "common_names", out$general$id)
-            out$synonyms <- rcites_taxonconcept_special_cases(tmp2[id], 
+            out$synonyms <- rcites_taxonconcept_special_cases(tmp2[id],
                 name = "synonyms", out$general$id)
-            
+
             ## Extra output if taxonomy is set to CITES
             if (taxonomy == "CITES") {
                 out$general$cites_listing <- unlist(lapply(tmp2[id], function(x) x$cites_listing))
-                out$cites_listings <- rcites_taxonconcept_special_cases(tmp2[id], 
+                out$cites_listings <- rcites_taxonconcept_special_cases(tmp2[id],
                   name = "cites_listings", out$general$id)
             }
-            
-            class(out$general) <- class(out$all_id) <- c("tbl_df", "tbl", 
+            class(out$general) <- class(out$all_id) <- c("tbl_df", "tbl",
                 "data.frame")
-            ## 
+            ##
             class(out) <- c("spp_taxon")
         }
     }
-    # 
+    #
     out
 }

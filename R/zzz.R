@@ -8,9 +8,9 @@
 #' @keywords internal
 "_PACKAGE"
 
-# Helper functions
+# HELPER FUNCTIONS
 
-
+##################
 ## General helpers
 
 rcites_baseurl <- function() "https://api.speciesplus.net/api/v1/"
@@ -55,7 +55,7 @@ rcites_scope <- function(x) {
 rcites_checkid <- function(taxon_id) {
     # id check
     if (!grepl(taxon_id, pattern = "^[0-9]*$")) {
-        stop("The taxon concept identifier is made of digits only.")
+        stop("A taxon concept identifier is made up of digits only.")
     }
     invisible(NULL)
 }
@@ -81,7 +81,7 @@ rcites_getsecret <- function() {
 rcites_forgetsecret <- function() Sys.unsetenv("SPECIESPLUS_TOKEN")
 
 
-####################
+#####################
 ## Pagination helpers
 
 rcites_autopagination <- function(q_url, per_page, pages, tot_page, token,
@@ -105,7 +105,7 @@ rcites_autopagination <- function(q_url, per_page, pages, tot_page, token,
 }
 
 rcites_numberpages <- function(x) {
-    x$total_entries%/%x$per_page + (x$total_entries%%x$per_page > 0)
+    x$total_entries %/% x$per_page + (x$total_entries %% x$per_page > 0)
 }
 
 
@@ -121,7 +121,7 @@ rcites_add_author_year <- function(x) {
     x
 }
 
-# convert null to na
+# convert null to na recursively
 rcites_null_to_na <- function(x) {
     if (is.list(x)) {
         return(lapply(x, rcites_null_to_na))
@@ -173,7 +173,6 @@ rcites_simplify_listings <- function(x) {
 
 #
 rcites_simplify_decisions <- function(x) {
-    # these fields may or may not be included so I removed them
     tmp0 <- lapply(lapply(x, rcites_null_to_na), unlist)
     out <- data.frame(do.call(rbind, lapply(tmp0, function(y) data.frame(rbind(y)))))
     #
@@ -184,10 +183,11 @@ rcites_simplify_decisions <- function(x) {
 
 #
 rcites_simplify_distributions <- function(x) {
-    # these fields may or may not be included so I removed them
     tmp <- lapply(x, rcites_null_to_na)
     out <- list()
-    out$distributions <- data.frame(do.call(rbind, lapply(tmp, function(y) data.frame(rbind(unlist(y[!names(y) %in%
+    out$distributions <- data.frame(do.call(rbind, lapply(tmp, function(y)
+    # these fields may or may not be included so I removed them
+    data.frame(rbind(unlist(y[!names(y) %in%
         c("tags", "references")]))))))
     out$distributions$tags <- unlist(lapply(tmp, function(y) paste(y$tags,
         collapse = ", ")))
@@ -203,6 +203,7 @@ rcites_simplify_distributions <- function(x) {
 
 
 
+################
 ## print helpers
 
 rcites_print_shorten <- function(x, stop = 20) {
@@ -218,7 +219,7 @@ rcites_print_title <- function(x, after = "", before = "") {
     cat(before, x, "\n", paste(rep("-", nchar(x)), collapse = ""), after,
         sep = "")
 }
-#
+
 rcites_print_df <- function(x, nrows = 10) {
     if ("tibble" %in% .packages()) {
         # tibble truncates the outputs already
@@ -241,36 +242,37 @@ rcites_print_df_rm <- function(x, col_rm = "", nrows = 10) {
 }
 
 
+#############################
 ## spp_taxonconcept() helpers
 
 rcites_taxonconcept_request <- function(x, token, taxonomy, with_descendants,
     page, per_page, updated_since = NULL, language = NULL) {
     # deal with blank space
     tmp <- gsub(pattern = " ", replacement = "%20", x = x)
-    if (tmp == "") {
-        query <- ""
-    } else {
-        query <- paste0("name=", tmp)
-    }
+    query <- ifelse(tmp == "", "", paste0("name=", tmp))
     #
     taxo <- ifelse(taxonomy == "CMS", "taxonomy=CMS", "")
+    #
     wdes <- ifelse(with_descendants, "with_descendants=true", "")
+    #
     lng <- ifelse(is.null(language), "", paste0("language=", paste(language,
         collapse = ",")))
+    #
     tim <- ifelse(is.null(updated_since), "", paste0("updated_since=",
         rcites_timestamp(updated_since)))
+    #
     pag <- paste0("page=", page, "&per_page=", min(per_page, 500))
     #
     ele <- c(query, wdes, taxo, tim, lng, pag)
-    # out_put
+    # output
     rcites_url("taxon_concepts.json?", paste(ele[ele != ""], collapse = "&"))
 }
 
 rcites_taxonconcept_allentries <- function(x, sp_nm) {
     tmp <- lapply(lapply(x, function(x) x[!names(x) %in% sp_nm]), unlist)
-    # author_year may be missing
+    # author_year may be missing and we want to keep it here
     tmp2 <- lapply(tmp, rcites_add_author_year)
-    #
+    # keep same name as first list XXX
     tmp <- lapply(tmp2, function(x) x[names(tmp2[[1L]])])
     #
     data.frame(do.call(rbind, tmp))
@@ -288,7 +290,8 @@ rcites_taxonconcept_higher_taxa <- function(x, identifier) {
 rcites_taxonconcept_special_cases <- function(x, name, identifier) {
     tmp <- lapply(x, function(y) y[[name]])
     wch <- which(unlist(lapply(tmp, length)) > 0)
-    tmp2 <- lapply(tmp[wch], function(x) do.call(rbind, x))
+    tmp2 <- lapply(tmp[wch, function(x) do.call(rbind, x))
+    # tmp2 <- lapply(Filter(function(x) length(x) > 0, lapply(x, function(y) y[[name]])), function(x) do.call(rbind, x))
     sz <- unlist(lapply(tmp2, nrow))
     out <- data.frame(do.call(rbind, tmp2))
     if (name == "synonym")
