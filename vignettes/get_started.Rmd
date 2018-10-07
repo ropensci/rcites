@@ -21,10 +21,10 @@ knitr::opts_chunk$set(
 
 
 
-# Set up a connection to the Speciesplus database
+# Set up a connection to the Species+ database
 
 ## Get your personal token
-To set up a connection to the CITES Speciesplus database, an authentication token
+To set up a connection to the CITES Species+ database, an authentication token
 is required. Each user should obtain his or her own personal token
 to run the code below (see https://api.speciesplus.net/documentation for more details).
 To obtain a token, sign up on the [Speciesplus API website](http://api.speciesplus.net/users/sign_up).
@@ -72,7 +72,7 @@ res1
 ```
 
 Note regarding the token:
-If you chose option 3 the code needs to look as follows.
+If you chose option 3, then the code will look as follows:
 
 ```{r, eval = FALSE}
 res1 <- spp_taxonconcept(query_taxon = "Loxodonta africana", token = "8QW6Qgh57sBG2k0gtt")
