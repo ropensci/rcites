@@ -55,10 +55,26 @@ rcites_checkid <- function(taxon_id) {
     # id check
     if (!grepl(taxon_id, pattern = "^[0-9]*$")) {
         warning("The taxon concept identifier is made of digits only.")
+        out <- TRUE
     }
-    invisible(NULL)
+    FALSE
 }
 
+rcites_combine_list <- function(x) {
+  x <- Filter(Negate(is.null), x)
+  ls_nm <- lapply(x, names)
+  stopifnot(all(unlist(lapply(ls_nm, identical, ls_nm[[1L]]))))
+  out <- list()
+  for (i in seq_along(ls_nm[[1L]])) {
+    nm <- ls_nm[[1L]][i]
+    out[[nm]] <- do.call(rbind, lapply(x, function(y) y[[nm]]))
+  }
+  ### ADD TAXON!
+  class(out) <- class(x[[1L]])
+  out
+}
+
+rcites_combine_list(cool)
 
 
 ################# Secret helpers
