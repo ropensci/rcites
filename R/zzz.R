@@ -54,7 +54,7 @@ rcites_scope <- function(x) {
 rcites_checkid <- function(taxon_id) {
     # id check
     if (!grepl(taxon_id, pattern = "^[0-9]*$")) {
-        stop("The taxon concept identifier is made of digits only.")
+        warning("The taxon concept identifier is made of digits only.")
     }
     invisible(NULL)
 }

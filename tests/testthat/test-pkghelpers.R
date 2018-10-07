@@ -10,7 +10,7 @@ test_that("General helpers", {
   expect_true(is.null(rcites_scope("current")))
   expect_true(identical(rcites_scope("all"), "scope=all"))
   expect_error(rcites_scope("wrong"))
-  expect_error(rcites_checkid("1wrong234"))
+  expect_warning(rcites_checkid("1wrong234"))
 })
 
 
