@@ -32,6 +32,9 @@ test_that("Expected classes", {
   expect_true(all(names(res1[[2L]]) == nm2))
   expect_true(all(unlist(lapply(res1, function(x) all(class(x) == cl_df)))))
   expect_true(all(class(res2) == cl_raw))
+  expect_equal(class(res3$higher_taxa$kingdom), "character")
+  expect_equal(attributes(res1)$taxonomy, "CITES")
+  expect_equal(attributes(res3)$taxonomy, "CMS")
 })
 
 

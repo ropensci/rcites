@@ -10,8 +10,9 @@
 #' @param with_descendants a logical. Should the search by name be broadened to
 #' include higher taxa?
 #' @param language filter languages returned for common names. Value should be a
-#' vector of character strings including one or more country codes. Default is set to `NULL`,
-#' showing all available languages.
+#' vector of character strings including one or more country codes (two-letters
+#' country code [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)).
+#' Default is set to `NULL`, showing all available languages.
 #' @param updated_since a timestamp. Only entries updated after (and including)
 #' this timestamp will be pulled.
 #' @param per_page a integer that indicates how many objects are returned per
@@ -47,7 +48,7 @@
 #' \donttest{
 #' res1 <- spp_taxonconcept(query_taxon = 'Loxodonta africana')
 #' res2 <- spp_taxonconcept(query_taxon = 'Amazilia versicolor', raw = TRUE)
-#' res3 <- spp_taxonconcept(query_taxon = '', taxonomy = 'CMS', pages = 1:3, language = 'EN')
+#' res3 <- spp_taxonconcept(query_taxon = '', taxonomy = 'CMS', pages = c(1,3), language = 'EN')
 #' res4 <- spp_taxonconcept(query_taxon = '', pages = 44)
 #' }
 
@@ -79,7 +80,8 @@ spp_taxonconcept <- function(query_taxon, taxonomy = "CITES", with_descendants =
         return(NULL)
     } else {
         if (pag > 1) {
-            pages <- ifelse(is.null(pages), seq_len(pag), pages[pages <= pag])
+            if (is.null(pages))
+              pages <- seq_len(pag) else pages <- pages[pages <= pag]
             if (!length(pages))
               stop("Only page 1-", pag, " are available.")
             if (length(pages) > 1) {
@@ -127,6 +129,7 @@ spp_taxonconcept <- function(query_taxon, taxonomy = "CITES", with_descendants =
                 "data.frame")
             ##
             class(out) <- c("spp_taxon")
+            attr(out, "taxonomy") <- taxonomy
         }
     }
     #

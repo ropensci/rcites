@@ -20,8 +20,9 @@ Scientific taxa only (max 255 characters).}
 include higher taxa?}
 
 \item{language}{filter languages returned for common names. Value should be a
-vector of sting including one or more country codes. Default is set to \code{NULL},
-showing all available languages.}
+vector of character strings including one or more country codes (two-letters
+country code \href{https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2}{ISO 3166-1 alpha-2}).
+Default is set to \code{NULL}, showing all available languages.}
 
 \item{updated_since}{a timestamp. Only entries updated after (and including)
 this timestamp will be pulled.}
@@ -44,7 +45,7 @@ be used to set \code{SPECIESPLUS_TOKEN} for the current session.}
 }
 \value{
 If \code{raw=TRUE}, then a object of class \code{spp_raw} is returned, which is essentially
-a list of lists. If \code{raw=FALSE}, then a object of class \code{spp_taxon} is returned,
+a list of lists. If \code{raw=FALSE}, then an object of class \code{spp_taxon} is returned,
 it is a collection of seven data frames:
 \enumerate{
 \item \code{all_id}: general information for all entries, including non-active taxon concepts,
@@ -63,8 +64,8 @@ Retrieve the taxon concept of a specific taxon (scientific name).
 \donttest{
 res1 <- spp_taxonconcept(query_taxon = 'Loxodonta africana')
 res2 <- spp_taxonconcept(query_taxon = 'Amazilia versicolor', raw = TRUE)
-res3 <- spp_taxonconcept(query_taxon = '', taxonomy = 'CMS', pages = 1:3, language = 'EN')
-res4 <- spp_taxonconcept(query_taxon = '', pages = c(44))
+res3 <- spp_taxonconcept(query_taxon = '', taxonomy = 'CMS', pages = c(1,3), language = 'EN')
+res4 <- spp_taxonconcept(query_taxon = '', pages = 44)
 }
 }
 \references{
