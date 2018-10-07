@@ -3,7 +3,7 @@ improve our package. We added both reviewers on the list of contributors
 in `DESCRIPTION` with the role "rev" and we would like to have their formal
 consent before the next CRAN release.
 
-=> KC: should we offer more than "rev"?
+=> KC: should we offer more than "rev"? / JG: I think "rev" is fine, as this is what their role was.
 
 We have carefully addressed the reviewers' comments and added several new
 features to our package following their suggestions. Given the nature and the
@@ -19,8 +19,7 @@ We agree with Noam Ross that the use of `data.table` was not particularly releva
 
 ### Reviewing functions outputs
 
-As suggested by Noam Ross, all outputs are now S3 objects with specific print methods, gathered in `print.R`. These objects are lists of data.frame of class `c("tbl_df", "tbl", "data.frame")`. Furthermore we added a `raw` parameter (set to `FALSE` by default) to functions that retrieve data from the Species+ API. As argued by Noam Ross, this gives the opportunity to advanced users to parse the output themselves. Objects returned when `raw = TRUE` are of class `c("list", "spp_raw")` and a print method was borrowed from the example Noam Ross brought to our attention.
-
+As suggested by Noam Ross, all outputs are now S3 objects with specific print methods, gathered in `print.R`. These objects are lists of data.frame of class `c("tbl_df", "tbl", "data.frame")`. Furthermore, we added a `raw` parameter (set to `FALSE` by default) to functions that retrieve data from the Species+ API. As argued by Noam Ross, this gives the opportunity to advanced users to parse the output themselves. Objects returned when `raw = TRUE` are of class `c("list", "spp_raw")` and a print method was borrowed from the example Noam Ross brought to our attention.
 
 ### New parameters to better include the API features
 
@@ -30,15 +29,11 @@ Our functions now integrate all parameters of the Species+ API, meaning:
 - `scope` and `language` were added to `spp_eu_legislation()` and `spp_cites_legislation()`,
 - `language` was added to `spp_distributions()`
 
-
 ### Bulk analysis
 
-In order to allow the user to perform bulk analysis using `spp_taxonconcept()`
-we build an auto-pagination into the  `spp_taxonconcept()`, the user is now
-able to retrieve more than 500 entries at once (*i.e.* all entries of the data base when `query_taxon=""`). When more than one page must be fetched a message is prompted
-(if `verbose` is set to `TRUE`).
-
-
+In order to allow the user to perform bulk analysis using `spp_taxonconcept()`,
+we added an auto-pagination to the  `spp_taxonconcept()`. The user is now
+able to retrieve more than 500 entries at once (*i.e.* all entries of the data base when `query_taxon=""`). When more than one page must be fetched, a message is prompted (if `verbose` is set to `TRUE`).
 
 
 
@@ -48,9 +43,6 @@ All the changes mentioned above required a new set of tests handled in #
 
 All the changes mentioned above required a couple of new helpers functions gathered in `zzz.R`
 as in the previous version. Also the unit testing has been extensively reviewed.
-
-
-
 
 ## Changes in documentation
 
@@ -71,21 +63,18 @@ This is now mentioned in the documentation of the argument `token` of `set_token
 readline("Enter your token without quotes: ")
 ```
 
-
 ### Helpers functions
 
 > There are a lot of rcites_ functions within the package functions (e.g., rcites_getsecret() which is used in spp_taxonconcept()) which don't work on their own. Since the wrapper functions around them work, I think it's fine; I was just confused as to what they are.
 
-These are helpers functions we use to better structure our code as they avoid
-code redundancy. There are not part of the package API but important for
+We use these helpers functions to better structure our code as they avoid
+code redundancy. There are not part of the package API but important for the 
 developers of the package.
 
 > I'm not sure what the rOpenSci guidelines are for these functions.
 
 Good point! To us, it sounds like a common practice but we are happy to make
 our code compliant to better practice!
-
-
 
 ### Vignettes
 
