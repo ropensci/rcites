@@ -55,26 +55,41 @@ rcites_checkid <- function(taxon_id) {
     # id check
     if (!grepl(taxon_id, pattern = "^[0-9]*$")) {
         warning("The taxon concept identifier is made of digits only.")
+        cat(">>> Skipping ", taxon_id, ".\n", sep = "")
         out <- TRUE
     }
     FALSE
 }
 
-rcites_combine_list <- function(x) {
+rcites_current_id <- function(x) {
+  cat(">>> Now processing taxon_id '", x, "'............", sep = "")
+}
+
+
+rcites_combine_lists <- function(x, taxon_id) {
+  wch <- !unlist(lapply(x, is.null))
   x <- Filter(Negate(is.null), x)
-  ls_nm <- lapply(x, names)
-  stopifnot(all(unlist(lapply(ls_nm, identical, ls_nm[[1L]]))))
-  out <- list()
-  for (i in seq_along(ls_nm[[1L]])) {
-    nm <- ls_nm[[1L]][i]
-    out[[nm]] <- do.call(rbind, lapply(x, function(y) y[[nm]]))
+  cls <- class(x[[1L]])
+  # get names
+  ls_keys <- lapply(x, names)
+  if (!all(unlist(lapply(ls_keys, identical, ls_keys[[1L]])))) {
+      stop("Cannot combine lists with different names")
   }
-  ### ADD TAXON!
-  class(out) <- class(x[[1L]])
+  #
+  for (i in seq_along(x)) {
+    x[[i]] <- lapply(x[[i]], function(y) cbind(taxon_id = taxon_id[wch][i], y))
+  }
+  #
+  out <- list()
+  for (i in seq_along(ls_keys[[1L]])) {
+    key <- ls_keys[[1L]][i]
+    out[[key]] <- do.call(rbind, lapply(x, `[[`, key))
+  }
+  class(out) <- paste0(cls, "_multi", sep = "")
   out
 }
 
-rcites_combine_list(cool)
+
 
 
 ################# Secret helpers
@@ -223,7 +238,7 @@ rcites_print_title <- function(x, after = "", before = "") {
     cat(before, x, "\n", paste(rep("-", nchar(x)), collapse = ""), after,
         sep = "")
 }
-#
+
 rcites_print_df <- function(x, nrows = 10) {
     if ("tibble" %in% .packages()) {
         # tibble truncates the outputs already
@@ -236,7 +251,6 @@ rcites_print_df <- function(x, nrows = 10) {
     }
 }
 
-#
 rcites_print_df_rm <- function(x, col_rm = "", nrows = 10) {
     rcites_print_df(x[, !names(x) %in% col_rm])
     id <- which(col_rm %in% names(x))
@@ -245,6 +259,13 @@ rcites_print_df_rm <- function(x, col_rm = "", nrows = 10) {
             "\n")
 }
 
+rcites_print_taxon_id <- function(x, max_print = 20) {
+  rcites_print_title("Taxon identifiers:", "\n")
+  tmp <- unique(x)
+  if (length(tmp) > max_print) {
+    cat(paste(tmp[seq_len(max_print-1)], collapse = ", "), "[tuncated]\n")
+  } else cat(paste(tmp, collapse = ", "), "\n")
+}
 
 
 ############################# spp_taxonconcept() helpers
