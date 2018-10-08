@@ -98,16 +98,6 @@ print.spp_cites_leg_multi <- function(x, ...) {
 }
 
 
-#' @method print spp_refs
-#' @rdname print.spp
-print.spp_refs <- function(x, ...) {
-    rcites_print_title("References ($references):", "\n")
-    x$references$citation <- rcites_print_shorten(x$references$citation,
-        60)
-    rcites_print_df(x$references)
-}
-
-
 #' @method print spp_distr
 #' @rdname print.spp
 print.spp_distr <- function(x, ...) {
@@ -125,4 +115,23 @@ print.spp_distr_multi <- function(x, ...) {
     rcites_print_taxon_id(x$distributions$taxon_id)
     cat("\n")
     print.spp_distr(x)
+}
+
+
+
+#' @method print spp_refs
+#' @rdname print.spp
+print.spp_refs <- function(x, ...) {
+    rcites_print_title("References ($references):", "\n")
+    x$references$citation <- rcites_print_shorten(x$references$citation,
+        60)
+    rcites_print_df(x$references)
+}
+
+#' @method print spp_refs_multi
+#' @rdname print.spp
+print.spp_refs_multi <- function(x, ...) {
+    rcites_print_taxon_id(x$references$taxon_id)
+    cat("\n")
+    print.spp_refs(x)
 }

@@ -125,27 +125,25 @@
 <p>new features:</p>
 <ul>
 <li>
-<code><a href="../reference/spp_taxonconcept.html">spp_taxonconcept()</a></code> now includes an auto-pagination.</li>
-<li>Functions now returns S3 objects for which a print method is defined for all these objects:
+<code><a href="../reference/spp_taxonconcept.html">spp_taxonconcept()</a></code> now includes an auto-pagination that allows to retrieve all entries for queries that have more than 500 results;</li>
+<li>Functions <code>spp_*</code> now returns S3 objects:
 <ul>
 <li>
-<code>spp_raw</code> class is defined for all functions including the argument <code>raw</code>, it returns the parsed output from the API as a list object.<br>
-</li>
+<code><a href="../reference/spp_taxonconcept.html">spp_taxonconcept()</a></code> returns an object of class <code>spp_taxon</code>;</li>
 <li>
-<code>spp_taxonconcept</code> returns an object of class <code>spp_taxon</code>
-</li>
+<code><a href="../reference/spp_cites_legislation.html">spp_cites_legislation()</a></code> returns an object of class <code>spp_cites_leg</code> or <code>spp_cites_leg_multi</code>;</li>
 <li>
-<code>spp_cites_legislation</code> returns an object of class <code>spp_cites_leg</code>
-</li>
+<code><a href="../reference/spp_eu_legislation.html">spp_eu_legislation()</a></code> returns an object of class <code>spp_eu_leg</code> or <code>spp_eu_leg_multi</code>;</li>
 <li>
-<code>spp_eu_legislation</code> returns an object of class <code>spp_eu_leg</code>
-</li>
+<code><a href="../reference/spp_distributions.html">spp_distributions()</a></code> returns an object of class <code>spp_distr</code> or <code>spp_distr_multi</code>;</li>
 <li>
-<code>spp_distributions</code> returns an object of class <code>spp_distr</code>
+<code><a href="../reference/spp_references.html">spp_references()</a></code> returns an object of class <code>spp_refs</code> or <code>spp_refs_multi</code>;</li>
+</ul>
 </li>
+<li>Moreover:
+<ul>
 <li>
-<code>spp_references</code> returns an object of class <code>spp_refs</code>
-</li>
+<code>spp_raw</code> class is defined for all functions including the argument <code>raw</code>, it returns the parsed output from the API as a list object.</li>
 </ul>
 </li>
 </ul>

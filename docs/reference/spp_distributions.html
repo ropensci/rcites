@@ -129,7 +129,7 @@ the taxon identifier is known.</p>
     </div>
 
     <pre class="usage"><span class='fu'>spp_distributions</span>(<span class='no'>taxon_id</span>, <span class='kw'>language</span> <span class='kw'>=</span> <span class='st'>"en"</span>, <span class='kw'>raw</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>token</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+  <span class='kw'>token</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -157,12 +157,16 @@ names of distributions, values are taken among <code>en</code> (English),
 set directly in <code>Renviron</code>. Alternatively, <code><a href='set_token.html'>set_token()</a></code> can
 be used to set <code>SPECIESPLUS_TOKEN</code> for the current session.</p></td>
     </tr>
+    <tr>
+      <th>verbose</th>
+      <td><p>a logical. Should extra information be reported on progress?</p></td>
+    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>If <code>raw</code> is set to <code>TRUE</code> then an object of class <code>spp_raw</code> is returned
-which is essentially the list of lists (see option <code>as = "parsed"</code> in <code><a href='http://www.rdocumentation.org/packages/httr/topics/content'>httr::content()</a></code>).
+which is essentially the list of lists (see option <code>as = 'parsed'</code> in <code><a href='http://www.rdocumentation.org/packages/httr/topics/content'>httr::content()</a></code>).
 Otherwise, an object of class <code>spp_distr</code> is returned which is a list of two
 data frames:</p><ol>
 <li><p><code>distributions</code>: lists distributions for a given taxon concept,</p></li>
@@ -176,7 +180,7 @@ data frames:</p><ol>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'> <span class='no'>res1</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_distributions</span>(<span class='kw'>taxon_id</span> <span class='kw'>=</span> <span class='st'>'4521'</span>)</div><div class='output co'>#&gt; <span class='error'>Error in rcites_res(q_url, token): Unauthorized (HTTP 401).</span></div><div class='input'> <span class='no'>res2</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_distributions</span>(<span class='kw'>taxon_id</span> <span class='kw'>=</span> <span class='st'>'4521'</span>, <span class='kw'>raw</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='error'>Error in rcites_res(q_url, token): Unauthorized (HTTP 401).</span></div><div class='input'> <span class='no'>res3</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_distributions</span>(<span class='kw'>taxon_id</span> <span class='kw'>=</span> <span class='st'>'4521'</span>, <span class='kw'>language</span> <span class='kw'>=</span> <span class='st'>'fr'</span>)</div><div class='output co'>#&gt; <span class='error'>Error in rcites_res(q_url, token): Unauthorized (HTTP 401).</span></div></pre>
+    <pre class="examples"><div class='input'> <span class='no'>res1</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_distributions</span>(<span class='kw'>taxon_id</span> <span class='kw'>=</span> <span class='st'>'4521'</span>)</div><div class='output co'>#&gt; &gt;&gt;&gt; Now processing taxon_id '4521'............</div><div class='output co'>#&gt; <span class='error'>Error in rcites_res(q_url, token): Unauthorized (HTTP 401).</span></div><div class='input'> <span class='no'>res2</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_distributions</span>(<span class='kw'>taxon_id</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>'4521'</span>, <span class='st'>'3210'</span>, <span class='st'>'10255'</span>))</div><div class='output co'>#&gt; &gt;&gt;&gt; Now processing taxon_id '4521'............</div><div class='output co'>#&gt; <span class='error'>Error in rcites_res(q_url, token): Unauthorized (HTTP 401).</span></div><div class='input'> <span class='no'>res3</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_distributions</span>(<span class='kw'>taxon_id</span> <span class='kw'>=</span> <span class='st'>'4521'</span>, <span class='kw'>raw</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; <span class='error'>Error in rcites_res(q_url, token): Unauthorized (HTTP 401).</span></div><div class='input'> <span class='no'>res4</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_distributions</span>(<span class='kw'>taxon_id</span> <span class='kw'>=</span> <span class='st'>'4521'</span>, <span class='kw'>language</span> <span class='kw'>=</span> <span class='st'>'fr'</span>)</div><div class='output co'>#&gt; &gt;&gt;&gt; Now processing taxon_id '4521'............</div><div class='output co'>#&gt; <span class='error'>Error in rcites_res(q_url, token): Too Many Requests (RFC 6585) (HTTP 429).</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
