@@ -8,6 +8,7 @@
 \alias{print.spp_eu_leg}
 \alias{print.spp_eu_leg_multi}
 \alias{print.spp_cites_leg}
+\alias{print.spp_cites_leg_multi}
 \alias{print.spp_refs}
 \alias{print.spp_distr}
 \alias{print.spp_distr_multi}
@@ -24,6 +25,8 @@
 \method{print}{spp_eu_leg_multi}(x, ...)
 
 \method{print}{spp_cites_leg}(x, ...)
+
+\method{print}{spp_eu_leg_multi}(x, ...)
 
 \method{print}{spp_refs}(x, ...)
 
