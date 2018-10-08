@@ -17,6 +17,7 @@
 #' `NULL` and requires the environment variable `SPECIESPLUS_TOKEN` to be
 #' set directly in `Renviron`. Alternatively, [set_token()] can
 #' be used to set `SPECIESPLUS_TOKEN` for the current session.
+#' @param verbose a logical. Should extra information be reported on progress?
 #'
 #' @return If `raw` is set to `TRUE` then an object of class `spp_raw` is returned
 #' which is essentially the list of lists (see option `as = 'parsed'` in [httr::content()]).
@@ -39,7 +40,7 @@
 #' }
 
 spp_eu_legislation <- function(taxon_id, scope = "current", language = "en", 
-    raw = FALSE, token = NULL) {
+    raw = FALSE, token = NULL, verbose = TRUE) {
     ## token check
     if (is.null(token)) 
         token <- rcites_getsecret()
