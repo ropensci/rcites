@@ -136,8 +136,8 @@ given taxon concept (identifier must be known).</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>taxon_id</th>
-      <td><p>character string containing a species' taxon concept
-identifier (see <code><a href='spp_taxonconcept.html'>spp_taxonconcept</a></code>).</p></td>
+      <td><p>a vector of character strings containing species' taxon concept identifiers
+(see <code><a href='spp_taxonconcept.html'>spp_taxonconcept()</a></code>)</p></td>
     </tr>
     <tr>
       <th>scope</th>
@@ -171,10 +171,11 @@ be used to set <code>SPECIESPLUS_TOKEN</code> for the current session.</p></td>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>If <code>raw</code> is set to <code>TRUE</code> then an object of class <code>spp_raw</code> is returned
-which is essentially the list of lists (see option <code>as = 'parsed'</code> in <code><a href='http://www.rdocumentation.org/packages/httr/topics/content'>httr::content()</a></code>).
-Otherwise, an object of class <code>spp_eu_leg</code> is returned which is a list of two
-data frames:</p><ol>
+    <p>If <code>raw</code> is set to <code>TRUE</code> then an object of class <code>spp_raw</code> (or
+<code>spp_raw_multi</code> if <code>length(taxon_id)&gt;1</code>) is returned which is essentially
+a list of lists (see option <code>as = 'parsed'</code> in <code><a href='http://www.rdocumentation.org/packages/httr/topics/content'>httr::content()</a></code>).
+Otherwise, an object of class <code>spp_eu_leg</code> (or <code>spp_eu_leg_multi</code> if
+<code>length(taxon_id)&gt;1</code>) is returned which is a list of two data frames:</p><ol>
 <li><p><code>eu_listings</code>: lists EU annex listings EU suspensions,</p></li>
 <li><p><code>eu_decisions</code>: lists EU decisions</p></li>
 </ol>
@@ -186,7 +187,7 @@ data frames:</p><ol>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>res1</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_eu_legislation</span>(<span class='kw'>taxon_id</span> <span class='kw'>=</span> <span class='st'>'4521'</span>)</div><div class='output co'>#&gt; &gt;&gt;&gt; Now processing taxon_id '4521'............</div><div class='output co'>#&gt; <span class='error'>Error in rcites_res(q_url, token): Too Many Requests (RFC 6585) (HTTP 429).</span></div><div class='input'><span class='no'>res2</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_eu_legislation</span>(<span class='kw'>taxon_id</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>'4521'</span>, <span class='st'>'3210'</span>, <span class='st'>'10255'</span>))</div><div class='output co'>#&gt; &gt;&gt;&gt; Now processing taxon_id '4521'............</div><div class='output co'>#&gt; <span class='error'>Error in rcites_res(q_url, token): Too Many Requests (RFC 6585) (HTTP 429).</span></div><div class='input'><span class='no'>res3</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_eu_legislation</span>(<span class='kw'>taxon_id</span> <span class='kw'>=</span> <span class='st'>'4521'</span>, <span class='kw'>scope</span> <span class='kw'>=</span> <span class='st'>'historic'</span>)</div><div class='output co'>#&gt; &gt;&gt;&gt; Now processing taxon_id '4521'............</div><div class='output co'>#&gt; <span class='error'>Error in rcites_res(q_url, token): Too Many Requests (RFC 6585) (HTTP 429).</span></div><div class='input'><span class='no'>res4</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_eu_legislation</span>(<span class='kw'>taxon_id</span> <span class='kw'>=</span> <span class='st'>'4521'</span>, <span class='kw'>scope</span> <span class='kw'>=</span> <span class='st'>'all'</span>, <span class='kw'>language</span><span class='kw'>=</span><span class='st'>'fr'</span>)</div><div class='output co'>#&gt; &gt;&gt;&gt; Now processing taxon_id '4521'............</div><div class='output co'>#&gt; <span class='error'>Error in rcites_res(q_url, token): Too Many Requests (RFC 6585) (HTTP 429).</span></div></pre>
+    <pre class="examples"><div class='input'><span class='no'>res1</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_eu_legislation</span>(<span class='kw'>taxon_id</span> <span class='kw'>=</span> <span class='st'>'4521'</span>)</div><div class='output co'>#&gt; &gt;&gt;&gt; Now processing taxon_id '4521'............</div><div class='output co'>#&gt; <span class='error'>Error in rcites_res(q_url, token): Too Many Requests (RFC 6585) (HTTP 429).</span></div><div class='input'><span class='no'>res2</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_eu_legislation</span>(<span class='kw'>taxon_id</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>'4521'</span>, <span class='st'>'3210'</span>, <span class='st'>'10255'</span>))</div><div class='output co'>#&gt; &gt;&gt;&gt; Now processing taxon_id '4521'............</div><div class='output co'>#&gt; <span class='error'>Error in rcites_res(q_url, token): Too Many Requests (RFC 6585) (HTTP 429).</span></div><div class='input'><span class='no'>res3</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_eu_legislation</span>(<span class='kw'>taxon_id</span> <span class='kw'>=</span> <span class='st'>'4521'</span>, <span class='kw'>scope</span> <span class='kw'>=</span> <span class='st'>'historic'</span>)</div><div class='output co'>#&gt; &gt;&gt;&gt; Now processing taxon_id '4521'............</div><div class='output co'>#&gt; <span class='error'>Error in rcites_res(q_url, token): Unauthorized (HTTP 401).</span></div><div class='input'><span class='no'>res4</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_eu_legislation</span>(<span class='kw'>taxon_id</span> <span class='kw'>=</span> <span class='st'>'4521'</span>, <span class='kw'>scope</span> <span class='kw'>=</span> <span class='st'>'all'</span>, <span class='kw'>language</span><span class='kw'>=</span><span class='st'>'fr'</span>)</div><div class='output co'>#&gt; &gt;&gt;&gt; Now processing taxon_id '4521'............</div><div class='output co'>#&gt; <span class='error'>Error in rcites_res(q_url, token): Too Many Requests (RFC 6585) (HTTP 429).</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

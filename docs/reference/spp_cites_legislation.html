@@ -136,7 +136,7 @@ CITES suspensions for a given taxon concept.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>taxon_id</th>
-      <td><p>character string containing a species' taxon concept identifier
+      <td><p>a vector of character strings containing species' taxon concept identifiers
 (see <code><a href='spp_taxonconcept.html'>spp_taxonconcept()</a></code>).</p></td>
     </tr>
     <tr>
@@ -171,10 +171,11 @@ be used to set <code>SPECIESPLUS_TOKEN</code> for the current session.</p></td>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>If <code>raw</code> is set to <code>TRUE</code> then an object of class <code>spp_raw</code> is returned
-which is essentially the list of lists (see option <code>as = 'parsed'</code> in <code><a href='http://www.rdocumentation.org/packages/httr/topics/content'>httr::content()</a></code>).
-Otherwise, an object of class <code>spp_cites_leg</code> is returned which is a list of three
-data frames:</p><ol>
+    <p>If <code>raw</code> is set to <code>TRUE</code> then an object of class <code>spp_raw</code> (or
+<code>spp_raw_multi</code> if <code>length(taxon_id)&gt;1</code>) is returned which is essentially
+a list of lists (see option <code>as = 'parsed'</code> in <code><a href='http://www.rdocumentation.org/packages/httr/topics/content'>httr::content()</a></code>).
+Otherwise, an object of class <code>spp_cites_leg</code> (or <code>spp_cites_leg_multi</code> if
+<code>length(taxon_id)&gt;1</code>) is returned which is a list of three data frames:</p><ol>
 <li><p><code>cites_listings</code>: lists CITES annex listings EU suspensions,</p></li>
 <li><p><code>cites_quotas</code>: lists CITES quotas,</p></li>
 <li><p><code>cites_suspensions</code>: lists CITES suspensions.</p></li>

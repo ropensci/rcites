@@ -33,16 +33,21 @@ Our functions now integrate all parameters of the Species+ API, meaning:
 
 In order to allow the user to perform bulk analysis using `spp_taxonconcept()`,
 we added an auto-pagination to the  `spp_taxonconcept()`. The user is now
-able to retrieve more than 500 entries at once (*i.e.* all entries of the data base when `query_taxon=""`). When more than one page must be fetched, a message is prompted (if `verbose` is set to `TRUE`).
+able to retrieve more than 500 entries at once (*i.e.* all entries of the data base when `query_taxon=""`).
+When more than one page must be fetched, a message is prompted (if `verbose` is set to `TRUE`).
+All these changes required a new set of tests handled in [#35](https://github.com/ibartomeus/rcites/pull/35).
 
+The four remaining `spp_*` functions now support `taxon_id` with more than one
+element. This was handled in [#36](https://github.com/ibartomeus/rcites/pull/36).
 
-
-All the changes mentioned above required a new set of tests handled in #
+A new vignette XXX shows how to use these new features. 
 
 ### Addition of new helpers and unit testing
 
-All the changes mentioned above required a couple of new helpers functions gathered in `zzz.R`
+All the changes mentioned above required a set of new helpers functions gathered in `zzz.R`
 as in the previous version. Also the unit testing has been extensively reviewed.
+
+
 
 ## Changes in documentation
 
@@ -50,6 +55,9 @@ All the new parameters have been carefully documented. We did our best to improv
 the functions outputs (this was handled in [#35](https://github.com/ibartomeus/rcites/pull/35)).
 We now use markdown to document the package (see https://cran.r-project.org/web/packages/roxygen2/vignettes/markdown.html)
 The website has been rebuilt.
+
+New vignettes.
+
 
 ### `set_token()`
 
@@ -68,7 +76,7 @@ readline("Enter your token without quotes: ")
 > There are a lot of rcites_ functions within the package functions (e.g., rcites_getsecret() which is used in spp_taxonconcept()) which don't work on their own. Since the wrapper functions around them work, I think it's fine; I was just confused as to what they are.
 
 We use these helpers functions to better structure our code as they avoid
-code redundancy. There are not part of the package API but important for the 
+code redundancy. There are not part of the package API but important for the
 developers of the package.
 
 > I'm not sure what the rOpenSci guidelines are for these functions.

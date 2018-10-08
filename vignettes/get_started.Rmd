@@ -1,7 +1,7 @@
 ---
 title: "Get started with rcites"
 author: "rcites team"
-date: 07-18-2018
+date: 10-08-2018
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Get started with rcites}
@@ -10,6 +10,7 @@ vignette: >
 
 
 ```{r setup, echo = FALSE}
+# NOT_CRAN <- FALSE
 NOT_CRAN <- identical(tolower(Sys.getenv("NOT_CRAN")), "true")
 knitr::opts_chunk$set(
   purl = NOT_CRAN,
@@ -21,15 +22,16 @@ knitr::opts_chunk$set(
 
 
 
-# Set up a connection to the Species+ database
+# Set up a connection to the Species+/CITES Checklist API
 
 ## Get your personal token
-To set up a connection to the CITES Species+ database, an authentication token
+
+To set up a connection to the Species+/CITES Checklist API, an authentication token
 is required. Each user should obtain his or her own personal token
-to run the code below (see https://api.speciesplus.net/documentation for more details).
-To obtain a token, sign up on the [Speciesplus API website](http://api.speciesplus.net/users/sign_up).
+to run the code below (see https://api.speciesplus.net/documentation for more details). To obtain a token, sign up on the [Species+ API website](http://api.speciesplus.net/users/sign_up).
 
 ## Set the token
+
 Now, we assume that you already have a token. For illustrative purposes,
 we will use the generic token value `8QW6Qgh57sBG2k0gtt` for the API
 documentation.
@@ -41,59 +43,60 @@ requests. They are three different ways to set the token in `rcites`:
 [`.Renviron`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Startup.html)
 file (preferred);
 
-2. use `set_token()` to set up the token as character string (with quotes). If not
-entered in the function, the token can be passed without quotes (not as character
-string) after a prompt. This way, the token `SPECIESPLUS_TOKEN` is interactively
-set up for the current R session (meaning a login will be required for the future
-R sessions);
+2. use `set_token()` to set up the token as character string (with quotes). If not entered in the function, the token can be passed without quotes (not as character string) after a prompt. This way, the token `SPECIESPLUS_TOKEN` is interactively set up for the current R session (meaning a login will be required for the future R sessions);
 
 ```{r, eval = FALSE}
 set_token("8QW6Qgh57sBG2k0gtt")
 ```
 
-3. use the `token` argument of the functions, *i.e.* the token is passed manually
-to each function call.
+3. use the `token` argument of the functions, *i.e.* the token is passed manually to each function call.
 
 
 # Use of key features
 
-## Access the Speciesplus taxon concept and retrieve a taxon id
+## Retrieve a taxon identifiers with spp_taxonconcept()
 
-To efficiently query information from the CITES Speciesplus database, you
-first need to retrieve the unique taxon identifier `taxon_id` from the [Speciesplus taxon concept](https://api.speciesplus.net/documentation/v1/taxon_concepts/index.html).
+### Basic calls to spp_taxonconcept()
+
+In order to efficiently query information from the CITES database, you
+first need to retrieve the unique taxon identifier `taxon_id` from the [Species+ taxon concept](https://api.speciesplus.net/documentation/v1/taxon_concepts/index.html).
 To do so, you should first call `spp_taxonconcept()` and provide the scientific
-name of the taxon you look for. Let us start by requesting the identifier of the
-African bush elephant, *i.e.* *Loxodonta africana*.
+name of the taxon you look for. Let us start by requesting the identifier of the African bush elephant, *i.e.* *Loxodonta africana*.
 
-```{r}
+```{r result_1}
 library(rcites)
 res1 <- spp_taxonconcept(query_taxon = "Loxodonta africana")
-res1
 ```
 
-Note regarding the token:
-If you chose option 3, then the code will look as follows:
+Note that if you chose chose option 3, then the code should look like the one below:
 
 ```{r, eval = FALSE}
 res1 <- spp_taxonconcept(query_taxon = "Loxodonta africana", token = "8QW6Qgh57sBG2k0gtt")
 ```
 
-`res1` is a list of data.table object with different information pertaining
-to the naming of the taxon. If you however only need first details about
-the species" CITES listing, setting `appendix_only` to `TRUE` will return
-the first data.table, `all`, for instance.
+### Object `spp_taxonconcept`
 
-```{r}
-res2 <- spp_taxonconcept(query_taxon = "Loxodonta africana")#, appendix_only = TRUE)
-res2
+`res1` is an S3 object of class `spp_taxonconcept`:
+
+```{r res1_attr}
+attributes(res1)
 ```
 
-For other taxon, there might be more than one identifier, in such a case you
-should have a look at the `active` column.
+that contains information sorted into several data frames (see `?spp_taxonconcept`):
 
-```{r}
+
+```{r res1_names}
+res1
+```
+
+For some taxa, there are more than one taxon identifier available. In `general` only
+*active* identifiers are listed, the the full list of identifier is
+available in `all_id`:
+
+```{r res3}
 res3 <- spp_taxonconcept(query = "Amazilia versicolor")#, appendix_only = TRUE)
-res3
+res3$general
+res3$all_id
 ```
 
 Also, if the taxon is not listed, a warning message should come up.
@@ -102,78 +105,71 @@ Also, if the taxon is not listed, a warning message should come up.
 res4 <- spp_taxonconcept(query = "Homo Sapiens")
 ```
 
+### Custom calls to spp_taxonconcept()
 
-For what follows we should keep in mind:
+`spp_taxonconcept()` includes several argument to retrieve a specific subset
+of information (see `?spp_taxonconcept` for more details):
 
-|name                | identifier|
-|:-------------------|:----------|
-|Loxodonta africana  | 4521      |
-|Amazilia versicolor | 3210      |
+```{r args_spp_taxonconcept}
+args('spp_taxonconcept')
+```
+
+Most importantly, the argument `taxonomy` allows a selection between the two
+databases (CITES or CMS):
+
+```{r taxo_cms}
+spp_taxonconcept(query = "Amazilia versicolor", taxonomy = "CMS")
+spp_taxonconcept(query = "Loxodonta africana", taxonomy = "CMS")
+```
+
+`language` and `updated_since` are convenient filters restrictively for
+the written language of common names (must be a
+two-letters code see [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2))
+and the last update of the entries:
+
+```{r filter}
+spp_taxonconcept(query_taxon = "Loxodonta africana", language = 'EN',
+  updated_since = "2016-01-01")
+```
+
+## Retrieve a taxon identifiers with
+
+To use the four `spp_*` functions one need to use the *active taxon identifier*,
+so for the two species we used as example so far, this means 4521 and 3210
+
+|name                | taxon identifier|
+|:-------------------|:----------------|
+|Loxodonta africana  |       4521      |
+|Amazilia versicolor |       3210      |
 
 
-## Access CITES legislation data
+
+### CITES legislation data
 
 ```{r}
-leg1 <- spp_cites_legislation(taxon_id = "4521")
-leg2 <- spp_cites_legislation(taxon_id = "3210")
+spp_cites_legislation(taxon_id = "4521", verbose = FALSE)
 ```
 
 
-## Access EU legislation data
+### EU legislation data
 
 ```{r}
-leg3 <- spp_eu_legislation(taxon_id = "4521")
-leg4 <- spp_eu_legislation(taxon_id = "3210", scope = "all")
+spp_eu_legislation(taxon_id = "4521",  verbose = FALSE)
 ```
-
-
-##  Access a taxon distribution data
 
 ```{r}
-distr <- spp_distributions("4521")
+spp_eu_legislation(taxon_id = "3210", scope = "all", verbose = FALSE)
 ```
 
 
-## Access a listing reference data
+### Distribution data
 
-```{r, eval = FALSE}
-ref <- spp_references(taxon_id = "3210")
-length(ref$distribution$reference)
-length(ref$taxonomic$citation)
-ref$taxonomic$citation
+```{r}
+spp_distributions("4521", verbose = FALSE)
 ```
 
+### References
 
-## Query more than one species at a time
-
-Currently, there is no direct way to access more than one species at a time.
-In order to do so, you should therefore loop over a vector of species or a vector of identifier.
-
-```{r, eval = FALSE}
-vc_sp <- c("Amazilia versicolor", "Loxodonta africana")
-res <- lapply(vc_sp, function(x) spp_taxonconcept(query_taxon = x)#, appendix_only = TRUE))
-do.call(rbind, res)
+```{r}
+spp_references("4521", verbose = FALSE)
 ```
-
-```{r, eval = FALSE}
-vc_id <- c(4521, 3210)
-res <- lapply(vc_id,
-    function(x) unlist(
-      spp_eu_legislation(taxon_id = x)
-    )[1:6]
-)
-```
-
-
-## Use of the simplify function
-
-The `rcites_simplify()` function can be used for an outcome that is easier to read. It can be either called directly within an access function having the `spp_` prefix, through having `simplify = TRUE` or used afterwards.
-
-```{r, eval = FALSE}
-leg2 <- rcites_simplify(leg1)
-```
-
-
-# For a full package workflow ...
-
-... have a look at the second vinette part, showcasing the full [Speciesplus information about the African bush elephant](https://ibartomeus.github.io/rcites/articles/elephant.html).
