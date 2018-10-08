@@ -8,7 +8,7 @@ spp_cites_legislation(taxon_id, scope = "current", language = "en",
   raw = FALSE, token = NULL, verbose = TRUE)
 }
 \arguments{
-\item{taxon_id}{character string containing a species' taxon concept identifier
+\item{taxon_id}{a vector of character strings containing species' taxon concept identifiers
 (see \code{\link[=spp_taxonconcept]{spp_taxonconcept()}}).}
 
 \item{scope}{vector of character strings indicating the time scope of legislation,
@@ -30,10 +30,11 @@ be used to set \code{SPECIESPLUS_TOKEN} for the current session.}
 \item{verbose}{a logical. Should extra information be reported on progress?}
 }
 \value{
-If \code{raw} is set to \code{TRUE} then an object of class \code{spp_raw} is returned
-which is essentially the list of lists (see option \code{as = 'parsed'} in \code{\link[httr:content]{httr::content()}}).
-Otherwise, an object of class \code{spp_cites_leg} is returned which is a list of three
-data frames:
+If \code{raw} is set to \code{TRUE} then an object of class \code{spp_raw} (or
+\code{spp_raw_multi} if \code{length(taxon_id)>1}) is returned which is essentially
+a list of lists (see option \code{as = 'parsed'} in \code{\link[httr:content]{httr::content()}}).
+Otherwise, an object of class \code{spp_cites_leg} (or \code{spp_cites_leg_multi} if
+\code{length(taxon_id)>1}) is returned which is a list of three data frames:
 \enumerate{
 \item \code{cites_listings}: lists CITES annex listings EU suspensions,
 \item \code{cites_quotas}: lists CITES quotas,

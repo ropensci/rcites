@@ -3,7 +3,7 @@
 #' Retrieve current CITES appendix listings and reservations, CITES quotas, and
 #' CITES suspensions for a given taxon concept.
 #'
-#' @param taxon_id character string containing a species' taxon concept identifier
+#' @param taxon_id a vector of character strings containing species' taxon concept identifiers
 #' (see [spp_taxonconcept()]).
 #' @param scope vector of character strings indicating the time scope of legislation,
 #' values are taken among `current`, `historic` and `all`.
@@ -19,10 +19,11 @@
 #' be used to set `SPECIESPLUS_TOKEN` for the current session.
 #' @param verbose a logical. Should extra information be reported on progress?
 #'
-#' @return If `raw` is set to `TRUE` then an object of class `spp_raw` is returned
-#' which is essentially the list of lists (see option `as = 'parsed'` in [httr::content()]).
-#' Otherwise, an object of class `spp_cites_leg` is returned which is a list of three
-#' data frames:
+#' @return If `raw` is set to `TRUE` then an object of class `spp_raw` (or
+#' `spp_raw_multi` if `length(taxon_id)>1`) is returned which is essentially
+#' a list of lists (see option `as = 'parsed'` in [httr::content()]).
+#' Otherwise, an object of class `spp_cites_leg` (or `spp_cites_leg_multi` if
+#' `length(taxon_id)>1`) is returned which is a list of three data frames:
 #'  1. `cites_listings`: lists CITES annex listings EU suspensions,
 #'  2. `cites_quotas`: lists CITES quotas,
 #'  3. `cites_suspensions`: lists CITES suspensions.
@@ -40,29 +41,29 @@
 #' res4 <- spp_cites_legislation(taxon_id = 4521, language = 'fr')
 #' }
 
-spp_cites_legislation <- function(taxon_id, scope = "current", language = "en", 
+spp_cites_legislation <- function(taxon_id, scope = "current", language = "en",
     raw = FALSE, token = NULL, verbose = TRUE) {
     if (length(taxon_id) > 1) {
-        out <- lapply(taxon_id, spp_cites_legislation, scope = scope, language = language, 
+        out <- lapply(taxon_id, spp_cites_legislation, scope = scope, language = language,
             raw = raw, token = token, verbose = verbose)
         out <- rcites_combine_lists(out, taxon_id, raw)
     } else {
         # token check
-        if (is.null(token)) 
+        if (is.null(token))
             token <- rcites_getsecret()
         # id check
         if (rcites_checkid(taxon_id)) {
             out <- NULL
         } else {
-            if (verbose) 
+            if (verbose)
                 rcites_current_id(taxon_id)
             # set query string
-            query_string <- paste(c(rcites_lang(language), rcites_scope(scope)), 
+            query_string <- paste(c(rcites_lang(language), rcites_scope(scope)),
                 collapse = "&")
-            if (query_string != "") 
+            if (query_string != "")
                 query_string <- paste0("?", query_string)
             ## create url
-            q_url <- rcites_url("taxon_concepts/", taxon_id, "/cites_legislation.json", 
+            q_url <- rcites_url("taxon_concepts/", taxon_id, "/cites_legislation.json",
                 query_string)
             ## get_res
             tmp <- rcites_res(q_url, token)
@@ -78,7 +79,7 @@ spp_cites_legislation <- function(taxon_id, scope = "current", language = "en",
                 class(out) <- c("spp_cites_leg")
             }
         }
-        if (verbose) 
+        if (verbose)
             cat(" done. \n")
     }
     out

@@ -2,8 +2,8 @@
 #'
 #' Retrieve available references for a given taxon concept.
 #'
-#' @param taxon_id character string containing a species' taxon concept identifier
-#' (see \code{\link[rcites]{spp_taxonconcept}}).
+#' @param taxon_id a vector of character strings containing species' taxon concept identifiers
+#' (see [spp_taxonconcept()])
 #' @param raw a logical. Should raw data be returned?
 #' @param token a character string containing the authentification token, see
 #' <https://api.speciesplus.net/documentation>. Default is set to
@@ -12,9 +12,11 @@
 #' `SPECIESPLUS_TOKEN` for the current session.
 #' @param verbose a logical. Should extra information be reported on progress?
 #'
-#' @return If `raw` is set to `TRUE` then an object of class `spp_raw` is returned
-#' which is essentially the list of lists (see option `as = 'parsed'` in [httr::content()]).
-#' Otherwise an object of class `spp_refs` is returned which is a list of one
+#' @return If `raw` is set to `TRUE` then an object of class `spp_raw` (or
+#' `spp_raw_multi` if `length(taxon_id)>1`) is returned which is essentially
+#' a list of lists (see option `as = 'parsed'` in [httr::content()]).
+#' Otherwise, an object of class `spp_refs` (or `spp_refs_multi` if
+#' `length(taxon_id)>1`) is returned which is a list of one
 #' data frame:
 #' * `references` that includes the identifier of the reference and the
 #' corresponding citation.
@@ -32,20 +34,20 @@
 #' }
 
 spp_references <- function(taxon_id, raw = FALSE, token = NULL, verbose = TRUE) {
-    
+
     if (length(taxon_id) > 1) {
-        out <- lapply(taxon_id, spp_references, raw = raw, token = token, 
+        out <- lapply(taxon_id, spp_references, raw = raw, token = token,
             verbose = verbose)
         out <- rcites_combine_lists(out, taxon_id, raw)
     } else {
         # token check
-        if (is.null(token)) 
+        if (is.null(token))
             token <- rcites_getsecret()
         # id check
         if (rcites_checkid(taxon_id)) {
             out <- NULL
         } else {
-            if (verbose) 
+            if (verbose)
                 rcites_current_id(taxon_id)
             ## create url
             q_url <- rcites_url("taxon_concepts/", taxon_id, "/references.json")
@@ -60,7 +62,7 @@ spp_references <- function(taxon_id, raw = FALSE, token = NULL, verbose = TRUE) 
                 out$references <- rcites_simplify_decisions(tmp)
                 class(out) <- c("spp_refs")
             }
-            if (verbose) 
+            if (verbose)
                 cat(" done. \n")
         }
     }

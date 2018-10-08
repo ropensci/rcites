@@ -3,8 +3,8 @@
 #' Retrieve current EU annex listings, SRG opinions, and EU suspensions for a
 #' given taxon concept (identifier must be known).
 #'
-#' @param taxon_id character string containing a species' taxon concept
-#' identifier (see \code{\link[rcites]{spp_taxonconcept}}).
+#' @param taxon_id a vector of character strings containing species' taxon concept identifiers
+#' (see [spp_taxonconcept()])
 #' @param scope vector of character strings indicating the time scope of legislation,
 #' values are taken among `current`, `historic` and `all`.
 #' Default is set to `current`.
@@ -19,10 +19,11 @@
 #' be used to set `SPECIESPLUS_TOKEN` for the current session.
 #' @param verbose a logical. Should extra information be reported on progress?
 #'
-#' @return If `raw` is set to `TRUE` then an object of class `spp_raw` is returned
-#' which is essentially the list of lists (see option `as = 'parsed'` in [httr::content()]).
-#' Otherwise, an object of class `spp_eu_leg` is returned which is a list of two
-#' data frames:
+#' @return If `raw` is set to `TRUE` then an object of class `spp_raw` (or
+#' `spp_raw_multi` if `length(taxon_id)>1`) is returned which is essentially
+#' a list of lists (see option `as = 'parsed'` in [httr::content()]).
+#' Otherwise, an object of class `spp_eu_leg` (or `spp_eu_leg_multi` if
+#' `length(taxon_id)>1`) is returned which is a list of two data frames:
 #'  1. `eu_listings`: lists EU annex listings EU suspensions,
 #'  2. `eu_decisions`: lists EU decisions
 #'
@@ -39,29 +40,29 @@
 #' res4 <- spp_eu_legislation(taxon_id = '4521', scope = 'all', language='fr')
 #' }
 
-spp_eu_legislation <- function(taxon_id, scope = "current", language = "en", 
+spp_eu_legislation <- function(taxon_id, scope = "current", language = "en",
     raw = FALSE, token = NULL, verbose = TRUE) {
     if (length(taxon_id) > 1) {
-        out <- lapply(taxon_id, spp_eu_legislation, scope = scope, language = language, 
+        out <- lapply(taxon_id, spp_eu_legislation, scope = scope, language = language,
             raw = raw, token = token, verbose = verbose)
         out <- rcites_combine_lists(out, taxon_id, raw)
     } else {
         # token check
-        if (is.null(token)) 
+        if (is.null(token))
             token <- rcites_getsecret()
         # id check
         if (rcites_checkid(taxon_id)) {
             out <- NULL
         } else {
-            if (verbose) 
+            if (verbose)
                 rcites_current_id(taxon_id)
             # set query string
-            query_string <- paste(c(rcites_lang(language), rcites_scope(scope)), 
+            query_string <- paste(c(rcites_lang(language), rcites_scope(scope)),
                 collapse = "&")
-            if (query_string != "") 
+            if (query_string != "")
                 query_string <- paste0("?", query_string)
             ## create url
-            q_url <- rcites_url("taxon_concepts/", taxon_id, "/eu_legislation.json", 
+            q_url <- rcites_url("taxon_concepts/", taxon_id, "/eu_legislation.json",
                 query_string)
             ## get_res
             tmp <- rcites_res(q_url, token)
@@ -75,7 +76,7 @@ spp_eu_legislation <- function(taxon_id, scope = "current", language = "en",
                 out$eu_decisions <- rcites_simplify_decisions(tmp$eu_decisions)
                 class(out) <- c("spp_eu_leg")
             }
-            if (verbose) 
+            if (verbose)
                 cat(" done. \n")
         }
     }

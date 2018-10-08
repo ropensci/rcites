@@ -7,8 +7,8 @@
 spp_references(taxon_id, raw = FALSE, token = NULL, verbose = TRUE)
 }
 \arguments{
-\item{taxon_id}{character string containing a species' taxon concept identifier
-(see \code{\link[rcites]{spp_taxonconcept}}).}
+\item{taxon_id}{a vector of character strings containing species' taxon concept identifiers
+(see \code{\link[=spp_taxonconcept]{spp_taxonconcept()}})}
 
 \item{raw}{a logical. Should raw data be returned?}
 
@@ -21,9 +21,11 @@ set directly in \code{Renviron}. Alternatively, \code{\link[=set_token]{set_toke
 \item{verbose}{a logical. Should extra information be reported on progress?}
 }
 \value{
-If \code{raw} is set to \code{TRUE} then an object of class \code{spp_raw} is returned
-which is essentially the list of lists (see option \code{as = 'parsed'} in \code{\link[httr:content]{httr::content()}}).
-Otherwise an object of class \code{spp_refs} is returned which is a list of one
+If \code{raw} is set to \code{TRUE} then an object of class \code{spp_raw} (or
+\code{spp_raw_multi} if \code{length(taxon_id)>1}) is returned which is essentially
+a list of lists (see option \code{as = 'parsed'} in \code{\link[httr:content]{httr::content()}}).
+Otherwise, an object of class \code{spp_refs} (or \code{spp_refs_multi} if
+\code{length(taxon_id)>1}) is returned which is a list of one
 data frame:
 \itemize{
 \item \code{references} that includes the identifier of the reference and the
