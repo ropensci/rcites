@@ -6,7 +6,7 @@
   all entries for queries that have more than 500 results;
   - Functions `spp_*` now returns S3 objects:
     - `spp_taxonconcept()` returns an object of class `spp_taxon`;
-    - `spp_cites_legislation()` returns an object of class `spp_cites_leg`  or `spp_cites_leg_multi`;
+    - `spp_cites_legislation()` returns an object of class `spp_cites_leg` or `spp_cites_leg_multi`;
     - `spp_eu_legislation()` returns an object of class `spp_eu_leg` or `spp_eu_leg_multi`;
     - `spp_distributions()` returns an object of class `spp_distr` or `spp_distr_multi`;
     - `spp_references()` returns an object of class `spp_refs` or `spp_refs_multi`;

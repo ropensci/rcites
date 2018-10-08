@@ -20,13 +20,11 @@ knitr::opts_chunk$set(
 ```
 
 
-<!-- https://cran.r-project.org/web/packages/httr/vignettes/secrets.html -->
 
-
-# Set up a connection to the Speciesplus database
+# Set up a connection to the Species+ database
 
 ## Get your personal token
-To set up a connection to the CITES Speciesplus database, an authentication token
+To set up a connection to the CITES Species+ database, an authentication token
 is required. Each user should obtain his or her own personal token
 to run the code below (see https://api.speciesplus.net/documentation for more details).
 To obtain a token, sign up on the [Speciesplus API website](http://api.speciesplus.net/users/sign_up).
@@ -43,10 +41,10 @@ requests. They are three different ways to set the token in `rcites`:
 [`.Renviron`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Startup.html)
 file (preferred);
 
-2. use `set_token()` to set up the token as character string (with quotes). If not 
-entered in the function, the token can be passed without quotes (not as character 
-string) after a prompt. This way, the token `SPECIESPLUS_TOKEN` is interactively 
-set up for the current R session (meaning a login will be required for the future 
+2. use `set_token()` to set up the token as character string (with quotes). If not
+entered in the function, the token can be passed without quotes (not as character
+string) after a prompt. This way, the token `SPECIESPLUS_TOKEN` is interactively
+set up for the current R session (meaning a login will be required for the future
 R sessions);
 
 ```{r, eval = FALSE}
@@ -74,7 +72,7 @@ res1
 ```
 
 Note regarding the token:
-If you chose option 3 the code needs to look as follows.
+If you chose option 3, then the code will look as follows:
 
 ```{r, eval = FALSE}
 res1 <- spp_taxonconcept(query_taxon = "Loxodonta africana", token = "8QW6Qgh57sBG2k0gtt")

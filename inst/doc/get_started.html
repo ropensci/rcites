@@ -283,12 +283,11 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 
 
 
-<!-- https://cran.r-project.org/web/packages/httr/vignettes/secrets.html -->
-<div id="set-up-a-connection-to-the-speciesplus-database" class="section level1">
-<h1>Set up a connection to the Speciesplus database</h1>
+<div id="set-up-a-connection-to-the-species-database" class="section level1">
+<h1>Set up a connection to the Species+ database</h1>
 <div id="get-your-personal-token" class="section level2">
 <h2>Get your personal token</h2>
-<p>To set up a connection to the CITES Speciesplus database, an authentication token is required. Each user should obtain his or her own personal token to run the code below (see <a href="https://api.speciesplus.net/documentation" class="uri">https://api.speciesplus.net/documentation</a> for more details). To obtain a token, sign up on the <a href="http://api.speciesplus.net/users/sign_up">Speciesplus API website</a>.</p>
+<p>To set up a connection to the CITES Species+ database, an authentication token is required. Each user should obtain his or her own personal token to run the code below (see <a href="https://api.speciesplus.net/documentation" class="uri">https://api.speciesplus.net/documentation</a> for more details). To obtain a token, sign up on the <a href="http://api.speciesplus.net/users/sign_up">Speciesplus API website</a>.</p>
 </div>
 <div id="set-the-token" class="section level2">
 <h2>Set the token</h2>
@@ -312,7 +311,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">library</span>(rcites)</a>
 <a class="sourceLine" id="cb2-2" data-line-number="2">res1 &lt;-<span class="st"> </span><span class="kw">spp_taxonconcept</span>(<span class="dt">query_taxon =</span> <span class="st">&quot;Loxodonta africana&quot;</span>)</a>
 <a class="sourceLine" id="cb2-3" data-line-number="3">res1</a></code></pre></div>
-<p>Note regarding the token: If you chose option 3 the code needs to look as follows.</p>
+<p>Note regarding the token: If you chose option 3, then the code will look as follows:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">res1 &lt;-<span class="st"> </span><span class="kw">spp_taxonconcept</span>(<span class="dt">query_taxon =</span> <span class="st">&quot;Loxodonta africana&quot;</span>, <span class="dt">token =</span> <span class="st">&quot;8QW6Qgh57sBG2k0gtt&quot;</span>)</a></code></pre></div>
 <p><code>res1</code> is a list of data.table object with different information pertaining to the naming of the taxon. If you however only need first details about the species&quot; CITES listing, setting <code>appendix_only</code> to <code>TRUE</code> will return the first data.table, <code>all</code>, for instance.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">res2 &lt;-<span class="st"> </span><span class="kw">spp_taxonconcept</span>(<span class="dt">query_taxon =</span> <span class="st">&quot;Loxodonta africana&quot;</span>)<span class="co">#, appendix_only = TRUE)</span></a>
