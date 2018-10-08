@@ -3,24 +3,39 @@
 \name{print.spp}
 \alias{print.spp}
 \alias{print.spp_raw}
+\alias{print.spp_raw_multi}
 \alias{print.spp_taxon}
 \alias{print.spp_eu_leg}
+\alias{print.spp_eu_leg_multi}
 \alias{print.spp_cites_leg}
-\alias{print.spp_refs}
+\alias{print.spp_cites_leg_multi}
 \alias{print.spp_distr}
+\alias{print.spp_distr_multi}
+\alias{print.spp_refs}
+\alias{print.spp_refs_multi}
 \title{Print methods for objects of class \code{spp_*}}
 \usage{
 \method{print}{spp_raw}(x, ...)
+
+\method{print}{spp_raw_multi}(x, ...)
 
 \method{print}{spp_taxon}(x, ...)
 
 \method{print}{spp_eu_leg}(x, ...)
 
+\method{print}{spp_eu_leg_multi}(x, ...)
+
 \method{print}{spp_cites_leg}(x, ...)
 
-\method{print}{spp_refs}(x, ...)
+\method{print}{spp_eu_leg_multi}(x, ...)
+
+\method{print}{spp_distr}(x, ...)
+
+\method{print}{spp_distr_multi}(x, ...)
 
 \method{print}{spp_refs}(x, ...)
+
+\method{print}{spp_refs_multi}(x, ...)
 }
 \arguments{
 \item{x}{The result object.}

@@ -17,7 +17,7 @@ res3 <- spp_taxonconcept(query_taxon = '', taxonomy = 'CMS', pages = 1:2,
   language = 'EN', verbose = FALSE)
 ut_pause()
 
-res4 <- spp_taxonconcept(query_taxon = '', pages = c(44), with_descendants = FALSE)
+res4 <- spp_taxonconcept(query_taxon = '', pages = c(44), per_page = 20, with_descendants = FALSE)
 ut_pause()
 
 res5 <- spp_taxonconcept(query_taxon = '', pages = 1, updated_since = "2016-01-01")
@@ -32,13 +32,17 @@ test_that("Expected classes", {
   expect_true(all(names(res1[[2L]]) == nm2))
   expect_true(all(unlist(lapply(res1, function(x) all(class(x) == cl_df)))))
   expect_true(all(class(res2) == cl_raw))
+  expect_equal(class(res3$higher_taxa$kingdom), "character")
+  expect_equal(class(res1$cites_listings$annotation), "character")
+  expect_equal(attributes(res1)$taxonomy, "CITES")
+  expect_equal(attributes(res3)$taxonomy, "CMS")
 })
 
 
 test_that("Expected behaviour", {
   expect_equal(nrow(res3[[1L]]), 1000)
   expect_true(all(res3$common_names$language == "EN"))
-  expect_equal(nrow(res4[[1L]]), 500)
+  expect_equal(nrow(res4[[1L]]), 20)
   expect_true(all(res5$general$updated_at > "2016-01-01"))
   ut_pause()
   expect_warning(spp_taxonconcept(query_taxon = "Homo sapiens"), "Taxon not listed.", fixed = TRUE)

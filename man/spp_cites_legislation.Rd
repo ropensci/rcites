@@ -5,7 +5,7 @@
 \title{Get current CITES appendix listings and reservations.}
 \usage{
 spp_cites_legislation(taxon_id, scope = "current", language = "en",
-  raw = FALSE, token = NULL)
+  raw = FALSE, token = NULL, verbose = TRUE)
 }
 \arguments{
 \item{taxon_id}{character string containing a species' taxon concept identifier
@@ -26,6 +26,8 @@ text of legislation notes, values are taken among \code{en} (English),
 \code{NULL} and requires the environment variable \code{SPECIESPLUS_TOKEN} to be
 set directly in \code{Renviron}. Alternatively, \code{\link[=set_token]{set_token()}} can
 be used to set \code{SPECIESPLUS_TOKEN} for the current session.}
+
+\item{verbose}{a logical. Should extra information be reported on progress?}
 }
 \value{
 If \code{raw} is set to \code{TRUE} then an object of class \code{spp_raw} is returned
@@ -45,8 +47,9 @@ CITES suspensions for a given taxon concept.
 \examples{
 \donttest{
 res1 <- spp_cites_legislation(taxon_id = 4521)
-res2 <- spp_cites_legislation(taxon_id = 4521, scope = 'all')
-res3 <- spp_cites_legislation(taxon_id = 4521, language = 'fr')
+res2 <- spp_cites_legislation(taxon_id = c('4521', '3210', '10255'))
+res3 <- spp_cites_legislation(taxon_id = 4521, scope = 'all')
+res4 <- spp_cites_legislation(taxon_id = 4521, language = 'fr')
 }
 }
 \references{

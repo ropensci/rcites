@@ -5,7 +5,7 @@
 \title{Get current EU annex listings, SRG opinions, and EU suspensions.}
 \usage{
 spp_eu_legislation(taxon_id, scope = "current", language = "en",
-  raw = FALSE, token = NULL)
+  raw = FALSE, token = NULL, verbose = TRUE)
 }
 \arguments{
 \item{taxon_id}{character string containing a species' taxon concept
@@ -26,6 +26,8 @@ text of legislation notes, values are taken among \code{en} (English),
 \code{NULL} and requires the environment variable \code{SPECIESPLUS_TOKEN} to be
 set directly in \code{Renviron}. Alternatively, \code{\link[=set_token]{set_token()}} can
 be used to set \code{SPECIESPLUS_TOKEN} for the current session.}
+
+\item{verbose}{a logical. Should extra information be reported on progress?}
 }
 \value{
 If \code{raw} is set to \code{TRUE} then an object of class \code{spp_raw} is returned
@@ -44,7 +46,7 @@ given taxon concept (identifier must be known).
 \examples{
 \donttest{
 res1 <- spp_eu_legislation(taxon_id = '4521')
-res2 <- spp_eu_legislation(taxon_id = '3210')
+res2 <- spp_eu_legislation(taxon_id = c('4521', '3210', '10255'))
 res3 <- spp_eu_legislation(taxon_id = '4521', scope = 'historic')
 res4 <- spp_eu_legislation(taxon_id = '4521', scope = 'all', language='fr')
 }
