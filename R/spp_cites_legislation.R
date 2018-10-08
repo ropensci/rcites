@@ -35,33 +35,34 @@
 #' @examples
 #' \donttest{
 #' res1 <- spp_cites_legislation(taxon_id = 4521)
+#' res2 <- spp_cites_legislation(taxon_id = c('4521', '3210', '10255'))
 #' res3 <- spp_cites_legislation(taxon_id = 4521, scope = 'all')
 #' res4 <- spp_cites_legislation(taxon_id = 4521, language = 'fr')
 #' }
 
-spp_cites_legislation <- function(taxon_id, scope = "current", language = "en",
+spp_cites_legislation <- function(taxon_id, scope = "current", language = "en", 
     raw = FALSE, token = NULL, verbose = TRUE) {
     if (length(taxon_id) > 1) {
-        out <- lapply(taxon_id, spp_cites_legislation, scope = scope, language = language,
+        out <- lapply(taxon_id, spp_cites_legislation, scope = scope, language = language, 
             raw = raw, token = token, verbose = verbose)
         out <- rcites_combine_lists(out, taxon_id, raw)
     } else {
         # token check
-        if (is.null(token))
+        if (is.null(token)) 
             token <- rcites_getsecret()
         # id check
         if (rcites_checkid(taxon_id)) {
             out <- NULL
         } else {
-            if (verbose)
+            if (verbose) 
                 rcites_current_id(taxon_id)
             # set query string
-            query_string <- paste(c(rcites_lang(language), rcites_scope(scope)),
+            query_string <- paste(c(rcites_lang(language), rcites_scope(scope)), 
                 collapse = "&")
-            if (query_string != "")
+            if (query_string != "") 
                 query_string <- paste0("?", query_string)
             ## create url
-            q_url <- rcites_url("taxon_concepts/", taxon_id, "/cites_legislation.json",
+            q_url <- rcites_url("taxon_concepts/", taxon_id, "/cites_legislation.json", 
                 query_string)
             ## get_res
             tmp <- rcites_res(q_url, token)
@@ -77,7 +78,7 @@ spp_cites_legislation <- function(taxon_id, scope = "current", language = "en",
                 class(out) <- c("spp_cites_leg")
             }
         }
-        if (verbose)
+        if (verbose) 
             cat(" done. \n")
     }
     out

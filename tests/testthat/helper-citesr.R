@@ -10,5 +10,6 @@ tx_id <- 4521
 tx_id2 <- "3210"
 cl_df <- c("tbl_df", "tbl",  "data.frame")
 cl_raw <- c("list", "spp_raw")
+cl_raw_multi <- c("list", "spp_raw_multi")
 
 ut_pause <- function(x = 4) Sys.sleep(x)

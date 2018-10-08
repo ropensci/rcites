@@ -57,8 +57,8 @@ rcites_checkid <- function(taxon_id) {
         warning("The taxon concept identifier is made of digits only.")
         cat(">>> Skipping ", taxon_id, ".\n", sep = "")
         out <- TRUE
-    }
-    FALSE
+    } else out <- FALSE
+    out
 }
 
 rcites_current_id <- function(x) {
