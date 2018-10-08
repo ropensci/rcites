@@ -39,14 +39,14 @@ rcites_timestamp <- function(x) {
 
 rcites_lang <- function(x) {
     out <- match.arg(x, c("en", "fr", "es"))
-    if (out == "en")
+    if (out == "en") 
         out <- NULL else out <- paste0("language=", out)
     out
 }
 
 rcites_scope <- function(x) {
     out <- match.arg(x, c("current", "historic", "all"))
-    if (out == "current")
+    if (out == "current") 
         out <- NULL else out <- paste0("scope=", out)
     out
 }
@@ -62,33 +62,39 @@ rcites_checkid <- function(taxon_id) {
 }
 
 rcites_current_id <- function(x) {
-  cat(">>> Now processing taxon_id '", x, "'............", sep = "")
+    cat(">>> Now processing taxon_id '", x, "'............", sep = "")
 }
 
 
-rcites_combine_lists <- function(x, taxon_id) {
-  wch <- !unlist(lapply(x, is.null))
-  x <- Filter(Negate(is.null), x)
-  cls <- class(x[[1L]])
-  # get names
-  ls_keys <- lapply(x, names)
-  if (!all(unlist(lapply(ls_keys, identical, ls_keys[[1L]])))) {
-      stop("Cannot combine lists with different names")
-  }
-  #
-  for (i in seq_along(x)) {
-    x[[i]] <- lapply(x[[i]], function(y) cbind(taxon_id = taxon_id[wch][i], y))
-  }
-  #
-  out <- list()
-  for (i in seq_along(ls_keys[[1L]])) {
-    key <- ls_keys[[1L]][i]
-    out[[key]] <- do.call(rbind, lapply(x, `[[`, key))
-  }
-  class(out) <- paste0(cls, "_multi", sep = "")
-  out
+rcites_combine_lists <- function(x, taxon_id, raw) {
+    wch <- !unlist(lapply(x, is.null))
+    x <- Filter(Negate(is.null), x)
+    cls <- class(x[[1L]])
+    if (raw) {
+        out <- x
+        out$taxon_ids <- taxon_id[wch]
+        class(out) <- c("list", "spp_raw_multi")
+    } else {
+        # get names
+        ls_keys <- lapply(x, names)
+        if (!all(unlist(lapply(ls_keys, identical, ls_keys[[1L]])))) {
+            stop("Cannot combine lists with different names")
+        }
+        # 
+        for (i in seq_along(x)) {
+            x[[i]] <- lapply(x[[i]], function(y) cbind(taxon_id = taxon_id[wch][i], 
+                y))
+        }
+        # 
+        out <- list()
+        for (i in seq_along(ls_keys[[1L]])) {
+            key <- ls_keys[[1L]][i]
+            out[[key]] <- do.call(rbind, lapply(x, `[[`, key))
+        }
+        class(out) <- paste0(cls, "_multi", sep = "")
+    }
+    out
 }
-
 
 
 
@@ -113,23 +119,23 @@ rcites_forgetsecret <- function() Sys.unsetenv("SPECIESPLUS_TOKEN")
 
 ##################### Pagination helpers
 
-rcites_autopagination <- function(q_url, per_page, pages, tot_page, token,
+rcites_autopagination <- function(q_url, per_page, pages, tot_page, token, 
     verbose = TRUE) {
     out <- list()
-    q_url_0 <- gsub(q_url, pattern = "page=[[:digit:]]+\\&per_page=[[:digit:]]+$",
+    q_url_0 <- gsub(q_url, pattern = "page=[[:digit:]]+\\&per_page=[[:digit:]]+$", 
         replacement = "")
-    #
+    # 
     for (i in seq_along(pages)) {
-        if (verbose)
-            cat("Retrieving info from page ", pages[i], "/", tot_page,
+        if (verbose) 
+            cat("Retrieving info from page ", pages[i], "/", tot_page, 
                 "\r")
-        q_url_new <- paste0(q_url_0, "page=", pages[i], "&per_page=", min(per_page,
+        q_url_new <- paste0(q_url_0, "page=", pages[i], "&per_page=", min(per_page, 
             500))
         out[[i]] <- rcites_res(q_url_new, token)
     }
-    if (verbose)
+    if (verbose) 
         cat("\nDone!\n")
-    #
+    # 
     out
 }
 
@@ -183,14 +189,14 @@ rcites_assign_class <- function(x) {
 rcites_simplify_listings <- function(x) {
     # fields below may or may not be included, so there are removed
     vc_rm <- c("party", "hash_annotation", "annotation")
-    tmp <- lapply(lapply(x, FUN = function(x) x[!names(x) %in% vc_rm]),
+    tmp <- lapply(lapply(x, FUN = function(x) x[!names(x) %in% vc_rm]), 
         FUN = function(y) data.frame(do.call(cbind, y), stringsAsFactors = FALSE))
     if (length(tmp) > 1) {
         out <- do.call(rbind, tmp)
     } else {
         out <- tmp[[1L]]
     }
-    #
+    # 
     out <- rcites_to_logical(out)
     out <- rcites_assign_class(out)
     out
@@ -198,9 +204,9 @@ rcites_simplify_listings <- function(x) {
 
 rcites_simplify_decisions <- function(x) {
     tmp0 <- lapply(lapply(x, rcites_null_to_na), unlist)
-    out <- data.frame(do.call(rbind, lapply(tmp0, function(y) data.frame(rbind(y),
+    out <- data.frame(do.call(rbind, lapply(tmp0, function(y) data.frame(rbind(y), 
         stringsAsFactors = FALSE))), stringsAsFactors = FALSE)
-    #
+    # 
     out <- rcites_to_logical(out)
     out <- rcites_assign_class(out)
     out
@@ -209,19 +215,19 @@ rcites_simplify_decisions <- function(x) {
 rcites_simplify_distributions <- function(x) {
     tmp <- do.call(rbind, lapply(lapply(x, rcites_null_to_na), rbind))
     out <- list()
-    out$distributions <- data.frame(apply(tmp[, !colnames(tmp) %in% c("tags",
+    out$distributions <- data.frame(apply(tmp[, !colnames(tmp) %in% c("tags", 
         "references")], 2, unlist), stringsAsFactors = FALSE)
     # collapse tags
-    out$distributions$tags <- unlist(lapply(tmp[, colnames(tmp) == "tags"],
-        function(x) ifelse(length(x), paste(unlist(x), collapse = ", "),
+    out$distributions$tags <- unlist(lapply(tmp[, colnames(tmp) == "tags"], 
+        function(x) ifelse(length(x), paste(unlist(x), collapse = ", "), 
             "")))
     out$distributions <- rcites_assign_class(out$distributions)
     # references
     tmp2 <- lapply(tmp[, colnames(tmp) == "references"], cbind)
-    out$references <- data.frame(id = rep(out$distributions$id, unlist(lapply(tmp2,
+    out$references <- data.frame(id = rep(out$distributions$id, unlist(lapply(tmp2, 
         length))), reference = unlist(tmp2), stringsAsFactors = FALSE)
     out$references <- rcites_assign_class(out$references)
-    #
+    # 
     out
 }
 
@@ -230,12 +236,12 @@ rcites_simplify_distributions <- function(x) {
 #################### print helpers
 
 rcites_print_shorten <- function(x, stop = 20) {
-    unlist(lapply(x, function(y) ifelse(nchar(y) > (stop + 5), paste0(substring(y,
+    unlist(lapply(x, function(y) ifelse(nchar(y) > (stop + 5), paste0(substring(y, 
         1, stop), " [truncated]"), y)))
 }
 
 rcites_print_title <- function(x, after = "", before = "") {
-    cat(before, x, "\n", paste(rep("-", nchar(x)), collapse = ""), after,
+    cat(before, x, "\n", paste(rep("-", nchar(x)), collapse = ""), after, 
         sep = "")
 }
 
@@ -246,7 +252,7 @@ rcites_print_df <- function(x, nrows = 10) {
     } else {
         tmp <- min(nrow(x), nrows)
         print(x[seq_len(tmp), ])
-        if (tmp < nrow(x))
+        if (tmp < nrow(x)) 
             cat("-------truncated-------\n")
     }
 }
@@ -254,36 +260,36 @@ rcites_print_df <- function(x, nrows = 10) {
 rcites_print_df_rm <- function(x, col_rm = "", nrows = 10) {
     rcites_print_df(x[, !names(x) %in% col_rm])
     id <- which(col_rm %in% names(x))
-    if (length(id))
-        cat("Field(s) not printed: ", paste(col_rm[id], collapse = ", "),
+    if (length(id)) 
+        cat("Field(s) not printed: ", paste(col_rm[id], collapse = ", "), 
             "\n")
 }
 
 rcites_print_taxon_id <- function(x, max_print = 20) {
-  rcites_print_title("Taxon identifiers:", "\n")
-  tmp <- unique(x)
-  if (length(tmp) > max_print) {
-    cat(paste(tmp[seq_len(max_print-1)], collapse = ", "), "[tuncated]\n")
-  } else cat(paste(tmp, collapse = ", "), "\n")
+    rcites_print_title("Taxon identifiers:", "\n")
+    tmp <- unique(x)
+    if (length(tmp) > max_print) {
+        cat(paste(tmp[seq_len(max_print - 1)], collapse = ", "), "[tuncated]\n")
+    } else cat(paste(tmp, collapse = ", "), "\n")
 }
 
 
 ############################# spp_taxonconcept() helpers
 
-rcites_taxonconcept_request <- function(x, token, taxonomy, with_descendants,
+rcites_taxonconcept_request <- function(x, token, taxonomy, with_descendants, 
     page, per_page, updated_since = NULL, language = NULL) {
     # deal with whitespace
     tmp <- gsub(pattern = " ", replacement = "%20", x = x)
-    #
+    # 
     query <- ifelse(tmp == "", "", paste0("name=", tmp))
     taxo <- ifelse(taxonomy == "CMS", "taxonomy=CMS", "")
     wdes <- ifelse(with_descendants, "with_descendants=true", "")
-    lng <- ifelse(is.null(language), "", paste0("language=", paste(language,
+    lng <- ifelse(is.null(language), "", paste0("language=", paste(language, 
         collapse = ",")))
-    tim <- ifelse(is.null(updated_since), "", paste0("updated_since=",
+    tim <- ifelse(is.null(updated_since), "", paste0("updated_since=", 
         rcites_timestamp(updated_since)))
     pag <- paste0("page=", page, "&per_page=", min(per_page, 500))
-    #
+    # 
     ele <- c(query, wdes, taxo, tim, lng, pag)
     # out_put
     rcites_url("taxon_concepts.json?", paste(ele[ele != ""], collapse = "&"))
@@ -293,16 +299,16 @@ rcites_taxonconcept_allentries <- function(x, sp_nm) {
     tmp <- lapply(lapply(x, function(x) x[!names(x) %in% sp_nm]), unlist)
     # author_year may be missing
     tmp2 <- lapply(tmp, rcites_add_author_year)
-    #
+    # 
     tmp <- lapply(tmp2, function(x) x[names(tmp2[[1L]])])
-    #
+    # 
     data.frame(do.call(rbind, tmp), stringsAsFactors = FALSE)
 }
 
 rcites_taxonconcept_higher_taxa <- function(x, identifier) {
     tmp <- lapply(lapply(x, rcites_null_to_na), function(y) unlist(y$higher_taxa))
     wch <- which(lapply(tmp, length) > 0)
-    #
+    # 
     out <- data.frame(id = identifier[wch], do.call(rbind, tmp[wch]), stringsAsFactors = FALSE)
     out <- rcites_assign_class(out)
     out
@@ -311,15 +317,15 @@ rcites_taxonconcept_higher_taxa <- function(x, identifier) {
 rcites_taxonconcept_names <- function(x, name, identifier) {
     tmp <- lapply(x, function(y) do.call(rbind, y[[name]]))
     wch <- which(unlist(lapply(tmp, length)) > 0)
-    #
+    # 
     if (length(wch)) {
-        out <- cbind(id = rep(identifier[wch], unlist(lapply(tmp[wch],
-            nrow))), data.frame(apply(do.call(rbind, tmp[wch]), 2, unlist),
+        out <- cbind(id = rep(identifier[wch], unlist(lapply(tmp[wch], 
+            nrow))), data.frame(apply(do.call(rbind, tmp[wch]), 2, unlist), 
             stringsAsFactors = FALSE))
     } else {
         out <- data.frame()
     }
-    #
+    # 
     out <- rcites_assign_class(out)
     out
 }
@@ -334,19 +340,19 @@ rcites_unlist_party <- function(x) {
 }
 
 rcites_taxonconcept_cites_listings <- function(x, identifier) {
-    tmp <- lapply(lapply(x, rcites_null_to_na), function(y) data.frame(do.call(rbind,
+    tmp <- lapply(lapply(x, rcites_null_to_na), function(y) data.frame(do.call(rbind, 
         y$cites_listings)))
     tmp2 <- lapply(tmp, rcites_unlist_party)
     wch <- which(unlist(lapply(tmp, length)) > 0)
-    #
+    # 
     if (length(wch)) {
-        out <- cbind(id = rep(identifier[wch], unlist(lapply(tmp2[wch],
-            nrow))), data.frame(apply(do.call(rbind, tmp2[wch]), 2, unlist),
+        out <- cbind(id = rep(identifier[wch], unlist(lapply(tmp2[wch], 
+            nrow))), data.frame(apply(do.call(rbind, tmp2[wch]), 2, unlist), 
             stringsAsFactors = FALSE))
     } else {
         out <- data.frame()
     }
-    #
+    # 
     out <- rcites_assign_class(out)
     out
 }

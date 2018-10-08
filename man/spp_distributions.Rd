@@ -5,7 +5,7 @@
 \title{Get distributions data available for a given taxon concept.}
 \usage{
 spp_distributions(taxon_id, language = "en", raw = FALSE,
-  token = NULL)
+  token = NULL, verbose = TRUE)
 }
 \arguments{
 \item{taxon_id}{character string containing a species' taxon concept identifier
@@ -22,6 +22,8 @@ names of distributions, values are taken among \code{en} (English),
 \code{NULL} and requires the environment variable \code{SPECIESPLUS_TOKEN} to be
 set directly in \code{Renviron}. Alternatively, \code{set_token()} can
 be used to set \code{SPECIESPLUS_TOKEN} for the current session.}
+
+\item{verbose}{a logical. Should extra information be reported on progress?}
 }
 \value{
 If \code{raw} is set to \code{TRUE} then an object of class \code{spp_raw} is returned
@@ -40,8 +42,8 @@ the taxon identifier is known.
 \examples{
 \donttest{
  res1 <- spp_distributions(taxon_id = '4521')
- res2 <- spp_distributions(taxon_id = '3210')
- res3 <- spp_distributions(taxon_id = '4521', raw = TRUE)
+ res2 <- spp_distributions(taxon_id = c('4521', '3210', '10255'), raw = TRUE)
+ res3 <- spp_distributions(taxon_id = '4521', raw = TRUE, verbose = FALSE)
  res4 <- spp_distributions(taxon_id = '4521', language = 'fr')
 }
 }
