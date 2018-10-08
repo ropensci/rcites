@@ -64,6 +64,14 @@ print.spp_eu_leg <- function(x, ...) {
     rcites_print_df_rm(x$eu_decisions, col_rm = npr)
 }
 
+#' @method print spp_eu_leg_multi
+#' @rdname print.spp
+print.spp_eu_leg_multi <- function(x, ...) {
+    rcites_print_taxon_id(x$eu_listings$taxon_id)
+    cat("\n")
+    print.spp_eu_leg(x)
+}
+
 
 #' @method print spp_cites_leg
 #' @rdname print.spp

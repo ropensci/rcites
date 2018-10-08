@@ -42,7 +42,7 @@ the taxon identifier is known.
 \examples{
 \donttest{
  res1 <- spp_distributions(taxon_id = '4521')
- res2 <- spp_distributions(taxon_id = c('4521', '3210', '10255'), raw = TRUE)
+ res2 <- spp_distributions(taxon_id = c('4521', '3210', '10255'))
  res3 <- spp_distributions(taxon_id = '4521', raw = TRUE, verbose = FALSE)
  res4 <- spp_distributions(taxon_id = '4521', language = 'fr')
 }

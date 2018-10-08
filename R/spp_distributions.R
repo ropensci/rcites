@@ -31,7 +31,7 @@
 #' @examples
 #' \donttest{
 #'  res1 <- spp_distributions(taxon_id = '4521')
-#'  res2 <- spp_distributions(taxon_id = c('4521', '3210', '10255'), raw = TRUE)
+#'  res2 <- spp_distributions(taxon_id = c('4521', '3210', '10255'))
 #'  res3 <- spp_distributions(taxon_id = '4521', raw = TRUE, verbose = FALSE)
 #'  res4 <- spp_distributions(taxon_id = '4521', language = 'fr')
 #' }
@@ -41,7 +41,7 @@ spp_distributions <- function(taxon_id, language = "en", raw = FALSE, token = NU
     
     if (length(taxon_id) > 1) {
         out <- lapply(taxon_id, spp_distributions, language = language, 
-            raw = raw, token = token)
+            raw = raw, token = token, verbose = verbose)
         out <- rcites_combine_lists(out, taxon_id, raw)
     } else {
         # token check
@@ -53,7 +53,7 @@ spp_distributions <- function(taxon_id, language = "en", raw = FALSE, token = NU
         } else {
             if (verbose) 
                 rcites_current_id(taxon_id)
-            # set query_string
+            # set query string
             tmp <- rcites_lang(language)
             if (!is.null(tmp)) 
                 tmp <- paste0("?", tmp)

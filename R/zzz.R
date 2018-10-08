@@ -65,6 +65,13 @@ rcites_current_id <- function(x) {
     cat(">>> Now processing taxon_id '", x, "'............", sep = "")
 }
 
+rcites_add_taxon_id <- function(x, taxon_id) {
+    if (length(x)) {
+        out <- cbind(taxon_id = taxon_id, x)
+    } else out <- data.frame()
+    out
+}
+
 
 rcites_combine_lists <- function(x, taxon_id, raw) {
     wch <- !unlist(lapply(x, is.null))
@@ -82,8 +89,7 @@ rcites_combine_lists <- function(x, taxon_id, raw) {
         }
         # 
         for (i in seq_along(x)) {
-            x[[i]] <- lapply(x[[i]], function(y) cbind(taxon_id = taxon_id[wch][i], 
-                y))
+            x[[i]] <- lapply(x[[i]], rcites_add_taxon_id, taxon_id[wch][i])
         }
         # 
         out <- list()
