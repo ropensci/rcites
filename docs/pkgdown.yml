@@ -2,6 +2,7 @@ pandoc: 2.2.1
 pkgdown: 1.1.0.9000
 pkgdown_sha: ~
 articles:
+  bulk_analysis: bulk_analysis.html
   elephant: elephant.html
   get_started: get_started.html
 

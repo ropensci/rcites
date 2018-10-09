@@ -16,7 +16,7 @@ matrix:
     - os: linux
       r: devel
       env:
-        - NOT_CRAN=false
+        - R_CODECOV=false
 
 
 
