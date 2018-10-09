@@ -5,6 +5,7 @@
 [![Build status](https://travis-ci.org/ibartomeus/rcites.svg?branch=master)](https://travis-ci.org/ibartomeus/rcites)
 [![Build status](https://ci.appveyor.com/api/projects/status/bsd3c7mv12xv959j/branch/master?svg=true)](https://ci.appveyor.com/project/KevCaz/rcites/branch/master)
 [![codecov](https://codecov.io/gh/ibartomeus/rcites/branch/master/graph/badge.svg)](https://codecov.io/gh/ibartomeus/rcites)
+[![Coverage Status](https://coveralls.io/repos/github/ibartomeus/rcites/badge.svg?branch=master)](https://coveralls.io/github/ibartomeus/rcites?branch=master)
 [![ROpenSci status](https://badges.ropensci.org/244_status.svg)](https://github.com/ropensci/onboarding/issues/244)
 [![CRAN status](https://www.r-pkg.org/badges/version/rcites)](https://www.r-pkg.org/badges/version/rcites)
 [![CRAN downloads](https://cranlogs.r-pkg.org/badges/grand-total/rcites)](https://cran.r-project.org/package=rcites)

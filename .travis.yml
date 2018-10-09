@@ -8,16 +8,13 @@ matrix:
   include:
     - os: linux
       r: oldrel
-      env:
-        - NOT_CRAN=false
-        - R_CODECOV=false
+      env: NOT_CRAN=true
     - os: linux
       r: release
+      env: NOT_CRAN=false
     - os: linux
       r: devel
-      env:
-        - R_CODECOV=false
-
+      env: NOT_CRAN=true
 
 
 notifications:
@@ -27,13 +24,12 @@ notifications:
     recipients:
       - kcazelle@uoguelph.ca
 
-r_packages:
-  - covr
-
 before_install:
     - echo $SPECIESPLUS_TOKEN > .Renviron
-    - echo 'NOT_CRAN = "true"' >> .Renviron
     - cat .Renviron
+
+r_github_packages:
+  - r-lib/covr
 
 after_success:
   - Rscript -e 'covr::codecov()'
