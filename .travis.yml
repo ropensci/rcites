@@ -8,10 +8,10 @@ matrix:
   include:
     - os: linux
       r: oldrel
-      env: NOT_CRAN=true
+      env: NOT_CRAN=flase
     - os: linux
       r: release
-      env: NOT_CRAN=false
+      env: NOT_CRAN=true
     - os: linux
       r: devel
       env: NOT_CRAN=true

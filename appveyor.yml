@@ -11,9 +11,9 @@ install:
   ps: Bootstrap
 
 before_build:
-    - echo $SPECIESPLUS_TOKEN > .Renviron
-    - echo 'NOT_CRAN = "true"' >> .Renviron
-
+    - echo $env.SPECIESPLUS_TOKEN > .Renviron
+    - echo 'NOT_CRAN = true' >> .Renviron
+    - cat .Renviron
 
 # Adapt as necessary starting from here
 build_script:
