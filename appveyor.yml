@@ -12,7 +12,6 @@ install:
 
 before_build:
     - echo $env.SPECIESPLUS_TOKEN > .Renviron
-    - echo 'NOT_CRAN = true' >> .Renviron
     - cat .Renviron
 
 # Adapt as necessary starting from here

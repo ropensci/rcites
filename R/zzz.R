@@ -70,7 +70,8 @@ rcites_current_id <- function(x) {
 
 rcites_add_taxon_id <- function(x, taxon_id) {
     if (length(x)) {
-        out <- cbind(taxon_id = taxon_id, x)
+        out <- cbind.data.frame(taxon_id = as.character(taxon_id), x, 
+          stringsAsFactors = FALSE)
     } else out <- data.frame()
     out
 }
