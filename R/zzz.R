@@ -70,7 +70,7 @@ rcites_current_id <- function(x) {
 
 rcites_add_taxon_id <- function(x, taxon_id) {
     if (length(x)) {
-        out <- cbind.data.frame(taxon_id = as.character(taxon_id), x, 
+        out <- cbind.data.frame(taxon_id = as.character(taxon_id), x,
           stringsAsFactors = FALSE)
     } else out <- data.frame()
     out
@@ -252,8 +252,8 @@ rcites_print_shorten <- function(x, stop = 20) {
 }
 
 rcites_print_title <- function(x, after = "", before = "") {
-    cat(before, x, "\n", paste(rep("-", nchar(x)), collapse = ""), after,
-        sep = "")
+    cat(before, x, "\n", paste(rep("-", nchar(x)+nchar(before)), collapse = ""),
+    after, sep = "")
 }
 
 rcites_print_df <- function(x, nrows = 10) {
@@ -262,7 +262,7 @@ rcites_print_df <- function(x, nrows = 10) {
         print(x)
     } else {
         tmp <- min(nrow(x), nrows)
-        print(x[seq_len(tmp), ])
+        print(x[seq_len(tmp), , drop = FALSE])
         if (tmp < nrow(x))
             cat("-------truncated-------\n")
     }

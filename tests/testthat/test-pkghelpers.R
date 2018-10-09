@@ -43,4 +43,6 @@ test_that("Print helpers", {
   expect_equal(rcites_print_shorten(str), paste0(substring(str, 1, 20), " [truncated]"))
   expect_equal(rcites_print_shorten(str2), str2)
   expect_equal(rcites_print_shorten(str, 4), "abcd [truncated]")
+  expect_output(rcites_print_title("title", "2", "1"), "1title\\n------2")
+  expect_output(rcites_print_df(data.frame(id = 1)), "  id\\n1  1")
 })
