@@ -37,7 +37,7 @@ library("rcites")
 ### Setup requirements and use
 
 To set up a connection to the CITES Speciesplus database, a personal authentication token is required. Please see the vignette for details how to get a token and how to set the token for package use:
-[Get started with rcites](https://ibartomeus.github.io/rcites/articles/rcites-vignette.html)
+[Get started with rcites](https://ibartomeus.github.io/rcites/articles/get_started.html)
 
 
 ### Key features
