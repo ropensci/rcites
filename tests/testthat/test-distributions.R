@@ -22,6 +22,8 @@ test_that("Expected classes", {
   expect_true(all(class(res2) == cl_raw))
   expect_true(all(names(res1[[1L]]) == c("id", "iso_code2", "name", "type", "tags")))
   expect_true(all(names(res1[[2L]]) == c("id", "reference")))
+  expect_null(print(res1))
+  expect_null(print(res2))
 })
 
 test_that("Language", {

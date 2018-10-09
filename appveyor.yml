@@ -11,7 +11,7 @@ install:
   ps: Bootstrap
 
 before_build:
-    - echo $(SPECIESPLUS_TOKEN) > .Renviron
+    - echo $SPECIESPLUS_TOKEN > .Renviron
     - cat .Renviron
 
 # Adapt as necessary starting from here
