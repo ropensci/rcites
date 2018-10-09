@@ -297,10 +297,13 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <li><p>set an environment variable <code>SPECIESPLUS_TOKEN</code> in <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/Startup.html"><code>.Renviron</code></a> file (preferred);</p></li>
 <li><p>use <code>set_token()</code> to set up the token as character string (with quotes). If not entered in the function, the token can be passed without quotes (not as character string) after a prompt. This way, the token <code>SPECIESPLUS_TOKEN</code> is interactively set up for the current R session (meaning a login will be required for the future R sessions);</p></li>
 </ol>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">set_token</span>(<span class="st">&quot;8QW6Qgh57sBG2k0gtt&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(rcites)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">set_token</span>(<span class="st">&quot;8QW6Qgh57sBG2k0gtt&quot;</span>)</a></code></pre></div>
+<pre><code>#&gt;  Loading rcites</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>use the <code>token</code> argument of the functions, <em>i.e.</em> the token is passed manually to each function call.</li>
 </ol>
+<p>Note that if set the token wrongly and wish for setting it again interactively, you must first forget the previous one with <code>forget_token()</code>.</p>
 </div>
 </div>
 <div id="use-of-key-features" class="section level1">
@@ -310,15 +313,14 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <div id="basic-calls-to-spp_taxonconcept" class="section level3">
 <h3>Basic calls to spp_taxonconcept()</h3>
 <p>In order to efficiently query information from the CITES database, you first need to retrieve the unique taxon identifier <code>taxon_id</code> from the <a href="https://api.speciesplus.net/documentation/v1/taxon_concepts/index.html">Species+ taxon concept</a>. To do so, you should first call <code>spp_taxonconcept()</code> and provide the scientific name of the taxon you look for. Let us start by requesting the identifier of the African bush elephant, <em>i.e.</em> <em>Loxodonta africana</em>.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">library</span>(rcites)</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">res1 &lt;-<span class="st"> </span><span class="kw">spp_taxonconcept</span>(<span class="dt">query_taxon =</span> <span class="st">&quot;Loxodonta africana&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">res1 &lt;-<span class="st"> </span><span class="kw">spp_taxonconcept</span>(<span class="dt">query_taxon =</span> <span class="st">&quot;Loxodonta africana&quot;</span>)</a></code></pre></div>
 <p>Note that if you chose chose option 3, then the code should look like the one below:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">res1 &lt;-<span class="st"> </span><span class="kw">spp_taxonconcept</span>(<span class="dt">query_taxon =</span> <span class="st">&quot;Loxodonta africana&quot;</span>, <span class="dt">token =</span> <span class="st">&quot;8QW6Qgh57sBG2k0gtt&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">res1 &lt;-<span class="st"> </span><span class="kw">spp_taxonconcept</span>(<span class="dt">query_taxon =</span> <span class="st">&quot;Loxodonta africana&quot;</span>, <span class="dt">token =</span> <span class="st">&quot;8QW6Qgh57sBG2k0gtt&quot;</span>)</a></code></pre></div>
 </div>
 <div id="object-spp_taxonconcept" class="section level3">
 <h3>Object <code>spp_taxonconcept</code></h3>
-<p><code>res1</code> is an S3 object of class <code>spp_taxonconcept</code>:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">attributes</span>(res1)</a></code></pre></div>
+<p><code>res1</code> is an S3 object of class <code>spp_taxon</code>:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">attributes</span>(res1)</a></code></pre></div>
 <pre><code>#&gt;  $names
 #&gt;  [1] &quot;all_id&quot;         &quot;general&quot;        &quot;higher_taxa&quot;    &quot;accepted_names&quot;
 #&gt;  [5] &quot;common_names&quot;   &quot;synonyms&quot;       &quot;cites_listings&quot;
@@ -329,7 +331,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 #&gt;  $taxonomy
 #&gt;  [1] &quot;CITES&quot;</code></pre>
 <p>that contains information sorted into several data frames (see <code>?spp_taxonconcept</code>):</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">res1</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">res1</a></code></pre></div>
 <pre><code>#&gt;  General info - CITES ($general):
 #&gt;  --------------------------------
 #&gt;      id          full_name        author_year    rank name_status
@@ -367,13 +369,13 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 #&gt;  
 #&gt;  Information available: $all_id, $general, $higher_taxa, $accepted_names, $common_names, $synonyms, $cites_listings</code></pre>
 <p>For some taxa, there are more than one taxon identifier available. In <code>general</code> only <em>active</em> identifiers are listed, the the full list of identifier is available in <code>all_id</code>:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">res3 &lt;-<span class="st"> </span><span class="kw">spp_taxonconcept</span>(<span class="dt">query =</span> <span class="st">&quot;Amazilia versicolor&quot;</span>)<span class="co">#, appendix_only = TRUE)</span></a>
-<a class="sourceLine" id="cb8-2" data-line-number="2">res3<span class="op">$</span>general</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">res3 &lt;-<span class="st"> </span><span class="kw">spp_taxonconcept</span>(<span class="dt">query =</span> <span class="st">&quot;Amazilia versicolor&quot;</span>)<span class="co">#, appendix_only = TRUE)</span></a>
+<a class="sourceLine" id="cb9-2" data-line-number="2">res3<span class="op">$</span>general</a></code></pre></div>
 <pre><code>#&gt;      id           full_name      author_year    rank name_status
 #&gt;  1 3210 Amazilia versicolor (Vieillot, 1818) SPECIES           A
 #&gt;             updated_at active cites_listing
 #&gt;  1 2015-05-07 15:10:59   TRUE            II</code></pre>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">res3<span class="op">$</span>all_id</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">res3<span class="op">$</span>all_id</a></code></pre></div>
 <pre><code>#&gt;       id           full_name      author_year    rank name_status
 #&gt;  1  3210 Amazilia versicolor (Vieillot, 1818) SPECIES           A
 #&gt;  2 65789 Amazilia versicolor (Vieillot, 1818) SPECIES           S
@@ -381,23 +383,23 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 #&gt;  1 2015-05-07 15:10:59   TRUE
 #&gt;  2 2016-09-23 15:30:46  FALSE</code></pre>
 <p>Also, if the taxon is not listed, a warning message should come up.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">res4 &lt;-<span class="st"> </span><span class="kw">spp_taxonconcept</span>(<span class="dt">query =</span> <span class="st">&quot;Homo Sapiens&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">res4 &lt;-<span class="st"> </span><span class="kw">spp_taxonconcept</span>(<span class="dt">query =</span> <span class="st">&quot;Homo Sapiens&quot;</span>)</a></code></pre></div>
 <pre><code>#&gt;  Warning in spp_taxonconcept(query = &quot;Homo Sapiens&quot;): Taxon not listed.</code></pre>
 </div>
 <div id="custom-calls-to-spp_taxonconcept" class="section level3">
 <h3>Custom calls to spp_taxonconcept()</h3>
 <p><code>spp_taxonconcept()</code> includes several argument to retrieve a specific subset of information (see <code>?spp_taxonconcept</code> for more details):</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw">args</span>(<span class="st">'spp_taxonconcept'</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw">args</span>(<span class="st">'spp_taxonconcept'</span>)</a></code></pre></div>
 <pre><code>#&gt;  function (query_taxon, taxonomy = &quot;CITES&quot;, with_descendants = FALSE, 
 #&gt;      language = NULL, updated_since = NULL, per_page = 500, pages = NULL, 
 #&gt;      raw = FALSE, token = NULL, verbose = TRUE) 
 #&gt;  NULL</code></pre>
 <p>Most importantly, the argument <code>taxonomy</code> allows a selection between the two databases (CITES or CMS):</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">spp_taxonconcept</span>(<span class="dt">query =</span> <span class="st">&quot;Amazilia versicolor&quot;</span>, <span class="dt">taxonomy =</span> <span class="st">&quot;CMS&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw">spp_taxonconcept</span>(<span class="dt">query =</span> <span class="st">&quot;Amazilia versicolor&quot;</span>, <span class="dt">taxonomy =</span> <span class="st">&quot;CMS&quot;</span>)</a></code></pre></div>
 <pre><code>#&gt;  Warning in spp_taxonconcept(query = &quot;Amazilia versicolor&quot;, taxonomy =
 #&gt;  &quot;CMS&quot;): Taxon not listed.</code></pre>
 <pre><code>#&gt;  NULL</code></pre>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw">spp_taxonconcept</span>(<span class="dt">query =</span> <span class="st">&quot;Loxodonta africana&quot;</span>, <span class="dt">taxonomy =</span> <span class="st">&quot;CMS&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="kw">spp_taxonconcept</span>(<span class="dt">query =</span> <span class="st">&quot;Loxodonta africana&quot;</span>, <span class="dt">taxonomy =</span> <span class="st">&quot;CMS&quot;</span>)</a></code></pre></div>
 <pre><code>#&gt;  General info - CMS ($general):
 #&gt;  ------------------------------
 #&gt;       id          full_name        author_year    rank name_status
@@ -431,8 +433,8 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 #&gt;  
 #&gt;  Information available: $all_id, $general, $higher_taxa, $accepted_names, $common_names, $synonyms</code></pre>
 <p><code>language</code> and <code>updated_since</code> are convenient filters restrictively for the written language of common names (must be a two-letters code see <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">ISO 3166-1 alpha-2</a>) and the last update of the entries:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="kw">spp_taxonconcept</span>(<span class="dt">query_taxon =</span> <span class="st">&quot;Loxodonta africana&quot;</span>, <span class="dt">language =</span> <span class="st">'EN'</span>,</a>
-<a class="sourceLine" id="cb21-2" data-line-number="2">  <span class="dt">updated_since =</span> <span class="st">&quot;2016-01-01&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="kw">spp_taxonconcept</span>(<span class="dt">query_taxon =</span> <span class="st">&quot;Loxodonta africana&quot;</span>, <span class="dt">language =</span> <span class="st">'EN'</span>,</a>
+<a class="sourceLine" id="cb22-2" data-line-number="2">  <span class="dt">updated_since =</span> <span class="st">&quot;2016-01-01&quot;</span>)</a></code></pre></div>
 <pre><code>#&gt;  General info - CITES ($general):
 #&gt;  --------------------------------
 #&gt;      id          full_name        author_year    rank name_status
@@ -485,7 +487,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 </table>
 <div id="cites-legislation-data" class="section level3">
 <h3>CITES legislation data</h3>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="kw">spp_cites_legislation</span>(<span class="dt">taxon_id =</span> <span class="st">&quot;4521&quot;</span>, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="kw">spp_cites_legislation</span>(<span class="dt">taxon_id =</span> <span class="st">&quot;4521&quot;</span>, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <pre><code>#&gt;  Cites listings ($cites_listings):
 #&gt;  ---------------------------------
 #&gt;      id taxon_concept_id is_current appendix change_type effective_at
@@ -549,7 +551,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 </div>
 <div id="eu-legislation-data" class="section level3">
 <h3>EU legislation data</h3>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="kw">spp_eu_legislation</span>(<span class="dt">taxon_id =</span> <span class="st">&quot;4521&quot;</span>,  <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="kw">spp_eu_legislation</span>(<span class="dt">taxon_id =</span> <span class="st">&quot;4521&quot;</span>,  <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <pre><code>#&gt;  EU listings ($eu_listings):
 #&gt;  ---------------------------
 #&gt;       id taxon_concept_id is_current annex change_type effective_at
@@ -603,7 +605,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 #&gt;  9         Wild       TRO  trophies
 #&gt;  10        Wild       TRO  trophies
 #&gt;  Field(s) not printed:  notes, eu_decision_type.description, start_event.url</code></pre>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="kw">spp_eu_legislation</span>(<span class="dt">taxon_id =</span> <span class="st">&quot;3210&quot;</span>, <span class="dt">scope =</span> <span class="st">&quot;all&quot;</span>, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1"><span class="kw">spp_eu_legislation</span>(<span class="dt">taxon_id =</span> <span class="st">&quot;3210&quot;</span>, <span class="dt">scope =</span> <span class="st">&quot;all&quot;</span>, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <pre><code>#&gt;  EU listings ($eu_listings):
 #&gt;  ---------------------------
 #&gt;        id taxon_concept_id is_current annex change_type effective_at
@@ -625,7 +627,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 </div>
 <div id="distribution-data" class="section level3">
 <h3>Distribution data</h3>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="kw">spp_distributions</span>(<span class="st">&quot;4521&quot;</span>, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1"><span class="kw">spp_distributions</span>(<span class="st">&quot;4521&quot;</span>, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <pre><code>#&gt;  Distributions ($distributions):
 #&gt;  -------------------------------
 #&gt;        id iso_code2              name    type tags
@@ -658,7 +660,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 </div>
 <div id="references" class="section level3">
 <h3>References</h3>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1"><span class="kw">spp_references</span>(<span class="st">&quot;4521&quot;</span>, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1"><span class="kw">spp_references</span>(<span class="st">&quot;4521&quot;</span>, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <pre><code>#&gt;  References ($references):
 #&gt;  -------------------------
 #&gt;        id                                             citation is_standard

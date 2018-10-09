@@ -32,7 +32,7 @@
 
 <meta property="og:title" content="Login helper function — set_token" />
 
-<meta property="og:description" content="This function sets the authentification token for the current session." />
+<meta property="og:description" content="Set and forget the authentification token for the current session." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -122,11 +122,13 @@
 
     <div class="ref-description">
     
-    <p>This function sets the authentification token for the current session.</p>
+    <p>Set and forget the authentification token for the current session.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>set_token</span>(<span class='kw'>token</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>set_token</span>(<span class='kw'>token</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+
+<span class='fu'>forget_token</span>()</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -137,6 +139,13 @@
 token can be passed without quotes (not as character string) after a prompt.</p></td>
     </tr>
     </table>
+    
+    <h2 class="hasAnchor" id="functions"><a class="anchor" href="#functions"></a>Functions</h2>
+
+    <ul>
+<li><p><code>set_token</code>: set the environment variable <code>SPECIESPLUS_TOKEN</code>.</p></li>
+<li><p><code>forget_token</code>: forget the environment variable <code>SPECIESPLUS_TOKEN</code>.</p></li>
+</ul>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
@@ -153,6 +162,8 @@ token can be passed without quotes (not as character string) after a prompt.</p>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
+      <li><a href="#functions">Functions</a></li>
+
       <li><a href="#references">References</a></li>
       
       <li><a href="#examples">Examples</a></li>

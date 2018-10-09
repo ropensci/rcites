@@ -2,17 +2,27 @@
 % Please edit documentation in R/set_token.R
 \name{set_token}
 \alias{set_token}
+\alias{forget_token}
 \title{Login helper function}
 \usage{
 set_token(token = NULL)
+
+forget_token()
 }
 \arguments{
 \item{token}{a character string (with quotes) containing you token. If \code{NULL} then the
 token can be passed without quotes (not as character string) after a prompt.}
 }
 \description{
-This function sets the authentification token for the current session.
+Set and forget the authentification token for the current session.
 }
+\section{Functions}{
+\itemize{
+\item \code{set_token}: set the environment variable \code{SPECIESPLUS_TOKEN}.
+
+\item \code{forget_token}: forget the environment variable \code{SPECIESPLUS_TOKEN}.
+}}
+
 \examples{
 \donttest{
  # NB the token below is not working

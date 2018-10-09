@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Print methods for objects of class <code>spp_*</code> — print.spp • rcites</title>
+<title>Print methods for objects of class <code>spp_raw*</code> — print.spp • rcites</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,7 +30,7 @@
 
 
 
-<meta property="og:title" content="Print methods for objects of class <code>spp_*</code> — print.spp" />
+<meta property="og:title" content="Print methods for objects of class <code>spp_raw*</code> — print.spp" />
 
 <meta property="og:description" content="Print the outputs of a Species+ API call" />
 <meta name="twitter:card" content="summary" />
@@ -115,8 +115,8 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Print methods for objects of class <code>spp_*</code></h1>
-    <small class="dont-index">Source: <a href='https://github.com/ibartomeus/rcites/blob/master/R/print.R'><code>R/print.R</code></a></small>
+    <h1>Print methods for objects of class <code>spp_raw*</code></h1>
+    <small class="dont-index">Source: <a href='https://github.com/ibartomeus/rcites/blob/master/R/print.spp.R'><code>R/print.spp.R</code></a></small>
     <div class="hidden name"><code>print.spp.Rd</code></div>
     </div>
 
@@ -132,19 +132,10 @@
 <span class='co'># S3 method for spp_raw_multi</span>
 <span class='fu'>print</span>(<span class='no'>x</span>, <span class='no'>...</span>)
 
-<span class='co'># S3 method for spp_taxon</span>
-<span class='fu'>print</span>(<span class='no'>x</span>, <span class='no'>...</span>)
-
-<span class='co'># S3 method for spp_eu_leg</span>
-<span class='fu'>print</span>(<span class='no'>x</span>, <span class='no'>...</span>)
-
-<span class='co'># S3 method for spp_eu_leg_multi</span>
-<span class='fu'>print</span>(<span class='no'>x</span>, <span class='no'>...</span>)
-
 <span class='co'># S3 method for spp_cites_leg</span>
 <span class='fu'>print</span>(<span class='no'>x</span>, <span class='no'>...</span>)
 
-<span class='co'># S3 method for spp_eu_leg_multi</span>
+<span class='co'># S3 method for spp_cites_leg_multi</span>
 <span class='fu'>print</span>(<span class='no'>x</span>, <span class='no'>...</span>)
 
 <span class='co'># S3 method for spp_distr</span>
@@ -153,10 +144,19 @@
 <span class='co'># S3 method for spp_distr_multi</span>
 <span class='fu'>print</span>(<span class='no'>x</span>, <span class='no'>...</span>)
 
+<span class='co'># S3 method for spp_eu_leg</span>
+<span class='fu'>print</span>(<span class='no'>x</span>, <span class='no'>...</span>)
+
+<span class='co'># S3 method for spp_eu_leg_multi</span>
+<span class='fu'>print</span>(<span class='no'>x</span>, <span class='no'>...</span>)
+
 <span class='co'># S3 method for spp_refs</span>
 <span class='fu'>print</span>(<span class='no'>x</span>, <span class='no'>...</span>)
 
 <span class='co'># S3 method for spp_refs_multi</span>
+<span class='fu'>print</span>(<span class='no'>x</span>, <span class='no'>...</span>)
+
+<span class='co'># S3 method for spp_taxon</span>
 <span class='fu'>print</span>(<span class='no'>x</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -164,11 +164,11 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>The result object.</p></td>
+      <td><p>An object of class <code>spp_raw*</code>.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Ignored.</p></td>
+      <td><p>ignored.</p></td>
     </tr>
     </table>
     

@@ -119,11 +119,10 @@ rcites_getsecret <- function() {
     https://api.speciesplus.net/documentation
     ")
         set_token()
+        val <- rcites_getsecret()
     }
     val
 }
-
-rcites_forgetsecret <- function() Sys.unsetenv("SPECIESPLUS_TOKEN")
 
 
 ##################### Pagination helpers

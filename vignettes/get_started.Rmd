@@ -46,11 +46,18 @@ file (preferred);
 2. use `set_token()` to set up the token as character string (with quotes). If not entered in the function, the token can be passed without quotes (not as character string) after a prompt. This way, the token `SPECIESPLUS_TOKEN` is interactively set up for the current R session (meaning a login will be required for the future R sessions);
 
 ```{r, eval = FALSE}
+library(rcites)
 set_token("8QW6Qgh57sBG2k0gtt")
+```
+
+```{r, echo = FALSE}
+load_all()
 ```
 
 3. use the `token` argument of the functions, *i.e.* the token is passed manually to each function call.
 
+Note that if set the token wrongly and wish for setting it again interactively,
+you must first forget the previous one with `forget_token()`.
 
 # Use of key features
 
@@ -64,7 +71,6 @@ To do so, you should first call `spp_taxonconcept()` and provide the scientific
 name of the taxon you look for. Let us start by requesting the identifier of the African bush elephant, *i.e.* *Loxodonta africana*.
 
 ```{r result_1}
-library(rcites)
 res1 <- spp_taxonconcept(query_taxon = "Loxodonta africana")
 ```
 
@@ -76,7 +82,7 @@ res1 <- spp_taxonconcept(query_taxon = "Loxodonta africana", token = "8QW6Qgh57s
 
 ### Object `spp_taxonconcept`
 
-`res1` is an S3 object of class `spp_taxonconcept`:
+`res1` is an S3 object of class `spp_taxon`:
 
 ```{r res1_attr}
 attributes(res1)

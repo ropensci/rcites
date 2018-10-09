@@ -111,10 +111,12 @@
 <li><p>set an environment variable <code>SPECIESPLUS_TOKEN</code> in <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/Startup.html"><code>.Renviron</code></a> file (preferred);</p></li>
 <li><p>use <code><a href="../reference/set_token.html">set_token()</a></code> to set up the token as character string (with quotes). If not entered in the function, the token can be passed without quotes (not as character string) after a prompt. This way, the token <code>SPECIESPLUS_TOKEN</code> is interactively set up for the current R session (meaning a login will be required for the future R sessions);</p></li>
 </ol>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="../reference/set_token.html">set_token</a></span>(<span class="st">"8QW6Qgh57sBG2k0gtt"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(rcites)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw"><a href="../reference/set_token.html">set_token</a></span>(<span class="st">"8QW6Qgh57sBG2k0gtt"</span>)</a></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li>use the <code>token</code> argument of the functions, <em>i.e.</em> the token is passed manually to each function call.</li>
 </ol>
+<p>Note that if set the token wrongly and wish for setting it again interactively, you must first forget the previous one with <code><a href="../reference/set_token.html">forget_token()</a></code>.</p>
 </div>
 </div>
 <div id="use-of-key-features" class="section level1">
@@ -127,8 +129,7 @@
 <h3 class="hasAnchor">
 <a href="#basic-calls-to-spp_taxonconcept" class="anchor"></a>Basic calls to spp_taxonconcept()</h3>
 <p>In order to efficiently query information from the CITES database, you first need to retrieve the unique taxon identifier <code>taxon_id</code> from the <a href="https://api.speciesplus.net/documentation/v1/taxon_concepts/index.html">Species+ taxon concept</a>. To do so, you should first call <code><a href="../reference/spp_taxonconcept.html">spp_taxonconcept()</a></code> and provide the scientific name of the taxon you look for. Let us start by requesting the identifier of the African bush elephant, <em>i.e.</em> <em>Loxodonta africana</em>.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">library</span>(rcites)</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">res1 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/spp_taxonconcept.html">spp_taxonconcept</a></span>(<span class="dt">query_taxon =</span> <span class="st">"Loxodonta africana"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">res1 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/spp_taxonconcept.html">spp_taxonconcept</a></span>(<span class="dt">query_taxon =</span> <span class="st">"Loxodonta africana"</span>)</a></code></pre></div>
 <p>Note that if you chose chose option 3, then the code should look like the one below:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">res1 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/spp_taxonconcept.html">spp_taxonconcept</a></span>(<span class="dt">query_taxon =</span> <span class="st">"Loxodonta africana"</span>, <span class="dt">token =</span> <span class="st">"8QW6Qgh57sBG2k0gtt"</span>)</a></code></pre></div>
 </div>
@@ -136,7 +137,7 @@
 <h3 class="hasAnchor">
 <a href="#object-spp_taxonconcept" class="anchor"></a>Object <code>spp_taxonconcept</code>
 </h3>
-<p><code>res1</code> is an S3 object of class <code>spp_taxonconcept</code>:</p>
+<p><code>res1</code> is an S3 object of class <code>spp_taxon</code>:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">attributes</span>(res1)</a></code></pre></div>
 <pre><code>#&gt;  $names
 #&gt;  [1] "all_id"         "general"        "higher_taxa"    "accepted_names"
@@ -149,87 +150,42 @@
 #&gt;  [1] "CITES"</code></pre>
 <p>that contains information sorted into several data frames (see <code><a href="../reference/spp_taxonconcept.html">?spp_taxonconcept</a></code>):</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">res1</a></code></pre></div>
-<pre><code>#&gt;  $all_id
-#&gt;      id          full_name        author_year    rank name_status
-#&gt;  1 4521 Loxodonta africana (Blumenbach, 1797) SPECIES           A
-#&gt;             updated_at active
-#&gt;  1 2018-07-02 12:15:37   TRUE
-#&gt;  
-#&gt;  $general
+<pre><code>#&gt;  General info - CITES ($general):
+#&gt;  --------------------------------
 #&gt;      id          full_name        author_year    rank name_status
 #&gt;  1 4521 Loxodonta africana (Blumenbach, 1797) SPECIES           A
 #&gt;             updated_at active cites_listing
 #&gt;  1 2018-07-02 12:15:37   TRUE          I/II
 #&gt;  
-#&gt;  $higher_taxa
+#&gt;  Classification ($higher_taxa):
+#&gt;  ------------------------------
 #&gt;      id  kingdom   phylum    class       order       family
 #&gt;  1 4521 Animalia Chordata Mammalia Proboscidea Elephantidae
 #&gt;  
-#&gt;  $accepted_names
-#&gt;  data frame with 0 columns and 0 rows
-#&gt;  
-#&gt;  $common_names
-#&gt;       id                      name language
-#&gt;  1  4521                   Olifant       AF
-#&gt;  2  4521                       Fel       AR
-#&gt;  3  4521                       Fil       AZ
-#&gt;  4  4521                      Slon       BE
-#&gt;  5  4521                      Slon       BG
-#&gt;  6  4521                  Elefante       CA
-#&gt;  7  4521                      Slon       CS
-#&gt;  8  4521         afrikansk elefant       DA
-#&gt;  9  4521                   Elefant       DA
-#&gt;  10 4521     Afrikanischer Elefant       DE
-#&gt;  11 4521                 Elefantas       EL
-#&gt;  12 4521          African Elephant       EN
-#&gt;  13 4521 African Savannah Elephant       EN
-#&gt;  14 4521                   Elevant       ET
-#&gt;  15 4521                     Norsu       FI
-#&gt;  16 4521              Afrikannorsu       FI
-#&gt;  17 4521                 Elefantti       FI
-#&gt;  18 4521        Eléphant d'Afrique       FR
-#&gt;  19 4521         Eléphant africain       FR
-#&gt;  20 4521                    Hathis       HI
-#&gt;  21 4521                    Haathi       HI
-#&gt;  22 4521                      Fill       IS
-#&gt;  23 4521         Elefante africano       IT
-#&gt;  24 4521                    Domrey       KM
-#&gt;  25 4521                   Elefant       NO
-#&gt;  26 4521                      Slon       RU
-#&gt;  27 4521         Elefante africano       ES
-#&gt;  28 4521                     Ndovo       SW
-#&gt;  29 4521                     Tembo       SW
-#&gt;  30 4521         afrikansk elefant       SV
-#&gt;  31 4521                    Haathi       UR
-#&gt;  32 4521                  Elefante       PT
-#&gt;  33 4521                  Elefante       EU
-#&gt;  34 4521                      Slon       HR
-#&gt;  35 4521                     Piugh       HY
-#&gt;  36 4521                   Olifant       NL
-#&gt;  37 4521        Afrikaanse olifant       NL
-#&gt;  
-#&gt;  $synonyms
+#&gt;  Synonyms ($synonyms):
+#&gt;  ---------------------
 #&gt;      id apply.do.call.rbind..tmp.wch....2..unlist.
 #&gt;  1 4521                                      37069
 #&gt;  2 4521                         Loxodonta cyclotis
 #&gt;  3 4521                           (Matschie, 1900)
 #&gt;  4 4521                                    SPECIES
 #&gt;  
-#&gt;  $cites_listings
-#&gt;      id   id appendix
-#&gt;  1 4521 3666       II
-#&gt;  2 4521 3665        I
-#&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         annotation
-#&gt;  1 The populations of Botswana, Namibia, South Africa and Zimbabwe are listed in Appendix II for the exclusive purpose of allowing:a) trade in hunting trophies for non-commercial purposes;b) trade in live animals to appropriate and acceptable destinations, as defined in Resolution Conf. 11.20, for Botswana and Zimbabwe and for in situ conservation programmes for Namibia and South Africa;c) trade in hides;d) trade in hair;e) trade in leather goods for commercial or non-commercial purposes for Botswana, Namibia and South Africa and for non-commercial purposes for Zimbabwe;f) trade in individually marked and certified ekipas incorporated in finished jewellery for non-commercial purposes for Namibia and ivory carvings for non-commercial purposes for Zimbabwe;g) trade in registered raw ivory (for Botswana, Namibia, South Africa and Zimbabwe, whole tusks and pieces) subject to the following:      i) only registered government-owned stocks, originating in the State (excluding seized ivory and ivory of unknown origin);      ii) only to trading partners that have been verified by the Secretariat, in consultation with the Standing Committee, to have sufficient national legislation and domestic trade controls to ensure that the imported ivory will not be re-exported and will be managed in accordance with all requirements of Resolution Conf. 10.10 (Rev. CoP14) concerning domestic manufacturing and trade;    iii) not before the Secretariat has verified the prospective importing countries and the registered government-owned stocks;     iv) raw ivory pursuant to the conditional sale of registered government-owned ivory stocks agreed at CoP12, which are 20,000 kg (Botswana), 10,000 kg (Namibia) and 30,000 kg (South Africa);      v) in addition to the quantities agreed at CoP12, government-owned ivory from Botswana, Namibia, South Africa and Zimbabwe registered by 31 January 2007 and verified by the Secretariat may be traded and despatched, with the ivory in paragraph g) iv) above, in a single sale per destination under strict supervision of the Secretariat;     vi) the proceeds of the trade are used exclusively for elephant conservation and community conservation and development programmes within or adjacent to the elephant range; and    vii) the additional quantities specified in paragraph g) v) above shall be traded only after the Standing Committee has agreed that the above conditions have been met; and h) no further proposals to allow trade in elephant ivory from populations already in Appendix II shall be submitted to the Conference of the Parties for the period from CoP14 and ending nine years from the date of the single sale of ivory that is to take place in accordance with provisions in paragraphs g) i), g) ii), g) iii), g) vi) and g) vii). In addition such further proposals shall be dealt with in accordance with Decisions 14.77 and 14.78 (Rev. CoP15).On a proposal from the Secretariat, the Standing Committee can decide to cause this trade to cease partially or completely in the event of non-compliance by exporting or importing countries, or in the case of proven detrimental impacts of the trade on other elephant populations.All other specimens shall be deemed to be specimens of species included in Appendix I and the trade in them shall be regulated accordingly.
-#&gt;  2                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              Included in Appendix I, except the populations of Botswana, Namibia, South Africa and Zimbabwe, which are included in Appendix II.
-#&gt;    hash_annotation effective_at party.iso_code2 party.name party.type
-#&gt;  1            &lt;NA&gt;   2007-09-13            &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
-#&gt;  2            &lt;NA&gt;   2007-09-13            &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt;  Common names ($common_names):
+#&gt;  -----------------------------
+#&gt;       id                  name language
+#&gt;  1  4521               Olifant       AF
+#&gt;  2  4521                   Fel       AR
+#&gt;  3  4521                   Fil       AZ
+#&gt;  4  4521                  Slon       BE
+#&gt;  5  4521                  Slon       BG
+#&gt;  6  4521              Elefante       CA
+#&gt;  7  4521                  Slon       CS
+#&gt;  8  4521     afrikansk elefant       DA
+#&gt;  9  4521               Elefant       DA
+#&gt;  10 4521 Afrikanischer Elefant       DE
+#&gt;  -------truncated-------
 #&gt;  
-#&gt;  attr(,"class")
-#&gt;  [1] "spp_taxon"
-#&gt;  attr(,"taxonomy")
-#&gt;  [1] "CITES"</code></pre>
+#&gt;  Information available: $all_id, $general, $higher_taxa, $accepted_names, $common_names, $synonyms, $cites_listings</code></pre>
 <p>For some taxa, there are more than one taxon identifier available. In <code>general</code> only <em>active</em> identifiers are listed, the the full list of identifier is available in <code>all_id</code>:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">res3 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/spp_taxonconcept.html">spp_taxonconcept</a></span>(<span class="dt">query =</span> <span class="st">"Amazilia versicolor"</span>)<span class="co">#, appendix_only = TRUE)</span></a>
 <a class="sourceLine" id="cb8-2" data-line-number="2">res3<span class="op">$</span>general</a></code></pre></div>
@@ -263,121 +219,68 @@
 #&gt;  "CMS"): Taxon not listed.</code></pre>
 <pre><code>#&gt;  NULL</code></pre>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw"><a href="../reference/spp_taxonconcept.html">spp_taxonconcept</a></span>(<span class="dt">query =</span> <span class="st">"Loxodonta africana"</span>, <span class="dt">taxonomy =</span> <span class="st">"CMS"</span>)</a></code></pre></div>
-<pre><code>#&gt;  $all_id
+<pre><code>#&gt;  General info - CMS ($general):
+#&gt;  ------------------------------
 #&gt;       id          full_name        author_year    rank name_status
 #&gt;  1 11691 Loxodonta africana (Blumenbach, 1797) SPECIES           A
 #&gt;             updated_at active
 #&gt;  1 2018-06-05 09:19:14   TRUE
 #&gt;  
-#&gt;  $general
-#&gt;       id          full_name        author_year    rank name_status
-#&gt;  1 11691 Loxodonta africana (Blumenbach, 1797) SPECIES           A
-#&gt;             updated_at active
-#&gt;  1 2018-06-05 09:19:14   TRUE
-#&gt;  
-#&gt;  $higher_taxa
+#&gt;  Classification ($higher_taxa):
+#&gt;  ------------------------------
 #&gt;       id  kingdom   phylum    class       order       family
 #&gt;  1 11691 Animalia Chordata Mammalia Proboscidea Elephantidae
 #&gt;  
-#&gt;  $accepted_names
+#&gt;  Synonyms ($synonyms):
+#&gt;  ---------------------
 #&gt;  data frame with 0 columns and 0 rows
 #&gt;  
-#&gt;  $common_names
-#&gt;        id                      name language
-#&gt;  1  11691                   Olifant       AF
-#&gt;  2  11691                       Fel       AR
-#&gt;  3  11691                       Fil       AZ
-#&gt;  4  11691                      Slon       BE
-#&gt;  5  11691                      Slon       BG
-#&gt;  6  11691                  Elefante       CA
-#&gt;  7  11691                      Slon       CS
-#&gt;  8  11691         afrikansk elefant       DA
-#&gt;  9  11691                   Elefant       DA
-#&gt;  10 11691     Afrikanischer Elefant       DE
-#&gt;  11 11691                 Elefantas       EL
-#&gt;  12 11691          African Elephant       EN
-#&gt;  13 11691 African Savannah Elephant       EN
-#&gt;  14 11691                   Elevant       ET
-#&gt;  15 11691                     Norsu       FI
-#&gt;  16 11691              Afrikannorsu       FI
-#&gt;  17 11691                 Elefantti       FI
-#&gt;  18 11691         Eléphant africain       FR
-#&gt;  19 11691        Eléphant d'Afrique       FR
-#&gt;  20 11691                    Haathi       HI
-#&gt;  21 11691                    Hathis       HI
-#&gt;  22 11691                      Fill       IS
-#&gt;  23 11691         Elefante africano       IT
-#&gt;  24 11691                    Domrey       KM
-#&gt;  25 11691                   Elefant       NO
-#&gt;  26 11691                      Slon       RU
-#&gt;  27 11691         Elefante africano       ES
-#&gt;  28 11691                     Tembo       SW
-#&gt;  29 11691                     Ndovo       SW
-#&gt;  30 11691         afrikansk elefant       SV
-#&gt;  31 11691                    Haathi       UR
-#&gt;  32 11691                  Elefante       PT
-#&gt;  33 11691                  Elefante       EU
-#&gt;  34 11691                      Slon       HR
-#&gt;  35 11691                     Piugh       HY
-#&gt;  36 11691                   Olifant       NL
-#&gt;  37 11691        Afrikaanse olifant       NL
+#&gt;  Common names ($common_names):
+#&gt;  -----------------------------
+#&gt;        id                  name language
+#&gt;  1  11691               Olifant       AF
+#&gt;  2  11691                   Fel       AR
+#&gt;  3  11691                   Fil       AZ
+#&gt;  4  11691                  Slon       BE
+#&gt;  5  11691                  Slon       BG
+#&gt;  6  11691              Elefante       CA
+#&gt;  7  11691                  Slon       CS
+#&gt;  8  11691     afrikansk elefant       DA
+#&gt;  9  11691               Elefant       DA
+#&gt;  10 11691 Afrikanischer Elefant       DE
+#&gt;  -------truncated-------
 #&gt;  
-#&gt;  $synonyms
-#&gt;  data frame with 0 columns and 0 rows
-#&gt;  
-#&gt;  attr(,"class")
-#&gt;  [1] "spp_taxon"
-#&gt;  attr(,"taxonomy")
-#&gt;  [1] "CMS"</code></pre>
+#&gt;  Information available: $all_id, $general, $higher_taxa, $accepted_names, $common_names, $synonyms</code></pre>
 <p><code>language</code> and <code>updated_since</code> are convenient filters restrictively for the written language of common names (must be a two-letters code see <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">ISO 3166-1 alpha-2</a>) and the last update of the entries:</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="kw"><a href="../reference/spp_taxonconcept.html">spp_taxonconcept</a></span>(<span class="dt">query_taxon =</span> <span class="st">"Loxodonta africana"</span>, <span class="dt">language =</span> <span class="st">'EN'</span>,</a>
 <a class="sourceLine" id="cb21-2" data-line-number="2">  <span class="dt">updated_since =</span> <span class="st">"2016-01-01"</span>)</a></code></pre></div>
-<pre><code>#&gt;  $all_id
-#&gt;      id          full_name        author_year    rank name_status
-#&gt;  1 4521 Loxodonta africana (Blumenbach, 1797) SPECIES           A
-#&gt;             updated_at active
-#&gt;  1 2018-07-02 12:15:37   TRUE
-#&gt;  
-#&gt;  $general
+<pre><code>#&gt;  General info - CITES ($general):
+#&gt;  --------------------------------
 #&gt;      id          full_name        author_year    rank name_status
 #&gt;  1 4521 Loxodonta africana (Blumenbach, 1797) SPECIES           A
 #&gt;             updated_at active cites_listing
 #&gt;  1 2018-07-02 12:15:37   TRUE          I/II
 #&gt;  
-#&gt;  $higher_taxa
+#&gt;  Classification ($higher_taxa):
+#&gt;  ------------------------------
 #&gt;      id  kingdom   phylum    class       order       family
 #&gt;  1 4521 Animalia Chordata Mammalia Proboscidea Elephantidae
 #&gt;  
-#&gt;  $accepted_names
-#&gt;  data frame with 0 columns and 0 rows
-#&gt;  
-#&gt;  $common_names
-#&gt;      id                      name language
-#&gt;  1 4521          African Elephant       EN
-#&gt;  2 4521 African Savannah Elephant       EN
-#&gt;  
-#&gt;  $synonyms
+#&gt;  Synonyms ($synonyms):
+#&gt;  ---------------------
 #&gt;      id apply.do.call.rbind..tmp.wch....2..unlist.
 #&gt;  1 4521                                      37069
 #&gt;  2 4521                         Loxodonta cyclotis
 #&gt;  3 4521                           (Matschie, 1900)
 #&gt;  4 4521                                    SPECIES
 #&gt;  
-#&gt;  $cites_listings
-#&gt;      id   id appendix
-#&gt;  1 4521 3666       II
-#&gt;  2 4521 3665        I
-#&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         annotation
-#&gt;  1 The populations of Botswana, Namibia, South Africa and Zimbabwe are listed in Appendix II for the exclusive purpose of allowing:a) trade in hunting trophies for non-commercial purposes;b) trade in live animals to appropriate and acceptable destinations, as defined in Resolution Conf. 11.20, for Botswana and Zimbabwe and for in situ conservation programmes for Namibia and South Africa;c) trade in hides;d) trade in hair;e) trade in leather goods for commercial or non-commercial purposes for Botswana, Namibia and South Africa and for non-commercial purposes for Zimbabwe;f) trade in individually marked and certified ekipas incorporated in finished jewellery for non-commercial purposes for Namibia and ivory carvings for non-commercial purposes for Zimbabwe;g) trade in registered raw ivory (for Botswana, Namibia, South Africa and Zimbabwe, whole tusks and pieces) subject to the following:      i) only registered government-owned stocks, originating in the State (excluding seized ivory and ivory of unknown origin);      ii) only to trading partners that have been verified by the Secretariat, in consultation with the Standing Committee, to have sufficient national legislation and domestic trade controls to ensure that the imported ivory will not be re-exported and will be managed in accordance with all requirements of Resolution Conf. 10.10 (Rev. CoP14) concerning domestic manufacturing and trade;    iii) not before the Secretariat has verified the prospective importing countries and the registered government-owned stocks;     iv) raw ivory pursuant to the conditional sale of registered government-owned ivory stocks agreed at CoP12, which are 20,000 kg (Botswana), 10,000 kg (Namibia) and 30,000 kg (South Africa);      v) in addition to the quantities agreed at CoP12, government-owned ivory from Botswana, Namibia, South Africa and Zimbabwe registered by 31 January 2007 and verified by the Secretariat may be traded and despatched, with the ivory in paragraph g) iv) above, in a single sale per destination under strict supervision of the Secretariat;     vi) the proceeds of the trade are used exclusively for elephant conservation and community conservation and development programmes within or adjacent to the elephant range; and    vii) the additional quantities specified in paragraph g) v) above shall be traded only after the Standing Committee has agreed that the above conditions have been met; and h) no further proposals to allow trade in elephant ivory from populations already in Appendix II shall be submitted to the Conference of the Parties for the period from CoP14 and ending nine years from the date of the single sale of ivory that is to take place in accordance with provisions in paragraphs g) i), g) ii), g) iii), g) vi) and g) vii). In addition such further proposals shall be dealt with in accordance with Decisions 14.77 and 14.78 (Rev. CoP15).On a proposal from the Secretariat, the Standing Committee can decide to cause this trade to cease partially or completely in the event of non-compliance by exporting or importing countries, or in the case of proven detrimental impacts of the trade on other elephant populations.All other specimens shall be deemed to be specimens of species included in Appendix I and the trade in them shall be regulated accordingly.
-#&gt;  2                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              Included in Appendix I, except the populations of Botswana, Namibia, South Africa and Zimbabwe, which are included in Appendix II.
-#&gt;    hash_annotation effective_at party.iso_code2 party.name party.type
-#&gt;  1            &lt;NA&gt;   2007-09-13            &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
-#&gt;  2            &lt;NA&gt;   2007-09-13            &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt;  Common names ($common_names):
+#&gt;  -----------------------------
+#&gt;      id                      name language
+#&gt;  1 4521          African Elephant       EN
+#&gt;  2 4521 African Savannah Elephant       EN
 #&gt;  
-#&gt;  attr(,"class")
-#&gt;  [1] "spp_taxon"
-#&gt;  attr(,"taxonomy")
-#&gt;  [1] "CITES"</code></pre>
+#&gt;  Information available: $all_id, $general, $higher_taxa, $accepted_names, $common_names, $synonyms, $cites_listings</code></pre>
 </div>
 </div>
 <div id="retrieve-a-taxon-identifiers-with" class="section level2">
@@ -404,312 +307,127 @@
 <h3 class="hasAnchor">
 <a href="#cites-legislation-data" class="anchor"></a>CITES legislation data</h3>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="kw"><a href="../reference/spp_cites_legislation.html">spp_cites_legislation</a></span>(<span class="dt">taxon_id =</span> <span class="st">"4521"</span>, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
-<pre><code>#&gt;  $cites_listings
+<pre><code>#&gt;  Cites listings ($cites_listings):
+#&gt;  ---------------------------------
 #&gt;      id taxon_concept_id is_current appendix change_type effective_at
 #&gt;  1 3666             4521       TRUE       II           +   2007-09-13
 #&gt;  2 3665             4521       TRUE        I           +   2007-09-13
 #&gt;  3 3645             4521       TRUE        I          R+   1990-01-18
 #&gt;  
-#&gt;  $cites_quotas
-#&gt;        id taxon_concept_id quota publication_date
-#&gt;  1  20604             4521     0       2017-03-06
-#&gt;  2  20586             4521     0       2017-03-06
-#&gt;  3  20695             4521     0       2017-03-06
-#&gt;  4  20696             4521     0       2017-03-06
-#&gt;  5  20697             4521     0       2017-03-06
-#&gt;  6  20698             4521     0       2017-03-06
-#&gt;  7  20699             4521     0       2017-03-06
-#&gt;  8  20700             4521     0       2017-03-06
-#&gt;  9  20701             4521     0       2017-03-06
-#&gt;  10 20703             4521     0       2017-03-06
-#&gt;  11 20704             4521     0       2017-03-06
-#&gt;  12 20705             4521   160       2017-03-06
-#&gt;  13 20876             4521     0       2017-03-06
-#&gt;  14 21526             4521     0       2017-03-06
-#&gt;  15 21532             4521     0       2017-03-06
-#&gt;  16 21533             4521     0       2017-03-06
-#&gt;  17 21534             4521     0       2017-03-06
-#&gt;  18 21535             4521     0       2017-03-06
-#&gt;  19 21536             4521     0       2017-03-06
-#&gt;  20 21537             4521     0       2017-03-06
-#&gt;  21 21538             4521     0       2017-03-06
-#&gt;  22 21539             4521     0       2017-03-06
-#&gt;  23 21651             4521     0       2017-03-29
-#&gt;  24 21652             4521     0       2017-03-29
-#&gt;  25 22867             4521   300       2018-03-19
-#&gt;  26 22925             4521   180       2018-03-19
-#&gt;  27 22949             4521   100       2018-06-27
-#&gt;                                               notes url public_display
-#&gt;  1   raw ivory as part of elephant hunting trophies               TRUE
-#&gt;  2   raw ivory as part of elephant hunting trophies               TRUE
-#&gt;  3   raw ivory as part of elephant hunting trophies               TRUE
-#&gt;  4   raw ivory as part of elephant hunting trophies               TRUE
-#&gt;  5   raw ivory as part of elephant hunting trophies               TRUE
-#&gt;  6   raw ivory as part of elephant hunting trophies               TRUE
-#&gt;  7   raw ivory as part of elephant hunting trophies               TRUE
-#&gt;  8   raw ivory as part of elephant hunting trophies               TRUE
-#&gt;  9   raw ivory as part of elephant hunting trophies               TRUE
-#&gt;  10 raw ivory as part of elephant hunting trophies                TRUE
-#&gt;  11 raw ivory as part of elephant hunting trophies                TRUE
-#&gt;  12              tusks as trophies from 80 animals                TRUE
-#&gt;  13  raw ivory as part of elephant hunting trophies               TRUE
-#&gt;  14  raw ivory as part of elephant hunting trophies               TRUE
-#&gt;  15  raw ivory as part of elephant hunting trophies               TRUE
-#&gt;  16  raw ivory as part of elephant hunting trophies               TRUE
-#&gt;  17  raw ivory as part of elephant hunting trophies               TRUE
-#&gt;  18  raw ivory as part of elephant hunting trophies               TRUE
-#&gt;  19  raw ivory as part of elephant hunting trophies               TRUE
-#&gt;  20  raw ivory as part of elephant hunting trophies               TRUE
-#&gt;  21 raw ivory as part of elephant hunting trophies                TRUE
-#&gt;  22 raw ivory as part of elephant hunting trophies                TRUE
-#&gt;  23 raw ivory as part of elephant hunting trophies                TRUE
-#&gt;  24 raw ivory as part of elephant hunting trophies                TRUE
-#&gt;  25              tusks as trophies from 150 animals               TRUE
-#&gt;  26           tusks as trophies from 90 animals\r\n               TRUE
-#&gt;  27              Tusks as trophies from 50 animals                TRUE
-#&gt;     is_current unit geo_entity.iso_code2             geo_entity.name
-#&gt;  1        TRUE &lt;NA&gt;                   CG                       Congo
-#&gt;  2        TRUE &lt;NA&gt;                   AO                      Angola
-#&gt;  3        TRUE &lt;NA&gt;                   BW                    Botswana
-#&gt;  4        TRUE &lt;NA&gt;                   BF                Burkina Faso
-#&gt;  5        TRUE &lt;NA&gt;                   CF    Central African Republic
-#&gt;  6        TRUE &lt;NA&gt;                   CI               Côte d'Ivoire
-#&gt;  7        TRUE &lt;NA&gt;                   GW               Guinea Bissau
-#&gt;  8        TRUE &lt;NA&gt;                   LR                     Liberia
-#&gt;  9        TRUE &lt;NA&gt;                   SL                Sierra Leone
-#&gt;  10       TRUE &lt;NA&gt;                   GA                       Gabon
-#&gt;  11       TRUE &lt;NA&gt;                   RW                      Rwanda
-#&gt;  12       TRUE &lt;NA&gt;                   CM                    Cameroon
-#&gt;  13       TRUE &lt;NA&gt;                   TD                        Chad
-#&gt;  14       TRUE &lt;NA&gt;                   GQ           Equatorial Guinea
-#&gt;  15       TRUE &lt;NA&gt;                   ER                     Eritrea
-#&gt;  16       TRUE &lt;NA&gt;                   ML                        Mali
-#&gt;  17       TRUE &lt;NA&gt;                   NE                       Niger
-#&gt;  18       TRUE &lt;NA&gt;                   NG                     Nigeria
-#&gt;  19       TRUE &lt;NA&gt;                   SN                     Senegal
-#&gt;  20       TRUE &lt;NA&gt;                   SO                     Somalia
-#&gt;  21       TRUE &lt;NA&gt;                   SS                 South Sudan
-#&gt;  22       TRUE &lt;NA&gt;                   GH                       Ghana
-#&gt;  23       TRUE &lt;NA&gt;                   GN                      Guinea
-#&gt;  24       TRUE &lt;NA&gt;                   SD                       Sudan
-#&gt;  25       TRUE &lt;NA&gt;                   ZA                South Africa
-#&gt;  26       TRUE &lt;NA&gt;                   NA                     Namibia
-#&gt;  27       TRUE &lt;NA&gt;                   TZ United Republic of Tanzania
-#&gt;     geo_entity.type
-#&gt;  1          COUNTRY
-#&gt;  2          COUNTRY
-#&gt;  3          COUNTRY
-#&gt;  4          COUNTRY
-#&gt;  5          COUNTRY
-#&gt;  6          COUNTRY
-#&gt;  7          COUNTRY
-#&gt;  8          COUNTRY
-#&gt;  9          COUNTRY
-#&gt;  10         COUNTRY
-#&gt;  11         COUNTRY
-#&gt;  12         COUNTRY
-#&gt;  13         COUNTRY
-#&gt;  14         COUNTRY
-#&gt;  15         COUNTRY
-#&gt;  16         COUNTRY
-#&gt;  17         COUNTRY
-#&gt;  18         COUNTRY
-#&gt;  19         COUNTRY
-#&gt;  20         COUNTRY
-#&gt;  21         COUNTRY
-#&gt;  22         COUNTRY
-#&gt;  23         COUNTRY
-#&gt;  24         COUNTRY
-#&gt;  25         COUNTRY
-#&gt;  26         COUNTRY
-#&gt;  27         COUNTRY
+#&gt;  Cites quotas ($cites_quotas):
+#&gt;  -----------------------------
+#&gt;        id taxon_concept_id quota publication_date public_display is_current
+#&gt;  1  20604             4521     0       2017-03-06           TRUE       TRUE
+#&gt;  2  20586             4521     0       2017-03-06           TRUE       TRUE
+#&gt;  3  20695             4521     0       2017-03-06           TRUE       TRUE
+#&gt;  4  20696             4521     0       2017-03-06           TRUE       TRUE
+#&gt;  5  20697             4521     0       2017-03-06           TRUE       TRUE
+#&gt;  6  20698             4521     0       2017-03-06           TRUE       TRUE
+#&gt;  7  20699             4521     0       2017-03-06           TRUE       TRUE
+#&gt;  8  20700             4521     0       2017-03-06           TRUE       TRUE
+#&gt;  9  20701             4521     0       2017-03-06           TRUE       TRUE
+#&gt;  10 20703             4521     0       2017-03-06           TRUE       TRUE
+#&gt;     unit geo_entity.iso_code2          geo_entity.name geo_entity.type
+#&gt;  1  &lt;NA&gt;                   CG                    Congo         COUNTRY
+#&gt;  2  &lt;NA&gt;                   AO                   Angola         COUNTRY
+#&gt;  3  &lt;NA&gt;                   BW                 Botswana         COUNTRY
+#&gt;  4  &lt;NA&gt;                   BF             Burkina Faso         COUNTRY
+#&gt;  5  &lt;NA&gt;                   CF Central African Republic         COUNTRY
+#&gt;  6  &lt;NA&gt;                   CI            Côte d'Ivoire         COUNTRY
+#&gt;  7  &lt;NA&gt;                   GW            Guinea Bissau         COUNTRY
+#&gt;  8  &lt;NA&gt;                   LR                  Liberia         COUNTRY
+#&gt;  9  &lt;NA&gt;                   SL             Sierra Leone         COUNTRY
+#&gt;  10 &lt;NA&gt;                   GA                    Gabon         COUNTRY
+#&gt;  -------truncated-------
+#&gt;  Field(s) not printed:  notes, url 
 #&gt;  
-#&gt;  $cites_suspensions
-#&gt;        id taxon_concept_id
-#&gt;  1  15986             &lt;NA&gt;
-#&gt;  2  17621             4521
-#&gt;  3  17620             4521
-#&gt;  4  17686             4521
-#&gt;  5  18709             4521
-#&gt;  6  15983             &lt;NA&gt;
-#&gt;  7  15971             &lt;NA&gt;
-#&gt;  8  18955             4521
-#&gt;  9  22079             &lt;NA&gt;
-#&gt;  10 22076             &lt;NA&gt;
-#&gt;  11 22132             4521
-#&gt;  12 15987             &lt;NA&gt;
-#&gt;                                                                                                                                                                                                                                                                                                                                              notes
-#&gt;  1                                                                                                                                                                                                                                                                                                                                    All exports.
-#&gt;  2                                                                                                                                                                                                                The United States has suspended imports of sport-hunted trophies of African elephant taken in Zimbabwe on or after 4 April 2014.
-#&gt;  3                                                                                                                                                                                           The United States has suspended imports of sport-hunted trophies of African elephant taken in the United Republic Tanzania during calendar year 2014.
-#&gt;  4                                                                                                                                                                                                                                                                      Stricter domestic measures governing the import of African elephant ivory.
-#&gt;  5                                                                                                                                                            Parties are requested not to authorize the import of ivory carvings from Zimbabwe where the traveller presents a ‘Short Export Permit’ - standard CITES export permit are required. 
-#&gt;  6                                                                                                                                                                                                                                                                                      All commercial trade in specimens of CITES-listed species.
-#&gt;  7                                                                                                                                                                                                                                                                                      All commercial trade in specimens of CITES-listed species.
-#&gt;  8  Stricter domestic measures from 20 March 2016 to 31 December 2019 suspending imports of tusks and ivory carvings of Elephantidae spp. in the form of: pre-Convention elephant tusks and their products; ivory carvings of African elephant obtained after the Convention entered into force; and tusks as hunting trophies obtained in Africa.
-#&gt;  9                                                                                                                                                                                                                                                                                                 All trade in specimens of CITES-listed species.
-#&gt;  10                                                                                                                                                                                                                                                                                     All commercial trade in specimens of CITES-listed species.
-#&gt;  11                                                                                                                                                                                                    Australia has stricter domestic measures for trade in &lt;i&gt;Loxodonta africana&lt;/i&gt;, which are treated as though they are listed on Appendix I.
-#&gt;  12                                                                                                                                                                                                                                                                                     All commercial trade in specimens of CITES-listed species.
-#&gt;     start_date is_current applies_to_import geo_entity.iso_code2
-#&gt;  1  2013-05-16       TRUE             FALSE                   GN
-#&gt;  2  2014-08-11       TRUE              TRUE                   ZW
-#&gt;  3  2014-08-11       TRUE              TRUE                   TZ
-#&gt;  4  2014-10-10       TRUE              TRUE                   US
-#&gt;  5  2010-08-16       TRUE              TRUE                   ZW
-#&gt;  6  2011-01-19       TRUE             FALSE                   DJ
-#&gt;  7  2004-07-30       TRUE             FALSE                   SO
-#&gt;  8  2016-04-01       TRUE              TRUE                   CN
-#&gt;  9  2018-01-30       TRUE             FALSE                   DJ
-#&gt;  10 2018-01-22       TRUE             FALSE                   LR
-#&gt;  11 2018-03-19       TRUE             FALSE                   AU
-#&gt;  12 2004-07-30       TRUE             FALSE                   MR
-#&gt;                 geo_entity.name geo_entity.type   start_notification.name
-#&gt;  1                       Guinea         COUNTRY CITES Notif. No. 2013/017
-#&gt;  2                     Zimbabwe         COUNTRY CITES Notif. No. 2014/037
-#&gt;  3  United Republic of Tanzania         COUNTRY CITES Notif. No. 2014/037
-#&gt;  4     United States of America         COUNTRY CITES Notif. No. 2014/045
-#&gt;  5                     Zimbabwe         COUNTRY CITES Notif. No. 2010/024
-#&gt;  6                     Djibouti         COUNTRY CITES Notif. No. 2011/010
-#&gt;  7                      Somalia         COUNTRY CITES Notif. No. 2004/055
-#&gt;  8                        China         COUNTRY CITES Notif. No. 2016/034
-#&gt;  9                     Djibouti         COUNTRY CITES Notif. No. 2018/015
-#&gt;  10                     Liberia         COUNTRY CITES Notif. No. 2018/012
-#&gt;  11                   Australia         COUNTRY CITES Notif. No. 2018/025
-#&gt;  12                  Mauritania         COUNTRY CITES Notif. No. 2004/055
-#&gt;     start_notification.date
-#&gt;  1               2013-05-16
-#&gt;  2               2014-08-11
-#&gt;  3               2014-08-11
-#&gt;  4               2014-10-10
-#&gt;  5               2010-08-16
-#&gt;  6               2011-01-19
-#&gt;  7               2004-07-30
-#&gt;  8               2016-04-01
-#&gt;  9               2018-01-30
-#&gt;  10              2018-01-22
-#&gt;  11              2018-03-19
-#&gt;  12              2004-07-30
-#&gt;                                                start_notification.url
-#&gt;  1           http://www.cites.org/eng/notif/2013/E-Notif-2013-017.pdf
-#&gt;  2    http://cites.org/sites/default/files/notif/E-Notif-2014-037.pdf
-#&gt;  3    http://cites.org/sites/default/files/notif/E-Notif-2014-037.pdf
-#&gt;  4    http://cites.org/sites/default/files/notif/E-Notif-2014-045.pdf
-#&gt;  5       http://cites.org/sites/default/files/eng/notif/2010/E024.pdf
-#&gt;  6  https://www.cites.org/sites/default/files/eng/notif/2011/E010.pdf
-#&gt;  7                        http://www.cites.org/eng/notif/2004/055.pdf
-#&gt;  8   https://cites.org/sites/default/files/notif/E-Notif-2016-034.pdf
-#&gt;  9   https://cites.org/sites/default/files/notif/E-Notif-2018-015.pdf
-#&gt;  10  https://cites.org/sites/default/files/notif/E-Notif-2018-012.pdf
-#&gt;  11  https://cites.org/sites/default/files/notif/E-Notif-2018-025.pdf
-#&gt;  12                       http://www.cites.org/eng/notif/2004/055.pdf
-#&gt;  
-#&gt;  attr(,"class")
-#&gt;  [1] "spp_cites_leg"</code></pre>
+#&gt;  Cites suspensions ($cites_suspensions):
+#&gt;  ---------------------------------------
+#&gt;        id taxon_concept_id start_date is_current applies_to_import
+#&gt;  1  15986             &lt;NA&gt; 2013-05-16       TRUE             FALSE
+#&gt;  2  17621             4521 2014-08-11       TRUE              TRUE
+#&gt;  3  17620             4521 2014-08-11       TRUE              TRUE
+#&gt;  4  17686             4521 2014-10-10       TRUE              TRUE
+#&gt;  5  18709             4521 2010-08-16       TRUE              TRUE
+#&gt;  6  15983             &lt;NA&gt; 2011-01-19       TRUE             FALSE
+#&gt;  7  15971             &lt;NA&gt; 2004-07-30       TRUE             FALSE
+#&gt;  8  18955             4521 2016-04-01       TRUE              TRUE
+#&gt;  9  22079             &lt;NA&gt; 2018-01-30       TRUE             FALSE
+#&gt;  10 22076             &lt;NA&gt; 2018-01-22       TRUE             FALSE
+#&gt;     geo_entity.iso_code2             geo_entity.name geo_entity.type
+#&gt;  1                    GN                      Guinea         COUNTRY
+#&gt;  2                    ZW                    Zimbabwe         COUNTRY
+#&gt;  3                    TZ United Republic of Tanzania         COUNTRY
+#&gt;  4                    US    United States of America         COUNTRY
+#&gt;  5                    ZW                    Zimbabwe         COUNTRY
+#&gt;  6                    DJ                    Djibouti         COUNTRY
+#&gt;  7                    SO                     Somalia         COUNTRY
+#&gt;  8                    CN                       China         COUNTRY
+#&gt;  9                    DJ                    Djibouti         COUNTRY
+#&gt;  10                   LR                     Liberia         COUNTRY
+#&gt;  -------truncated-------
+#&gt;  Field(s) not printed:  notes, start_notification.name, start_notification.date, start_notification.url</code></pre>
 </div>
 <div id="eu-legislation-data" class="section level3">
 <h3 class="hasAnchor">
 <a href="#eu-legislation-data" class="anchor"></a>EU legislation data</h3>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="kw"><a href="../reference/spp_eu_legislation.html">spp_eu_legislation</a></span>(<span class="dt">taxon_id =</span> <span class="st">"4521"</span>,  <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
-<pre><code>#&gt;  $eu_listings
+<pre><code>#&gt;  EU listings ($eu_listings):
+#&gt;  ---------------------------
 #&gt;       id taxon_concept_id is_current annex change_type effective_at
 #&gt;  1 27868             4521       TRUE     B           +   2017-02-04
 #&gt;  2 27801             4521       TRUE     A           +   2017-02-04
 #&gt;  
-#&gt;  $eu_decisions
-#&gt;        id taxon_concept_id
-#&gt;  1  26285             4521
-#&gt;  2  25508             4521
-#&gt;  3   2765             4521
-#&gt;  4  11682             4521
-#&gt;  5  24825             4521
-#&gt;  6  27017             4521
-#&gt;  7  27360             4521
-#&gt;  8  30377             4521
-#&gt;  9  30553             4521
-#&gt;  10 30664             4521
-#&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     notes
-#&gt;  1                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
-#&gt;  2                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
-#&gt;  3                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   &lt;NA&gt;
-#&gt;  4                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   &lt;NA&gt;
-#&gt;  5                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
-#&gt;  6                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
-#&gt;  7                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
-#&gt;  8                                                                                                                                                                                                                                                                                                                                                                                      for all ecosystems in Tanzania,\r\nexcept the ecosystems for which another opinion\r\nis in place
-#&gt;  9  provided that the following conditions are met:\r\n&lt;br&gt;- Only trophy animals taken from the following ‘ecosystems’: Serengeti [15], Tarangire-Manyara [10], Katavi-Rukwa [13] and Selous-Mikumi [36]\r\n&lt;br&gt;- quotas allocated at ecosystem level do not exceed &gt;0.3% of managed population, and\r\n&lt;br&gt;- trophy animals are male (tusks &gt;20kg or 160cm in length), and\r\n&lt;br&gt;- quota reviewed annually and adjusted, as necessary, to take into account most recent population data
-#&gt;  10                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
-#&gt;     start_date is_current eu_decision_type.name
-#&gt;  1  2015-04-09       TRUE              Positive
-#&gt;  2  2014-09-03       TRUE              Positive
-#&gt;  3  2011-12-02       TRUE                    i)
-#&gt;  4  2012-02-23       TRUE              Positive
-#&gt;  5  2014-05-28       TRUE              Positive
-#&gt;  6  2015-09-15       TRUE              Positive
-#&gt;  7  2016-06-27       TRUE              Negative
-#&gt;  8  2017-06-21       TRUE              Negative
-#&gt;  9  2017-06-21       TRUE              Positive
-#&gt;  10 2017-11-09       TRUE        Suspension (a)
-#&gt;         eu_decision_type.description eu_decision_type.type
-#&gt;  1                              &lt;NA&gt;      POSITIVE_OPINION
-#&gt;  2                              &lt;NA&gt;      POSITIVE_OPINION
-#&gt;  3  no significant trade anticipated            NO_OPINION
-#&gt;  4                              &lt;NA&gt;      POSITIVE_OPINION
-#&gt;  5                              &lt;NA&gt;      POSITIVE_OPINION
-#&gt;  6                              &lt;NA&gt;      POSITIVE_OPINION
-#&gt;  7                              &lt;NA&gt;      NEGATIVE_OPINION
-#&gt;  8                              &lt;NA&gt;      NEGATIVE_OPINION
-#&gt;  9                              &lt;NA&gt;      POSITIVE_OPINION
-#&gt;  10                             &lt;NA&gt;            SUSPENSION
-#&gt;     geo_entity.iso_code2             geo_entity.name geo_entity.type
-#&gt;  1                    ZW                    Zimbabwe         COUNTRY
-#&gt;  2                    BW                    Botswana         COUNTRY
-#&gt;  3                    ET                    Ethiopia         COUNTRY
-#&gt;  4                    NA                     Namibia         COUNTRY
-#&gt;  5                    ZA                South Africa         COUNTRY
-#&gt;  6                    ZM                      Zambia         COUNTRY
-#&gt;  7                    MZ                  Mozambique         COUNTRY
-#&gt;  8                    TZ United Republic of Tanzania         COUNTRY
-#&gt;  9                    TZ United Republic of Tanzania         COUNTRY
-#&gt;  10                   CM                    Cameroon         COUNTRY
-#&gt;     start_event.name start_event.date
-#&gt;  1        SRG 71 Soc       2015-04-09
-#&gt;  2        SRG 69 Soc       2014-09-03
-#&gt;  3        SRG 58 Soc       2011-12-02
-#&gt;  4        SRG 59 Soc       2012-02-23
-#&gt;  5        SRG 68 Soc       2014-05-28
-#&gt;  6        SRG 73 Soc       2015-09-15
-#&gt;  7        SRG 76 Soc       2016-06-27
-#&gt;  8        SRG 79 Soc       2017-06-21
-#&gt;  9        SRG 79 Soc       2017-06-21
-#&gt;  10     No 2017/1915       2017-11-09
-#&gt;                                                                                   start_event.url
-#&gt;  1         https://circabc.europa.eu/sd/a/8c0ae0ef-10ea-4ea6-be24-cf4c1161547b/71_summary_srg.pdf
-#&gt;  2  https://circabc.europa.eu/sd/a/a0c4f3e6-6862-46cb-8c95-8f7c78ff962e/69_summary_srg%20rev.pdf 
-#&gt;  3        https://circabc.europa.eu/sd/a/5f5b3e36-cf0d-4f09-a86d-1ac1eee2bb3c/58_summary_srg.pdf 
-#&gt;  4        https://circabc.europa.eu/sd/a/1a415f3d-a6d9-45c8-ad95-0d6b20d6fc1b/59_summary_srg.pdf 
-#&gt;  5        https://circabc.europa.eu/sd/a/dbc2ef30-bd5c-4f42-b795-5e2735198e87/68_summary_srg.pdf 
-#&gt;  6         https://circabc.europa.eu/sd/a/1e2aa226-4ea3-42f1-a5ff-2b868a7dde12/73_summary_srg.pdf
-#&gt;  7         https://circabc.europa.eu/sd/a/516f48b1-a597-478b-a441-d307e526e9d5/76_summary_srg.pdf
-#&gt;  8         https://circabc.europa.eu/sd/a/99eb1f53-73c7-4ccf-9264-2f53f0f64827/79_summary_SRG.pdf
-#&gt;  9         https://circabc.europa.eu/sd/a/99eb1f53-73c7-4ccf-9264-2f53f0f64827/79_summary_SRG.pdf
-#&gt;  10               http://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX:32017R1915&amp;from=EN
-#&gt;     source.code source.name term.code term.name
-#&gt;  1            W        Wild       TRO  trophies
-#&gt;  2            W        Wild      &lt;NA&gt;      &lt;NA&gt;
-#&gt;  3            W        Wild      &lt;NA&gt;      &lt;NA&gt;
-#&gt;  4            W        Wild      &lt;NA&gt;      &lt;NA&gt;
-#&gt;  5            W        Wild      &lt;NA&gt;      &lt;NA&gt;
-#&gt;  6            W        Wild       TRO  trophies
-#&gt;  7            W        Wild       TRO  trophies
-#&gt;  8            W        Wild      &lt;NA&gt;      &lt;NA&gt;
-#&gt;  9            W        Wild       TRO  trophies
-#&gt;  10           W        Wild       TRO  trophies
-#&gt;  
-#&gt;  attr(,"class")
-#&gt;  [1] "spp_eu_leg"</code></pre>
+#&gt;  EU decisions ($eu_decisions):
+#&gt;  -----------------------------
+#&gt;        id taxon_concept_id start_date is_current eu_decision_type.name
+#&gt;  1  26285             4521 2015-04-09       TRUE              Positive
+#&gt;  2  25508             4521 2014-09-03       TRUE              Positive
+#&gt;  3   2765             4521 2011-12-02       TRUE                    i)
+#&gt;  4  11682             4521 2012-02-23       TRUE              Positive
+#&gt;  5  24825             4521 2014-05-28       TRUE              Positive
+#&gt;  6  27017             4521 2015-09-15       TRUE              Positive
+#&gt;  7  27360             4521 2016-06-27       TRUE              Negative
+#&gt;  8  30377             4521 2017-06-21       TRUE              Negative
+#&gt;  9  30553             4521 2017-06-21       TRUE              Positive
+#&gt;  10 30664             4521 2017-11-09       TRUE        Suspension (a)
+#&gt;     eu_decision_type.type geo_entity.iso_code2             geo_entity.name
+#&gt;  1       POSITIVE_OPINION                   ZW                    Zimbabwe
+#&gt;  2       POSITIVE_OPINION                   BW                    Botswana
+#&gt;  3             NO_OPINION                   ET                    Ethiopia
+#&gt;  4       POSITIVE_OPINION                   NA                     Namibia
+#&gt;  5       POSITIVE_OPINION                   ZA                South Africa
+#&gt;  6       POSITIVE_OPINION                   ZM                      Zambia
+#&gt;  7       NEGATIVE_OPINION                   MZ                  Mozambique
+#&gt;  8       NEGATIVE_OPINION                   TZ United Republic of Tanzania
+#&gt;  9       POSITIVE_OPINION                   TZ United Republic of Tanzania
+#&gt;  10            SUSPENSION                   CM                    Cameroon
+#&gt;     geo_entity.type start_event.name start_event.date source.code
+#&gt;  1          COUNTRY       SRG 71 Soc       2015-04-09           W
+#&gt;  2          COUNTRY       SRG 69 Soc       2014-09-03           W
+#&gt;  3          COUNTRY       SRG 58 Soc       2011-12-02           W
+#&gt;  4          COUNTRY       SRG 59 Soc       2012-02-23           W
+#&gt;  5          COUNTRY       SRG 68 Soc       2014-05-28           W
+#&gt;  6          COUNTRY       SRG 73 Soc       2015-09-15           W
+#&gt;  7          COUNTRY       SRG 76 Soc       2016-06-27           W
+#&gt;  8          COUNTRY       SRG 79 Soc       2017-06-21           W
+#&gt;  9          COUNTRY       SRG 79 Soc       2017-06-21           W
+#&gt;  10         COUNTRY     No 2017/1915       2017-11-09           W
+#&gt;     source.name term.code term.name
+#&gt;  1         Wild       TRO  trophies
+#&gt;  2         Wild      &lt;NA&gt;      &lt;NA&gt;
+#&gt;  3         Wild      &lt;NA&gt;      &lt;NA&gt;
+#&gt;  4         Wild      &lt;NA&gt;      &lt;NA&gt;
+#&gt;  5         Wild      &lt;NA&gt;      &lt;NA&gt;
+#&gt;  6         Wild       TRO  trophies
+#&gt;  7         Wild       TRO  trophies
+#&gt;  8         Wild      &lt;NA&gt;      &lt;NA&gt;
+#&gt;  9         Wild       TRO  trophies
+#&gt;  10        Wild       TRO  trophies
+#&gt;  Field(s) not printed:  notes, eu_decision_type.description, start_event.url</code></pre>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="kw"><a href="../reference/spp_eu_legislation.html">spp_eu_legislation</a></span>(<span class="dt">taxon_id =</span> <span class="st">"3210"</span>, <span class="dt">scope =</span> <span class="st">"all"</span>, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
-<pre><code>#&gt;  $eu_listings
+<pre><code>#&gt;  EU listings ($eu_listings):
+#&gt;  ---------------------------
 #&gt;        id taxon_concept_id is_current annex change_type effective_at
 #&gt;  1  17604             3210      FALSE     B           +   2012-02-14
 #&gt;  2  17603             3210      FALSE     B           +   2012-12-15
@@ -721,463 +439,64 @@
 #&gt;  8  17605             3210      FALSE     B           +   2010-08-15
 #&gt;  9  17608             3210      FALSE     B           +   2005-08-22
 #&gt;  10 17602             3210      FALSE     B           +   2013-08-10
-#&gt;  11 22084             3210      FALSE     B           +   2014-12-20
-#&gt;  12 25176             3210      FALSE     B           +   2016-11-26
-#&gt;  13 27900             3210       TRUE     B           +   2017-02-04
+#&gt;  -------truncated-------
 #&gt;  
-#&gt;  $eu_decisions
-#&gt;  data frame with 0 columns and 0 rows
-#&gt;  
-#&gt;  attr(,"class")
-#&gt;  [1] "spp_eu_leg"</code></pre>
+#&gt;  EU decisions ($eu_decisions):
+#&gt;  -----------------------------
+#&gt;  data frame with 0 columns and 0 rows</code></pre>
 </div>
 <div id="distribution-data" class="section level3">
 <h3 class="hasAnchor">
 <a href="#distribution-data" class="anchor"></a>Distribution data</h3>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="kw"><a href="../reference/spp_distributions.html">spp_distributions</a></span>(<span class="st">"4521"</span>, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
-<pre><code>#&gt;  $distributions
-#&gt;        id iso_code2                             name    type
-#&gt;  1   1778        ML                             Mali COUNTRY
-#&gt;  2   1923        GQ                Equatorial Guinea COUNTRY
-#&gt;  3   4429        RW                           Rwanda COUNTRY
-#&gt;  4   4491        GH                            Ghana COUNTRY
-#&gt;  5   5628        SD                            Sudan COUNTRY
-#&gt;  6   6724        ET                         Ethiopia COUNTRY
-#&gt;  7   8995        GA                            Gabon COUNTRY
-#&gt;  8  12983        AO                           Angola COUNTRY
-#&gt;  9  15554        CM                         Cameroon COUNTRY
-#&gt;  10 17060        BJ                            Benin COUNTRY
-#&gt;  11 19004        MZ                       Mozambique COUNTRY
-#&gt;  12 21296        ZW                         Zimbabwe COUNTRY
-#&gt;  13 22598        BW                         Botswana COUNTRY
-#&gt;  14 25648        ZA                     South Africa COUNTRY
-#&gt;  15 29237        DJ                         Djibouti COUNTRY
-#&gt;  16 34325        BF                     Burkina Faso COUNTRY
-#&gt;  17 36541        TZ      United Republic of Tanzania COUNTRY
-#&gt;  18 38501        KE                            Kenya COUNTRY
-#&gt;  19 39769        NG                          Nigeria COUNTRY
-#&gt;  20 40132        UG                           Uganda COUNTRY
-#&gt;  21 45272        CF         Central African Republic COUNTRY
-#&gt;  22 47168        SO                          Somalia COUNTRY
-#&gt;  23 47634        LR                          Liberia COUNTRY
-#&gt;  24 55428        GN                           Guinea COUNTRY
-#&gt;  25 55928        TG                             Togo COUNTRY
-#&gt;  26 56100        ZM                           Zambia COUNTRY
-#&gt;  27 56780        BI                          Burundi COUNTRY
-#&gt;  28 56987        MW                           Malawi COUNTRY
-#&gt;  29 60042        MR                       Mauritania COUNTRY
-#&gt;  30 61625        TD                             Chad COUNTRY
-#&gt;  31 64492        NA                          Namibia COUNTRY
-#&gt;  32 65619        SS                      South Sudan COUNTRY
-#&gt;  33 71202        CG                            Congo COUNTRY
-#&gt;  34 71794        CD Democratic Republic of the Congo COUNTRY
-#&gt;  35 72434        NE                            Niger COUNTRY
-#&gt;  36 72883        SN                          Senegal COUNTRY
-#&gt;  37 79470        SZ                         Eswatini COUNTRY
-#&gt;  38 79693        GM                           Gambia COUNTRY
-#&gt;  39 79814        ER                          Eritrea COUNTRY
-#&gt;  40 80906        SL                     Sierra Leone COUNTRY
-#&gt;  41 81799        GW                    Guinea Bissau COUNTRY
-#&gt;  42 82840        CI                    Côte d'Ivoire COUNTRY
-#&gt;                      tags
-#&gt;  1                       
-#&gt;  2                       
-#&gt;  3                       
-#&gt;  4                       
-#&gt;  5                       
-#&gt;  6                       
-#&gt;  7                       
-#&gt;  8                       
-#&gt;  9                       
-#&gt;  10                      
-#&gt;  11                      
-#&gt;  12                      
-#&gt;  13                      
-#&gt;  14                      
-#&gt;  15               extinct
-#&gt;  16                      
-#&gt;  17                      
-#&gt;  18                      
-#&gt;  19                      
-#&gt;  20                      
-#&gt;  21                      
-#&gt;  22                      
-#&gt;  23                      
-#&gt;  24                      
-#&gt;  25                      
-#&gt;  26                      
-#&gt;  27               extinct
-#&gt;  28                      
-#&gt;  29               extinct
-#&gt;  30                      
-#&gt;  31                      
-#&gt;  32                      
-#&gt;  33                      
-#&gt;  34                      
-#&gt;  35                      
-#&gt;  36                      
-#&gt;  37 extinct, reintroduced
-#&gt;  38               extinct
-#&gt;  39                      
-#&gt;  40                      
-#&gt;  41                      
-#&gt;  42                      
+<pre><code>#&gt;  Distributions ($distributions):
+#&gt;  -------------------------------
+#&gt;        id iso_code2              name    type tags
+#&gt;  1   1778        ML              Mali COUNTRY     
+#&gt;  2   1923        GQ Equatorial Guinea COUNTRY     
+#&gt;  3   4429        RW            Rwanda COUNTRY     
+#&gt;  4   4491        GH             Ghana COUNTRY     
+#&gt;  5   5628        SD             Sudan COUNTRY     
+#&gt;  6   6724        ET          Ethiopia COUNTRY     
+#&gt;  7   8995        GA             Gabon COUNTRY     
+#&gt;  8  12983        AO            Angola COUNTRY     
+#&gt;  9  15554        CM          Cameroon COUNTRY     
+#&gt;  10 17060        BJ             Benin COUNTRY     
+#&gt;  -------truncated-------
 #&gt;  
-#&gt;  $references
-#&gt;         id
-#&gt;  1    1778
-#&gt;  2    1923
-#&gt;  3    4429
-#&gt;  4    4429
-#&gt;  5    4491
-#&gt;  6    4491
-#&gt;  7    5628
-#&gt;  8    6724
-#&gt;  9    6724
-#&gt;  10   6724
-#&gt;  11   8995
-#&gt;  12   8995
-#&gt;  13  12983
-#&gt;  14  12983
-#&gt;  15  12983
-#&gt;  16  12983
-#&gt;  17  12983
-#&gt;  18  15554
-#&gt;  19  15554
-#&gt;  20  15554
-#&gt;  21  15554
-#&gt;  22  15554
-#&gt;  23  15554
-#&gt;  24  15554
-#&gt;  25  15554
-#&gt;  26  15554
-#&gt;  27  15554
-#&gt;  28  15554
-#&gt;  29  15554
-#&gt;  30  15554
-#&gt;  31  15554
-#&gt;  32  15554
-#&gt;  33  15554
-#&gt;  34  15554
-#&gt;  35  15554
-#&gt;  36  15554
-#&gt;  37  17060
-#&gt;  38  17060
-#&gt;  39  17060
-#&gt;  40  17060
-#&gt;  41  17060
-#&gt;  42  19004
-#&gt;  43  19004
-#&gt;  44  19004
-#&gt;  45  19004
-#&gt;  46  19004
-#&gt;  47  19004
-#&gt;  48  19004
-#&gt;  49  21296
-#&gt;  50  21296
-#&gt;  51  21296
-#&gt;  52  21296
-#&gt;  53  21296
-#&gt;  54  22598
-#&gt;  55  22598
-#&gt;  56  22598
-#&gt;  57  22598
-#&gt;  58  22598
-#&gt;  59  22598
-#&gt;  60  22598
-#&gt;  61  25648
-#&gt;  62  25648
-#&gt;  63  25648
-#&gt;  64  25648
-#&gt;  65  34325
-#&gt;  66  34325
-#&gt;  67  34325
-#&gt;  68  36541
-#&gt;  69  36541
-#&gt;  70  36541
-#&gt;  71  36541
-#&gt;  72  36541
-#&gt;  73  36541
-#&gt;  74  36541
-#&gt;  75  38501
-#&gt;  76  38501
-#&gt;  77  38501
-#&gt;  78  39769
-#&gt;  79  39769
-#&gt;  80  39769
-#&gt;  81  39769
-#&gt;  82  40132
-#&gt;  83  40132
-#&gt;  84  40132
-#&gt;  85  40132
-#&gt;  86  45272
-#&gt;  87  45272
-#&gt;  88  45272
-#&gt;  89  47168
-#&gt;  90  47168
-#&gt;  91  47168
-#&gt;  92  47634
-#&gt;  93  47634
-#&gt;  94  47634
-#&gt;  95  47634
-#&gt;  96  47634
-#&gt;  97  47634
-#&gt;  98  55428
-#&gt;  99  55428
-#&gt;  100 55928
-#&gt;  101 56100
-#&gt;  102 56100
-#&gt;  103 56100
-#&gt;  104 56780
-#&gt;  105 56780
-#&gt;  106 56987
-#&gt;  107 56987
-#&gt;  108 56987
-#&gt;  109 56987
-#&gt;  110 56987
-#&gt;  111 60042
-#&gt;  112 60042
-#&gt;  113 61625
-#&gt;  114 61625
-#&gt;  115 61625
-#&gt;  116 64492
-#&gt;  117 64492
-#&gt;  118 64492
-#&gt;  119 64492
-#&gt;  120 64492
-#&gt;  121 64492
-#&gt;  122 64492
-#&gt;  123 65619
-#&gt;  124 71202
-#&gt;  125 71202
-#&gt;  126 71202
-#&gt;  127 71202
-#&gt;  128 71202
-#&gt;  129 71202
-#&gt;  130 71794
-#&gt;  131 71794
-#&gt;  132 71794
-#&gt;  133 71794
-#&gt;  134 71794
-#&gt;  135 71794
-#&gt;  136 72434
-#&gt;  137 72434
-#&gt;  138 72883
-#&gt;  139 79470
-#&gt;  140 79693
-#&gt;  141 79814
-#&gt;  142 80906
-#&gt;  143 80906
-#&gt;  144 81799
-#&gt;  145 82840
-#&gt;  146 82840
-#&gt;                                                                                                                                                                                                                                                                                                                                 reference
-#&gt;  1                                                                                                                                   Kingdon, J., Happold, D., Hoffmann, M., Butynski, T., Happold, M. and Kalina, J. eds. 2013. &lt;i&gt;Mammals of Africa Volume I: introductory chapters and afrotheria&lt;/i&gt;. Bloomsbury, London, UK. 351 pp.
-#&gt;  2                                                                                                                                                                                                                                       Basilio, A. 1962. La vida animal en la Guinea Espanola. Instituto de Estudios Africanos. Madrid.
-#&gt;  3                                                                                                                                                                                                                                                    Jackson, P. 1982. Elephants and rhinos in Africa. A time for decision. IUCN. Gland.
-#&gt;  4                                                                                                                                                                                                                         Monfort, A. 1992. Première liste commentée des mammifères du Rwanda. Journal of African Zoology: 106: 141-151.
-#&gt;  5                                                                                                                                                         Grubb, P., Jones, T. S., Davies, A. G., Edberg, E., Starin, E. D. and Hill, J. E. 1998. Mammals of Ghana, Sierra Leone and The Gambia. The Trendrine Press. St Ives, Cornwall.
-#&gt;  6                                                                                                                                                                                                                                                    Jackson, P. 1982. Elephants and rhinos in Africa. A time for decision. IUCN. Gland.
-#&gt;  7                                                                                                                                                                                                       Hameed, S.M.A. and Eljack, A.O. 2003. Ramsar Information Sheet (RIS) for Dinder National Park, Sudan. Wetlands International. 40
-#&gt;  8                                                                                                                                                                                            Bolton, M. 1973. Notes on the current status and distribution of some large mammals in Ethiopia (excluding Eritrea). Mammalia: 37: 562-586.
-#&gt;  9                                                                                                                                                                                                                     Largen, M. J. and Yalden, D. W. 1987. The decline of Elephant and Black Rhinoceros in Ethiopia. Oryx: 21: 103-106.
-#&gt;  10                                                                                                                                                                                            Meester, J. and Setzer, H. W (eds.) 1974. The mammals of Africa. An identification manual. Smithsonian Institution Press. Washington, D.C.
-#&gt;  11                                                                                                                                                                                                                                                   Jackson, P. 1982. Elephants and rhinos in Africa. A time for decision. IUCN. Gland.
-#&gt;  12                                                                                                                                  Tutin, C. E. G., White, L. J. T. and Mackanga-Missandzou, A. 1997. The use by rain forest mammals of natural forest fragments in an equatorial African savanna. Conservation Biology: 11: 1190-1203.
-#&gt;  13                                                                                                                                Anstey, S. 1993. Angola: elephants, people and conservation: a preliminary assessment of the status and conservation of elephants in Angola. Project report IUCN Regional Office for Southern Africa. 
-#&gt;  14                                                                                                                                                                                                     Hill, J. E. and Carter, T. D. 1941. The mammals of Angola, Africa. Bulletin of the American Museum of Natural History: 78: 1-211.
-#&gt;  15                                                                                                                                                       Horsten, F. 1982. Os parques nacionais e os outras zones de protecçao da natureza de Angola. Ministerio da Agricultura, Direcçao Nacional da Conservacçao da Natureza. Luanda. 
-#&gt;  16                                                                                                                                                                                                                                                   Jackson, P. 1982. Elephants and rhinos in Africa. A time for decision. IUCN. Gland.
-#&gt;  17                                                                                                                                                                                           Menzies, J. I. 1996. A systematic revision of &lt;i&gt;Melomys&lt;/i&gt; (Rodentia: Muridae) of New Guinea. Australian Journal of Zoology: 44: 367-426.
-#&gt;  18                                                                                                                                                                Bauer, H. and Kari, S. 2001. Assessment of the people-predator conflict through thematic PRA in the surroundings of Waza National Park, Cameroon. PLA Notes: 41: 9-13.
-#&gt;  19  Blanc, J.J., Thouless, C.R., Hart, J.A., Dublin H.T., Douglas-Hamilton, I., Craig, C.R. and Barnes, R.F.W. 2003. African Elephant Status Report 2002: an update from the African Elephant Database. http://iucn.org/afesg/aed/aesr2002.html IUCN/SSC African Elephant Specialist Group. IUCN, Gland, Switzerland and Cambridge, UK. 
-#&gt;  20                                                                                                                        Bowden, C. G. R. 1986. Records of other species of mammal from western Cameroon. In: Stuart, S. N. (ed.) Conservation of Cameroon montane forests International Council for Bird Preservation. Cambridge (UK).
-#&gt;  21                                                                                                                                                                de Longh, H., Tchamba, M. T., Aarhaug, P. and and Verhage, B. 2004. Impact of dam construction on two elephant populations in northern Cameroon. Pachyderm: 36: 30-43.
-#&gt;  22                                                                                                                                                                        Dowsett-Lemaire, F. and Dowsett, R. J. 1998. Surveys of Oku Mt and other IBAs in NW Province (Cameroon), February-March 1998. Tauraco Press. Liège (Belgium). 
-#&gt;  23                                                                                                                                 Dowsett-Lemaire, F. and Dowsett, R. J. 1999. Etudes ornithologiques et mammalogiques dans les Parcs Nationaux de la Bénoué et du Faro (Mars 1999). Tauraco Press, for WWF Cameroon. Liège (Belgium). 
-#&gt;  24                                                                                                                                       Dowsett-Lemaire, F. and Dowsett, R. J. 2001. Birds and mammals on Mt Cameroon: an update of the state of knowledge and further fieldwork around Mann's Spring. Tauraco Press. Liège (Belgium). 
-#&gt;  25                                                                                                                                                       Dowsett-Lemaire, F. and Dowsett, R. J. 2001. First survey of the birds and mammals of the Yabassi area, south-west Cameroon. Tauraco Press, for WWF-Cameroon. Liège (Belgium). 
-#&gt;  26                                                                                                                                                                                                                      Ekobo, A. 1993. The status of Forest Elephants in the south east of the Republic of Cameroon. Pachyderm: 16: 84.
-#&gt;  27                                                                                                                                                                        Faucher, I. 1999. Preliminary zoological survey of the Bakossi Mountains with special reference to large and medium-size mammals and birds. unpublished. 1-23.
-#&gt;  28                                                                                                                                                                                              IUCN. 2004. 2004 IUCN Red List of Threatened Species. Downloaded from &lt;www.redlist.org&gt; on 20 September 2005 IUCN. Gland (Switzerland). 
-#&gt;  29                                                                                                                                                                                                                                                   Jackson, P. 1982. Elephants and rhinos in Africa. A time for decision. IUCN. Gland.
-#&gt;  30                                                                                                                                                                                                                                                            Jeannin, A. 1936. Les mammifères sauvages du Cameroun. Lechevalier. Paris.
-#&gt;  31                                                                                                                                                                                                                                     King, S. 1994. Utilisation of wildlife in Bakossiland, west Cameroon. TRAFFIC Bulletin; 14: 63-73
-#&gt;  32                                                                                                                                                                   Klop, E. and van Goethem, J. 2008. Savanna fires govern community structure of ungulates in Benoue National Park, Cameroon. Journal of Tropical Ecology: 24: 39-47.
-#&gt;  33                                                                                                                                              Nembot, T. and Tchanou, Z. 1998. La gestion des ècosystémes forestiers du Cameroun a'l Aube de l'an 2000. Vol. 2, Monographies des sites critiques et annexes. IUCN. Yaoundé (Cameroon).
-#&gt;  34                                                     Sunderland-Groves, J. L. and Maisels, F. 2003. Large mammals of Takamanda Forest Reserve, Cameroon. In: Comiskey, J. A. and Sunderland, T. C. H. (eds.) Takamanda: the biodiversity of an African Rainforest. SI/MAB Series Smithonian Institution. Washington, D. C. 8: 111-127.
-#&gt;  35                                                                                                                                            Van Lavieren, L. P. and Esser, J. D. 1979. Numbers, distribution and habitat preference of large mammals in Bouba Ndjida National Park, Cameroon. African Journal of Ecology: 17: 141-153.
-#&gt;  36                                                                                                                                                                                         Whyte, I. 1993. Number and migration patterns of Savanna Elephants (&lt;i&gt;Loxodonta africana africana&lt;/i&gt;) in North Cameroon. Pachyderm: 16: 72.
-#&gt;  37                                                                                                                                                                                                                                                                   Eltringham, S. K. 1999. The hippos. Poyser Natural History. London.
-#&gt;  38                                                                                                                                                                                                                                                   Jackson, P. 1982. Elephants and rhinos in Africa. A time for decision. IUCN. Gland.
-#&gt;  39                                                                                                                                                                                                                  Sayer, J. A. and Green, A. A. 1984. The distribution and status of large mammals in Benin. Mammal Review: 14: 37-50.
-#&gt;  40                                                                                                                                                                 Sinsin, B., Tehou, A. C., Daouda, I. and Saidou, A. 2002. Abundance and species richness of larger mammals in Pendjari National Park in Benin. Mammalia: 66: 369-380.
-#&gt;  41                                                                                                                                                                                      Verschuren, J., Heymans, J. C. and Delvingt, W. 1989. Conservation in Benin - with the help of the European Economic Community. Oryx: 23: 22-26.
-#&gt;  42                                                                                      Bronner, G. N., Hoffmann, M., Taylor, P. J. , Chimimba, C. T., Best, P. B., Matthee, C. A. and Robinson, T. J. 2003. A revised systematic checklist of the extant mammals of the southern African subregion. Durban Museum Novitates: 28: 56-106
-#&gt;  43                                                                                                                                                                                                                                              Chambal, M. 1992. Current elephant range and status in Mozambique. Pachyderm: 16: 44-47.
-#&gt;  44                                                                                                                                                                                                                                                   Jackson, P. 1982. Elephants and rhinos in Africa. A time for decision. IUCN. Gland.
-#&gt;  45                                                                                                                                        Ntumi, C.P., Ferreira, S.M. and van Aarde, R J. 2009. A review of historical trends in the distribution and abundance of elephants &lt;i&gt;Loxodonta africana&lt;/i&gt; in Mozambique. Oryx: 43: 568-579.
-#&gt;  46                                                                                              Ntumi, C.P., van Aarde, R.J., Fairall, N. and de Boer, W.F. 2005. Use of space and habitat by elephants (&lt;i&gt;Loxodonta africana&lt;/i&gt;) in the Maputo Elephant Reserve, Mozambique. South African Journal of Wildlife Research: 35: 139-146.
-#&gt;  47                                                                                                                                                                                                          Skinner, J. D. and Smithers, R. H. N. 1990. The mammals of the Southern African subregion. University of Pretoria. Pretoria.
-#&gt;  48                                                                                                                                                       Smithers, R. H. N. and Tello, J. L. P. Lobao. 1976. Checklist and atlas of the mammals of Moçambique. Museum Memoir, The Trustees of the National Museum of Rhodesia: 8: 1-184.
-#&gt;  49  Blanc, J.J., Thouless, C.R., Hart, J.A., Dublin H.T., Douglas-Hamilton, I., Craig, C.R. and Barnes, R.F.W. 2003. African Elephant Status Report 2002: an update from the African Elephant Database. http://iucn.org/afesg/aed/aesr2002.html IUCN/SSC African Elephant Specialist Group. IUCN, Gland, Switzerland and Cambridge, UK. 
-#&gt;  50                                                                                      Bronner, G. N., Hoffmann, M., Taylor, P. J. , Chimimba, C. T., Best, P. B., Matthee, C. A. and Robinson, T. J. 2003. A revised systematic checklist of the extant mammals of the southern African subregion. Durban Museum Novitates: 28: 56-106
-#&gt;  51                                                                                                                                              Dunham, K.M. 2008. Detection of anthropogenic mortality in elephant &lt;i&gt;Loxodonta africana&lt;/i&gt; populations: a long-term case study from the Sebungwe region of Zimbabwe. Oryx: 42: 36-48.
-#&gt;  52                                                                                                                                                                                                                                                   Jackson, P. 1982. Elephants and rhinos in Africa. A time for decision. IUCN. Gland.
-#&gt;  53                                                                                                                                                                                                                             Smithers, R. H. N. 1983. The mammals of the Southern African subregion. University of Pretoria. Pretoria.
-#&gt;  54  Blanc, J.J., Thouless, C.R., Hart, J.A., Dublin H.T., Douglas-Hamilton, I., Craig, C.R. and Barnes, R.F.W. 2003. African Elephant Status Report 2002: an update from the African Elephant Database. http://iucn.org/afesg/aed/aesr2002.html IUCN/SSC African Elephant Specialist Group. IUCN, Gland, Switzerland and Cambridge, UK. 
-#&gt;  55                                                                                      Bronner, G. N., Hoffmann, M., Taylor, P. J. , Chimimba, C. T., Best, P. B., Matthee, C. A. and Robinson, T. J. 2003. A revised systematic checklist of the extant mammals of the southern African subregion. Durban Museum Novitates: 28: 56-106
-#&gt;  56                                                                                                                                                                                   Gibson, D.S., Craig, G.C. and Masogo, R.M. 1998. Trends of the elephant population in northern Botswana from aerial survey data. Pachyderm: 25: 27.
-#&gt;  57                                                                                                                                                                                                                                                   Jackson, P. 1982. Elephants and rhinos in Africa. A time for decision. IUCN. Gland.
-#&gt;  58                                                                                                                          Junker, J., van Aarde, R.J. and Ferreira, S.M. 2008. Temporal trends in elephant &lt;i&gt;Loxodonta africana&lt;/i&gt; numbers and densities in northern Botswana: is the population really increasing? Oryx: 42: 58-65.
-#&gt;  59                                                                                                                                                                                                          Skinner, J. D. and Smithers, R. H. N. 1990. The mammals of the Southern African subregion. University of Pretoria. Pretoria.
-#&gt;  60                                                                                                                                                                                                                                                              Spinage, C. A. 1990. Botswana's problem elephants. Pachyderm: 13: 14-19.
-#&gt;  61                                                                                      Bronner, G. N., Hoffmann, M., Taylor, P. J. , Chimimba, C. T., Best, P. B., Matthee, C. A. and Robinson, T. J. 2003. A revised systematic checklist of the extant mammals of the southern African subregion. Durban Museum Novitates: 28: 56-106
-#&gt;  62                                                                                                                                                                                                                                                   Jackson, P. 1982. Elephants and rhinos in Africa. A time for decision. IUCN. Gland.
-#&gt;  63                                                                                                                                                                                                          Skinner, J. D. and Smithers, R. H. N. 1990. The mammals of the Southern African subregion. University of Pretoria. Pretoria.
-#&gt;  64                                                                                          Skinner, J. D., Fairall, N. and Bothma, J. du P. 1977. South African red data book - large mammals. Cooperative Scientific Programmes Council for Scientific and Industrial Research. South African National Scientific Programme Report No.
-#&gt;  65                                                                                                                                                                                                                                Jachmann, H. 1988. Numbers, distribution and movements of the Nazinga elephants. Pachyderm: 10: 16-21.
-#&gt;  66                                                                                        Roure, G. 1968. Petit atlas de classification, de morphologie, de repartition et de determination des animaux sauvages de Haute Volta et des pays voisins. Direction des eaux et forets, Ministere de l'Agriculture. Ouagadougou, Haute-Volta.
-#&gt;  67                                                                                                                                                                                                                                                   Spinage, C. A. 1985. The elephants of Burkina-Faso, West Africa. Pachyderm: 5: 2-5.
-#&gt;  68  Blanc, J.J., Thouless, C.R., Hart, J.A., Dublin H.T., Douglas-Hamilton, I., Craig, C.R. and Barnes, R.F.W. 2003. African Elephant Status Report 2002: an update from the African Elephant Database. http://iucn.org/afesg/aed/aesr2002.html IUCN/SSC African Elephant Specialist Group. IUCN, Gland, Switzerland and Cambridge, UK. 
-#&gt;  69                                                                                                                                                                                                        Davies, G. and Vanden Berghe, E. 1994. Check-list of the mammals of East Africa. East Africa Natural History Society. Nairobi.
-#&gt;  70                                                                                                                                     Foley, C.A.H. and Faust, L.J. 2010. Rapid population growth in an elephant &lt;i&gt;Loxodonta africana&lt;/i&gt; population recovering from poaching in Tarangire National Park, Tanzania. Oryx: 44: 205-212.
-#&gt;  71                                                                                                                                                                                                                                                   Jackson, P. 1982. Elephants and rhinos in Africa. A time for decision. IUCN. Gland.
-#&gt;  72                                                                                                                                   Lamprey, H.F. 1964. Estimation of the large mammal densities, biomass and energy exchange in the Tarangire Game Reserve and the Masai Steppe in Tanganyika. East African Wildlife Journal: 2: 1-46.
-#&gt;  73                                                                                                                                Swynnerton, G. H. and Hayman, R. W. 1951. A checklist of the land mammals of the Tanganyika Territory and the Zanzibar Protectorate. Journal of the East African Natural History Society: 20: 274-392.
-#&gt;  74                                                                                                                                                                           Tanzania Wildlife Conservation Monitoring. 1992. Recent trends in Tanzanian Elephant population 1987-1992. Frankfurt Zoological Society. Arusha, Tanzania. 
-#&gt;  75                                                                                                                                                                                                        Davies, G. and Vanden Berghe, E. 1994. Check-list of the mammals of East Africa. East Africa Natural History Society. Nairobi.
-#&gt;  76                                                                                                                                                                                                                                                   Jackson, P. 1982. Elephants and rhinos in Africa. A time for decision. IUCN. Gland.
-#&gt;  77                                                                                                                                                                                                                                               Thouless, C. 1991. A report of the Laikipia elephant count, 1990. Pachyderm: 14: 32-36.
-#&gt;  78                                                                                                                                                                                                                          Anadu, P. A. 1987. Progress in the conservation of Nigeria's wildlife. Biological Conservation: 41: 237-251.
-#&gt;  79                                                                                                                                                                                                                                                              Happold, D. C. D. 1987. The mammals of Nigeria. Clarendon Press. Oxford.
-#&gt;  80                                                                                                                                                                                                                                                   Jackson, P. 1982. Elephants and rhinos in Africa. A time for decision. IUCN. Gland.
-#&gt;  81                                                                                                                                                                                                                                             Rosevear, D. R. 1953. Checklist and atlas of Nigerian mammals. Government Printer. Lagos.
-#&gt;  82                                                                                                                                                                                                                                    Abe, E. 1992. The status of elephants in Uganda: Queen Elizabeth National Park. Pachyderm: 15: 49.
-#&gt;  83                                                                                                                                                                                                                                                                       Bere, R. M. 1962. The wild mammals of Uganda. Longmans. London.
-#&gt;  84                                                                                                                                                                                                        Davies, G. and Vanden Berghe, E. 1994. Check-list of the mammals of East Africa. East Africa Natural History Society. Nairobi.
-#&gt;  85                                                                                                                                                                                                                                                   Jackson, P. 1982. Elephants and rhinos in Africa. A time for decision. IUCN. Gland.
-#&gt;  86                                                                                                                                                                                                     Carroll, R. W. 1988. Elephants of the Dzanga-Sangha dense forest of south-western Central African Republic. Pachyderm: 10: 12-15.
-#&gt;  87                                                                                                                                                                                                           Fay, J. M. and Agnagna, M. 1991. Forest Elephant population in the Central African Republic and Congo. Pachyderm: 14: 3-19.
-#&gt;  88                                                                                                                                                                                                                                                   Jackson, P. 1982. Elephants and rhinos in Africa. A time for decision. IUCN. Gland.
-#&gt;  89                                                                                                                                                                                                                                         Fagotto, F. 1985. Larger animals of Somalia in 1984. Environmental Conservation: 12: 260-264.
-#&gt;  90                                                                                                                                                              Funaioli, U. and Simonetta, A. M. 1966. The mammalian fauna of the Somali Republic: status and conservation problems. Monitore Zoologico Italiano (Suppl.): 74: 285-295.
-#&gt;  91                                                                                                                                                                                                                                                   Jackson, P. 1982. Elephants and rhinos in Africa. A time for decision. IUCN. Gland.
-#&gt;  92                                                                                                                                                        Allen, G. M. and Coolidge, H. J. 1930. Mammals of Liberia. In: Strong, R. P. The African Republic of Liberia and the Belgian Congo. Harvard University Press. Cambridge, Mass.
-#&gt;  93                                                                                                                                                                                                                                Anstey, S. and Dunn, A. 1991. Forest Elephants in Liberia: status and conservation. A report to WWF . 
-#&gt;  94                                                                          Bene, J.K., Bitty, E.A., Bohoussou, K.H., Abedi-, M., Gamys, J. and Soribah, P.A.J. 2013. Current conservation status of large mammals in Sime Darby oil palm concession in Liberia. Global Journal of Biology, Agriculture &amp; Health Sciences, 2(3): 93–102.
-#&gt;  95                                                                                                                                                         Hoke, P., Demey, R. and Peal, A (eds.) 2007. A rapid biological assessment of North Lorma, Gola and Grebo National Forests, Liberia. RAP Bulletin of Biological Assessment . 
-#&gt;  96                                                                                                                                                                                                                                                   Jackson, P. 1982. Elephants and rhinos in Africa. A time for decision. IUCN. Gland.
-#&gt;  97                                                                                                                                                                                                                          Kuhn, A. J. 1965. A provisional checklist of the mammals of Liberia. Senckenbergiana Biologica: 46: 321-340.
-#&gt;  98                                                                                               Barnett, A. A. and Prangley, M. L. 1997. Mammalogy in the Republic of Guinea: an overview of research from 1946 to 1996, a preliminary check-list and a summary of research recommendations for the future. Mammal Review: 27: 115-164.
-#&gt;  99                                                                                                                                                                 Ziegler, S., Nikolaus, G. and Hutterer, R. 2002. High mammalian diversity in the newly established National Park of Upper Niger, Republic of Guinea. Oryx: 36: 73-80.
-#&gt;  100                                                                                                                                                                                                                                                  Jackson, P. 1982. Elephants and rhinos in Africa. A time for decision. IUCN. Gland.
-#&gt;  101                                                                                                                                                                                                                                         Ansell, W. F. H. 1978. The mammals of Zambia. National Parks and Wildlife Service. Chilanga.
-#&gt;  102                                                                                                                                                                                                           Chanda, G. and Tembo, A. 1993. Status of elephants on the Zambian bank of the middle Zambezi valley. Pachyderm: 16: 48-50.
-#&gt;  103                                                                                                                                                                                                                                                  Jackson, P. 1982. Elephants and rhinos in Africa. A time for decision. IUCN. Gland.
-#&gt;  104                                                                                                                                                                                                                                                        Verschuren, J. 1978. Les gonads mammifères du Burundi. Mammalia: 42: 209-224.
-#&gt;  105                                                                                                                                                                               Wilson, V. J. 1990. Preliminary survey of the duikers and other large mammals of Burundi, East Africa. Chipangali Wildlife Trust. Bulawayo, Zimbabwe. 
-#&gt;  106                                                                                                                                                                                                 Ansell, W. F. H. and Dowsett, R. J. 1988. Mammals of Malawi - an annotated checklist and atlas. Trendrine Press. St. Ives, Cornwall.
-#&gt;  107                                                                                                                                                                                                                                                      Happold, D. C. D. and Happold, M. 1989. The mammals of Zambia. Nyala: 14: 5-20.
-#&gt;  108                                                                                                                                                                                                                                                  Jackson, P. 1982. Elephants and rhinos in Africa. A time for decision. IUCN. Gland.
-#&gt;  109                                                                                                                                                                                  Mkanda, F. X. 1993. Status of elephants and poaching for ivory in Malawi: a case study in Liwonde and Kasungu national parks. Pachyderm: 16: 59-61.
-#&gt;  110                                                                                                                                                                                                                  Sweeney, R. C. H. 1959. A preliminary annotated checklist of the mammals of Nyasaland. Nyasaland Society. Blantyre.
-#&gt;  111 Blanc, J.J., Thouless, C.R., Hart, J.A., Dublin H.T., Douglas-Hamilton, I., Craig, C.R. and Barnes, R.F.W. 2003. African Elephant Status Report 2002: an update from the African Elephant Database. http://iucn.org/afesg/aed/aesr2002.html IUCN/SSC African Elephant Specialist Group. IUCN, Gland, Switzerland and Cambridge, UK. 
-#&gt;  112                                                                                                                                                                                                                                                  Jackson, P. 1982. Elephants and rhinos in Africa. A time for decision. IUCN. Gland.
-#&gt;  113                                                               Dolmia, N.M., Calenge, C., Maillard, D. and Planton, H. 2007. Preliminary observations of elephant (&lt;i&gt;Loxodonta africana&lt;/i&gt;, Blumenbach) movements and home range in Zakouma National Park, Chad. African Journal of Ecology (OnlineEarly Articles): 45(4): 594-598.
-#&gt;  114                                                                                                                                                                                                                                                  Jackson, P. 1982. Elephants and rhinos in Africa. A time for decision. IUCN. Gland.
-#&gt;  115                                                                                                                                             Poilecot, P., N'Gakoutou, E.B. and Taloua, N. 2010. Evolution of large mammal populations and distribution in Zakouma National Park (Chad) between 2002 and 2008. Mammalia: 74: 235-246.
-#&gt;  116 Blanc, J.J., Thouless, C.R., Hart, J.A., Dublin H.T., Douglas-Hamilton, I., Craig, C.R. and Barnes, R.F.W. 2003. African Elephant Status Report 2002: an update from the African Elephant Database. http://iucn.org/afesg/aed/aesr2002.html IUCN/SSC African Elephant Specialist Group. IUCN, Gland, Switzerland and Cambridge, UK. 
-#&gt;  117                                                                                     Bronner, G. N., Hoffmann, M., Taylor, P. J. , Chimimba, C. T., Best, P. B., Matthee, C. A. and Robinson, T. J. 2003. A revised systematic checklist of the extant mammals of the southern African subregion. Durban Museum Novitates: 28: 56-106
-#&gt;  118                                                                                                                 Chase, M.J. and Griffin, C.R. 2009. Elephants caught in the middle: impacts of war, fences and people on elephant distribution and abundance in the Caprivi Strip, Namibia. African Journal of Ecology: 47: 223-233.
-#&gt;  119                                                                                            Gough, K. F. and Kerley, G. I. H. 2006. Demography and population dynamics in the elephants &lt;i&gt;Loxodonta africana&lt;/i&gt; of Addo Elephant National Park, South Africa: is there evidence of density dependent regulation? Oryx: 40: 434-441.
-#&gt;  120                                                                                                                                                                                                                                                  Jackson, P. 1982. Elephants and rhinos in Africa. A time for decision. IUCN. Gland.
-#&gt;  121                                                                                                                                                                                                         Skinner, J. D. and Smithers, R. H. N. 1990. The mammals of the Southern African subregion. University of Pretoria. Pretoria.
-#&gt;  122                                                                                                                 Young, K. D., Ferreira, S. M. and van Aarde, R. J. 2009. The influence of increasing population size and vegetation productivity on elephant distribution in the Kruger National Park. Austral Ecology: 34: 329-342.
-#&gt;  123                                                                                                                                                                                                                                                Kingdon, J. 1997. The Kingdon field guide to African mammals. Academic Press. London.
-#&gt;  124                                                                                                                                                          Dowsett-Lemaire, F. and Dowsett, R. J. 1991. Observations complémentaires sur quelques grands mammifères dans le bassin du Kouilou au Congo. Tauraco Res. Rep.: 4: 291-296.
-#&gt;  125                                                                                                                                                                                                                     Dowsett, R. J. and Granjon, L. 1991. Liste préliminaire des mammifères du Congo. Tauraco Res. Rep. : 4: 297-310.
-#&gt;  126                                                                                                                                                                                                          Fay, J. M. and Agnagna, M. 1991. Forest Elephant population in the Central African Republic and Congo. Pachyderm: 14: 3-19.
-#&gt;  127                                                                                                                                                                                                    Fay, J. M. and Agnagna, M. 1993. Elephants and ivory in the Congo since the ban: the lull before the storm. Pachyderm: 16: 51-58.
-#&gt;  128                                                                                                                                                                                                                                                  Jackson, P. 1982. Elephants and rhinos in Africa. A time for decision. IUCN. Gland.
-#&gt;  129                                                                   Wilson, V. J. and Wilson, B. L. P. 1991. La chasse traditionelle et commerciale dans le sud-ouest du Congo. In R. J. Dowsett and F. Dowsett-Lemaire (eds.) Flore et faune du bassin du Kouilou (Congo) et leur exploitation. Tauraco Research Report: 4: 279-289 .
-#&gt;  130                                                                                                                                             Alers, M. P. T., Blom, A., Sikubwabo Kiyengo, C., Masunde, T. and Barnes, R. F.W. 1992. Preliminary assessment of the Forest Elephant in Zaire. African Journal of Ecology: 30: 279-291.
-#&gt;  131                                                                                                                                                                                                                                                  Jackson, P. 1982. Elephants and rhinos in Africa. A time for decision. IUCN. Gland.
-#&gt;  132                                                                                                                                                  Krunkelsven, E. V., Bila-Isia, I. and Draulans, D. 2000. A survey of bonobos and other large mammals in the Salonga National Park, Democratic Republic of Congo. Oryx: 34: 180-187.
-#&gt;  133                                                                                                                                                 Rahm, U. 1966. Les mammifères de la forêt équatoriale du l'est du Congo. Annales du Musée Royale de l'Afrique Centrale, Série in 8 vols. Tervuren Sciences Zoologiques: 149: 39-121.
-#&gt;  134                                                                                                                                                    Schouteden, H. 1948. Faune du Congo Belge et de Ruanda-Urundi, I - mammifères. Annales du Musée Royale du Congo Belge, Série in 8 vols, Tervuren Sciences Zoologiques: 1: 331 pp.
-#&gt;  135                                                                                                                                                                                                    Smith, K., Atalia, M. and Watkin, J. 1993. Pachyderms and threats increasing in Garamba national park, Zaire. Species: 20: 30-32.
-#&gt;  136                                                                                                                                                                                                                                                  Jackson, P. 1982. Elephants and rhinos in Africa. A time for decision. IUCN. Gland.
-#&gt;  137                                                                                                                                                                                                                         Sayer, J. 1977. Conservation of large mammals in the Republic of Mali. Biological Conservation: 12: 245-263.
-#&gt;  138                                                                                                                                                                                                                                                  Jackson, P. 1982. Elephants and rhinos in Africa. A time for decision. IUCN. Gland.
-#&gt;  139                                                                                     Bronner, G. N., Hoffmann, M., Taylor, P. J. , Chimimba, C. T., Best, P. B., Matthee, C. A. and Robinson, T. J. 2003. A revised systematic checklist of the extant mammals of the southern African subregion. Durban Museum Novitates: 28: 56-106
-#&gt;  140                                                                                                                                                       Grubb, P., Jones, T. S., Davies, A. G., Edberg, E., Starin, E. D. and Hill, J. E. 1998. Mammals of Ghana, Sierra Leone and The Gambia. The Trendrine Press. St Ives, Cornwall.
-#&gt;  141                                                                                                                                 Kingdon, J., Happold, D., Hoffmann, M., Butynski, T., Happold, M. and Kalina, J. eds. 2013. &lt;i&gt;Mammals of Africa Volume I: introductory chapters and afrotheria&lt;/i&gt;. Bloomsbury, London, UK. 351 pp.
-#&gt;  142                                                                                                                                                       Grubb, P., Jones, T. S., Davies, A. G., Edberg, E., Starin, E. D. and Hill, J. E. 1998. Mammals of Ghana, Sierra Leone and The Gambia. The Trendrine Press. St Ives, Cornwall.
-#&gt;  143                                                                                                                                                                                                                                                  Jackson, P. 1982. Elephants and rhinos in Africa. A time for decision. IUCN. Gland.
-#&gt;  144 Blanc, J.J., Thouless, C.R., Hart, J.A., Dublin H.T., Douglas-Hamilton, I., Craig, C.R. and Barnes, R.F.W. 2003. African Elephant Status Report 2002: an update from the African Elephant Database. http://iucn.org/afesg/aed/aesr2002.html IUCN/SSC African Elephant Specialist Group. IUCN, Gland, Switzerland and Cambridge, UK. 
-#&gt;  145                                                                                                                                                                                                                                                  Jackson, P. 1982. Elephants and rhinos in Africa. A time for decision. IUCN. Gland.
-#&gt;  146                                                                                                                                                                                           Merz, G. and Hoppe-Dominik, B. 1991. Distribution and status of the Forest Elephant in the Ivory Coast, West Africa. Pachyderm: 14: 22-24.
-#&gt;  
-#&gt;  attr(,"class")
-#&gt;  [1] "spp_distr"</code></pre>
+#&gt;  References ($references):
+#&gt;  -------------------------
+#&gt;       id                        reference
+#&gt;  1  1778 Kingdon, J., Happold [truncated]
+#&gt;  2  1923 Basilio, A. 1962. La [truncated]
+#&gt;  3  4429 Jackson, P. 1982. El [truncated]
+#&gt;  4  4429 Monfort, A. 1992. Pr [truncated]
+#&gt;  5  4491 Grubb, P., Jones, T. [truncated]
+#&gt;  6  4491 Jackson, P. 1982. El [truncated]
+#&gt;  7  5628 Hameed, S.M.A. and E [truncated]
+#&gt;  8  6724 Bolton, M. 1973. Not [truncated]
+#&gt;  9  6724 Largen, M. J. and Ya [truncated]
+#&gt;  10 6724 Meester, J. and Setz [truncated]
+#&gt;  -------truncated-------</code></pre>
 </div>
 <div id="references" class="section level3">
 <h3 class="hasAnchor">
 <a href="#references" class="anchor"></a>References</h3>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1"><span class="kw"><a href="../reference/spp_references.html">spp_references</a></span>(<span class="st">"4521"</span>, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
-<pre><code>#&gt;  $references
-#&gt;        id
-#&gt;  1  10265
-#&gt;  2   6344
-#&gt;  3  17013
-#&gt;  4   6371
-#&gt;  5   6532
-#&gt;  6   6534
-#&gt;  7   6825
-#&gt;  8   7224
-#&gt;  9   7609
-#&gt;  10 19397
-#&gt;  11 19572
-#&gt;  12 15783
-#&gt;  13  7852
-#&gt;  14 43172
-#&gt;  15 17655
-#&gt;                                                                                                                                                                                                                                                                                                                                 citation
-#&gt;  1                                                                                                                                                                                                                                                                                    Anon. 1978. Red data book: Mammalia. IUCN. Morges.
-#&gt;  2                                                                                            Barnes, R. F., Agnagna, M., Alers, M. P. T., Blom, A., Doungabe, G., Fay, M. Masunda, T., Ndo, J. C., Nkoumou, C., Sikubwalo Kiyengo and Tchamba, M. 1993. Elephants and ivory poaching in the forests of equatorial Africa. Oryx: 27: 27.
-#&gt;  3  Blanc, J.J., Thouless, C.R., Hart, J.A., Dublin H.T., Douglas-Hamilton, I., Craig, C.R. and Barnes, R.F.W. 2003. African Elephant Status Report 2002: an update from the African Elephant Database. http://iucn.org/afesg/aed/aesr2002.html IUCN/SSC African Elephant Specialist Group. IUCN, Gland, Switzerland and Cambridge, UK. 
-#&gt;  4                                                                                                                                                                                                             Burton, M. P. 1994. Alternative projections of the decline of the African Elephant. Biological Conservation: 70: 183-188.
-#&gt;  5                                                                                                                                                                                                                                                     Douglas-Hamilton, I. 1987. African Elephant population study. Pachyderm: 8: 1-10.
-#&gt;  6                                                                                                                                                                                                                                    Douglas-Hamilton, I. 1987. African Elephants: population trends and their causes. Oryx: 21: 11-24.
-#&gt;  7                                                                                                                                                                                                                                                   Jackson, P. 1982. Elephants and rhinos in Africa. A time for decision. IUCN. Gland.
-#&gt;  8                                                                                                                                                                                            Meester, J. and Setzer, H. W (eds.) 1974. The mammals of Africa. An identification manual. Smithsonian Institution Press. Washington, D.C.
-#&gt;  9                                                                                                                                                                                                                                                                Parker, I. and Amin, M. 1983. Ivory crisis. Chatto and Windus. London.
-#&gt;  10                                                                                                                                                                                                                          Parker, I.S.C. and Martin, E.B. 1982. How many elephants are killed for the ivory trade? Oryx: 16: 235-239.
-#&gt;  11                                                                                                                                                                                     Riddle, H.S., Schulte, B.A., Desai, A.A. and van der Meer, L. 2009. Elephants - a conservation overview. Journal of Threatened Taxa: 2: 653-661.
-#&gt;  12                                                                                                                                                                            Roca, A. L., Georgiadis, N., Pecon-Slattery, J. and O'Brien, S. J. 2001. Genetic evidence for two species of elephant in Africa. Science: 293: 1473-1477.
-#&gt;  13                                                                                                                                                  Said, M. and Change, R. 1994. African elephant database. A preliminary update Nov. 1994. IUCN, UNEP, African Elephant Specialist Group, SSC, Global Resource Information Database .
-#&gt;  14                                                                                                                                                           Wilson, D.E. and Reeder, D.M. (Eds.) 1993. &lt;i&gt;Mammal species of the world, a taxonomic and geographic reference&lt;/i&gt;. Smithsonian Institution Press. Washington and London.
-#&gt;  15                                                                                                                                 Wilson, D.E. and Reeder, D.M. (Eds.). 2005. &lt;i&gt;Mammal species of the world, a taxonomic and geographic reference&lt;/i&gt;. 3rd Edition, The Johns Hopkins University Press, Baltimore, Maryland. 2,142pp.
-#&gt;     is_standard
-#&gt;  1        FALSE
-#&gt;  2        FALSE
-#&gt;  3        FALSE
-#&gt;  4        FALSE
-#&gt;  5        FALSE
-#&gt;  6        FALSE
-#&gt;  7        FALSE
-#&gt;  8        FALSE
-#&gt;  9        FALSE
-#&gt;  10       FALSE
-#&gt;  11       FALSE
-#&gt;  12       FALSE
-#&gt;  13       FALSE
-#&gt;  14        TRUE
-#&gt;  15       FALSE
-#&gt;  
-#&gt;  attr(,"class")
-#&gt;  [1] "spp_refs"</code></pre>
+<pre><code>#&gt;  References ($references):
+#&gt;  -------------------------
+#&gt;        id                                             citation is_standard
+#&gt;  1  10265 Anon. 1978. Red data book: Mammalia. IUC [truncated]       FALSE
+#&gt;  2   6344 Barnes, R. F., Agnagna, M., Alers, M. P. [truncated]       FALSE
+#&gt;  3  17013 Blanc, J.J., Thouless, C.R., Hart, J.A., [truncated]       FALSE
+#&gt;  4   6371 Burton, M. P. 1994. Alternative projecti [truncated]       FALSE
+#&gt;  5   6532 Douglas-Hamilton, I. 1987. African Eleph [truncated]       FALSE
+#&gt;  6   6534 Douglas-Hamilton, I. 1987. African Eleph [truncated]       FALSE
+#&gt;  7   6825 Jackson, P. 1982. Elephants and rhinos i [truncated]       FALSE
+#&gt;  8   7224 Meester, J. and Setzer, H. W (eds.) 1974 [truncated]       FALSE
+#&gt;  9   7609 Parker, I. and Amin, M. 1983. Ivory cris [truncated]       FALSE
+#&gt;  10 19397 Parker, I.S.C. and Martin, E.B. 1982. Ho [truncated]       FALSE
+#&gt;  -------truncated-------</code></pre>
 </div>
 </div>
 </div>

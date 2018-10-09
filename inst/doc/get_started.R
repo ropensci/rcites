@@ -9,10 +9,13 @@ knitr::opts_chunk$set(
 )
 
 ## ---- eval = FALSE-------------------------------------------------------
+#  library(rcites)
 #  set_token("8QW6Qgh57sBG2k0gtt")
 
+## ---- echo = FALSE-------------------------------------------------------
+load_all()
+
 ## ----result_1------------------------------------------------------------
-library(rcites)
 res1 <- spp_taxonconcept(query_taxon = "Loxodonta africana")
 
 ## ---- eval = FALSE-------------------------------------------------------

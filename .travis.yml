@@ -8,14 +8,16 @@ matrix:
   include:
     - os: linux
       r: oldrel
-      env: NOT_CRAN=false
+      env:
+        - NOT_CRAN=false
+        - R_CODECOV=false
     - os: linux
       r: release
-      env:
-        - R_CODECOV=true
-          NOT_CRAN=false
     - os: linux
       r: devel
+      env:
+        - NOT_CRAN=false
+
 
 
 notifications:
