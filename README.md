@@ -39,6 +39,7 @@ library("rcites")
 
 To set up a connection to the CITES Speciesplus database, a personal authentication token is required. Please see the vignette for details how to get a token and how to set the token for package use:
 [Get started with rcites](https://ibartomeus.github.io/rcites/articles/get_started.html)
+
 Additional information about specific use examples are provided for the [African bush elephant (*Loxodonta africana*)](https://ibartomeus.github.io/rcites/articles/elephant.html). The use of `rcites` for multiple species is described in [Bulk analysis](https://ibartomeus.github.io/rcites/articles/bulk_analysis.html).
 
 
