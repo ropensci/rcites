@@ -50,6 +50,11 @@ elephant_taxonconcept
 ```
 
 
+As the first column of the output shows, the taxon identifier of the elephant is 4521. This `taxon_id` will be used for all next function coding.
+
+Beyong the taxon identifier, the output also provides information about the taxon classification and other names, both synonyms and common names if any, in different languages.
+
+
 ## Map the elephant's distribution
 
 Before taking more insights into the legislation status of the elephant, we have a look at where the elephant actually occurs naturally. For this, we can access the elephant's distribution information with the `spp_distributions()` function. Thereafter, we can map the distribution with the help of the `rworldmap` package.
@@ -58,8 +63,9 @@ Before taking more insights into the legislation status of the elephant, we have
 library(rworldmap)
 
 par(las = 1)
-ele_distr <- spp_distributions(taxon_id = "4521")$distributions
-map2 <- joinCountryData2Map(ele_distr,
+elephant_distr <- spp_distributions(taxon_id = "4521")$distributions
+
+map2 <- joinCountryData2Map(elephant_distr,
                             joinCode="ISO2",
                             nameJoinColumn = "iso_code2",
                             nameCountryColumn = "name")
@@ -85,6 +91,7 @@ elephant_cites <- spp_cites_legislation(taxon_id = "4521")
 elephant_cites
 ```
 
+
 We can do the same for the elephant's legislation status in the European Union:
 
 ```{r}
@@ -92,12 +99,13 @@ elephant_eu <- spp_eu_legislation(taxon_id = "4521")
 elephant_eu
 ```
 
-Suggestion: With the combination of map2 and the legislation data, one might be able to illustrate the elephant's trade directions.
+
+With the combination of map2 and the legislation data, one might be able to illustrate the elephant's trade directions. This and other use examples of the `rcites` data output will be added bit by bit.
 
 
 ## Access the elephant's Species+ reference data
 
-Last but not least, especially scientists will probably be interested in what references the Species+ information about the elephant is based on. For this, we can access the Species+ reference data with the `spp_references()` function. Within the function, we can select to access either the taxonomic or distribution references with the `type` argument.
+Last but not least, especially scientists will probably be interested in what references the Species+ information about the elephant is based on. For this, we can access the Species+ reference data with the `spp_references()` function.
 
 ```{r}
 elephant_refs <- spp_references(taxon_id = "4521")
