@@ -3,8 +3,6 @@ improve our package. We added both reviewers on the list of contributors
 in `DESCRIPTION` with the role "rev" and we would like to have their formal
 consent before the next CRAN release.
 
-=> KC: should we offer more than "rev"? / JG: I think "rev" is fine, as this is what their role was.
-
 We have carefully addressed the reviewers' comments and added several new
 features to our package following their suggestions. Given the nature and the
 number of changes we have made since the last version, we are considering
@@ -40,13 +38,12 @@ All these changes required a new set of tests handled in [#35](https://github.co
 The four remaining `spp_*` functions now support `taxon_id` with more than one
 element. This was handled in [#36](https://github.com/ibartomeus/rcites/pull/36).
 
-A new vignette XXX shows how to use these new features. 
+A new vignette [Bulk analysis with rcites](https://ibartomeus.github.io/rcites/articles/bulk_analysis.html) shows how to use these new features. 
 
 ### Addition of new helpers and unit testing
 
 All the changes mentioned above required a set of new helpers functions gathered in `zzz.R`
 as in the previous version. Also the unit testing has been extensively reviewed.
-
 
 
 ## Changes in documentation
@@ -55,9 +52,6 @@ All the new parameters have been carefully documented. We did our best to improv
 the functions outputs (this was handled in [#35](https://github.com/ibartomeus/rcites/pull/35)).
 We now use markdown to document the package (see https://cran.r-project.org/web/packages/roxygen2/vignettes/markdown.html)
 The website has been rebuilt.
-
-New vignettes.
-
 
 ### `set_token()`
 
@@ -91,3 +85,8 @@ Magaret Siple noticed that:
 > I love that code for making distribution maps is included in the vignette, but had some issues with the example. The mapping example in the vignette doesn't work- the following error occurs when running as.data.frame(spp_distributions("4521")):
 
 We have now rebuild the vignettes and it works.
+
+In order to have a comprehensive explanation of the package features, we introduce a set of three vignettes in total:
+1. [Get started with rcites](https://ibartomeus.github.io/rcites/articles/get_started.html) introduces into the overall package and how to apply the key features.
+2. [Study case: the African bush elephant (*Loxodonta africana*)](https://ibartomeus.github.io/rcites/articles/elephant.html) runs through different use examples of the package. More will be added bit by bit.
+3. [Bulk analysis with rcites](https://ibartomeus.github.io/rcites/articles/bulk_analysis.html) illustrates how the package's bulk analysis features work.
