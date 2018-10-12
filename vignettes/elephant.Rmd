@@ -49,8 +49,6 @@ elephant_taxonconcept <- spp_taxonconcept(query_taxon = "Loxodonta africana")
 elephant_taxonconcept
 ```
 
-Text about taxonconcept outcomes to come ...
-
 
 ## Map the elephant's distribution
 
@@ -77,8 +75,8 @@ plot(map2[!is.na(map2$iso_code2),], col = "#bda25d", add = TRUE)
 
 ## Access the legislation status
 
-Functions `spp_cites_legislation()` and `spp_eu_legislation()` provide access to
-the legislation status information of the elephant, within 1. CITES in the overall and 2. the European Union.
+The functions `spp_cites_legislation()` and `spp_eu_legislation()` provide access to
+the legislation status information of the elephant.
 
 First, we have a look at the CITES legislation status:
 
@@ -87,11 +85,14 @@ elephant_cites <- spp_cites_legislation(taxon_id = "4521")
 elephant_cites
 ```
 
-Text about CITES legislation outcomes to come ...
+We can do the same for the elephant's legislation status in the European Union:
 
-Code and Text about EU legislation outcomes to come ...
+```{r}
+elephant_eu <- spp_eu_legislation(taxon_id = "4521")
+elephant_eu
+```
 
-Can we make some nice map about trade directions (as a combination of map2 and the legislation data)?
+Suggestion: With the combination of map2 and the legislation data, one might be able to illustrate the elephant's trade directions.
 
 
 ## Access the elephant's Species+ reference data
@@ -100,6 +101,5 @@ Last but not least, especially scientists will probably be interested in what re
 
 ```{r}
 elephant_refs <- spp_references(taxon_id = "4521")
+elephant_refs
 ```
-
-Text about references outcomes to come ...
