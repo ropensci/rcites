@@ -74,7 +74,7 @@ When citing, please refer to both the [package citation](https://ibartomeus.gith
   - [Noam Ross](https://github.com/noamross)
   - [Margaret Siple](https://github.com/mcsiple)
 - Reporting issue(s):
-  - [FVFaleiro](https://github.com/FVFaleiro);
+  - [FVFaleiro](https://github.com/FVFaleiro)
 
 
 

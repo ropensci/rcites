@@ -18,8 +18,7 @@ Depends:
   R (>= 3.1.0)
 Imports:
   httr,
-  jsonlite,
-  methods
+  jsonlite
 Encoding: UTF-8
 RoxygenNote: 6.1.0
 Suggests: knitr, testthat, tibble, rmarkdown, rworldmap

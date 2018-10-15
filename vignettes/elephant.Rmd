@@ -10,8 +10,7 @@ vignette: >
 
 
 ```{r setup, echo = FALSE}
-NOT_CRAN <- FALSE
-# NOT_CRAN <- identical(tolower(Sys.getenv("NOT_CRAN")), "true")
+NOT_CRAN <- identical(tolower(Sys.getenv("NOT_CRAN")), "true")
 knitr::opts_chunk$set(
   purl = NOT_CRAN,
   eval = NOT_CRAN,
@@ -36,8 +35,7 @@ set_token("8QW6Qgh57sBG2k0gtt")
 
 In order to access information about the elephant, we first need to retrieve its
 Species+ taxon identifier. For this, we use the `spp_taxonconcept()` function
-and look for the elephant's scientific name, *Loxodonta africana*,
-as `query_taxon` argument.
+and the elephant's scientific name, *Loxodonta africana*, as `query_taxon` argument.
 
 ```{r}
 elephant_taxonconcept <- spp_taxonconcept(query_taxon = "Loxodonta africana")
@@ -52,13 +50,13 @@ Beyond the taxon identifier, the output also provides information about the taxo
 
 ## Map the elephant's distribution
 
-Before taking more insights into the legislation status of the elephant, we have a look at where the elephant actually occurs naturally. For this, we can access the elephant's distribution information with the `spp_distributions()` function. Thereafter, we can map the distribution with the help of the `rworldmap` package.
+Before giving more insights into the legislation status of the elephant, we have a look at where the elephant actually occurs naturally. For this, we can access the elephant's distribution information with the `spp_distributions()` function. Thereafter, we can map the distribution with the help of the `rworldmap` package.
 
 ```{r map, message = FALSE, fig.width = 6.4, fig.height = 7.6, fig.align="center"}
 library(rworldmap)
 
 par(las = 1)
-elephant_distr <- spp_distributions(taxon_id = "4521")$distributions
+elephant_distr <- spp_distributions(taxon_id = "4521", verbose = FALSE)$distributions
 
 map2 <- joinCountryData2Map(elephant_distr,
                             joinCode="ISO2",
@@ -70,7 +68,7 @@ plot(c(-23, 62), c(45, -40),
      xlab = "Longitude",
      ylab = "Latitude")
 plot(map2, add = TRUE)
-plot(map2[!is.na(map2$iso_code2),], col = "#bda25d", add = TRUE)
+plot(map2[!is.na(map2$iso_code2),], col = "#cba74d", add = TRUE)
 ```
 
 
@@ -103,6 +101,7 @@ With the combination of `map2` and the legislation data, one might be able to il
 Last but not least, it is important to identify which references the Species+ information about the elephant is based on. For this, we can access the Species+ reference data with the `spp_references()` function.
 
 ```{r}
-elephant_refs <- spp_references(taxon_id = "4521")
+elephant_refs <- spp_references(taxon_id = "4521", verbose = FALSE)
 elephant_refs
+dim(elephant_refs$references)
 ```

@@ -27,7 +27,7 @@ Default is set to \code{NULL}, showing all available languages.}
 \item{updated_since}{a timestamp. Only entries updated after (and including)
 this timestamp will be pulled.}
 
-\item{per_page}{a integer that indicates how many objects are returned per
+\item{per_page}{an integer that indicates how many objects are returned per
 page for paginated responses. Default set to 500 which is the maximum.}
 
 \item{pages}{a vector of integer that contains page numbers. Default is

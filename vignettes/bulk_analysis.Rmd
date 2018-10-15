@@ -1,19 +1,18 @@
 ---
 title: "Bulk analysis with rcites"
 author: "rcites team"
-date: 10-08-2018
+date: 15-08-2018
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Bulk analysis with rcites}
   %\VignetteEngine{knitr::rmarkdown}
-editor_options: 
+editor_options:
   chunk_output_type: console
 ---
 
 
 ```{r setup, echo = FALSE}
-NOT_CRAN <- FALSE
-# NOT_CRAN <- identical(tolower(Sys.getenv("NOT_CRAN")), "true")
+NOT_CRAN <- identical(tolower(Sys.getenv("NOT_CRAN")), "true")
 knitr::opts_chunk$set(
   purl = NOT_CRAN,
   eval = NOT_CRAN,
@@ -25,37 +24,67 @@ library(rcites)
 
 ## Broad taxon concept queries
 
-If you want to query all taxa, you can use `spp_taxonconcept()` with `query_taxon = ""` after setting up your token.
+If you want to query all taxa, you can use `spp_taxonconcept()` with
+`query_taxon = ""` (assuming your token is already set up):
 
-```{r}
+```{r all_cms}
 res_cms <- spp_taxonconcept("", taxonomy = "CMS") #slow
 dim(res_cms$general)
 ```
 
-Alternativelly, you can retrieve, for example, the first three pages of results served by the API.
+Alternatively, you can retrieve, for example, the first three pages of results
+returned by the API.
 
-```{r}
-res_cites <- spp_taxonconcept("", page = 1:3)
+```{r all_cites}
+res_cites <- spp_taxonconcept("", page = 1:2)
 dim(res_cites$general)
 ```
 
-## Retrieving information for a set of taxon_concept
+## Retrieving information for a set of taxon_concept ID
 
-All `spp_` functions (`spp_distributions()`, `spp_eu_legislation()`, `spp_cites_legislation()` and
-`spp_references()`) can handle a vector of taxon_id which allows of bulk analysis.
+All `spp_` functions (i.e. `spp_distributions()`, `spp_eu_legislation()`, `spp_cites_legislation()` and
+`spp_references()`) can handle a vector of taxon_id which allows bulk analysis.
+Below we exemplify this feature for the four functions.
+
+### spp_distributions()
 
 ```{r}
-res1 <- spp_distributions(taxon_id = c('4521', '3210', '10255'))
+res1 <- spp_distributions(taxon_id = c('4521', '3210', '10255'), verbose = FALSE)
+## Number of countries concerned per taxon ID
+table(res1$distributions$taxon_id)
+```
+
+```{r, echo = FALSE}
+Sys.sleep(5)
+```
+
+### spp_cites_legislation()
+
+```{r}
+res2 <- spp_cites_legislation(taxon_id = c('4521', '3210', '10255'), verbose = FALSE)
+res2$cites_listings
+```
+
+### spp_eu_legislation()
+
+```{r, echo = FALSE}
+Sys.sleep(7)
 ```
 
 ```{r}
-res2 <- spp_cites_legislation(taxon_id = c('4521', '3210', '10255'))
+res3 <- spp_eu_legislation(taxon_id = c('4521', '3210', '10255'), verbose = FALSE)
+res3$eu_listings
+```
+
+
+### spp_references()
+
+```{r, echo = FALSE}
+Sys.sleep(7)
 ```
 
 ```{r}
-res3 <- spp_eu_legislation(taxon_id = c('4521', '3210', '10255'))
-```
-
-```{r}
-res4 <- spp_references(taxon_id = c('4521', '3210', '10255'))
+res4 <- spp_references(taxon_id = c('4521', '3210', '10255'), verbose = FALSE)
+## Number of references per taxon ID
+table(res4$references$taxon_id)
 ```

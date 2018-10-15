@@ -4,6 +4,8 @@
 
   - `spp_taxonconcept()` now includes an auto-pagination that allows to retrieve
   all entries for queries that have more than 500 results;
+  - `spp_taxonconcept()`, `spp_eu_legislation()`, `spp_cites_legislation()` and  `spp_references()` now supports vectors as `taxon_id` argument which allows
+  bulk analysis. 
   - Functions `spp_*` now returns S3 objects:
     - `spp_taxonconcept()` returns an object of class `spp_taxon`;
     - `spp_cites_legislation()` returns an object of class `spp_cites_leg` or `spp_cites_leg_multi`;
@@ -13,6 +15,7 @@
   - Moreover:
     - `spp_raw` class is defined for all functions including the argument `raw`,
     it returns the parsed output from the API as a list object.   
+
 
 
 

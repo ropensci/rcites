@@ -3,21 +3,25 @@ improve our package. We added both reviewers on the list of contributors
 in `DESCRIPTION` with the role "rev" and we would like to have their formal
 consent before the next CRAN release.
 
-We have carefully addressed the reviewers' comments and added several new
+We have carefully addressed the reviewers' comments and added several
 features to our package following their suggestions. Given the nature and the
 number of changes we have made since the last version, we are considering
 the new version as a major release (the future CRAN release would be v1.0.0).
 
 
+
 ## Changes in functions
 
-### data.table is no longer imported
+
+### data.table is no longer a dependency
 
 We agree with Noam Ross that the use of `data.table` was not particularly relevant for our package we therefore removed the dependencies to this package. This was handled in [#34](https://github.com/ibartomeus/rcites/pull/34).
 
+
 ### Reviewing functions outputs
 
-As suggested by Noam Ross, all outputs are now S3 objects with specific print methods, gathered in `print.R`. These objects are lists of data.frame of class `c("tbl_df", "tbl", "data.frame")`. Furthermore, we added a `raw` parameter (set to `FALSE` by default) to functions that retrieve data from the Species+ API. As argued by Noam Ross, this gives the opportunity to advanced users to parse the output themselves. Objects returned when `raw = TRUE` are of class `c("list", "spp_raw")` and a print method was borrowed from the example Noam Ross brought to our attention.
+As suggested by Noam Ross, all outputs are now S3 objects with specific print methods, gathered in `print.spp.R`. These objects are lists of data.frame of class `c("tbl_df", "tbl", "data.frame")`. Furthermore, we added a `raw` parameter (set to `FALSE` by default) to functions that retrieve data from the Species+ API. As argued by Noam Ross, this gives the opportunity to advanced users to parse the output themselves. Objects returned when `raw = TRUE` are of class `c("list", "spp_raw")` and a print method was borrowed from the example Noam Ross brought to our attention.
+
 
 ### New parameters to better include the API features
 
@@ -36,17 +40,21 @@ When more than one page must be fetched, a message is prompted (if `verbose` is 
 All these changes required a new set of tests handled in [#35](https://github.com/ibartomeus/rcites/pull/35).
 
 The four remaining `spp_*` functions now support `taxon_id` with more than one
-element. This was handled in [#36](https://github.com/ibartomeus/rcites/pull/36).
+element. This was handled in [#36](https://github.com/ibartomeus/rcites/pull/36),
+in this case we decided to use a different classes when the output is a combination
+of outputs of different species. Basically, we concatenated the lists and add a column
+`taxon_id` to all data frames. Such S3 object have class `*_multi` where `*` stands
+for the name of the class for a single element.
 
-A new vignette [Bulk analysis with rcites](https://ibartomeus.github.io/rcites/articles/bulk_analysis.html) shows how to use these new features. 
+A new vignette [Bulk analysis with rcites](https://ibartomeus.github.io/rcites/articles/bulk_analysis.html) shows how to use these new features.
 
-### Addition of new helpers and unit testing
+### Addition of new helper functions and unit testing
 
 All the changes mentioned above required a set of new helpers functions gathered in `zzz.R`
 as in the previous version. Also the unit testing has been extensively reviewed.
 
 
-## Changes in documentation
+## Changes in the documentation
 
 All the new parameters have been carefully documented. We did our best to improve
 the functions outputs (this was handled in [#35](https://github.com/ibartomeus/rcites/pull/35)).
@@ -69,8 +77,8 @@ readline("Enter your token without quotes: ")
 
 > There are a lot of rcites_ functions within the package functions (e.g., rcites_getsecret() which is used in spp_taxonconcept()) which don't work on their own. Since the wrapper functions around them work, I think it's fine; I was just confused as to what they are.
 
-We use these helpers functions to better structure our code as they avoid
-code redundancy. There are not part of the package API but important for the
+We use these helpers functions to better structure our code, especially to avoid
+code redundancy. They are not parts of the package API but important for the
 developers of the package.
 
 > I'm not sure what the rOpenSci guidelines are for these functions.
@@ -84,9 +92,14 @@ Magaret Siple noticed that:
 
 > I love that code for making distribution maps is included in the vignette, but had some issues with the example. The mapping example in the vignette doesn't work- the following error occurs when running as.data.frame(spp_distributions("4521")):
 
-We have now rebuild the vignettes and it works.
+We have now rebuild the vignettes and everything works fine. In order to have a comprehensive explanation of the package features, we introduce a set of three vignettes in total:
 
-In order to have a comprehensive explanation of the package features, we introduce a set of three vignettes in total:
 1. [Get started with rcites](https://ibartomeus.github.io/rcites/articles/get_started.html) introduces into the overall package and how to apply the key features.
 2. [Study case: the African bush elephant (*Loxodonta africana*)](https://ibartomeus.github.io/rcites/articles/elephant.html) runs through different use examples of the package. More will be added bit by bit.
 3. [Bulk analysis with rcites](https://ibartomeus.github.io/rcites/articles/bulk_analysis.html) illustrates how the package's bulk analysis features work.
+
+
+### Not implemented
+
+Noam Ross had a fair point about the cache of the package. It is a direction we
+will consider in future release (some skills remain to be learned).  

@@ -137,7 +137,7 @@ rcites_autopagination <- function(q_url, per_page, pages, tot_page, token,
     for (i in seq_along(pages)) {
         if (verbose)
             cat("Retrieving info from page ", pages[i], "/", tot_page,
-                "\r")
+                "     \r")
         q_url_new <- paste0(q_url_0, "page=", pages[i], "&per_page=", min(per_page,
             500))
         out[[i]] <- rcites_res(q_url_new, token)
@@ -330,7 +330,7 @@ rcites_taxonconcept_higher_taxa <- function(x, identifier) {
 }
 
 rcites_taxonconcept_names <- function(x, name, identifier) {
-    tmp <- lapply(x, function(y) do.call(rbind, y[[name]]))
+    tmp <- lapply(x, function(y) if(!is.null(y[[name]])) do.call(rbind, y[[name]]))
     wch <- which(unlist(lapply(tmp, length)) > 0)
     #
     if (length(wch)) {

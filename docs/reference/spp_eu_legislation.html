@@ -11,8 +11,8 @@
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
+<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cosmo/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -84,6 +84,9 @@ given taxon concept (identifier must be known)." />
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/bulk_analysis.html">Bulk analysis with rcites</a>
+    </li>
     <li>
       <a href="../articles/elephant.html">Study case: the African bush elephant (*Loxodonta africana*)</a>
     </li>
@@ -187,7 +190,7 @@ Otherwise, an object of class <code>spp_eu_leg</code> (or <code>spp_eu_leg_multi
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>res1</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_eu_legislation</span>(<span class='kw'>taxon_id</span> <span class='kw'>=</span> <span class='st'>'4521'</span>)</div><div class='output co'>#&gt; &gt;&gt;&gt; Now processing taxon_id '4521'............</div><div class='output co'>#&gt; <span class='error'>Error in rcites_res(q_url, token): Too Many Requests (RFC 6585) (HTTP 429).</span></div><div class='input'><span class='no'>res2</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_eu_legislation</span>(<span class='kw'>taxon_id</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>'4521'</span>, <span class='st'>'3210'</span>, <span class='st'>'10255'</span>))</div><div class='output co'>#&gt; &gt;&gt;&gt; Now processing taxon_id '4521'............</div><div class='output co'>#&gt; <span class='error'>Error in rcites_res(q_url, token): Unauthorized (HTTP 401).</span></div><div class='input'><span class='no'>res3</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_eu_legislation</span>(<span class='kw'>taxon_id</span> <span class='kw'>=</span> <span class='st'>'4521'</span>, <span class='kw'>scope</span> <span class='kw'>=</span> <span class='st'>'historic'</span>)</div><div class='output co'>#&gt; &gt;&gt;&gt; Now processing taxon_id '4521'............</div><div class='output co'>#&gt; <span class='error'>Error in rcites_res(q_url, token): Too Many Requests (RFC 6585) (HTTP 429).</span></div><div class='input'><span class='no'>res4</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_eu_legislation</span>(<span class='kw'>taxon_id</span> <span class='kw'>=</span> <span class='st'>'4521'</span>, <span class='kw'>scope</span> <span class='kw'>=</span> <span class='st'>'all'</span>, <span class='kw'>language</span><span class='kw'>=</span><span class='st'>'fr'</span>)</div><div class='output co'>#&gt; &gt;&gt;&gt; Now processing taxon_id '4521'............</div><div class='output co'>#&gt; <span class='error'>Error in rcites_res(q_url, token): Too Many Requests (RFC 6585) (HTTP 429).</span></div></pre>
+    <pre class="examples"><div class='input'><span class='no'>res1</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_eu_legislation</span>(<span class='kw'>taxon_id</span> <span class='kw'>=</span> <span class='st'>'4521'</span>)</div><div class='output co'>#&gt; &gt;&gt;&gt; Now processing taxon_id '4521'............</div><div class='output co'>#&gt; <span class='error'>Error in rcites_res(q_url, token): Too Many Requests (RFC 6585) (HTTP 429).</span></div><div class='input'><span class='no'>res2</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_eu_legislation</span>(<span class='kw'>taxon_id</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>'4521'</span>, <span class='st'>'3210'</span>, <span class='st'>'10255'</span>))</div><div class='output co'>#&gt; &gt;&gt;&gt; Now processing taxon_id '4521'............</div><div class='output co'>#&gt; <span class='error'>Error in rcites_res(q_url, token): Too Many Requests (RFC 6585) (HTTP 429).</span></div><div class='input'><span class='no'>res3</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_eu_legislation</span>(<span class='kw'>taxon_id</span> <span class='kw'>=</span> <span class='st'>'4521'</span>, <span class='kw'>scope</span> <span class='kw'>=</span> <span class='st'>'historic'</span>)</div><div class='output co'>#&gt; &gt;&gt;&gt; Now processing taxon_id '4521'............</div><div class='output co'>#&gt; <span class='error'>Error in rcites_res(q_url, token): Too Many Requests (RFC 6585) (HTTP 429).</span></div><div class='input'><span class='no'>res4</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_eu_legislation</span>(<span class='kw'>taxon_id</span> <span class='kw'>=</span> <span class='st'>'4521'</span>, <span class='kw'>scope</span> <span class='kw'>=</span> <span class='st'>'all'</span>, <span class='kw'>language</span><span class='kw'>=</span><span class='st'>'fr'</span>)</div><div class='output co'>#&gt; &gt;&gt;&gt; Now processing taxon_id '4521'............</div><div class='output co'>#&gt; <span class='error'>Error in rcites_res(q_url, token): Unauthorized (HTTP 401).</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -206,7 +209,7 @@ Otherwise, an object of class <code>spp_eu_leg</code> (or <code>spp_eu_leg_multi
 
       <footer>
       <div class="copyright">
-  <p>Developed by Jonas Geschke, Kevin Cazelles, Ignasi Bartomeus.</p>
+  <p>Developed by Jonas Geschke, <a href='https://kevcaz.github.io/'>Kevin Cazelles</a>, <a href='https://bartomeuslab.com/'>Ignasi Bartomeus</a>.</p>
 </div>
 
 <div class="pkgdown">
