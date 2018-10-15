@@ -44,8 +44,8 @@
 spp_cites_legislation <- function(taxon_id, scope = "current", language = "en",
     raw = FALSE, token = NULL, verbose = TRUE) {
     if (length(taxon_id) > 1) {
-        out <- lapply(taxon_id, spp_cites_legislation, scope = scope, language = language,
-            raw = raw, token = token, verbose = verbose)
+        out <- lapply(taxon_id, spp_cites_legislation, scope = scope,
+          language = language, raw = raw, token = token, verbose = verbose)
         out <- rcites_combine_lists(out, taxon_id, raw)
     } else {
         # token check
@@ -63,8 +63,8 @@ spp_cites_legislation <- function(taxon_id, scope = "current", language = "en",
             if (query_string != "")
                 query_string <- paste0("?", query_string)
             ## create url
-            q_url <- rcites_url("taxon_concepts/", taxon_id, "/cites_legislation.json",
-                query_string)
+            q_url <- rcites_url("taxon_concepts/", taxon_id,
+              "/cites_legislation.json", query_string)
             ## get_res
             tmp <- rcites_res(q_url, token)
             ## outputs
@@ -73,9 +73,13 @@ spp_cites_legislation <- function(taxon_id, scope = "current", language = "en",
                 class(out) <- c("list", "spp_raw")
             } else {
                 out <- list()
-                out$cites_listings <- rcites_simplify_listings(tmp$cites_listings)
+                out$cites_listings <- rcites_simplify_listings(
+                  tmp$cites_listings
+                )
                 out$cites_quotas <- rcites_simplify_decisions(tmp$cites_quotas)
-                out$cites_suspensions <- rcites_simplify_decisions(tmp$cites_suspensions)
+                out$cites_suspensions <- rcites_simplify_decisions(
+                  tmp$cites_suspensions
+                )
                 class(out) <- c("spp_cites_leg")
             }
         }

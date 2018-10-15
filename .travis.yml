@@ -8,13 +8,13 @@ matrix:
   include:
     - os: linux
       r: oldrel
-      env: NOT_CRAN=flase
+      env: NOT_CRAN=false
     - os: linux
       r: release
       env: NOT_CRAN=true
     - os: linux
       r: devel
-      env: NOT_CRAN=true
+      env: NOT_CRAN=false
 
 
 notifications:

@@ -35,7 +35,8 @@ print.spp_raw_multi <- function(x, ...) {
 print.spp_cites_leg <- function(x, ...) {
 
     rcites_print_title("Cites listings ($cites_listings):", "\n")
-    rcites_print_df_rm(x$cites_listings, col_rm = c("annotation", "hash_annotation"))
+    rcites_print_df_rm(x$cites_listings,
+      col_rm = c("annotation", "hash_annotation"))
 
     rcites_print_title("Cites quotas ($cites_quotas):", "\n", "\n")
     rcites_print_df_rm(x$cites_quotas, col_rm = c("notes", "url"))
@@ -84,7 +85,8 @@ print.spp_distr_multi <- function(x, ...) {
 print.spp_eu_leg <- function(x, ...) {
 
     rcites_print_title("EU listings ($eu_listings):", "\n")
-    rcites_print_df_rm(x$eu_listings, col_rm = c("annotation", "hash_annotation"))
+    rcites_print_df_rm(x$eu_listings,
+      col_rm = c("annotation", "hash_annotation"))
 
     rcites_print_title("EU decisions ($eu_decisions):", "\n", "\n")
     npr <- c("notes", "eu_decision_type.description", "start_event.url")
@@ -126,7 +128,7 @@ print.spp_refs_multi <- function(x, ...) {
 #' @rdname print.spp
 #' @export
 print.spp_taxon <- function(x, ...) {
-    gen <- paste0("General info - ", attributes(x)$taxonomy,  " ($general):")
+    gen <- paste0("General info - ", attributes(x)$taxonomy, " ($general):")
     rcites_print_title(gen, "\n")
     rcites_print_df(x$general)
 
@@ -139,6 +141,6 @@ print.spp_taxon <- function(x, ...) {
     rcites_print_title("Common names ($common_names):", "\n", "\n")
     rcites_print_df(x$common_names)
 
-    cat("\nInformation available:", paste(paste0("$", names(x)), collapse = ", "),
-        "\n")
+    cat("\nInformation available:", paste(paste0("$", names(x)),
+      collapse = ", "), "\n")
 }

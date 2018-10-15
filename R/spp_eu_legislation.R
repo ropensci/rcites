@@ -43,8 +43,8 @@
 spp_eu_legislation <- function(taxon_id, scope = "current", language = "en",
     raw = FALSE, token = NULL, verbose = TRUE) {
     if (length(taxon_id) > 1) {
-        out <- lapply(taxon_id, spp_eu_legislation, scope = scope, language = language,
-            raw = raw, token = token, verbose = verbose)
+        out <- lapply(taxon_id, spp_eu_legislation, scope = scope,
+          language = language, raw = raw, token = token, verbose = verbose)
         out <- rcites_combine_lists(out, taxon_id, raw)
     } else {
         # token check
@@ -62,8 +62,8 @@ spp_eu_legislation <- function(taxon_id, scope = "current", language = "en",
             if (query_string != "")
                 query_string <- paste0("?", query_string)
             ## create url
-            q_url <- rcites_url("taxon_concepts/", taxon_id, "/eu_legislation.json",
-                query_string)
+            q_url <- rcites_url("taxon_concepts/", taxon_id,
+              "/eu_legislation.json", query_string)
             ## get_res
             tmp <- rcites_res(q_url, token)
             ## outputs

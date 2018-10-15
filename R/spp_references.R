@@ -33,7 +33,8 @@
 #' res3 <- spp_references(taxon_id = '4521', raw = TRUE)
 #' }
 
-spp_references <- function(taxon_id, raw = FALSE, token = NULL, verbose = TRUE) {
+spp_references <- function(taxon_id, raw = FALSE, token = NULL,
+  verbose = TRUE) {
 
     if (length(taxon_id) > 1) {
         out <- lapply(taxon_id, spp_references, raw = raw, token = token,

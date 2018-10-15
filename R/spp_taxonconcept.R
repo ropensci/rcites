@@ -53,9 +53,9 @@
 #' }
 
 
-spp_taxonconcept <- function(query_taxon, taxonomy = "CITES", with_descendants = FALSE,
-    language = NULL, updated_since = NULL, per_page = 500, pages = NULL,
-    raw = FALSE, token = NULL, verbose = TRUE) {
+spp_taxonconcept <- function(query_taxon, taxonomy = "CITES",
+    with_descendants = FALSE, language = NULL, updated_since = NULL,
+    per_page = 500, pages = NULL, raw = FALSE, token = NULL, verbose = TRUE) {
     # taxonomy check
     taxonomy <- match.arg(taxonomy, c("CITES", "CMS"))
     # token check
@@ -97,8 +97,8 @@ spp_taxonconcept <- function(query_taxon, taxonomy = "CITES", with_descendants =
             return(tmp2)
         } else {
             ## special cases
-            sp_nm <- c("synonyms", "higher_taxa", "common_names", "cites_listing",
-                "cites_listings", "accepted_names")
+            sp_nm <- c("synonyms", "higher_taxa", "common_names",
+                "cites_listing", "cites_listings", "accepted_names")
             ## output
             out <- list()
             out$all_id <- rcites_taxonconcept_allentries(tmp2, sp_nm)
@@ -115,16 +115,16 @@ spp_taxonconcept <- function(query_taxon, taxonomy = "CITES", with_descendants =
             ## Names
             out$accepted_names <- rcites_taxonconcept_names(tmp2[!id],
                 "accepted_names", out$all_id$id[!id])
-            out$common_names <- rcites_taxonconcept_names(tmp2[id], "common_names",
-                out$general$id)
+            out$common_names <- rcites_taxonconcept_names(tmp2[id],
+              "common_names", out$general$id)
             out$synonyms <- rcites_taxonconcept_names(tmp2[id], "synonyms",
                 out$general$id)
 
             ## Extra output if taxonomy is set to CITES
             if (taxonomy == "CITES") {
                 out$general$cites_listing <- unlist(lapply(tmp2[id], function(x) x$cites_listing))
-                out$cites_listings <- rcites_taxonconcept_cites_listings(tmp2[id],
-                  out$general$id)
+                out$cites_listings <- rcites_taxonconcept_cites_listings(
+                  tmp2[id], out$general$id)
             }
             class(out$general) <- class(out$all_id) <- c("tbl_df", "tbl",
                 "data.frame")

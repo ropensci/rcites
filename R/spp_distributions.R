@@ -59,8 +59,8 @@ spp_distributions <- function(taxon_id, language = "en", raw = FALSE, token = NU
             tmp <- rcites_lang(language)
             if (!is.null(tmp))
                 tmp <- paste0("?", tmp)
-            q_url <- rcites_url("taxon_concepts/", taxon_id, "/distributions.json",
-                tmp)
+            q_url <- rcites_url("taxon_concepts/", taxon_id,
+              "/distributions.json", tmp)
             # get results
             res <- rcites_res(q_url, token)
             # outputs
