@@ -35,7 +35,7 @@ The conservation of biodiversity is a complex problem strongly tight to politica
 
 # The Speciesplus database
 
-In 2013, the UNEP World Conservation Monitoring Centre (UNEP-WCMC) and the CITES Secretariat initiated a partnership funded by UNEP, the European Commission and the CITES Secretariat. Together, they created Speciesplus (or Species+), a comprehensive database of not only CITES listed species and their regulation status within CITES but also the species' status within the EU legislation and last but not least the species' status within the Convention on the Conservation of Migratory Species of Wild Animals (CMS) [@Speciesplus_about]. Speciesplus is publicly available at https://speciesplus.net [@UNEP]. 
+In 2013, the UNEP World Conservation Monitoring Centre (UNEP-WCMC) and the CITES Secretariat initiated a partnership funded by UNEP, the European Commission and the CITES Secretariat. Together, they created Speciesplus (or Species+), a comprehensive database of not only CITES listed species and their regulation status within CITES but also the species' status within the EU legislation and the species' status within the Convention on the Conservation of Migratory Species of Wild Animals (CMS) [@Speciesplus_about]. Speciesplus is publicly available at https://speciesplus.net [@UNEP]. 
 
 # The ``rcites`` R package
 
@@ -50,9 +50,9 @@ We provide functions to:
 
 Overall information about ``rcites`` and the package vignette can be found at https://ibartomeus.github.io/rcites/. The package is available for download from CRAN (stable version; https://cran.r-project.org/package=rcites) and Github (development version; https://github.com/ibartomeus/rcites).
 
-``rcites`` will support researchers and national authorities in more efficiently dealing with taxonomy information of endangered species and their legislation status.
+``rcites`` will support researchers and national authorities in more efficiently dealing with information of endangered species and their legislation status.
 
-Recent publications with data extraction from the Speciesplus database illustrate in what kind of research the package may be of help [@Hinsley:2018; @Robinson:2018]. In the spirit of CITES, taxonomic research in regard to illegal wildlife trade may be pointed out especially [@Zhou:2016; @Ingram:2015; @Zhou:2015].
+Recent publications with data extraction from the Speciesplus database illustrate in what kind of research the package may be of help [@Hinsley:2018; @Robinson:2018]. In the spirit of CITES, research in regard to illegal wildlife trade may be pointed out especially [@Zhou:2016; @Ingram:2015; @Zhou:2015].
 
 
 # Acknowledgments

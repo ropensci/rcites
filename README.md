@@ -40,7 +40,7 @@ library("rcites")
 To set up a connection to the CITES Speciesplus database, a personal authentication token is required. Please see the vignette for details how to get a token and how to set the token for package use:
 [Get started with rcites](https://ibartomeus.github.io/rcites/articles/get_started.html)
 
-Additional information about specific use examples are provided for the [African bush elephant (*Loxodonta africana*)](https://ibartomeus.github.io/rcites/articles/elephant.html). The package use for multiple species is described in [Bulk analysis with rcites](https://ibartomeus.github.io/rcites/articles/bulk_analysis.html).
+Additional information about specific use examples are provided for the [African bush elephant (*Loxodonta africana*)](https://ibartomeus.github.io/rcites/articles/elephant.html). The package usage for querying multiple species is described in [Bulk analysis with rcites](https://ibartomeus.github.io/rcites/articles/bulk_analysis.html).
 
 
 ### Key features
@@ -80,11 +80,11 @@ When citing, please refer to both the [package citation](https://ibartomeus.gith
 
 ## Resources
 
-An other package dealing with data from and about CITES, providing access to its wildlife trade database: [cites](https://github.com/ecohealthalliance/cites/)
+Another package dealing with data from and about CITES, providing access to its wildlife trade database: [cites](https://github.com/ecohealthalliance/cites/)
 
 While creating this package, we greatly benefited from:
-1. [taxize](https://github.com/ropensci/taxize) that helps a lot in structuring this repository/package,
-2. the `httr` vignette: [Managing secrets](https://cran.r-project.org/web/packages/httr/vignettes/secrets.html), extremely helpful for packages dealing with API.
+1. [taxize](https://github.com/ropensci/taxize) that inspired the structuring of this repository/package,
+2. the `httr` vignette: [Managing secrets](https://cran.r-project.org/web/packages/httr/vignettes/secrets.html), which is extremely helpful for packages dealing with API.
 
 
 

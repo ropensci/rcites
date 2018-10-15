@@ -15,7 +15,7 @@
 #' Default is set to `NULL`, showing all available languages.
 #' @param updated_since a timestamp. Only entries updated after (and including)
 #' this timestamp will be pulled.
-#' @param per_page a integer that indicates how many objects are returned per
+#' @param per_page an integer that indicates how many objects are returned per
 #' page for paginated responses. Default set to 500 which is the maximum.
 #' @param pages a vector of integer that contains page numbers. Default is
 #' set to `NULL`, i.e. all pages are accessed.
