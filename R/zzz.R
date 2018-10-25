@@ -97,7 +97,8 @@ rcites_combine_lists <- function(x, taxon_id, raw) {
         out <- list()
         for (i in seq_along(ls_keys[[1L]])) {
             key <- ls_keys[[1L]][i]
-            out[[key]] <- do.call(rbind, lapply(x, `[[`, key))
+            out[[key]] <- rcites_assign_class(
+                do.call(rbind, lapply(x, `[[`, key)))
         }
         class(out) <- paste0(cls, "_multi", sep = "")
     }

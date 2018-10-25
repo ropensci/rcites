@@ -34,16 +34,17 @@ test_that("Language", {
 
 
 ut_pause(2)
-res5 <- spp_distributions(taxon_id = c('4521', '3210'))
+res5 <- spp_distributions(taxon_id = c(tx_id, tx_id2))
 ut_pause()
-res6 <- spp_distributions(taxon_id = c('4521', '3210'), raw = TRUE, verbose = FALSE)
+res6 <- spp_distributions(taxon_id = c(tx_id, tx_id2), raw = TRUE, verbose = FALSE)
 test_that("distr_multi outputs", {
   expect_equal(class(res5), "spp_distr_multi")
-  expect_equal(nrow(res5$distributions), nrow(res1$distributions)+nrow(res1b$distributions))
-  expect_identical(unique(res5$distributions$taxon_id),  c('4521', '3210'))
+  expect_equal(class(res5$distributions), cl_df)
+  expect_equal(nrow(res5$distributions), nrow(res1$distributions) + nrow(res1b$distributions))
+  expect_identical(unique(res5$distributions$taxon_id), c(tx_id, tx_id2))
   expect_identical(class(res6), cl_raw_multi)
   expect_equal(class(res6[[1L]]), cl_raw)
   expect_equal(length(res6), 3)
-  expect_identical(res6$taxon_id, c('4521', '3210'))
+  expect_identical(res6$taxon_id, c(tx_id, tx_id2))
 })
 ut_pause()

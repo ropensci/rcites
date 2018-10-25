@@ -74,24 +74,26 @@ test_that("Language", {
 
 
 ut_pause(1)
-res9 <- spp_cites_legislation(taxon_id = c('4521', '3210'))
+res9 <- spp_cites_legislation(taxon_id = c(tx_id, tx_id2))
 ut_pause()
-res10 <- spp_eu_legislation(taxon_id = c('4521', '3210'))
+res10 <- spp_eu_legislation(taxon_id = c(tx_id, tx_id2))
 ut_pause()
-res11 <- spp_cites_legislation(taxon_id = c('4521', '3210'), raw = TRUE, verbose = FALSE)
+res11 <- spp_cites_legislation(taxon_id = c(tx_id, tx_id2), raw = TRUE, verbose = FALSE)
 ut_pause()
-res12 <- spp_eu_legislation(taxon_id = c('4521', '3210'), raw = TRUE, verbose = FALSE)
+res12 <- spp_eu_legislation(taxon_id = c(tx_id, tx_id2), raw = TRUE, verbose = FALSE)
 
 
 test_that("leg_multi outputs", {
   expect_equal(class(res9), "spp_cites_leg_multi")
   expect_equal(class(res10), "spp_eu_leg_multi")
+  expect_equal(class(res9$cites_listings), cl_df)
+  expect_equal(class(res10$eu_listings), cl_df)
   #
   expect_equal(nrow(res9$cites_listings), nrow(res1$cites_listings) + nrow(res1b$cites_listings))
   expect_equal(nrow(res10$eu_listings), nrow(res5$eu_listings) + nrow(res5b$eu_listings))
   #
-  expect_identical(unique(res9$cites_listings$taxon_id),  c('4521', '3210'))
-  expect_identical(unique(res10$eu_listings$taxon_id),  c('4521', '3210'))
+  expect_identical(unique(res9$cites_listings$taxon_id),  c(tx_id, tx_id2))
+  expect_identical(unique(res10$eu_listings$taxon_id),  c(tx_id, tx_id2))
   #
   expect_identical(class(res11), cl_raw_multi)
   expect_identical(class(res12), cl_raw_multi)
@@ -102,7 +104,7 @@ test_that("leg_multi outputs", {
   expect_equal(length(res11), 3)
   expect_equal(length(res12), 3)
   #
-  expect_identical(res11$taxon_id, c('4521', '3210'))
-  expect_identical(res12$taxon_id, c('4521', '3210'))
+  expect_identical(res11$taxon_id, c(tx_id, tx_id2))
+  expect_identical(res12$taxon_id, c(tx_id, tx_id2))
 })
 ut_pause()

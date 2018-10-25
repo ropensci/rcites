@@ -20,16 +20,17 @@ test_that("expected output classes", {
 
 
 ut_pause(2)
-res3 <- spp_references(taxon_id = c('4521', '3210'))
+res3 <- spp_references(taxon_id = c(tx_id, tx_id2))
 ut_pause()
-res4 <- spp_references(taxon_id = c('4521', '3210'), raw = TRUE, verbose = FALSE)
+res4 <- spp_references(taxon_id = c(tx_id, tx_id2), raw = TRUE, verbose = FALSE)
 test_that("refs_multi outputs", {
   expect_equal(class(res3), "spp_refs_multi")
-  expect_equal(nrow(res3$references), nrow(res1$references)+nrow(res1b$references))
-  expect_identical(unique(res3$references$taxon_id),  c('4521', '3210'))
+  expect_equal(class(res3$references), cl_df)
+  expect_equal(nrow(res3$references), nrow(res1$references) + nrow(res1b$references))
+  expect_identical(unique(res3$references$taxon_id),  c(tx_id, tx_id2))
   expect_identical(class(res4), cl_raw_multi)
   expect_equal(class(res4[[1L]]), cl_raw)
   expect_equal(length(res4), 3)
-  expect_identical(res4$taxon_id, c('4521', '3210'))
+  expect_identical(res4$taxon_id, c(tx_id, tx_id2))
 })
 ut_pause()
