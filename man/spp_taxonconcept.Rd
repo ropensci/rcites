@@ -7,7 +7,7 @@
 spp_taxonconcept(query_taxon, taxonomy = "CITES",
   with_descendants = FALSE, language = NULL, updated_since = NULL,
   per_page = 500, pages = NULL, raw = FALSE, token = NULL,
-  verbose = TRUE)
+  verbose = TRUE, ...)
 }
 \arguments{
 \item{query_taxon}{a character string containing the query (e.g. species).
@@ -42,6 +42,8 @@ set directly in \code{Renviron}. Alternatively, \code{set_token()} can
 be used to set \code{SPECIESPLUS_TOKEN} for the current session.}
 
 \item{verbose}{a logical. Should extra information be reported on progress?}
+
+\item{...}{Further named parameters, see \code{\link[httr:GET]{httr::GET()}}.}
 }
 \value{
 If \code{raw=TRUE}, then a object of class \code{spp_raw} is returned, which is essentially
@@ -64,8 +66,9 @@ Retrieve the taxon concept of a specific taxon (scientific name).
 \donttest{
 res1 <- spp_taxonconcept(query_taxon = 'Loxodonta africana')
 res2 <- spp_taxonconcept(query_taxon = 'Amazilia versicolor', raw = TRUE)
-res3 <- spp_taxonconcept(query_taxon = '', taxonomy = 'CMS', pages = c(1,3), language = 'EN')
-res4 <- spp_taxonconcept(query_taxon = '', per_page = 20, pages = 44)
+res3 <- spp_taxonconcept(query_taxon = '', taxonomy = 'CMS', pages = c(1, 3),
+ language = 'EN', verbose = FALSE, config = httr::progress())
+res4 <- spp_taxonconcept(query_taxon = '', per_page = 20, pages = 44, config = httr::progress())
 }
 }
 \references{

@@ -2,13 +2,12 @@
 #'
 #' Set and forget the authentification token for the current session.
 #'
-#' @param token a character string (with quotes) containing you token. If `NULL`
+#' @param token a character string (with quotes) containing your token. If `NULL`
 #' then the token can be passed without quotes (not as character string) after
 #' a prompt.
 #'
 #' @references
 #' \url{https://api.speciesplus.net/documentation}
-#'
 #'
 #' @export
 #'

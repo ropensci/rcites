@@ -10,7 +10,7 @@ set_token(token = NULL)
 forget_token()
 }
 \arguments{
-\item{token}{a character string (with quotes) containing you token. If \code{NULL}
+\item{token}{a character string (with quotes) containing your token. If \code{NULL}
 then the token can be passed without quotes (not as character string) after
 a prompt.}
 }

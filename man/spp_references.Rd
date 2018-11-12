@@ -4,7 +4,8 @@
 \alias{spp_references}
 \title{Get references for a given taxon concept}
 \usage{
-spp_references(taxon_id, raw = FALSE, token = NULL, verbose = TRUE)
+spp_references(taxon_id, raw = FALSE, token = NULL, verbose = TRUE,
+  ...)
 }
 \arguments{
 \item{taxon_id}{a vector of character strings containing species' taxon concept identifiers
@@ -19,6 +20,8 @@ set directly in \code{Renviron}. Alternatively, \code{\link[=set_token]{set_toke
 \code{SPECIESPLUS_TOKEN} for the current session.}
 
 \item{verbose}{a logical. Should extra information be reported on progress?}
+
+\item{...}{Further named parameters, see \code{\link[httr:GET]{httr::GET()}}.}
 }
 \value{
 If \code{raw} is set to \code{TRUE} then an object of class \code{spp_raw} (or
@@ -39,7 +42,8 @@ Retrieve available references for a given taxon concept.
 \donttest{
 res1 <- spp_references(taxon_id = '4521')
 res2 <- spp_references(c('4521', '3210', '10255'))
-res3 <- spp_references(taxon_id = '4521', raw = TRUE)
+res3 <- spp_references(taxon_id = '4521', raw = TRUE, verbose = FALSE,
+ config = httr::progress())
 }
 }
 \references{

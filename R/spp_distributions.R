@@ -15,6 +15,7 @@
 #' set directly in `Renviron`. Alternatively, \code{set_token()} can
 #' be used to set `SPECIESPLUS_TOKEN` for the current session.
 #' @param verbose a logical. Should extra information be reported on progress?
+#' @param ... Further named parameters, see [httr::GET()].
 #'
 #' @return If `raw` is set to `TRUE` then an object of class `spp_raw` (or
 #' `spp_raw_multi` if `length(taxon_id)>1`) is returned which is essentially
@@ -35,15 +36,15 @@
 #'  res1 <- spp_distributions(taxon_id = '4521')
 #'  res2 <- spp_distributions(taxon_id = c('4521', '3210', '10255'))
 #'  res3 <- spp_distributions(taxon_id = '4521', raw = TRUE, verbose = FALSE)
-#'  res4 <- spp_distributions(taxon_id = '4521', language = 'fr')
+#'  res4 <- spp_distributions(taxon_id = '4521', language = 'fr', config = httr::progress())
 #' }
 
 spp_distributions <- function(taxon_id, language = "en", raw = FALSE, token = NULL,
-    verbose = TRUE) {
+    verbose = TRUE, ...) {
 
     if (length(taxon_id) > 1) {
         out <- lapply(taxon_id, spp_distributions, language = language,
-            raw = raw, token = token, verbose = verbose)
+            raw = raw, token = token, verbose = verbose, ...)
         out <- rcites_combine_lists(out, taxon_id, raw)
     } else {
         # token check
@@ -62,7 +63,7 @@ spp_distributions <- function(taxon_id, language = "en", raw = FALSE, token = NU
             q_url <- rcites_url("taxon_concepts/", taxon_id,
               "/distributions.json", tmp)
             # get results
-            res <- rcites_res(q_url, token)
+            res <- rcites_res(q_url, token, ...)
             # outputs
             if (raw) {
                 out <- res

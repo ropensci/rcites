@@ -5,7 +5,7 @@
 \title{Get current CITES appendix listings and reservations.}
 \usage{
 spp_cites_legislation(taxon_id, scope = "current", language = "en",
-  raw = FALSE, token = NULL, verbose = TRUE)
+  raw = FALSE, token = NULL, verbose = TRUE, ...)
 }
 \arguments{
 \item{taxon_id}{a vector of character strings containing species' taxon concept identifiers
@@ -28,6 +28,8 @@ set directly in \code{Renviron}. Alternatively, \code{\link[=set_token]{set_toke
 be used to set \code{SPECIESPLUS_TOKEN} for the current session.}
 
 \item{verbose}{a logical. Should extra information be reported on progress?}
+
+\item{...}{Further named parameters, see \code{\link[httr:GET]{httr::GET()}}.}
 }
 \value{
 If \code{raw} is set to \code{TRUE} then an object of class \code{spp_raw} (or
@@ -49,7 +51,7 @@ CITES suspensions for a given taxon concept.
 \donttest{
 res1 <- spp_cites_legislation(taxon_id = 4521)
 res2 <- spp_cites_legislation(taxon_id = c('4521', '3210', '10255'))
-res3 <- spp_cites_legislation(taxon_id = 4521, scope = 'all')
+res3 <- spp_cites_legislation(taxon_id = 4521, scope = 'all', config=httr::verbose())
 res4 <- spp_cites_legislation(taxon_id = 4521, language = 'fr')
 }
 }

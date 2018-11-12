@@ -18,6 +18,7 @@
 #' set directly in `Renviron`. Alternatively, [set_token()] can
 #' be used to set `SPECIESPLUS_TOKEN` for the current session.
 #' @param verbose a logical. Should extra information be reported on progress?
+#' @param ... Further named parameters, see [httr::GET()].
 #'
 #' @return If `raw` is set to `TRUE` then an object of class `spp_raw` (or
 #' `spp_raw_multi` if `length(taxon_id)>1`) is returned which is essentially
@@ -37,15 +38,15 @@
 #' \donttest{
 #' res1 <- spp_cites_legislation(taxon_id = 4521)
 #' res2 <- spp_cites_legislation(taxon_id = c('4521', '3210', '10255'))
-#' res3 <- spp_cites_legislation(taxon_id = 4521, scope = 'all')
+#' res3 <- spp_cites_legislation(taxon_id = 4521, scope = 'all', config=httr::verbose())
 #' res4 <- spp_cites_legislation(taxon_id = 4521, language = 'fr')
 #' }
 
 spp_cites_legislation <- function(taxon_id, scope = "current", language = "en",
-    raw = FALSE, token = NULL, verbose = TRUE) {
+    raw = FALSE, token = NULL, verbose = TRUE, ...) {
     if (length(taxon_id) > 1) {
         out <- lapply(taxon_id, spp_cites_legislation, scope = scope,
-          language = language, raw = raw, token = token, verbose = verbose)
+          language = language, raw = raw, token = token, verbose = verbose, ...)
         out <- rcites_combine_lists(out, taxon_id, raw)
     } else {
         # token check
@@ -66,7 +67,7 @@ spp_cites_legislation <- function(taxon_id, scope = "current", language = "en",
             q_url <- rcites_url("taxon_concepts/", taxon_id,
               "/cites_legislation.json", query_string)
             ## get_res
-            tmp <- rcites_res(q_url, token)
+            tmp <- rcites_res(q_url, token, ...)
             ## outputs
             if (raw) {
                 out <- tmp

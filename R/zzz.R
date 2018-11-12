@@ -20,17 +20,17 @@ rcites_url <- function(...) {
     paste0(rcites_baseurl(), ...)
 }
 
-rcites_get <- function(q_url, token) {
+rcites_get <- function(q_url, token, ...) {
     names(token) <- "X-Authentication-Token"
-    httr::GET(q_url, httr::add_headers(token))
+    httr::GET(q_url, httr::add_headers(token), ...)
 }
 
-rcites_res <- function(q_url, token) {
-    con <- rcites_get(q_url, token)
+rcites_res <- function(q_url, token, ...) {
+    con <- rcites_get(q_url, token, ...)
     # check status
     httr::stop_for_status(con)
     # parsed
-    httr::content(con, "parsed")
+    httr::content(con, "parsed", ...)
 }
 
 rcites_timestamp <- function(x) {
@@ -128,7 +128,7 @@ rcites_getsecret <- function() {
 ##################### Pagination helpers
 
 rcites_autopagination <- function(q_url, per_page, pages, tot_page, token,
-    verbose = TRUE) {
+    verbose = TRUE, ...) {
     out <- list()
     q_url_0 <- gsub(q_url, pattern = "page=[[:digit:]]+\\&per_page=[[:digit:]]+$",
         replacement = "")
@@ -139,7 +139,7 @@ rcites_autopagination <- function(q_url, per_page, pages, tot_page, token,
                 "     \r")
         q_url_new <- paste0(q_url_0, "page=", pages[i], "&per_page=", min(per_page,
             500))
-        out[[i]] <- rcites_res(q_url_new, token)
+        out[[i]] <- rcites_res(q_url_new, token, ...)
     }
     if (verbose)
         cat("\nDone!\n")

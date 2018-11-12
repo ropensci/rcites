@@ -26,6 +26,7 @@
 #' set directly in `Renviron`. Alternatively, `set_token()` can
 #' be used to set `SPECIESPLUS_TOKEN` for the current session.
 #' @param verbose a logical. Should extra information be reported on progress?
+#' @param ... Further named parameters, see [httr::GET()].
 #'
 #' @return
 #' If `raw=TRUE`, then a object of class `spp_raw` is returned, which is essentially
@@ -48,14 +49,15 @@
 #' \donttest{
 #' res1 <- spp_taxonconcept(query_taxon = 'Loxodonta africana')
 #' res2 <- spp_taxonconcept(query_taxon = 'Amazilia versicolor', raw = TRUE)
-#' res3 <- spp_taxonconcept(query_taxon = '', taxonomy = 'CMS', pages = c(1,3), language = 'EN')
-#' res4 <- spp_taxonconcept(query_taxon = '', per_page = 20, pages = 44)
+#' res3 <- spp_taxonconcept(query_taxon = '', taxonomy = 'CMS', pages = c(1, 3),
+#'  language = 'EN', verbose = FALSE, config = httr::progress())
+#' res4 <- spp_taxonconcept(query_taxon = '', per_page = 20, pages = 44, config = httr::progress())
 #' }
 
 
 spp_taxonconcept <- function(query_taxon, taxonomy = "CITES",
     with_descendants = FALSE, language = NULL, updated_since = NULL,
-    per_page = 500, pages = NULL, raw = FALSE, token = NULL, verbose = TRUE) {
+    per_page = 500, pages = NULL, raw = FALSE, token = NULL, verbose = TRUE, ...) {
     # taxonomy check
     taxonomy <- match.arg(taxonomy, c("CITES", "CMS"))
     # token check
@@ -72,7 +74,7 @@ spp_taxonconcept <- function(query_taxon, taxonomy = "CITES",
     q_url <- rcites_taxonconcept_request(query_taxon, token, taxonomy,
         with_descendants, f_page, per_page, updated_since, language)
     # results
-    tmp <- rcites_res(q_url, token)
+    tmp <- rcites_res(q_url, token, ...)
     # number of pages
     pag <- rcites_numberpages(tmp$pagination)
     #
@@ -87,7 +89,7 @@ spp_taxonconcept <- function(query_taxon, taxonomy = "CITES",
                 stop("Only page 1-", pag, " are available.")
             if (length(pages) > 1) {
                 res <- rcites_autopagination(q_url, per_page, pages[-1L],
-                  pag, token, verbose)
+                  pag, token, verbose, ...)
                 tmp2 <- c(tmp$taxon_concepts, do.call(c, lapply(res, function(x) x$taxon_concepts)))
             } else tmp2 <- tmp$taxon_concepts
         } else tmp2 <- tmp$taxon_concepts

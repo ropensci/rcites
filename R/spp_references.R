@@ -11,6 +11,7 @@
 #' set directly in `Renviron`. Alternatively, [set_token()] can be used to set
 #' `SPECIESPLUS_TOKEN` for the current session.
 #' @param verbose a logical. Should extra information be reported on progress?
+#' @param ... Further named parameters, see [httr::GET()].
 #'
 #' @return If `raw` is set to `TRUE` then an object of class `spp_raw` (or
 #' `spp_raw_multi` if `length(taxon_id)>1`) is returned which is essentially
@@ -30,15 +31,16 @@
 #' \donttest{
 #' res1 <- spp_references(taxon_id = '4521')
 #' res2 <- spp_references(c('4521', '3210', '10255'))
-#' res3 <- spp_references(taxon_id = '4521', raw = TRUE)
+#' res3 <- spp_references(taxon_id = '4521', raw = TRUE, verbose = FALSE,
+#'  config = httr::progress())
 #' }
 
 spp_references <- function(taxon_id, raw = FALSE, token = NULL,
-  verbose = TRUE) {
+  verbose = TRUE, ...) {
 
     if (length(taxon_id) > 1) {
         out <- lapply(taxon_id, spp_references, raw = raw, token = token,
-            verbose = verbose)
+            verbose = verbose, ...)
         out <- rcites_combine_lists(out, taxon_id, raw)
     } else {
         # token check
@@ -53,7 +55,7 @@ spp_references <- function(taxon_id, raw = FALSE, token = NULL,
             ## create url
             q_url <- rcites_url("taxon_concepts/", taxon_id, "/references.json")
             ## get_res
-            tmp <- rcites_res(q_url, token)
+            tmp <- rcites_res(q_url, token, ...)
             ## outputs
             if (raw) {
                 out <- tmp

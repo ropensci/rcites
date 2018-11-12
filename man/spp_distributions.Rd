@@ -5,7 +5,7 @@
 \title{Get distributions data available for a given taxon concept.}
 \usage{
 spp_distributions(taxon_id, language = "en", raw = FALSE,
-  token = NULL, verbose = TRUE)
+  token = NULL, verbose = TRUE, ...)
 }
 \arguments{
 \item{taxon_id}{a vector of character strings containing species' taxon concept identifiers
@@ -24,6 +24,8 @@ set directly in \code{Renviron}. Alternatively, \code{set_token()} can
 be used to set \code{SPECIESPLUS_TOKEN} for the current session.}
 
 \item{verbose}{a logical. Should extra information be reported on progress?}
+
+\item{...}{Further named parameters, see \code{\link[httr:GET]{httr::GET()}}.}
 }
 \value{
 If \code{raw} is set to \code{TRUE} then an object of class \code{spp_raw} (or
@@ -46,7 +48,7 @@ the taxon identifier is known.
  res1 <- spp_distributions(taxon_id = '4521')
  res2 <- spp_distributions(taxon_id = c('4521', '3210', '10255'))
  res3 <- spp_distributions(taxon_id = '4521', raw = TRUE, verbose = FALSE)
- res4 <- spp_distributions(taxon_id = '4521', language = 'fr')
+ res4 <- spp_distributions(taxon_id = '4521', language = 'fr', config = httr::progress())
 }
 }
 \references{
