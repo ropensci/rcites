@@ -2,8 +2,8 @@
 #'
 #' Retrieve available references for a given taxon concept.
 #'
-#' @param taxon_id a vector of character strings containing species' taxon concept identifiers
-#' (see [spp_taxonconcept()])
+#' @param taxon_id a vector of character strings containing species' taxon
+#' concept identifiers (see [spp_taxonconcept()]).
 #' @param raw a logical. Should raw data be returned?
 #' @param token a character string containing the authentification token, see
 #' <https://api.speciesplus.net/documentation>. Default is set to
@@ -35,8 +35,8 @@
 #'  config = httr::progress())
 #' }
 
-spp_references <- function(taxon_id, raw = FALSE, token = NULL,
-  verbose = TRUE, ...) {
+spp_references <- function(taxon_id, raw = FALSE, token = NULL, verbose = TRUE,
+    ...) {
 
     if (length(taxon_id) > 1) {
         out <- lapply(taxon_id, spp_references, raw = raw, token = token,

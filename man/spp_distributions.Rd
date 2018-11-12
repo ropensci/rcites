@@ -8,8 +8,8 @@ spp_distributions(taxon_id, language = "en", raw = FALSE,
   token = NULL, verbose = TRUE, ...)
 }
 \arguments{
-\item{taxon_id}{a vector of character strings containing species' taxon concept identifiers
-(see \code{\link[=spp_taxonconcept]{spp_taxonconcept()}})}
+\item{taxon_id}{a vector of character strings containing species'
+taxon concept identifiers (see \code{\link[=spp_taxonconcept]{spp_taxonconcept()}}).}
 
 \item{language}{vector of character strings indicating the language for the
 names of distributions, values are taken among \code{en} (English),
@@ -47,8 +47,9 @@ the taxon identifier is known.
 \donttest{
  res1 <- spp_distributions(taxon_id = '4521')
  res2 <- spp_distributions(taxon_id = c('4521', '3210', '10255'))
- res3 <- spp_distributions(taxon_id = '4521', raw = TRUE, verbose = FALSE)
- res4 <- spp_distributions(taxon_id = '4521', language = 'fr', config = httr::progress())
+ res3 <- spp_distributions(taxon_id = '4521', raw = TRUE)
+ res4 <- spp_distributions(taxon_id = '4521', language = 'fr',
+ verbose = FALSE, config = httr::progress())
 }
 }
 \references{

@@ -69,7 +69,8 @@ rcites_current_id <- function(x) {
 
 rcites_add_taxon_id <- function(x, taxon_id) {
     if (length(x)) {
-        out <- cbind.data.frame(taxon_id = as.character(taxon_id), x, stringsAsFactors = FALSE)
+        out <- cbind.data.frame(taxon_id = as.character(taxon_id), x,
+          stringsAsFactors = FALSE)
     } else out <- data.frame()
     out
 }
@@ -97,8 +98,8 @@ rcites_combine_lists <- function(x, taxon_id, raw) {
         out <- list()
         for (i in seq_along(ls_keys[[1L]])) {
             key <- ls_keys[[1L]][i]
-            out[[key]] <- rcites_assign_class(
-                do.call(rbind, lapply(x, `[[`, key)))
+            out[[key]] <- rcites_assign_class(do.call(rbind, lapply(x,
+                `[[`, key)))
         }
         class(out) <- paste0(cls, "_multi", sep = "")
     }
@@ -130,15 +131,17 @@ rcites_getsecret <- function() {
 rcites_autopagination <- function(q_url, per_page, pages, tot_page, token,
     verbose = TRUE, ...) {
     out <- list()
-    q_url_0 <- gsub(q_url, pattern = "page=[[:digit:]]+\\&per_page=[[:digit:]]+$",
+    q_url_0 <- gsub(
+        q_url,
+        pattern = "page=[[:digit:]]+\\&per_page=[[:digit:]]+$",
         replacement = "")
     #
     for (i in seq_along(pages)) {
         if (verbose)
             cat("Retrieving info from page ", pages[i], "/", tot_page,
                 "     \r")
-        q_url_new <- paste0(q_url_0, "page=", pages[i], "&per_page=", min(per_page,
-            500))
+        q_url_new <- paste0(q_url_0, "page=", pages[i], "&per_page=",
+          min(per_page, 500))
         out[[i]] <- rcites_res(q_url_new, token, ...)
     }
     if (verbose)
@@ -214,8 +217,8 @@ rcites_simplify_listings <- function(x) {
 rcites_simplify_decisions <- function(x) {
     tmp0 <- lapply(lapply(x, rcites_null_to_na), unlist)
     out <- data.frame(do.call(rbind, lapply(tmp0,
-      function(y) data.frame(rbind(y), stringsAsFactors = FALSE))),
-      stringsAsFactors = FALSE)
+        function(y) data.frame(rbind(y), stringsAsFactors = FALSE))),
+        stringsAsFactors = FALSE)
     #
     out <- rcites_to_logical(out)
     out <- rcites_assign_class(out)
@@ -235,8 +238,8 @@ rcites_simplify_distributions <- function(x) {
     # references
     tmp2 <- lapply(tmp[, colnames(tmp) == "references"], cbind)
     out$references <- data.frame(id = rep(out$distributions$id,
-      unlist(lapply(tmp2, length))), reference = unlist(tmp2),
-      stringsAsFactors = FALSE)
+      unlist(lapply(tmp2, length))),
+      reference = unlist(tmp2), stringsAsFactors = FALSE)
     out$references <- rcites_assign_class(out$references)
     #
     out
@@ -248,13 +251,13 @@ rcites_simplify_distributions <- function(x) {
 ################ print helpers
 
 rcites_print_shorten <- function(x, stop = 20) {
-    unlist(lapply(x, function(y) ifelse(nchar(y) > (stop + 5), paste0(
-      substring(y, 1, stop), " [truncated]"), y)))
+    unlist(lapply(x, function(y) ifelse(nchar(y) > (stop + 5),
+      paste0(substring(y, 1, stop), " [truncated]"), y)))
 }
 
 rcites_print_title <- function(x, after = "", before = "") {
-    cat(before, x, "\n", paste(rep("-", nchar(x) + nchar(before)), collapse =
-      ""), after, sep = "")
+    cat(before, x, "\n", paste(rep("-", nchar(x) + nchar(before)),
+      collapse = ""), after, sep = "")
 }
 
 rcites_print_df <- function(x, nrows = 10) {
@@ -322,11 +325,11 @@ rcites_taxonconcept_allentries <- function(x, sp_nm) {
 
 rcites_taxonconcept_higher_taxa <- function(x, identifier) {
     tmp <- lapply(lapply(x, rcites_null_to_na),
-        function(y) unlist(y$higher_taxa))
+      function(y) unlist(y$higher_taxa))
     wch <- which(lapply(tmp, length) > 0)
     #
     out <- data.frame(id = identifier[wch], do.call(rbind, tmp[wch]),
-        stringsAsFactors = FALSE)
+      stringsAsFactors = FALSE)
     out <- rcites_assign_class(out)
     out
 }
@@ -359,7 +362,7 @@ rcites_unlist_party <- function(x) {
 
 rcites_taxonconcept_cites_listings <- function(x, identifier) {
     tmp <- lapply(lapply(x, rcites_null_to_na),
-        function(y) data.frame(do.call(rbind, y$cites_listings)))
+      function(y) data.frame(do.call(rbind, y$cites_listings)))
     tmp2 <- lapply(tmp, rcites_unlist_party)
     wch <- which(unlist(lapply(tmp, length)) > 0)
     #

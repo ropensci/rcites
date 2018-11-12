@@ -3,8 +3,8 @@
 #' Retrieve distributions data available for a given taxon concept for which the
 #' the taxon identifier is known.
 #'
-#' @param taxon_id a vector of character strings containing species' taxon concept identifiers
-#' (see [spp_taxonconcept()])
+#' @param taxon_id a vector of character strings containing species'
+#' taxon concept identifiers (see [spp_taxonconcept()]).
 #' @param language vector of character strings indicating the language for the
 #' names of distributions, values are taken among `en` (English),
 #' `fr` (French) and `es` (Spanish). Default is `en`.
@@ -35,12 +35,13 @@
 #' \donttest{
 #'  res1 <- spp_distributions(taxon_id = '4521')
 #'  res2 <- spp_distributions(taxon_id = c('4521', '3210', '10255'))
-#'  res3 <- spp_distributions(taxon_id = '4521', raw = TRUE, verbose = FALSE)
-#'  res4 <- spp_distributions(taxon_id = '4521', language = 'fr', config = httr::progress())
+#'  res3 <- spp_distributions(taxon_id = '4521', raw = TRUE)
+#'  res4 <- spp_distributions(taxon_id = '4521', language = 'fr',
+#'  verbose = FALSE, config = httr::progress())
 #' }
 
-spp_distributions <- function(taxon_id, language = "en", raw = FALSE, token = NULL,
-    verbose = TRUE, ...) {
+spp_distributions <- function(taxon_id, language = "en", raw = FALSE,
+    token = NULL, verbose = TRUE, ...) {
 
     if (length(taxon_id) > 1) {
         out <- lapply(taxon_id, spp_distributions, language = language,

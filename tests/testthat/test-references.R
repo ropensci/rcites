@@ -26,7 +26,8 @@ res4 <- spp_references(taxon_id = c(tx_id, tx_id2), raw = TRUE, verbose = FALSE)
 test_that("refs_multi outputs", {
   expect_equal(class(res3), "spp_refs_multi")
   expect_equal(class(res3$references), cl_df)
-  expect_equal(nrow(res3$references), nrow(res1$references) + nrow(res1b$references))
+  expect_equal(nrow(res3$references),
+    nrow(res1$references) + nrow(res1b$references))
   expect_identical(unique(res3$references$taxon_id),  c(tx_id, tx_id2))
   expect_identical(class(res4), cl_raw_multi)
   expect_equal(class(res4[[1L]]), cl_raw)

@@ -11,7 +11,8 @@
 #' include higher taxa?
 #' @param language filter languages returned for common names. Value should be a
 #' vector of character strings including one or more country codes (two-letters
-#' country code [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)).
+#' country code
+#' [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)).
 #' Default is set to `NULL`, showing all available languages.
 #' @param updated_since a timestamp. Only entries updated after (and including)
 #' this timestamp will be pulled.
@@ -29,16 +30,18 @@
 #' @param ... Further named parameters, see [httr::GET()].
 #'
 #' @return
-#' If `raw=TRUE`, then a object of class `spp_raw` is returned, which is essentially
-#' a list of lists. If `raw=FALSE`, then an object of class `spp_taxon` is returned,
-#' it is a collection of seven data frames:
-#' 1. `all_id`: general information for all entries, including non-active taxon concepts,
+#' If `raw=TRUE`, then a object of class `spp_raw` is returned, which is
+#' a list of lists. If `raw=FALSE`, then an object of class `spp_taxon` is
+#' returned, it is a collection of seven data frames:
+#' 1. `all_id`: general information for all entries, including non-active taxon
+#' concepts,
 #' 2. `general`: includes general information for active taxon concepts,
 #' 3. `higher_taxa`: includes taxonomy information,
 #' 4. `accepted_names`: list of accepted names (only for synonyms),
 #' 5. `common_names`: list of common names (only for accepted names),
 #' 6. `synonyms`: list of synonyms (only for accepted names),
-#' 7. `cites_listing`: list of current CITES listings with annotations (missing if `taxonomy == 'CMS'`).
+#' 7. `cites_listing`: list of current CITES listings with annotations
+#' (missing if `taxonomy == 'CMS'`).
 #'
 #' @references
 #' \url{https://api.speciesplus.net/documentation/v1/taxon_concepts/index.html}
@@ -51,13 +54,14 @@
 #' res2 <- spp_taxonconcept(query_taxon = 'Amazilia versicolor', raw = TRUE)
 #' res3 <- spp_taxonconcept(query_taxon = '', taxonomy = 'CMS', pages = c(1, 3),
 #'  language = 'EN', verbose = FALSE, config = httr::progress())
-#' res4 <- spp_taxonconcept(query_taxon = '', per_page = 20, pages = 44, config = httr::progress())
+#' res4 <- spp_taxonconcept(query_taxon = '', per_page = 20, pages = 44)
 #' }
 
 
 spp_taxonconcept <- function(query_taxon, taxonomy = "CITES",
     with_descendants = FALSE, language = NULL, updated_since = NULL,
-    per_page = 500, pages = NULL, raw = FALSE, token = NULL, verbose = TRUE, ...) {
+    per_page = 500, pages = NULL, raw = FALSE, token = NULL, verbose = TRUE,
+    ...) {
     # taxonomy check
     taxonomy <- match.arg(taxonomy, c("CITES", "CMS"))
     # token check
@@ -90,7 +94,8 @@ spp_taxonconcept <- function(query_taxon, taxonomy = "CITES",
             if (length(pages) > 1) {
                 res <- rcites_autopagination(q_url, per_page, pages[-1L],
                   pag, token, verbose, ...)
-                tmp2 <- c(tmp$taxon_concepts, do.call(c, lapply(res, function(x) x$taxon_concepts)))
+                tmp2 <- c(tmp$taxon_concepts,
+                  do.call(c, lapply(res, function(x) x$taxon_concepts)))
             } else tmp2 <- tmp$taxon_concepts
         } else tmp2 <- tmp$taxon_concepts
         # outputs
@@ -124,7 +129,8 @@ spp_taxonconcept <- function(query_taxon, taxonomy = "CITES",
 
             ## Extra output if taxonomy is set to CITES
             if (taxonomy == "CITES") {
-                out$general$cites_listing <- unlist(lapply(tmp2[id], function(x) x$cites_listing))
+                out$general$cites_listing <- unlist(lapply(tmp2[id],
+                  function(x) x$cites_listing))
                 out$cites_listings <- rcites_taxonconcept_cites_listings(
                   tmp2[id], out$general$id)
             }

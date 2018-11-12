@@ -3,10 +3,10 @@
 #' Retrieve current EU annex listings, SRG opinions, and EU suspensions for a
 #' given taxon concept (identifier must be known).
 #'
-#' @param taxon_id a vector of character strings containing species' taxon concept identifiers
-#' (see [spp_taxonconcept()])
-#' @param scope vector of character strings indicating the time scope of legislation,
-#' values are taken among `current`, `historic` and `all`.
+#' @param taxon_id a vector of character strings containing species' taxon
+#' concept identifiers (see [spp_taxonconcept()]).
+#' @param scope vector of character strings indicating the time scope of
+#' legislation, values are taken among `current`, `historic` and `all`.
 #' Default is set to `current`.
 #' @param language vector of character strings indicating the language for the
 #' text of legislation notes, values are taken among `en` (English),
@@ -38,7 +38,8 @@
 #' res1 <- spp_eu_legislation(taxon_id = '4521')
 #' res2 <- spp_eu_legislation(taxon_id = c('4521', '3210', '10255'))
 #' res3 <- spp_eu_legislation(taxon_id = '4521', scope = 'historic')
-#' res4 <- spp_eu_legislation(taxon_id = '4521', scope = 'all', language='fr', config=httr::verbose())
+#' res4 <- spp_eu_legislation(taxon_id = '4521', scope = 'all', language='fr',
+#'  verbose = FALSE, config=httr::verbose())
 #' }
 
 spp_eu_legislation <- function(taxon_id, scope = "current", language = "en",

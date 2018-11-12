@@ -10,7 +10,8 @@ res1b <- spp_cites_legislation(taxon_id = tx_id2, verbose = FALSE)
 res2 <- spp_cites_legislation(taxon_id = tx_id, raw = TRUE, verbose = FALSE)
 ut_pause()
 res3 <- spp_cites_legislation(taxon_id = tx_id, scope = 'all', verbose = FALSE)
-res4 <- spp_cites_legislation(taxon_id = tx_id, language = 'fr', verbose = FALSE)
+res4 <- spp_cites_legislation(taxon_id = tx_id, language = 'fr',
+  verbose = FALSE)
 ut_pause()
 #
 res5 <- spp_eu_legislation(taxon_id = tx_id, verbose = FALSE)
@@ -78,9 +79,11 @@ res9 <- spp_cites_legislation(taxon_id = c(tx_id, tx_id2))
 ut_pause()
 res10 <- spp_eu_legislation(taxon_id = c(tx_id, tx_id2))
 ut_pause()
-res11 <- spp_cites_legislation(taxon_id = c(tx_id, tx_id2), raw = TRUE, verbose = FALSE)
+res11 <- spp_cites_legislation(taxon_id = c(tx_id, tx_id2), raw = TRUE,
+  verbose = FALSE)
 ut_pause()
-res12 <- spp_eu_legislation(taxon_id = c(tx_id, tx_id2), raw = TRUE, verbose = FALSE)
+res12 <- spp_eu_legislation(taxon_id = c(tx_id, tx_id2), raw = TRUE,
+  verbose = FALSE)
 
 
 test_that("leg_multi outputs", {
@@ -89,8 +92,10 @@ test_that("leg_multi outputs", {
   expect_equal(class(res9$cites_listings), cl_df)
   expect_equal(class(res10$eu_listings), cl_df)
   #
-  expect_equal(nrow(res9$cites_listings), nrow(res1$cites_listings) + nrow(res1b$cites_listings))
-  expect_equal(nrow(res10$eu_listings), nrow(res5$eu_listings) + nrow(res5b$eu_listings))
+  expect_equal(nrow(res9$cites_listings),
+    nrow(res1$cites_listings) + nrow(res1b$cites_listings))
+  expect_equal(nrow(res10$eu_listings),
+    nrow(res5$eu_listings) + nrow(res5b$eu_listings))
   #
   expect_identical(unique(res9$cites_listings$taxon_id),  c(tx_id, tx_id2))
   expect_identical(unique(res10$eu_listings$taxon_id),  c(tx_id, tx_id2))

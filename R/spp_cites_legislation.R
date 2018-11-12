@@ -3,11 +3,11 @@
 #' Retrieve current CITES appendix listings and reservations, CITES quotas, and
 #' CITES suspensions for a given taxon concept.
 #'
-#' @param taxon_id a vector of character strings containing species' taxon concept identifiers
-#' (see [spp_taxonconcept()]).
-#' @param scope vector of character strings indicating the time scope of legislation,
-#' values are taken among `current`, `historic` and `all`.
-#' Default is `current`.
+#' @param taxon_id a vector of character strings containing species' taxon
+#' concept identifiers (see [spp_taxonconcept()]).
+#' @param scope vector of character strings indicating the time scope of
+#' legislation, values are taken among `current`, `historic` and `all`. Default
+#' is `current`.
 #' @param language vector of character strings indicating the language for the
 #' text of legislation notes, values are taken among `en` (English),
 #' `fr` (French) and `es` (Spanish). Default is `en`.
@@ -38,7 +38,8 @@
 #' \donttest{
 #' res1 <- spp_cites_legislation(taxon_id = 4521)
 #' res2 <- spp_cites_legislation(taxon_id = c('4521', '3210', '10255'))
-#' res3 <- spp_cites_legislation(taxon_id = 4521, scope = 'all', config=httr::verbose())
+#' res3 <- spp_cites_legislation(taxon_id = 4521, scope = 'all',
+#' verbose = FALSE, config=httr::verbose())
 #' res4 <- spp_cites_legislation(taxon_id = 4521, language = 'fr')
 #' }
 
@@ -46,7 +47,8 @@ spp_cites_legislation <- function(taxon_id, scope = "current", language = "en",
     raw = FALSE, token = NULL, verbose = TRUE, ...) {
     if (length(taxon_id) > 1) {
         out <- lapply(taxon_id, spp_cites_legislation, scope = scope,
-          language = language, raw = raw, token = token, verbose = verbose, ...)
+            language = language, raw = raw, token = token, verbose = verbose,
+            ...)
         out <- rcites_combine_lists(out, taxon_id, raw)
     } else {
         # token check
@@ -75,12 +77,11 @@ spp_cites_legislation <- function(taxon_id, scope = "current", language = "en",
             } else {
                 out <- list()
                 out$cites_listings <- rcites_simplify_listings(
-                  tmp$cites_listings
-                )
-                out$cites_quotas <- rcites_simplify_decisions(tmp$cites_quotas)
+                    tmp$cites_listings)
+                out$cites_quotas <- rcites_simplify_decisions(
+                    tmp$cites_quotas)
                 out$cites_suspensions <- rcites_simplify_decisions(
-                  tmp$cites_suspensions
-                )
+                    tmp$cites_suspensions)
                 class(out) <- c("spp_cites_leg")
             }
         }

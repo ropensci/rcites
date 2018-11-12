@@ -21,7 +21,7 @@
 
 #' @describeIn set_token set the environment variable `SPECIESPLUS_TOKEN`.
 set_token <- function(token = NULL) {
-    if (is.null(token))
+    if (is.null(token)) 
         token <- readline("Enter your token without quotes: ")
     if (identical(token, "")) {
         message("no token provided")

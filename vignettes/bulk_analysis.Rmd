@@ -42,14 +42,16 @@ dim(res_cites$general)
 
 ## Retrieving information for a set of taxon_concept ID
 
-All `spp_` functions (i.e. `spp_distributions()`, `spp_eu_legislation()`, `spp_cites_legislation()` and
-`spp_references()`) can handle a vector of taxon_id which allows bulk analysis.
+All `spp_` functions (i.e. `spp_distributions()`, `spp_eu_legislation()`,
+`spp_cites_legislation()` and `spp_references()`) can handle a vector of
+taxon_id which allows bulk analysis.
 Below we exemplify this feature for the four functions.
 
 ### spp_distributions()
 
 ```{r}
-res1 <- spp_distributions(taxon_id = c('4521', '3210', '10255'), verbose = FALSE)
+vc_txn <- c('4521', '3210', '10255')
+res1 <- spp_distributions(taxon_id = vc_txn, verbose = FALSE)
 ## Number of countries concerned per taxon ID
 table(res1$distributions$taxon_id)
 ```
@@ -61,7 +63,7 @@ Sys.sleep(5)
 ### spp_cites_legislation()
 
 ```{r}
-res2 <- spp_cites_legislation(taxon_id = c('4521', '3210', '10255'), verbose = FALSE)
+res2 <- spp_cites_legislation(taxon_id = vc_txn, verbose = FALSE)
 res2$cites_listings
 ```
 
@@ -72,7 +74,7 @@ Sys.sleep(7)
 ```
 
 ```{r}
-res3 <- spp_eu_legislation(taxon_id = c('4521', '3210', '10255'), verbose = FALSE)
+res3 <- spp_eu_legislation(taxon_id = vc_txn, verbose = FALSE)
 res3$eu_listings
 ```
 
@@ -84,7 +86,7 @@ Sys.sleep(7)
 ```
 
 ```{r}
-res4 <- spp_references(taxon_id = c('4521', '3210', '10255'), verbose = FALSE)
+res4 <- spp_references(taxon_id = vc_txn, verbose = FALSE)
 ## Number of references per taxon ID
 table(res4$references$taxon_id)
 ```

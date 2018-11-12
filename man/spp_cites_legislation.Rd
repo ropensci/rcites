@@ -8,12 +8,12 @@ spp_cites_legislation(taxon_id, scope = "current", language = "en",
   raw = FALSE, token = NULL, verbose = TRUE, ...)
 }
 \arguments{
-\item{taxon_id}{a vector of character strings containing species' taxon concept identifiers
-(see \code{\link[=spp_taxonconcept]{spp_taxonconcept()}}).}
+\item{taxon_id}{a vector of character strings containing species' taxon
+concept identifiers (see \code{\link[=spp_taxonconcept]{spp_taxonconcept()}}).}
 
-\item{scope}{vector of character strings indicating the time scope of legislation,
-values are taken among \code{current}, \code{historic} and \code{all}.
-Default is \code{current}.}
+\item{scope}{vector of character strings indicating the time scope of
+legislation, values are taken among \code{current}, \code{historic} and \code{all}. Default
+is \code{current}.}
 
 \item{language}{vector of character strings indicating the language for the
 text of legislation notes, values are taken among \code{en} (English),
@@ -51,7 +51,8 @@ CITES suspensions for a given taxon concept.
 \donttest{
 res1 <- spp_cites_legislation(taxon_id = 4521)
 res2 <- spp_cites_legislation(taxon_id = c('4521', '3210', '10255'))
-res3 <- spp_cites_legislation(taxon_id = 4521, scope = 'all', config=httr::verbose())
+res3 <- spp_cites_legislation(taxon_id = 4521, scope = 'all',
+verbose = FALSE, config=httr::verbose())
 res4 <- spp_cites_legislation(taxon_id = 4521, language = 'fr')
 }
 }

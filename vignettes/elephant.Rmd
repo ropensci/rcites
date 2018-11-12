@@ -56,7 +56,8 @@ Before giving more insights into the legislation status of the elephant, we have
 library(rworldmap)
 
 par(las = 1)
-elephant_distr <- spp_distributions(taxon_id = "4521", verbose = FALSE)$distributions
+elephant_distr <- spp_distributions(taxon_id = "4521",
+                                    verbose = FALSE)$distributions
 
 map2 <- joinCountryData2Map(elephant_distr,
                             joinCode="ISO2",

@@ -43,8 +43,8 @@ print.spp_cites_leg <- function(x, ...) {
 
     rcites_print_title("Cites suspensions ($cites_suspensions):", "\n",
         "\n")
-    rcites_print_df_rm(x$cites_suspensions, col_rm = c("notes", paste0("start_notification.",
-        c("name", "date", "url"))))
+    rcites_print_df_rm(x$cites_suspensions, col_rm = c("notes",
+        paste0("start_notification.", c("name", "date", "url"))))
 }
 
 #' @method print spp_cites_leg_multi
@@ -141,6 +141,6 @@ print.spp_taxon <- function(x, ...) {
     rcites_print_title("Common names ($common_names):", "\n", "\n")
     rcites_print_df(x$common_names)
 
-    cat("\nInformation available:", paste(paste0("$", names(x)),
-      collapse = ", "), "\n")
+    cat("\nInformation available:",
+      paste(paste0("$", names(x)), collapse = ", "), "\n")
 }

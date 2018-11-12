@@ -8,8 +8,8 @@ spp_references(taxon_id, raw = FALSE, token = NULL, verbose = TRUE,
   ...)
 }
 \arguments{
-\item{taxon_id}{a vector of character strings containing species' taxon concept identifiers
-(see \code{\link[=spp_taxonconcept]{spp_taxonconcept()}})}
+\item{taxon_id}{a vector of character strings containing species' taxon
+concept identifiers (see \code{\link[=spp_taxonconcept]{spp_taxonconcept()}}).}
 
 \item{raw}{a logical. Should raw data be returned?}
 

@@ -20,7 +20,8 @@ test_that("Expected classes", {
   expect_equal(class(res1[1L]), "list")
   expect_true(all(unlist(lapply(res1, function(x) all(class(x) == cl_df)))))
   expect_true(all(class(res2) == cl_raw))
-  expect_true(all(names(res1[[1L]]) == c("id", "iso_code2", "name", "type", "tags")))
+  vc_ch <- c("id", "iso_code2", "name", "type", "tags")
+  expect_true(all(names(res1[[1L]]) == vc_ch))
   expect_true(all(names(res1[[2L]]) == c("id", "reference")))
   expect_null(print(res1))
   expect_null(print(res2))
@@ -36,11 +37,13 @@ test_that("Language", {
 ut_pause(2)
 res5 <- spp_distributions(taxon_id = c(tx_id, tx_id2))
 ut_pause()
-res6 <- spp_distributions(taxon_id = c(tx_id, tx_id2), raw = TRUE, verbose = FALSE)
+res6 <- spp_distributions(taxon_id = c(tx_id, tx_id2), raw = TRUE,
+  verbose = FALSE)
 test_that("distr_multi outputs", {
   expect_equal(class(res5), "spp_distr_multi")
   expect_equal(class(res5$distributions), cl_df)
-  expect_equal(nrow(res5$distributions), nrow(res1$distributions) + nrow(res1b$distributions))
+  expect_equal(nrow(res5$distributions),
+    nrow(res1$distributions) + nrow(res1b$distributions))
   expect_identical(unique(res5$distributions$taxon_id), c(tx_id, tx_id2))
   expect_identical(class(res6), cl_raw_multi)
   expect_equal(class(res6[[1L]]), cl_raw)

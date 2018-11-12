@@ -1,4 +1,3 @@
 library(testthat)
-library(rcites)
-
+library("rcites")
 test_check("rcites")

@@ -17,10 +17,12 @@ res3 <- spp_taxonconcept(query_taxon = '', taxonomy = 'CMS', pages = 1:2,
   language = 'EN', verbose = FALSE)
 ut_pause()
 
-res4 <- spp_taxonconcept(query_taxon = '', pages = c(44), per_page = 20, with_descendants = FALSE)
+res4 <- spp_taxonconcept(query_taxon = '', pages = c(44), per_page = 20,
+  with_descendants = FALSE)
 ut_pause()
 
-res5 <- spp_taxonconcept(query_taxon = '', pages = 1, updated_since = "2016-01-01")
+res5 <- spp_taxonconcept(query_taxon = '', pages = 1,
+  updated_since = "2016-01-01")
 ut_pause()
 
 
@@ -45,6 +47,7 @@ test_that("Expected behaviour", {
   expect_equal(nrow(res4[[1L]]), 20)
   expect_true(all(res5$general$updated_at > "2016-01-01"))
   ut_pause()
-  expect_warning(spp_taxonconcept(query_taxon = "Homo sapiens"), "Taxon not listed.", fixed = TRUE)
+  expect_warning(spp_taxonconcept(query_taxon = "Homo sapiens"),
+    "Taxon not listed.", fixed = TRUE)
   expect_error(spp_taxonconcept(query_taxon = tx_nm, taxonomy = "WRONG"))
 })

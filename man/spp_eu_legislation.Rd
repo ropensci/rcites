@@ -8,11 +8,11 @@ spp_eu_legislation(taxon_id, scope = "current", language = "en",
   raw = FALSE, token = NULL, verbose = TRUE, ...)
 }
 \arguments{
-\item{taxon_id}{a vector of character strings containing species' taxon concept identifiers
-(see \code{\link[=spp_taxonconcept]{spp_taxonconcept()}})}
+\item{taxon_id}{a vector of character strings containing species' taxon
+concept identifiers (see \code{\link[=spp_taxonconcept]{spp_taxonconcept()}}).}
 
-\item{scope}{vector of character strings indicating the time scope of legislation,
-values are taken among \code{current}, \code{historic} and \code{all}.
+\item{scope}{vector of character strings indicating the time scope of
+legislation, values are taken among \code{current}, \code{historic} and \code{all}.
 Default is set to \code{current}.}
 
 \item{language}{vector of character strings indicating the language for the
@@ -51,7 +51,8 @@ given taxon concept (identifier must be known).
 res1 <- spp_eu_legislation(taxon_id = '4521')
 res2 <- spp_eu_legislation(taxon_id = c('4521', '3210', '10255'))
 res3 <- spp_eu_legislation(taxon_id = '4521', scope = 'historic')
-res4 <- spp_eu_legislation(taxon_id = '4521', scope = 'all', language='fr', config=httr::verbose())
+res4 <- spp_eu_legislation(taxon_id = '4521', scope = 'all', language='fr',
+ verbose = FALSE, config=httr::verbose())
 }
 }
 \references{
