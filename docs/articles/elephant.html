@@ -111,218 +111,49 @@
 <p>In order to access information about the elephant, we first need to retrieve its Species+ taxon identifier. For this, we use the <code><a href="../reference/spp_taxonconcept.html">spp_taxonconcept()</a></code> function and the elephant’s scientific name, <em>Loxodonta africana</em>, as <code>query_taxon</code> argument.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">elephant_taxonconcept &lt;-<span class="st"> </span><span class="kw"><a href="../reference/spp_taxonconcept.html">spp_taxonconcept</a></span>(<span class="dt">query_taxon =</span> <span class="st">"Loxodonta africana"</span>)</a>
 <a class="sourceLine" id="cb2-2" data-line-number="2">elephant_taxonconcept</a></code></pre></div>
-<pre><code>#&gt;  General info - CITES ($general):
-#&gt;  --------------------------------
-#&gt;      id          full_name        author_year    rank name_status
-#&gt;  1 4521 Loxodonta africana (Blumenbach, 1797) SPECIES           A
-#&gt;             updated_at active cites_listing
-#&gt;  1 2018-07-02 12:15:37   TRUE          I/II
-#&gt;  
-#&gt;  Classification ($higher_taxa):
-#&gt;  -------------------------------
-#&gt;      id  kingdom   phylum    class       order       family
-#&gt;  1 4521 Animalia Chordata Mammalia Proboscidea Elephantidae
-#&gt;  
-#&gt;  Synonyms ($synonyms):
-#&gt;  ----------------------
-#&gt;      id apply.do.call.rbind..tmp.wch....2..unlist.
-#&gt;  1 4521                                      37069
-#&gt;  2 4521                         Loxodonta cyclotis
-#&gt;  3 4521                           (Matschie, 1900)
-#&gt;  4 4521                                    SPECIES
-#&gt;  
-#&gt;  Common names ($common_names):
-#&gt;  ------------------------------
-#&gt;       id                  name language
-#&gt;  1  4521               Olifant       AF
-#&gt;  2  4521                   Fel       AR
-#&gt;  3  4521                   Fil       AZ
-#&gt;  4  4521                  Slon       BE
-#&gt;  5  4521                  Slon       BG
-#&gt;  6  4521              Elefante       CA
-#&gt;  7  4521                  Slon       CS
-#&gt;  8  4521     afrikansk elefant       DA
-#&gt;  9  4521               Elefant       DA
-#&gt;  10 4521 Afrikanischer Elefant       DE
-#&gt;  -------truncated-------
-#&gt;  
-#&gt;  Information available: $all_id, $general, $higher_taxa, $accepted_names, $common_names, $synonyms, $cites_listings</code></pre>
 <p>As the first column of the output shows, the taxon identifier of the elephant is 4521. This <code>taxon_id</code> will be used for all next function coding.</p>
 <p>Beyond the taxon identifier, the output also provides information about the taxon classification and other names, both synonyms and common names if any, in different languages.</p>
 <div id="map-the-elephants-distribution" class="section level2">
 <h2 class="hasAnchor">
 <a href="#map-the-elephants-distribution" class="anchor"></a>Map the elephant’s distribution</h2>
 <p>Before giving more insights into the legislation status of the elephant, we have a look at where the elephant actually occurs naturally. For this, we can access the elephant’s distribution information with the <code><a href="../reference/spp_distributions.html">spp_distributions()</a></code> function. Thereafter, we can map the distribution with the help of the <code>rworldmap</code> package.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">library</span>(rworldmap)</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="kw">par</span>(<span class="dt">las =</span> <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb4-4" data-line-number="4">elephant_distr &lt;-<span class="st"> </span><span class="kw"><a href="../reference/spp_distributions.html">spp_distributions</a></span>(<span class="dt">taxon_id =</span> <span class="st">"4521"</span>, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)<span class="op">$</span>distributions</a>
-<a class="sourceLine" id="cb4-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb4-6" data-line-number="6">map2 &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/rworldmap/topics/joinCountryData2Map">joinCountryData2Map</a></span>(elephant_distr,</a>
-<a class="sourceLine" id="cb4-7" data-line-number="7">                            <span class="dt">joinCode=</span><span class="st">"ISO2"</span>,</a>
-<a class="sourceLine" id="cb4-8" data-line-number="8">                            <span class="dt">nameJoinColumn =</span> <span class="st">"iso_code2"</span>,</a>
-<a class="sourceLine" id="cb4-9" data-line-number="9">                            <span class="dt">nameCountryColumn =</span> <span class="st">"name"</span>)</a></code></pre></div>
-<pre><code>#&gt;  42 codes from your data successfully matched countries in the map
-#&gt;  0 codes from your data failed to match with a country code in the map
-#&gt;  201 codes from the map weren't represented in your data</code></pre>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">plot</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">23</span>, <span class="dv">62</span>), <span class="kw">c</span>(<span class="dv">45</span>, <span class="dv">-40</span>),</a>
-<a class="sourceLine" id="cb6-2" data-line-number="2">     <span class="dt">type =</span> <span class="st">"n"</span>,</a>
-<a class="sourceLine" id="cb6-3" data-line-number="3">     <span class="dt">main =</span> <span class="st">"Loxodonta africana"</span>,</a>
-<a class="sourceLine" id="cb6-4" data-line-number="4">     <span class="dt">xlab =</span> <span class="st">"Longitude"</span>,</a>
-<a class="sourceLine" id="cb6-5" data-line-number="5">     <span class="dt">ylab =</span> <span class="st">"Latitude"</span>)</a>
-<a class="sourceLine" id="cb6-6" data-line-number="6"><span class="kw">plot</span>(map2, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb6-7" data-line-number="7"><span class="kw">plot</span>(map2[<span class="op">!</span><span class="kw">is.na</span>(map2<span class="op">$</span>iso_code2),], <span class="dt">col =</span> <span class="st">"#cba74d"</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
-<p><img src="elephant_files/figure-html/map-1.png" width="614.4" style="display: block; margin: auto;"></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">library</span>(rworldmap)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="kw">par</span>(<span class="dt">las =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">elephant_distr &lt;-<span class="st"> </span><span class="kw"><a href="../reference/spp_distributions.html">spp_distributions</a></span>(<span class="dt">taxon_id =</span> <span class="st">"4521"</span>,</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">                                    <span class="dt">verbose =</span> <span class="ot">FALSE</span>)<span class="op">$</span>distributions</a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7">map2 &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/rworldmap/topics/joinCountryData2Map">joinCountryData2Map</a></span>(elephant_distr,</a>
+<a class="sourceLine" id="cb3-8" data-line-number="8">                            <span class="dt">joinCode=</span><span class="st">"ISO2"</span>,</a>
+<a class="sourceLine" id="cb3-9" data-line-number="9">                            <span class="dt">nameJoinColumn =</span> <span class="st">"iso_code2"</span>,</a>
+<a class="sourceLine" id="cb3-10" data-line-number="10">                            <span class="dt">nameCountryColumn =</span> <span class="st">"name"</span>)</a>
+<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="kw">plot</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">23</span>, <span class="dv">62</span>), <span class="kw">c</span>(<span class="dv">45</span>, <span class="dv">-40</span>),</a>
+<a class="sourceLine" id="cb3-12" data-line-number="12">     <span class="dt">type =</span> <span class="st">"n"</span>,</a>
+<a class="sourceLine" id="cb3-13" data-line-number="13">     <span class="dt">main =</span> <span class="st">"Loxodonta africana"</span>,</a>
+<a class="sourceLine" id="cb3-14" data-line-number="14">     <span class="dt">xlab =</span> <span class="st">"Longitude"</span>,</a>
+<a class="sourceLine" id="cb3-15" data-line-number="15">     <span class="dt">ylab =</span> <span class="st">"Latitude"</span>)</a>
+<a class="sourceLine" id="cb3-16" data-line-number="16"><span class="kw">plot</span>(map2, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb3-17" data-line-number="17"><span class="kw">plot</span>(map2[<span class="op">!</span><span class="kw">is.na</span>(map2<span class="op">$</span>iso_code2),], <span class="dt">col =</span> <span class="st">"#cba74d"</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 </div>
 <div id="access-the-legislation-status" class="section level2">
 <h2 class="hasAnchor">
 <a href="#access-the-legislation-status" class="anchor"></a>Access the legislation status</h2>
 <p>The functions <code><a href="../reference/spp_cites_legislation.html">spp_cites_legislation()</a></code> and <code><a href="../reference/spp_eu_legislation.html">spp_eu_legislation()</a></code> provide access to the legislation status information of the elephant.</p>
 <p>First, we have a look at the CITES legislation status:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">elephant_cites &lt;-<span class="st"> </span><span class="kw"><a href="../reference/spp_cites_legislation.html">spp_cites_legislation</a></span>(<span class="dt">taxon_id =</span> <span class="st">"4521"</span>)</a></code></pre></div>
-<pre><code>#&gt;  &gt;&gt;&gt; Now processing taxon_id '4521'............ done.</code></pre>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">elephant_cites</a></code></pre></div>
-<pre><code>#&gt;  Cites listings ($cites_listings):
-#&gt;  ---------------------------------
-#&gt;      id taxon_concept_id is_current appendix change_type effective_at
-#&gt;  1 3645             4521       TRUE        I          R+   1990-01-18
-#&gt;  2 3666             4521       TRUE       II           +   2007-09-13
-#&gt;  3 3665             4521       TRUE        I           +   2007-09-13
-#&gt;  
-#&gt;  Cites quotas ($cites_quotas):
-#&gt;  ------------------------------
-#&gt;        id taxon_concept_id quota publication_date public_display is_current
-#&gt;  1  20604             4521     0       2017-03-06           TRUE       TRUE
-#&gt;  2  20586             4521     0       2017-03-06           TRUE       TRUE
-#&gt;  3  20695             4521     0       2017-03-06           TRUE       TRUE
-#&gt;  4  20696             4521     0       2017-03-06           TRUE       TRUE
-#&gt;  5  20697             4521     0       2017-03-06           TRUE       TRUE
-#&gt;  6  20698             4521     0       2017-03-06           TRUE       TRUE
-#&gt;  7  20699             4521     0       2017-03-06           TRUE       TRUE
-#&gt;  8  20700             4521     0       2017-03-06           TRUE       TRUE
-#&gt;  9  20701             4521     0       2017-03-06           TRUE       TRUE
-#&gt;  10 20703             4521     0       2017-03-06           TRUE       TRUE
-#&gt;     unit geo_entity.iso_code2          geo_entity.name geo_entity.type
-#&gt;  1  &lt;NA&gt;                   CG                    Congo         COUNTRY
-#&gt;  2  &lt;NA&gt;                   AO                   Angola         COUNTRY
-#&gt;  3  &lt;NA&gt;                   BW                 Botswana         COUNTRY
-#&gt;  4  &lt;NA&gt;                   BF             Burkina Faso         COUNTRY
-#&gt;  5  &lt;NA&gt;                   CF Central African Republic         COUNTRY
-#&gt;  6  &lt;NA&gt;                   CI            Côte d'Ivoire         COUNTRY
-#&gt;  7  &lt;NA&gt;                   GW            Guinea Bissau         COUNTRY
-#&gt;  8  &lt;NA&gt;                   LR                  Liberia         COUNTRY
-#&gt;  9  &lt;NA&gt;                   SL             Sierra Leone         COUNTRY
-#&gt;  10 &lt;NA&gt;                   GA                    Gabon         COUNTRY
-#&gt;  -------truncated-------
-#&gt;  Field(s) not printed:  notes, url 
-#&gt;  
-#&gt;  Cites suspensions ($cites_suspensions):
-#&gt;  ----------------------------------------
-#&gt;        id taxon_concept_id start_date is_current applies_to_import
-#&gt;  1  15986             &lt;NA&gt; 2013-05-16       TRUE             FALSE
-#&gt;  2  17621             4521 2014-08-11       TRUE              TRUE
-#&gt;  3  17620             4521 2014-08-11       TRUE              TRUE
-#&gt;  4  17686             4521 2014-10-10       TRUE              TRUE
-#&gt;  5  18709             4521 2010-08-16       TRUE              TRUE
-#&gt;  6  15983             &lt;NA&gt; 2011-01-19       TRUE             FALSE
-#&gt;  7  15971             &lt;NA&gt; 2004-07-30       TRUE             FALSE
-#&gt;  8  18955             4521 2016-04-01       TRUE              TRUE
-#&gt;  9  22079             &lt;NA&gt; 2018-01-30       TRUE             FALSE
-#&gt;  10 22076             &lt;NA&gt; 2018-01-22       TRUE             FALSE
-#&gt;     geo_entity.iso_code2             geo_entity.name geo_entity.type
-#&gt;  1                    GN                      Guinea         COUNTRY
-#&gt;  2                    ZW                    Zimbabwe         COUNTRY
-#&gt;  3                    TZ United Republic of Tanzania         COUNTRY
-#&gt;  4                    US    United States of America         COUNTRY
-#&gt;  5                    ZW                    Zimbabwe         COUNTRY
-#&gt;  6                    DJ                    Djibouti         COUNTRY
-#&gt;  7                    SO                     Somalia         COUNTRY
-#&gt;  8                    CN                       China         COUNTRY
-#&gt;  9                    DJ                    Djibouti         COUNTRY
-#&gt;  10                   LR                     Liberia         COUNTRY
-#&gt;  -------truncated-------
-#&gt;  Field(s) not printed:  notes, start_notification.name, start_notification.date, start_notification.url</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">elephant_cites &lt;-<span class="st"> </span><span class="kw"><a href="../reference/spp_cites_legislation.html">spp_cites_legislation</a></span>(<span class="dt">taxon_id =</span> <span class="st">"4521"</span>)</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">elephant_cites</a></code></pre></div>
 <p>We can do the same for the elephant’s legislation status in the European Union:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">elephant_eu &lt;-<span class="st"> </span><span class="kw"><a href="../reference/spp_eu_legislation.html">spp_eu_legislation</a></span>(<span class="dt">taxon_id =</span> <span class="st">"4521"</span>)</a></code></pre></div>
-<pre><code>#&gt;  &gt;&gt;&gt; Now processing taxon_id '4521'............ done.</code></pre>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">elephant_eu</a></code></pre></div>
-<pre><code>#&gt;  EU listings ($eu_listings):
-#&gt;  ---------------------------
-#&gt;       id taxon_concept_id is_current annex change_type effective_at
-#&gt;  1 27801             4521       TRUE     A           +   2017-02-04
-#&gt;  2 27868             4521       TRUE     B           +   2017-02-04
-#&gt;  
-#&gt;  EU decisions ($eu_decisions):
-#&gt;  ------------------------------
-#&gt;        id taxon_concept_id start_date is_current eu_decision_type.name
-#&gt;  1  26285             4521 2015-04-09       TRUE              Positive
-#&gt;  2  25508             4521 2014-09-03       TRUE              Positive
-#&gt;  3   2765             4521 2011-12-02       TRUE                    i)
-#&gt;  4  11682             4521 2012-02-23       TRUE              Positive
-#&gt;  5  24825             4521 2014-05-28       TRUE              Positive
-#&gt;  6  27017             4521 2015-09-15       TRUE              Positive
-#&gt;  7  27360             4521 2016-06-27       TRUE              Negative
-#&gt;  8  30377             4521 2017-06-21       TRUE              Negative
-#&gt;  9  30553             4521 2017-06-21       TRUE              Positive
-#&gt;  10 30664             4521 2017-11-09       TRUE        Suspension (a)
-#&gt;     eu_decision_type.type geo_entity.iso_code2             geo_entity.name
-#&gt;  1       POSITIVE_OPINION                   ZW                    Zimbabwe
-#&gt;  2       POSITIVE_OPINION                   BW                    Botswana
-#&gt;  3             NO_OPINION                   ET                    Ethiopia
-#&gt;  4       POSITIVE_OPINION                   NA                     Namibia
-#&gt;  5       POSITIVE_OPINION                   ZA                South Africa
-#&gt;  6       POSITIVE_OPINION                   ZM                      Zambia
-#&gt;  7       NEGATIVE_OPINION                   MZ                  Mozambique
-#&gt;  8       NEGATIVE_OPINION                   TZ United Republic of Tanzania
-#&gt;  9       POSITIVE_OPINION                   TZ United Republic of Tanzania
-#&gt;  10            SUSPENSION                   CM                    Cameroon
-#&gt;     geo_entity.type start_event.name start_event.date source.code
-#&gt;  1          COUNTRY       SRG 71 Soc       2015-04-09           W
-#&gt;  2          COUNTRY       SRG 69 Soc       2014-09-03           W
-#&gt;  3          COUNTRY       SRG 58 Soc       2011-12-02           W
-#&gt;  4          COUNTRY       SRG 59 Soc       2012-02-23           W
-#&gt;  5          COUNTRY       SRG 68 Soc       2014-05-28           W
-#&gt;  6          COUNTRY       SRG 73 Soc       2015-09-15           W
-#&gt;  7          COUNTRY       SRG 76 Soc       2016-06-27           W
-#&gt;  8          COUNTRY       SRG 79 Soc       2017-06-21           W
-#&gt;  9          COUNTRY       SRG 79 Soc       2017-06-21           W
-#&gt;  10         COUNTRY     No 2017/1915       2017-11-09           W
-#&gt;     source.name term.code term.name
-#&gt;  1         Wild       TRO  trophies
-#&gt;  2         Wild      &lt;NA&gt;      &lt;NA&gt;
-#&gt;  3         Wild      &lt;NA&gt;      &lt;NA&gt;
-#&gt;  4         Wild      &lt;NA&gt;      &lt;NA&gt;
-#&gt;  5         Wild      &lt;NA&gt;      &lt;NA&gt;
-#&gt;  6         Wild       TRO  trophies
-#&gt;  7         Wild       TRO  trophies
-#&gt;  8         Wild      &lt;NA&gt;      &lt;NA&gt;
-#&gt;  9         Wild       TRO  trophies
-#&gt;  10        Wild       TRO  trophies
-#&gt;  Field(s) not printed:  notes, eu_decision_type.description, start_event.url</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">elephant_eu &lt;-<span class="st"> </span><span class="kw"><a href="../reference/spp_eu_legislation.html">spp_eu_legislation</a></span>(<span class="dt">taxon_id =</span> <span class="st">"4521"</span>)</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">elephant_eu</a></code></pre></div>
 <p>With the combination of <code>map2</code> and the legislation data, one might be able to illustrate the elephant’s trade directions. This and other use examples of the <code>rcites</code> data output will be added bit by bit.</p>
 </div>
 <div id="access-the-elephants-species-reference-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#access-the-elephants-species-reference-data" class="anchor"></a>Access the elephant’s Species+ reference data</h2>
 <p>Last but not least, it is important to identify which references the Species+ information about the elephant is based on. For this, we can access the Species+ reference data with the <code><a href="../reference/spp_references.html">spp_references()</a></code> function.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">elephant_refs &lt;-<span class="st"> </span><span class="kw"><a href="../reference/spp_references.html">spp_references</a></span>(<span class="dt">taxon_id =</span> <span class="st">"4521"</span>, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb15-2" data-line-number="2">elephant_refs</a></code></pre></div>
-<pre><code>#&gt;  References ($references):
-#&gt;  -------------------------
-#&gt;        id                                             citation is_standard
-#&gt;  1  10265 Anon. 1978. Red data book: Mammalia. IUC [truncated]       FALSE
-#&gt;  2   6344 Barnes, R. F., Agnagna, M., Alers, M. P. [truncated]       FALSE
-#&gt;  3  17013 Blanc, J.J., Thouless, C.R., Hart, J.A., [truncated]       FALSE
-#&gt;  4   6371 Burton, M. P. 1994. Alternative projecti [truncated]       FALSE
-#&gt;  5   6532 Douglas-Hamilton, I. 1987. African Eleph [truncated]       FALSE
-#&gt;  6   6534 Douglas-Hamilton, I. 1987. African Eleph [truncated]       FALSE
-#&gt;  7   6825 Jackson, P. 1982. Elephants and rhinos i [truncated]       FALSE
-#&gt;  8   7224 Meester, J. and Setzer, H. W (eds.) 1974 [truncated]       FALSE
-#&gt;  9   7609 Parker, I. and Amin, M. 1983. Ivory cris [truncated]       FALSE
-#&gt;  10 19397 Parker, I.S.C. and Martin, E.B. 1982. Ho [truncated]       FALSE
-#&gt;  -------truncated-------</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw">dim</span>(elephant_refs<span class="op">$</span>references)</a></code></pre></div>
-<pre><code>#&gt;  [1] 15  3</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">elephant_refs &lt;-<span class="st"> </span><span class="kw"><a href="../reference/spp_references.html">spp_references</a></span>(<span class="dt">taxon_id =</span> <span class="st">"4521"</span>, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">elephant_refs</a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="kw">dim</span>(elephant_refs<span class="op">$</span>references)</a></code></pre></div>
 </div>
 </div>
   </div>

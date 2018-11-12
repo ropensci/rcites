@@ -132,7 +132,7 @@
     <pre class="usage"><span class='fu'>spp_taxonconcept</span>(<span class='no'>query_taxon</span>, <span class='kw'>taxonomy</span> <span class='kw'>=</span> <span class='st'>"CITES"</span>,
   <span class='kw'>with_descendants</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>language</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>updated_since</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>per_page</span> <span class='kw'>=</span> <span class='fl'>500</span>, <span class='kw'>pages</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>raw</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>token</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -156,7 +156,8 @@ include higher taxa?</p></td>
       <th>language</th>
       <td><p>filter languages returned for common names. Value should be a
 vector of character strings including one or more country codes (two-letters
-country code <a href='https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2'>ISO 3166-1 alpha-2</a>).
+country code
+<a href='https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2'>ISO 3166-1 alpha-2</a>).
 Default is set to <code>NULL</code>, showing all available languages.</p></td>
     </tr>
     <tr>
@@ -190,20 +191,26 @@ be used to set <code>SPECIESPLUS_TOKEN</code> for the current session.</p></td>
       <th>verbose</th>
       <td><p>a logical. Should extra information be reported on progress?</p></td>
     </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Further named parameters, see <code><a href='http://www.rdocumentation.org/packages/httr/topics/GET'>httr::GET()</a></code>.</p></td>
+    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>If <code>raw=TRUE</code>, then a object of class <code>spp_raw</code> is returned, which is essentially
-a list of lists. If <code>raw=FALSE</code>, then an object of class <code>spp_taxon</code> is returned,
-it is a collection of seven data frames:</p><ol>
-<li><p><code>all_id</code>: general information for all entries, including non-active taxon concepts,</p></li>
+    <p>If <code>raw=TRUE</code>, then a object of class <code>spp_raw</code> is returned, which is
+a list of lists. If <code>raw=FALSE</code>, then an object of class <code>spp_taxon</code> is
+returned, it is a collection of seven data frames:</p><ol>
+<li><p><code>all_id</code>: general information for all entries, including non-active taxon
+concepts,</p></li>
 <li><p><code>general</code>: includes general information for active taxon concepts,</p></li>
 <li><p><code>higher_taxa</code>: includes taxonomy information,</p></li>
 <li><p><code>accepted_names</code>: list of accepted names (only for synonyms),</p></li>
 <li><p><code>common_names</code>: list of common names (only for accepted names),</p></li>
 <li><p><code>synonyms</code>: list of synonyms (only for accepted names),</p></li>
-<li><p><code>cites_listing</code>: list of current CITES listings with annotations (missing if <code>taxonomy == 'CMS'</code>).</p></li>
+<li><p><code>cites_listing</code>: list of current CITES listings with annotations
+(missing if <code>taxonomy == 'CMS'</code>).</p></li>
 </ol>
 
     
@@ -213,7 +220,8 @@ it is a collection of seven data frames:</p><ol>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>res1</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_taxonconcept</span>(<span class='kw'>query_taxon</span> <span class='kw'>=</span> <span class='st'>'Loxodonta africana'</span>)</div><div class='output co'>#&gt; <span class='error'>Error in rcites_res(q_url, token): Too Many Requests (RFC 6585) (HTTP 429).</span></div><div class='input'><span class='no'>res2</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_taxonconcept</span>(<span class='kw'>query_taxon</span> <span class='kw'>=</span> <span class='st'>'Amazilia versicolor'</span>, <span class='kw'>raw</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='error'>Error in rcites_res(q_url, token): Too Many Requests (RFC 6585) (HTTP 429).</span></div><div class='input'><span class='no'>res3</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_taxonconcept</span>(<span class='kw'>query_taxon</span> <span class='kw'>=</span> <span class='st'>''</span>, <span class='kw'>taxonomy</span> <span class='kw'>=</span> <span class='st'>'CMS'</span>, <span class='kw'>pages</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1</span>,<span class='fl'>3</span>), <span class='kw'>language</span> <span class='kw'>=</span> <span class='st'>'EN'</span>)</div><div class='output co'>#&gt; <span class='error'>Error in rcites_res(q_url, token): Too Many Requests (RFC 6585) (HTTP 429).</span></div><div class='input'><span class='no'>res4</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_taxonconcept</span>(<span class='kw'>query_taxon</span> <span class='kw'>=</span> <span class='st'>''</span>, <span class='kw'>per_page</span> <span class='kw'>=</span> <span class='fl'>20</span>, <span class='kw'>pages</span> <span class='kw'>=</span> <span class='fl'>44</span>)</div><div class='output co'>#&gt; <span class='error'>Error in rcites_res(q_url, token): Too Many Requests (RFC 6585) (HTTP 429).</span></div></pre>
+    <pre class="examples"><div class='input'><span class='no'>res1</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_taxonconcept</span>(<span class='kw'>query_taxon</span> <span class='kw'>=</span> <span class='st'>'Loxodonta africana'</span>)</div><div class='output co'>#&gt; <span class='error'>Error in rcites_res(q_url, token, ...): Too Many Requests (RFC 6585) (HTTP 429).</span></div><div class='input'><span class='no'>res2</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_taxonconcept</span>(<span class='kw'>query_taxon</span> <span class='kw'>=</span> <span class='st'>'Amazilia versicolor'</span>, <span class='kw'>raw</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='error'>Error in rcites_res(q_url, token, ...): Too Many Requests (RFC 6585) (HTTP 429).</span></div><div class='input'><span class='no'>res3</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_taxonconcept</span>(<span class='kw'>query_taxon</span> <span class='kw'>=</span> <span class='st'>''</span>, <span class='kw'>taxonomy</span> <span class='kw'>=</span> <span class='st'>'CMS'</span>, <span class='kw'>pages</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1</span>, <span class='fl'>3</span>),
+ <span class='kw'>language</span> <span class='kw'>=</span> <span class='st'>'EN'</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>config</span> <span class='kw'>=</span> <span class='kw pkg'>httr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/httr/topics/progress'>progress</a></span>())</div><div class='output co'>#&gt; <span class='error'>Error in rcites_res(q_url, token, ...): Too Many Requests (RFC 6585) (HTTP 429).</span></div><div class='input'><span class='no'>res4</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_taxonconcept</span>(<span class='kw'>query_taxon</span> <span class='kw'>=</span> <span class='st'>''</span>, <span class='kw'>per_page</span> <span class='kw'>=</span> <span class='fl'>20</span>, <span class='kw'>pages</span> <span class='kw'>=</span> <span class='fl'>44</span>)</div><div class='output co'>#&gt; <span class='error'>Error in rcites_res(q_url, token, ...): Too Many Requests (RFC 6585) (HTTP 429).</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

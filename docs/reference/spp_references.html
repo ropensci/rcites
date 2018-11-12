@@ -129,15 +129,16 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>spp_references</span>(<span class='no'>taxon_id</span>, <span class='kw'>raw</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>token</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>spp_references</span>(<span class='no'>taxon_id</span>, <span class='kw'>raw</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>token</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>taxon_id</th>
-      <td><p>a vector of character strings containing species' taxon concept identifiers
-(see <code><a href='spp_taxonconcept.html'>spp_taxonconcept()</a></code>)</p></td>
+      <td><p>a vector of character strings containing species' taxon
+concept identifiers (see <code><a href='spp_taxonconcept.html'>spp_taxonconcept()</a></code>).</p></td>
     </tr>
     <tr>
       <th>raw</th>
@@ -154,6 +155,10 @@ set directly in <code>Renviron</code>. Alternatively, <code><a href='set_token.h
     <tr>
       <th>verbose</th>
       <td><p>a logical. Should extra information be reported on progress?</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Further named parameters, see <code><a href='http://www.rdocumentation.org/packages/httr/topics/GET'>httr::GET()</a></code>.</p></td>
     </tr>
     </table>
     
@@ -176,7 +181,8 @@ corresponding citation.</p></li>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>res1</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_references</span>(<span class='kw'>taxon_id</span> <span class='kw'>=</span> <span class='st'>'4521'</span>)</div><div class='output co'>#&gt; &gt;&gt;&gt; Now processing taxon_id '4521'............</div><div class='output co'>#&gt; <span class='error'>Error in rcites_res(q_url, token): Too Many Requests (RFC 6585) (HTTP 429).</span></div><div class='input'><span class='no'>res2</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_references</span>(<span class='fu'>c</span>(<span class='st'>'4521'</span>, <span class='st'>'3210'</span>, <span class='st'>'10255'</span>))</div><div class='output co'>#&gt; &gt;&gt;&gt; Now processing taxon_id '4521'............</div><div class='output co'>#&gt; <span class='error'>Error in rcites_res(q_url, token): Too Many Requests (RFC 6585) (HTTP 429).</span></div><div class='input'><span class='no'>res3</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_references</span>(<span class='kw'>taxon_id</span> <span class='kw'>=</span> <span class='st'>'4521'</span>, <span class='kw'>raw</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; &gt;&gt;&gt; Now processing taxon_id '4521'............</div><div class='output co'>#&gt; <span class='error'>Error in rcites_res(q_url, token): Too Many Requests (RFC 6585) (HTTP 429).</span></div></pre>
+    <pre class="examples"><div class='input'><span class='no'>res1</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_references</span>(<span class='kw'>taxon_id</span> <span class='kw'>=</span> <span class='st'>'4521'</span>)</div><div class='output co'>#&gt; &gt;&gt;&gt; Now processing taxon_id '4521'............</div><div class='output co'>#&gt; <span class='error'>Error in rcites_res(q_url, token, ...): Too Many Requests (RFC 6585) (HTTP 429).</span></div><div class='input'><span class='no'>res2</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_references</span>(<span class='fu'>c</span>(<span class='st'>'4521'</span>, <span class='st'>'3210'</span>, <span class='st'>'10255'</span>))</div><div class='output co'>#&gt; &gt;&gt;&gt; Now processing taxon_id '4521'............</div><div class='output co'>#&gt; <span class='error'>Error in rcites_res(q_url, token, ...): Unauthorized (HTTP 401).</span></div><div class='input'><span class='no'>res3</span> <span class='kw'>&lt;-</span> <span class='fu'>spp_references</span>(<span class='kw'>taxon_id</span> <span class='kw'>=</span> <span class='st'>'4521'</span>, <span class='kw'>raw</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+ <span class='kw'>config</span> <span class='kw'>=</span> <span class='kw pkg'>httr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/httr/topics/progress'>progress</a></span>())</div><div class='output co'>#&gt; <span class='error'>Error in rcites_res(q_url, token, ...): Too Many Requests (RFC 6585) (HTTP 429).</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -142,148 +142,26 @@
 </h3>
 <p><code>res1</code> is an S3 object of class <code>spp_taxon</code>:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">attributes</span>(res1)</a></code></pre></div>
-<pre><code>#&gt;  $names
-#&gt;  [1] "all_id"         "general"        "higher_taxa"    "accepted_names"
-#&gt;  [5] "common_names"   "synonyms"       "cites_listings"
-#&gt;  
-#&gt;  $class
-#&gt;  [1] "spp_taxon"
-#&gt;  
-#&gt;  $taxonomy
-#&gt;  [1] "CITES"</code></pre>
 <p>that contains information sorted into several data frames (see <code><a href="../reference/spp_taxonconcept.html">?spp_taxonconcept</a></code> for further details):</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">res1</a></code></pre></div>
-<pre><code>#&gt;  General info - CITES ($general):
-#&gt;  --------------------------------
-#&gt;      id          full_name        author_year    rank name_status
-#&gt;  1 4521 Loxodonta africana (Blumenbach, 1797) SPECIES           A
-#&gt;             updated_at active cites_listing
-#&gt;  1 2018-07-02 12:15:37   TRUE          I/II
-#&gt;  
-#&gt;  Classification ($higher_taxa):
-#&gt;  -------------------------------
-#&gt;      id  kingdom   phylum    class       order       family
-#&gt;  1 4521 Animalia Chordata Mammalia Proboscidea Elephantidae
-#&gt;  
-#&gt;  Synonyms ($synonyms):
-#&gt;  ----------------------
-#&gt;      id apply.do.call.rbind..tmp.wch....2..unlist.
-#&gt;  1 4521                                      37069
-#&gt;  2 4521                         Loxodonta cyclotis
-#&gt;  3 4521                           (Matschie, 1900)
-#&gt;  4 4521                                    SPECIES
-#&gt;  
-#&gt;  Common names ($common_names):
-#&gt;  ------------------------------
-#&gt;       id                  name language
-#&gt;  1  4521               Olifant       AF
-#&gt;  2  4521                   Fel       AR
-#&gt;  3  4521                   Fil       AZ
-#&gt;  4  4521                  Slon       BE
-#&gt;  5  4521                  Slon       BG
-#&gt;  6  4521              Elefante       CA
-#&gt;  7  4521                  Slon       CS
-#&gt;  8  4521     afrikansk elefant       DA
-#&gt;  9  4521               Elefant       DA
-#&gt;  10 4521 Afrikanischer Elefant       DE
-#&gt;  -------truncated-------
-#&gt;  
-#&gt;  Information available: $all_id, $general, $higher_taxa, $accepted_names, $common_names, $synonyms, $cites_listings</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">res1</a></code></pre></div>
 <p>For some taxa, there are more than one taxon identifier available. In <code>general</code> only <em>active</em> identifiers are listed, but the full list of identifiers are available in <code>all_id</code>:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">res3 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/spp_taxonconcept.html">spp_taxonconcept</a></span>(<span class="dt">query =</span> <span class="st">"Amazilia versicolor"</span>)</a>
-<a class="sourceLine" id="cb8-2" data-line-number="2">res3<span class="op">$</span>general</a></code></pre></div>
-<pre><code>#&gt;      id           full_name      author_year    rank name_status
-#&gt;  1 3210 Amazilia versicolor (Vieillot, 1818) SPECIES           A
-#&gt;             updated_at active cites_listing
-#&gt;  1 2015-05-07 15:10:59   TRUE            II</code></pre>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">res3<span class="op">$</span>all_id</a></code></pre></div>
-<pre><code>#&gt;       id           full_name      author_year    rank name_status
-#&gt;  1  3210 Amazilia versicolor (Vieillot, 1818) SPECIES           A
-#&gt;  2 65789 Amazilia versicolor (Vieillot, 1818) SPECIES           S
-#&gt;             updated_at active
-#&gt;  1 2015-05-07 15:10:59   TRUE
-#&gt;  2 2016-09-23 15:30:46  FALSE</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">res3 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/spp_taxonconcept.html">spp_taxonconcept</a></span>(<span class="dt">query =</span> <span class="st">"Amazilia versicolor"</span>)</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">res3<span class="op">$</span>general</a>
+<a class="sourceLine" id="cb6-3" data-line-number="3">res3<span class="op">$</span>all_id</a></code></pre></div>
 <p>Also, if the taxon is not listed, a warning message should come up.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">res4 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/spp_taxonconcept.html">spp_taxonconcept</a></span>(<span class="dt">query =</span> <span class="st">"Homo Sapiens"</span>)</a></code></pre></div>
-<pre><code>#&gt;  Warning in spp_taxonconcept(query = "Homo Sapiens"): Taxon not listed.</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">res4 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/spp_taxonconcept.html">spp_taxonconcept</a></span>(<span class="dt">query =</span> <span class="st">"Homo Sapiens"</span>)</a></code></pre></div>
 </div>
 <div id="custom-calls-to-spp_taxonconcept" class="section level3">
 <h3 class="hasAnchor">
 <a href="#custom-calls-to-spp_taxonconcept" class="anchor"></a>Custom calls to spp_taxonconcept()</h3>
 <p><code><a href="../reference/spp_taxonconcept.html">spp_taxonconcept()</a></code> includes several arguments to retrieve a specific subset of information (see <code><a href="../reference/spp_taxonconcept.html">?spp_taxonconcept</a></code> for more details):</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw">args</span>(<span class="st">'spp_taxonconcept'</span>)</a></code></pre></div>
-<pre><code>#&gt;  function (query_taxon, taxonomy = "CITES", with_descendants = FALSE, 
-#&gt;      language = NULL, updated_since = NULL, per_page = 500, pages = NULL, 
-#&gt;      raw = FALSE, token = NULL, verbose = TRUE) 
-#&gt;  NULL</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">args</span>(<span class="st">'spp_taxonconcept'</span>)</a></code></pre></div>
 <p>Most importantly, the argument <code>taxonomy</code> allows a selection between the two databases (CITES or CMS):</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw"><a href="../reference/spp_taxonconcept.html">spp_taxonconcept</a></span>(<span class="dt">query =</span> <span class="st">"Amazilia versicolor"</span>, <span class="dt">taxonomy =</span> <span class="st">"CMS"</span>)</a></code></pre></div>
-<pre><code>#&gt;  Warning in spp_taxonconcept(query = "Amazilia versicolor", taxonomy =
-#&gt;  "CMS"): Taxon not listed.</code></pre>
-<pre><code>#&gt;  NULL</code></pre>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw"><a href="../reference/spp_taxonconcept.html">spp_taxonconcept</a></span>(<span class="dt">query =</span> <span class="st">"Loxodonta africana"</span>, <span class="dt">taxonomy =</span> <span class="st">"CMS"</span>)</a></code></pre></div>
-<pre><code>#&gt;  General info - CMS ($general):
-#&gt;  ------------------------------
-#&gt;       id          full_name        author_year    rank name_status
-#&gt;  1 11691 Loxodonta africana (Blumenbach, 1797) SPECIES           A
-#&gt;             updated_at active
-#&gt;  1 2018-06-05 09:19:14   TRUE
-#&gt;  
-#&gt;  Classification ($higher_taxa):
-#&gt;  -------------------------------
-#&gt;       id  kingdom   phylum    class       order       family
-#&gt;  1 11691 Animalia Chordata Mammalia Proboscidea Elephantidae
-#&gt;  
-#&gt;  Synonyms ($synonyms):
-#&gt;  ----------------------
-#&gt;  data frame with 0 columns and 0 rows
-#&gt;  
-#&gt;  Common names ($common_names):
-#&gt;  ------------------------------
-#&gt;        id                  name language
-#&gt;  1  11691               Olifant       AF
-#&gt;  2  11691                   Fel       AR
-#&gt;  3  11691                   Fil       AZ
-#&gt;  4  11691                  Slon       BE
-#&gt;  5  11691                  Slon       BG
-#&gt;  6  11691              Elefante       CA
-#&gt;  7  11691                  Slon       CS
-#&gt;  8  11691     afrikansk elefant       DA
-#&gt;  9  11691               Elefant       DA
-#&gt;  10 11691 Afrikanischer Elefant       DE
-#&gt;  -------truncated-------
-#&gt;  
-#&gt;  Information available: $all_id, $general, $higher_taxa, $accepted_names, $common_names, $synonyms</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw"><a href="../reference/spp_taxonconcept.html">spp_taxonconcept</a></span>(<span class="dt">query =</span> <span class="st">"Amazilia versicolor"</span>, <span class="dt">taxonomy =</span> <span class="st">"CMS"</span>)</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="kw"><a href="../reference/spp_taxonconcept.html">spp_taxonconcept</a></span>(<span class="dt">query =</span> <span class="st">"Loxodonta africana"</span>, <span class="dt">taxonomy =</span> <span class="st">"CMS"</span>)</a></code></pre></div>
 <p><code>language</code> and <code>updated_since</code> are convenient filters for the written language of common names (must be a two-letters code, see <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">ISO 3166-1 alpha-2</a>) and the last update of the entries, respectively:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="kw"><a href="../reference/spp_taxonconcept.html">spp_taxonconcept</a></span>(<span class="dt">query_taxon =</span> <span class="st">"Loxodonta africana"</span>, <span class="dt">language =</span> <span class="st">'EN'</span>,</a>
-<a class="sourceLine" id="cb21-2" data-line-number="2">  <span class="dt">updated_since =</span> <span class="st">"2016-01-01"</span>)</a></code></pre></div>
-<pre><code>#&gt;  General info - CITES ($general):
-#&gt;  --------------------------------
-#&gt;      id          full_name        author_year    rank name_status
-#&gt;  1 4521 Loxodonta africana (Blumenbach, 1797) SPECIES           A
-#&gt;             updated_at active cites_listing
-#&gt;  1 2018-07-02 12:15:37   TRUE          I/II
-#&gt;  
-#&gt;  Classification ($higher_taxa):
-#&gt;  -------------------------------
-#&gt;      id  kingdom   phylum    class       order       family
-#&gt;  1 4521 Animalia Chordata Mammalia Proboscidea Elephantidae
-#&gt;  
-#&gt;  Synonyms ($synonyms):
-#&gt;  ----------------------
-#&gt;      id apply.do.call.rbind..tmp.wch....2..unlist.
-#&gt;  1 4521                                      37069
-#&gt;  2 4521                         Loxodonta cyclotis
-#&gt;  3 4521                           (Matschie, 1900)
-#&gt;  4 4521                                    SPECIES
-#&gt;  
-#&gt;  Common names ($common_names):
-#&gt;  ------------------------------
-#&gt;      id                      name language
-#&gt;  1 4521          African Elephant       EN
-#&gt;  2 4521 African Savannah Elephant       EN
-#&gt;  
-#&gt;  Information available: $all_id, $general, $higher_taxa, $accepted_names, $common_names, $synonyms, $cites_listings</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw"><a href="../reference/spp_taxonconcept.html">spp_taxonconcept</a></span>(<span class="dt">query_taxon =</span> <span class="st">"Loxodonta africana"</span>, <span class="dt">language =</span> <span class="st">'EN'</span>,</a>
+<a class="sourceLine" id="cb10-2" data-line-number="2">  <span class="dt">updated_since =</span> <span class="st">"2016-01-01"</span>)</a></code></pre></div>
 </div>
 </div>
 <div id="retrieve-a-taxon-identifiers-available-data" class="section level2">
@@ -310,146 +188,25 @@
 <h3 class="hasAnchor">
 <a href="#cites-legislation-data" class="anchor"></a>CITES legislation data</h3>
 <p>First, we can retrieve current CITES appendix listings and reservations, CITES quotas, and CITES suspensions for a given taxon concept.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="kw"><a href="../reference/spp_cites_legislation.html">spp_cites_legislation</a></span>(<span class="dt">taxon_id =</span> <span class="st">"4521"</span>, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
-<pre><code>#&gt;  Cites listings ($cites_listings):
-#&gt;  ---------------------------------
-#&gt;      id taxon_concept_id is_current appendix change_type effective_at
-#&gt;  1 3645             4521       TRUE        I          R+   1990-01-18
-#&gt;  2 3666             4521       TRUE       II           +   2007-09-13
-#&gt;  3 3665             4521       TRUE        I           +   2007-09-13
-#&gt;  
-#&gt;  Cites quotas ($cites_quotas):
-#&gt;  ------------------------------
-#&gt;        id taxon_concept_id quota publication_date public_display is_current
-#&gt;  1  20604             4521     0       2017-03-06           TRUE       TRUE
-#&gt;  2  20586             4521     0       2017-03-06           TRUE       TRUE
-#&gt;  3  20695             4521     0       2017-03-06           TRUE       TRUE
-#&gt;  4  20696             4521     0       2017-03-06           TRUE       TRUE
-#&gt;  5  20697             4521     0       2017-03-06           TRUE       TRUE
-#&gt;  6  20698             4521     0       2017-03-06           TRUE       TRUE
-#&gt;  7  20699             4521     0       2017-03-06           TRUE       TRUE
-#&gt;  8  20700             4521     0       2017-03-06           TRUE       TRUE
-#&gt;  9  20701             4521     0       2017-03-06           TRUE       TRUE
-#&gt;  10 20703             4521     0       2017-03-06           TRUE       TRUE
-#&gt;     unit geo_entity.iso_code2          geo_entity.name geo_entity.type
-#&gt;  1  &lt;NA&gt;                   CG                    Congo         COUNTRY
-#&gt;  2  &lt;NA&gt;                   AO                   Angola         COUNTRY
-#&gt;  3  &lt;NA&gt;                   BW                 Botswana         COUNTRY
-#&gt;  4  &lt;NA&gt;                   BF             Burkina Faso         COUNTRY
-#&gt;  5  &lt;NA&gt;                   CF Central African Republic         COUNTRY
-#&gt;  6  &lt;NA&gt;                   CI            Côte d'Ivoire         COUNTRY
-#&gt;  7  &lt;NA&gt;                   GW            Guinea Bissau         COUNTRY
-#&gt;  8  &lt;NA&gt;                   LR                  Liberia         COUNTRY
-#&gt;  9  &lt;NA&gt;                   SL             Sierra Leone         COUNTRY
-#&gt;  10 &lt;NA&gt;                   GA                    Gabon         COUNTRY
-#&gt;  -------truncated-------
-#&gt;  Field(s) not printed:  notes, url 
-#&gt;  
-#&gt;  Cites suspensions ($cites_suspensions):
-#&gt;  ----------------------------------------
-#&gt;        id taxon_concept_id start_date is_current applies_to_import
-#&gt;  1  15986             &lt;NA&gt; 2013-05-16       TRUE             FALSE
-#&gt;  2  17621             4521 2014-08-11       TRUE              TRUE
-#&gt;  3  17620             4521 2014-08-11       TRUE              TRUE
-#&gt;  4  17686             4521 2014-10-10       TRUE              TRUE
-#&gt;  5  18709             4521 2010-08-16       TRUE              TRUE
-#&gt;  6  15983             &lt;NA&gt; 2011-01-19       TRUE             FALSE
-#&gt;  7  15971             &lt;NA&gt; 2004-07-30       TRUE             FALSE
-#&gt;  8  18955             4521 2016-04-01       TRUE              TRUE
-#&gt;  9  22079             &lt;NA&gt; 2018-01-30       TRUE             FALSE
-#&gt;  10 22076             &lt;NA&gt; 2018-01-22       TRUE             FALSE
-#&gt;     geo_entity.iso_code2             geo_entity.name geo_entity.type
-#&gt;  1                    GN                      Guinea         COUNTRY
-#&gt;  2                    ZW                    Zimbabwe         COUNTRY
-#&gt;  3                    TZ United Republic of Tanzania         COUNTRY
-#&gt;  4                    US    United States of America         COUNTRY
-#&gt;  5                    ZW                    Zimbabwe         COUNTRY
-#&gt;  6                    DJ                    Djibouti         COUNTRY
-#&gt;  7                    SO                     Somalia         COUNTRY
-#&gt;  8                    CN                       China         COUNTRY
-#&gt;  9                    DJ                    Djibouti         COUNTRY
-#&gt;  10                   LR                     Liberia         COUNTRY
-#&gt;  -------truncated-------
-#&gt;  Field(s) not printed:  notes, start_notification.name, start_notification.date, start_notification.url</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw"><a href="../reference/spp_cites_legislation.html">spp_cites_legislation</a></span>(<span class="dt">taxon_id =</span> <span class="st">"4521"</span>, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 </div>
 <div id="eu-legislation-data" class="section level3">
 <h3 class="hasAnchor">
 <a href="#eu-legislation-data" class="anchor"></a>EU legislation data</h3>
 <p>Similarly, we can also retrieve current EU annex listings, SRG opinions, and EU suspensions with <code>spp_eu_legislation</code>. Both legislation functions have a <code>scope</code> argument that sets the time scope of legislation and take one value among <code>current</code>, <code>historic</code> and <code>all</code> (default is set to <code>current</code>). For instance, one can get all information pertaining to EU annex listing for <em>Amazilia versicolor</em> with the following command line:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="kw"><a href="../reference/spp_eu_legislation.html">spp_eu_legislation</a></span>(<span class="dt">taxon_id =</span> <span class="st">"3210"</span>, <span class="dt">scope =</span> <span class="st">"all"</span>, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
-<pre><code>#&gt;  EU listings ($eu_listings):
-#&gt;  ---------------------------
-#&gt;        id taxon_concept_id is_current annex change_type effective_at
-#&gt;  1  17602             3210      FALSE     B           +   2013-08-10
-#&gt;  2  17603             3210      FALSE     B           +   2012-12-15
-#&gt;  3  17604             3210      FALSE     B           +   2012-02-14
-#&gt;  4  17605             3210      FALSE     B           +   2010-08-15
-#&gt;  5  17606             3210      FALSE     B           +   2009-05-22
-#&gt;  6  17607             3210      FALSE     B           +   2008-04-11
-#&gt;  7  17608             3210      FALSE     B           +   2005-08-22
-#&gt;  8  17609             3210      FALSE     B           +   2003-08-30
-#&gt;  9  17610             3210      FALSE     B           +   2000-12-18
-#&gt;  10 17611             3210      FALSE     B           +   1997-06-01
-#&gt;  -------truncated-------
-#&gt;  
-#&gt;  EU decisions ($eu_decisions):
-#&gt;  ------------------------------
-#&gt;  data frame with 0 columns and 0 rows</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw"><a href="../reference/spp_eu_legislation.html">spp_eu_legislation</a></span>(<span class="dt">taxon_id =</span> <span class="st">"3210"</span>, <span class="dt">scope =</span> <span class="st">"all"</span>, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 </div>
 <div id="distribution-data" class="section level3">
 <h3 class="hasAnchor">
 <a href="#distribution-data" class="anchor"></a>Distribution data</h3>
 <p>Distribution data at the country level is also available for a given taxon concept:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="kw"><a href="../reference/spp_distributions.html">spp_distributions</a></span>(<span class="st">"4521"</span>, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
-<pre><code>#&gt;  Distributions ($distributions):
-#&gt;  -------------------------------
-#&gt;        id iso_code2              name    type tags
-#&gt;  1   1778        ML              Mali COUNTRY     
-#&gt;  2   1923        GQ Equatorial Guinea COUNTRY     
-#&gt;  3   4429        RW            Rwanda COUNTRY     
-#&gt;  4   4491        GH             Ghana COUNTRY     
-#&gt;  5   5628        SD             Sudan COUNTRY     
-#&gt;  6   6724        ET          Ethiopia COUNTRY     
-#&gt;  7   8995        GA             Gabon COUNTRY     
-#&gt;  8  12983        AO            Angola COUNTRY     
-#&gt;  9  15554        CM          Cameroon COUNTRY     
-#&gt;  10 17060        BJ             Benin COUNTRY     
-#&gt;  -------truncated-------
-#&gt;  
-#&gt;  References ($references):
-#&gt;  --------------------------
-#&gt;       id                        reference
-#&gt;  1  1778 Kingdon, J., Happold [truncated]
-#&gt;  2  1923 Basilio, A. 1962. La [truncated]
-#&gt;  3  4429 Jackson, P. 1982. El [truncated]
-#&gt;  4  4429 Monfort, A. 1992. Pr [truncated]
-#&gt;  5  4491 Grubb, P., Jones, T. [truncated]
-#&gt;  6  4491 Jackson, P. 1982. El [truncated]
-#&gt;  7  5628 Hameed, S.M.A. and E [truncated]
-#&gt;  8  6724 Bolton, M. 1973. Not [truncated]
-#&gt;  9  6724 Largen, M. J. and Ya [truncated]
-#&gt;  10 6724 Meester, J. and Setz [truncated]
-#&gt;  -------truncated-------</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw"><a href="../reference/spp_distributions.html">spp_distributions</a></span>(<span class="st">"4521"</span>, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 </div>
 <div id="references" class="section level3">
 <h3 class="hasAnchor">
 <a href="#references" class="anchor"></a>References</h3>
 <p>Finally, we can retrieve all available references for a given taxa.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="kw"><a href="../reference/spp_references.html">spp_references</a></span>(<span class="st">"4521"</span>, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
-<pre><code>#&gt;  References ($references):
-#&gt;  -------------------------
-#&gt;        id                                             citation is_standard
-#&gt;  1  10265 Anon. 1978. Red data book: Mammalia. IUC [truncated]       FALSE
-#&gt;  2   6344 Barnes, R. F., Agnagna, M., Alers, M. P. [truncated]       FALSE
-#&gt;  3  17013 Blanc, J.J., Thouless, C.R., Hart, J.A., [truncated]       FALSE
-#&gt;  4   6371 Burton, M. P. 1994. Alternative projecti [truncated]       FALSE
-#&gt;  5   6532 Douglas-Hamilton, I. 1987. African Eleph [truncated]       FALSE
-#&gt;  6   6534 Douglas-Hamilton, I. 1987. African Eleph [truncated]       FALSE
-#&gt;  7   6825 Jackson, P. 1982. Elephants and rhinos i [truncated]       FALSE
-#&gt;  8   7224 Meester, J. and Setzer, H. W (eds.) 1974 [truncated]       FALSE
-#&gt;  9   7609 Parker, I. and Amin, M. 1983. Ivory cris [truncated]       FALSE
-#&gt;  10 19397 Parker, I.S.C. and Martin, E.B. 1982. Ho [truncated]       FALSE
-#&gt;  -------truncated-------</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw"><a href="../reference/spp_references.html">spp_references</a></span>(<span class="st">"4521"</span>, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 </div>
 </div>
 <div id="bulk-analysis" class="section level2">

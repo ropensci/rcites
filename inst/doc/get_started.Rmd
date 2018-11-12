@@ -21,7 +21,6 @@ library(rcites)
 ```
 
 
-
 # Set up a connection to the Species+/CITES Checklist API
 
 ## Get your personal token
