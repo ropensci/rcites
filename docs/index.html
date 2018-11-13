@@ -95,7 +95,7 @@
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#rcites" class="anchor"></a>rcites</h1></div>
 <p>An R package to access information from the <a href="https://speciesplus.net/">Speciesplus</a> database via the <a href="https://api.speciesplus.net/documentation/v1.html">Species+/CITES Checklist API</a>. The package is available for download from <a href="https://cran.r-project.org/package=rcites">CRAN</a> (stable version) and <a href="https://github.com/ibartomeus/rcites">Github</a> (development version).</p>
-<p>Please see the <a href="link%20to%20come">release paper</a> for background information about the Convention on International Trade in Endangered Species of Wild Fauna and Flora (<a href="https://cites.org">CITES</a>), the Speciesplus database and basic information about the aim of the package.</p>
+<p>Please see the <a href="link%20to%20come">release paper</a> for background information about the Convention on International Trade in Endangered Species of Wild Fauna and Flora (<a href="https://cites.org">CITES</a>), the Species+ database and basic information about the aim of the package.</p>
 <div id="installation" class="section level3">
 <h3 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h3>
@@ -109,8 +109,8 @@
 <div id="setup-requirements-and-use" class="section level3">
 <h3 class="hasAnchor">
 <a href="#setup-requirements-and-use" class="anchor"></a>Setup requirements and use</h3>
-<p>To set up a connection to the CITES Speciesplus database, a personal authentication token is required. Please see the vignette for details how to get a token and how to set the token for package use: <a href="https://ibartomeus.github.io/rcites/articles/get_started.html">Get started with rcites</a></p>
-<p>Additional information about specific use examples are provided for the <a href="https://ibartomeus.github.io/rcites/articles/elephant.html">African bush elephant (<em>Loxodonta africana</em>)</a>. The package usage for querying multiple species is described in <a href="https://ibartomeus.github.io/rcites/articles/bulk_analysis.html">Bulk analysis with rcites</a>.</p>
+<p>To set up a connection to the CITES Species+ database, a personal authentication token is required. Please see the vignette for details how to get a token and how to set the token for package use: <a href="https://ibartomeus.github.io/rcites/articles/get_started.html">Get started with rcites</a></p>
+<p>Additional information about specific use examples are provided for the <a href="https://ibartomeus.github.io/rcites/articles/elephant.html">African bush elephant (<em>Loxodonta africana</em>)</a>. The package usage for querying multiple species is described in another vignette entitled <a href="https://ibartomeus.github.io/rcites/articles/bulk_analysis.html">‘Bulk analysis with rcites’</a>.</p>
 </div>
 <div id="key-features" class="section level3">
 <h3 class="hasAnchor">
@@ -136,7 +136,7 @@
 <div id="prefix-information" class="section level3">
 <h3 class="hasAnchor">
 <a href="#prefix-information" class="anchor"></a>Prefix information</h3>
-<p>The package functions have three different prexifes:</p>
+<p>The package functions have three different prefixes:</p>
 <ul>
 <li>
 <code>set_</code> for <code><a href="reference/set_token.html">set_token()</a></code> to initially set the API token</li>
@@ -149,19 +149,20 @@
 <div id="citation-information" class="section level3">
 <h3 class="hasAnchor">
 <a href="#citation-information" class="anchor"></a>Citation information</h3>
-<p>When citing, please refer to both the <a href="https://ibartomeus.github.io/rcites/authors.html">package citation</a> and the <a href="link%20to%20come">release paper</a>.</p>
+<p>When citing, please refer to both the <a href="https://ibartomeus.github.io/rcites/authors.html">package citation</a>. <!-- and the [release paper](link to come). --></p>
 </div>
 <div id="contributors" class="section level2">
 <h2 class="hasAnchor">
 <a href="#contributors" class="anchor"></a>Contributors</h2>
 <ul>
-<li><a href="https://github.com/ibartomeus/rcites/graphs/contributors">Main contributors</a></li>
+<li><p><a href="https://github.com/ibartomeus/rcites/graphs/contributors">Main contributors</a></p></li>
 <li>Reviewers of the package:
 <ul>
 <li><a href="https://github.com/noamross">Noam Ross</a></li>
 <li><a href="https://github.com/mcsiple">Margaret Siple</a></li>
 </ul>
 </li>
+<li><p>Editor: <a href="https://github.com/sckott">Scott Chamberlain</a></p></li>
 <li>Reporting issue(s):
 <ul>
 <li><a href="https://github.com/FVFaleiro">FVFaleiro</a></li>
@@ -175,9 +176,8 @@
 <p>Another package dealing with data from and about CITES, providing access to its wildlife trade database: <a href="https://github.com/ecohealthalliance/cites/">cites</a></p>
 <p>While creating this package, we greatly benefited from:</p>
 <ol>
-<li>
-<a href="https://github.com/ropensci/taxize">taxize</a> that inspired the structuring of this repository/package,</li>
-<li>the <code>httr</code> vignette: <a href="https://cran.r-project.org/web/packages/httr/vignettes/secrets.html">Managing secrets</a>, which is extremely helpful for packages dealing with API.</li>
+<li><p><a href="https://github.com/ropensci/taxize">taxize</a> that inspired the structuring of this repository/package;</p></li>
+<li><p>the <code>httr</code> vignette: <a href="https://cran.r-project.org/web/packages/httr/vignettes/secrets.html">Managing secrets</a>, which is extremely helpful for packages dealing with API.</p></li>
 </ol>
 </div>
 <div id="code-of-conduct" class="section level2">

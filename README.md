@@ -15,7 +15,7 @@
 
 An R package to access information from the [Speciesplus](https://speciesplus.net/) database via the [Species+/CITES Checklist API](https://api.speciesplus.net/documentation/v1.html). The package is available for download from [CRAN](https://cran.r-project.org/package=rcites) (stable version) and [Github](https://github.com/ibartomeus/rcites) (development version).
 
-Please see the [release paper](link to come) for background information about the Convention on International Trade in Endangered Species of Wild Fauna and Flora ([CITES](https://cites.org)), the Speciesplus database and basic information about the aim of the package.
+Please see the [release paper](link to come) for background information about the Convention on International Trade in Endangered Species of Wild Fauna and Flora ([CITES](https://cites.org)), the Species+ database and basic information about the aim of the package.
 
 
 ### Installation
@@ -37,10 +37,14 @@ library("rcites")
 
 ### Setup requirements and use
 
-To set up a connection to the CITES Speciesplus database, a personal authentication token is required. Please see the vignette for details how to get a token and how to set the token for package use:
-[Get started with rcites](https://ibartomeus.github.io/rcites/articles/get_started.html)
+To set up a connection to the CITES Species+ database, a personal authentication
+token is required. Please see the vignette for details how to get a token and
+how to set the token for package use: [Get started with rcites](https://ibartomeus.github.io/rcites/articles/get_started.html)
 
-Additional information about specific use examples are provided for the [African bush elephant (*Loxodonta africana*)](https://ibartomeus.github.io/rcites/articles/elephant.html). The package usage for querying multiple species is described in [Bulk analysis with rcites](https://ibartomeus.github.io/rcites/articles/bulk_analysis.html).
+Additional information about specific use examples are provided for the
+[African bush elephant (*Loxodonta africana*)](https://ibartomeus.github.io/rcites/articles/elephant.html).
+The package usage for querying multiple species is described in another
+vignette entitled ['Bulk analysis with rcites'](https://ibartomeus.github.io/rcites/articles/bulk_analysis.html).
 
 
 ### Key features
@@ -56,7 +60,8 @@ Once the token is set, the package has five key features:
 
 ### Prefix information
 
-The package functions have three different prexifes:
+The package functions have three different prefixes:
+
 - `set_` for `set_token()` to initially set the API token
 - `spp_` for the key features
 - `rcites_` for helper functions that are called within the key features
@@ -64,15 +69,20 @@ The package functions have three different prexifes:
 
 ### Citation information
 
-When citing, please refer to both the [package citation](https://ibartomeus.github.io/rcites/authors.html) and the [release paper](link to come).
+When citing, please refer to both the [package citation](https://ibartomeus.github.io/rcites/authors.html).
+ <!-- and the [release paper](link to come). -->
 
 
 ## Contributors
 
 - [Main contributors](https://github.com/ibartomeus/rcites/graphs/contributors)
+
 - Reviewers of the package:
   - [Noam Ross](https://github.com/noamross)
   - [Margaret Siple](https://github.com/mcsiple)
+
+- Editor: [Scott Chamberlain](https://github.com/sckott)
+
 - Reporting issue(s):
   - [FVFaleiro](https://github.com/FVFaleiro)
 
@@ -80,10 +90,13 @@ When citing, please refer to both the [package citation](https://ibartomeus.gith
 
 ## Resources
 
-Another package dealing with data from and about CITES, providing access to its wildlife trade database: [cites](https://github.com/ecohealthalliance/cites/)
+Another package dealing with data from and about CITES, providing access to its
+wildlife trade database: [cites](https://github.com/ecohealthalliance/cites/)
 
 While creating this package, we greatly benefited from:
-1. [taxize](https://github.com/ropensci/taxize) that inspired the structuring of this repository/package,
+
+1. [taxize](https://github.com/ropensci/taxize) that inspired the structuring of this repository/package;
+
 2. the `httr` vignette: [Managing secrets](https://cran.r-project.org/web/packages/httr/vignettes/secrets.html), which is extremely helpful for packages dealing with API.
 
 
@@ -93,5 +106,5 @@ While creating this package, we greatly benefited from:
 Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md).
 By participating in this project you agree to abide by its terms.
 
-Also, please read the terms and Conditions of Use of Species+ Data:
+Also, please read the Terms and Conditions of Use of Species+ Data:
 https://speciesplus.net/terms-of-use.
