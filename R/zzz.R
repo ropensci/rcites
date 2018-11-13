@@ -20,6 +20,7 @@ rcites_url <- function(...) {
     paste0(rcites_baseurl(), ...)
 }
 
+
 rcites_get <- function(q_url, token, ...) {
     names(token) <- "X-Authentication-Token"
     httr::GET(q_url, httr::add_headers(token), ...)
@@ -292,7 +293,7 @@ rcites_print_taxon_id <- function(x, max_print = 20) {
 
 ############################# spp_taxonconcept() helpers
 
-rcites_taxonconcept_request <- function(x, token, taxonomy, with_descendants,
+rcites_taxonconcept_request <- function(x, taxonomy, with_descendants,
     page, per_page, updated_since = NULL, language = NULL) {
     # deal with whitespace
     tmp <- gsub(pattern = " ", replacement = "%20", x = x)

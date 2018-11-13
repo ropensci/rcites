@@ -75,7 +75,7 @@ spp_taxonconcept <- function(query_taxon, taxonomy = "CITES",
         pages <- sort(unique(as.integer(pages)))
         f_page <- pages[1L]
     }
-    q_url <- rcites_taxonconcept_request(query_taxon, token, taxonomy,
+    q_url <- rcites_taxonconcept_request(query_taxon, taxonomy,
         with_descendants, f_page, per_page, updated_since, language)
     # results
     tmp <- rcites_res(q_url, token, ...)

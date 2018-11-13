@@ -14,4 +14,8 @@ test_that("expected errors", {
   ut_pause()
   expect_error(spp_taxonconcept(query_taxon = tx_nm, token = token), msg,
     fixed = TRUE)
+  ut_pause()
+  # testing extra parameters
+  qurl <- rcites_taxonconcept_request(tx_nm, "CITES", FALSE, 1, 500, NULL, NULL)
+  expect_error(rcites_res(qurl, rcites_getsecret(),  httr::timeout(1)))
 })
