@@ -108,3 +108,7 @@ By participating in this project you agree to abide by its terms.
 
 Also, please read the Terms and Conditions of Use of Species+ Data:
 https://speciesplus.net/terms-of-use.
+
+
+
+[![ropensci_footer](https://ropensci.org/public_images/ropensci_footer.png)](https://ropensci.org)
