@@ -8,7 +8,6 @@
 #' @return The JSON result.
 #'
 #' @name print.spp
-
 NULL
 
 #' @rdname print.spp
