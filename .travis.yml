@@ -12,6 +12,9 @@ matrix:
     - os: linux
       r: release
       env: NOT_CRAN=true
+    - os: osx
+      r: release
+      env: NOT_CRAN=true
     - os: linux
       r: devel
       env: NOT_CRAN=false

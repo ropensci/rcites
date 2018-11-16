@@ -22,7 +22,7 @@ library(rcites)
 
 # Introduction and setup
 
-In [Get started with rcites](https://ibartomeus.github.io/rcites/articles/get_started.html), we explained how to get a token and set it up for general access to the CITES Species+ database. Also, we very briefly introduced to how to code the key features of `rcites`. With this article, we aim to further introduce to the functionality and workflows of `rcites`. For this, we use the African bush elephant (*Loxodonta africana*, hereafter "elephant") as a case study. The elephant not only is a highly endangered species that is illegally traded globally but also a flagship species of nature conservation and the logo species of CITES.
+In [Get started with rcites](https://ropensci.github.io/rcites/articles/get_started.html), we explained how to get a token and set it up for general access to the CITES Species+ database. Also, we very briefly introduced to how to code the key features of `rcites`. With this article, we aim to further introduce to the functionality and workflows of `rcites`. For this, we use the African bush elephant (*Loxodonta africana*, hereafter "elephant") as a case study. The elephant not only is a highly endangered species that is illegally traded globally but also a flagship species of nature conservation and the logo species of CITES.
 
 We start with a basic set up: we load the package and set the token:
 

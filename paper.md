@@ -35,7 +35,7 @@ The conservation of biodiversity is a complex problem strongly tight to politica
 
 # The Speciesplus database
 
-In 2013, the UNEP World Conservation Monitoring Centre (UNEP-WCMC) and the CITES Secretariat initiated a partnership funded by UNEP, the European Commission and the CITES Secretariat. Together, they created Speciesplus (or Species+), a comprehensive database of not only CITES listed species and their regulation status within CITES but also the species' status within the EU legislation and the species' status within the Convention on the Conservation of Migratory Species of Wild Animals (CMS) [@Speciesplus_about]. Speciesplus is publicly available at https://speciesplus.net [@UNEP]. 
+In 2013, the UNEP World Conservation Monitoring Centre (UNEP-WCMC) and the CITES Secretariat initiated a partnership funded by UNEP, the European Commission and the CITES Secretariat. Together, they created Speciesplus (or Species+), a comprehensive database of not only CITES listed species and their regulation status within CITES but also the species' status within the EU legislation and the species' status within the Convention on the Conservation of Migratory Species of Wild Animals (CMS) [@Speciesplus_about]. Speciesplus is publicly available at https://speciesplus.net [@UNEP].
 
 # The ``rcites`` R package
 
@@ -48,7 +48,7 @@ We provide functions to:
 3. get a species' country-wise distribution range, as listed in Speciesplus, and
 4. get the references on which a Speciesplus listing is based.
 
-Overall information about ``rcites`` and the package vignette can be found at https://ibartomeus.github.io/rcites/. The package is available for download from CRAN (stable version; https://cran.r-project.org/package=rcites) and Github (development version; https://github.com/ibartomeus/rcites).
+Overall information about `rcites` and the package vignette can be found at https://ropensci.github.io/rcites/. The package is available for download from CRAN (stable version; https://cran.r-project.org/package=rcites) and Github (development version; https://github.com/ropensci/rcites).
 
 ``rcites`` will support researchers and national authorities in more efficiently dealing with information of endangered species and their legislation status.
 
@@ -57,7 +57,7 @@ Recent publications with data extraction from the Speciesplus database illustrat
 
 # Acknowledgments
 
-Many thanks to the British Ecological Society for bringing us together during the "Ecology Hackathon: Developing R Packages for Accessing, Synthesizing and Analysing Ecological Data", part of the BES, GfÖ, NecoV and EEF Joint Annual Meeting 2017 "Ecology Across Borders". Also, thanks to our hackathon group and package reviewers for the fruitful discussions and contributions to the package.
+Many thanks to the British Ecological Society for bringing us together during the "Ecology Hackathon: Developing R Packages for Accessing, Synthesizing and Analyzing Ecological Data", part of the BES, GfÖ, NecoV and EEF Joint Annual Meeting 2017 "Ecology Across Borders". Also, thanks to our hackathon group and package reviewers for the fruitful discussions and contributions to the package.
 
 
 # References

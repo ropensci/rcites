@@ -14,11 +14,11 @@
 
 * Fork this repo to your Github account
 * Clone your version on your account down to your machine from your account, e.g,. `git clone https://github.com/<yourgithubusername>/rcites.git`
-* Make sure to track progress upstream (i.e., on our version of `rcites` at `ibartomeus/rcites`) by doing `git remote add upstream https://github.com/ibartomeus/rcites.git`. Before making changes make sure to pull changes in from upstream by doing either `git fetch upstream` then merge later or `git pull upstream` to fetch and merge in one step
+* Make sure to track progress upstream (i.e., on our version of `rcites` at `ropensci/rcites`) by doing `git remote add upstream https://github.com/ropensci/rcites.git`. Before making changes make sure to pull changes in from upstream by doing either `git fetch upstream` then merge later or `git pull upstream` to fetch and merge in one step
 * Make your changes (bonus points for making changes on a new feature branch)
 * Please do write a test(s) for your changes if they affect code and not just docs (see Tests below)
 * Push up to your account
-* Submit a pull request to home base at `ibartomeus/rcites`
+* Submit a pull request to home base at `ropensci/rcites`
 
 ### Tests
 

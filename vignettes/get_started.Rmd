@@ -187,4 +187,4 @@ spp_references("4521", verbose = FALSE)
 
 ## Bulk analysis
 
-Please see [Bulk analysis with rcites](https://ibartomeus.github.io/rcites/articles/bulk_analysis.html) for details.
+Please see [Bulk analysis with rcites](https://ropensci.github.io/rcites/articles/bulk_analysis.html) for details.

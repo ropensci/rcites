@@ -4,11 +4,16 @@ year <- sub("-.*", "", meta$Date)
 note <- sprintf("R package version %s", meta$Version)
 
 bibentry(bibtype = "Manual",
-         title = "{rcites}: An R package to access the CITES Speciesplus database",
+         title = "{rcites}: An R package to access the CITES Species+ database",
          author = c(person("Jonas", "Geschke"),
                     person("Kevin", "Cazelles"),
-                    person("Ignasi", "Bartomeus")
+                    person("Ignasi", "Bartomeus"),
+                    person("Jonathan", "Goldenberg"),
+                    person("Marie-Bé", "Leduc"),
+                    person("Yasmine", "Verzelen"),
+                    person("Noam", "Ross"),
+                    person("Margaret", "Siple")
                     ),
          year = year,
          note = note,
-         url = "https://ibartomeus.github.io/rcites/")
+         url = "https://ropensci.github.io/rcites/")

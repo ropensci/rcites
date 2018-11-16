@@ -29,7 +29,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">rcites</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0.9000</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0</span>
       </span>
     </div>
 
@@ -68,7 +68,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/ibartomeus/rcites">
+  <a href="https://github.com/ropensci/rcites">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -89,12 +89,12 @@
 <div id="current-status" class="section level3">
 <h3 class="hasAnchor">
 <a href="#current-status" class="anchor"></a>Current Status</h3>
-<p><a href="https://travis-ci.org/ibartomeus/rcites"><img src="https://travis-ci.org/ibartomeus/rcites.svg?branch=master" alt="Build status"></a> <a href="https://ci.appveyor.com/project/KevCaz/rcites/branch/master"><img src="https://ci.appveyor.com/api/projects/status/bsd3c7mv12xv959j/branch/master?svg=true" alt="Build status"></a> <a href="https://codecov.io/gh/ibartomeus/rcites"><img src="https://codecov.io/gh/ibartomeus/rcites/branch/master/graph/badge.svg" alt="codecov"></a> <a href="https://coveralls.io/github/ibartomeus/rcites?branch=master"><img src="https://coveralls.io/repos/github/ibartomeus/rcites/badge.svg?branch=master" alt="Coverage Status"></a> <a href="https://github.com/ropensci/onboarding/issues/244"><img src="https://badges.ropensci.org/244_status.svg" alt="ROpenSci status"></a> <a href="https://www.r-pkg.org/badges/version/rcites"><img src="https://www.r-pkg.org/badges/version/rcites" alt="CRAN status"></a> <a href="https://cran.r-project.org/package=rcites"><img src="https://cranlogs.r-pkg.org/badges/grand-total/rcites" alt="CRAN downloads"></a></p>
+<p><a href="https://travis-ci.org/ropensci/rcites"><img src="https://travis-ci.org/ropensci/rcites.svg?branch=master" alt="Build status"></a> <a href="https://ci.appveyor.com/project/KevCaz/rcites-mo3vb"><img src="https://ci.appveyor.com/api/projects/status/kgimo4v7rvtpkp5e?svg=true" alt="Build status"></a> <a href="https://codecov.io/gh/ropensci/rcites"><img src="https://codecov.io/gh/ropensci/rcites/branch/master/graph/badge.svg" alt="codecov"></a> <a href="https://github.com/ropensci/onboarding/issues/244"><img src="https://badges.ropensci.org/244_status.svg" alt="ROpenSci status"></a> <a href="https://www.r-pkg.org/badges/version/rcites"><img src="https://www.r-pkg.org/badges/version/rcites" alt="CRAN status"></a> <a href="https://cran.r-project.org/package=rcites"><img src="https://cranlogs.r-pkg.org/badges/grand-total/rcites" alt="CRAN downloads"></a></p>
 </div>
 <div id="rcites" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#rcites" class="anchor"></a>rcites</h1></div>
-<p>An R package to access information from the <a href="https://speciesplus.net/">Speciesplus</a> database via the <a href="https://api.speciesplus.net/documentation/v1.html">Species+/CITES Checklist API</a>. The package is available for download from <a href="https://cran.r-project.org/package=rcites">CRAN</a> (stable version) and <a href="https://github.com/ibartomeus/rcites">Github</a> (development version).</p>
+<p>An R package to access information from the <a href="https://speciesplus.net/">Speciesplus</a> database via the <a href="https://api.speciesplus.net/documentation/v1.html">Species+/CITES Checklist API</a>. The package is available for download from <a href="https://cran.r-project.org/package=rcites">CRAN</a> (stable version) and <a href="https://github.com/ropensci/rcites">Github</a> (development version).</p>
 <p>Please see the <a href="link%20to%20come">release paper</a> for background information about the Convention on International Trade in Endangered Species of Wild Fauna and Flora (<a href="https://cites.org">CITES</a>), the Species+ database and basic information about the aim of the package.</p>
 <div id="installation" class="section level3">
 <h3 class="hasAnchor">
@@ -103,14 +103,14 @@
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">"rcites"</span>)</a>
 <a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(<span class="st">"rcites"</span>)</a></code></pre></div>
 <p>The development version can be installed via the <code>devtools</code> package:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"ibartomeus/rcites"</span>)</a>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"ropensci/rcites"</span>)</a>
 <a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">library</span>(<span class="st">"rcites"</span>)</a></code></pre></div>
 </div>
 <div id="setup-requirements-and-use" class="section level3">
 <h3 class="hasAnchor">
 <a href="#setup-requirements-and-use" class="anchor"></a>Setup requirements and use</h3>
-<p>To set up a connection to the CITES Species+ database, a personal authentication token is required. Please see the vignette for details how to get a token and how to set the token for package use: <a href="https://ibartomeus.github.io/rcites/articles/get_started.html">Get started with rcites</a></p>
-<p>Additional information about specific use examples are provided for the <a href="https://ibartomeus.github.io/rcites/articles/elephant.html">African bush elephant (<em>Loxodonta africana</em>)</a>. The package usage for querying multiple species is described in another vignette entitled <a href="https://ibartomeus.github.io/rcites/articles/bulk_analysis.html">‘Bulk analysis with rcites’</a>.</p>
+<p>To set up a connection to the CITES Species+ database, a personal authentication token is required. Please see the vignette for details how to get a token and how to set the token for package use: <a href="https://ropensci.github.io/rcites/articles/get_started.html">Get started with rcites</a></p>
+<p>Additional information about specific use examples are provided for the <a href="https://ropensci.github.io/rcites/articles/elephant.html">African bush elephant (<em>Loxodonta africana</em>)</a>. The package usage for querying multiple species is described in another vignette entitled <a href="https://ropensci.github.io/rcites/articles/bulk_analysis.html">‘Bulk analysis with rcites’</a>.</p>
 </div>
 <div id="key-features" class="section level3">
 <h3 class="hasAnchor">
@@ -149,13 +149,13 @@
 <div id="citation-information" class="section level3">
 <h3 class="hasAnchor">
 <a href="#citation-information" class="anchor"></a>Citation information</h3>
-<p>When citing, please refer to both the <a href="https://ibartomeus.github.io/rcites/authors.html">package citation</a>. <!-- and the [release paper](link to come). --></p>
+<p>When citing, please refer to both the <a href="https://ropensci.github.io/rcites/authors.html">package citation</a>. <!-- and the [release paper](link to come). --></p>
 </div>
 <div id="contributors" class="section level2">
 <h2 class="hasAnchor">
 <a href="#contributors" class="anchor"></a>Contributors</h2>
 <ul>
-<li><p><a href="https://github.com/ibartomeus/rcites/graphs/contributors">Main contributors</a></p></li>
+<li><p><a href="https://github.com/ropensci/rcites/graphs/contributors">Main contributors</a></p></li>
 <li>Reviewers of the package:
 <ul>
 <li><a href="https://github.com/noamross">Noam Ross</a></li>
@@ -184,7 +184,8 @@
 <h2 class="hasAnchor">
 <a href="#code-of-conduct" class="anchor"></a>Code of Conduct</h2>
 <p>Please note that this project is released with a <a href="CONDUCT.html">Contributor Code of Conduct</a>. By participating in this project you agree to abide by its terms.</p>
-<p>Also, please read the terms and Conditions of Use of Species+ Data: <a href="https://speciesplus.net/terms-of-use" class="uri">https://speciesplus.net/terms-of-use</a>.</p>
+<p>Also, please read the Terms and Conditions of Use of Species+ Data: <a href="https://speciesplus.net/terms-of-use" class="uri">https://speciesplus.net/terms-of-use</a>.</p>
+<p><a href="https://ropensci.org"><img src="https://ropensci.org/public_images/ropensci_footer.png" alt="ropensci_footer"></a></p>
 </div>
 </div>
 
@@ -196,9 +197,9 @@
 <ul class="list-unstyled">
 <li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=rcites">https://​cloud.r-project.org/​package=rcites</a>
 </li>
-<li>Browse source code at <br><a href="https://github.com/ibartomeus/rcites">https://​github.com/​ibartomeus/​rcites</a>
+<li>Browse source code at <br><a href="https://github.com/ropensci/rcites">https://​github.com/​ropensci/​rcites</a>
 </li>
-<li>Report a bug at <br><a href="https://github.com/ibartomeus/rcites/issues">https://​github.com/​ibartomeus/​rcites/​issues</a>
+<li>Report a bug at <br><a href="https://github.com/ropensci/rcites/issues">https://​github.com/​ropensci/​rcites/​issues</a>
 </li>
 </ul>
 </div>
@@ -219,7 +220,8 @@
 <div class="developers">
 <h2>Developers</h2>
 <ul class="list-unstyled">
-<li>Jonas Geschke <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0002-5654-9313" target="orcid.widget"><img src="https://members.orcid.org/sites/default/files/vector_iD_icon.svg" class="orcid" height="16"></a> </li>
+<li>
+<a href="https://www.linkedin.com/in/jonasgeschke/?originalSubdomain=de">Jonas Geschke</a> <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0002-5654-9313" target="orcid.widget"><img src="https://members.orcid.org/sites/default/files/vector_iD_icon.svg" class="orcid" height="16"></a> </li>
 <li>
 <a href="https://kevcaz.github.io/">Kevin Cazelles</a> <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0001-6619-9874" target="orcid.widget"><img src="https://members.orcid.org/sites/default/files/vector_iD_icon.svg" class="orcid" height="16"></a> </li>
 <li>
@@ -233,7 +235,7 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Jonas Geschke, <a href="https://kevcaz.github.io/">Kevin Cazelles</a>, <a href="https://bartomeuslab.com/">Ignasi Bartomeus</a>.</p>
+  <p>Developed by <a href="https://www.linkedin.com/in/jonasgeschke/?originalSubdomain=de">Jonas Geschke</a>, <a href="https://kevcaz.github.io/">Kevin Cazelles</a>, <a href="https://bartomeuslab.com/">Ignasi Bartomeus</a>.</p>
 </div>
 
 <div class="pkgdown">

@@ -12,8 +12,6 @@
 ^CONDUCT.md
 ^record*
 ^\.httr-oauth
-^inst/assets/
-^inst/tmp/
 ^\.github/
 ^\.Renviron
 ^paper.bib
