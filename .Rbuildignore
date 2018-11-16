@@ -1,3 +1,4 @@
+^codemeta\.json$
 ^docs$
 ^\.Rproj\.user$
 ^.*\.Rproj$
