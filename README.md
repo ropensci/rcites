@@ -6,6 +6,7 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/kgimo4v7rvtpkp5e?svg=true)](https://ci.appveyor.com/project/KevCaz/rcites-mo3vb)
 [![codecov](https://codecov.io/gh/ropensci/rcites/branch/master/graph/badge.svg)](https://codecov.io/gh/ropensci/rcites)
 [![DOI](https://zenodo.org/badge/113842199.svg)](https://zenodo.org/badge/latestdoi/113842199)
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![ROpenSci status](https://badges.ropensci.org/244_status.svg)](https://github.com/ropensci/onboarding/issues/244)
 [![CRAN status](https://www.r-pkg.org/badges/version/rcites)](https://www.r-pkg.org/badges/version/rcites)
 [![CRAN downloads](https://cranlogs.r-pkg.org/badges/grand-total/rcites)](https://cran.r-project.org/package=rcites)

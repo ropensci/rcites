@@ -1,0 +1,235 @@
+{
+  "@context": [
+    "https://doi.org/10.5063/schema/codemeta-2.0",
+    "http://schema.org"
+  ],
+  "@type": "SoftwareSourceCode",
+  "identifier": "rcites",
+  "description": "A programmatic interface to the Species+ <https://speciesplus.net/> database via the Species+/CITES Checklist API <https://api.speciesplus.net/>.",
+  "name": "rcites: R Interface to the Species+ Database",
+  "codeRepository": "https://github.com/ropensci/rcites",
+  "relatedLink": [
+    "https://ropensci.github.io/rcites/",
+    "https://CRAN.R-project.org/package=rcites"
+  ],
+  "issueTracker": "https://github.com/ropensci/rcites/issues",
+  "license": "https://spdx.org/licenses/MIT",
+  "version": "1.0.0",
+  "programmingLanguage": {
+    "@type": "ComputerLanguage",
+    "name": "R",
+    "version": "3.5.1",
+    "url": "https://r-project.org"
+  },
+  "runtimePlatform": "R version 3.5.1 (2018-07-02)",
+  "provider": {
+    "@id": "https://cran.r-project.org",
+    "@type": "Organization",
+    "name": "Comprehensive R Archive Network (CRAN)",
+    "url": "https://cran.r-project.org"
+  },
+  "author": [
+    {
+      "@type": "Person",
+      "givenName": "Jonas",
+      "familyName": "Geschke",
+      "email": "jonas.e.geschke@gmail.com",
+      "@id": "https://orcid.org/0000-0002-5654-9313"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Kevin",
+      "familyName": "Cazelles",
+      "email": "kevin.cazelles@gmail.com",
+      "@id": "https://orcid.org/0000-0001-6619-9874"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Ignasi",
+      "familyName": "Bartomeus",
+      "@id": "https://orcid.org/0000-0001-7893-4389"
+    }
+  ],
+  "contributor": [
+    {
+      "@type": "Person",
+      "givenName": "Jonathan",
+      "familyName": "Goldenberg"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Marie-Bé",
+      "familyName": "Leduc"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Yasmine",
+      "familyName": "Verzelen"
+    }
+  ],
+  "maintainer": [
+    {
+      "@type": "Person",
+      "givenName": "Kevin",
+      "familyName": "Cazelles",
+      "email": "kevin.cazelles@gmail.com",
+      "@id": "https://orcid.org/0000-0001-6619-9874"
+    }
+  ],
+  "softwareSuggestions": [
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "knitr",
+      "name": "knitr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=knitr"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "testthat",
+      "name": "testthat",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=testthat"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "tibble",
+      "name": "tibble",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=tibble"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "rmarkdown",
+      "name": "rmarkdown",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=rmarkdown"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "rworldmap",
+      "name": "rworldmap",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=rworldmap"
+    }
+  ],
+  "softwareRequirements": [
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "R",
+      "name": "R",
+      "version": ">= 3.1.0"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "httr",
+      "name": "httr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=httr"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "jsonlite",
+      "name": "jsonlite",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=jsonlite"
+    }
+  ],
+  "releaseNotes": "https://github.com/ibartomeus/citesr/blob/master/NEWS.md",
+  "readme": "https://github.com/ropensci/rcites/blob/master/README.md",
+  "fileSize": "299.244KB",
+  "contIntegration": [
+    "https://travis-ci.org/ropensci/rcites",
+    "https://ci.appveyor.com/project/KevCaz/rcites-mo3vb",
+    "https://codecov.io/gh/ropensci/rcites"
+  ],
+  "keywords": [
+    "cites",
+    "api-client"
+  ],
+  "citation": [
+    {
+      "@type": "SoftwareSourceCode",
+      "author": [
+        {
+          "@type": "Person",
+          "givenName": "Jonas",
+          "familyName": "Geschke"
+        },
+        {
+          "@type": "Person",
+          "givenName": "Kevin",
+          "familyName": "Cazelles"
+        },
+        {
+          "@type": "Person",
+          "givenName": "Ignasi",
+          "familyName": "Bartomeus"
+        },
+        {
+          "@type": "Person",
+          "givenName": "Jonathan",
+          "familyName": "Goldenberg"
+        },
+        {
+          "@type": "Person",
+          "givenName": "Marie-Bé",
+          "familyName": "Leduc"
+        },
+        {
+          "@type": "Person",
+          "givenName": "Yasmine",
+          "familyName": "Verzelen"
+        },
+        {
+          "@type": "Person",
+          "givenName": "Noam",
+          "familyName": "Ross"
+        },
+        {
+          "@type": "Person",
+          "givenName": "Margaret",
+          "familyName": "Siple"
+        }
+      ],
+      "name": "{rcites}: An R package to access the CITES Species+ database",
+      "url": "https://ropensci.github.io/rcites/"
+    }
+  ],
+  "developmentStatus": "https://www.repostatus.org/#active"
+}
