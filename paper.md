@@ -13,7 +13,7 @@ authors:
 date: "12 August 2018"
 bibliography: paper.bib
 tags:
-- CITES species+
+- CITES Speciesplus
 - taxonomy
 - endangered species
 - illegal wildlife trade
@@ -21,11 +21,11 @@ tags:
 - species distribution
 affiliations:
 - index: 1
-  name: Museum für Naturkunde Berlin - Leibniz Institute for Research on Evolution and Biodiversity, Germany
+  name: Museum für Naturkunde Berlin - Leibniz Institute for Research on Evolution and Biodiversity, Berlin, Germany
 - index: 2
   name: Department of Integrative Biology, University Of Guelph, Guelph, Ontario, Canada
 - index: 3
-  name: Estación Biológica de Doñana (EBD-CSIC), Spain
+  name: Estación Biológica de Doñana (EBD-CSIC), Sevilla, Spain
 ---
 
 
@@ -39,7 +39,7 @@ In 2013, the UNEP World Conservation Monitoring Centre (UNEP-WCMC) and the CITES
 
 # The ``rcites`` R package
 
-With ``rcites`` we provide an R [@R] client to the Species+/CITES Checklist API, giving access to the Speciesplus database. The ability to query the Speciesplus database directly from one of the most used programming languages for data analyses will improve the efficiency and reproducibility of biodiversity conservation analysis workflows.
+With ``rcites`` we provide an R [@R] client to the Speciesplus/CITES Checklist API, giving access to the Speciesplus database. The ability to query the Speciesplus database directly from one of the most used programming languages for data analyses will improve the efficiency and reproducibility of biodiversity conservation analysis workflows.
 
 We provide functions to:
 
