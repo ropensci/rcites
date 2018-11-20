@@ -21,11 +21,11 @@ tags:
 - species distribution
 affiliations:
 - index: 1
-  name: Museum für Naturkunde - Leibniz Institute for Research on Evolution and Biodiversity Berlin, Germany
+  name: Museum für Naturkunde Berlin - Leibniz Institute for Research on Evolution and Biodiversity, Germany
 - index: 2
   name: Department of Integrative Biology, University Of Guelph, Guelph, Ontario, Canada
 - index: 3
-  name: Estacion Biologica de Donana, Avda. Americo Vespucio, Isla de la Cartuja, Sevilla, Spain
+  name: Estación Biológica de Doñana (EBD-CSIC), Spain
 ---
 
 
