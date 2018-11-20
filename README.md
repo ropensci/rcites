@@ -5,18 +5,19 @@
 [![Build status](https://travis-ci.org/ropensci/rcites.svg?branch=master)](https://travis-ci.org/ropensci/rcites)
 [![Build status](https://ci.appveyor.com/api/projects/status/kgimo4v7rvtpkp5e?svg=true)](https://ci.appveyor.com/project/KevCaz/rcites-mo3vb)
 [![codecov](https://codecov.io/gh/ropensci/rcites/branch/master/graph/badge.svg)](https://codecov.io/gh/ropensci/rcites)
-[![DOI](https://zenodo.org/badge/113842199.svg)](https://zenodo.org/badge/latestdoi/113842199)
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![ROpenSci status](https://badges.ropensci.org/244_status.svg)](https://github.com/ropensci/onboarding/issues/244)
 [![CRAN status](https://www.r-pkg.org/badges/version/rcites)](https://www.r-pkg.org/badges/version/rcites)
 [![CRAN downloads](https://cranlogs.r-pkg.org/badges/grand-total/rcites)](https://cran.r-project.org/package=rcites)
+[![Zenodo DOI](https://zenodo.org/badge/113842199.svg)](https://zenodo.org/badge/latestdoi/113842199)
+[![JOSS DOI](http://joss.theoj.org/papers/10.21105/joss.01091/status.svg)](https://doi.org/10.21105/joss.01091)
 
 
 # rcites
 
-An R package to access information from the [Speciesplus](https://speciesplus.net/) database via the [Species+/CITES Checklist API](https://api.speciesplus.net/documentation/v1.html). The package is available for download from [CRAN](https://cran.r-project.org/package=rcites) (stable version) and [Github](https://github.com/ropensci/rcites) (development version).
+An R package to access information from the [Speciesplus](https://speciesplus.net/) database via the [Speciesplus/CITES Checklist API](https://api.speciesplus.net/documentation/v1.html). The package is available for download from [CRAN](https://cran.r-project.org/package=rcites) (stable version) and [Github](https://github.com/ropensci/rcites) (development version).
 
-Please see the [release paper](link to come) for background information about the Convention on International Trade in Endangered Species of Wild Fauna and Flora ([CITES](https://cites.org)), the Species+ database and basic information about the aim of the package.
+Please see the [release paper](https://doi.org/10.21105/joss.01091) for background information about the Convention on International Trade in Endangered Species of Wild Fauna and Flora ([CITES](https://cites.org)), the Speciesplus database and basic information about the aim of the package.
 
 
 ### Installation
@@ -38,7 +39,7 @@ library("rcites")
 
 ### Setup requirements and use
 
-To set up a connection to the CITES Species+ database, a personal authentication
+To set up a connection to the CITES Speciesplus database, a personal authentication
 token is required. Please see the vignette for details how to get a token and
 how to set the token for package use: [Get started with rcites](https://ropensci.github.io/rcites/articles/get_started.html)
 
@@ -70,8 +71,7 @@ The package functions have three different prefixes:
 
 ### Citation information
 
-When citing, please refer to both the [package citation](https://ropensci.github.io/rcites/authors.html).
- <!-- and the [release paper](link to come). -->
+When citing, please refer to both the [package citation](https://ropensci.github.io/rcites/authors.html) and the [release paper](https://doi.org/10.21105/joss.01091).
 
 
 ## Contributors
@@ -107,7 +107,7 @@ While creating this package, we greatly benefited from:
 Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md).
 By participating in this project you agree to abide by its terms.
 
-Also, please read the Terms and Conditions of Use of Species+ Data:
+Also, please read the Terms and Conditions of Use of Speciesplus Data:
 https://speciesplus.net/terms-of-use.
 
 
