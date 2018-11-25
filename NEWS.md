@@ -1,5 +1,8 @@
 # rcites 1.0.0.9000
 
+- Fix a bug that prevented `spp_taxonconcept()` from downloading all the taxon
+concepts, see [#42](https://github.com/ropensci/rcites/issues/42).
+
 # rcites 1.0.0
 
 - new features:
@@ -20,25 +23,24 @@
 
 
 
-
 - add function parameters:
 
   - `taxonomy`, `with_descendants`, `language`, `updated_since`, `per_page`,
-  `seq_page`, `raw`, `verbose` in `spp_taxonconcept()`
-  - `scope`, `language` and `raw` to `spp_cites_legislation()`
-  - `scope`, `language` and `raw` to `spp_eu_legislation()`
-  - `language` and `raw` to `spp_distributions()`
+  `seq_page`, `raw`, `verbose` in `spp_taxonconcept()`;
+  - `scope`, `language` and `raw` to `spp_cites_legislation()`;
+  - `scope`, `language` and `raw` to `spp_eu_legislation()`;
+  - `language` and `raw` to `spp_distributions()`.
 
 - change function names:
 
-  - `set_token()` instead of `sppplus_login()`
-  - `spp_taxonconcept()` instead of `sppplus_taxonconcept()`
-  - `spp_cites_legislation()` instead of `taxon_cites_legislation()`
-  - `spp_eu_legislation()` instead of `taxon_eu_legislation()`
-  - `spp_distributions()` instead of `taxon_distribution()`
-  - `spp_references()` instead of `taxon_references()`
-  - `rcites_simplify()` instead of `sppplus_simplify()`
-  - `rcites_` instead of `sppplus_` for helper functions
+  - `set_token()` instead of `sppplus_login()`;
+  - `spp_taxonconcept()` instead of `sppplus_taxonconcept()`;
+  - `spp_cites_legislation()` instead of `taxon_cites_legislation()`;
+  - `spp_eu_legislation()` instead of `taxon_eu_legislation()`;
+  - `spp_distributions()` instead of `taxon_distribution()`;
+  - `spp_references()` instead of `taxon_references()`;
+  - `rcites_simplify()` instead of `sppplus_simplify()`;
+  - `rcites_` instead of `sppplus_` for helper functions.
 
 - follow `goodpractice`:
 

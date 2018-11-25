@@ -18,6 +18,10 @@ res3 <- spp_taxonconcept(query_taxon = '', taxonomy = 'CMS', pages = 1:2,
   language = 'EN', verbose = FALSE)
 ut_pause()
 
+res3b <- spp_taxonconcept(query_taxon = '', pages = c(1, 83),
+  language = 'EN', verbose = FALSE)
+ut_pause()
+
 res4 <- spp_taxonconcept(query_taxon = '', pages = c(44), per_page = 20,
   with_descendants = FALSE)
 ut_pause()
@@ -39,11 +43,13 @@ test_that("Expected classes", {
   expect_equal(class(res1$cites_listings$annotation), "character")
   expect_equal(attributes(res1)$taxonomy, "CITES")
   expect_equal(attributes(res3)$taxonomy, "CMS")
+  expect_equal(attributes(res3b)$taxonomy, "CITES")
 })
 
 
 test_that("Expected behaviour", {
   expect_equal(nrow(res3[[1L]]), 1000)
+  expect_equal(nrow(res3b[[1L]]), 1000)
   expect_true(all(res3$common_names$language == "EN"))
   expect_equal(nrow(res4[[1L]]), 20)
   expect_true(all(res5$general$updated_at > "2016-01-01"))

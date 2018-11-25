@@ -129,8 +129,9 @@ spp_taxonconcept <- function(query_taxon, taxonomy = "CITES",
 
             ## Extra output if taxonomy is set to CITES
             if (taxonomy == "CITES") {
-                out$general$cites_listing <- unlist(lapply(tmp2[id],
-                  function(x) x$cites_listing))
+                tmp_cit <- lapply(tmp2[id], function(x) x$cites_listing)
+                out$general$cites_listing <- unlist(lapply(tmp_cit,
+                  rcites_null_to_na))
                 out$cites_listings <- rcites_taxonconcept_cites_listings(
                   tmp2[id], out$general$id)
             }

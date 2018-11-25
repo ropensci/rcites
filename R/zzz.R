@@ -13,13 +13,11 @@
 
 ################## General helpers
 
-
 rcites_baseurl <- function() "https://api.speciesplus.net/api/v1/"
 
 rcites_url <- function(...) {
     paste0(rcites_baseurl(), ...)
 }
-
 
 rcites_get <- function(q_url, token, ...) {
     names(token) <- "X-Authentication-Token"
@@ -352,29 +350,40 @@ rcites_taxonconcept_names <- function(x, name, identifier) {
     out
 }
 
-rcites_unlist_party <- function(x) {
-    id <- which(names(x) == "party")
-    if (length(x[id]) == 1) {
-        tmp <- rep(list(NA_character_), 3)
-        names(tmp) <- c("party.iso_code2", "party.name", "party.type")
-    } else tmp <- x[id]
-    cbind(x[-id], as.data.frame(tmp))
+rcites_party <- function(x) {
+    if (is.na(x[1L])) {
+      out <- rep(NA_character_, 3)
+    } else out <- unlist(x)
+    out
 }
 
 rcites_taxonconcept_cites_listings <- function(x, identifier) {
-    tmp <- lapply(lapply(x, rcites_null_to_na),
-      function(y) data.frame(do.call(rbind, y$cites_listings)))
-    tmp2 <- lapply(tmp, rcites_unlist_party)
-    wch <- which(unlist(lapply(tmp, length)) > 0)
-    #
-    if (length(wch)) {
-        out <- cbind(id = rep(identifier[wch], unlist(lapply(tmp2[wch],
-            nrow))), data.frame(apply(do.call(rbind, tmp2[wch]), 2, unlist),
-            stringsAsFactors = FALSE))
-    } else {
-        out <- data.frame()
-    }
-    #
+    # extract cites_listings
+    ls_cl <- lapply(lapply(x, rcites_null_to_na), function(x) x$cites_listings)
+    wch <- unlist(lapply(ls_cl, function(x) length(x) > 0))
+    ##
+    if (sum(wch)) {
+      tmp <- lapply(
+        Filter(Negate(is.null), ls_cl),
+        function(y) do.call(rbind, y)
+      )
+      tmp2 <- do.call(rbind, lapply(tmp, as.data.frame))
+      ## collapse hash_annotation
+      tmp2$hash_annotation <- lapply(tmp2$hash_annotation, paste, collapse = "")
+      ## Deal with party
+      party_all <- as.data.frame(
+        do.call(rbind, lapply(tmp2$party, rcites_party)))
+      row.names(party_all) <- NULL
+      colnames(party_all) <- paste0('party_', colnames(party_all))
+      ##
+      tmp3 <- cbind(tmp2[! names(tmp2) %in% c("party")] , party_all)
+      out <- data.frame(
+          id = rep(identifier[wch], unlist(lapply(tmp, nrow))),
+          apply(tmp3, 2, unlist),
+          stringsAsFactors = FALSE
+        )
+    } else out <- data.frame()
+    ## output
     out <- rcites_assign_class(out)
     out
 }
