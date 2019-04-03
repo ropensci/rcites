@@ -1,6 +1,5 @@
 template:
-  params:
-    bootswatch: cosmo
+  package: rotemplate
 
 authors:
   Kevin Cazelles:

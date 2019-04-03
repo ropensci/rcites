@@ -27,9 +27,8 @@ print.spp_raw_multi <- function(x, ...) {
     cat("\n")
 }
 
-
-#' @method print spp_cites_leg
 #' @rdname print.spp
+#' @method print spp_cites_leg
 #' @export
 print.spp_cites_leg <- function(x, ...) {
 
