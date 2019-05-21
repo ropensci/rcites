@@ -1,3 +1,5 @@
+^Meta$
+^doc$
 ^codemeta\.json$
 ^docs$
 ^\.Rproj\.user$
@@ -20,4 +22,3 @@
 ^inst/_pkgdown.
 ^cran-comments.md
 ^_pkgdown\.yml$
-^codemeta\.json$

@@ -101,11 +101,25 @@
 <h2 class="hasAnchor">
 <a href="#broad-taxon-concept-queries" class="anchor"></a>Broad taxon concept queries</h2>
 <p>If you want to query all taxa, you can use <code><a href="../reference/spp_taxonconcept.html">spp_taxonconcept()</a></code> with <code>query_taxon = ""</code> (assuming your token is already set up):</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">res_cms &lt;-<span class="st"> </span><span class="kw"><a href="../reference/spp_taxonconcept.html">spp_taxonconcept</a></span>(<span class="st">""</span>, <span class="dt">taxonomy =</span> <span class="st">"CMS"</span>) <span class="co">#slow</span></a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/dim">dim</a></span>(res_cms<span class="op">$</span>general)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">res_cms &lt;-<span class="st"> </span><span class="kw"><a href="../reference/spp_taxonconcept.html">spp_taxonconcept</a></span>(<span class="st">""</span>, <span class="dt">taxonomy =</span> <span class="st">"CMS"</span>) <span class="co">#slow</span></a></code></pre></div>
+<pre><code>#&gt;  Retrieving info from page  2 / 10      
+Retrieving info from page  3 / 10      
+Retrieving info from page  4 / 10      
+Retrieving info from page  5 / 10      
+Retrieving info from page  6 / 10      
+Retrieving info from page  7 / 10      
+Retrieving info from page  8 / 10      
+Retrieving info from page  9 / 10      
+Retrieving info from page  10 / 10      
+#&gt;  Done!</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/dim">dim</a></span>(res_cms<span class="op">$</span>general)</a></code></pre></div>
+<pre><code>#&gt;  [1] 2863    7</code></pre>
 <p>Alternatively, you can retrieve, for example, the first three pages of results returned by the API.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">res_cites &lt;-<span class="st"> </span><span class="kw"><a href="../reference/spp_taxonconcept.html">spp_taxonconcept</a></span>(<span class="st">""</span>, <span class="dt">page =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb2-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/dim">dim</a></span>(res_cites<span class="op">$</span>general)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">res_cites &lt;-<span class="st"> </span><span class="kw"><a href="../reference/spp_taxonconcept.html">spp_taxonconcept</a></span>(<span class="st">""</span>, <span class="dt">page =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>)</a></code></pre></div>
+<pre><code>#&gt;  Retrieving info from page  2 / 154      
+#&gt;  Done!</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/dim">dim</a></span>(res_cites<span class="op">$</span>general)</a></code></pre></div>
+<pre><code>#&gt;  [1] 1000    8</code></pre>
 </div>
 <div id="retrieving-information-for-a-set-of-taxon_concept-id" class="section level2">
 <h2 class="hasAnchor">
@@ -114,29 +128,57 @@
 <div id="spp_distributions" class="section level3">
 <h3 class="hasAnchor">
 <a href="#spp_distributions" class="anchor"></a>spp_distributions()</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">vc_txn &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">'4521'</span>, <span class="st">'3210'</span>, <span class="st">'10255'</span>)</a>
-<a class="sourceLine" id="cb3-2" title="2">res1 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/spp_distributions.html">spp_distributions</a></span>(<span class="dt">taxon_id =</span> vc_txn, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb3-3" title="3"><span class="co">## Number of countries concerned per taxon ID</span></a>
-<a class="sourceLine" id="cb3-4" title="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/table">table</a></span>(res1<span class="op">$</span>distributions<span class="op">$</span>taxon_id)</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">vc_txn &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">'4521'</span>, <span class="st">'3210'</span>, <span class="st">'10255'</span>)</a>
+<a class="sourceLine" id="cb9-2" title="2">res1 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/spp_distributions.html">spp_distributions</a></span>(<span class="dt">taxon_id =</span> vc_txn, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb9-3" title="3"><span class="co">## Number of countries concerned per taxon ID</span></a>
+<a class="sourceLine" id="cb9-4" title="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/table">table</a></span>(res1<span class="op">$</span>distributions<span class="op">$</span>taxon_id)</a></code></pre></div>
+<pre><code>#&gt;  
+#&gt;  10255  3210  4521 
+#&gt;     15     8    42</code></pre>
 </div>
 <div id="spp_cites_legislation" class="section level3">
 <h3 class="hasAnchor">
 <a href="#spp_cites_legislation" class="anchor"></a>spp_cites_legislation()</h3>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">res2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/spp_cites_legislation.html">spp_cites_legislation</a></span>(<span class="dt">taxon_id =</span> vc_txn, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb4-2" title="2">res2<span class="op">$</span>cites_listings</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">res2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/spp_cites_legislation.html">spp_cites_legislation</a></span>(<span class="dt">taxon_id =</span> vc_txn, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb11-2" title="2">res2<span class="op">$</span>cites_listings</a></code></pre></div>
+<pre><code>#&gt;    taxon_id   id taxon_concept_id is_current appendix change_type
+#&gt;  1     4521 3666             4521       TRUE       II           +
+#&gt;  2     4521 3665             4521       TRUE        I           +
+#&gt;  3     4521 3645             4521       TRUE        I          R+
+#&gt;  4     3210 4661             3210       TRUE       II           +
+#&gt;  5    10255 4645            10255       TRUE        I           +
+#&gt;    effective_at
+#&gt;  1   2007-09-13
+#&gt;  2   2007-09-13
+#&gt;  3   1990-01-18
+#&gt;  4   1987-10-22
+#&gt;  5   2005-01-12</code></pre>
 </div>
 <div id="spp_eu_legislation" class="section level3">
 <h3 class="hasAnchor">
 <a href="#spp_eu_legislation" class="anchor"></a>spp_eu_legislation()</h3>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">res3 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/spp_eu_legislation.html">spp_eu_legislation</a></span>(<span class="dt">taxon_id =</span> vc_txn, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb5-2" title="2">res3<span class="op">$</span>eu_listings</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">res3 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/spp_eu_legislation.html">spp_eu_legislation</a></span>(<span class="dt">taxon_id =</span> vc_txn, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb13-2" title="2">res3<span class="op">$</span>eu_listings</a></code></pre></div>
+<pre><code>#&gt;    taxon_id    id taxon_concept_id is_current annex change_type
+#&gt;  1     4521 27868             4521       TRUE     B           +
+#&gt;  2     4521 27801             4521       TRUE     A           +
+#&gt;  3     3210 27900             3210       TRUE     B           +
+#&gt;  4    10255 27846            10255       TRUE     A           +
+#&gt;    effective_at
+#&gt;  1   2017-02-04
+#&gt;  2   2017-02-04
+#&gt;  3   2017-02-04
+#&gt;  4   2017-02-04</code></pre>
 </div>
 <div id="spp_references" class="section level3">
 <h3 class="hasAnchor">
 <a href="#spp_references" class="anchor"></a>spp_references()</h3>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">res4 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/spp_references.html">spp_references</a></span>(<span class="dt">taxon_id =</span> vc_txn, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb6-2" title="2"><span class="co">## Number of references per taxon ID</span></a>
-<a class="sourceLine" id="cb6-3" title="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/table">table</a></span>(res4<span class="op">$</span>references<span class="op">$</span>taxon_id)</a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">res4 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/spp_references.html">spp_references</a></span>(<span class="dt">taxon_id =</span> vc_txn, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb15-2" title="2"><span class="co">## Number of references per taxon ID</span></a>
+<a class="sourceLine" id="cb15-3" title="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/table">table</a></span>(res4<span class="op">$</span>references<span class="op">$</span>taxon_id)</a></code></pre></div>
+<pre><code>#&gt;  
+#&gt;  10255  3210  4521 
+#&gt;      1     3    15</code></pre>
 </div>
 </div>
   </div>

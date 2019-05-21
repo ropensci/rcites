@@ -21,7 +21,7 @@ test_that("Base URL", {
   expect_equal(rcites_numberpages(pag), 2)
   expect_equal(rcites_baseurl(), "https://api.speciesplus.net/api/v1/")
   expect_equal(rcites_url("extra"), "https://api.speciesplus.net/api/v1/extra")
-  expect_message(set_token(""), "no token provided")
+  expect_error(set_token(""), "No token has been provided.")
 })
 
 
@@ -36,8 +36,8 @@ test_that("Outputs helpers", {
 })
 
 ## Prin helpers
-str <- paste(letters[1:26], collapse="")
-str2 <- paste(letters[1:25], collapse="")
+str <- paste(letters[1:26], collapse = "")
+str2 <- paste(letters[1:25], collapse = "")
 rcites_print_shorten(str)
 test_that("Print helpers", {
   expect_equal(rcites_print_shorten(str),

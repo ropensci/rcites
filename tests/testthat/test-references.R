@@ -4,9 +4,9 @@ skip_on_cran()
 skip_if_no_auth()
 ut_pause()
 
-res1 <- spp_references(taxon_id = tx_id, verbose = TRUE)
-res1b <- spp_references(taxon_id = tx_id2, verbose = TRUE)
-res2 <- spp_references(taxon_id = tx_id, raw = TRUE)
+res1 <- spp_references(taxon_id = tx_id, verbose = FALSE)
+res1b <- spp_references(taxon_id = tx_id2, verbose = FALSE)
+res2 <- spp_references(taxon_id = tx_id, raw = TRUE, verbose = FALSE)
 nm1 <- c("id", "citation", "is_standard")
 ut_pause()
 
@@ -20,7 +20,7 @@ test_that("expected output classes", {
 
 
 ut_pause(2)
-res3 <- spp_references(taxon_id = c(tx_id, tx_id2))
+res3 <- spp_references(taxon_id = c(tx_id, tx_id2), verbose = FALSE)
 ut_pause()
 res4 <- spp_references(taxon_id = c(tx_id, tx_id2), raw = TRUE, verbose = FALSE)
 test_that("refs_multi outputs", {

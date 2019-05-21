@@ -17,8 +17,8 @@ res5 <- spp_eu_legislation(taxon_id = tx_id, verbose = FALSE)
 res5b <- spp_eu_legislation(taxon_id = tx_id2, verbose = FALSE)
 res6 <- spp_eu_legislation(taxon_id = tx_id, raw = TRUE, verbose = FALSE)
 ut_pause()
-res7 <- spp_eu_legislation(taxon_id = tx_id, scope = 'all')
-res8 <- spp_eu_legislation(taxon_id = tx_id, language = 'fr')
+res7 <- spp_eu_legislation(taxon_id = tx_id, scope = 'all', verbose = FALSE)
+res8 <- spp_eu_legislation(taxon_id = tx_id, language = 'fr', verbose = FALSE)
 ut_pause()
 
 
@@ -74,9 +74,9 @@ test_that("Language", {
 
 
 ut_pause(1)
-res9 <- spp_cites_legislation(taxon_id = c(tx_id, tx_id2))
+res9 <- spp_cites_legislation(taxon_id = c(tx_id, tx_id2), verbose = FALSE)
 ut_pause()
-res10 <- spp_eu_legislation(taxon_id = c(tx_id, tx_id2))
+res10 <- spp_eu_legislation(taxon_id = c(tx_id, tx_id2), verbose = FALSE)
 ut_pause()
 res11 <- spp_cites_legislation(taxon_id = c(tx_id, tx_id2), raw = TRUE,
   verbose = FALSE)

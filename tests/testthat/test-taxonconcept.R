@@ -23,11 +23,11 @@ res3b <- spp_taxonconcept(query_taxon = '', pages = c(1, 83),
 ut_pause()
 
 res4 <- spp_taxonconcept(query_taxon = '', pages = c(44), per_page = 20,
-  with_descendants = FALSE)
+  with_descendants = FALSE, verbose = FALSE)
 ut_pause()
 
 res5 <- spp_taxonconcept(query_taxon = '', pages = 1,
-  updated_since = "2016-01-01")
+  updated_since = "2016-01-01", verbose = FALSE)
 ut_pause()
 
 
