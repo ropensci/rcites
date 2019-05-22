@@ -1,8 +1,10 @@
-# rcites 1.0.0.9000
+# rcites 1.0.1
 
 ### New features :art:
 
-- rcites now imports [cli](https://github.com/r-lib/cli) :packages: to clarify notes reported when downloading material.
+- rcites now imports [cli](https://github.com/r-lib/cli) :packages: to:
+  1. clarify notes reported when downloading material;
+  2. color titles in the default print methods.
 
 
 ### Bugs fixed :bug:
@@ -55,7 +57,7 @@ concepts, see [#42](https://github.com/ropensci/rcites/issues/42).
 
   - use '<-' for assignment instead of '=',
   - omit "Date" in DESCRIPTION,
-  - avoid 1:length(...), 1:nrow(...), 1:ncol(...),
+  - avoid `1:length(...)`, `1:nrow(...)`, `1:ncol(...)`.
 
 
 

@@ -6,7 +6,7 @@
 #' @docType package
 #' @name rcites
 #' @keywords internal
-#' @importFrom cli cat_rule
+#' @importFrom cli cat_rule cat_line
 "_PACKAGE"
 
 
@@ -268,9 +268,9 @@ rcites_print_shorten <- function(x, stop = 20) {
       paste0(substring(y, 1, stop), " [truncated]"), y)))
 }
 
-rcites_print_title <- function(x, after = "", before = "") {
-    cat(before, x, "\n", paste(rep("-", nchar(x) + nchar(before)),
-      collapse = ""), after, sep = "")
+rcites_print_title <- function(x, after, before) {
+    cat_line()
+    cat_rule(x, col = "blue")
 }
 
 rcites_print_df <- function(x, nrows = 10) {
@@ -294,7 +294,7 @@ rcites_print_df_rm <- function(x, col_rm = "", nrows = 10) {
 }
 
 rcites_print_taxon_id <- function(x, max_print = 20) {
-    rcites_print_title("Taxon identifiers:", "\n")
+    rcites_print_title("Taxon identifiers:")
     tmp <- unique(x)
     if (length(tmp) > max_print) {
         cat(paste(tmp[seq_len(max_print - 1)], collapse = ", "), "[tuncated]\n")

@@ -183,8 +183,3 @@ Finally, we can retrieve all available references for a given taxa.
 ```{r}
 spp_references("4521", verbose = FALSE)
 ```
-
-
-## Bulk analysis
-
-Please see [Bulk analysis with rcites](https://ropensci.github.io/rcites/articles/bulk_analysis.html) for details.

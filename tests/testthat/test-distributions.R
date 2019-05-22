@@ -4,7 +4,7 @@ skip_on_cran()
 skip_if_no_auth()
 ut_pause()
 
-res1 <- spp_distributions(taxon_id = tx_id, verbose = FALSE)
+res1 <- spp_distributions(taxon_id = tx_id)
 res1b <- spp_distributions(taxon_id = tx_id2, verbose = FALSE)
 res2 <- spp_distributions(taxon_id = tx_id, raw = TRUE, verbose = FALSE)
 res3 <- spp_distributions(taxon_id = tx_id, language = "fr", verbose = FALSE)
