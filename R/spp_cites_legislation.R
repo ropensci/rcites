@@ -86,7 +86,7 @@ spp_cites_legislation <- function(taxon_id, scope = "current", language = "en",
             }
         }
         if (verbose)
-            cat(" done. \n")
+            rcites_cat_done()
     }
     out
 }

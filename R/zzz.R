@@ -6,6 +6,7 @@
 #' @docType package
 #' @name rcites
 #' @keywords internal
+#' @importFrom cli cat_rule
 "_PACKAGE"
 
 
@@ -63,7 +64,15 @@ rcites_checkid <- function(taxon_id) {
 }
 
 rcites_current_id <- function(x) {
-    cat(">>> Now processing taxon_id '", x, "'............", sep = "")
+  # cat("\r", cli::symbol$tick, " Info for '", x, "' successfully retreived \n")
+  # cat(">> Now processing taxon_id '", x, "'............", sep = "")
+  cat(cli::symbol$arrow_right, " Now processing taxon_id '", x,
+    "'", paste(rep(".", 26 - nchar(x)), collapse = ""), sep = "")
+}
+
+rcites_cat_done <- function() {
+  # cat(" done. \n")
+  cat(cli::symbol$tick, "\n")
 }
 
 rcites_add_taxon_id <- function(x, taxon_id) {
@@ -134,19 +143,24 @@ rcites_autopagination <- function(q_url, per_page, pages, tot_page, token,
         q_url,
         pattern = "page=[[:digit:]]+\\&per_page=[[:digit:]]+$",
         replacement = "")
-    #
+    ##
+    cat_rule(paste0(tot_page, " pages available, retrieving info from ", length(pages)," more"), col = "blue")
     for (i in seq_along(pages)) {
         if (verbose)
-            cat("Retrieving info from page ", pages[i], "/", tot_page,
-                "     \r")
+            rcites_cat_pages(pages[i])
         q_url_new <- paste0(q_url_0, "page=", pages[i], "&per_page=",
           min(per_page, 500))
         out[[i]] <- rcites_res(q_url_new, token, ...)
+        if (verbose)
+            rcites_cat_done()
     }
-    if (verbose)
-        cat("\nDone!\n")
     #
     out
+}
+
+rcites_cat_pages <- function(pag) {
+  cat(cli::symbol$arrow_right, "Retrieving info from page", pag,
+    paste(rep(".", 25 - nchar(pag)), collapse = ""))
 }
 
 rcites_numberpages <- function(x) {

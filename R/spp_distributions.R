@@ -74,7 +74,7 @@ spp_distributions <- function(taxon_id, language = "en", raw = FALSE,
                 class(out) <- c("spp_distr")
             }
             if (verbose)
-                cat(" done. \n")
+                rcites_cat_done()
         }
     }
     out
