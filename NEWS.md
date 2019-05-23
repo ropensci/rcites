@@ -1,11 +1,23 @@
-# rcites 1.0.0.9000
+# rcites 1.0.1
+
+### New features :art:
+
+- rcites now imports [cli](https://github.com/r-lib/cli) :packages: to:
+  1. clarify notes reported when downloading material;
+  2. color titles in the default print methods.
+
+
+### Bugs fixed :bug:
 
 - Fix a bug that prevented `spp_taxonconcept()` from downloading all the taxon
 concepts, see [#42](https://github.com/ropensci/rcites/issues/42).
 
+- Fix a bug that genereated infinte rrecursion error when using non-interactively without token, see [#44](https://github.com/ropensci/rcites/issues/44).
+
+
 # rcites 1.0.0
 
-- new features:
+### New features :art:
 
   - `spp_taxonconcept()` now includes an auto-pagination that allows to retrieve
   all entries for queries that have more than 500 results;
@@ -22,8 +34,7 @@ concepts, see [#42](https://github.com/ropensci/rcites/issues/42).
     it returns the parsed output from the API as a list object.   
 
 
-
-- add function parameters:
+### New function arguments
 
   - `taxonomy`, `with_descendants`, `language`, `updated_since`, `per_page`,
   `seq_page`, `raw`, `verbose` in `spp_taxonconcept()`;
@@ -31,7 +42,7 @@ concepts, see [#42](https://github.com/ropensci/rcites/issues/42).
   - `scope`, `language` and `raw` to `spp_eu_legislation()`;
   - `language` and `raw` to `spp_distributions()`.
 
-- change function names:
+### Function renamed
 
   - `set_token()` instead of `sppplus_login()`;
   - `spp_taxonconcept()` instead of `sppplus_taxonconcept()`;
@@ -42,18 +53,20 @@ concepts, see [#42](https://github.com/ropensci/rcites/issues/42).
   - `rcites_simplify()` instead of `sppplus_simplify()`;
   - `rcites_` instead of `sppplus_` for helper functions.
 
-- follow `goodpractice`:
+### Using [goodpractice](https://github.com/MangoTheCat/goodpractice)
 
   - use '<-' for assignment instead of '=',
   - omit "Date" in DESCRIPTION,
-  - avoid 1:length(...), 1:nrow(...), 1:ncol(...),
+  - avoid `1:length(...)`, `1:nrow(...)`, `1:ncol(...)`.
+
 
 
 # rcites 0.1.0
 
-First release
+### NB: this was the first release :one:
 
-## Features
+
+### Features :art:
 
 - spp_taxonconcept( ): [access the Speciesplus taxon concept](https://api.speciesplus.net/documentation/v1/taxon_concepts/index.html)
 - spp_cites_legislation( ): [access CITES legislation data](https://api.speciesplus.net/documentation/v1/cites_legislation/index.html)

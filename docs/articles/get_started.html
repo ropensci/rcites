@@ -133,15 +133,16 @@
 <a href="#basic-calls-to-spp_taxonconcept" class="anchor"></a>Basic calls to spp_taxonconcept()</h3>
 <p>In order to efficiently query information from the CITES database, you first need to retrieve the unique taxon identifier <code>taxon_id</code> from the <a href="https://api.speciesplus.net/documentation/v1/taxon_concepts/index.html">Species+ taxon concept</a>. To do so, you should first call <code><a href="../reference/spp_taxonconcept.html">spp_taxonconcept()</a></code> and provide the scientific name of the taxon you are looking for. Let us start by requesting the identifier of the African bush elephant, <em>i.e.</em> <em>Loxodonta africana</em>.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">res1 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/spp_taxonconcept.html">spp_taxonconcept</a></span>(<span class="dt">query_taxon =</span> <span class="st">"Loxodonta africana"</span>)</a></code></pre></div>
+<pre><code>#&gt;  → Retrieving info from page 1 ........................✔</code></pre>
 <p>Note that if you have decide to set your token using the third option, then the code should look like the one below:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">res1 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/spp_taxonconcept.html">spp_taxonconcept</a></span>(<span class="dt">query_taxon =</span> <span class="st">"Loxodonta africana"</span>, <span class="dt">token =</span> <span class="st">"8QW6Qgh57sBG2k0gtt"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">res1 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/spp_taxonconcept.html">spp_taxonconcept</a></span>(<span class="dt">query_taxon =</span> <span class="st">"Loxodonta africana"</span>, <span class="dt">token =</span> <span class="st">"8QW6Qgh57sBG2k0gtt"</span>)</a></code></pre></div>
 </div>
 <div id="object-spp_taxonconcept" class="section level3">
 <h3 class="hasAnchor">
 <a href="#object-spp_taxonconcept" class="anchor"></a>Object <code>spp_taxonconcept</code>
 </h3>
 <p><code>res1</code> is an S3 object of class <code>spp_taxon</code>:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/attributes">attributes</a></span>(res1)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/attributes">attributes</a></span>(res1)</a></code></pre></div>
 <pre><code>#&gt;  $names
 #&gt;  [1] "all_id"         "general"        "higher_taxa"    "accepted_names"
 #&gt;  [5] "common_names"   "synonyms"       "cites_listings"
@@ -152,29 +153,26 @@
 #&gt;  $taxonomy
 #&gt;  [1] "CITES"</code></pre>
 <p>that contains information sorted into several data frames (see <code><a href="../reference/spp_taxonconcept.html">?spp_taxonconcept</a></code> for further details):</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">res1</a></code></pre></div>
-<pre><code>#&gt;  General info - CITES ($general):
-#&gt;  --------------------------------
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">res1</a></code></pre></div>
+<pre><code>#&gt;  
+#&gt;  ── General info - CITES ($general): ───────────────────────────────────────
 #&gt;      id          full_name        author_year    rank name_status
 #&gt;  1 4521 Loxodonta africana (Blumenbach, 1797) SPECIES           A
 #&gt;             updated_at active cites_listing
 #&gt;  1 2019-05-09 11:12:49   TRUE          I/II
 #&gt;  
-#&gt;  Classification ($higher_taxa):
-#&gt;  -------------------------------
+#&gt;  ── Classification ($higher_taxa): ─────────────────────────────────────────
 #&gt;      id  kingdom   phylum    class       order       family
 #&gt;  1 4521 Animalia Chordata Mammalia Proboscidea Elephantidae
 #&gt;  
-#&gt;  Synonyms ($synonyms):
-#&gt;  ----------------------
+#&gt;  ── Synonyms ($synonyms): ──────────────────────────────────────────────────
 #&gt;      id apply.do.call.rbind..tmp.wch....2..unlist.
 #&gt;  1 4521                                      37069
 #&gt;  2 4521                         Loxodonta cyclotis
 #&gt;  3 4521                           (Matschie, 1900)
 #&gt;  4 4521                                    SPECIES
 #&gt;  
-#&gt;  Common names ($common_names):
-#&gt;  ------------------------------
+#&gt;  ── Common names ($common_names): ──────────────────────────────────────────
 #&gt;       id               name language
 #&gt;  1  4521              Ndovo       SW
 #&gt;  2  4521              Tembo       SW
@@ -190,13 +188,14 @@
 #&gt;  
 #&gt;  Information available: $all_id, $general, $higher_taxa, $accepted_names, $common_names, $synonyms, $cites_listings</code></pre>
 <p>For some taxa, there are more than one taxon identifier available. In <code>general</code> only <em>active</em> identifiers are listed, but the full list of identifiers are available in <code>all_id</code>:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">res3 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/spp_taxonconcept.html">spp_taxonconcept</a></span>(<span class="dt">query =</span> <span class="st">"Amazilia versicolor"</span>)</a>
-<a class="sourceLine" id="cb8-2" title="2">res3<span class="op">$</span>general</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">res3 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/spp_taxonconcept.html">spp_taxonconcept</a></span>(<span class="dt">query =</span> <span class="st">"Amazilia versicolor"</span>)</a></code></pre></div>
+<pre><code>#&gt;  → Retrieving info from page 1 ........................✔</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">res3<span class="op">$</span>general</a></code></pre></div>
 <pre><code>#&gt;      id           full_name      author_year    rank name_status
 #&gt;  1 3210 Amazilia versicolor (Vieillot, 1818) SPECIES           A
 #&gt;             updated_at active cites_listing
 #&gt;  1 2015-05-07 15:10:59   TRUE            II</code></pre>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">res3<span class="op">$</span>all_id</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">res3<span class="op">$</span>all_id</a></code></pre></div>
 <pre><code>#&gt;       id           full_name      author_year    rank name_status
 #&gt;  1  3210 Amazilia versicolor (Vieillot, 1818) SPECIES           A
 #&gt;  2 65789 Amazilia versicolor (Vieillot, 1818) SPECIES           S
@@ -204,81 +203,79 @@
 #&gt;  1 2015-05-07 15:10:59   TRUE
 #&gt;  2 2016-09-23 15:30:46  FALSE</code></pre>
 <p>Also, if the taxon is not listed, a warning message should come up.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">res4 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/spp_taxonconcept.html">spp_taxonconcept</a></span>(<span class="dt">query =</span> <span class="st">"Homo Sapiens"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">res4 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/spp_taxonconcept.html">spp_taxonconcept</a></span>(<span class="dt">query =</span> <span class="st">"Homo Sapiens"</span>)</a></code></pre></div>
+<pre><code>#&gt;  → Retrieving info from page 1 ........................✔</code></pre>
 <pre><code>#&gt;  Warning in spp_taxonconcept(query = "Homo Sapiens"): Taxon not listed.</code></pre>
 </div>
 <div id="custom-calls-to-spp_taxonconcept" class="section level3">
 <h3 class="hasAnchor">
 <a href="#custom-calls-to-spp_taxonconcept" class="anchor"></a>Custom calls to spp_taxonconcept()</h3>
 <p><code><a href="../reference/spp_taxonconcept.html">spp_taxonconcept()</a></code> includes several arguments to retrieve a specific subset of information (see <code><a href="../reference/spp_taxonconcept.html">?spp_taxonconcept</a></code> for more details):</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/args">args</a></span>(<span class="st">'spp_taxonconcept'</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/args">args</a></span>(<span class="st">'spp_taxonconcept'</span>)</a></code></pre></div>
 <pre><code>#&gt;  function (query_taxon, taxonomy = "CITES", with_descendants = FALSE, 
 #&gt;      language = NULL, updated_since = NULL, per_page = 500, pages = NULL, 
 #&gt;      raw = FALSE, token = NULL, verbose = TRUE, ...) 
 #&gt;  NULL</code></pre>
 <p>Most importantly, the argument <code>taxonomy</code> allows a selection between the two databases (CITES or CMS):</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="kw"><a href="../reference/spp_taxonconcept.html">spp_taxonconcept</a></span>(<span class="dt">query =</span> <span class="st">"Amazilia versicolor"</span>, <span class="dt">taxonomy =</span> <span class="st">"CMS"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="kw"><a href="../reference/spp_taxonconcept.html">spp_taxonconcept</a></span>(<span class="dt">query =</span> <span class="st">"Amazilia versicolor"</span>, <span class="dt">taxonomy =</span> <span class="st">"CMS"</span>)</a></code></pre></div>
+<pre><code>#&gt;  → Retrieving info from page 1 ........................✔</code></pre>
 <pre><code>#&gt;  Warning in spp_taxonconcept(query = "Amazilia versicolor", taxonomy =
 #&gt;  "CMS"): Taxon not listed.</code></pre>
 <pre><code>#&gt;  NULL</code></pre>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="kw"><a href="../reference/spp_taxonconcept.html">spp_taxonconcept</a></span>(<span class="dt">query =</span> <span class="st">"Loxodonta africana"</span>, <span class="dt">taxonomy =</span> <span class="st">"CMS"</span>)</a></code></pre></div>
-<pre><code>#&gt;  General info - CMS ($general):
-#&gt;  ------------------------------
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="kw"><a href="../reference/spp_taxonconcept.html">spp_taxonconcept</a></span>(<span class="dt">query =</span> <span class="st">"Loxodonta africana"</span>, <span class="dt">taxonomy =</span> <span class="st">"CMS"</span>)</a></code></pre></div>
+<pre><code>#&gt;  → Retrieving info from page 1 ........................✔</code></pre>
+<pre><code>#&gt;  
+#&gt;  ── General info - CMS ($general): ─────────────────────────────────────────
 #&gt;       id          full_name        author_year    rank name_status
 #&gt;  1 11691 Loxodonta africana (Blumenbach, 1797) SPECIES           A
 #&gt;             updated_at active
 #&gt;  1 2018-06-05 09:19:14   TRUE
 #&gt;  
-#&gt;  Classification ($higher_taxa):
-#&gt;  -------------------------------
+#&gt;  ── Classification ($higher_taxa): ─────────────────────────────────────────
 #&gt;       id  kingdom   phylum    class       order       family
 #&gt;  1 11691 Animalia Chordata Mammalia Proboscidea Elephantidae
 #&gt;  
-#&gt;  Synonyms ($synonyms):
-#&gt;  ----------------------
+#&gt;  ── Synonyms ($synonyms): ──────────────────────────────────────────────────
 #&gt;  data frame with 0 columns and 0 rows
 #&gt;  
-#&gt;  Common names ($common_names):
-#&gt;  ------------------------------
-#&gt;        id                  name language
-#&gt;  1  11691               Olifant       NL
-#&gt;  2  11691                Haathi       UR
-#&gt;  3  11691                Haathi       HI
-#&gt;  4  11691               Elevant       ET
-#&gt;  5  11691               Olifant       AF
-#&gt;  6  11691                  Slon       CS
-#&gt;  7  11691     afrikansk elefant       DA
-#&gt;  8  11691                  Slon       HR
-#&gt;  9  11691               Elefant       NO
-#&gt;  10 11691 Afrikanischer Elefant       DE
+#&gt;  ── Common names ($common_names): ──────────────────────────────────────────
+#&gt;        id               name language
+#&gt;  1  11691              Tembo       SW
+#&gt;  2  11691              Ndovo       SW
+#&gt;  3  11691             Haathi       UR
+#&gt;  4  11691           Elefante       PT
+#&gt;  5  11691               Slon       RU
+#&gt;  6  11691            Elefant       NO
+#&gt;  7  11691            Olifant       NL
+#&gt;  8  11691 Afrikaanse olifant       NL
+#&gt;  9  11691  Elefante africano       ES
+#&gt;  10 11691  afrikansk elefant       SV
 #&gt;  -------truncated-------
 #&gt;  
 #&gt;  Information available: $all_id, $general, $higher_taxa, $accepted_names, $common_names, $synonyms</code></pre>
 <p><code>language</code> and <code>updated_since</code> are convenient filters for the written language of common names (must be a two-letters code, see <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">ISO 3166-1 alpha-2</a>) and the last update of the entries, respectively:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="kw"><a href="../reference/spp_taxonconcept.html">spp_taxonconcept</a></span>(<span class="dt">query_taxon =</span> <span class="st">"Loxodonta africana"</span>, <span class="dt">language =</span> <span class="st">'EN'</span>,</a>
-<a class="sourceLine" id="cb21-2" title="2">  <span class="dt">updated_since =</span> <span class="st">"2016-01-01"</span>)</a></code></pre></div>
-<pre><code>#&gt;  General info - CITES ($general):
-#&gt;  --------------------------------
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1"><span class="kw"><a href="../reference/spp_taxonconcept.html">spp_taxonconcept</a></span>(<span class="dt">query_taxon =</span> <span class="st">"Loxodonta africana"</span>, <span class="dt">language =</span> <span class="st">'EN'</span>,</a>
+<a class="sourceLine" id="cb27-2" title="2">  <span class="dt">updated_since =</span> <span class="st">"2016-01-01"</span>)</a></code></pre></div>
+<pre><code>#&gt;  → Retrieving info from page 1 ........................✔</code></pre>
+<pre><code>#&gt;  
+#&gt;  ── General info - CITES ($general): ───────────────────────────────────────
 #&gt;      id          full_name        author_year    rank name_status
 #&gt;  1 4521 Loxodonta africana (Blumenbach, 1797) SPECIES           A
 #&gt;             updated_at active cites_listing
 #&gt;  1 2019-05-09 11:12:49   TRUE          I/II
 #&gt;  
-#&gt;  Classification ($higher_taxa):
-#&gt;  -------------------------------
+#&gt;  ── Classification ($higher_taxa): ─────────────────────────────────────────
 #&gt;      id  kingdom   phylum    class       order       family
 #&gt;  1 4521 Animalia Chordata Mammalia Proboscidea Elephantidae
 #&gt;  
-#&gt;  Synonyms ($synonyms):
-#&gt;  ----------------------
+#&gt;  ── Synonyms ($synonyms): ──────────────────────────────────────────────────
 #&gt;      id apply.do.call.rbind..tmp.wch....2..unlist.
 #&gt;  1 4521                                      37069
 #&gt;  2 4521                         Loxodonta cyclotis
 #&gt;  3 4521                           (Matschie, 1900)
 #&gt;  4 4521                                    SPECIES
 #&gt;  
-#&gt;  Common names ($common_names):
-#&gt;  ------------------------------
+#&gt;  ── Common names ($common_names): ──────────────────────────────────────────
 #&gt;      id                      name language
 #&gt;  1 4521          African Elephant       EN
 #&gt;  2 4521 African Savannah Elephant       EN
@@ -310,16 +307,15 @@
 <h3 class="hasAnchor">
 <a href="#cites-legislation-data" class="anchor"></a>CITES legislation data</h3>
 <p>First, we can retrieve current CITES appendix listings and reservations, CITES quotas, and CITES suspensions for a given taxon concept.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1"><span class="kw"><a href="../reference/spp_cites_legislation.html">spp_cites_legislation</a></span>(<span class="dt">taxon_id =</span> <span class="st">"4521"</span>, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
-<pre><code>#&gt;  Cites listings ($cites_listings):
-#&gt;  ---------------------------------
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1"><span class="kw"><a href="../reference/spp_cites_legislation.html">spp_cites_legislation</a></span>(<span class="dt">taxon_id =</span> <span class="st">"4521"</span>, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<pre><code>#&gt;  
+#&gt;  ── Cites listings ($cites_listings): ──────────────────────────────────────
 #&gt;      id taxon_concept_id is_current appendix change_type effective_at
 #&gt;  1 3666             4521       TRUE       II           +   2007-09-13
 #&gt;  2 3665             4521       TRUE        I           +   2007-09-13
 #&gt;  3 3645             4521       TRUE        I          R+   1990-01-18
 #&gt;  
-#&gt;  Cites quotas ($cites_quotas):
-#&gt;  ------------------------------
+#&gt;  ── Cites quotas ($cites_quotas): ──────────────────────────────────────────
 #&gt;        id taxon_concept_id quota publication_date public_display is_current
 #&gt;  1  20604             4521     0       2017-03-06           TRUE       TRUE
 #&gt;  2  20586             4521     0       2017-03-06           TRUE       TRUE
@@ -345,8 +341,7 @@
 #&gt;  -------truncated-------
 #&gt;  Field(s) not printed:  notes, url 
 #&gt;  
-#&gt;  Cites suspensions ($cites_suspensions):
-#&gt;  ----------------------------------------
+#&gt;  ── Cites suspensions ($cites_suspensions): ────────────────────────────────
 #&gt;        id taxon_concept_id start_date is_current applies_to_import
 #&gt;  1  15986             &lt;NA&gt; 2013-05-16       TRUE             FALSE
 #&gt;  2  17621             4521 2014-08-11       TRUE              TRUE
@@ -376,9 +371,9 @@
 <h3 class="hasAnchor">
 <a href="#eu-legislation-data" class="anchor"></a>EU legislation data</h3>
 <p>Similarly, we can also retrieve current EU annex listings, SRG opinions, and EU suspensions with <code>spp_eu_legislation</code>. Both legislation functions have a <code>scope</code> argument that sets the time scope of legislation and take one value among <code>current</code>, <code>historic</code> and <code>all</code> (default is set to <code>current</code>). For instance, one can get all information pertaining to EU annex listing for <em>Amazilia versicolor</em> with the following command line:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1"><span class="kw"><a href="../reference/spp_eu_legislation.html">spp_eu_legislation</a></span>(<span class="dt">taxon_id =</span> <span class="st">"3210"</span>, <span class="dt">scope =</span> <span class="st">"all"</span>, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
-<pre><code>#&gt;  EU listings ($eu_listings):
-#&gt;  ---------------------------
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1"><span class="kw"><a href="../reference/spp_eu_legislation.html">spp_eu_legislation</a></span>(<span class="dt">taxon_id =</span> <span class="st">"3210"</span>, <span class="dt">scope =</span> <span class="st">"all"</span>, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<pre><code>#&gt;  
+#&gt;  ── EU listings ($eu_listings): ────────────────────────────────────────────
 #&gt;        id taxon_concept_id is_current annex change_type effective_at
 #&gt;  1  17604             3210      FALSE     B           +   2012-02-14
 #&gt;  2  17603             3210      FALSE     B           +   2012-12-15
@@ -392,17 +387,16 @@
 #&gt;  10 17602             3210      FALSE     B           +   2013-08-10
 #&gt;  -------truncated-------
 #&gt;  
-#&gt;  EU decisions ($eu_decisions):
-#&gt;  ------------------------------
+#&gt;  ── EU decisions ($eu_decisions): ──────────────────────────────────────────
 #&gt;  data frame with 0 columns and 0 rows</code></pre>
 </div>
 <div id="distribution-data" class="section level3">
 <h3 class="hasAnchor">
 <a href="#distribution-data" class="anchor"></a>Distribution data</h3>
 <p>Distribution data at the country level is also available for a given taxon concept:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1"><span class="kw"><a href="../reference/spp_distributions.html">spp_distributions</a></span>(<span class="st">"4521"</span>, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
-<pre><code>#&gt;  Distributions ($distributions):
-#&gt;  -------------------------------
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1"><span class="kw"><a href="../reference/spp_distributions.html">spp_distributions</a></span>(<span class="st">"4521"</span>, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<pre><code>#&gt;  
+#&gt;  ── Distributions ($distributions): ────────────────────────────────────────
 #&gt;        id iso_code2              name    type tags
 #&gt;  1   1778        ML              Mali COUNTRY     
 #&gt;  2   1923        GQ Equatorial Guinea COUNTRY     
@@ -416,8 +410,7 @@
 #&gt;  10 17060        BJ             Benin COUNTRY     
 #&gt;  -------truncated-------
 #&gt;  
-#&gt;  References ($references):
-#&gt;  --------------------------
+#&gt;  ── References ($references): ──────────────────────────────────────────────
 #&gt;       id                        reference
 #&gt;  1  1778 Kingdon, J., Happold [truncated]
 #&gt;  2  1923 Basilio, A. 1962. La [truncated]
@@ -435,9 +428,9 @@
 <h3 class="hasAnchor">
 <a href="#references" class="anchor"></a>References</h3>
 <p>Finally, we can retrieve all available references for a given taxa.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1"><span class="kw"><a href="../reference/spp_references.html">spp_references</a></span>(<span class="st">"4521"</span>, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
-<pre><code>#&gt;  References ($references):
-#&gt;  -------------------------
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" title="1"><span class="kw"><a href="../reference/spp_references.html">spp_references</a></span>(<span class="st">"4521"</span>, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<pre><code>#&gt;  
+#&gt;  ── References ($references): ──────────────────────────────────────────────
 #&gt;        id                                             citation is_standard
 #&gt;  1  10265 Anon. 1978. Red data book: Mammalia. IUC [truncated]       FALSE
 #&gt;  2   6344 Barnes, R. F., Agnagna, M., Alers, M. P. [truncated]       FALSE

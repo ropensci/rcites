@@ -66,7 +66,7 @@ spp_references <- function(taxon_id, raw = FALSE, token = NULL, verbose = TRUE,
                 class(out) <- c("spp_refs")
             }
             if (verbose)
-                cat(" done. \n")
+                rcites_cat_done()
         }
     }
     out

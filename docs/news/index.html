@@ -60,7 +60,7 @@
         <a class="navbar-brand" href="../index.html">rcites</a>
         <div class="info">
           <span class="partof">part of  <a href="https://ropensci.org"><img src='https://d33wubrfki0l68.cloudfront.net/88338b7637e084df5c43e7a9e6293719dbaf10e2/30903/img/icon_lettering_white.svg' height=24 alt = 'rOpenSci'/></a></span>
-          <span class="version label label-default version-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0.9000</span>
+          <span class="version label label-default version-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
         </div>
       </div>
     </div>
@@ -83,13 +83,13 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/bulk_analysis.html">Bulk analysis with rcites</a>
+      <a href="../articles/a_get_started.html">Get started with rcites</a>
     </li>
     <li>
-      <a href="../articles/elephant.html">Study case: the African bush elephant (*Loxodonta africana*)</a>
+      <a href="../articles/b_elephant.html">Study case: the African bush elephant (*Loxodonta africana*)</a>
     </li>
     <li>
-      <a href="../articles/get_started.html">Get started with rcites</a>
+      <a href="../articles/c_bulk_analysis.html">Bulk analysis with rcites</a>
     </li>
   </ul>
 </li>
@@ -118,21 +118,38 @@
       <small>Source: <a href='https://github.com/ropensci/rcites/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="rcites-1-0-0-9000" class="section level1">
+    <div id="rcites-1-0-1" class="section level1">
 <h1 class="page-header">
-<a href="#rcites-1-0-0-9000" class="anchor"></a>rcites 1.0.0.9000<small> Unreleased </small>
+<a href="#rcites-1-0-1" class="anchor"></a>rcites 1.0.1<small> Unreleased </small>
 </h1>
+<div id="new-features" class="section level3">
+<h3 class="hasAnchor">
+<a href="#new-features" class="anchor"></a>New features 🎨</h3>
 <ul>
-<li>Fix a bug that prevented <code><a href="../reference/spp_taxonconcept.html">spp_taxonconcept()</a></code> from downloading all the taxon concepts, see <a href="https://github.com/ropensci/rcites/issues/42"><a href='https://github.com/ropensci/rcites/issues/42'>#42</a></a>.</li>
+<li>rcites now imports <a href="https://github.com/r-lib/cli">cli</a> :packages: to:
+<ol>
+<li>clarify notes reported when downloading material;</li>
+<li>color titles in the default print methods.</li>
+</ol>
+</li>
 </ul>
+</div>
+<div id="bugs-fixed" class="section level3">
+<h3 class="hasAnchor">
+<a href="#bugs-fixed" class="anchor"></a>Bugs fixed 🐛</h3>
+<ul>
+<li><p>Fix a bug that prevented <code><a href="../reference/spp_taxonconcept.html">spp_taxonconcept()</a></code> from downloading all the taxon concepts, see <a href="https://github.com/ropensci/rcites/issues/42"><a href='https://github.com/ropensci/rcites/issues/42'>#42</a></a>.</p></li>
+<li><p>Fix a bug that genereated infinte rrecursion error when using non-interactively without token, see <a href="https://github.com/ropensci/rcites/issues/44"><a href='https://github.com/ropensci/rcites/issues/44'>#44</a></a>.</p></li>
+</ul>
+</div>
 </div>
     <div id="rcites-1-0-0" class="section level1">
 <h1 class="page-header">
 <a href="#rcites-1-0-0" class="anchor"></a>rcites 1.0.0<small> 2018-11-17 </small>
 </h1>
-<ul>
-<li>
-<p>new features:</p>
+<div id="new-features-1" class="section level3">
+<h3 class="hasAnchor">
+<a href="#new-features-1" class="anchor"></a>New features 🎨</h3>
 <ul>
 <li>
 <code><a href="../reference/spp_taxonconcept.html">spp_taxonconcept()</a></code> now includes an auto-pagination that allows to retrieve all entries for queries that have more than 500 results;</li>
@@ -159,9 +176,10 @@
 </ul>
 </li>
 </ul>
-</li>
-<li>
-<p>add function parameters:</p>
+</div>
+<div id="new-function-arguments" class="section level3">
+<h3 class="hasAnchor">
+<a href="#new-function-arguments" class="anchor"></a>New function arguments</h3>
 <ul>
 <li>
 <code>taxonomy</code>, <code>with_descendants</code>, <code>language</code>, <code>updated_since</code>, <code>per_page</code>, <code>seq_page</code>, <code>raw</code>, <code>verbose</code> in <code><a href="../reference/spp_taxonconcept.html">spp_taxonconcept()</a></code>;</li>
@@ -172,9 +190,10 @@
 <li>
 <code>language</code> and <code>raw</code> to <code><a href="../reference/spp_distributions.html">spp_distributions()</a></code>.</li>
 </ul>
-</li>
-<li>
-<p>change function names:</p>
+</div>
+<div id="function-renamed" class="section level3">
+<h3 class="hasAnchor">
+<a href="#function-renamed" class="anchor"></a>Function renamed</h3>
 <ul>
 <li>
 <code><a href="../reference/set_token.html">set_token()</a></code> instead of <code>sppplus_login()</code>;</li>
@@ -193,25 +212,29 @@
 <li>
 <code>rcites_</code> instead of <code>sppplus_</code> for helper functions.</li>
 </ul>
-</li>
-<li>
-<p>follow <code>goodpractice</code>:</p>
+</div>
+<div id="using-goodpractice" class="section level3">
+<h3 class="hasAnchor">
+<a href="#using-goodpractice" class="anchor"></a>Using <a href="https://github.com/MangoTheCat/goodpractice">goodpractice</a>
+</h3>
 <ul>
 <li>use ‘&lt;-’ for assignment instead of ‘=’,</li>
 <li>omit “Date” in DESCRIPTION,</li>
-<li>avoid 1:length(…), 1:nrow(…), 1:ncol(…),</li>
+<li>avoid <code>1:length(...)</code>, <code>1:nrow(...)</code>, <code>1:ncol(...)</code>.</li>
 </ul>
-</li>
-</ul>
+</div>
 </div>
     <div id="rcites-0-1-0" class="section level1">
 <h1 class="page-header">
 <a href="#rcites-0-1-0" class="anchor"></a>rcites 0.1.0<small> 2018-08-11 </small>
 </h1>
-<p>First release</p>
-<div id="features" class="section level2">
-<h2 class="hasAnchor">
-<a href="#features" class="anchor"></a>Features</h2>
+<div id="nb-this-was-the-first-release-1" class="section level3">
+<h3 class="hasAnchor">
+<a href="#nb-this-was-the-first-release-1" class="anchor"></a>NB: this was the first release 1️⃣</h3>
+</div>
+<div id="features" class="section level3">
+<h3 class="hasAnchor">
+<a href="#features" class="anchor"></a>Features 🎨</h3>
 <ul>
 <li>spp_taxonconcept( ): <a href="https://api.speciesplus.net/documentation/v1/taxon_concepts/index.html">access the Speciesplus taxon concept</a>
 </li>
@@ -232,7 +255,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="#rcites-1-0-0-9000">1.0.0.9000</a></li>
+        <li><a href="#rcites-1-0-1">1.0.1</a></li>
         <li><a href="#rcites-1-0-0">1.0.0</a></li>
         <li><a href="#rcites-0-1-0">0.1.0</a></li>
       </ul>

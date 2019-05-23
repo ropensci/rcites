@@ -102,22 +102,24 @@
 <a href="#broad-taxon-concept-queries" class="anchor"></a>Broad taxon concept queries</h2>
 <p>If you want to query all taxa, you can use <code><a href="../reference/spp_taxonconcept.html">spp_taxonconcept()</a></code> with <code>query_taxon = ""</code> (assuming your token is already set up):</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">res_cms &lt;-<span class="st"> </span><span class="kw"><a href="../reference/spp_taxonconcept.html">spp_taxonconcept</a></span>(<span class="st">""</span>, <span class="dt">taxonomy =</span> <span class="st">"CMS"</span>) <span class="co">#slow</span></a></code></pre></div>
-<pre><code>#&gt;  Retrieving info from page  2 / 10      
-Retrieving info from page  3 / 10      
-Retrieving info from page  4 / 10      
-Retrieving info from page  5 / 10      
-Retrieving info from page  6 / 10      
-Retrieving info from page  7 / 10      
-Retrieving info from page  8 / 10      
-Retrieving info from page  9 / 10      
-Retrieving info from page  10 / 10      
-#&gt;  Done!</code></pre>
+<pre><code>#&gt;  → Retrieving info from page 1 ........................✔ 
+#&gt;  ── 10 pages available, retrieving info from 9 more ────────────────────────
+#&gt;  → Retrieving info from page 2 ........................✔ 
+#&gt;  → Retrieving info from page 3 ........................✔ 
+#&gt;  → Retrieving info from page 4 ........................✔ 
+#&gt;  → Retrieving info from page 5 ........................✔ 
+#&gt;  → Retrieving info from page 6 ........................✔ 
+#&gt;  → Retrieving info from page 7 ........................✔ 
+#&gt;  → Retrieving info from page 8 ........................✔ 
+#&gt;  → Retrieving info from page 9 ........................✔ 
+#&gt;  → Retrieving info from page 10 .......................✔</code></pre>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/dim">dim</a></span>(res_cms<span class="op">$</span>general)</a></code></pre></div>
 <pre><code>#&gt;  [1] 2863    7</code></pre>
 <p>Alternatively, you can retrieve, for example, the first three pages of results returned by the API.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">res_cites &lt;-<span class="st"> </span><span class="kw"><a href="../reference/spp_taxonconcept.html">spp_taxonconcept</a></span>(<span class="st">""</span>, <span class="dt">page =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>)</a></code></pre></div>
-<pre><code>#&gt;  Retrieving info from page  2 / 154      
-#&gt;  Done!</code></pre>
+<pre><code>#&gt;  → Retrieving info from page 1 ........................✔ 
+#&gt;  ── 154 pages available, retrieving info from 1 more ───────────────────────
+#&gt;  → Retrieving info from page 2 ........................✔</code></pre>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/dim">dim</a></span>(res_cites<span class="op">$</span>general)</a></code></pre></div>
 <pre><code>#&gt;  [1] 1000    8</code></pre>
 </div>

@@ -4,7 +4,7 @@ skip_on_cran()
 skip_if_no_auth()
 ut_pause()
 #
-res1 <- spp_cites_legislation(taxon_id = tx_id, verbose = FALSE)
+res1 <- spp_cites_legislation(taxon_id = tx_id)
 res1b <- spp_cites_legislation(taxon_id = tx_id2, verbose = FALSE)
 res2 <- spp_cites_legislation(taxon_id = tx_id, raw = TRUE, verbose = FALSE)
 ut_pause()

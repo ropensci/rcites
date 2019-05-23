@@ -78,7 +78,11 @@ spp_taxonconcept <- function(query_taxon, taxonomy = "CITES",
     q_url <- rcites_taxonconcept_request(query_taxon, taxonomy,
         with_descendants, f_page, per_page, updated_since, language)
     # results
+    if (verbose)
+      rcites_cat_pages(f_page)
     tmp <- rcites_res(q_url, token, ...)
+    if (verbose)
+      rcites_cat_done()
     # number of pages
     pag <- rcites_numberpages(tmp$pagination)
     #

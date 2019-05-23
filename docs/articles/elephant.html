@@ -109,41 +109,39 @@
 <h1 class="hasAnchor">
 <a href="#retrieve-the-taxon-id" class="anchor"></a>Retrieve the taxon id</h1>
 <p>In order to access information about the elephant, we first need to retrieve its Species+ taxon identifier. For this, we use the <code><a href="../reference/spp_taxonconcept.html">spp_taxonconcept()</a></code> function and the elephant’s scientific name, <em>Loxodonta africana</em>, as <code>query_taxon</code> argument.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">elephant_taxonconcept &lt;-<span class="st"> </span><span class="kw"><a href="../reference/spp_taxonconcept.html">spp_taxonconcept</a></span>(<span class="dt">query_taxon =</span> <span class="st">"Loxodonta africana"</span>)</a>
-<a class="sourceLine" id="cb2-2" title="2">elephant_taxonconcept</a></code></pre></div>
-<pre><code>#&gt;  General info - CITES ($general):
-#&gt;  --------------------------------
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">elephant_taxonconcept &lt;-<span class="st"> </span><span class="kw"><a href="../reference/spp_taxonconcept.html">spp_taxonconcept</a></span>(<span class="dt">query_taxon =</span> <span class="st">"Loxodonta africana"</span>)</a></code></pre></div>
+<pre><code>#&gt;  → Retrieving info from page 1 ........................✔</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">elephant_taxonconcept</a></code></pre></div>
+<pre><code>#&gt;  
+#&gt;  ── General info - CITES ($general): ───────────────────────────────────────
 #&gt;      id          full_name        author_year    rank name_status
 #&gt;  1 4521 Loxodonta africana (Blumenbach, 1797) SPECIES           A
 #&gt;             updated_at active cites_listing
 #&gt;  1 2019-05-09 11:12:49   TRUE          I/II
 #&gt;  
-#&gt;  Classification ($higher_taxa):
-#&gt;  -------------------------------
+#&gt;  ── Classification ($higher_taxa): ─────────────────────────────────────────
 #&gt;      id  kingdom   phylum    class       order       family
 #&gt;  1 4521 Animalia Chordata Mammalia Proboscidea Elephantidae
 #&gt;  
-#&gt;  Synonyms ($synonyms):
-#&gt;  ----------------------
+#&gt;  ── Synonyms ($synonyms): ──────────────────────────────────────────────────
 #&gt;      id apply.do.call.rbind..tmp.wch....2..unlist.
 #&gt;  1 4521                                      37069
 #&gt;  2 4521                         Loxodonta cyclotis
 #&gt;  3 4521                           (Matschie, 1900)
 #&gt;  4 4521                                    SPECIES
 #&gt;  
-#&gt;  Common names ($common_names):
-#&gt;  ------------------------------
-#&gt;       id               name language
-#&gt;  1  4521              Ndovo       SW
-#&gt;  2  4521              Tembo       SW
-#&gt;  3  4521             Haathi       UR
-#&gt;  4  4521           Elefante       PT
-#&gt;  5  4521               Slon       RU
-#&gt;  6  4521            Elefant       NO
-#&gt;  7  4521            Olifant       NL
-#&gt;  8  4521 Afrikaanse olifant       NL
-#&gt;  9  4521  Elefante africano       ES
-#&gt;  10 4521  afrikansk elefant       SV
+#&gt;  ── Common names ($common_names): ──────────────────────────────────────────
+#&gt;       id                  name language
+#&gt;  1  4521                Haathi       UR
+#&gt;  2  4521              Elefante       PT
+#&gt;  3  4521                 Ndovo       SW
+#&gt;  4  4521                 Norsu       FI
+#&gt;  5  4521     afrikansk elefant       DA
+#&gt;  6  4521               Elefant       NO
+#&gt;  7  4521 Afrikanischer Elefant       DE
+#&gt;  8  4521              Elefante       EU
+#&gt;  9  4521                  Slon       BG
+#&gt;  10 4521     Elefante africano       IT
 #&gt;  -------truncated-------
 #&gt;  
 #&gt;  Information available: $all_id, $general, $higher_taxa, $accepted_names, $common_names, $synonyms, $cites_listings</code></pre>
@@ -153,26 +151,26 @@
 <h2 class="hasAnchor">
 <a href="#map-the-elephants-distribution" class="anchor"></a>Map the elephant’s distribution</h2>
 <p>Before giving more insights into the legislation status of the elephant, we have a look at where the elephant actually occurs naturally. For this, we can access the elephant’s distribution information with the <code><a href="../reference/spp_distributions.html">spp_distributions()</a></code> function. Thereafter, we can map the distribution with the help of the <code>rworldmap</code> package.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(rworldmap)</a>
-<a class="sourceLine" id="cb4-2" title="2"></a>
-<a class="sourceLine" id="cb4-3" title="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/par">par</a></span>(<span class="dt">las =</span> <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb4-4" title="4">elephant_distr &lt;-<span class="st"> </span><span class="kw"><a href="../reference/spp_distributions.html">spp_distributions</a></span>(<span class="dt">taxon_id =</span> <span class="st">"4521"</span>,</a>
-<a class="sourceLine" id="cb4-5" title="5">                                    <span class="dt">verbose =</span> <span class="ot">FALSE</span>)<span class="op">$</span>distributions</a>
-<a class="sourceLine" id="cb4-6" title="6"></a>
-<a class="sourceLine" id="cb4-7" title="7">map2 &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/rworldmap/topics/joinCountryData2Map">joinCountryData2Map</a></span>(elephant_distr,</a>
-<a class="sourceLine" id="cb4-8" title="8">                            <span class="dt">joinCode=</span><span class="st">"ISO2"</span>,</a>
-<a class="sourceLine" id="cb4-9" title="9">                            <span class="dt">nameJoinColumn =</span> <span class="st">"iso_code2"</span>,</a>
-<a class="sourceLine" id="cb4-10" title="10">                            <span class="dt">nameCountryColumn =</span> <span class="st">"name"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(rworldmap)</a>
+<a class="sourceLine" id="cb6-2" title="2"></a>
+<a class="sourceLine" id="cb6-3" title="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/par">par</a></span>(<span class="dt">las =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb6-4" title="4">elephant_distr &lt;-<span class="st"> </span><span class="kw"><a href="../reference/spp_distributions.html">spp_distributions</a></span>(<span class="dt">taxon_id =</span> <span class="st">"4521"</span>,</a>
+<a class="sourceLine" id="cb6-5" title="5">                                    <span class="dt">verbose =</span> <span class="ot">FALSE</span>)<span class="op">$</span>distributions</a>
+<a class="sourceLine" id="cb6-6" title="6"></a>
+<a class="sourceLine" id="cb6-7" title="7">map2 &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/rworldmap/topics/joinCountryData2Map">joinCountryData2Map</a></span>(elephant_distr,</a>
+<a class="sourceLine" id="cb6-8" title="8">                            <span class="dt">joinCode=</span><span class="st">"ISO2"</span>,</a>
+<a class="sourceLine" id="cb6-9" title="9">                            <span class="dt">nameJoinColumn =</span> <span class="st">"iso_code2"</span>,</a>
+<a class="sourceLine" id="cb6-10" title="10">                            <span class="dt">nameCountryColumn =</span> <span class="st">"name"</span>)</a></code></pre></div>
 <pre><code>#&gt;  42 codes from your data successfully matched countries in the map
 #&gt;  0 codes from your data failed to match with a country code in the map
 #&gt;  201 codes from the map weren't represented in your data</code></pre>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="op">-</span><span class="dv">23</span>, <span class="dv">62</span>), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">45</span>, <span class="dv">-40</span>),</a>
-<a class="sourceLine" id="cb6-2" title="2">     <span class="dt">type =</span> <span class="st">"n"</span>,</a>
-<a class="sourceLine" id="cb6-3" title="3">     <span class="dt">main =</span> <span class="st">"Loxodonta africana"</span>,</a>
-<a class="sourceLine" id="cb6-4" title="4">     <span class="dt">xlab =</span> <span class="st">"Longitude"</span>,</a>
-<a class="sourceLine" id="cb6-5" title="5">     <span class="dt">ylab =</span> <span class="st">"Latitude"</span>)</a>
-<a class="sourceLine" id="cb6-6" title="6"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(map2, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb6-7" title="7"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(map2[<span class="op">!</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/NA">is.na</a></span>(map2<span class="op">$</span>iso_code2),], <span class="dt">col =</span> <span class="st">"#cba74d"</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="op">-</span><span class="dv">23</span>, <span class="dv">62</span>), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">45</span>, <span class="dv">-40</span>),</a>
+<a class="sourceLine" id="cb8-2" title="2">     <span class="dt">type =</span> <span class="st">"n"</span>,</a>
+<a class="sourceLine" id="cb8-3" title="3">     <span class="dt">main =</span> <span class="st">"Loxodonta africana"</span>,</a>
+<a class="sourceLine" id="cb8-4" title="4">     <span class="dt">xlab =</span> <span class="st">"Longitude"</span>,</a>
+<a class="sourceLine" id="cb8-5" title="5">     <span class="dt">ylab =</span> <span class="st">"Latitude"</span>)</a>
+<a class="sourceLine" id="cb8-6" title="6"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(map2, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb8-7" title="7"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(map2[<span class="op">!</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/NA">is.na</a></span>(map2<span class="op">$</span>iso_code2),], <span class="dt">col =</span> <span class="st">"#cba74d"</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p><img src="elephant_files/figure-html/map-1.png" width="614.4" style="display: block; margin: auto;"></p>
 </div>
 <div id="access-the-legislation-status" class="section level2">
@@ -180,18 +178,17 @@
 <a href="#access-the-legislation-status" class="anchor"></a>Access the legislation status</h2>
 <p>The functions <code><a href="../reference/spp_cites_legislation.html">spp_cites_legislation()</a></code> and <code><a href="../reference/spp_eu_legislation.html">spp_eu_legislation()</a></code> provide access to the legislation status information of the elephant.</p>
 <p>First, we have a look at the CITES legislation status:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">elephant_cites &lt;-<span class="st"> </span><span class="kw"><a href="../reference/spp_cites_legislation.html">spp_cites_legislation</a></span>(<span class="dt">taxon_id =</span> <span class="st">"4521"</span>)</a></code></pre></div>
-<pre><code>#&gt;  &gt;&gt;&gt; Now processing taxon_id '4521'............ done.</code></pre>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">elephant_cites</a></code></pre></div>
-<pre><code>#&gt;  Cites listings ($cites_listings):
-#&gt;  ---------------------------------
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">elephant_cites &lt;-<span class="st"> </span><span class="kw"><a href="../reference/spp_cites_legislation.html">spp_cites_legislation</a></span>(<span class="dt">taxon_id =</span> <span class="st">"4521"</span>)</a></code></pre></div>
+<pre><code>#&gt;  → Now processing taxon_id '4521'......................✔</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">elephant_cites</a></code></pre></div>
+<pre><code>#&gt;  
+#&gt;  ── Cites listings ($cites_listings): ──────────────────────────────────────
 #&gt;      id taxon_concept_id is_current appendix change_type effective_at
 #&gt;  1 3666             4521       TRUE       II           +   2007-09-13
 #&gt;  2 3665             4521       TRUE        I           +   2007-09-13
 #&gt;  3 3645             4521       TRUE        I          R+   1990-01-18
 #&gt;  
-#&gt;  Cites quotas ($cites_quotas):
-#&gt;  ------------------------------
+#&gt;  ── Cites quotas ($cites_quotas): ──────────────────────────────────────────
 #&gt;        id taxon_concept_id quota publication_date public_display is_current
 #&gt;  1  20604             4521     0       2017-03-06           TRUE       TRUE
 #&gt;  2  20586             4521     0       2017-03-06           TRUE       TRUE
@@ -217,8 +214,7 @@
 #&gt;  -------truncated-------
 #&gt;  Field(s) not printed:  notes, url 
 #&gt;  
-#&gt;  Cites suspensions ($cites_suspensions):
-#&gt;  ----------------------------------------
+#&gt;  ── Cites suspensions ($cites_suspensions): ────────────────────────────────
 #&gt;        id taxon_concept_id start_date is_current applies_to_import
 #&gt;  1  15986             &lt;NA&gt; 2013-05-16       TRUE             FALSE
 #&gt;  2  17621             4521 2014-08-11       TRUE              TRUE
@@ -244,17 +240,16 @@
 #&gt;  -------truncated-------
 #&gt;  Field(s) not printed:  notes, start_notification.name, start_notification.date, start_notification.url</code></pre>
 <p>We can do the same for the elephant’s legislation status in the European Union:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">elephant_eu &lt;-<span class="st"> </span><span class="kw"><a href="../reference/spp_eu_legislation.html">spp_eu_legislation</a></span>(<span class="dt">taxon_id =</span> <span class="st">"4521"</span>)</a></code></pre></div>
-<pre><code>#&gt;  &gt;&gt;&gt; Now processing taxon_id '4521'............ done.</code></pre>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">elephant_eu</a></code></pre></div>
-<pre><code>#&gt;  EU listings ($eu_listings):
-#&gt;  ---------------------------
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">elephant_eu &lt;-<span class="st"> </span><span class="kw"><a href="../reference/spp_eu_legislation.html">spp_eu_legislation</a></span>(<span class="dt">taxon_id =</span> <span class="st">"4521"</span>)</a></code></pre></div>
+<pre><code>#&gt;  → Now processing taxon_id '4521'......................✔</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">elephant_eu</a></code></pre></div>
+<pre><code>#&gt;  
+#&gt;  ── EU listings ($eu_listings): ────────────────────────────────────────────
 #&gt;       id taxon_concept_id is_current annex change_type effective_at
 #&gt;  1 27868             4521       TRUE     B           +   2017-02-04
 #&gt;  2 27801             4521       TRUE     A           +   2017-02-04
 #&gt;  
-#&gt;  EU decisions ($eu_decisions):
-#&gt;  ------------------------------
+#&gt;  ── EU decisions ($eu_decisions): ──────────────────────────────────────────
 #&gt;        id taxon_concept_id start_date is_current eu_decision_type.name
 #&gt;  1  26285             4521 2015-04-09       TRUE              Positive
 #&gt;  2  25508             4521 2014-09-03       TRUE              Positive
@@ -306,10 +301,10 @@
 <h2 class="hasAnchor">
 <a href="#access-the-elephants-species-reference-data" class="anchor"></a>Access the elephant’s Species+ reference data</h2>
 <p>Last but not least, it is important to identify which references the Species+ information about the elephant is based on. For this, we can access the Species+ reference data with the <code><a href="../reference/spp_references.html">spp_references()</a></code> function.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">elephant_refs &lt;-<span class="st"> </span><span class="kw"><a href="../reference/spp_references.html">spp_references</a></span>(<span class="dt">taxon_id =</span> <span class="st">"4521"</span>, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb15-2" title="2">elephant_refs</a></code></pre></div>
-<pre><code>#&gt;  References ($references):
-#&gt;  -------------------------
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1">elephant_refs &lt;-<span class="st"> </span><span class="kw"><a href="../reference/spp_references.html">spp_references</a></span>(<span class="dt">taxon_id =</span> <span class="st">"4521"</span>, <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb17-2" title="2">elephant_refs</a></code></pre></div>
+<pre><code>#&gt;  
+#&gt;  ── References ($references): ──────────────────────────────────────────────
 #&gt;        id                                             citation is_standard
 #&gt;  1  10265 Anon. 1978. Red data book: Mammalia. IUC [truncated]       FALSE
 #&gt;  2   6344 Barnes, R. F., Agnagna, M., Alers, M. P. [truncated]       FALSE
@@ -322,7 +317,7 @@
 #&gt;  9   7609 Parker, I. and Amin, M. 1983. Ivory cris [truncated]       FALSE
 #&gt;  10 19397 Parker, I.S.C. and Martin, E.B. 1982. Ho [truncated]       FALSE
 #&gt;  -------truncated-------</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/dim">dim</a></span>(elephant_refs<span class="op">$</span>references)</a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/dim">dim</a></span>(elephant_refs<span class="op">$</span>references)</a></code></pre></div>
 <pre><code>#&gt;  [1] 15  3</code></pre>
 </div>
 </div>

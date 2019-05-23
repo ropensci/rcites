@@ -79,7 +79,7 @@ spp_eu_legislation <- function(taxon_id, scope = "current", language = "en",
                 class(out) <- c("spp_eu_leg")
             }
             if (verbose)
-                cat(" done. \n")
+                rcites_cat_done()
         }
     }
     out
