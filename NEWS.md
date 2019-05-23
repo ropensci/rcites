@@ -2,7 +2,7 @@
 
 ### New features :art:
 
-- rcites now imports [cli](https://github.com/r-lib/cli) :packages: to:
+- rcites now imports [cli](https://github.com/r-lib/cli) :package: to:
   1. clarify notes reported when downloading material;
   2. color titles in the default print methods.
 
