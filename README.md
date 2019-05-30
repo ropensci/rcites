@@ -98,7 +98,7 @@ While creating this package, we greatly benefited from:
 
 1. [taxize](https://github.com/ropensci/taxize) that inspired the structuring of this repository/package;
 
-2. the `httr` vignette: [Managing secrets](https://cran.r-project.org/web/packages/httr/vignettes/secrets.html), which is extremely helpful for packages dealing with API.
+2. the `httr` vignette: [Managing secrets](https://CRAN.R-project.org/package=httr/vignettes/secrets.html), which is extremely helpful for packages dealing with API.
 
 
 

@@ -1,4 +1,5 @@
 This is a patch fixing 2 bugs and that introduce cli to improve user experience.
+Use canonical URL of the CRAN page httr as requested.
 
 ## Test environments
 
