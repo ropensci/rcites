@@ -8,7 +8,6 @@
 ^\.travis\.yml$
 ^\.gitignore
 ^Makefile
-^pkg2date\.R
 ^README\.Rmd
 ^README\.gfm
 ^CONDUCT.md

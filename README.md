@@ -1,6 +1,4 @@
-<img src="man/figures/rcites_logo.png" width="130" height="150" align="right"/>
-
-### Current Status
+# rcites <img src="man/figures/rcites_logo.png" width="130" height="150" align="right"/>
 
 [![Build status](https://travis-ci.org/ropensci/rcites.svg?branch=master)](https://travis-ci.org/ropensci/rcites)
 [![Build status](https://ci.appveyor.com/api/projects/status/kgimo4v7rvtpkp5e?svg=true)](https://ci.appveyor.com/project/KevCaz/rcites-mo3vb)
@@ -13,7 +11,6 @@
 [![JOSS DOI](http://joss.theoj.org/papers/10.21105/joss.01091/status.svg)](https://doi.org/10.21105/joss.01091)
 
 
-# rcites
 
 An R package to access information from the [Speciesplus](https://speciesplus.net/) database via the [Speciesplus/CITES Checklist API](https://api.speciesplus.net/documentation/v1.html). The package is available for download from [CRAN](https://cran.r-project.org/package=rcites) (stable version) and [Github](https://github.com/ropensci/rcites) (development version).
 

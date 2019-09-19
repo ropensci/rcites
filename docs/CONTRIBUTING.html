@@ -8,15 +8,20 @@
 
 <title>CONTRIBUTING • rcites</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png" />
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
 
 
 <!-- Bootstrap -->
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
-<link href="ropensci.css" rel="stylesheet">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
@@ -27,19 +32,31 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
-
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script>
 
-
+<!-- ropensci -->
+<link href="ropensci.css" rel="stylesheet">
 
 <meta property="og:title" content="CONTRIBUTING" />
 
 
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-462421-8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-462421-8');
+</script>
 
   </head>
 
@@ -57,18 +74,15 @@
       </button>
 
       <div class="navbar-brand-container">
-        <a class="navbar-brand" href="index.html">rcites</a>
-        <div class="info">
-          <span class="partof">part of  <a href="https://ropensci.org"><img src='https://d33wubrfki0l68.cloudfront.net/88338b7637e084df5c43e7a9e6293719dbaf10e2/30903/img/icon_lettering_white.svg' height=24 alt = 'rOpenSci'/></a></span>
-          <span class="version label label-default version-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
-        </div>
+        <a href="https://ropensci.org"><img src="hexlogo.png" id="hexlogo" alt="rOpenSci" /></a>
+        <a class="navbar-brand" href="index.html"><i>rcites <small>v1.0.1</small></i></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -98,7 +112,7 @@
 </li>
         <li>
   <a href="https://github.com/ropensci/rcites">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -109,6 +123,7 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -156,21 +171,21 @@
 <p>To add tests, go to the folder <code>tests/testthat/</code>. Tests are generally organized as individual files for each exported function from the package (that is, listed as an export in the <code>NAMESPACE</code> file). If you are adding a new exported function, add a new test file. If you are changing an existing function, work in the tests file for that function, unless it doesn’t have tests, in which case make a new test file.</p>
 <p>The book R packages book provides <a href="http://r-pkgs.had.co.nz/tests.html">a chapter on testing in general</a>. Do consult that first if you aren’t familiar with testing in R.</p>
 <p>The easiest set up to run tests is from within an R session:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(devtools)</a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(testthat)</a>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(devtools)</a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(testthat)</a>
 <a class="sourceLine" id="cb1-3" title="3"><span class="co"># loads the package</span></a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/load_all">load_all</a></span>()</a></code></pre></div>
+<a class="sourceLine" id="cb1-4" title="4"><span class="kw"><a href="https://rdrr.io/pkg/devtools/man/load_all.html">load_all</a></span>()</a></code></pre></div>
 <p>To test an individual test file</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/test">test_file</a></span>(<span class="st">"tests/testthat/test-foobar.R"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw"><a href="https://rdrr.io/pkg/devtools/man/test.html">test_file</a></span>(<span class="st">"tests/testthat/test-foobar.R"</span>)</a></code></pre></div>
 <p>To run all tests</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/test">test</a></span>()</a></code></pre></div>
-<p>If you are running tests that have <code><a href="https://www.rdocumentation.org/packages/testthat/topics/skip">skip_on_cran()</a></code> in them, set <code><a href="https://www.rdocumentation.org/packages/base/topics/Sys.setenv">Sys.setenv(NOT_CRAN = "true")</a></code> prior to running tests.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">devtools<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/devtools/man/test.html">test</a></span>()</a></code></pre></div>
+<p>If you are running tests that have <code><a href="https://rdrr.io/pkg/testthat/man/skip.html">skip_on_cran()</a></code> in them, set <code><a href="https://rdrr.io/r/base/Sys.setenv.html">Sys.setenv(NOT_CRAN = "true")</a></code> prior to running tests.</p>
 </div>
 <div id="making-changes" class="section level3">
 <h3 class="hasAnchor">
 <a href="#making-changes" class="anchor"></a>Making changes</h3>
 <p>In addition to changing the code, do make sure to udpate the documentation if applicable. The R packages book book has a <a href="http://r-pkgs.had.co.nz/man.html">chapter on documentation</a> you should read if you aren’t familiar.</p>
-<p>After code and documentation has been changed, update documentation by running either <code><a href="https://www.rdocumentation.org/packages/devtools/topics/document">devtools::document()</a></code> or <code><a href="https://www.rdocumentation.org/packages/roxygen2/topics/roxygenize">roxygen2::roxygenise()</a></code>.</p>
+<p>After code and documentation has been changed, update documentation by running either <code><a href="https://rdrr.io/pkg/devtools/man/document.html">devtools::document()</a></code> or <code><a href="https://rdrr.io/pkg/roxygen2/man/roxygenize.html">roxygen2::roxygenise()</a></code>.</p>
 <p>Make sure if you change what packages or even functions within packages are imported, most likely add the package to Imports in the DESCRIPTION file.</p>
 <p>Be conservative about adding new dependencies.</p>
 </div>
@@ -195,6 +210,7 @@
 </div>
 
 
+
       <footer>
       <div style="margin-top:-9px">
   <p>rcites is a part of <img src='https://github.com/ropensci/logos/raw/master/icon_lettering_color.png' height=40 alt = 'rOpenSci'>. Learn more at <a href="https://ropensci.org">ropensci.org</a>.</p>
@@ -203,14 +219,17 @@
 <div class="author">
   <p>
     Developed by <a href='https://www.linkedin.com/in/jonasgeschke/'>Jonas Geschke</a>, <a href='https://kevcaz.github.io/'>Kevin Cazelles</a>, <a href='https://bartomeuslab.com/'>Ignasi Bartomeus</a>.
-    Site built by <a href="https://pkgdown.r-lib.org">pkgdown</a> & <a href="https://ropensci.github.io/rotemplate/">rotemplate</a>.
+    Site built by <a href="https://pkgdown.r-lib.org">pkgdown</a> & <a href="https://docs.ropensci.org/rotemplate/">rotemplate</a>.
   </p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 
