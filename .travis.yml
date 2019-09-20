@@ -1,7 +1,7 @@
 language: r
 warnings_are_errors: true
 sudo: required
-cache: packages
+# cache: packages
 
 
 matrix:
@@ -36,4 +36,3 @@ r_github_packages:
 
 after_success:
   - Rscript -e 'covr::codecov()'
-  - Rscript -e 'covr::coveralls()'
