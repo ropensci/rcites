@@ -3,10 +3,10 @@ warnings_are_errors: true
 sudo: required
 # cache: packages
 
-
 matrix:
   include:
     - os: linux
+      dist: trusty
       r: oldrel
       env: NOT_CRAN=false
     - os: linux
@@ -16,6 +16,7 @@ matrix:
       r: release
       env: NOT_CRAN=true
     - os: linux
+      dist: bionic
       r: devel
       env: NOT_CRAN=false
 
@@ -30,9 +31,6 @@ notifications:
 before_install:
     - echo $SPECIESPLUS_TOKEN > .Renviron
     - cat .Renviron
-
-r_github_packages:
-  - r-lib/covr
 
 after_success:
   - Rscript -e 'covr::codecov()'
