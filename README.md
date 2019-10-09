@@ -82,7 +82,8 @@ When citing, please refer to both the [package citation](https://ropensci.github
 - Editor: [Scott Chamberlain](https://github.com/sckott)
 
 - Reporting issue(s):
-  - [FVFaleiro](https://github.com/FVFaleiro)
+  - @FVFaleiro
+  - @eveskew
 
 
 

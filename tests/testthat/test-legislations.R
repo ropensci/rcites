@@ -75,6 +75,8 @@ test_that("Language", {
 
 ut_pause(1)
 res9 <- spp_cites_legislation(taxon_id = c(tx_id, tx_id2), verbose = FALSE)
+res9b <- spp_cites_legislation(taxon_id = c(tx_id, tx_id2, "8094"),
+    verbose = FALSE)
 ut_pause()
 res10 <- spp_eu_legislation(taxon_id = c(tx_id, tx_id2), verbose = FALSE)
 ut_pause()
@@ -90,6 +92,8 @@ test_that("leg_multi outputs", {
   expect_equal(class(res10), "spp_eu_leg_multi")
   expect_equal(class(res9$cites_listings), cl_df)
   expect_equal(class(res10$eu_listings), cl_df)
+  #
+  expect_identical(res9b$cites_listings, res9$cites_listings)
   #
   expect_equal(nrow(res9$cites_listings),
     nrow(res1$cites_listings) + nrow(res1b$cites_listings))

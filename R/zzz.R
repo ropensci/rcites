@@ -211,15 +211,19 @@ rcites_assign_class <- function(x) {
 
 
 rcites_simplify_listings <- function(x) {
-    # fields below may or may not be included, so there are removed
-    vc_rm <- c("party", "hash_annotation", "annotation")
-    tmp <- lapply(lapply(x, FUN = function(x) x[!names(x) %in% vc_rm]),
-        FUN = function(y) data.frame(do.call(cbind, y),
-        stringsAsFactors = FALSE))
-    if (length(tmp) > 1) {
-        out <- do.call(rbind, tmp)
+    if (!length(x)) {
+      out <- data.frame()
     } else {
-        out <- tmp[[1L]]
+      # fields below may or may not be included, so there are removed
+      vc_rm <- c("party", "hash_annotation", "annotation")
+      tmp <- lapply(lapply(x, FUN = function(x) x[!names(x) %in% vc_rm]),
+          FUN = function(y) data.frame(do.call(cbind, y),
+          stringsAsFactors = FALSE))
+      if (length(tmp) > 1) {
+          out <- do.call(rbind, tmp)
+      } else {
+          out <- tmp[[1L]]
+      }
     }
     #
     out <- rcites_to_logical(out)

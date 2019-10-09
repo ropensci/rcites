@@ -1,3 +1,7 @@
+# rcites 1.0.1.9000
+
+- return an empty data frame when there is no listing available for a given species (Fix :bug: #47 reported by @eveskew)
+
 # rcites 1.0.1
 
 ### New features :art:

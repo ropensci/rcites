@@ -68,7 +68,7 @@ spp_cites_legislation <- function(taxon_id, scope = "current", language = "en",
             ## create url
             q_url <- rcites_url("taxon_concepts/", taxon_id,
               "/cites_legislation.json", query_string)
-            ## get_res
+            ## get resutils 
             tmp <- rcites_res(q_url, token, ...)
             ## outputs
             if (raw) {
