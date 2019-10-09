@@ -1,8 +1,0 @@
-pandoc: 2.2.1
-pkgdown: 1.4.1
-pkgdown_sha: ~
-articles:
-  a_get_started: a_get_started.html
-  b_elephant: b_elephant.html
-  c_bulk_analysis: c_bulk_analysis.html
-

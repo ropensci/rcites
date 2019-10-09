@@ -4,6 +4,7 @@ doc
 Makefile
 inst/tmp
 .Renviron
+pkgdown/
 
 # History files
 .Rhistory
