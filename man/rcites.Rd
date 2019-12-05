@@ -12,7 +12,7 @@ via the Species+/CITES Checklist API \url{https://api.speciesplus.net/}.
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://ropensci.github.io/rcites/}
+  \item \url{https://docs.ropensci.org/rcites/}
   \item \url{https://github.com/ropensci/rcites}
   \item Report bugs at \url{https://github.com/ropensci/rcites/issues}
 }

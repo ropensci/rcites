@@ -16,4 +16,4 @@ bibentry(bibtype = "Manual",
                     ),
          year = year,
          note = note,
-         url = "https://ropensci.github.io/rcites/")
+         url = "https://docs.ropensci.org/rcites/")

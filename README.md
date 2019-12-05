@@ -38,12 +38,12 @@ library("rcites")
 
 To set up a connection to the CITES Speciesplus database, a personal authentication
 token is required. Please see the vignette for details how to get a token and
-how to set the token for package use: [Get started with rcites](https://ropensci.github.io/rcites/articles/get_started.html)
+how to set the token for package use: [Get started with rcites](https://docs.ropensci.org/rcites/articles/get_started.html)
 
 Additional information about specific use examples are provided for the
-[African bush elephant (*Loxodonta africana*)](https://ropensci.github.io/rcites/articles/elephant.html).
+[African bush elephant (*Loxodonta africana*)](https://docs.ropensci.org/rcites/articles/elephant.html).
 The package usage for querying multiple species is described in another
-vignette entitled ['Bulk analysis with rcites'](https://ropensci.github.io/rcites/articles/bulk_analysis.html).
+vignette entitled ['Bulk analysis with rcites'](https://docs.ropensci.org/rcites/articles/bulk_analysis.html).
 
 
 ### Key features
@@ -68,7 +68,7 @@ The package functions have three different prefixes:
 
 ### Citation information
 
-When citing, please refer to both the [package citation](https://ropensci.github.io/rcites/authors.html) and the [release paper](https://doi.org/10.21105/joss.01091).
+When citing, please refer to both the [package citation](https://docs.ropensci.org/rcites/authors.html) and the [release paper](https://doi.org/10.21105/joss.01091).
 
 
 ## Contributors

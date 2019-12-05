@@ -48,7 +48,7 @@ We provide functions to:
 3. get a species' country-wise distribution range, as listed in Speciesplus, and
 4. get the references on which a Speciesplus listing is based.
 
-Overall information about `rcites` and the package vignette can be found at https://ropensci.github.io/rcites/. The package is available for download from CRAN (stable version; https://cran.r-project.org/package=rcites) and Github (development version; https://github.com/ropensci/rcites).
+Overall information about `rcites` and the package vignette can be found at https://docs.ropensci.org/rcites/. The package is available for download from CRAN (stable version; https://cran.r-project.org/package=rcites) and Github (development version; https://github.com/ropensci/rcites).
 
 ``rcites`` will support researchers and national authorities in more efficiently dealing with information of endangered species and their legislation status.
 

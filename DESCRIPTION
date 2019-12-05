@@ -11,7 +11,7 @@ Authors@R: c(person("Jonas", "Geschke", role = c("aut"), email = "jonas.e.geschk
   person("Noam", "Ross", role = c("rev")),
   person("Margaret", "Siple", role = c("rev")))
 Description: A programmatic interface to the Species+ <https://speciesplus.net/> database via the Species+/CITES Checklist API <https://api.speciesplus.net/>.
-URL: https://ropensci.github.io/rcites/, https://github.com/ropensci/rcites
+URL: https://docs.ropensci.org/rcites/, https://github.com/ropensci/rcites
 BugReports: https://github.com/ropensci/rcites/issues
 License: MIT + file LICENSE
 Depends:

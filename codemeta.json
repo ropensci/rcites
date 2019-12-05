@@ -9,7 +9,7 @@
   "name": "rcites: R Interface to the Species+ Database",
   "codeRepository": "https://github.com/ropensci/rcites",
   "relatedLink": [
-    "https://ropensci.github.io/rcites/",
+    "https://docs.ropensci.org/rcites/",
     "https://CRAN.R-project.org/package=rcites"
   ],
   "issueTracker": "https://github.com/ropensci/rcites/issues",
@@ -232,7 +232,7 @@
         }
       ],
       "name": "{rcites}: An R package to access the CITES Species+ database",
-      "url": "https://ropensci.github.io/rcites/"
+      "url": "https://docs.ropensci.org/rcites/"
     }
   ],
   "developmentStatus": "https://www.repostatus.org/#active"
