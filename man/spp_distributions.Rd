@@ -4,8 +4,14 @@
 \alias{spp_distributions}
 \title{Get distributions data available for a given taxon concept.}
 \usage{
-spp_distributions(taxon_id, language = "en", raw = FALSE,
-  token = NULL, verbose = TRUE, ...)
+spp_distributions(
+  taxon_id,
+  language = "en",
+  raw = FALSE,
+  token = NULL,
+  verbose = TRUE,
+  ...
+)
 }
 \arguments{
 \item{taxon_id}{a vector of character strings containing species'

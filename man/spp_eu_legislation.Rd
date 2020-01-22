@@ -4,8 +4,15 @@
 \alias{spp_eu_legislation}
 \title{Get current EU annex listings, SRG opinions, and EU suspensions.}
 \usage{
-spp_eu_legislation(taxon_id, scope = "current", language = "en",
-  raw = FALSE, token = NULL, verbose = TRUE, ...)
+spp_eu_legislation(
+  taxon_id,
+  scope = "current",
+  language = "en",
+  raw = FALSE,
+  token = NULL,
+  verbose = TRUE,
+  ...
+)
 }
 \arguments{
 \item{taxon_id}{a vector of character strings containing species' taxon

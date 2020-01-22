@@ -4,8 +4,15 @@
 \alias{spp_cites_legislation}
 \title{Get current CITES appendix listings and reservations.}
 \usage{
-spp_cites_legislation(taxon_id, scope = "current", language = "en",
-  raw = FALSE, token = NULL, verbose = TRUE, ...)
+spp_cites_legislation(
+  taxon_id,
+  scope = "current",
+  language = "en",
+  raw = FALSE,
+  token = NULL,
+  verbose = TRUE,
+  ...
+)
 }
 \arguments{
 \item{taxon_id}{a vector of character strings containing species' taxon

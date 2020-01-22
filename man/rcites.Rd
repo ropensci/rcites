@@ -19,12 +19,12 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Kevin Cazelles \email{kevin.cazelles@gmail.com} (0000-0001-6619-9874)
+\strong{Maintainer}: Kevin Cazelles \email{kevin.cazelles@gmail.com} (\href{https://orcid.org/0000-0001-6619-9874}{ORCID})
 
 Authors:
 \itemize{
-  \item Jonas Geschke \email{jonas.e.geschke@gmail.com} (0000-0002-5654-9313)
-  \item Ignasi Bartomeus (0000-0001-7893-4389)
+  \item Jonas Geschke \email{jonas.e.geschke@gmail.com} (\href{https://orcid.org/0000-0002-5654-9313}{ORCID})
+  \item Ignasi Bartomeus (\href{https://orcid.org/0000-0001-7893-4389}{ORCID})
 }
 
 Other contributors:

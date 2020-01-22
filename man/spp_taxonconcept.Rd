@@ -4,10 +4,19 @@
 \alias{spp_taxonconcept}
 \title{Get taxon concepts for a search term.}
 \usage{
-spp_taxonconcept(query_taxon, taxonomy = "CITES",
-  with_descendants = FALSE, language = NULL, updated_since = NULL,
-  per_page = 500, pages = NULL, raw = FALSE, token = NULL,
-  verbose = TRUE, ...)
+spp_taxonconcept(
+  query_taxon,
+  taxonomy = "CITES",
+  with_descendants = FALSE,
+  language = NULL,
+  updated_since = NULL,
+  per_page = 500,
+  pages = NULL,
+  raw = FALSE,
+  token = NULL,
+  verbose = TRUE,
+  ...
+)
 }
 \arguments{
 \item{query_taxon}{a character string containing the query (e.g. species).

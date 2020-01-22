@@ -4,8 +4,7 @@
 \alias{spp_references}
 \title{Get references for a given taxon concept}
 \usage{
-spp_references(taxon_id, raw = FALSE, token = NULL, verbose = TRUE,
-  ...)
+spp_references(taxon_id, raw = FALSE, token = NULL, verbose = TRUE, ...)
 }
 \arguments{
 \item{taxon_id}{a vector of character strings containing species' taxon
