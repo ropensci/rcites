@@ -58,18 +58,11 @@ test_that("Expected number of entries", {
 })
 
 
-
-# lang_en_ci <- c("Guinea", "Guinée") %in% res1$cites_suspensions$geo_entity.name
-# lang_fr_ci <- c("Guinea", "Guinée") %in% res4$cites_suspensions$geo_entity.name
-#
-lang_en_eu <- c("Ethiopia", "Ethiopie") %in% res5$eu_decisions$geo_entity.name
-lang_fr_eu <- c("Ethiopia", "Ethiopie") %in% res8$eu_decisions$geo_entity.name
-
 test_that("Language", {
-  # expect_true(all(lang_en_ci == c(TRUE, FALSE)))
-  # expect_true(all(lang_fr_ci == c(FALSE, TRUE)))
-  expect_true(all(lang_en_eu == c(TRUE, FALSE)))
-  expect_true(all(lang_fr_eu == c(FALSE, TRUE)))
+  expect_true("Guinea" %in% res1$cites_suspensions$geo_entity.name)
+  expect_true("Guinée" %in% res4$cites_suspensions$geo_entity.name)
+  expect_true("Namibia" %in% res5$eu_decisions$geo_entity.name)
+  expect_true("Namibie" %in% res8$eu_decisions$geo_entity.name)
 })
 
 
