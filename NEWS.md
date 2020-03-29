@@ -1,5 +1,6 @@
 # rcites 1.0.1.9000
 
+* `spp_*()` functions gain an argument `pause` (see #50, #51 following the issue reported by @fleurhierink in #49).
 * minor text editions throught the documentation.
 * return an empty data frame when there is no listing available for a given species (Fix :bug: #47 reported by @eveskew)
 

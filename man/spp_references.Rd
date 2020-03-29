@@ -4,7 +4,14 @@
 \alias{spp_references}
 \title{Get references for a given taxon concept}
 \usage{
-spp_references(taxon_id, raw = FALSE, token = NULL, verbose = TRUE, ...)
+spp_references(
+  taxon_id,
+  raw = FALSE,
+  token = NULL,
+  verbose = TRUE,
+  pause = 1,
+  ...
+)
 }
 \arguments{
 \item{taxon_id}{a vector of character strings containing species' taxon
@@ -19,6 +26,10 @@ set directly in \code{Renviron}. Alternatively, \code{\link[=set_token]{set_toke
 \code{SPECIESPLUS_TOKEN} for the current session.}
 
 \item{verbose}{a logical. Should extra information be reported on progress?}
+
+\item{pause}{a duration (in second) to suspend execution for (see
+\code{\link[=Sys.sleep]{Sys.sleep()}}). This was added cause the web API returns a 404 error too many
+requests in a short time interval.}
 
 \item{...}{Further named parameters, see \code{\link[httr:GET]{httr::GET()}}.}
 }

@@ -34,9 +34,7 @@ test_that("Language", {
 })
 
 
-ut_pause(2)
 res5 <- spp_distributions(taxon_id = c(tx_id, tx_id2), verbose = FALSE)
-ut_pause()
 res6 <- spp_distributions(taxon_id = c(tx_id, tx_id2), raw = TRUE,
   verbose = FALSE)
 test_that("distr_multi outputs", {

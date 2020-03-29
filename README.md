@@ -110,5 +110,4 @@ Also, please read the Terms and Conditions of Use of Speciesplus Data:
 https://speciesplus.net/terms-of-use.
 
 
-
 [![ropensci_footer](https://ropensci.org/public_images/ropensci_footer.png)](https://ropensci.org)

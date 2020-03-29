@@ -17,6 +17,9 @@
 #' `NULL` and requires the environment variable `SPECIESPLUS_TOKEN` to be
 #' set directly in `Renviron`. Alternatively, [set_token()] can
 #' be used to set `SPECIESPLUS_TOKEN` for the current session.
+#' @param pause a duration (in second) to suspend execution for (see
+#' [Sys.sleep()]). This was added cause the web API returns a 404 error too many
+#' requests in a short time interval.
 #' @param verbose a logical. Should extra information be reported on progress?
 #' @param ... Further named parameters, see [httr::GET()].
 #'
@@ -43,10 +46,11 @@
 #' }
 
 spp_eu_legislation <- function(taxon_id, scope = "current", language = "en",
-    raw = FALSE, token = NULL, verbose = TRUE, ...) {
+    raw = FALSE, token = NULL, verbose = TRUE, pause = 1, ...) {
     if (length(taxon_id) > 1) {
         out <- lapply(taxon_id, spp_eu_legislation, scope = scope,
-          language = language, raw = raw, token = token, verbose = verbose, ...)
+          language = language, raw = raw, token = token, verbose = verbose,
+           pause = pause, ...)
         out <- rcites_combine_lists(out, taxon_id, raw)
     } else {
         # token check
@@ -82,5 +86,6 @@ spp_eu_legislation <- function(taxon_id, scope = "current", language = "en",
                 rcites_cat_done()
         }
     }
+    Sys.sleep(pause)
     out
 }
