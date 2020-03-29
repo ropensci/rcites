@@ -13,7 +13,7 @@ res4 <- spp_cites_legislation(taxon_id = tx_id, language = 'fr',
   verbose = FALSE)
 ut_pause()
 #
-res5 <- spp_eu_legislation(taxon_id = tx_id, verbose = FALSE)
+res5 <- spp_eu_legislation(taxon_id = tx_id)
 res5b <- spp_eu_legislation(taxon_id = tx_id2, verbose = FALSE)
 res6 <- spp_eu_legislation(taxon_id = tx_id, raw = TRUE, verbose = FALSE)
 ut_pause()

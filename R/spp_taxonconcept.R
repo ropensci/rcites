@@ -26,6 +26,9 @@
 #' directly in `Renviron`. Alternatively, `set_token()` can be used to set
 #' `SPECIESPLUS_TOKEN` for the current session.
 #' @param verbose a logical. Should extra information be reported on progress?
+#' @param pause a duration (in second) to suspend execution for (see
+#' [Sys.sleep()]). This was added cause the web API returns a 404 error too many
+#' requests in a short time interval.
 #' @param ... Further named parameters, see [httr::GET()].
 #'
 #' @return
@@ -60,7 +63,7 @@
 spp_taxonconcept <- function(query_taxon, taxonomy = "CITES",
     with_descendants = FALSE, language = NULL, updated_since = NULL,
     per_page = 500, pages = NULL, raw = FALSE, token = NULL, verbose = TRUE,
-    ...) {
+    pause = 1, ...) {
     # taxonomy check
     taxonomy <- match.arg(taxonomy, c("CITES", "CMS"))
     # token check
@@ -145,6 +148,6 @@ spp_taxonconcept <- function(query_taxon, taxonomy = "CITES",
             attr(out, "taxonomy") <- taxonomy
         }
     }
-    #
+    Sys.sleep(pause)
     out
 }
