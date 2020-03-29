@@ -12,7 +12,6 @@
 [![JOSS DOI](http://joss.theoj.org/papers/10.21105/joss.01091/status.svg)](https://doi.org/10.21105/joss.01091)
 
 
-
 An R package to access information from the [Speciesplus](https://speciesplus.net/) database via the [Speciesplus/CITES Checklist API](https://api.speciesplus.net/documentation/v1.html). The package is available for download from [CRAN](https://cran.r-project.org/package=rcites) (stable version) and [Github](https://github.com/ropensci/rcites) (development version).
 
 Please see the [release paper](https://doi.org/10.21105/joss.01091) for background information about the Convention on International Trade in Endangered Species of Wild Fauna and Flora ([CITES](https://cites.org)), the Speciesplus database and basic information about the aim of the package.
@@ -27,10 +26,10 @@ install.packages("rcites")
 library("rcites")
 ```
 
-The development version can be installed via the `devtools` package:
+The development version can be installed via the [`remotes`](https://cran.r-project.org/web/packages/remotes/index.html) :package:
 
 ```R
-devtools::install_github("ropensci/rcites")
+remotes::install_github("ropensci/rcites")
 library("rcites")
 ```
 
