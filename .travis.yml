@@ -1,7 +1,6 @@
 language: r
 warnings_are_errors: true
-sudo: required
-# cache: packages
+cache: packages
 
 matrix:
   include:
@@ -12,13 +11,13 @@ matrix:
     - os: linux
       r: release
       env: NOT_CRAN=true
-    - os: osx
-      r: release
-      env: NOT_CRAN=true
     - os: linux
       dist: bionic
       r: devel
       env: NOT_CRAN=false
+    - os: osx
+      r: release
+      env: NOT_CRAN=true
 
 
 notifications:

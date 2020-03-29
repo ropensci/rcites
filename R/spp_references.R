@@ -23,7 +23,7 @@
 #' corresponding citation.
 #'
 #' @references
-#' \url{https://api.speciesplus.net/documentation/v1/references/index.html}
+#' <https://api.speciesplus.net/documentation/v1/references/index.html>
 #'
 #' @export
 #'

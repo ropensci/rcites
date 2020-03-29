@@ -85,6 +85,7 @@ When citing, please refer to both the [package citation](https://docs.ropensci.o
 - Reporting issue(s):
   - @FVFaleiro
   - @eveskew
+  - @fleurhierink
 
 
 

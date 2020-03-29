@@ -1,4 +1,4 @@
-#' Get distributions data available for a given taxon concept.
+#' Get distributions data available for a given taxon concept
 #'
 #' Retrieve distributions data available for a given taxon concept for which the
 #' the taxon identifier is known.

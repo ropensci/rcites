@@ -64,15 +64,16 @@ rcites_checkid <- function(taxon_id) {
 }
 
 rcites_current_id <- function(x) {
-  # cat("\r", cli::symbol$tick, " Info for '", x, "' successfully retreived \n")
-  # cat(">> Now processing taxon_id '", x, "'............", sep = "")
   cat(cli::symbol$arrow_right, " Now processing taxon_id '", x,
     "'", paste(rep(".", 26 - nchar(x)), collapse = ""), sep = "")
 }
 
 rcites_cat_done <- function() {
-  # cat(" done. \n")
   cat(cli::symbol$tick, "\n")
+}
+
+rcites_cat_error <- function() {
+  cat(cli::symbol$cross, "\n")
 }
 
 rcites_add_taxon_id <- function(x, taxon_id) {

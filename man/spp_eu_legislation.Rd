@@ -2,7 +2,7 @@
 % Please edit documentation in R/spp_eu_legislation.R
 \name{spp_eu_legislation}
 \alias{spp_eu_legislation}
-\title{Get current EU annex listings, SRG opinions, and EU suspensions.}
+\title{Get current EU annex listings, SRG opinions, and EU suspensions}
 \usage{
 spp_eu_legislation(
   taxon_id,

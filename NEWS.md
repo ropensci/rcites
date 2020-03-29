@@ -1,12 +1,13 @@
 # rcites 1.0.1.9000
 
-- return an empty data frame when there is no listing available for a given species (Fix :bug: #47 reported by @eveskew)
+* minor text editions throught the documentation.
+* return an empty data frame when there is no listing available for a given species (Fix :bug: #47 reported by @eveskew)
 
 # rcites 1.0.1
 
 ### New features :art:
 
-- rcites now imports [cli](https://github.com/r-lib/cli) :package: to:
+* rcites now imports [cli](https://github.com/r-lib/cli) :package: to:
   1. clarify notes reported when downloading material;
   2. color titles in the default print methods.
 

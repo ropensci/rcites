@@ -13,7 +13,7 @@
 \alias{print.spp_refs}
 \alias{print.spp_refs_multi}
 \alias{print.spp_taxon}
-\title{Print methods for objects of class \verb{spp_raw*}}
+\title{Print methods for objects of class \verb{spp_raw*}.}
 \usage{
 \method{print}{spp_raw}(x, ...)
 
@@ -38,7 +38,7 @@
 \method{print}{spp_taxon}(x, ...)
 }
 \arguments{
-\item{x}{An object of class \verb{spp_raw*}.}
+\item{x}{an object of class \verb{spp_raw*}.}
 
 \item{...}{ignored.}
 }
@@ -46,5 +46,5 @@
 The JSON result.
 }
 \description{
-Print the outputs of a Species+ API call
+Print the outputs of a Species+ API call.
 }

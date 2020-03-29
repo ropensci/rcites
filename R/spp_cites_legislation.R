@@ -1,4 +1,4 @@
-#' Get current CITES appendix listings and reservations.
+#' Get current CITES appendix listings and reservations
 #'
 #' Retrieve current CITES appendix listings and reservations, CITES quotas, and
 #' CITES suspensions for a given taxon concept.
@@ -30,7 +30,7 @@
 #'  3. `cites_suspensions`: lists CITES suspensions.
 #'
 #' @references
-#' \url{https://api.speciesplus.net/documentation/v1/cites_legislation/index.html}
+#' <https://api.speciesplus.net/documentation/v1/cites_legislation/index.html>
 #'
 #' @export
 #'
@@ -68,7 +68,7 @@ spp_cites_legislation <- function(taxon_id, scope = "current", language = "en",
             ## create url
             q_url <- rcites_url("taxon_concepts/", taxon_id,
               "/cites_legislation.json", query_string)
-            ## get resutils 
+            ## get results
             tmp <- rcites_res(q_url, token, ...)
             ## outputs
             if (raw) {
@@ -88,5 +88,6 @@ spp_cites_legislation <- function(taxon_id, scope = "current", language = "en",
         if (verbose)
             rcites_cat_done()
     }
+    # Sys.sleep(pause)
     out
 }

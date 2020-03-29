@@ -2,7 +2,7 @@
 % Please edit documentation in R/spp_distributions.R
 \name{spp_distributions}
 \alias{spp_distributions}
-\title{Get distributions data available for a given taxon concept.}
+\title{Get distributions data available for a given taxon concept}
 \usage{
 spp_distributions(
   taxon_id,

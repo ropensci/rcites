@@ -2,7 +2,7 @@
 % Please edit documentation in R/spp_taxonconcept.R
 \name{spp_taxonconcept}
 \alias{spp_taxonconcept}
-\title{Get taxon concepts for a search term.}
+\title{Get taxon concepts for a search term}
 \usage{
 spp_taxonconcept(
   query_taxon,
@@ -47,17 +47,17 @@ set to \code{NULL}, i.e. all pages are accessed.}
 
 \item{token}{a character string containing the authentification token, see
 \url{https://api.speciesplus.net/documentation}. Default is set to
-\code{NULL} and requires the environment variable \code{SPECIESPLUS_TOKEN} to be
-set directly in \code{Renviron}. Alternatively, \code{set_token()} can
-be used to set \code{SPECIESPLUS_TOKEN} for the current session.}
+\code{NULL} and requires the environment variable \code{SPECIESPLUS_TOKEN} to be set
+directly in \code{Renviron}. Alternatively, \code{set_token()} can be used to set
+\code{SPECIESPLUS_TOKEN} for the current session.}
 
 \item{verbose}{a logical. Should extra information be reported on progress?}
 
 \item{...}{Further named parameters, see \code{\link[httr:GET]{httr::GET()}}.}
 }
 \value{
-If \code{raw=TRUE}, then a object of class \code{spp_raw} is returned, which is
-a list of lists. If \code{raw=FALSE}, then an object of class \code{spp_taxon} is
+If \code{raw = TRUE}, then a object of class \code{spp_raw} is returned, which is
+a list of lists. If \code{raw = FALSE}, then an object of class \code{spp_taxon} is
 returned, it is a collection of seven data frames:
 \enumerate{
 \item \code{all_id}: general information for all entries, including non-active taxon

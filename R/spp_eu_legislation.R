@@ -1,4 +1,4 @@
-#' Get current EU annex listings, SRG opinions, and EU suspensions.
+#' Get current EU annex listings, SRG opinions, and EU suspensions
 #'
 #' Retrieve current EU annex listings, SRG opinions, and EU suspensions for a
 #' given taxon concept (identifier must be known).

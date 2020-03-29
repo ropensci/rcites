@@ -2,7 +2,7 @@
 % Please edit documentation in R/spp_cites_legislation.R
 \name{spp_cites_legislation}
 \alias{spp_cites_legislation}
-\title{Get current CITES appendix listings and reservations.}
+\title{Get current CITES appendix listings and reservations}
 \usage{
 spp_cites_legislation(
   taxon_id,

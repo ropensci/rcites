@@ -1,6 +1,5 @@
-#' Get taxon concepts for a search term.
+#' Get taxon concepts for a search term
 #'
-#' @description
 #' Retrieve the taxon concept of a specific taxon (scientific name).
 #'
 #' @param query_taxon a character string containing the query (e.g. species).
@@ -23,15 +22,15 @@
 #' @param raw a logical. Should raw data be returned?
 #' @param token a character string containing the authentification token, see
 #' \url{https://api.speciesplus.net/documentation}. Default is set to
-#' `NULL` and requires the environment variable `SPECIESPLUS_TOKEN` to be
-#' set directly in `Renviron`. Alternatively, `set_token()` can
-#' be used to set `SPECIESPLUS_TOKEN` for the current session.
+#' `NULL` and requires the environment variable `SPECIESPLUS_TOKEN` to be set
+#' directly in `Renviron`. Alternatively, `set_token()` can be used to set
+#' `SPECIESPLUS_TOKEN` for the current session.
 #' @param verbose a logical. Should extra information be reported on progress?
 #' @param ... Further named parameters, see [httr::GET()].
 #'
 #' @return
-#' If `raw=TRUE`, then a object of class `spp_raw` is returned, which is
-#' a list of lists. If `raw=FALSE`, then an object of class `spp_taxon` is
+#' If `raw = TRUE`, then a object of class `spp_raw` is returned, which is
+#' a list of lists. If `raw = FALSE`, then an object of class `spp_taxon` is
 #' returned, it is a collection of seven data frames:
 #' 1. `all_id`: general information for all entries, including non-active taxon
 #' concepts,
@@ -44,7 +43,7 @@
 #' (missing if `taxonomy == 'CMS'`).
 #'
 #' @references
-#' \url{https://api.speciesplus.net/documentation/v1/taxon_concepts/index.html}
+#' <https://api.speciesplus.net/documentation/v1/taxon_concepts/index.html>
 #'
 #' @export
 #'
