@@ -35,10 +35,10 @@ requests in a short time interval.}
 }
 \value{
 If \code{raw} is set to \code{TRUE} then an object of class \code{spp_raw} (or
-\code{spp_raw_multi} if \code{length(taxon_id)>1}) is returned which is essentially
+\code{spp_raw_multi} if \code{length(taxon_id) > 1}) is returned which is essentially
 a list of lists (see option \code{as = 'parsed'} in \code{\link[httr:content]{httr::content()}}).
 Otherwise, an object of class \code{spp_refs} (or \code{spp_refs_multi} if
-\code{length(taxon_id)>1}) is returned which is a list of one
+\code{length(taxon_id) > 1}) is returned which is a list of one
 data frame:
 \itemize{
 \item \code{references} that includes the identifier of the reference and the

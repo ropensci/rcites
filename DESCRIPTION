@@ -1,7 +1,7 @@
 Package: rcites
 Type: Package
 Title: R Interface to the Species+ Database
-Version: 1.0.1.9000
+Version: 1.0.2.9000
 Authors@R: c(person("Jonas", "Geschke", role = c("aut"), email = "jonas.e.geschke@gmail.com", comment = c(ORCID = "0000-0002-5654-9313")),
   person("Kevin", "Cazelles", role = c("aut", "cre"), email = "kevin.cazelles@gmail.com", comment = c(ORCID = "0000-0001-6619-9874")),
   person("Ignasi", "Bartomeus", role = c("aut"), comment = c(ORCID = "0000-0001-7893-4389")),
@@ -25,3 +25,4 @@ RoxygenNote: 7.1.0
 Suggests: knitr, testthat, tibble, rmarkdown, rworldmap
 VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)
+

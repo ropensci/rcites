@@ -23,9 +23,9 @@ print.spp_raw <- function(x, ...) {
 #' @export
 print.spp_raw_multi <- function(x, ...) {
     print.spp_raw(x)
-    cat("\n")
+    cat_line()
     rcites_print_taxon_id(x$taxon_ids)
-    cat("\n")
+    cat_line()
     invisible(NULL)
 }
 
@@ -42,9 +42,9 @@ print.spp_cites_leg <- function(x, ...) {
     rcites_print_df_rm(x$cites_quotas, col_rm = c("notes", "url"))
 
     rcites_print_title("Cites suspensions ($cites_suspensions):")
-
     rcites_print_df_rm(x$cites_suspensions, col_rm = c("notes",
         paste0("start_notification.", c("name", "date", "url"))))
+
     invisible(NULL)
 }
 
@@ -53,7 +53,7 @@ print.spp_cites_leg <- function(x, ...) {
 #' @export
 print.spp_cites_leg_multi <- function(x, ...) {
     rcites_print_taxon_id(x$cites_listings$taxon_id)
-    cat("\n")
+    cat_line()
     print.spp_cites_leg(x)
     invisible(NULL)
 }
@@ -77,7 +77,7 @@ print.spp_distr <- function(x, ...) {
 #' @export
 print.spp_distr_multi <- function(x, ...) {
     rcites_print_taxon_id(x$distributions$taxon_id)
-    cat("\n")
+    cat_line()
     print.spp_distr(x)
     invisible(NULL)
 }
@@ -103,7 +103,7 @@ print.spp_eu_leg <- function(x, ...) {
 #' @export
 print.spp_eu_leg_multi <- function(x, ...) {
     rcites_print_taxon_id(x$eu_listings$taxon_id)
-    cat("\n")
+    cat_line()
     print.spp_eu_leg(x)
     invisible(NULL)
 }
@@ -126,7 +126,7 @@ print.spp_refs <- function(x, ...) {
 #' @export
 print.spp_refs_multi <- function(x, ...) {
     rcites_print_taxon_id(x$references$taxon_id)
-    cat("\n")
+    cat_line()
     print.spp_refs(x)
     invisible(NULL)
 }

@@ -1,18 +1,19 @@
-This is a patch fixing 2 bugs and that introduce cli to improve user experience.
-Use canonical URL of the CRAN page httr as requested.
+This is a patch adds a new argument *pause* to spp_*() functions.
 
 ## Test environments
 
-* local Debian testing (4.18.0-2-amd64), R-3.5.1
+* local Debian 10 (4.19.0-8-amd64), R-3.6.3
 * MacOSX 10.13.3 (on travis-ci), R-release
-* Ubuntu 14.04 (on travis-ci): R-oldrel, R-release, R-devel
+* Ubuntu 14.04 (on travis-ci): R-oldrel,
+* Ubuntu 16.04 (on travis-ci): R-release,
+* Ubuntu 18.04 (on travis-ci): R-devel,
+* Windows Server 2012 R2 x64 (on appveyor): R-release,
 * win-builder (R-release and R-devel)
 
 
 ## R CMD check results
 
 0 ERRORs | 0 WARNINGs | 0 NOTES.
-
 
 
 ## Downstream dependencies

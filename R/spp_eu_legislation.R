@@ -47,6 +47,7 @@
 
 spp_eu_legislation <- function(taxon_id, scope = "current", language = "en",
     raw = FALSE, token = NULL, verbose = TRUE, pause = 1, ...) {
+
     if (length(taxon_id) > 1) {
         out <- lapply(taxon_id, spp_eu_legislation, scope = scope,
           language = language, raw = raw, token = token, verbose = verbose,

@@ -49,3 +49,9 @@ test_that("distr_multi outputs", {
   expect_identical(res6$taxon_id, c(tx_id, tx_id2))
 })
 ut_pause()
+
+# taxon with only one distribution
+res7 <- spp_distributions("10000", verbose = FALSE)
+test_that("only one distribution", {
+  expect_equal(dim(res7$distribution)[1], 1)
+})

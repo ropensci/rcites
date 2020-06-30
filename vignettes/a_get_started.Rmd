@@ -25,9 +25,11 @@ library(rcites)
 
 ## Get your personal token
 
-To set up a connection to the Species+/CITES Checklist API, an authentication token
-is required. Each user should obtain his or her own personal token
-to run the code below (see https://api.speciesplus.net/documentation for more details). To obtain a token, sign up on the [Species+ API website](http://api.speciesplus.net/users/sign_up).
+To set up a connection to the Species+/CITES Checklist API, an authentication
+token is required. Each user should obtain his or her own personal token to run
+the code below (see <https://api.speciesplus.net/documentation> for more
+details). To obtain a token, sign up on the [Species+ API
+website](http://api.speciesplus.net/users/sign_up).
 
 ## Set the token
 
@@ -41,7 +43,11 @@ requests. They are three different ways to set the token in `rcites`:
 1. set an environment variable `SPECIESPLUS_TOKEN` in your [`.Renviron`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Startup.html)
 file (preferred for frequent users);
 
-2. use `set_token()` to set up the token as a character string (with quotes). If not entered in the function, the token can be passed without quotes (not as a character string) after the prompt. This way, the token `SPECIESPLUS_TOKEN` is interactively set up only for the current R session, meaning a login will be required for the future R sessions (preferred);
+2. use `set_token()` to set up the token as a character string (with quotes). If
+not entered in the function, the token can be passed without quotes (not as a
+character string) after the prompt. This way, the token `SPECIESPLUS_TOKEN` is
+interactively set up only for the current R session, meaning a login will be
+required for the future R sessions (preferred);
 
 ```{r, eval = FALSE}
 library(rcites)
@@ -157,10 +163,10 @@ spp_cites_legislation(taxon_id = "4521", verbose = FALSE)
 ### EU legislation data
 
 Similarly, we can also retrieve current EU annex listings, SRG opinions, and EU
-suspensions with `spp_eu_legislation`. Both legislation functions have a
-`scope` argument that sets the time scope of legislation and take one value
-among `current`, `historic` and `all` (default is set to `current`). For instance,
-one can get all information pertaining to EU annex listing for *Amazilia versicolor*
+suspensions with `spp_eu_legislation`. Both legislation functions have a `scope`
+argument that sets the time scope of legislation and take one value among
+`current`, `historic` and `all` (default is set to `current`). For instance, one
+can get all information pertaining to EU annex listing for *Amazilia versicolor*
 with the following command line:
 
 ```{r}

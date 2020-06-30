@@ -14,14 +14,13 @@
   ],
   "issueTracker": "https://github.com/ropensci/rcites/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "1.0.0.9000",
+  "version": "1.0.2.9000",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.5.1",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.5.1 (2018-07-02)",
+  "runtimePlatform": "R version 3.6.3 (2020-02-29)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -147,6 +146,18 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "cli",
+      "name": "cli",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=cli"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "httr",
       "name": "httr",
       "provider": {
@@ -170,21 +181,19 @@
       "sameAs": "https://CRAN.R-project.org/package=jsonlite"
     }
   ],
-  "releaseNotes": "https://github.com/ibartomeus/citesr/blob/master/NEWS.md",
+  "releaseNotes": "https://github.com/ropensci/rcites/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/rcites/blob/master/README.md",
-  "fileSize": "299.475KB",
-  "contIntegration": [
-    "https://travis-ci.org/ropensci/rcites",
-    "https://ci.appveyor.com/project/KevCaz/rcites-mo3vb",
-    "https://codecov.io/gh/ropensci/rcites"
-  ],
+  "fileSize": "1505.918KB",
+  "contIntegration": ["https://travis-ci.org/ropensci/rcites", "https://ci.appveyor.com/project/KevCaz/rcites-mo3vb", "https://codecov.io/gh/ropensci/rcites"],
   "keywords": [
     "cites",
     "api-client",
     "trade",
     "endangered-species",
     "r-package",
-    "database"
+    "database",
+    "r",
+    "rstats"
   ],
   "citation": [
     {
@@ -235,5 +244,12 @@
       "url": "https://docs.ropensci.org/rcites/"
     }
   ],
-  "developmentStatus": "https://www.repostatus.org/#active"
+  "developmentStatus": "https://www.repostatus.org/#active",
+  "copyrightHolder": {},
+  "funder": {},
+  "review": {
+    "@type": "Review",
+    "url": "https://github.com/ropensci/software-review/issues/244",
+    "provider": "https://ropensci.org"
+  }
 }

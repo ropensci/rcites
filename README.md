@@ -6,7 +6,7 @@
 [![status](https://tinyverse.netlify.com/badge/rcites)](https://CRAN.R-project.org/package=rcites)
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![ROpenSci status](https://badges.ropensci.org/244_status.svg)](https://github.com/ropensci/onboarding/issues/244)
-[![CRAN status](https://www.r-pkg.org/badges/version/rcites)](https://www.r-pkg.org/badges/version/rcites)
+[![CRAN status](https://www.r-pkg.org/badges/version/rcites)](https://CRAN.R-project.org/package=rcites)
 [![CRAN downloads](https://cranlogs.r-pkg.org/badges/grand-total/rcites)](https://cran.r-project.org/package=rcites)
 [![Zenodo DOI](https://zenodo.org/badge/113842199.svg)](https://zenodo.org/badge/latestdoi/113842199)
 [![JOSS DOI](http://joss.theoj.org/papers/10.21105/joss.01091/status.svg)](https://doi.org/10.21105/joss.01091)
@@ -23,14 +23,12 @@ The package can be installed from CRAN:
 
 ```R
 install.packages("rcites")
-library("rcites")
 ```
 
-The development version can be installed via the [`remotes`](https://cran.r-project.org/web/packages/remotes/index.html) :package:
+The development version can be installed via the [`remotes`](https://CRAN.R-project.org/package=remotes) :package:
 
 ```R
 remotes::install_github("ropensci/rcites")
-library("rcites")
 ```
 
 
@@ -38,12 +36,12 @@ library("rcites")
 
 To set up a connection to the CITES Speciesplus database, a personal authentication
 token is required. Please see the vignette for details how to get a token and
-how to set the token for package use: [Get started with rcites](https://docs.ropensci.org/rcites/articles/get_started.html)
+how to set the token for package use: [Get started with rcites](https://docs.ropensci.org/rcites/articles/a_get_started.html)
 
 Additional information about specific use examples are provided for the
-[African bush elephant (*Loxodonta africana*)](https://docs.ropensci.org/rcites/articles/elephant.html).
+[African bush elephant (*Loxodonta africana*)](https://docs.ropensci.org/rcites/articles/b_elephant.html).
 The package usage for querying multiple species is described in another
-vignette entitled ['Bulk analysis with rcites'](https://docs.ropensci.org/rcites/articles/bulk_analysis.html).
+vignette entitled ['Bulk analysis with rcites'](https://docs.ropensci.org/rcites/articles/c_bulk_analysis.html).
 
 
 ### Key features
@@ -103,7 +101,7 @@ While creating this package, we greatly benefited from:
 
 ## Code of Conduct
 
-Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md).
+Please note that this project is released with a [Contributor Code of Conduct](https://docs.ropensci.org/rcites/CONDUCT.html).
 By participating in this project you agree to abide by its terms.
 
 Also, please read the Terms and Conditions of Use of Speciesplus Data:

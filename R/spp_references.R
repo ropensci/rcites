@@ -17,10 +17,10 @@
 #' @param ... Further named parameters, see [httr::GET()].
 #'
 #' @return If `raw` is set to `TRUE` then an object of class `spp_raw` (or
-#' `spp_raw_multi` if `length(taxon_id)>1`) is returned which is essentially
+#' `spp_raw_multi` if `length(taxon_id) > 1`) is returned which is essentially
 #' a list of lists (see option `as = 'parsed'` in [httr::content()]).
 #' Otherwise, an object of class `spp_refs` (or `spp_refs_multi` if
-#' `length(taxon_id)>1`) is returned which is a list of one
+#' `length(taxon_id) > 1`) is returned which is a list of one
 #' data frame:
 #' * `references` that includes the identifier of the reference and the
 #' corresponding citation.

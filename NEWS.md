@@ -1,8 +1,10 @@
-# rcites 1.0.1.9000
+# rcites (devel)
+
+# rcites 1.0.2
 
 * `spp_*()` functions gain an argument `pause` (see #50, #51 following the issue reported by @fleurhierink in #49).
 * minor text editions throught the documentation.
-* return an empty data frame when there is no listing available for a given species (Fix :bug: #47 reported by @eveskew)
+* return an empty data frame when there is no listing available for a given species (Fix :bug: #47 reported by @eveskew).
 
 # rcites 1.0.1
 
@@ -18,7 +20,7 @@
 - Fix a bug that prevented `spp_taxonconcept()` from downloading all the taxon
 concepts, see [#42](https://github.com/ropensci/rcites/issues/42).
 
-- Fix a bug that genereated infinte rrecursion error when using non-interactively without token, see [#44](https://github.com/ropensci/rcites/issues/44).
+- Fix a bug that generated infinte recursion error when using non-interactively without token, see [#44](https://github.com/ropensci/rcites/issues/44).
 
 
 # rcites 1.0.0

@@ -6,7 +6,7 @@
 #' @docType package
 #' @name rcites
 #' @keywords internal
-#' @importFrom cli cat_rule cat_line
+#' @importFrom cli cat_rule cat_line col_green col_red
 "_PACKAGE"
 
 
@@ -69,11 +69,11 @@ rcites_current_id <- function(x) {
 }
 
 rcites_cat_done <- function() {
-  cat(cli::symbol$tick, "\n")
+  cat_line(col_green(cli::symbol$tick))
 }
 
 rcites_cat_error <- function() {
-  cat(cli::symbol$cross, "\n")
+  cat_line(col_red(cli::symbol$cross))
 }
 
 rcites_add_taxon_id <- function(x, taxon_id) {
@@ -244,20 +244,25 @@ rcites_simplify_decisions <- function(x) {
 }
 
 rcites_simplify_distributions <- function(x) {
-    tmp <- do.call(rbind, lapply(lapply(x, rcites_null_to_na), rbind))
+    tmp <- as.data.frame(
+        do.call(rbind, lapply(lapply(x, rcites_null_to_na), rbind)),
+        stringsAsFactors = FALSE
+    )
+    tmp1 <- tmp[!names(tmp) %in% c("tags", "references")]
     out <- list()
-    out$distributions <- data.frame(apply(tmp[, !colnames(tmp) %in% c("tags",
-        "references")], 2, unlist), stringsAsFactors = FALSE)
+    out$distributions <- as.data.frame(lapply(tmp1, unlist),
+        stringsAsFactors = FALSE)
     # collapse tags
-    out$distributions$tags <- unlist(lapply(tmp[, colnames(tmp) == "tags"],
-        function(x) ifelse(length(x), paste(unlist(x), collapse = ", "),
-            "")))
+    out$distributions$tags <- unlist(lapply(tmp$tags,
+        function(x) ifelse(length(x), paste(unlist(x), collapse = ", "), "")
+    ))
     out$distributions <- rcites_assign_class(out$distributions)
     # references
-    tmp2 <- lapply(tmp[, colnames(tmp) == "references"], cbind)
-    out$references <- data.frame(id = rep(out$distributions$id,
-      unlist(lapply(tmp2, length))),
-      reference = unlist(tmp2), stringsAsFactors = FALSE)
+    tmp2 <- tmp$references
+    out$references <- data.frame(
+        id = rep(out$distributions$id,
+        unlist(lapply(tmp2, length))),
+        reference = unlist(tmp2), stringsAsFactors = FALSE)
     out$references <- rcites_assign_class(out$references)
     #
     out
