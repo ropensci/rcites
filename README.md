@@ -83,6 +83,7 @@ When citing, please refer to both the [package citation](https://docs.ropensci.o
   - @FVFaleiro
   - @eveskew
   - @fleurhierink
+  - @wajra
 
 
 
