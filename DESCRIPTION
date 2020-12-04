@@ -14,15 +14,11 @@ Description: A programmatic interface to the Species+ <https://speciesplus.net/>
 URL: https://docs.ropensci.org/rcites/, https://github.com/ropensci/rcites
 BugReports: https://github.com/ropensci/rcites/issues
 License: MIT + file LICENSE
-Depends:
-  R (>= 3.1.0)
-Imports:
-  cli,
-  httr,
-  jsonlite
-Encoding: UTF-8
-RoxygenNote: 7.1.0
+Depends: R (>= 3.1.0)
+Imports: cli, httr, jsonlite
 Suggests: knitr, testthat, tibble, rmarkdown, rworldmap
+Encoding: UTF-8
+RoxygenNote: 7.1.1
 VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)
 

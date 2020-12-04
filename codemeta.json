@@ -1,20 +1,27 @@
 {
-  "@context": ["https://doi.org/10.5063/schema/codemeta-2.0", "http://schema.org"],
+  "@context": [
+    "https://doi.org/10.5063/schema/codemeta-2.0",
+    "http://schema.org"
+  ],
   "@type": "SoftwareSourceCode",
   "identifier": "rcites",
   "description": "A programmatic interface to the Species+ <https://speciesplus.net/> database via the Species+/CITES Checklist API <https://api.speciesplus.net/>.",
   "name": "rcites: R Interface to the Species+ Database",
   "codeRepository": "https://github.com/ropensci/rcites",
-  "relatedLink": ["https://ropensci.github.io/rcites/", "https://CRAN.R-project.org/package=rcites"],
+  "relatedLink": [
+    "https://ropensci.github.io/rcites/",
+    "https://CRAN.R-project.org/package=rcites",
+    "https://docs.ropensci.org/rcites/"
+  ],
   "issueTracker": "https://github.com/ropensci/rcites/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.6.3 (2020-02-29)",
+  "runtimePlatform": "R version 4.0.3 (2020-10-10)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -178,6 +185,67 @@
     }
   ],
   "readme": "https://github.com/ropensci/rcites/blob/master/README.md",
-  "fileSize": "554.449KB",
-  "keywords": ["cites", "api-client", "trade", "endangered-species", "r-package", "database", "r", "rstats"]
+  "fileSize": "1505.017KB",
+  "keywords": [
+    "cites",
+    "api-client",
+    "trade",
+    "endangered-species",
+    "r-package",
+    "database",
+    "r",
+    "rstats"
+  ],
+  "releaseNotes": "https://github.com/ropensci/rcites/blob/master/NEWS.md",
+  "contIntegration": "https://codecov.io/gh/ropensci/rcites",
+  "developmentStatus": "https://www.repostatus.org/#active",
+  "citation": [
+    {
+      "@type": "SoftwareSourceCode",
+      "author": [
+        {
+          "@type": "Person",
+          "givenName": "Jonas",
+          "familyName": "Geschke"
+        },
+        {
+          "@type": "Person",
+          "givenName": "Kevin",
+          "familyName": "Cazelles"
+        },
+        {
+          "@type": "Person",
+          "givenName": "Ignasi",
+          "familyName": "Bartomeus"
+        },
+        {
+          "@type": "Person",
+          "givenName": "Jonathan",
+          "familyName": "Goldenberg"
+        },
+        {
+          "@type": "Person",
+          "givenName": "Marie-Bé",
+          "familyName": "Leduc"
+        },
+        {
+          "@type": "Person",
+          "givenName": "Yasmine",
+          "familyName": "Verzelen"
+        },
+        {
+          "@type": "Person",
+          "givenName": "Noam",
+          "familyName": "Ross"
+        },
+        {
+          "@type": "Person",
+          "givenName": "Margaret",
+          "familyName": "Siple"
+        }
+      ],
+      "name": "{rcites}: An R package to access the CITES Species+ database",
+      "url": "https://docs.ropensci.org/rcites/"
+    }
+  ]
 }

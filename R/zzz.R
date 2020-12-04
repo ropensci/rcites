@@ -165,7 +165,7 @@ rcites_cat_pages <- function(pag) {
 }
 
 rcites_numberpages <- function(x) {
-    x$total_entries%/%x$per_page + (x$total_entries%%x$per_page > 0)
+    x$total_entries %/% x$per_page + (x$total_entries %% x$per_page > 0)
 }
 
 

@@ -4,7 +4,7 @@
 
 ## Bugs?
 
-* Submit an issue on the [Issues page](https://github.com/ropensci/taxize/issues)
+* Submit an issue on the [Issues page](https://github.com/ropensci/rcites/issues)
 - be sure to include R session information and a reproducible example (repex).
 
 
@@ -52,7 +52,7 @@ If you are running tests that have `skip_on_cran()` in them, set `Sys.setenv(NOT
 
 ### Making changes
 
-In addition to changing the code, do make sure to udpate the documentation if applicable. The R packages book book has a [chapter on documentation](http://r-pkgs.had.co.nz/man.html) you should read if you aren't familiar.
+In addition to changing the code, do make sure to update the documentation if applicable. The R packages book book has a [chapter on documentation](http://r-pkgs.had.co.nz/man.html) you should read if you aren't familiar.
 
 After code and documentation has been changed, update documentation by running either `devtools::document()` or `roxygen2::roxygenise()`.
 

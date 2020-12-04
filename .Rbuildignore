@@ -15,8 +15,7 @@
 ^\.httr-oauth
 ^\.github/
 ^\.Renviron
-^paper.bib
-^paper.md
+^inst/ms/
 ^news.md
 ^inst/_pkgdown.
 ^cran-comments.md
