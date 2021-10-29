@@ -1,12 +1,10 @@
 on:
   push:
-    branches:
-      - master
+    branches: [main, master]
   pull_request:
-    branches:
-      - master
+    branches: [main, master]
 
-name: R-CMD-check
+name: R CMD Check
 
 jobs:
   R-CMD-check:
@@ -16,14 +14,17 @@ jobs:
 
     strategy:
       fail-fast: false
-      max-parallel: 1
       matrix:
         config:
-          - {os: windows-latest, r: 'release'}
+          - {os: macOS-latest, r: 'devel'}
           - {os: macOS-latest, r: 'release'}
-          - {os: ubuntu-16.04,   r: 'oldrel',  rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest"}
-          - {os: ubuntu-20.04, r: 'release', rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
-          - {os: ubuntu-20.04, r: 'devel', rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
+          - {os: macOS-latest, r: 'oldrel'}
+          - {os: windows-latest, r: 'devel'}
+          - {os: windows-latest, r: 'release'}
+          - {os: windows-latest, r: 'oldrel'}
+          - {os: ubuntu-20.04, r: 'devel'}
+          - {os: ubuntu-20.04, r: 'release'}
+          - {os: ubuntu-20.04, r: 'oldrel'}
 
     env:
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
