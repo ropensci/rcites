@@ -16,7 +16,13 @@ BugReports: https://github.com/ropensci/rcites/issues
 License: MIT + file LICENSE
 Depends: R (>= 3.1.0)
 Imports: cli, httr, jsonlite
-Suggests: knitr, testthat, tibble, rmarkdown, rworldmap, vcr
+Suggests: 
+    knitr,
+    testthat,
+    tibble,
+    rmarkdown,
+    rworldmap,
+    vcr (>= 0.6.0)
 Encoding: UTF-8
 RoxygenNote: 7.1.2
 VignetteBuilder: knitr
