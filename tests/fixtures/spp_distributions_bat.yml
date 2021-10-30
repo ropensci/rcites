@@ -15,16 +15,16 @@ http_interactions:
       reason: OK
       message: 'Success: (200) OK'
     headers:
-      date: Fri, 29 Oct 2021 18:37:14 GMT
+      date: Sat, 30 Oct 2021 16:58:41 GMT
       content-type: application/json; charset=utf-8
       vary: Accept-Encoding
       status: 200 OK
       cache-control: max-age=0, private, must-revalidate
       x-xss-protection: 1; mode=block
-      x-request-id: 27fec35d-3784-4049-bcd4-191cd60cfc0f
+      x-request-id: 802bde6f-e3ca-4ee9-8df9-6c0a31646b40
       etag: W/"ccf6e0e9cb9bd41bd8bc56fb90f5dc64"
       x-frame-options: SAMEORIGIN
-      x-runtime: '0.098877'
+      x-runtime: '0.195543'
       x-content-type-options: nosniff
       x-powered-by: Phusion Passenger 6.0.2
       access-control-allow-origin: '*'
@@ -33,10 +33,10 @@ http_interactions:
       access-control-allow-headers: DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,x-authentication-token
       cf-cache-status: DYNAMIC
       expect-ct: max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
-      report-to: '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=rIZUbAfB5iwvxfpt1R5E2rbnq7mzRTcUFJkJkF8JE77Mi3gL68%2FTxQ2sHo1XBuHNaMEs%2BqI9WK%2FhZDsnUKuJp63PLFxnPcjg5nS1Zyclq%2B6aYybH%2FsPM5aZ%2BDGfjYWkNBPMLqNKc"}],"group":"cf-nel","max_age":604800}'
+      report-to: '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=qa8o3U2zAaRJ2r8EQqfQ%2BXzV9K81wmMSS9SRq4CF5T1h79UGHKUdgVCjykQjRXRtaIx6DSPn3cB8a1NoBNBRwhH4ZjyMsNRVvnvcB9mxKPkZCIlGl3xR2OUFA3LNusldAtOprEaL"}],"group":"cf-nel","max_age":604800}'
       nel: '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       server: cloudflare
-      cf-ray: 6a5e83971a4a7142-YUL
+      cf-ray: 6a663094ce07ca57-YUL
       content-encoding: br
       alt-svc: h3=":443"; ma=86400, h3-29=":443"; ma=86400, h3-28=":443"; ma=86400,
         h3-27=":443"; ma=86400
@@ -347,7 +347,7 @@ http_interactions:
         and rhinos in Africa. A time for decision. IUCN. Gland.","Merz, G. and Hoppe-Dominik,
         B. 1991. Distribution and status of the Forest Elephant in the Ivory Coast,
         West Africa. Pachyderm: 14: 22-24."]}]'
-  recorded_at: 2021-10-29 18:37:21 GMT
+  recorded_at: 2021-10-30 16:58:48 GMT
   recorded_with: vcr/1.0.2, webmockr/0.8.0
 - request:
     method: get
@@ -365,16 +365,16 @@ http_interactions:
       reason: OK
       message: 'Success: (200) OK'
     headers:
-      date: Fri, 29 Oct 2021 18:37:16 GMT
+      date: Sat, 30 Oct 2021 16:58:42 GMT
       content-type: application/json; charset=utf-8
       vary: Accept-Encoding
       status: 200 OK
       cache-control: max-age=0, private, must-revalidate
       x-xss-protection: 1; mode=block
-      x-request-id: 51d337cb-314a-4129-8aad-0268918d0038
+      x-request-id: cd8db052-4cc1-4760-afea-6cc6a7cea7cc
       etag: W/"e19194ecec1af7cca64187b77a38f1e0"
       x-frame-options: SAMEORIGIN
-      x-runtime: '0.026631'
+      x-runtime: '0.022663'
       x-content-type-options: nosniff
       x-powered-by: Phusion Passenger 6.0.2
       access-control-allow-origin: '*'
@@ -383,10 +383,10 @@ http_interactions:
       access-control-allow-headers: DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,x-authentication-token
       cf-cache-status: DYNAMIC
       expect-ct: max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
-      report-to: '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=5JCp2l13wbwkthIz2ABebr65rEljXwRiPtRL9cuDcCGYW8gGjJOz%2B1UYVipJu84LUK1y6mB7vQid%2Fiie3n%2FjDp5UjEKxjSPg1XK3BMc0adtSpkeu2k%2FNXNkWCIw6SsXP96WsaRKH"}],"group":"cf-nel","max_age":604800}'
+      report-to: '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=%2FYvMWwR8hhk8agpjWGneNnw2jNjbf5EI%2B72tkd%2FFULPMwZwcM1GWOTlNmSmFm3mGmNxZWP0KV08Zs4fKzkznvBnl%2FIClbvasFTKmadsR5VsRSqXDOxwWgavVYddwAwKv2A3VduNP"}],"group":"cf-nel","max_age":604800}'
       nel: '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       server: cloudflare
-      cf-ray: 6a5e839f7eb67142-YUL
+      cf-ray: 6a66309e2ea2ca57-YUL
       content-encoding: br
       alt-svc: h3=":443"; ma=86400, h3-29=":443"; ma=86400, h3-28=":443"; ma=86400,
         h3-27=":443"; ma=86400
@@ -428,7 +428,7 @@ http_interactions:
         for Peru. Bulletin of the British Ornithologists'' Club: 122: 314-317."]},{"id":74988,"iso_code2":"CO","name":"Colombia","tags":[],"type":"COUNTRY","references":["Hilty,
         S. and Brown, W. L. 1986. A guide to the birds of Colombia. Princeton University
         Press. Princeton, New Jersey."]}]'
-  recorded_at: 2021-10-29 18:37:21 GMT
+  recorded_at: 2021-10-30 16:58:48 GMT
   recorded_with: vcr/1.0.2, webmockr/0.8.0
 - request:
     method: get
@@ -446,16 +446,16 @@ http_interactions:
       reason: OK
       message: 'Success: (200) OK'
     headers:
-      date: Fri, 29 Oct 2021 18:37:18 GMT
+      date: Sat, 30 Oct 2021 16:58:44 GMT
       content-type: application/json; charset=utf-8
       vary: Accept-Encoding
       status: 200 OK
       cache-control: max-age=0, private, must-revalidate
       x-xss-protection: 1; mode=block
-      x-request-id: 4698fcba-bb41-478c-bbf1-b8d5572b04d1
+      x-request-id: 6ac16493-77f8-4c86-b72a-3c7c2950d741
       etag: W/"ccf6e0e9cb9bd41bd8bc56fb90f5dc64"
       x-frame-options: SAMEORIGIN
-      x-runtime: '0.041427'
+      x-runtime: '0.041702'
       x-content-type-options: nosniff
       x-powered-by: Phusion Passenger 6.0.2
       access-control-allow-origin: '*'
@@ -464,10 +464,10 @@ http_interactions:
       access-control-allow-headers: DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,x-authentication-token
       cf-cache-status: DYNAMIC
       expect-ct: max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
-      report-to: '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=Yf6pGisx4joy7WHwWpyjJainCpDb9xalFHMYgeaIQOhoCcwai%2FXtKiFcQuDjT2IxjYf0tu9DpGCVdTKAmzwgdPgHwWWzviq6YVBySjMwjMg3jLOG19SZiN2A4FCQm%2BJg14UrruVf"}],"group":"cf-nel","max_age":604800}'
+      report-to: '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=PWf5wJDMkCQblQvl3BzcUJO6PwN6bHxOqRxsgWcWf%2BxjdAuIqTdYTyQ6cyom%2FgPEvr8a9P90HhZwaCBtalh1gNi4joJmTJAeMOZbmKAQH5eDkEGGQS6Mt%2BYYGdAaM3EF%2BKT%2BxJGP"}],"group":"cf-nel","max_age":604800}'
       nel: '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       server: cloudflare
-      cf-ray: 6a5e83adabdb7142-YUL
+      cf-ray: 6a6630ac5e15ca57-YUL
       content-encoding: br
       alt-svc: h3=":443"; ma=86400, h3-29=":443"; ma=86400, h3-28=":443"; ma=86400,
         h3-27=":443"; ma=86400
@@ -778,7 +778,7 @@ http_interactions:
         and rhinos in Africa. A time for decision. IUCN. Gland.","Merz, G. and Hoppe-Dominik,
         B. 1991. Distribution and status of the Forest Elephant in the Ivory Coast,
         West Africa. Pachyderm: 14: 22-24."]}]'
-  recorded_at: 2021-10-29 18:37:21 GMT
+  recorded_at: 2021-10-30 16:58:48 GMT
   recorded_with: vcr/1.0.2, webmockr/0.8.0
 - request:
     method: get
@@ -796,16 +796,16 @@ http_interactions:
       reason: OK
       message: 'Success: (200) OK'
     headers:
-      date: Fri, 29 Oct 2021 18:37:19 GMT
+      date: Sat, 30 Oct 2021 16:58:45 GMT
       content-type: application/json; charset=utf-8
       vary: Accept-Encoding
       status: 200 OK
       cache-control: max-age=0, private, must-revalidate
       x-xss-protection: 1; mode=block
-      x-request-id: 18a334c0-f1ee-4462-9369-36914586e976
+      x-request-id: 3ad86563-50f6-452f-90e6-efb197de6b04
       etag: W/"e19194ecec1af7cca64187b77a38f1e0"
       x-frame-options: SAMEORIGIN
-      x-runtime: '0.034268'
+      x-runtime: '0.021496'
       x-content-type-options: nosniff
       x-powered-by: Phusion Passenger 6.0.2
       access-control-allow-origin: '*'
@@ -814,10 +814,10 @@ http_interactions:
       access-control-allow-headers: DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,x-authentication-token
       cf-cache-status: DYNAMIC
       expect-ct: max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
-      report-to: '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=BY5ePutO5lGnB8g7zk62vxf5b00wlnp2MhvrQ0fXE7s0wHcoR%2F66tP9ZqPqE7EbOzKgGFbmwJVicwGUuk4dVAcEElMqvm9gZc%2FixgqnoapN6ODuGxd0EChUgjXhOD8EQV5jdJryR"}],"group":"cf-nel","max_age":604800}'
+      report-to: '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=XGnxkXuRrno8UvokslPNtTIJmfHikGuBm6jUkwdDoZXt9DZOxlgdLjLQcENR8IumPR6PdzNkOGoYPUGLY3FOjDiE25edmc1COxw9iI1vheyY%2FvOQI%2BwpN1sJvtyVvmg%2B6FNyuVvM"}],"group":"cf-nel","max_age":604800}'
       nel: '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       server: cloudflare
-      cf-ray: 6a5e83b5bf447142-YUL
+      cf-ray: 6a6630b4ae3bca57-YUL
       content-encoding: br
       alt-svc: h3=":443"; ma=86400, h3-29=":443"; ma=86400, h3-28=":443"; ma=86400,
         h3-27=":443"; ma=86400
@@ -859,5 +859,5 @@ http_interactions:
         for Peru. Bulletin of the British Ornithologists'' Club: 122: 314-317."]},{"id":74988,"iso_code2":"CO","name":"Colombia","tags":[],"type":"COUNTRY","references":["Hilty,
         S. and Brown, W. L. 1986. A guide to the birds of Colombia. Princeton University
         Press. Princeton, New Jersey."]}]'
-  recorded_at: 2021-10-29 18:37:21 GMT
+  recorded_at: 2021-10-30 16:58:48 GMT
   recorded_with: vcr/1.0.2, webmockr/0.8.0

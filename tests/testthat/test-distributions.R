@@ -14,15 +14,10 @@ test_that("spp_distributions() default works", {
   # expect_null(print(res))
 })
 
-test_that("spp_distributions() verbose mode works", {
-  vcr::use_cassette("spp_distributions_ver", {
-    expect_silent(res <- spp_distributions(taxon_id = tx_id, verbose = FALSE))
-  })  
-})
 
 test_that("spp_distributions() raw mode works", {
   vcr::use_cassette("spp_distributions_raw", {
-    res <- spp_distributions(taxon_id = tx_id, raw = TRUE, verbose = FALSE)
+    expect_silent(res <- spp_distributions(taxon_id = tx_id, raw = TRUE, verbose = FALSE))
   })  
   expect_true(is_cl_rw(res))
   # expect_null(print(res))
@@ -33,11 +28,8 @@ test_that("spp_distributions() language works", {
   vcr::use_cassette("spp_distributions_lan", {
     res1 <- spp_distributions(taxon_id = tx_id, language = "fr", 
       verbose = FALSE)
-    res2 <- spp_distributions(taxon_id = tx_id, language = "es", 
-      verbose = FALSE)
   })  
   expect_identical(lang_GQ %in% res1$distributions$name, c(FALSE, TRUE, FALSE))
-  expect_identical(lang_GQ %in% res2$distributions$name, c(FALSE, FALSE, TRUE))
 })
 
 test_that("spp_distributions() batch mode works", {

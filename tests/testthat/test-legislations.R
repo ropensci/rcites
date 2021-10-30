@@ -1,111 +1,101 @@
-context("Legislations")
+context("Legislation")
 
-skip_on_cran()
-skip_if_no_auth()
-ut_pause()
-#
-res1 <- spp_cites_legislation(taxon_id = tx_id)
-res1b <- spp_cites_legislation(taxon_id = tx_id2, verbose = FALSE)
-res2 <- spp_cites_legislation(taxon_id = tx_id, raw = TRUE, verbose = FALSE)
-ut_pause()
-res3 <- spp_cites_legislation(taxon_id = tx_id, scope = 'all', verbose = FALSE)
-res4 <- spp_cites_legislation(taxon_id = tx_id, language = 'fr',
-  verbose = FALSE)
-ut_pause()
-#
-res5 <- spp_eu_legislation(taxon_id = tx_id)
-res5b <- spp_eu_legislation(taxon_id = tx_id2, verbose = FALSE)
-res6 <- spp_eu_legislation(taxon_id = tx_id, raw = TRUE, verbose = FALSE)
-ut_pause()
-res7 <- spp_eu_legislation(taxon_id = tx_id, scope = 'all', verbose = FALSE)
-res8 <- spp_eu_legislation(taxon_id = tx_id, language = 'fr', verbose = FALSE)
-ut_pause()
-
-
-#
 nm_ci <- c("cites_listings", "cites_quotas", "cites_suspensions")
 nm_eu <- c("eu_listings",  "eu_decisions")
 
-test_that("Expected classes", {
-  expect_s3_class(res1, "spp_cites_leg")
-  expect_type(res1[1L], "list")
-  expect_true(all(unlist(lapply(res1, function(x) is_cl_df(x)))))
-  #
-  expect_s3_class(res5, "spp_eu_leg")
-  expect_type(res5[1L], "list")
-  expect_true(all(unlist(lapply(res5, function(x) is_cl_df(x)))))
-  #
-  expect_true(is_cl_rw(res2))
-  expect_true(is_cl_rw(res6))
-  #
+test_that("spp_cites_legislation() defaults works", {
+  vcr::use_cassette("spp_cites_legislation_def", {
+    res <- spp_cites_legislation(taxon_id = tx_id)
+  })  
+  expect_s3_class(res, "spp_cites_leg")
+  expect_type(res[1L], "list")
+  expect_true(all(unlist(lapply(res, function(x) is_cl_df(x)))))
+  expect_true(all(res$cites_listings$is_current))
+  expect_type(res$cites_suspensions$applies_to_import, "logical")
+  expect_type(res$cites_quotas$public_display, "logical")
+  expect_true("Guinea" %in% res$cites_suspensions$geo_entity.name)
 })
+
+test_that("spp_cites_legislation() raw mode works", {
+  vcr::use_cassette("spp_cites_legislation_raw", {
+    expect_silent(res <- spp_cites_legislation(taxon_id = tx_id, 
+        raw = TRUE, verbose = FALSE))
+  })  
+  expect_true(is_cl_rw(res))
+})
+
+
+test_that("spp_cites_legislation() scope & lang works", {
+  vcr::use_cassette("spp_cites_legislation_sco", {
+    res <- spp_cites_legislation(taxon_id = tx_id, scope = 'all', 
+      language = 'fr',verbose = FALSE)
+  })  
+  expect_s3_class(res, "spp_cites_leg")
+  expect_true(!all(res$cites_listings$is_current))
+  expect_true("Guinée" %in% res$cites_suspensions$geo_entity.name)
+})
+
+
 #
 
-test_that("logical", {
- expect_true(all(res1$cites_listings$is_current))
- expect_true(!all(res3$cites_listings$is_current))
- expect_true(all(res5$eu_listings$is_current))
- expect_true(all(res5b$eu_listings$is_current))
- expect_true(!all(res7$eu_listings$is_current))
- #
- expect_true(is(res1$cites_suspensions$applies_to_import, "logical"))
- expect_true(is(res1$cites_quotas$public_display, "logical"))
-})
-
-test_that("Expected number of entries", {
- expect_equal(nrow(res5$eu_listings), 2)
- expect_equal(nrow(res5b$eu_listings), 1)
+test_that("spp_eu_legislation() defaults works", {
+  vcr::use_cassette("spp_eu_legislation_def", {
+    res <- spp_eu_legislation(taxon_id = tx_id)
+  })  
+  expect_equal(nrow(res$eu_listings), 2)
+  expect_true("Namibia" %in% res$eu_decisions$geo_entity.name)
+  expect_s3_class(res, "spp_eu_leg")
+  expect_type(res[1L], "list")
+  expect_true(all(unlist(lapply(res, function(x) is_cl_df(x)))))
+  expect_true(all(res$eu_listings$is_current))
 })
 
 
-test_that("Language", {
-  expect_true("Guinea" %in% res1$cites_suspensions$geo_entity.name)
-  expect_true("Guinée" %in% res4$cites_suspensions$geo_entity.name)
-  expect_true("Namibia" %in% res5$eu_decisions$geo_entity.name)
-  expect_true("Namibie" %in% res8$eu_decisions$geo_entity.name)
+test_that("spp_eu_legislation() raw mode works", {
+  vcr::use_cassette("spp_eu_legislation_raw", {
+    expect_silent(res <- spp_eu_legislation(taxon_id = tx_id, 
+        raw = TRUE, verbose = FALSE))
+  })  
+  expect_true(is_cl_rw(res))
 })
 
 
-ut_pause(1)
-res9 <- spp_cites_legislation(taxon_id = c(tx_id, tx_id2), verbose = FALSE)
-res9b <- spp_cites_legislation(taxon_id = c(tx_id, tx_id2, "8094"),
-    verbose = FALSE)
-ut_pause()
-res10 <- spp_eu_legislation(taxon_id = c(tx_id, tx_id2), verbose = FALSE)
-ut_pause()
-res11 <- spp_cites_legislation(taxon_id = c(tx_id, tx_id2), raw = TRUE,
-  verbose = FALSE)
-ut_pause()
-res12 <- spp_eu_legislation(taxon_id = c(tx_id, tx_id2), raw = TRUE,
-  verbose = FALSE)
-
-
-test_that("leg_multi outputs", {
-  expect_s3_class(res9, "spp_cites_leg_multi")
-  expect_s3_class(res10, "spp_eu_leg_multi")
-  expect_true(is(res9$cites_listings, cl_df))
-  expect_true(is(res10$eu_listings, cl_df))
-  #
-  expect_identical(res9b$cites_listings, res9$cites_listings)
-  #
-  expect_equal(nrow(res9$cites_listings),
-    nrow(res1$cites_listings) + nrow(res1b$cites_listings))
-  expect_equal(nrow(res10$eu_listings),
-    nrow(res5$eu_listings) + nrow(res5b$eu_listings))
-  #
-  expect_identical(unique(res9$cites_listings$taxon_id), c(tx_id, tx_id2))
-  expect_identical(unique(res10$eu_listings$taxon_id), c(tx_id, tx_id2))
-  #
-  expect_true(is_cl_rm(res11))
-  expect_true(is_cl_rm(res12))
-  #
-  expect_true(is_cl_rw(res11[[1L]]))
-  expect_true(is_cl_rw(res12[[1L]]))
-  #
-  expect_equal(length(res11), 3)
-  expect_equal(length(res12), 3)
-  #
-  expect_identical(res11$taxon_id, c(tx_id, tx_id2))
-  expect_identical(res12$taxon_id, c(tx_id, tx_id2))
+test_that("spp_cites_legislation() scope & lang works", {
+  vcr::use_cassette("spp_eu_legislation_sco", {
+    res <- spp_eu_legislation(taxon_id = tx_id, scope = 'all', 
+      language = 'fr',verbose = FALSE)
+  })  
+  expect_s3_class(res, "spp_eu_leg")
+  expect_true(!all(res$eu_listings$is_current))
+  expect_true("Namibie" %in% res$eu_decisions$geo_entity.name)
 })
-ut_pause()
+
+
+
+
+test_that("spp_cites_legislation() batch mode works", {
+  vcr::use_cassette("spp_cites_legislation_bat", {
+    res <- spp_cites_legislation(taxon_id = c(tx_id, tx_id2, "8094"),
+      verbose = FALSE)
+  })  
+  expect_s3_class(res, "spp_cites_leg_multi")
+  expect_true(is_cl_df(res$cites_listings))
+  expect_identical(unique(res$cites_listings$taxon_id), 
+    c(tx_id, tx_id2))
+  # to be checked see #59
+  expect_equal(length(res), 3)
+})
+
+
+test_that("spp_cites_legislation() batch mode works", {
+  vcr::use_cassette("spp_eu_legislation_bat", {
+    res <- spp_eu_legislation(taxon_id = c(tx_id, tx_id2),
+      verbose = FALSE)
+  })  
+  expect_s3_class(res, "spp_eu_leg_multi")
+  expect_true(is_cl_df(res$eu_listings))
+  expect_identical(unique(res$eu_listings$taxon_id), c(tx_id, tx_id2))
+  expect_equal(length(res), 2)
+  # to be checked see #59
+})
+
