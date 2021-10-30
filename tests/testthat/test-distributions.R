@@ -3,7 +3,7 @@ context("Distributions")
 lang_GQ <- c("Equatorial Guinea", "Guinée équatoriale", "Guinea Ecuatorial")
 
 
-test_that("spp_distributions() default works", {
+test_that("spp_distributions() defaults work", {
   vcr::use_cassette("spp_distributions_def", {
     res <- spp_distributions(taxon_id = tx_id)
   })  

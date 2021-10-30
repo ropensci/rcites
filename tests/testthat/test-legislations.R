@@ -3,7 +3,7 @@ context("Legislation")
 nm_ci <- c("cites_listings", "cites_quotas", "cites_suspensions")
 nm_eu <- c("eu_listings",  "eu_decisions")
 
-test_that("spp_cites_legislation() defaults works", {
+test_that("spp_cites_legislation() defaults work", {
   vcr::use_cassette("spp_cites_legislation_def", {
     res <- spp_cites_legislation(taxon_id = tx_id)
   })  
