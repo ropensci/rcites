@@ -2,7 +2,6 @@ context("Distributions")
 
 lang_GQ <- c("Equatorial Guinea", "Guinée équatoriale", "Guinea Ecuatorial")
 
-
 test_that("spp_distributions() defaults work", {
   vcr::use_cassette("spp_distributions_def", {
     res <- spp_distributions(taxon_id = tx_id)
@@ -14,7 +13,6 @@ test_that("spp_distributions() defaults work", {
   # expect_null(print(res))
 })
 
-
 test_that("spp_distributions() raw mode works", {
   vcr::use_cassette("spp_distributions_raw", {
     expect_silent(res <- spp_distributions(taxon_id = tx_id, raw = TRUE, verbose = FALSE))
@@ -22,7 +20,6 @@ test_that("spp_distributions() raw mode works", {
   expect_true(is_cl_rw(res))
   # expect_null(print(res))
 })
-
 
 test_that("spp_distributions() language works", {
   vcr::use_cassette("spp_distributions_lan", {

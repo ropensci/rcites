@@ -1,6 +1,5 @@
 context("Helper functions")
 
-#
 # rcites_taxonconcept_request(tx_nm, "CITES", FALSE, 1, 500, NULL, NULL)
 
 ## General helpers
@@ -15,7 +14,6 @@ test_that("General helpers", {
   expect_warning(rcites_checkid("1wrong234"))
 })
 
-
 ## Base URL
 pag <- list(per_page = 500, total_entries = 501)
 
@@ -25,7 +23,6 @@ test_that("Base URL", {
   expect_equal(rcites_url("extra"), "https://api.speciesplus.net/api/v1/extra")
   expect_error(set_token(""), "No token has been provided.")
 })
-
 
 ## Outputs helpers
 ls_ex <- rcites_null_to_na(list("A", list("A", NULL)))
@@ -37,7 +34,7 @@ test_that("Outputs helpers", {
   expect_true(all(res1$is_current == c(TRUE, FALSE)))
 })
 
-## Prin helpers
+## Print helpers
 str <- paste(letters[1:26], collapse = "")
 str2 <- paste(letters[1:25], collapse = "")
 rcites_print_shorten(str)

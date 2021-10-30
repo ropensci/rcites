@@ -1,60 +1,58 @@
 context("Taxon concept")
 
-skip_on_cran()
-skip_if_no_auth()
-
-
-res1 <- spp_taxonconcept(query_taxon = tx_nm)
 nm1 <- c("all_id", "general", "higher_taxa", "accepted_names", "common_names",
 "synonyms", "cites_listings")
 nm2 <- c("id", "full_name", "author_year", "rank", "name_status", "updated_at",
   "active", "cites_listing")
-ut_pause()
-
-res2 <- spp_taxonconcept(query_taxon = tx_nm, raw = TRUE)
-ut_pause()
-
-res3 <- spp_taxonconcept(query_taxon = '', taxonomy = 'CMS', pages = 1:2,
-  language = 'EN', verbose = FALSE)
-ut_pause()
-
-res3b <- spp_taxonconcept(query_taxon = '', pages = c(1, 83),
-  language = 'EN', verbose = FALSE)
-ut_pause()
-
-res4 <- spp_taxonconcept(query_taxon = '', pages = c(44), per_page = 20,
-  with_descendants = FALSE, verbose = FALSE)
-ut_pause()
-
-res5 <- spp_taxonconcept(query_taxon = '', pages = 1,
-  updated_since = "2016-01-01", verbose = FALSE)
-ut_pause()
 
 
-test_that("Expected classes", {
-  expect_true(is(res1, "spp_taxon"))
-  expect_equal(length(res1), 7)
-  expect_true(all(names(res1) == nm1))
-  expect_type(res1[1L], "list")
-  expect_true(all(names(res1[[2L]]) == nm2))
-  expect_true(all(unlist(lapply(res1, function(x) is_cl_df(x)))))
-  expect_true(is_cl_rw(res2))
-  expect_type(res3$higher_taxa$kingdom, "character")
-  expect_type(res1$cites_listings$annotation, "character")
-  expect_equal(attributes(res1)$taxonomy, "CITES")
-  expect_equal(attributes(res3)$taxonomy, "CMS")
-  expect_equal(attributes(res3b)$taxonomy, "CITES")
+test_that("spp_taxonconcept() defaults work", {
+  vcr::use_cassette("spp_taxonconcept_def", {
+    res <- spp_taxonconcept(query_taxon = tx_nm)
+  })  
+  expect_s3_class(res, "spp_taxon")
+  expect_equal(length(res), 7)
+  expect_true(all(names(res) == nm1))
+  expect_type(res[1L], "list")
+  expect_true(all(names(res[[2L]]) == nm2))
+  expect_true(all(unlist(lapply(res, function(x) is_cl_df(x)))))
+  expect_type(res$cites_listings$annotation, "character")
+  expect_equal(attributes(res)$taxonomy, "CITES")
 })
 
-
-test_that("Expected behaviour", {
-  expect_equal(nrow(res3[[1L]]), 1000)
-  expect_equal(nrow(res3b[[1L]]), 1000)
-  expect_true(all(res3$common_names$language == "EN"))
-  expect_equal(nrow(res4[[1L]]), 20)
-  expect_true(all(res5$general$updated_at > "2016-01-01"))
-  ut_pause()
-  expect_warning(spp_taxonconcept(query_taxon = "Homo sapiens"),
-    "Taxon not listed.", fixed = TRUE)
-  expect_error(spp_taxonconcept(query_taxon = tx_nm, taxonomy = "WRONG"))
+test_that("spp_taxonconcept() raw mode works", {
+  vcr::use_cassette("spp_taxonconcept_raw", {
+    expect_silent(res <- spp_taxonconcept(query_taxon = tx_nm, raw = TRUE,
+      verbose = FALSE))
+  })  
+  expect_true(is_cl_rw(res))
 })
+
+test_that("spp_taxonconcept() CMS works", {
+  vcr::use_cassette("spp_taxonconcept_cms", {
+    res <- spp_taxonconcept(query_taxon = '', taxonomy = 'CMS', per_page = 10, pages = 1:2, language = 'EN', verbose = FALSE)
+  })  
+  expect_s3_class(res, "spp_taxon")
+  expect_equal(nrow(res[[1L]]), 20)
+  expect_equal(attributes(res)$taxonomy, "CMS")
+  expect_true(all(res$common_names$language == "EN"))
+  expect_type(res$higher_taxa$kingdom, "character")
+})
+
+test_that("spp_taxonconcept() page selection works", {
+  vcr::use_cassette("spp_taxonconcept_pag", {
+    res <- spp_taxonconcept(query_taxon = '', pages = c(43:44), per_page = 10,
+      with_descendants = FALSE, verbose = FALSE)
+  })  
+  expect_equal(nrow(res[[1L]]), 20)
+})
+
+# test_that("spp_taxonconcept() updated_since works", {
+#   vcr::use_cassette("spp_taxonconcept_upd", {
+#     res <- spp_taxonconcept(query_taxon = '',
+#       updated_since = "2018-01-01", verbose = FALSE, page = 1)
+#   })  
+#   expect_true(all(res$general$updated_at >= "2018-01-01"))
+# })
+# maybe a problem with data in URL
+

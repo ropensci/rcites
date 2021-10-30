@@ -28,7 +28,7 @@ test_that("spp_cites_legislation() raw mode works", {
 test_that("spp_cites_legislation() scope & lang works", {
   vcr::use_cassette("spp_cites_legislation_sco", {
     res <- spp_cites_legislation(taxon_id = tx_id, scope = 'all', 
-      language = 'fr',verbose = FALSE)
+      language = 'fr', verbose = FALSE)
   })  
   expect_s3_class(res, "spp_cites_leg")
   expect_true(!all(res$cites_listings$is_current))

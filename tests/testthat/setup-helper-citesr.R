@@ -28,9 +28,3 @@ is_cl_rw <- function(x) {
 is_cl_rm <- function(x) {
   is_cl(x, c("list", "spp_raw_multi")) 
 }
-
-
-
-
-
-ut_pause <- function(x = 1) Sys.sleep(x)
