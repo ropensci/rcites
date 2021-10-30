@@ -143,6 +143,7 @@
       "@type": "SoftwareApplication",
       "identifier": "vcr",
       "name": "vcr",
+      "version": ">= 0.6.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -197,7 +198,7 @@
     }
   ],
   "readme": "https://github.com/ropensci/rcites/blob/master/README.md",
-  "fileSize": "359.136KB",
+  "fileSize": "588.104KB",
   "keywords": [
     "cites",
     "api-client",

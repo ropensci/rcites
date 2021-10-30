@@ -1,3 +1,8 @@
+# rcites devel 
+
+* classes are now testes properly (see #54).
+
+
 # rcites 1.1.0
 
 * internal function `rcites_simplify_distributions()` has been re-written to fix a bug that made `spp_distributions()` throw an error for `taxon_id` with only one distribution entry (see #53).

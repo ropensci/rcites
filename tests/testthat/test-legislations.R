@@ -27,16 +27,16 @@ nm_ci <- c("cites_listings", "cites_quotas", "cites_suspensions")
 nm_eu <- c("eu_listings",  "eu_decisions")
 
 test_that("Expected classes", {
-  expect_equal(class(res1), "spp_cites_leg")
-  expect_equal(class(res1[1L]), "list")
-  expect_true(all(unlist(lapply(res1, function(x) all(class(x) == cl_df)))))
+  expect_s3_class(res1, "spp_cites_leg")
+  expect_type(res1[1L], "list")
+  expect_true(all(unlist(lapply(res1, function(x) is_cl_df(x)))))
   #
-  expect_equal(class(res5), "spp_eu_leg")
-  expect_equal(class(res5[1L]), "list")
-  expect_true(all(unlist(lapply(res5, function(x) all(class(x) == cl_df)))))
+  expect_s3_class(res5, "spp_eu_leg")
+  expect_type(res5[1L], "list")
+  expect_true(all(unlist(lapply(res5, function(x) is_cl_df(x)))))
   #
-  expect_true(all(class(res2) == cl_raw))
-  expect_true(all(class(res6) == cl_raw))
+  expect_true(is_cl_rw(res2))
+  expect_true(is_cl_rw(res6))
   #
 })
 #
@@ -48,8 +48,8 @@ test_that("logical", {
  expect_true(all(res5b$eu_listings$is_current))
  expect_true(!all(res7$eu_listings$is_current))
  #
- expect_true(class(res1$cites_suspensions$applies_to_import) == "logical")
- expect_true(class(res1$cites_quotas$public_display) == "logical")
+ expect_true(is(res1$cites_suspensions$applies_to_import, "logical"))
+ expect_true(is(res1$cites_quotas$public_display, "logical"))
 })
 
 test_that("Expected number of entries", {
@@ -81,10 +81,10 @@ res12 <- spp_eu_legislation(taxon_id = c(tx_id, tx_id2), raw = TRUE,
 
 
 test_that("leg_multi outputs", {
-  expect_equal(class(res9), "spp_cites_leg_multi")
-  expect_equal(class(res10), "spp_eu_leg_multi")
-  expect_equal(class(res9$cites_listings), cl_df)
-  expect_equal(class(res10$eu_listings), cl_df)
+  expect_s3_class(res9, "spp_cites_leg_multi")
+  expect_s3_class(res10, "spp_eu_leg_multi")
+  expect_true(is(res9$cites_listings, cl_df))
+  expect_true(is(res10$eu_listings, cl_df))
   #
   expect_identical(res9b$cites_listings, res9$cites_listings)
   #
@@ -96,11 +96,11 @@ test_that("leg_multi outputs", {
   expect_identical(unique(res9$cites_listings$taxon_id), c(tx_id, tx_id2))
   expect_identical(unique(res10$eu_listings$taxon_id), c(tx_id, tx_id2))
   #
-  expect_identical(class(res11), cl_raw_multi)
-  expect_identical(class(res12), cl_raw_multi)
+  expect_true(is_cl_rm(res11))
+  expect_true(is_cl_rm(res12))
   #
-  expect_equal(class(res11[[1L]]), cl_raw)
-  expect_equal(class(res12[[1L]]), cl_raw)
+  expect_true(is_cl_rw(res11[[1L]]))
+  expect_true(is_cl_rw(res12[[1L]]))
   #
   expect_equal(length(res11), 3)
   expect_equal(length(res12), 3)
