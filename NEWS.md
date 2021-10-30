@@ -1,7 +1,7 @@
 # rcites devel 
 
-* classes are now testes properly (see #54).
-
+* tests now uses vcr (see #56)
+* classes are now tested properly (see #54).
 
 # rcites 1.1.0
 

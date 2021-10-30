@@ -1,0 +1,192 @@
+---
+title: "Get started with rcites"
+author: "rcites team"
+date: 10-08-2018
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Get started with rcites}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+```{r setup, echo = FALSE}
+# NOT_CRAN <- identical(tolower(Sys.getenv("NOT_CRAN")), "true")
+knitr::opts_chunk$set(
+  # purl = NOT_CRAN,
+  # eval = NOT_CRAN,
+  fig.align = "center",
+  comment = "#> "
+)
+library(rcites)
+```
+
+
+# Set up a connection to the Species+/CITES Checklist API
+
+## Get your personal token
+
+To set up a connection to the Species+/CITES Checklist API, an authentication
+token is required. Each user should obtain his or her own personal token to run
+the code below (see <https://api.speciesplus.net/documentation> for more
+details). To obtain a token, sign up on the [Species+ API
+website](http://api.speciesplus.net/users/sign_up).
+
+## Set the token
+
+Now, we assume that you already have a token. For illustrative purposes,
+we will use the generic token value `8QW6Qgh57sBG2k0gtt` from the API
+documentation.
+
+A token is mandatory and needs to be passed to the header of all URL
+requests. They are three different ways to set the token in `rcites`:
+
+1. set an environment variable `SPECIESPLUS_TOKEN` in your [`.Renviron`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Startup.html)
+file (preferred for frequent users);
+
+2. use `set_token()` to set up the token as a character string (with quotes). If
+not entered in the function, the token can be passed without quotes (not as a
+character string) after the prompt. This way, the token `SPECIESPLUS_TOKEN` is
+interactively set up only for the current R session, meaning a login will be
+required for the future R sessions (preferred);
+
+```{r, eval = FALSE}
+library(rcites)
+set_token("8QW6Qgh57sBG2k0gtt")
+```
+
+3. use the `token` argument inside the functions, *i.e.* the token is passed manually to each function call.
+
+Note that if you set a wrong token and you wish to set it again interactively,
+you must first forget the previous token with `forget_token()`.
+
+# Use of key features
+
+## Retrieve a taxon identifiers with spp_taxonconcept()
+
+### Basic calls to spp_taxonconcept()
+
+In order to efficiently query information from the CITES database, you
+first need to retrieve the unique taxon identifier `taxon_id` from the [Species+ taxon concept](https://api.speciesplus.net/documentation/v1/taxon_concepts/index.html).
+To do so, you should first call `spp_taxonconcept()` and provide the scientific
+name of the taxon you are looking for. Let us start by requesting the identifier of the African bush elephant, *i.e.* *Loxodonta africana*.
+
+```{r result_1, message = FALSE}
+res1 <- spp_taxonconcept(query_taxon = "Loxodonta africana")
+```
+
+Note that if you have decide to set your token using the third option, then the code should look like the one below:
+
+```{r, eval = FALSE}
+res1 <- spp_taxonconcept(query_taxon = "Loxodonta africana", token = "8QW6Qgh57sBG2k0gtt")
+```
+
+### Object `spp_taxonconcept`
+
+`res1` is an S3 object of class `spp_taxon`:
+
+```{r res1_attr}
+attributes(res1)
+```
+
+that contains information sorted into several data frames (see `?spp_taxonconcept`
+for further details):
+
+
+```{r res1_names}
+res1
+```
+
+For some taxa, there are more than one taxon identifier available. In `general` only
+*active* identifiers are listed, but the full list of identifiers are
+available in `all_id`:
+
+```{r res3}
+res3 <- spp_taxonconcept(query = "Amazilia versicolor")
+res3$general
+res3$all_id
+```
+
+Also, if the taxon is not listed, a warning message should come up.
+
+```{r}
+res4 <- spp_taxonconcept(query = "Homo Sapiens")
+```
+
+### Custom calls to spp_taxonconcept()
+
+`spp_taxonconcept()` includes several arguments to retrieve a specific subset
+of information (see `?spp_taxonconcept` for more details):
+
+```{r args_spp_taxonconcept}
+args('spp_taxonconcept')
+```
+
+Most importantly, the argument `taxonomy` allows a selection between the two
+databases (CITES or CMS):
+
+```{r taxo_cms}
+spp_taxonconcept(query = "Amazilia versicolor", taxonomy = "CMS")
+spp_taxonconcept(query = "Loxodonta africana", taxonomy = "CMS")
+```
+
+`language` and `updated_since` are convenient filters for
+the written language of common names (must be a
+two-letters code, see [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2))
+and the last update of the entries, respectively:
+
+```{r filter}
+spp_taxonconcept(query_taxon = "Loxodonta africana", language = 'EN',
+  updated_since = "2016-01-01")
+```
+
+## Retrieve a taxon identifiers available data
+
+In order to use the four `spp_*` functions, one needs to use the
+*active taxon identifier* of a given species. For instance, for the two
+species we used as examples above we use the value indicated in the table below:
+
+|name                | taxon identifier|
+|:-------------------|:----------------|
+|Loxodonta africana  |       4521      |
+|Amazilia versicolor |       3210      |
+
+
+
+### CITES legislation data
+
+First, we can retrieve current CITES appendix listings and reservations, CITES quotas, and CITES suspensions for a given taxon concept.
+
+```{r}
+spp_cites_legislation(taxon_id = "4521", verbose = FALSE)
+```
+
+### EU legislation data
+
+Similarly, we can also retrieve current EU annex listings, SRG opinions, and EU
+suspensions with `spp_eu_legislation`. Both legislation functions have a `scope`
+argument that sets the time scope of legislation and take one value among
+`current`, `historic` and `all` (default is set to `current`). For instance, one
+can get all information pertaining to EU annex listing for *Amazilia versicolor*
+with the following command line:
+
+```{r}
+spp_eu_legislation(taxon_id = "3210", scope = "all", verbose = FALSE)
+```
+
+
+### Distribution data
+
+Distribution data at the country level is also available for a given taxon concept:
+
+```{r}
+spp_distributions("4521", verbose = FALSE)
+```
+
+### References
+
+Finally, we can retrieve all available references for a given taxa.
+
+```{r}
+spp_references("4521", verbose = FALSE)
+```

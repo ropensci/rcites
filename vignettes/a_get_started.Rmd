@@ -10,16 +10,7 @@ vignette: >
 ---
 
 
-```{r setup, echo = FALSE}
-NOT_CRAN <- identical(tolower(Sys.getenv("NOT_CRAN")), "true")
-knitr::opts_chunk$set(
-  purl = NOT_CRAN,
-  eval = NOT_CRAN,
-  fig.align = "center",
-  comment = "#> "
-)
-library(rcites)
-```
+
 
 
 # Set up a connection to the Species+/CITES Checklist API
@@ -50,7 +41,8 @@ character string) after the prompt. This way, the token `SPECIESPLUS_TOKEN` is
 interactively set up only for the current R session, meaning a login will be
 required for the future R sessions (preferred);
 
-```{r, eval = FALSE}
+
+```r
 library(rcites)
 set_token("8QW6Qgh57sBG2k0gtt")
 ```
@@ -71,13 +63,19 @@ first need to retrieve the unique taxon identifier `taxon_id` from the [Species+
 To do so, you should first call `spp_taxonconcept()` and provide the scientific
 name of the taxon you are looking for. Let us start by requesting the identifier of the African bush elephant, *i.e.* *Loxodonta africana*.
 
-```{r result_1}
+
+```r
 res1 <- spp_taxonconcept(query_taxon = "Loxodonta africana")
+```
+
+```
+#>  → Retrieving info from page 1 ........................✔
 ```
 
 Note that if you have decide to set your token using the third option, then the code should look like the one below:
 
-```{r, eval = FALSE}
+
+```r
 res1 <- spp_taxonconcept(query_taxon = "Loxodonta africana", token = "8QW6Qgh57sBG2k0gtt")
 ```
 
@@ -85,32 +83,123 @@ res1 <- spp_taxonconcept(query_taxon = "Loxodonta africana", token = "8QW6Qgh57s
 
 `res1` is an S3 object of class `spp_taxon`:
 
-```{r res1_attr}
+
+```r
 attributes(res1)
+```
+
+```
+#>  $names
+#>  [1] "all_id"         "general"        "higher_taxa"    "accepted_names" "common_names"  
+#>  [6] "synonyms"       "cites_listings"
+#>  
+#>  $class
+#>  [1] "spp_taxon"
+#>  
+#>  $taxonomy
+#>  [1] "CITES"
 ```
 
 that contains information sorted into several data frames (see `?spp_taxonconcept`
 for further details):
 
 
-```{r res1_names}
+
+```r
 res1
+```
+
+```
+#>  
+#>  ── General info - CITES ($general): ─────────────────────────────────────────────────────────────────
+#>  # A tibble: 1 × 8
+#>    id    full_name          author_year     rank  name_status updated_at          active cites_listing
+#>    <chr> <chr>              <chr>           <chr> <chr>       <dttm>              <lgl>  <chr>        
+#>  1 4521  Loxodonta africana (Blumenbach, 1… SPEC… A           2021-10-13 13:12:58 TRUE   I/II         
+#>  
+#>  ── Classification ($higher_taxa): ───────────────────────────────────────────────────────────────────
+#>  # A tibble: 1 × 6
+#>    id    kingdom  phylum   class    order       family      
+#>    <chr> <chr>    <chr>    <chr>    <chr>       <chr>       
+#>  1 4521  Animalia Chordata Mammalia Proboscidea Elephantidae
+#>  
+#>  ── Synonyms ($synonyms): ────────────────────────────────────────────────────────────────────────────
+#>  # A tibble: 4 × 2
+#>    id    apply.do.call.rbind..tmp.wch....2..unlist.
+#>    <chr> <chr>                                     
+#>  1 4521  37069                                     
+#>  2 4521  Loxodonta cyclotis                        
+#>  3 4521  (Matschie, 1900)                          
+#>  4 4521  SPECIES                                   
+#>  
+#>  ── Common names ($common_names): ────────────────────────────────────────────────────────────────────
+#>  # A tibble: 10 × 3
+#>     id    name               language
+#>     <chr> <chr>              <chr>   
+#>   1 4521  Ndovo              SW      
+#>   2 4521  Tembo              SW      
+#>   3 4521  Haathi             UR      
+#>   4 4521  Elefante           PT      
+#>   5 4521  Slon               RU      
+#>   6 4521  Elefant            NO      
+#>   7 4521  Olifant            NL      
+#>   8 4521  Afrikaanse olifant NL      
+#>   9 4521  Elefante africano  ES      
+#>  10 4521  afrikansk elefant  SV      
+#>  -------truncated-------
+#>  
+#>  Information available: $all_id, $general, $higher_taxa, $accepted_names, $common_names, $synonyms, $cites_listings
 ```
 
 For some taxa, there are more than one taxon identifier available. In `general` only
 *active* identifiers are listed, but the full list of identifiers are
 available in `all_id`:
 
-```{r res3}
+
+```r
 res3 <- spp_taxonconcept(query = "Amazilia versicolor")
+```
+
+```
+#>  → Retrieving info from page 1 ........................✔
+```
+
+```r
 res3$general
+```
+
+```
+#>  # A tibble: 1 × 8
+#>    id    full_name           author_year    rank  name_status updated_at          active cites_listing
+#>  * <chr> <chr>               <chr>          <chr> <chr>       <dttm>              <lgl>  <chr>        
+#>  1 3210  Amazilia versicolor (Vieillot, 18… SPEC… A           2015-05-07 15:10:59 TRUE   II
+```
+
+```r
 res3$all_id
+```
+
+```
+#>  # A tibble: 2 × 7
+#>    id    full_name           author_year      rank    name_status updated_at          active
+#>    <chr> <chr>               <chr>            <chr>   <chr>       <dttm>              <lgl> 
+#>  1 3210  Amazilia versicolor (Vieillot, 1818) SPECIES A           2015-05-07 15:10:59 TRUE  
+#>  2 65789 Amazilia versicolor (Vieillot, 1818) SPECIES S           2016-09-23 15:30:46 FALSE
 ```
 
 Also, if the taxon is not listed, a warning message should come up.
 
-```{r}
+
+```r
 res4 <- spp_taxonconcept(query = "Homo Sapiens")
+```
+
+```
+#>  → Retrieving info from page 1 ........................✔
+```
+
+```
+#>  Warning in spp_taxonconcept(query = "Homo Sapiens"): Taxon not listed.
 ```
 
 ### Custom calls to spp_taxonconcept()
@@ -118,16 +207,80 @@ res4 <- spp_taxonconcept(query = "Homo Sapiens")
 `spp_taxonconcept()` includes several arguments to retrieve a specific subset
 of information (see `?spp_taxonconcept` for more details):
 
-```{r args_spp_taxonconcept}
+
+```r
 args('spp_taxonconcept')
+```
+
+```
+#>  function (query_taxon, taxonomy = "CITES", with_descendants = FALSE, 
+#>      language = NULL, updated_since = NULL, per_page = 500, pages = NULL, 
+#>      raw = FALSE, token = NULL, verbose = TRUE, pause = 1, ...) 
+#>  NULL
 ```
 
 Most importantly, the argument `taxonomy` allows a selection between the two
 databases (CITES or CMS):
 
-```{r taxo_cms}
+
+```r
 spp_taxonconcept(query = "Amazilia versicolor", taxonomy = "CMS")
+```
+
+```
+#>  → Retrieving info from page 1 ........................✔
+```
+
+```
+#>  Warning in spp_taxonconcept(query = "Amazilia versicolor", taxonomy = "CMS"): Taxon not listed.
+```
+
+```
+#>  NULL
+```
+
+```r
 spp_taxonconcept(query = "Loxodonta africana", taxonomy = "CMS")
+```
+
+```
+#>  → Retrieving info from page 1 ........................✔
+```
+
+```
+#>  
+#>  ── General info - CMS ($general): ───────────────────────────────────────────────────────────────────
+#>  # A tibble: 1 × 7
+#>    id    full_name          author_year        rank    name_status updated_at          active
+#>    <chr> <chr>              <chr>              <chr>   <chr>       <dttm>              <lgl> 
+#>  1 11691 Loxodonta africana (Blumenbach, 1797) SPECIES A           2021-05-06 12:44:13 TRUE  
+#>  
+#>  ── Classification ($higher_taxa): ───────────────────────────────────────────────────────────────────
+#>  # A tibble: 1 × 6
+#>    id    kingdom  phylum   class    order       family      
+#>    <chr> <chr>    <chr>    <chr>    <chr>       <chr>       
+#>  1 11691 Animalia Chordata Mammalia Proboscidea Elephantidae
+#>  
+#>  ── Synonyms ($synonyms): ────────────────────────────────────────────────────────────────────────────
+#>  # A tibble: 0 × 0
+#>  
+#>  ── Common names ($common_names): ────────────────────────────────────────────────────────────────────
+#>  # A tibble: 10 × 3
+#>     id    name               language
+#>     <chr> <chr>              <chr>   
+#>   1 11691 Tembo              SW      
+#>   2 11691 Ndovo              SW      
+#>   3 11691 Haathi             UR      
+#>   4 11691 Elefante           PT      
+#>   5 11691 Slon               RU      
+#>   6 11691 Elefant            NO      
+#>   7 11691 Olifant            NL      
+#>   8 11691 Afrikaanse olifant NL      
+#>   9 11691 Elefante africano  ES      
+#>  10 11691 afrikansk elefant  SV      
+#>  -------truncated-------
+#>  
+#>  Information available: $all_id, $general, $higher_taxa, $accepted_names, $common_names, $synonyms
 ```
 
 `language` and `updated_since` are convenient filters for
@@ -135,9 +288,47 @@ the written language of common names (must be a
 two-letters code, see [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2))
 and the last update of the entries, respectively:
 
-```{r filter}
+
+```r
 spp_taxonconcept(query_taxon = "Loxodonta africana", language = 'EN',
   updated_since = "2016-01-01")
+```
+
+```
+#>  → Retrieving info from page 1 ........................✔
+```
+
+```
+#>  
+#>  ── General info - CITES ($general): ─────────────────────────────────────────────────────────────────
+#>  # A tibble: 1 × 8
+#>    id    full_name          author_year     rank  name_status updated_at          active cites_listing
+#>    <chr> <chr>              <chr>           <chr> <chr>       <dttm>              <lgl>  <chr>        
+#>  1 4521  Loxodonta africana (Blumenbach, 1… SPEC… A           2021-10-13 13:12:58 TRUE   I/II         
+#>  
+#>  ── Classification ($higher_taxa): ───────────────────────────────────────────────────────────────────
+#>  # A tibble: 1 × 6
+#>    id    kingdom  phylum   class    order       family      
+#>    <chr> <chr>    <chr>    <chr>    <chr>       <chr>       
+#>  1 4521  Animalia Chordata Mammalia Proboscidea Elephantidae
+#>  
+#>  ── Synonyms ($synonyms): ────────────────────────────────────────────────────────────────────────────
+#>  # A tibble: 4 × 2
+#>    id    apply.do.call.rbind..tmp.wch....2..unlist.
+#>    <chr> <chr>                                     
+#>  1 4521  37069                                     
+#>  2 4521  Loxodonta cyclotis                        
+#>  3 4521  (Matschie, 1900)                          
+#>  4 4521  SPECIES                                   
+#>  
+#>  ── Common names ($common_names): ────────────────────────────────────────────────────────────────────
+#>  # A tibble: 2 × 3
+#>    id    name                      language
+#>    <chr> <chr>                     <chr>   
+#>  1 4521  African Elephant          EN      
+#>  2 4521  African Savannah Elephant EN      
+#>  
+#>  Information available: $all_id, $general, $higher_taxa, $accepted_names, $common_names, $synonyms, $cites_listings
 ```
 
 ## Retrieve a taxon identifiers available data
@@ -157,8 +348,63 @@ species we used as examples above we use the value indicated in the table below:
 
 First, we can retrieve current CITES appendix listings and reservations, CITES quotas, and CITES suspensions for a given taxon concept.
 
-```{r}
+
+```r
 spp_cites_legislation(taxon_id = "4521", verbose = FALSE)
+```
+
+```
+#>  
+#>  ── Cites listings ($cites_listings): ────────────────────────────────────────────────────────────────
+#>  # A tibble: 10 × 6
+#>     id    taxon_concept_id is_current appendix change_type effective_at
+#>     <chr> <chr>            <lgl>      <chr>    <chr>       <chr>       
+#>   1 30344 4521             TRUE       I        +           2017-01-02  
+#>   2 30115 4521             TRUE       II       +           2019-11-26  
+#>   3 32160 4521             TRUE       II       R+          2019-11-26  
+#>   4 32161 4521             TRUE       II       R+          2019-11-26  
+#>   5 32156 4521             TRUE       II       R+          2019-11-26  
+#>   6 32158 4521             TRUE       II       R+          2019-11-26  
+#>   7 32154 4521             TRUE       II       R+          2019-11-26  
+#>   8 32159 4521             TRUE       II       R+          2019-11-26  
+#>   9 32157 4521             TRUE       II       R+          2019-11-26  
+#>  10 32155 4521             TRUE       II       R+          2019-11-26  
+#>  
+#>  ── Cites quotas ($cites_quotas): ────────────────────────────────────────────────────────────────────
+#>  # A tibble: 10 × 10
+#>     id    taxon_concept_id quota publication_date public_display is_current unit  geo_entity.iso_code2
+#>     <chr> <chr>            <chr> <chr>            <lgl>          <lgl>      <chr> <chr>               
+#>   1 25337 4521             0     2021-02-03       TRUE           TRUE       <NA>  KE                  
+#>   2 25348 4521             0     2021-02-03       TRUE           TRUE       <NA>  LR                  
+#>   3 25355 4521             0     2021-02-03       TRUE           TRUE       <NA>  MW                  
+#>   4 25358 4521             0     2021-02-03       TRUE           TRUE       <NA>  ML                  
+#>   5 25375 4521             0     2021-02-03       TRUE           TRUE       <NA>  MZ                  
+#>   6 25390 4521             0     2021-02-03       TRUE           TRUE       <NA>  AO                  
+#>   7 25414 4521             0     2021-02-03       TRUE           TRUE       <NA>  NE                  
+#>   8 25431 4521             0     2021-02-03       TRUE           TRUE       <NA>  NG                  
+#>   9 25554 4521             100   2021-02-03       TRUE           TRUE       <NA>  TZ                  
+#>  10 25555 4521             300   2021-02-03       TRUE           TRUE       <NA>  ZA                  
+#>  # … with 2 more variables: geo_entity.name <chr>, geo_entity.type <chr>
+#>  -------truncated-------
+#>  Field(s) not printed:  notes, url 
+#>  
+#>  ── Cites suspensions ($cites_suspensions): ──────────────────────────────────────────────────────────
+#>  # A tibble: 10 × 8
+#>     id    taxon_concept_id start_date is_current applies_to_import geo_entity.iso_c… geo_entity.name  
+#>     <chr> <chr>            <chr>      <lgl>      <lgl>             <chr>             <chr>            
+#>   1 17621 4521             2014-08-11 TRUE       TRUE              US                United States of…
+#>   2 17620 4521             2014-08-11 TRUE       TRUE              US                United States of…
+#>   3 17686 4521             2014-10-10 TRUE       TRUE              US                United States of…
+#>   4 18709 4521             2010-08-16 TRUE       TRUE              ZW                Zimbabwe         
+#>   5 15983 <NA>             2011-01-19 TRUE       FALSE             DJ                Djibouti         
+#>   6 22079 <NA>             2018-01-30 TRUE       FALSE             DJ                Djibouti         
+#>   7 22076 <NA>             2018-01-22 TRUE       FALSE             LR                Liberia          
+#>   8 22132 4521             2018-03-19 TRUE       FALSE             AU                Australia        
+#>   9 23168 <NA>             2019-07-04 TRUE       FALSE             SO                Somalia          
+#>  10 24947 4521             2020-05-26 TRUE       TRUE              CN                China            
+#>  # … with 1 more variable: geo_entity.type <chr>
+#>  -------truncated-------
+#>  Field(s) not printed:  notes, start_notification.name, start_notification.date, start_notification.url
 ```
 
 ### EU legislation data
@@ -170,8 +416,31 @@ argument that sets the time scope of legislation and take one value among
 can get all information pertaining to EU annex listing for *Amazilia versicolor*
 with the following command line:
 
-```{r}
+
+```r
 spp_eu_legislation(taxon_id = "3210", scope = "all", verbose = FALSE)
+```
+
+```
+#>  
+#>  ── EU listings ($eu_listings): ──────────────────────────────────────────────────────────────────────
+#>  # A tibble: 10 × 6
+#>     id    taxon_concept_id is_current annex change_type effective_at
+#>     <chr> <chr>            <lgl>      <chr> <chr>       <chr>       
+#>   1 17611 3210             FALSE      B     +           1997-06-01  
+#>   2 17610 3210             FALSE      B     +           2000-12-18  
+#>   3 17609 3210             FALSE      B     +           2003-08-30  
+#>   4 17608 3210             FALSE      B     +           2005-08-22  
+#>   5 17607 3210             FALSE      B     +           2008-04-11  
+#>   6 17606 3210             FALSE      B     +           2009-05-22  
+#>   7 17605 3210             FALSE      B     +           2010-08-15  
+#>   8 17604 3210             FALSE      B     +           2012-02-14  
+#>   9 17603 3210             FALSE      B     +           2012-12-15  
+#>  10 17602 3210             FALSE      B     +           2013-08-10  
+#>  -------truncated-------
+#>  
+#>  ── EU decisions ($eu_decisions): ────────────────────────────────────────────────────────────────────
+#>  # A tibble: 0 × 0
 ```
 
 
@@ -179,14 +448,70 @@ spp_eu_legislation(taxon_id = "3210", scope = "all", verbose = FALSE)
 
 Distribution data at the country level is also available for a given taxon concept:
 
-```{r}
+
+```r
 spp_distributions("4521", verbose = FALSE)
+```
+
+```
+#>  
+#>  ── Distributions ($distributions): ──────────────────────────────────────────────────────────────────
+#>  # A tibble: 10 × 5
+#>        id iso_code2 name              type    tags 
+#>     <int> <chr>     <chr>             <chr>   <chr>
+#>   1  1778 ML        Mali              COUNTRY ""   
+#>   2  1923 GQ        Equatorial Guinea COUNTRY ""   
+#>   3  4429 RW        Rwanda            COUNTRY ""   
+#>   4  4491 GH        Ghana             COUNTRY ""   
+#>   5  5628 SD        Sudan             COUNTRY ""   
+#>   6  6724 ET        Ethiopia          COUNTRY ""   
+#>   7  8995 GA        Gabon             COUNTRY ""   
+#>   8 12983 AO        Angola            COUNTRY ""   
+#>   9 15554 CM        Cameroon          COUNTRY ""   
+#>  10 17060 BJ        Benin             COUNTRY ""   
+#>  -------truncated-------
+#>  
+#>  ── References ($references): ────────────────────────────────────────────────────────────────────────
+#>  # A tibble: 10 × 2
+#>        id reference                       
+#>     <int> <chr>                           
+#>   1  1778 Kingdon, J., Happold [truncated]
+#>   2  1923 Basilio, A. 1962. La [truncated]
+#>   3  4429 Jackson, P. 1982. El [truncated]
+#>   4  4429 Monfort, A. 1992. Pr [truncated]
+#>   5  4491 Grubb, P., Jones, T. [truncated]
+#>   6  4491 Jackson, P. 1982. El [truncated]
+#>   7  5628 Hameed, S.M.A. and E [truncated]
+#>   8  6724 Bolton, M. 1973. Not [truncated]
+#>   9  6724 Largen, M. J. and Ya [truncated]
+#>  10  6724 Meester, J. and Setz [truncated]
+#>  -------truncated-------
 ```
 
 ### References
 
 Finally, we can retrieve all available references for a given taxa.
 
-```{r}
+
+```r
 spp_references("4521", verbose = FALSE)
+```
+
+```
+#>  
+#>  ── References ($references): ────────────────────────────────────────────────────────────────────────
+#>  # A tibble: 10 × 3
+#>     id    citation                                             is_standard
+#>     <chr> <chr>                                                <chr>      
+#>   1 10265 Anon. 1978. Red data book: Mammalia. IUC [truncated] FALSE      
+#>   2 6344  Barnes, R. F., Agnagna, M., Alers, M. P. [truncated] FALSE      
+#>   3 17013 Blanc, J.J., Thouless, C.R., Hart, J.A., [truncated] FALSE      
+#>   4 6371  Burton, M. P. 1994. Alternative projecti [truncated] FALSE      
+#>   5 6532  Douglas-Hamilton, I. 1987. African Eleph [truncated] FALSE      
+#>   6 6534  Douglas-Hamilton, I. 1987. African Eleph [truncated] FALSE      
+#>   7 6825  Jackson, P. 1982. Elephants and rhinos i [truncated] FALSE      
+#>   8 7224  Meester, J. and Setzer, H. W (eds.) 1974 [truncated] FALSE      
+#>   9 7609  Parker, I. and Amin, M. 1983. Ivory cris [truncated] FALSE      
+#>  10 19397 Parker, I.S.C. and Martin, E.B. 1982. Ho [truncated] FALSE      
+#>  -------truncated-------
 ```

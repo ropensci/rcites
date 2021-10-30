@@ -4,22 +4,13 @@ author: "rcites team"
 date: 10-08-2018
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Species+ information about the African bush elephant}
+  %\VignetteIndexEntry{Study case: the African bush elephant (*Loxodonta africana*)"}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
 
-```{r setup, echo = FALSE}
-NOT_CRAN <- identical(tolower(Sys.getenv("NOT_CRAN")), "true")
-knitr::opts_chunk$set(
-  purl = NOT_CRAN,
-  eval = NOT_CRAN,
-  fig.align = "center",
-  comment = "#> "
-)
-library(rcites)
-```
+
 
 # Introduction and setup
 
@@ -34,7 +25,8 @@ of nature conservation and the logo species of CITES.
 
 We start with a basic set up: we load the package and set the token:
 
-```{r, eval = FALSE}
+
+```r
 library(rcites)
 set_token("8QW6Qgh57sBG2k0gtt")
 ```
@@ -45,9 +37,59 @@ In order to access information about the elephant, we first need to retrieve its
 Species+ taxon identifier. For this, we use the `spp_taxonconcept()` function
 and the elephant's scientific name, *Loxodonta africana*, as `query_taxon` argument.
 
-```{r}
+
+```r
 elephant_taxonconcept <- spp_taxonconcept(query_taxon = "Loxodonta africana")
+```
+
+```
+#>  → Retrieving info from page 1 ........................✔
+```
+
+```r
 elephant_taxonconcept
+```
+
+```
+#>  
+#>  ── General info - CITES ($general): ─────────────────────────────────────────────────────────────────
+#>  # A tibble: 1 × 8
+#>    id    full_name          author_year     rank  name_status updated_at          active cites_listing
+#>    <chr> <chr>              <chr>           <chr> <chr>       <dttm>              <lgl>  <chr>        
+#>  1 4521  Loxodonta africana (Blumenbach, 1… SPEC… A           2021-10-13 13:12:58 TRUE   I/II         
+#>  
+#>  ── Classification ($higher_taxa): ───────────────────────────────────────────────────────────────────
+#>  # A tibble: 1 × 6
+#>    id    kingdom  phylum   class    order       family      
+#>    <chr> <chr>    <chr>    <chr>    <chr>       <chr>       
+#>  1 4521  Animalia Chordata Mammalia Proboscidea Elephantidae
+#>  
+#>  ── Synonyms ($synonyms): ────────────────────────────────────────────────────────────────────────────
+#>  # A tibble: 4 × 2
+#>    id    apply.do.call.rbind..tmp.wch....2..unlist.
+#>    <chr> <chr>                                     
+#>  1 4521  37069                                     
+#>  2 4521  Loxodonta cyclotis                        
+#>  3 4521  (Matschie, 1900)                          
+#>  4 4521  SPECIES                                   
+#>  
+#>  ── Common names ($common_names): ────────────────────────────────────────────────────────────────────
+#>  # A tibble: 10 × 3
+#>     id    name               language
+#>     <chr> <chr>              <chr>   
+#>   1 4521  Ndovo              SW      
+#>   2 4521  Tembo              SW      
+#>   3 4521  Haathi             UR      
+#>   4 4521  Elefante           PT      
+#>   5 4521  Slon               RU      
+#>   6 4521  Elefant            NO      
+#>   7 4521  Olifant            NL      
+#>   8 4521  Afrikaanse olifant NL      
+#>   9 4521  Elefante africano  ES      
+#>  10 4521  afrikansk elefant  SV      
+#>  -------truncated-------
+#>  
+#>  Information available: $all_id, $general, $higher_taxa, $accepted_names, $common_names, $synonyms, $cites_listings
 ```
 
 
@@ -60,7 +102,8 @@ Beyond the taxon identifier, the output also provides information about the taxo
 
 Before giving more insights into the legislation status of the elephant, we have a look at where the elephant actually occurs naturally. For this, we can access the elephant's distribution information with the `spp_distributions()` function. Thereafter, we can map the distribution with the help of the `rworldmap` package.
 
-```{r map, message = FALSE, fig.width = 6.4, fig.height = 7.6, fig.align="center"}
+
+```r
 library(rworldmap)
 
 par(las = 1)
@@ -71,6 +114,15 @@ map2 <- joinCountryData2Map(elephant_distr,
                             joinCode="ISO2",
                             nameJoinColumn = "iso_code2",
                             nameCountryColumn = "name")
+```
+
+```
+#>  42 codes from your data successfully matched countries in the map
+#>  0 codes from your data failed to match with a country code in the map
+#>  201 codes from the map weren't represented in your data
+```
+
+```r
 plot(c(-23, 62), c(45, -40),
      type = "n",
      main = "Loxodonta africana",
@@ -80,6 +132,8 @@ plot(map2, add = TRUE)
 plot(map2[!is.na(map2$iso_code2),], col = "#cba74d", add = TRUE)
 ```
 
+<img src="img/map-1.png" title="plot of chunk map" alt="plot of chunk map" style="display: block; margin: auto;" />
+
 
 ## Access the legislation status
 
@@ -88,17 +142,115 @@ the legislation status information of the elephant.
 
 First, we have a look at the CITES legislation status:
 
-```{r}
+
+```r
 elephant_cites <- spp_cites_legislation(taxon_id = "4521")
+```
+
+```
+#>  → Now processing taxon_id '4521'......................✔
+```
+
+```r
 elephant_cites
+```
+
+```
+#>  
+#>  ── Cites listings ($cites_listings): ────────────────────────────────────────────────────────────────
+#>  # A tibble: 10 × 6
+#>     id    taxon_concept_id is_current appendix change_type effective_at
+#>     <chr> <chr>            <lgl>      <chr>    <chr>       <chr>       
+#>   1 30344 4521             TRUE       I        +           2017-01-02  
+#>   2 30115 4521             TRUE       II       +           2019-11-26  
+#>   3 32160 4521             TRUE       II       R+          2019-11-26  
+#>   4 32161 4521             TRUE       II       R+          2019-11-26  
+#>   5 32156 4521             TRUE       II       R+          2019-11-26  
+#>   6 32158 4521             TRUE       II       R+          2019-11-26  
+#>   7 32154 4521             TRUE       II       R+          2019-11-26  
+#>   8 32159 4521             TRUE       II       R+          2019-11-26  
+#>   9 32157 4521             TRUE       II       R+          2019-11-26  
+#>  10 32155 4521             TRUE       II       R+          2019-11-26  
+#>  
+#>  ── Cites quotas ($cites_quotas): ────────────────────────────────────────────────────────────────────
+#>  # A tibble: 10 × 10
+#>     id    taxon_concept_id quota publication_date public_display is_current unit  geo_entity.iso_code2
+#>     <chr> <chr>            <chr> <chr>            <lgl>          <lgl>      <chr> <chr>               
+#>   1 25337 4521             0     2021-02-03       TRUE           TRUE       <NA>  KE                  
+#>   2 25348 4521             0     2021-02-03       TRUE           TRUE       <NA>  LR                  
+#>   3 25355 4521             0     2021-02-03       TRUE           TRUE       <NA>  MW                  
+#>   4 25358 4521             0     2021-02-03       TRUE           TRUE       <NA>  ML                  
+#>   5 25375 4521             0     2021-02-03       TRUE           TRUE       <NA>  MZ                  
+#>   6 25390 4521             0     2021-02-03       TRUE           TRUE       <NA>  AO                  
+#>   7 25414 4521             0     2021-02-03       TRUE           TRUE       <NA>  NE                  
+#>   8 25431 4521             0     2021-02-03       TRUE           TRUE       <NA>  NG                  
+#>   9 25554 4521             100   2021-02-03       TRUE           TRUE       <NA>  TZ                  
+#>  10 25555 4521             300   2021-02-03       TRUE           TRUE       <NA>  ZA                  
+#>  # … with 2 more variables: geo_entity.name <chr>, geo_entity.type <chr>
+#>  -------truncated-------
+#>  Field(s) not printed:  notes, url 
+#>  
+#>  ── Cites suspensions ($cites_suspensions): ──────────────────────────────────────────────────────────
+#>  # A tibble: 10 × 8
+#>     id    taxon_concept_id start_date is_current applies_to_import geo_entity.iso_c… geo_entity.name  
+#>     <chr> <chr>            <chr>      <lgl>      <lgl>             <chr>             <chr>            
+#>   1 17621 4521             2014-08-11 TRUE       TRUE              US                United States of…
+#>   2 17620 4521             2014-08-11 TRUE       TRUE              US                United States of…
+#>   3 17686 4521             2014-10-10 TRUE       TRUE              US                United States of…
+#>   4 18709 4521             2010-08-16 TRUE       TRUE              ZW                Zimbabwe         
+#>   5 15983 <NA>             2011-01-19 TRUE       FALSE             DJ                Djibouti         
+#>   6 22079 <NA>             2018-01-30 TRUE       FALSE             DJ                Djibouti         
+#>   7 22076 <NA>             2018-01-22 TRUE       FALSE             LR                Liberia          
+#>   8 22132 4521             2018-03-19 TRUE       FALSE             AU                Australia        
+#>   9 23168 <NA>             2019-07-04 TRUE       FALSE             SO                Somalia          
+#>  10 24947 4521             2020-05-26 TRUE       TRUE              CN                China            
+#>  # … with 1 more variable: geo_entity.type <chr>
+#>  -------truncated-------
+#>  Field(s) not printed:  notes, start_notification.name, start_notification.date, start_notification.url
 ```
 
 
 We can do the same for the elephant's legislation status in the European Union:
 
-```{r}
+
+```r
 elephant_eu <- spp_eu_legislation(taxon_id = "4521")
+```
+
+```
+#>  → Now processing taxon_id '4521'......................✔
+```
+
+```r
 elephant_eu
+```
+
+```
+#>  
+#>  ── EU listings ($eu_listings): ──────────────────────────────────────────────────────────────────────
+#>  # A tibble: 2 × 6
+#>    id    taxon_concept_id is_current annex change_type effective_at
+#>    <chr> <chr>            <lgl>      <chr> <chr>       <chr>       
+#>  1 31788 4521             TRUE       A     +           2019-12-14  
+#>  2 31876 4521             TRUE       B     +           2019-12-14  
+#>  
+#>  ── EU decisions ($eu_decisions): ────────────────────────────────────────────────────────────────────
+#>  # A tibble: 10 × 15
+#>     id    taxon_concept_id start_date is_current eu_decision_type.… eu_decision_type… geo_entity.iso_…
+#>     <chr> <chr>            <chr>      <lgl>      <chr>              <chr>             <chr>           
+#>   1 26285 4521             2015-04-09 TRUE       Positive           POSITIVE_OPINION  ZW              
+#>   2 25508 4521             2014-09-03 TRUE       Positive           POSITIVE_OPINION  BW              
+#>   3 11682 4521             2012-02-23 TRUE       Positive           POSITIVE_OPINION  NA              
+#>   4 24825 4521             2014-05-28 TRUE       Positive           POSITIVE_OPINION  ZA              
+#>   5 27017 4521             2015-09-15 TRUE       Positive           POSITIVE_OPINION  ZM              
+#>   6 27360 4521             2016-06-27 TRUE       Negative           NEGATIVE_OPINION  MZ              
+#>   7 35567 4521             2020-03-03 TRUE       <NA>               <NA>              MZ              
+#>   8 30377 4521             2017-06-21 TRUE       Negative           NEGATIVE_OPINION  TZ              
+#>   9 30553 4521             2017-06-21 TRUE       Positive           POSITIVE_OPINION  TZ              
+#>  10 32143 4521             2019-10-17 TRUE       Suspension (a)     SUSPENSION        CM              
+#>  # … with 8 more variables: geo_entity.name <chr>, geo_entity.type <chr>, start_event.name <chr>,
+#>  #   start_event.date <chr>, source.code <chr>, source.name <chr>, term.code <chr>, term.name <chr>
+#>  Field(s) not printed:  notes, eu_decision_type.description, start_event.url
 ```
 
 
@@ -109,8 +261,35 @@ With the combination of `map2` and the legislation data, one might be able to il
 
 Last but not least, it is important to identify which references the Species+ information about the elephant is based on. For this, we can access the Species+ reference data with the `spp_references()` function.
 
-```{r}
+
+```r
 elephant_refs <- spp_references(taxon_id = "4521", verbose = FALSE)
 elephant_refs
+```
+
+```
+#>  
+#>  ── References ($references): ────────────────────────────────────────────────────────────────────────
+#>  # A tibble: 10 × 3
+#>     id    citation                                             is_standard
+#>     <chr> <chr>                                                <chr>      
+#>   1 10265 Anon. 1978. Red data book: Mammalia. IUC [truncated] FALSE      
+#>   2 6344  Barnes, R. F., Agnagna, M., Alers, M. P. [truncated] FALSE      
+#>   3 17013 Blanc, J.J., Thouless, C.R., Hart, J.A., [truncated] FALSE      
+#>   4 6371  Burton, M. P. 1994. Alternative projecti [truncated] FALSE      
+#>   5 6532  Douglas-Hamilton, I. 1987. African Eleph [truncated] FALSE      
+#>   6 6534  Douglas-Hamilton, I. 1987. African Eleph [truncated] FALSE      
+#>   7 6825  Jackson, P. 1982. Elephants and rhinos i [truncated] FALSE      
+#>   8 7224  Meester, J. and Setzer, H. W (eds.) 1974 [truncated] FALSE      
+#>   9 7609  Parker, I. and Amin, M. 1983. Ivory cris [truncated] FALSE      
+#>  10 19397 Parker, I.S.C. and Martin, E.B. 1982. Ho [truncated] FALSE      
+#>  -------truncated-------
+```
+
+```r
 dim(elephant_refs$references)
+```
+
+```
+#>  [1] 15  3
 ```
