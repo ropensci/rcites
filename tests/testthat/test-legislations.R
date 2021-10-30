@@ -24,8 +24,7 @@ test_that("spp_cites_legislation() raw mode works", {
   expect_true(is_cl_rw(res))
 })
 
-
-test_that("spp_cites_legislation() scope & lang works", {
+test_that("spp_cites_legislation() scope & language works", {
   vcr::use_cassette("spp_cites_legislation_sco", {
     res <- spp_cites_legislation(taxon_id = tx_id, scope = 'all', 
       language = 'fr', verbose = FALSE)
@@ -34,9 +33,6 @@ test_that("spp_cites_legislation() scope & lang works", {
   expect_true(!all(res$cites_listings$is_current))
   expect_true("Guinée" %in% res$cites_suspensions$geo_entity.name)
 })
-
-
-#
 
 test_that("spp_eu_legislation() defaults works", {
   vcr::use_cassette("spp_eu_legislation_def", {
@@ -50,7 +46,6 @@ test_that("spp_eu_legislation() defaults works", {
   expect_true(all(res$eu_listings$is_current))
 })
 
-
 test_that("spp_eu_legislation() raw mode works", {
   vcr::use_cassette("spp_eu_legislation_raw", {
     expect_silent(res <- spp_eu_legislation(taxon_id = tx_id, 
@@ -58,7 +53,6 @@ test_that("spp_eu_legislation() raw mode works", {
   })  
   expect_true(is_cl_rw(res))
 })
-
 
 test_that("spp_cites_legislation() scope & lang works", {
   vcr::use_cassette("spp_eu_legislation_sco", {
@@ -69,9 +63,6 @@ test_that("spp_cites_legislation() scope & lang works", {
   expect_true(!all(res$eu_listings$is_current))
   expect_true("Namibie" %in% res$eu_decisions$geo_entity.name)
 })
-
-
-
 
 test_that("spp_cites_legislation() batch mode works", {
   vcr::use_cassette("spp_cites_legislation_bat", {
@@ -86,7 +77,6 @@ test_that("spp_cites_legislation() batch mode works", {
   expect_equal(length(res), 3)
 })
 
-
 test_that("spp_cites_legislation() batch mode works", {
   vcr::use_cassette("spp_eu_legislation_bat", {
     res <- spp_eu_legislation(taxon_id = c(tx_id, tx_id2),
@@ -98,4 +88,3 @@ test_that("spp_cites_legislation() batch mode works", {
   expect_equal(length(res), 2)
   # to be checked see #59
 })
-
