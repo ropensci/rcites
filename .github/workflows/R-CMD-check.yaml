@@ -18,7 +18,6 @@ jobs:
         config:
           - {os: macOS-latest, r: 'devel'}
           - {os: macOS-latest, r: 'release'}
-          - {os: macOS-latest, r: 'oldrel'}
           - {os: windows-latest, r: 'devel'}
           - {os: windows-latest, r: 'release'}
           - {os: windows-latest, r: 'oldrel'}

@@ -5,7 +5,6 @@ This is a minor release that mainly improves tests (tests have been reviewed, ht
 * GitHub Actions, Ubuntu 20.04: R-oldrel,
 * GitHub Actions, Ubuntu 20.04: R-release,
 * GitHub Actions, Ubuntu 20.04: R-devel,
-* GitHub Actions, macOS 11.6: R-oldrel,
 * GitHub Actions, macOS 11.6: R-release,
 * GitHub Actions, macOS 11.6: R-devel,
 * GitHub Actions, Windows Server 2019 (10.0.17763): R-release,
