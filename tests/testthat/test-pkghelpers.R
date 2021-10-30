@@ -1,5 +1,7 @@
 context("Helper functions")
 
+#
+# rcites_taxonconcept_request(tx_nm, "CITES", FALSE, 1, 500, NULL, NULL)
 
 ## General helpers
 test_that("General helpers", {
@@ -46,3 +48,5 @@ test_that("Print helpers", {
   expect_equal(rcites_print_shorten(str, 4), "abcd [truncated]")
   expect_output(rcites_print_df(data.frame(id = 1)), "  id\\n1  1")
 })
+
+
