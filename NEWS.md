@@ -1,7 +1,8 @@
 # rcites devel 
 
-* tests now uses vcr (see #56)
+* tests now uses vcr (see #56).
 * classes are now tested properly (see #54).
+* vignettes are precomputed (see #58).
 
 # rcites 1.1.0
 

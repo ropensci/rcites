@@ -2,8 +2,9 @@ Package: rcites
 Type: Package
 Title: R Interface to the Species+ Database
 Version: 1.1.0.9000
-Authors@R: c(person("Jonas", "Geschke", role = c("aut"), email = "jonas.e.geschke@gmail.com", comment = c(ORCID = "0000-0002-5654-9313")),
+Authors@R: c(
   person("Kevin", "Cazelles", role = c("aut", "cre"), email = "kevin.cazelles@gmail.com", comment = c(ORCID = "0000-0001-6619-9874")),
+  person("Jonas", "Geschke", role = c("aut"), email = "jonas.e.geschke@gmail.com", comment = c(ORCID = "0000-0002-5654-9313")),
   person("Ignasi", "Bartomeus", role = c("aut"), comment = c(ORCID = "0000-0001-7893-4389")),
   person("Jonathan", "Goldenberg", role = c("ctb")),
   person("Marie-Bé", "Leduc", role = c("ctb")),

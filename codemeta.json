@@ -31,17 +31,17 @@
   "author": [
     {
       "@type": "Person",
-      "givenName": "Jonas",
-      "familyName": "Geschke",
-      "email": "jonas.e.geschke@gmail.com",
-      "@id": "https://orcid.org/0000-0002-5654-9313"
-    },
-    {
-      "@type": "Person",
       "givenName": "Kevin",
       "familyName": "Cazelles",
       "email": "kevin.cazelles@gmail.com",
       "@id": "https://orcid.org/0000-0001-6619-9874"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Jonas",
+      "familyName": "Geschke",
+      "email": "jonas.e.geschke@gmail.com",
+      "@id": "https://orcid.org/0000-0002-5654-9313"
     },
     {
       "@type": "Person",
@@ -198,7 +198,7 @@
     }
   ],
   "readme": "https://github.com/ropensci/rcites/blob/master/README.md",
-  "fileSize": "588.104KB",
+  "fileSize": "921.472KB",
   "keywords": [
     "cites",
     "api-client",
@@ -210,7 +210,7 @@
     "rstats"
   ],
   "releaseNotes": "https://github.com/ropensci/rcites/blob/master/NEWS.md",
-  "contIntegration": "https://codecov.io/gh/ropensci/rcites",
+  "contIntegration": ["https://github.com/ropensci/rcites/actions/workflows/R-CMD-check.yaml", "https://codecov.io/gh/ropensci/rcites"],
   "developmentStatus": "https://www.repostatus.org/#active",
   "citation": [
     {
