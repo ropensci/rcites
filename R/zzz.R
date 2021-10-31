@@ -6,11 +6,31 @@
 #' @docType package
 #' @name rcites
 #' @keywords internal
-#' @importFrom cli cat_rule cat_line col_green col_red
+#' @importFrom cli cat_rule cat_line col_green col_red col_blue col_yellow
 "_PACKAGE"
 
 
 # HELPER FUNCTIONS
+
+################## console helper 
+
+# https://github.com/inSileco/inSilecoMisc/blob/master/R/msgInfo.R
+
+rcites_msg_info <- function(..., appendLF = TRUE) {
+  txt <- paste(cli::symbol$info, ...)
+  message(col_blue(txt), appendLF = appendLF)
+  invisible(txt)
+}
+
+rcites_cat_done <- function() {
+  message(col_green(cli::symbol$tick))
+}
+
+rcites_cat_error <- function() {
+  message(col_red(cli::symbol$cross))
+}
+
+
 
 ################## General helpers
 
@@ -27,8 +47,9 @@ rcites_get <- function(q_url, token, ...) {
 
 rcites_res <- function(q_url, token, ...) {
     con <- rcites_get(q_url, token, ...)
-    # check status
+    suc <- httr::http_status(con)
     httr::stop_for_status(con)
+    
     # parsed
     httr::content(con, "parsed", ...)
 }
@@ -57,24 +78,22 @@ rcites_checkid <- function(taxon_id) {
     # id check
     if (!grepl(taxon_id, pattern = "^[0-9]*$")) {
         warning("The taxon concept identifier is made of digits only.")
-        cat(">>> Skipping ", taxon_id, ".\n", sep = "")
+        rcites_msg_info("Skipping", paste0(taxon_id, ".\n"))
         out <- TRUE
     } else out <- FALSE
     out
 }
 
 rcites_current_id <- function(x) {
-  cat(cli::symbol$arrow_right, " Now processing taxon_id '", x,
-    "'", paste(rep(".", 26 - nchar(x)), collapse = ""), sep = "")
+  rcites_msg_info(
+      "Now processing taxon_id",
+      paste0("'", x, "'"),
+      paste(rep(".", 26 - nchar(x)), collapse = ""), 
+      " ",
+      appendLF = FALSE
+    )
 }
 
-rcites_cat_done <- function() {
-  cat_line(col_green(cli::symbol$tick))
-}
-
-rcites_cat_error <- function() {
-  cat_line(col_red(cli::symbol$cross))
-}
 
 rcites_add_taxon_id <- function(x, taxon_id) {
     if (length(x)) {
@@ -123,7 +142,7 @@ rcites_combine_lists <- function(x, taxon_id, raw) {
 rcites_getsecret <- function() {
     val <- Sys.getenv("SPECIESPLUS_TOKEN")
     if (identical(val, "")) {
-        message("
+        rcites_msg_info("
     `SPECIESPLUS_TOKEN` env var has not been set yet.
     A token is required to use the species + API, see
     https://api.speciesplus.net/documentation
@@ -145,7 +164,7 @@ rcites_autopagination <- function(q_url, per_page, pages, tot_page, token,
         pattern = "page=[[:digit:]]+\\&per_page=[[:digit:]]+$",
         replacement = "")
     ##
-    cat_rule(paste0(tot_page, " pages available, retrieving info from ", length(pages)," more"), col = "blue")
+    message(cat_rule(paste0(tot_page, " pages available, retrieving info from ", length(pages), " more"), col = "blue"))
     for (i in seq_along(pages)) {
         if (verbose)
             rcites_cat_pages(pages[i])
@@ -160,8 +179,11 @@ rcites_autopagination <- function(q_url, per_page, pages, tot_page, token,
 }
 
 rcites_cat_pages <- function(pag) {
-  cat(cli::symbol$arrow_right, "Retrieving info from page", pag,
-    paste(rep(".", 25 - nchar(pag)), collapse = ""))
+  rcites_msg_info(
+    "Retrieving info from page", 
+    pag,
+    paste(rep(".", 25 - nchar(pag)), collapse = "")
+  )
 }
 
 rcites_numberpages <- function(x) {
@@ -222,9 +244,7 @@ rcites_simplify_listings <- function(x) {
           stringsAsFactors = FALSE))
       if (length(tmp) > 1) {
           out <- do.call(rbind, tmp)
-      } else {
-          out <- tmp[[1L]]
-      }
+      } else out <- tmp[[1L]]
     }
     #
     out <- rcites_to_logical(out)
@@ -366,9 +386,7 @@ rcites_taxonconcept_names <- function(x, name, identifier) {
         out <- cbind(id = rep(identifier[wch], unlist(lapply(tmp[wch],
             nrow))), data.frame(apply(do.call(rbind, tmp[wch]), 2, unlist),
             stringsAsFactors = FALSE))
-    } else {
-        out <- data.frame()
-    }
+    } else out <- data.frame()
     #
     out <- rcites_assign_class(out)
     out

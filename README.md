@@ -1,10 +1,10 @@
 # rcites <img src="man/figures/rcites_logo.png" width="130" height="150" align="right"/>
 
 [![R-CMD-check](https://github.com/ropensci/rcites/workflows/R-CMD-check/badge.svg)](https://github.com/ropensci/rcites/actions/workflows/R-CMD-check.yaml)
-[![codecov](https://codecov.io/gh/ropensci/rcites/branch/master/graph/badge.svg)](https://codecov.io/gh/ropensci/rcites)
+[![codecov](https://codecov.io/gh/ropensci/rcites/branch/master/graph/badge.svg)](https://app.codecov.io/gh/ropensci/rcites)
 [![status](https://tinyverse.netlify.com/badge/rcites)](https://CRAN.R-project.org/package=rcites)
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![ROpenSci status](https://badges.ropensci.org/244_status.svg)](https://github.com/ropensci/onboarding/issues/244)
+[![ROpenSci status](https://badges.ropensci.org/244_status.svg)](https://github.com/ropensci/software-review/issues/244)
 [![CRAN status](https://www.r-pkg.org/badges/version/rcites)](https://CRAN.R-project.org/package=rcites)
 [![CRAN downloads](https://cranlogs.r-pkg.org/badges/grand-total/rcites)](https://cran.r-project.org/package=rcites)
 [![Zenodo DOI](https://zenodo.org/badge/113842199.svg)](https://zenodo.org/badge/latestdoi/113842199)
@@ -13,7 +13,7 @@
 
 An R package to access information from the [Speciesplus](https://speciesplus.net/) database via the [Speciesplus/CITES Checklist API](https://api.speciesplus.net/documentation/v1.html). The package is available for download from [CRAN](https://cran.r-project.org/package=rcites) (stable version) and [Github](https://github.com/ropensci/rcites) (development version).
 
-Please see the [release paper](https://doi.org/10.21105/joss.01091) for background information about the Convention on International Trade in Endangered Species of Wild Fauna and Flora ([CITES](https://cites.org)), the Speciesplus database and basic information about the aim of the package.
+Please see the [release paper](https://doi.org/10.21105/joss.01091) for background information about the Convention on International Trade in Endangered Species of Wild Fauna and Flora ([CITES](https://cites.org/eng)), the Speciesplus database and basic information about the aim of the package.
 
 
 ### Installation
