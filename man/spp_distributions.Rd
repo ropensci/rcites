@@ -43,7 +43,7 @@ If \code{raw} is set to \code{TRUE} then an object of class \code{spp_raw} (or
 \code{spp_raw_multi} if \code{length(taxon_id)>1}) is returned which is essentially
 a list of lists (see option \code{as = 'parsed'} in \code{\link[httr:content]{httr::content()}}).
 Otherwise, an object of class \code{spp_distr} (or \code{spp_distr_multi} if
-\code{length(taxon_id)>1}) is returned which is a list of two data frames:
+\code{length(taxon_id) > 1}) is returned which is a list of two data frames:
 \enumerate{
 \item \code{distributions}: lists distributions for a given taxon concept,
 \item \code{references}: lists the corresponding references.

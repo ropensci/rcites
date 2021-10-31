@@ -1,8 +1,10 @@
 # rcites devel 
 
+* consistently use `message()` for console (see #60).
+* vignettes are precomputed (see #58).
 * tests now uses vcr (see #56).
 * classes are now tested properly (see #54).
-* vignettes are precomputed (see #58).
+* internal `rcites_res()` gains an argument `verbose` (see #43).
 
 # rcites 1.1.0
 

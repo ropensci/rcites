@@ -17,16 +17,15 @@
 # https://github.com/inSileco/inSilecoMisc/blob/master/R/msgInfo.R
 
 rcites_msg_info <- function(..., appendLF = TRUE) {
-  txt <- paste(cli::symbol$info, ...)
-  message(col_blue(txt), appendLF = appendLF)
-  invisible(txt)
+  message(col_blue(cli::symbol$info, " ", ...), appendLF = appendLF)
+  invisible(paste0(...))
 }
 
 rcites_cat_done <- function() {
   message(col_green(cli::symbol$tick))
 }
 
-rcites_cat_error <- function() {
+rcites_cat_failure <- function() {
   message(col_red(cli::symbol$cross))
 }
 
@@ -45,13 +44,17 @@ rcites_get <- function(q_url, token, ...) {
     httr::GET(q_url, httr::add_headers(token), ...)
 }
 
-rcites_res <- function(q_url, token, ...) {
+rcites_res <- function(q_url, token, verbose = TRUE, ...) {
     con <- rcites_get(q_url, token, ...)
     suc <- httr::http_status(con)
-    httr::stop_for_status(con)
-    
-    # parsed
-    httr::content(con, "parsed", ...)
+    if (suc$category == "Success") {
+      if (verbose)  rcites_cat_done()
+      httr::content(con, "parsed", ...)
+    } else {
+      if (verbose) rcites_cat_failure()
+      httr::warn_for_status(con)
+      NULL
+    }
 }
 
 rcites_timestamp <- function(x) {
@@ -86,8 +89,7 @@ rcites_checkid <- function(taxon_id) {
 
 rcites_current_id <- function(x) {
   rcites_msg_info(
-      "Now processing taxon_id",
-      paste0("'", x, "'"),
+      "Now processing taxon_id '", x,"'",
       paste(rep(".", 26 - nchar(x)), collapse = ""), 
       " ",
       appendLF = FALSE
@@ -164,15 +166,18 @@ rcites_autopagination <- function(q_url, per_page, pages, tot_page, token,
         pattern = "page=[[:digit:]]+\\&per_page=[[:digit:]]+$",
         replacement = "")
     ##
-    message(cat_rule(paste0(tot_page, " pages available, retrieving info from ", length(pages), " more"), col = "blue"))
+    rcites_msg_info(
+      tot_page, 
+      " pages available, retrieving info from ", 
+      length(pages), 
+      " more"
+    )
     for (i in seq_along(pages)) {
         if (verbose)
             rcites_cat_pages(pages[i])
         q_url_new <- paste0(q_url_0, "page=", pages[i], "&per_page=",
           min(per_page, 500))
-        out[[i]] <- rcites_res(q_url_new, token, ...)
-        if (verbose)
-            rcites_cat_done()
+        out[[i]] <- rcites_res(q_url_new, token, verbose = verbose, ...)
     }
     #
     out
@@ -180,9 +185,10 @@ rcites_autopagination <- function(q_url, per_page, pages, tot_page, token,
 
 rcites_cat_pages <- function(pag) {
   rcites_msg_info(
-    "Retrieving info from page", 
-    pag,
-    paste(rep(".", 25 - nchar(pag)), collapse = "")
+    "Retrieving info from page ", 
+    pag, " ",
+    paste(rep(".", 25 - nchar(pag)), collapse = ""), " ",
+    appendLF = FALSE
   )
 }
 

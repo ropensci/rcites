@@ -24,13 +24,13 @@
 #' `spp_raw_multi` if `length(taxon_id)>1`) is returned which is essentially
 #' a list of lists (see option `as = 'parsed'` in [httr::content()]).
 #' Otherwise, an object of class `spp_distr` (or `spp_distr_multi` if
-#' `length(taxon_id)>1`) is returned which is a list of two data frames:
+#' `length(taxon_id) > 1`) is returned which is a list of two data frames:
 #' 1. `distributions`: lists distributions for a given taxon concept,
 #' 2. `references`: lists the corresponding references.
 #' In case `taxon_id` includes several elements
 #'
 #' @references
-#' \url{https://api.speciesplus.net/documentation/v1/distributions/index.html}
+#' <https://api.speciesplus.net/documentation/v1/distributions/index.html>
 #'
 #' @export
 #'
@@ -67,7 +67,7 @@ spp_distributions <- function(taxon_id, language = "en", raw = FALSE,
             q_url <- rcites_url("taxon_concepts/", taxon_id,
               "/distributions.json", tmp)
             # get results
-            res <- rcites_res(q_url, token, ...)
+            res <- rcites_res(q_url, token, verbose = verbose, ...)
             # outputs
             if (raw) {
                 out <- res
@@ -76,8 +76,6 @@ spp_distributions <- function(taxon_id, language = "en", raw = FALSE,
                 out <- rcites_simplify_distributions(res)
                 class(out) <- c("spp_distr")
             }
-            if (verbose)
-                rcites_cat_done()
         }
     }
     Sys.sleep(pause)

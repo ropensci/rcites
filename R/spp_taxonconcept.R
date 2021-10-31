@@ -55,7 +55,7 @@
 #' res1 <- spp_taxonconcept(query_taxon = 'Loxodonta africana')
 #' res2 <- spp_taxonconcept(query_taxon = 'Amazilia versicolor', raw = TRUE)
 #' res3 <- spp_taxonconcept(query_taxon = '', taxonomy = 'CMS', pages = c(1, 3),
-#'  language = 'EN', verbose = FALSE, config = httr::progress())
+#'  language = 'EN', config = httr::progress())
 #' res4 <- spp_taxonconcept(query_taxon = '', per_page = 20, pages = 44)
 #' }
 
@@ -82,9 +82,7 @@ spp_taxonconcept <- function(query_taxon, taxonomy = "CITES",
     # results
     if (verbose)
       rcites_cat_pages(f_page)
-    tmp <- rcites_res(q_url, token, ...)
-    if (verbose)
-      rcites_cat_done()
+    tmp <- rcites_res(q_url, token, verbose = verbose, ...)
     # number of pages
     pag <- rcites_numberpages(tmp$pagination)
     #

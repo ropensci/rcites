@@ -15,16 +15,16 @@ http_interactions:
       reason: OK
       message: 'Success: (200) OK'
     headers:
-      date: Sat, 30 Oct 2021 18:26:17 GMT
+      date: Sun, 31 Oct 2021 22:07:49 GMT
       content-type: application/json; charset=utf-8
       vary: Accept-Encoding
       status: 200 OK
       cache-control: max-age=0, private, must-revalidate
       x-xss-protection: 1; mode=block
-      x-request-id: 5b22d262-fcad-40ed-a0e0-54a46748af88
+      x-request-id: 548ba076-3fee-458a-8ccf-2b5cf82f8418
       etag: W/"e26a1d1f73997168e6e4ba1c98449cf6"
       x-frame-options: SAMEORIGIN
-      x-runtime: '0.158121'
+      x-runtime: '0.075203'
       x-content-type-options: nosniff
       x-powered-by: Phusion Passenger 6.0.2
       access-control-allow-origin: '*'
@@ -33,10 +33,10 @@ http_interactions:
       access-control-allow-headers: DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,x-authentication-token
       cf-cache-status: DYNAMIC
       expect-ct: max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
-      report-to: '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=wgwQbtFTnRGt%2FvyW4YIHnqXqpHBmmcL7WYO8AquEo9e0S0K8UAgtyuSRjHVvfs6FZLanEo4mVINTsjs5cqutVIZ%2BIoWA84ZCYx9MtnN1UEt7LwQWApW5RYNERGin4jzuUvRDZoU2"}],"group":"cf-nel","max_age":604800}'
+      report-to: '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=Dw2w8WLADNH2WMBgrK3DxRHim0dHmB%2BqBLrd8%2B%2FmSqwOakMJ9P%2FZmEthMcfpWgOT9dC73VOGPcQZEZqyCGK3GbZAWyqqX6cqh%2BfC7KJnYdcBVj9D9TzisbGkTntaT5AhgQOGydxT"}],"group":"cf-nel","max_age":604800}'
       nel: '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       server: cloudflare
-      cf-ray: 6a66b0eaeae7ecf2-YUL
+      cf-ray: 6a7032ca3a774bca-YUL
       content-encoding: br
       alt-svc: h3=":443"; ma=86400, h3-29=":443"; ma=86400, h3-28=":443"; ma=86400,
         h3-27=":443"; ma=86400
@@ -252,7 +252,7 @@ http_interactions:
         permit in addition to an export permit. ","start_date":"2018-06-01","is_current":true,"applies_to_import":true,"geo_entity":{"iso_code2":"HK","name":"Hong
         Kong, SAR","type":"TERRITORY"},"start_notification":{"name":"CITES Notif.
         No. 2018/057","date":"2018-06-01","url":"https://cites.org/sites/default/files/notif/E-Notif-2018-057.pdf"}}]}'
-  recorded_at: 2021-10-30 18:26:22 GMT
+  recorded_at: 2021-10-31 22:07:53 GMT
   recorded_with: vcr/1.0.2, webmockr/0.8.0
 - request:
     method: get
@@ -270,16 +270,16 @@ http_interactions:
       reason: OK
       message: 'Success: (200) OK'
     headers:
-      date: Sat, 30 Oct 2021 18:26:18 GMT
+      date: Sun, 31 Oct 2021 22:07:50 GMT
       content-type: application/json; charset=utf-8
       vary: Accept-Encoding
       status: 200 OK
       cache-control: max-age=0, private, must-revalidate
       x-xss-protection: 1; mode=block
-      x-request-id: cc5535a5-7318-4480-8d77-2fbc94b2a413
+      x-request-id: 0a656e2d-00d7-401c-a788-86f968b10b7e
       etag: W/"569003842b7b8c8a4358d121099909d8"
       x-frame-options: SAMEORIGIN
-      x-runtime: '0.063677'
+      x-runtime: '0.055452'
       x-content-type-options: nosniff
       x-powered-by: Phusion Passenger 6.0.2
       access-control-allow-origin: '*'
@@ -288,10 +288,10 @@ http_interactions:
       access-control-allow-headers: DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,x-authentication-token
       cf-cache-status: DYNAMIC
       expect-ct: max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
-      report-to: '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=KU2T8w%2FkbUc6Fr6ucwajsKJSULmW1J7whdLJzYbPsvOX18sBEaCFP8CpFWkGPN2wY8qX6V00tq8Fry0WXgqDnbCavcMozYu2zl6%2BrOCYeLzWY3GrXpdMJhGyApWDMBz1FFAwlrF%2F"}],"group":"cf-nel","max_age":604800}'
+      report-to: '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=KT0Vb1OWK06C3j%2Fz8%2BOG8LJwkwHUPzGSocKNRySUIYOv3CZNAFgnhgSDxXHkZ0m3j6du4eUbHqqANsKbHEk0mfu%2BakD2xHnBvoc07zlEXL0YVdbnoVx8kiJW0Np57TDTOl%2FcItzE"}],"group":"cf-nel","max_age":604800}'
       nel: '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       server: cloudflare
-      cf-ray: 6a66b0f37c67ecf2-YUL
+      cf-ray: 6a7032d2fe2a4bca-YUL
       content-encoding: br
       alt-svc: h3=":443"; ma=86400, h3-29=":443"; ma=86400, h3-28=":443"; ma=86400,
         h3-27=":443"; ma=86400
@@ -310,7 +310,7 @@ http_interactions:
         verified on a case-by-case basis that the export is in conformity with current
         national legislation and issued a CITES permit.","start_date":"2006-01-16","is_current":true,"applies_to_import":false,"geo_entity":{"iso_code2":"AR","name":"Argentina","type":"COUNTRY"},"start_notification":{"name":"CITES
         Notif. No. 2006/006","date":"2006-01-16","url":"https://cites.org/sites/default/files/eng/notif/2006/006.pdf"}}]}'
-  recorded_at: 2021-10-30 18:26:22 GMT
+  recorded_at: 2021-10-31 22:07:53 GMT
   recorded_with: vcr/1.0.2, webmockr/0.8.0
 - request:
     method: get
@@ -328,16 +328,16 @@ http_interactions:
       reason: OK
       message: 'Success: (200) OK'
     headers:
-      date: Sat, 30 Oct 2021 18:26:20 GMT
+      date: Sun, 31 Oct 2021 22:07:51 GMT
       content-type: application/json; charset=utf-8
       vary: Accept-Encoding
       status: 200 OK
       cache-control: max-age=0, private, must-revalidate
       x-xss-protection: 1; mode=block
-      x-request-id: acb198ca-63b6-41a6-a35d-4c06fce21c51
+      x-request-id: b4056032-f670-4723-90e4-f39da0e87f9f
       etag: W/"765de79fe86bda0cff94d5dbdaa957d9"
       x-frame-options: SAMEORIGIN
-      x-runtime: '0.056930'
+      x-runtime: '0.051213'
       x-content-type-options: nosniff
       x-powered-by: Phusion Passenger 6.0.2
       access-control-allow-origin: '*'
@@ -346,10 +346,10 @@ http_interactions:
       access-control-allow-headers: DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,x-authentication-token
       cf-cache-status: DYNAMIC
       expect-ct: max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
-      report-to: '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=YNFDaapaGsO%2FXzXPfQeObckQrIUg%2BsJwR3lAwTAjBGeeg9vG7mLPnP1EleWxgVuqdjS18M2ujaStAhdFCujAtxvL2kOCsPjwB%2Fc2L6F2egh3bXQYFEv9YPVnjIjlmSNybOOI7SgB"}],"group":"cf-nel","max_age":604800}'
+      report-to: '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=UHz0PO%2BDKxEIDQcxKraLDIqHojpcqxZmj0G%2BImBez5bP4YTCp7u%2BKQbPsDpD3XLJxHEk3xLR432gW194h7Uk0tAaxAK2PXmJeedgx3yWCqbOTEBBBIqBWnkToYoBqK%2FRs5dEvbgW"}],"group":"cf-nel","max_age":604800}'
       nel: '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       server: cloudflare
-      cf-ray: 6a66b0fb3c53ecf2-YUL
+      cf-ray: 6a7032db19b44bca-YUL
       content-encoding: br
       alt-svc: h3=":443"; ma=86400, h3-29=":443"; ma=86400, h3-28=":443"; ma=86400,
         h3-27=":443"; ma=86400
@@ -375,5 +375,5 @@ http_interactions:
         wild-sourced <i>Dalbergia sissoo</i> and <i>Dalbergia latifolia</i> are not
         exempt.","start_date":"2018-03-26","is_current":true,"applies_to_import":false,"geo_entity":{"iso_code2":"IN","name":"India","type":"COUNTRY"},"start_notification":{"name":"CITES
         Notif. No. 2018/031","date":"2018-03-26","url":"https://cites.org/sites/default/files/notif/E-Notif-2018-031.pdf"}}]}'
-  recorded_at: 2021-10-30 18:26:22 GMT
+  recorded_at: 2021-10-31 22:07:53 GMT
   recorded_with: vcr/1.0.2, webmockr/0.8.0

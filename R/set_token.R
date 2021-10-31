@@ -27,7 +27,7 @@ set_token <- function(token = NULL) {
         stop("No token has been provided.")
     } else {
         Sys.setenv(SPECIESPLUS_TOKEN = token)
-        cat("Authentication token stored for the session.\n")
+        rcites_msg_info("Authentication token stored for the session.")
     }
     invisible(NULL)
 }

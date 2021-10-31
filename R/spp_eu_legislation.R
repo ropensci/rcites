@@ -32,7 +32,7 @@
 #'  2. `eu_decisions`: lists EU decisions
 #'
 #' @references
-#' \url{https://api.speciesplus.net/documentation/v1/eu_legislation/index.html}
+#' <https://api.speciesplus.net/documentation/v1/eu_legislation/index.html>
 #'
 #' @export
 #'
@@ -72,7 +72,7 @@ spp_eu_legislation <- function(taxon_id, scope = "current", language = "en",
             q_url <- rcites_url("taxon_concepts/", taxon_id,
               "/eu_legislation.json", query_string)
             ## get_res
-            tmp <- rcites_res(q_url, token, ...)
+            tmp <- rcites_res(q_url, token, verbose = verbose, ...)
             ## outputs
             if (raw) {
                 out <- tmp
@@ -83,8 +83,6 @@ spp_eu_legislation <- function(taxon_id, scope = "current", language = "en",
                 out$eu_decisions <- rcites_simplify_decisions(tmp$eu_decisions)
                 class(out) <- c("spp_eu_leg")
             }
-            if (verbose)
-                rcites_cat_done()
         }
     }
     Sys.sleep(pause)
