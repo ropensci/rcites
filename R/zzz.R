@@ -44,16 +44,21 @@ rcites_get <- function(q_url, token, ...) {
     httr::GET(q_url, httr::add_headers(token), ...)
 }
 
-rcites_res <- function(q_url, token, verbose = TRUE, ...) {
+rcites_res <- function(q_url, token, raw, verbose, ...) {
     con <- rcites_get(q_url, token, ...)
     suc <- httr::http_status(con)
     if (suc$category == "Success") {
-      if (verbose)  rcites_cat_done()
+      if (verbose) rcites_cat_done()
       httr::content(con, "parsed", ...)
     } else {
       if (verbose) rcites_cat_failure()
       httr::warn_for_status(con)
-      NULL
+      if (raw) {
+        httr::content(con, "parsed", ...)
+      } else {
+        # avoid conflict when merging outputs
+        NULL
+      }
     }
 }
 

@@ -1,17 +1,20 @@
-# rcites devel 
+# rcites (devel) 
 
 * consistently use `message()` for console (see #60).
 * vignettes are precomputed (see #58).
 * tests now uses vcr (see #56).
 * classes are now tested properly (see #54).
-* internal `rcites_res()` gains an argument `verbose` (see #43).
+* internal `rcites_res()` gains arguments `verbose` and `raw` (see #43 and #62).
+* request status now are reported by `warn_for_status()` rather than by `stop_for_status()`, this prevents fast-failing in batch mode (see #62). 
+
 
 # rcites 1.1.0
 
 * internal function `rcites_simplify_distributions()` has been re-written to fix a bug that made `spp_distributions()` throw an error for `taxon_id` with only one distribution entry (see #53).
-* `spp_*()` functions gain an argument `pause` (see #50, #51 following the issue reported by @fleurhierink in #49).
+* `spp_*()` functions gain an argument `pause` (see #50 and #51 following the issue reported by @fleurhierink in #49).
 * minor text editions through the documentation.
 * return an empty data frame when there is no listing available for a given species (Fix :bug: #47 reported by @eveskew).
+
 
 # rcites 1.0.1
 
@@ -24,10 +27,10 @@
 
 ### Bugs fixed :bug:
 
-- Fix a bug that prevented `spp_taxonconcept()` from downloading all the taxon
+* Fix a bug that prevented `spp_taxonconcept()` from downloading all the taxon
 concepts, see [#42](https://github.com/ropensci/rcites/issues/42).
 
-- Fix a bug that generated infinte recursion error when using non-interactively without token, see [#44](https://github.com/ropensci/rcites/issues/44).
+* Fix a bug that generated infinte recursion error when using non-interactively without token, see [#44](https://github.com/ropensci/rcites/issues/44).
 
 
 # rcites 1.0.0

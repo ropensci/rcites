@@ -58,7 +58,7 @@ spp_references <- function(taxon_id, raw = FALSE, token = NULL, verbose = TRUE,
             ## create url
             q_url <- rcites_url("taxon_concepts/", taxon_id, "/references.json")
             ## get_res
-            tmp <- rcites_res(q_url, token, verbose = verbose, ...)
+            tmp <- rcites_res(q_url, token, raw, verbose, ...)
             ## outputs
             if (raw) {
                 out <- tmp

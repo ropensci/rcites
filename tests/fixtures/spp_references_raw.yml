@@ -15,17 +15,17 @@ http_interactions:
       reason: OK
       message: 'Success: (200) OK'
     headers:
-      date: Sun, 31 Oct 2021 22:07:59 GMT
+      date: Sun, 31 Oct 2021 23:18:42 GMT
       content-type: application/json; charset=utf-8
       vary: Accept-Encoding
       status: 200 OK
       cache-control: max-age=0, private, must-revalidate
-      x-xss-protection: 1; mode=block
-      x-request-id: 915696da-c98e-49de-9161-8507b80d2a41
       etag: W/"93b0a08af7820b33824f20c579dae7f2"
       x-frame-options: SAMEORIGIN
-      x-runtime: '0.031259'
+      x-xss-protection: 1; mode=block
       x-content-type-options: nosniff
+      x-runtime: '0.200435'
+      x-request-id: 2ae3d9e2-40d3-4183-995d-3de8427ba8d4
       x-powered-by: Phusion Passenger 6.0.2
       access-control-allow-origin: '*'
       access-control-allow-credentials: 'true'
@@ -33,10 +33,10 @@ http_interactions:
       access-control-allow-headers: DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,x-authentication-token
       cf-cache-status: DYNAMIC
       expect-ct: max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
-      report-to: '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=OtSXbgXYklbs%2BBb%2BJqXt5IDhe7YJuw6%2Bg%2FRuo4Y8JUlJFkJAuPXBc7Jb8W6Ty2jLBzvJ8CM0nUpLm33m23Fpji%2B%2F8xP32U5q%2FispyoD%2F2Xo1g7PZ1K1188J4HBY3%2BgxrPKq9i3wQ"}],"group":"cf-nel","max_age":604800}'
+      report-to: '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=12Qo03CavuQ%2FOTuX2SYUEjjvpPTOYF0SmNsT%2F%2FERgzXXpDmepIcs5aB%2F9D1YXvJ8udatmrDeO0Ur1Mq6GL37L7CEKe9Ai26f0h69V9PdH6zqTUWwViAu%2BsBqu%2BCrfHAbVNTO0Ge7"}],"group":"cf-nel","max_age":604800}'
       nel: '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       server: cloudflare
-      cf-ray: 6a7033095c054bca-YUL
+      cf-ray: 6a709a9f0cc6ca6f-YUL
       content-encoding: br
       alt-svc: h3=":443"; ma=86400, h3-29=":443"; ma=86400, h3-28=":443"; ma=86400,
         h3-27=":443"; ma=86400
@@ -77,5 +77,46 @@ http_interactions:
         D.M. (Eds.). 2005. <i>Mammal species of the world, a taxonomic and geographic
         reference</i>. 3rd Edition, The Johns Hopkins University Press, Baltimore,
         Maryland. 2, 142pp.","is_standard":false}]'
-  recorded_at: 2021-10-31 22:08:00 GMT
+  recorded_at: 2021-10-31 23:18:44 GMT
+  recorded_with: vcr/1.0.2, webmockr/0.8.0
+- request:
+    method: get
+    uri: https://api.speciesplus.net/api/v1/taxon_concepts/0/references.json
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      Accept: application/json, text/xml, application/xml, */*
+      X-Authentication-Token: safe
+  response:
+    status:
+      status_code: 500
+      category: Server error
+      reason: Internal Server Error
+      message: 'Server error: (500) Internal Server Error'
+    headers:
+      date: Sun, 31 Oct 2021 23:18:43 GMT
+      content-type: application/json; charset=utf-8
+      status: 500 Internal Server Error
+      cache-control: no-cache
+      x-xss-protection: 1; mode=block
+      x-request-id: 52c6dbbd-b4ff-4cbe-ba12-87d2761521f3
+      x-runtime: '0.025143'
+      x-frame-options: SAMEORIGIN
+      x-content-type-options: nosniff
+      x-powered-by: Phusion Passenger 6.0.2
+      cf-cache-status: DYNAMIC
+      expect-ct: max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      report-to: '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=EXS83J%2BA5X0BrFmsh1wVeV9rIGBG0QnnKUDGE%2BCep5bhPILrPqJtyJv0c3y0S1FkhPTvrji9xGwFgYL2NvNXVbRW5wcicfGG9NzeR%2BdCWizWlfrlpotp73AJ1lC1bLH3aeBVcBwn"}],"group":"cf-nel","max_age":604800}'
+      nel: '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      server: cloudflare
+      cf-ray: 6a709aa83f39ca6f-YUL
+      alt-svc: h3=":443"; ma=86400, h3-29=":443"; ma=86400, h3-28=":443"; ma=86400,
+        h3-27=":443"; ma=86400
+    body:
+      encoding: UTF-8
+      file: no
+      string: '{"error":{"message":"We are sorry but an error occurred processing
+        your request"}}'
+  recorded_at: 2021-10-31 23:18:44 GMT
   recorded_with: vcr/1.0.2, webmockr/0.8.0

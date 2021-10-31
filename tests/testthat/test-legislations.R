@@ -18,10 +18,17 @@ test_that("spp_cites_legislation() defaults work", {
 
 test_that("spp_cites_legislation() raw mode works", {
   vcr::use_cassette("spp_cites_legislation_raw", {
-    expect_silent(res <- spp_cites_legislation(taxon_id = tx_id, 
+    expect_silent(res1 <- spp_cites_legislation(taxon_id = tx_id, 
+        raw = TRUE, verbose = FALSE))
+    expect_warning(res2 <- spp_cites_legislation(taxon_id = 0, 
         raw = TRUE, verbose = FALSE))
   })  
-  expect_true(is_cl_rw(res))
+  expect_true(is_cl_rw(res1))
+  expect_true(is_cl_rw(res2))
+  expect_equal(
+    res2$error$message,
+    "We are sorry but an error occurred processing your request"
+  )
 })
 
 test_that("spp_cites_legislation() scope & language works", {
@@ -48,10 +55,17 @@ test_that("spp_eu_legislation() defaults works", {
 
 test_that("spp_eu_legislation() raw mode works", {
   vcr::use_cassette("spp_eu_legislation_raw", {
-    expect_silent(res <- spp_eu_legislation(taxon_id = tx_id, 
+    expect_silent(res1 <- spp_eu_legislation(taxon_id = tx_id, 
+        raw = TRUE, verbose = FALSE))
+    expect_warning(res2 <- spp_eu_legislation(taxon_id = 0, 
         raw = TRUE, verbose = FALSE))
   })  
-  expect_true(is_cl_rw(res))
+  expect_true(is_cl_rw(res1))
+  expect_true(is_cl_rw(res2))
+  expect_equal(
+    res2$error$message,
+    "We are sorry but an error occurred processing your request"
+  )
 })
 
 test_that("spp_cites_legislation() scope & lang works", {

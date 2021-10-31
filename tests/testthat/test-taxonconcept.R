@@ -22,10 +22,14 @@ test_that("spp_taxonconcept() defaults work", {
 
 test_that("spp_taxonconcept() raw mode works", {
   vcr::use_cassette("spp_taxonconcept_raw", {
-    expect_silent(res <- spp_taxonconcept(query_taxon = tx_nm, raw = TRUE,
+    expect_silent(res1 <- spp_taxonconcept(query_taxon = tx_nm, raw = TRUE,
       verbose = FALSE))
+    expect_warning(
+      res2 <- spp_taxonconcept(query_taxon = 0, raw = TRUE, verbose = FALSE),  "Taxon not listed."
+    )
   })  
-  expect_true(is_cl_rw(res))
+  expect_true(is_cl_rw(res1))
+  expect_true(is.null(res2))
 })
 
 test_that("spp_taxonconcept() CMS works", {

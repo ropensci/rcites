@@ -15,16 +15,16 @@ http_interactions:
       reason: OK
       message: 'Success: (200) OK'
     headers:
-      date: Sun, 31 Oct 2021 22:07:46 GMT
+      date: Sun, 31 Oct 2021 23:39:45 GMT
       content-type: application/json; charset=utf-8
       vary: Accept-Encoding
       status: 200 OK
       cache-control: max-age=0, private, must-revalidate
       x-xss-protection: 1; mode=block
-      x-request-id: 9587ce6e-d698-4892-a668-b08dc2c39273
+      x-request-id: ecc1695b-c9e4-4d56-bdef-0ebca21f1d96
       etag: W/"8d230ee1f9fa31d7dd41e7c4d09de0cc"
       x-frame-options: SAMEORIGIN
-      x-runtime: '0.037642'
+      x-runtime: '0.038581'
       x-content-type-options: nosniff
       x-powered-by: Phusion Passenger 6.0.2
       access-control-allow-origin: '*'
@@ -33,10 +33,10 @@ http_interactions:
       access-control-allow-headers: DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,x-authentication-token
       cf-cache-status: DYNAMIC
       expect-ct: max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
-      report-to: '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=SVO1UPRUBpXIgX6h9GOPO%2BC%2Biz%2FjVGfenYekUgbVg%2B4qlnzv43EDsj6bzBSfK%2FHcOYQRmHLZrEJqFuZjaWeAjHhem%2B5jGC2CgCMeKliAjWm4H9KwNBbWAHPA6Nnxxzd2i4QFk61f"}],"group":"cf-nel","max_age":604800}'
+      report-to: '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=RaLzVzytfo29xuvbMo0iidqsDOLpBZX6vi97sTnA5H8MMXwuFTplE3pXL20SUtsNnkQlo8idh8ifVNImCp87HTXG21ZIpyxK7G26PkTG3fLZ0saLdGQA6bu7oigZ6RwQqHIAjnH9"}],"group":"cf-nel","max_age":604800}'
       nel: '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       server: cloudflare
-      cf-ray: 6a7032b958d44bca-YUL
+      cf-ray: 6a70b975f8f34bbe-YUL
       content-encoding: br
       alt-svc: h3=":443"; ma=86400, h3-29=":443"; ma=86400, h3-28=":443"; ma=86400,
         h3-27=":443"; ma=86400
@@ -113,5 +113,46 @@ http_interactions:
         Republic of Tanzania","type":"COUNTRY"},"start_event":{"name":"SRG 79 Soc","date":"2017-06-21","url":"https://circabc.europa.eu/sd/a/99eb1f53-73c7-4ccf-9264-2f53f0f64827/79_summary_SRG.pdf"},"source":{"code":"W","name":"Wild"},"term":{"code":"TRO","name":"trophies"}},{"id":32143,"taxon_concept_id":4521,"notes":"","start_date":"2019-10-17","is_current":true,"eu_decision_type":{"name":"Suspension
         (a)","description":null,"type":"SUSPENSION"},"geo_entity":{"iso_code2":"CM","name":"Cameroon","type":"COUNTRY"},"start_event":{"name":"No
         2019/1587","date":"2019-10-17","url":"https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX:32019R1587&from=EN"},"source":{"code":"W","name":"Wild"},"term":{"code":"TRO","name":"trophies"}}]}'
-  recorded_at: 2021-10-31 22:07:47 GMT
+  recorded_at: 2021-10-31 23:39:47 GMT
+  recorded_with: vcr/1.0.2, webmockr/0.8.0
+- request:
+    method: get
+    uri: https://api.speciesplus.net/api/v1/taxon_concepts/0/eu_legislation.json
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      Accept: application/json, text/xml, application/xml, */*
+      X-Authentication-Token: safe
+  response:
+    status:
+      status_code: 500
+      category: Server error
+      reason: Internal Server Error
+      message: 'Server error: (500) Internal Server Error'
+    headers:
+      date: Sun, 31 Oct 2021 23:39:46 GMT
+      content-type: application/json; charset=utf-8
+      status: 500 Internal Server Error
+      cache-control: no-cache
+      x-xss-protection: 1; mode=block
+      x-request-id: eaf1388e-29ba-4984-9278-7b7ab5402834
+      x-runtime: '0.019629'
+      x-frame-options: SAMEORIGIN
+      x-content-type-options: nosniff
+      x-powered-by: Phusion Passenger 6.0.2
+      cf-cache-status: DYNAMIC
+      expect-ct: max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      report-to: '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=nQRG914ezTEjfQhraW0W2W5gN5C6kRWtpYu4kR7%2BkWi%2FpXMBOnmt%2F66wNgQoHy%2F42MxYjdgXDo%2BuZC%2FAhMUqKxIpbUsHEJWdUDvJ4hJY8njOR5VoHYSQ0uRiPfx6QpSKKldMGIQQ"}],"group":"cf-nel","max_age":604800}'
+      nel: '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      server: cloudflare
+      cf-ray: 6a70b97dedd14bbe-YUL
+      alt-svc: h3=":443"; ma=86400, h3-29=":443"; ma=86400, h3-28=":443"; ma=86400,
+        h3-27=":443"; ma=86400
+    body:
+      encoding: UTF-8
+      file: no
+      string: '{"error":{"message":"We are sorry but an error occurred processing
+        your request"}}'
+  recorded_at: 2021-10-31 23:39:47 GMT
   recorded_with: vcr/1.0.2, webmockr/0.8.0

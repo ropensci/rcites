@@ -82,7 +82,7 @@ spp_taxonconcept <- function(query_taxon, taxonomy = "CITES",
     # results
     if (verbose)
       rcites_cat_pages(f_page)
-    tmp <- rcites_res(q_url, token, verbose = verbose, ...)
+    tmp <- rcites_res(q_url, token, raw, verbose, ...)
     # number of pages
     pag <- rcites_numberpages(tmp$pagination)
     #

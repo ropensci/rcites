@@ -14,10 +14,17 @@ test_that("spp_references() defaults works", {
 
 test_that("spp_references() raw mode", {
   vcr::use_cassette("spp_references_raw", {
-    expect_silent(res <- spp_references(taxon_id = tx_id, raw = TRUE, 
+    expect_silent(res1 <- spp_references(taxon_id = tx_id, raw = TRUE, 
+      verbose = FALSE))
+    expect_warning(res2 <- spp_references(taxon_id = 0, raw = TRUE, 
       verbose = FALSE))
   })  
-  expect_true(is_cl_rw(res))
+  expect_true(is_cl_rw(res1))
+  expect_true(is_cl_rw(res2))
+  expect_equal(
+    res2$error$message,
+    "We are sorry but an error occurred processing your request"
+  )
 })
 
 test_that("spp_references() batch mode works", {

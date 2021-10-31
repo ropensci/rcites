@@ -15,9 +15,15 @@ test_that("spp_distributions() defaults work", {
 
 test_that("spp_distributions() raw mode works", {
   vcr::use_cassette("spp_distributions_raw", {
-    expect_silent(res <- spp_distributions(taxon_id = tx_id, raw = TRUE, verbose = FALSE))
+    expect_silent(res1 <- spp_distributions(taxon_id = tx_id, raw = TRUE, verbose = FALSE))
+    expect_warning(res2 <- spp_distributions(taxon_id = 0, raw = TRUE, verbose = FALSE))
   })  
-  expect_true(is_cl_rw(res))
+  expect_true(is_cl_rw(res1))
+  expect_true(is_cl_rw(res2))
+  expect_equal(
+    res2$error$message,
+    "We are sorry but an error occurred processing your request"
+  )
   # expect_null(print(res))
 })
 
