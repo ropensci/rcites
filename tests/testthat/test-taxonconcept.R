@@ -16,6 +16,7 @@ test_that("spp_taxonconcept() defaults work", {
   expect_true(all(unlist(lapply(res, function(x) is_cl_df(x)))))
   expect_type(res$cites_listings$annotation, "character")
   expect_equal(attributes(res)$taxonomy, "CITES")
+  # expect_snapshot(print(res))
 })
 
 test_that("spp_taxonconcept() raw mode works", {

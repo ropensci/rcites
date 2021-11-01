@@ -11,6 +11,13 @@ test_that("spp_distributions() defaults work", {
   # expect_snapshot(print(res))
 })
 
+test_that("spp_distributions() works when no info available", {
+  vcr::use_cassette("spp_distributions_noi", {
+    expect_warning(res <- spp_distributions(taxon_id = 0))
+  })  
+  # expect_snapshot(print(res))
+})
+
 test_that("spp_distributions() raw mode works", {
   vcr::use_cassette("spp_distributions_raw", {
     expect_silent(res1 <- spp_distributions(taxon_id = tx_id, raw = TRUE, verbose = FALSE))
@@ -22,7 +29,7 @@ test_that("spp_distributions() raw mode works", {
     res2$error$message,
     "We are sorry but an error occurred processing your request"
   )
-  # expect_snapshot(print(res))
+  # expect_snapshot(print(res1))
 })
 
 test_that("spp_distributions() language works", {

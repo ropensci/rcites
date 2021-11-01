@@ -1,5 +1,3 @@
-# rcites_taxonconcept_request(tx_nm, "CITES", FALSE, 1, 500, NULL, NULL)
-
 ## General helpers
 test_that("General helpers", {
   expect_identical(
@@ -13,6 +11,10 @@ test_that("General helpers", {
   expect_true(identical(rcites_scope("all"), "scope=all"))
   expect_error(rcites_scope("wrong"))
   expect_warning(rcites_checkid("1wrong234"))
+  expect_identical(
+    rcites_taxonconcept_request(tx_nm, "CITES", FALSE, 1, 500, NULL, NULL),
+    "https://api.speciesplus.net/api/v1/taxon_concepts.json?name=Loxodonta%20africana&page=1&per_page=500"
+  )
 })
 
 ## Base URL

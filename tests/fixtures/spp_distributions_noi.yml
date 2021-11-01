@@ -1,0 +1,42 @@
+http_interactions:
+- request:
+    method: get
+    uri: https://api.speciesplus.net/api/v1/taxon_concepts/0/distributions.json
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      Accept: application/json, text/xml, application/xml, */*
+      X-Authentication-Token: safe
+  response:
+    status:
+      status_code: 500
+      category: Server error
+      reason: Internal Server Error
+      message: 'Server error: (500) Internal Server Error'
+    headers:
+      date: Mon, 01 Nov 2021 16:15:21 GMT
+      content-type: application/json; charset=utf-8
+      status: 500 Internal Server Error
+      cache-control: no-cache
+      x-xss-protection: 1; mode=block
+      x-request-id: 2ed107eb-e4c1-40e3-8bfc-51c0689825bc
+      x-runtime: '0.029887'
+      x-frame-options: SAMEORIGIN
+      x-content-type-options: nosniff
+      x-powered-by: Phusion Passenger 6.0.2
+      cf-cache-status: DYNAMIC
+      expect-ct: max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      report-to: '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=Ifv%2F1lOuKECoMJ1AKLmqBEkq0uyTtU%2FJPySCwIDijmRHmYOWkWh6A%2Fl2jlZAQpQNlliRFJLebW8vxqxaoZrX1mynn6E%2FrpmICQkRq12CvzTAb0ZU3V2of1l3a%2BucBGvj4O2DnArj"}],"group":"cf-nel","max_age":604800}'
+      nel: '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      server: cloudflare
+      cf-ray: 6a766bdd5a32ca4b-YUL
+      alt-svc: h3=":443"; ma=86400, h3-29=":443"; ma=86400, h3-28=":443"; ma=86400,
+        h3-27=":443"; ma=86400
+    body:
+      encoding: UTF-8
+      file: no
+      string: '{"error":{"message":"We are sorry but an error occurred processing
+        your request"}}'
+  recorded_at: 2021-11-01 16:15:22 GMT
+  recorded_with: vcr/1.0.2, webmockr/0.8.0

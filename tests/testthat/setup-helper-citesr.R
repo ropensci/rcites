@@ -4,7 +4,7 @@ skip_if_no_auth <- function() {
         skip("No authentication available")
     }
 }
-
+  
 tx_nm <- "Loxodonta africana"
 tx_id <- 4521
 tx_id2 <- "3210"

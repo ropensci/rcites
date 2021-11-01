@@ -7,7 +7,7 @@ test_that("test token", {
   old <- Sys.getenv("SPECIESPLUS_TOKEN")
   suppressMessages(on.exit(set_token(old)))
   expect_snapshot(set_token("hackme"))
-  expect_identical(Sys.getenv("SPECIESPLUS_TOKEN"), "hackme")
+  expect_identical(rcites_getsecret(), "hackme")
 })
 
 test_that("caught wrong token", {
