@@ -12,7 +12,7 @@ test_that("spp_cites_legislation() defaults work", {
   expect_type(res$cites_suspensions$applies_to_import, "logical")
   expect_type(res$cites_quotas$public_display, "logical")
   expect_true("Guinea" %in% res$cites_suspensions$geo_entity.name)
-  # expect_snapshot(print(res))
+  expect_snapshot(print(res))
 })
 
 test_that("spp_cites_legislation() raw mode works", {

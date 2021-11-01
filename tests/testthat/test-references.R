@@ -8,7 +8,7 @@ test_that("spp_references() defaults works", {
   expect_true(is(res[1L], "list"))
   expect_true(all(unlist(lapply(res, function(x) is_cl_df(x)))))
   expect_true(all(names(res$references == nm1)))
-  # expect_snapshot(print(res))
+  expect_snapshot(print(res))
 })
 
 test_that("spp_references() raw mode", {

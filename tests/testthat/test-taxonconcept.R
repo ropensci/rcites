@@ -3,7 +3,6 @@ nm1 <- c("all_id", "general", "higher_taxa", "accepted_names", "common_names",
 nm2 <- c("id", "full_name", "author_year", "rank", "name_status", "updated_at",
   "active", "cites_listing")
 
-
 test_that("spp_taxonconcept() defaults work", {
   vcr::use_cassette("spp_taxonconcept_def", {
     res <- spp_taxonconcept(query_taxon = tx_nm)
@@ -16,7 +15,7 @@ test_that("spp_taxonconcept() defaults work", {
   expect_true(all(unlist(lapply(res, function(x) is_cl_df(x)))))
   expect_type(res$cites_listings$annotation, "character")
   expect_equal(attributes(res)$taxonomy, "CITES")
-  # expect_snapshot(print(res))
+  expect_snapshot(print(res))
 })
 
 test_that("spp_taxonconcept() raw mode works", {

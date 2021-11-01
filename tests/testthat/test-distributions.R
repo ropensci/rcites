@@ -8,14 +8,14 @@ test_that("spp_distributions() defaults work", {
   expect_type(res[1L], "list")
   expect_true(all(unlist(lapply(res, function(x) is_cl_df(x)))))
   expect_identical(lang_GQ %in% res$distributions$name, c(TRUE, FALSE, FALSE))
-  # expect_snapshot(print(res))
+  expect_snapshot(print(res))
 })
 
 test_that("spp_distributions() works when no info available", {
   vcr::use_cassette("spp_distributions_noi", {
     expect_warning(res <- spp_distributions(taxon_id = 0))
   })  
-  # expect_snapshot(print(res))
+  expect_snapshot(print(res))
 })
 
 test_that("spp_distributions() raw mode works", {
