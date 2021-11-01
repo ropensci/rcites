@@ -1,6 +1,6 @@
 # rcites <img src="man/figures/rcites_logo.png" width="130" height="150" align="right"/>
 
-[![R-CMD-check](https://github.com/ropensci/rcites/workflows/R-CMD-check/badge.svg)](https://github.com/ropensci/rcites/actions/workflows/R-CMD-check.yaml)
+[![R CMD Check](https://github.com/ropensci/rcites/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ropensci/rcites/actions/workflows/R-CMD-check.yaml)
 [![codecov](https://codecov.io/gh/ropensci/rcites/branch/master/graph/badge.svg)](https://app.codecov.io/gh/ropensci/rcites)
 [![status](https://tinyverse.netlify.com/badge/rcites)](https://CRAN.R-project.org/package=rcites)
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)

@@ -18,28 +18,25 @@
       1 4521  Animalia Chordata Mammalia Proboscidea Elephantidae
       
       -- Synonyms ($synonyms): -------------------------------------------------------
-      # A tibble: 4 x 2
-        id    apply.do.call.rbind..tmp.wch....2..unlist.
-        <chr> <chr>                                     
-      1 4521  37069                                     
-      2 4521  Loxodonta cyclotis                        
-      3 4521  (Matschie, 1900)                          
-      4 4521  SPECIES                                   
+      # A tibble: 1 x 4
+           id full_name          author_year      rank   
+        <int> <chr>              <chr>            <chr>  
+      1 37069 Loxodonta cyclotis (Matschie, 1900) SPECIES
       
       -- Common names ($common_names): -----------------------------------------------
       # A tibble: 37 x 3
-         id    name               language
-         <chr> <chr>              <chr>   
-       1 4521  Ndovo              SW      
-       2 4521  Tembo              SW      
-       3 4521  Haathi             UR      
-       4 4521  Elefante           PT      
-       5 4521  Slon               RU      
-       6 4521  Elefant            NO      
-       7 4521  Olifant            NL      
-       8 4521  Afrikaanse olifant NL      
-       9 4521  Elefante africano  ES      
-      10 4521  afrikansk elefant  SV      
+            id name               language
+         <int> <chr>              <chr>   
+       1  4521 Ndovo              SW      
+       2  4521 Tembo              SW      
+       3  4521 Haathi             UR      
+       4  4521 Elefante           PT      
+       5  4521 Slon               RU      
+       6  4521 Elefant            NO      
+       7  4521 Olifant            NL      
+       8  4521 Afrikaanse olifant NL      
+       9  4521 Elefante africano  ES      
+      10  4521 afrikansk elefant  SV      
       # ... with 27 more rows
       
       Information available: $all_id, $general, $higher_taxa, $accepted_names, $common_names, $synonyms, $cites_listings 

@@ -239,6 +239,21 @@ rcites_to_logical <- function(x) {
     x
 }
 
+# convert list element to data frame 
+rcites_list_to_df <- function(x, name) {
+  # data.frame(
+    do.call(
+      rbind, 
+      lapply(
+        x, 
+        function(y) do.call(
+          rbind, 
+          lapply(y[[name]], as.data.frame)
+        )
+      )
+    )
+}
+
 # assign class and reset rownames
 rcites_assign_class <- function(x) {
     row.names(x) <- NULL
@@ -392,8 +407,10 @@ rcites_taxonconcept_allentries <- function(x, sp_nm) {
 }
 
 rcites_taxonconcept_higher_taxa <- function(x, identifier) {
-    tmp <- lapply(lapply(x, rcites_null_to_na),
-      function(y) unlist(y$higher_taxa))
+    tmp <- lapply(
+      lapply(x, rcites_null_to_na),
+      function(y) unlist(y$higher_taxa)
+    )
     wch <- which(lapply(tmp, length) > 0)
     #
     out <- data.frame(id = identifier[wch], do.call(rbind, tmp[wch]),
@@ -402,17 +419,18 @@ rcites_taxonconcept_higher_taxa <- function(x, identifier) {
     out
 }
 
+
 rcites_taxonconcept_names <- function(x, name, identifier) {
-    tmp <- lapply(x, function(y) if (!is.null(y[[name]]))
-        do.call(rbind, y[[name]]))
-    wch <- which(unlist(lapply(tmp, length)) > 0)
-    #
-    if (length(wch)) {
-        out <- cbind(id = rep(identifier[wch], unlist(lapply(tmp[wch],
-            nrow))), data.frame(apply(do.call(rbind, tmp[wch]), 2, unlist),
-            stringsAsFactors = FALSE))
+    out <- rcites_list_to_df(x, name)
+    if (!is.null(out)) {
+      if (! "id" %in% names(out)) {
+          nbr <- unlist(lapply(x, function(y) length(y[[name]])))
+          ids <- unlist(lapply(x, function(y) y$id))
+          # NB sometimes several synonyms are given seprated by a virgule, 
+          # sometimes the d is repeasted
+          out <- cbind(id = rep.int(ids, nbr), out)
+      }
     } else out <- data.frame()
-    #
     out <- rcites_assign_class(out)
     out
 }
