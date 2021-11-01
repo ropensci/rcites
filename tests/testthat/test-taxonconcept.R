@@ -51,12 +51,12 @@ test_that("spp_taxonconcept() page selection works", {
   expect_equal(nrow(res[[1L]]), 20)
 })
 
-# test_that("spp_taxonconcept() updated_since works", {
-#   vcr::use_cassette("spp_taxonconcept_upd", {
-#     res <- spp_taxonconcept(query_taxon = '',
-#       updated_since = "2018-01-01", verbose = FALSE, page = 1)
-#   })  
-#   expect_true(all(res$general$updated_at >= "2018-01-01"))
-# })
+test_that("spp_taxonconcept() updated_since works", {
+  vcr::use_cassette("spp_taxonconcept_upd", {
+    res <- spp_taxonconcept(query_taxon = '',
+      updated_since = "2018-01-01", verbose = FALSE, page = 1)
+  })  
+  expect_true(all(res$general$updated_at >= "2018-01-01"))
+})
 # maybe a problem with data in URL
 

@@ -4,7 +4,10 @@ context("Helper functions")
 
 ## General helpers
 test_that("General helpers", {
-  expect_true(identical(rcites_timestamp("2017-01-01"), "2017-01-01T00:00:00"))
+  expect_identical(
+      rcites_timestamp("2017-01-01"),
+       utils::URLencode("2017-01-01T00:00:00", reserved = TRUE)
+     )
   expect_true(is.null(rcites_lang("en")))
   expect_true(identical(rcites_lang("fr"), "language=fr"))
   expect_error(rcites_lang("wrong"))

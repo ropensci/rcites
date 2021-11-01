@@ -15,17 +15,17 @@ http_interactions:
       reason: OK
       message: 'Success: (200) OK'
     headers:
-      date: Sun, 31 Oct 2021 22:08:10 GMT
+      date: Mon, 01 Nov 2021 02:47:20 GMT
       content-type: application/json; charset=utf-8
       vary: Accept-Encoding
       status: 200 OK
       cache-control: max-age=0, private, must-revalidate
       x-xss-protection: 1; mode=block
-      x-request-id: abfa38ff-2042-4ad8-8b4b-f0e1e5521d74
+      x-request-id: 64230713-eb00-4233-888f-ae786d139cd9
       total-count: '1'
       etag: W/"45199b2c7935af20a3154cc39b36519f"
       x-frame-options: SAMEORIGIN
-      x-runtime: '3.214269'
+      x-runtime: '3.709655'
       x-content-type-options: nosniff
       x-powered-by: Phusion Passenger 6.0.2
       access-control-allow-origin: '*'
@@ -34,10 +34,10 @@ http_interactions:
       access-control-allow-headers: DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,x-authentication-token
       cf-cache-status: DYNAMIC
       expect-ct: max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
-      report-to: '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=4wrC5VbMYEHRWBZh1OKde3uGlevB9Oyd51AuFO8vkke2EtuZlGy3Kw8zOCZD6oXkBPMDY7H%2BHJyqCsExPzP4AsHL29ZjkEf4Rm5emwxk%2BXg7Tw6HHjaYhkwElQUSTsAwBVkIheTd"}],"group":"cf-nel","max_age":604800}'
+      report-to: '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=oRZug8jRrXX0FgDs7Gmfl9oL%2BHMcrrtCq2xpEwatHoMHOzkoC7eLia3hvYNH5ssKCo1747y5mY7v1Z8%2Fmu48o%2By%2B%2B3aMPjTT%2Btvht99%2BIVIHxm5SJjk7WkIOknJq4ThdT5L0BUMd"}],"group":"cf-nel","max_age":604800}'
       nel: '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       server: cloudflare
-      cf-ray: 6a70333dcf444bca-YUL
+      cf-ray: 6a71cc2adadb4bb9-YUL
       content-encoding: br
       alt-svc: h3=":443"; ma=86400, h3-29=":443"; ma=86400, h3-28=":443"; ma=86400,
         h3-27=":443"; ma=86400
@@ -99,5 +99,5 @@ http_interactions:
         or in the case of proven detrimental impacts of the trade on other elephant
         populations.All other specimens shall be deemed to be specimens of species
         included in Appendix I and the trade in them shall be regulated accordingly.","hash_annotation":null,"effective_at":"2019-11-26","party":null}]}]}'
-  recorded_at: 2021-10-31 22:08:11 GMT
+  recorded_at: 2021-11-01 02:47:21 GMT
   recorded_with: vcr/1.0.2, webmockr/0.8.0

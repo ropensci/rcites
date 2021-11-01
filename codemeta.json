@@ -131,6 +131,7 @@
       "@type": "SoftwareApplication",
       "identifier": "rworldmap",
       "name": "rworldmap",
+      "version": ">= 1.3.6",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -195,10 +196,15 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=jsonlite"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "utils",
+      "name": "utils"
     }
   ],
   "readme": "https://github.com/ropensci/rcites/blob/master/README.md",
-  "fileSize": "921.472KB",
+  "fileSize": "1721.753KB",
   "keywords": [
     "cites",
     "api-client",
@@ -210,7 +216,7 @@
     "rstats"
   ],
   "releaseNotes": "https://github.com/ropensci/rcites/blob/master/NEWS.md",
-  "contIntegration": ["https://github.com/ropensci/rcites/actions/workflows/R-CMD-check.yaml", "https://codecov.io/gh/ropensci/rcites"],
+  "contIntegration": ["https://github.com/ropensci/rcites/actions/workflows/R-CMD-check.yaml", "https://app.codecov.io/gh/ropensci/rcites"],
   "developmentStatus": "https://www.repostatus.org/#active",
   "citation": [
     {

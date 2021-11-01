@@ -36,6 +36,7 @@ rcites_cat_failure <- function() {
 rcites_baseurl <- function() "https://api.speciesplus.net/api/v1/"
 
 rcites_url <- function(...) {
+  # print(  paste0(rcites_baseurl(), ...))
     paste0(rcites_baseurl(), ...)
 }
 
@@ -67,7 +68,7 @@ rcites_res <- function(q_url, token, raw, verbose, ...) {
 rcites_timestamp <- function(x) {
     # ISO 8601 format
     tm <- as.POSIXlt(x, tz = "UTC")
-    strftime(tm, "%Y-%m-%dT%H:%M:%S")
+    utils::URLencode(strftime(tm, "%Y-%m-%dT%H:%M:%S"), reserved = TRUE)
 }
 
 rcites_lang <- function(x) {
@@ -96,7 +97,7 @@ rcites_checkid <- function(taxon_id) {
 
 rcites_current_id <- function(x) {
   rcites_msg_info(
-      "Now processing taxon_id '", x,"'",
+      "Now processing taxon_id '", x ,"'",
       paste(rep(".", 26 - nchar(x)), collapse = ""), 
       " ",
       appendLF = FALSE
@@ -362,7 +363,7 @@ rcites_print_taxon_id <- function(x, max_print = 20) {
 rcites_taxonconcept_request <- function(x, taxonomy, with_descendants,
     page, per_page, updated_since = NULL, language = NULL) {
     # deal with whitespace
-    tmp <- gsub(pattern = " ", replacement = "%20", x = x)
+    tmp <- utils::URLencode(as.character(x), reserved = TRUE)
     #
     query <- ifelse(tmp == "", "", paste0("name=", tmp))
     taxo <- ifelse(taxonomy == "CMS", "taxonomy=CMS", "")
