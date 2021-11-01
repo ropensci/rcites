@@ -2,7 +2,7 @@
 
 * consistently use `message()` for console (see #60).
 * vignettes are precomputed (see #58).
-* tests now uses vcr (see #56).
+* tests now uses vcr (now imported) (see #56).
 * classes are now tested properly (see #54).
 * internal `rcites_res()` gains arguments `verbose` and `raw` (see #43 and #62).
 * request status now are reported by `warn_for_status()` rather than by `stop_for_status()`, this prevents fast-failing in batch mode (see #62). 

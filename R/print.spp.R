@@ -67,7 +67,8 @@ print.spp_distr <- function(x, ...) {
     rcites_print_df(x$distributions)
 
     rcites_print_title("References ($references):")
-    x$references$reference <- rcites_print_shorten(x$references$reference)
+    if (nrow(x$references)) 
+      x$references$reference <- rcites_print_shorten(x$references$reference)
     rcites_print_df_rm(x$references)
     invisible(NULL)
 }
@@ -115,8 +116,9 @@ print.spp_eu_leg_multi <- function(x, ...) {
 #' @export
 print.spp_refs <- function(x, ...) {
     rcites_print_title("References ($references):")
-    x$references$citation <- rcites_print_shorten(x$references$citation,
-        40)
+    if (nrow(x$references)) {
+      x$references$citation <- rcites_print_shorten(x$references$citation, 40)
+    }
     rcites_print_df(x$references)
     invisible(NULL)
 }

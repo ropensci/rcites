@@ -1,4 +1,4 @@
-context("references")
+context("References")
 
 nm1 <- c("id", "citation", "is_standard")
 

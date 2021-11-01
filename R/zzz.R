@@ -48,11 +48,13 @@ rcites_res <- function(q_url, token, raw, verbose, ...) {
     con <- rcites_get(q_url, token, ...)
     suc <- httr::http_status(con)
     if (suc$category == "Success") {
-      if (verbose) rcites_cat_done()
+      if (verbose) 
+        rcites_cat_done()
       httr::content(con, "parsed", ...)
     } else {
-      if (verbose) rcites_cat_failure()
-      httr::warn_for_status(con)
+        if (verbose) 
+          rcites_cat_failure()
+        httr::warn_for_status(con)
       if (raw) {
         httr::content(con, "parsed", ...)
       } else {
@@ -290,11 +292,13 @@ rcites_simplify_distributions <- function(x) {
     out$distributions <- rcites_assign_class(out$distributions)
     # references
     tmp2 <- tmp$references
-    out$references <- data.frame(
-        id = rep(out$distributions$id,
-        unlist(lapply(tmp2, length))),
-        reference = unlist(tmp2), stringsAsFactors = FALSE)
-    out$references <- rcites_assign_class(out$references)
+    if (nrow(out$distributions)) {
+      out$references <- data.frame(
+          id = rep(out$distributions$id,
+          unlist(lapply(tmp2, length))),
+          reference = unlist(tmp2), stringsAsFactors = FALSE)
+      out$references <- rcites_assign_class(out$references)
+    } else out$references <- data.frame()
     #
     out
 }
@@ -315,6 +319,7 @@ rcites_print_title <- function(x, after, before) {
 }
 
 rcites_print_df <- function(x, nrows = 10) {
+  if (nrow(x)) {
     if ("tibble" %in% .packages()) {
         # tibble truncates the outputs already
         print(x)
@@ -324,14 +329,22 @@ rcites_print_df <- function(x, nrows = 10) {
         if (tmp < nrow(x))
             cat("-------truncated-------\n")
     }
+  } else {
+      cat(col_yellow("No records available.\n"))
+  }
 }
 
 rcites_print_df_rm <- function(x, col_rm = "", nrows = 10) {
+  
+  if (nrow(x)) {
     rcites_print_df(x[, !names(x) %in% col_rm])
     id <- which(col_rm %in% names(x))
     if (length(id))
-        cat("Field(s) not printed: ", paste(col_rm[id], collapse = ", "),
-            "\n")
+        cat("Field(s) not printed: ", paste(col_rm[id], collapse = ", "), "\n")
+  } else {
+      cat(col_yellow("No records available.\n"))
+  }
+  
 }
 
 rcites_print_taxon_id <- function(x, max_print = 20) {
