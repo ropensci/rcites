@@ -1,5 +1,3 @@
-context("Helper functions")
-
 # rcites_taxonconcept_request(tx_nm, "CITES", FALSE, 1, 500, NULL, NULL)
 
 ## General helpers

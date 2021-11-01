@@ -1,5 +1,3 @@
-context("References")
-
 nm1 <- c("id", "citation", "is_standard")
 
 test_that("spp_references() defaults works", {

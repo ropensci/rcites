@@ -1,5 +1,3 @@
-context("Distributions")
-
 lang_GQ <- c("Equatorial Guinea", "Guinée équatoriale", "Guinea Ecuatorial")
 
 test_that("spp_distributions() defaults work", {
@@ -10,7 +8,7 @@ test_that("spp_distributions() defaults work", {
   expect_type(res[1L], "list")
   expect_true(all(unlist(lapply(res, function(x) is_cl_df(x)))))
   expect_identical(lang_GQ %in% res$distributions$name, c(TRUE, FALSE, FALSE))
-  # expect_null(print(res))
+  # expect_snapshot(print(res))
 })
 
 test_that("spp_distributions() raw mode works", {
@@ -24,7 +22,7 @@ test_that("spp_distributions() raw mode works", {
     res2$error$message,
     "We are sorry but an error occurred processing your request"
   )
-  # expect_null(print(res))
+  # expect_snapshot(print(res))
 })
 
 test_that("spp_distributions() language works", {

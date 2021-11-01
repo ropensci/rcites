@@ -1,6 +1,4 @@
-context("Legislation")
-
-nm_ci <- c("cites_listings", "cites_quotas", "cites_suspensions")
+m_ci <- c("cites_listings", "cites_quotas", "cites_suspensions")
 nm_eu <- c("eu_listings",  "eu_decisions")
 
 test_that("spp_cites_legislation() defaults work", {

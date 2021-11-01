@@ -1,5 +1,3 @@
-context("Taxon concept")
-
 nm1 <- c("all_id", "general", "higher_taxa", "accepted_names", "common_names",
 "synonyms", "cites_listings")
 nm2 <- c("id", "full_name", "author_year", "rank", "name_status", "updated_at",

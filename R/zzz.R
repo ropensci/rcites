@@ -89,7 +89,7 @@ rcites_checkid <- function(taxon_id) {
     # id check
     if (!grepl(taxon_id, pattern = "^[0-9]*$")) {
         warning("The taxon concept identifier is made of digits only.")
-        rcites_msg_info("Skipping", paste0(taxon_id, ".\n"))
+        rcites_msg_info("Skipping '", paste0(taxon_id, "'.\n"))
         out <- TRUE
     } else out <- FALSE
     out
