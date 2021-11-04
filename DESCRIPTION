@@ -16,7 +16,7 @@ URL: https://docs.ropensci.org/rcites/, https://github.com/ropensci/rcites
 BugReports: https://github.com/ropensci/rcites/issues
 License: MIT + file LICENSE
 Depends: R (>= 3.1.0)
-Imports: cli, httr, jsonlite, utils
+Imports: cli, curl, httr, jsonlite
 Suggests: 
     knitr,
     testthat,

@@ -21,7 +21,7 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.1.1 (2021-08-10)",
+  "runtimePlatform": "R version 4.1.2 (2021-11-01)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -175,6 +175,18 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "curl",
+      "name": "curl",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=curl"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "httr",
       "name": "httr",
       "provider": {
@@ -196,15 +208,10 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=jsonlite"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "utils",
-      "name": "utils"
     }
   ],
   "readme": "https://github.com/ropensci/rcites/blob/master/README.md",
-  "fileSize": "1721.984KB",
+  "fileSize": "1733.904KB",
   "keywords": [
     "cites",
     "api-client",

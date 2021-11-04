@@ -42,7 +42,7 @@ rcites_url <- function(...) {
 
 rcites_get <- function(q_url, token, ...) {
     names(token) <- "X-Authentication-Token"
-    httr::GET(q_url, httr::add_headers(token), ...)
+    httr::GET(httr::modify_url(q_url), httr::add_headers(token), ...)
 }
 
 rcites_res <- function(q_url, token, raw, verbose, ...) {
@@ -68,7 +68,7 @@ rcites_res <- function(q_url, token, raw, verbose, ...) {
 rcites_timestamp <- function(x) {
     # ISO 8601 format
     tm <- as.POSIXlt(x, tz = "UTC")
-    utils::URLencode(strftime(tm, "%Y-%m-%dT%H:%M:%S"), reserved = TRUE)
+    curl::curl_escape(strftime(tm, "%Y-%m-%dT%H:%M:%S"))
 }
 
 rcites_lang <- function(x) {
@@ -378,7 +378,7 @@ rcites_print_taxon_id <- function(x, max_print = 20) {
 rcites_taxonconcept_request <- function(x, taxonomy, with_descendants,
     page, per_page, updated_since = NULL, language = NULL) {
     # deal with whitespace
-    tmp <- utils::URLencode(as.character(x), reserved = TRUE)
+    tmp <- curl::curl_escape(as.character(x))
     #
     query <- ifelse(tmp == "", "", paste0("name=", tmp))
     taxo <- ifelse(taxonomy == "CMS", "taxonomy=CMS", "")

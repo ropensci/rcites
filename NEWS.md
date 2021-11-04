@@ -1,14 +1,14 @@
 # rcites (devel) 
 
-* review porcessing 
-* test print methods (see #57).
-* encode parts of URLs using `utils::URLencode(x, reserved = TRUE)` (see #63).
-* consistently use `message()` for console (see #60).
-* vignettes are precomputed (see #58).
-* tests now uses vcr (now listed in Suggests, see #56).
-* classes are now tested properly (see #54).
-* internal `rcites_res()` gains arguments `verbose` and `raw` (see #43 and #62).
-* request status now are reported by `warn_for_status()` rather than by `stop_for_status()`, this prevents fast-failing in batch mode (see #62).
+* `synonyms` are properly formatted (see #65).
+* `print()` methods are tested (see #57).
+* `curl::curl_escape(x)` is used to encode some URL parts (see #63).
+* Consistently uses `message()` for console (see #60).
+* Vignettes are not precomputed (see #58).
+* Tests now uses `vcr` (now listed in `Suggests`, see #56).
+* Classes are now tested properly (see #54).
+* `rcites_res()` gains arguments `verbose` and `raw` (see #43 and #62).
+* Request status now are reported by `warn_for_status()` rather than by `stop_for_status()`, this prevents fast-failing in batch mode (see #62).
 
 
 # rcites 1.1.0
