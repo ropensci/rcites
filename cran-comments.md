@@ -1,4 +1,4 @@
-This is a minor release that mainly improves tests (tests have been reviewed, http requests have been recorded using vcr) and the testing environment (see below).
+This is a minor release that mainly improves tests (tests have been reviewed, http requests have been recorded using vcr) and the testing environment (see below). Minor bugs have been squashed along the way. 
 
 ## Test environments
 

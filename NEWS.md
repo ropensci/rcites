@@ -1,5 +1,6 @@
 # rcites (devel) 
 
+* Default branch is now set to `main`.
 * `synonyms` are properly formatted (see #65).
 * `print()` methods are tested (see #57).
 * `curl::curl_escape(x)` is used to encode some URL parts (see #63).
