@@ -25,17 +25,17 @@ res_cms <- spp_taxonconcept("", taxonomy = "CMS") #slow
 ```
 
 ```
-#>  → Retrieving info from page 1 ........................✔
-#>  ── 10 pages available, retrieving info from 9 more ──────────────────────────────────────────────────
-#>  → Retrieving info from page 2 ........................✔
-#>  → Retrieving info from page 3 ........................✔
-#>  → Retrieving info from page 4 ........................✔
-#>  → Retrieving info from page 5 ........................✔
-#>  → Retrieving info from page 6 ........................✔
-#>  → Retrieving info from page 7 ........................✔
-#>  → Retrieving info from page 8 ........................✔
-#>  → Retrieving info from page 9 ........................✔
-#>  → Retrieving info from page 10 .......................✔
+#>  ℹ Retrieving info from page 1 ........................ ✔
+#>  ℹ 10 pages available, retrieving info from 9 more
+#>  ℹ Retrieving info from page 2 ........................ ✔
+#>  ℹ Retrieving info from page 3 ........................ ✔
+#>  ℹ Retrieving info from page 4 ........................ ✔
+#>  ℹ Retrieving info from page 5 ........................ ✔
+#>  ℹ Retrieving info from page 6 ........................ ✔
+#>  ℹ Retrieving info from page 7 ........................ ✔
+#>  ℹ Retrieving info from page 8 ........................ ✔
+#>  ℹ Retrieving info from page 9 ........................ ✔
+#>  ℹ Retrieving info from page 10 ....................... ✔
 ```
 
 ```r
@@ -55,9 +55,9 @@ res_cites <- spp_taxonconcept("", page = 1:2)
 ```
 
 ```
-#>  → Retrieving info from page 1 ........................✔
-#>  ── 167 pages available, retrieving info from 1 more ─────────────────────────────────────────────────
-#>  → Retrieving info from page 2 ........................✔
+#>  ℹ Retrieving info from page 1 ........................ ✔
+#>  ℹ 167 pages available, retrieving info from 1 more
+#>  ℹ Retrieving info from page 2 ........................ ✔
 ```
 
 ```r
