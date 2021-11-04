@@ -1,4 +1,4 @@
-# rcites (devel) 
+# rcites (devel)
 
 * Default branch is now set to `main`.
 * `synonyms` are properly formatted (see #65).
@@ -14,10 +14,10 @@
 
 # rcites 1.1.0
 
-* internal function `rcites_simplify_distributions()` has been re-written to fix a bug that made `spp_distributions()` throw an error for `taxon_id` with only one distribution entry (see #53).
+* Internal function `rcites_simplify_distributions()` has been re-written to fix a bug that made `spp_distributions()` throw an error for `taxon_id` with only one distribution entry (see #53).
 * `spp_*()` functions gain an argument `pause` (see #50 and #51 following the issue reported by @fleurhierink in #49).
-* minor text editions through the documentation.
-* return an empty data frame when there is no listing available for a given species (fix #47 reported by @eveskew).
+* Minor text editions through the documentation.
+* Return an empty data frame when there is no listing available for a given species (fix #47 reported by @eveskew).
 
 
 # rcites 1.0.1

@@ -4,7 +4,7 @@ author: "rcites team"
 date: 10-08-2018
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Species+ information about the African bush elephant}
+  %\VignetteIndexEntry{Study case: the African bush elephant (*Loxodonta africana*)}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

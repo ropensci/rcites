@@ -4,7 +4,7 @@ author: "rcites team"
 date: 10-08-2018
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Species+ information about the African bush elephant}
+  %\VignetteIndexEntry{Study case: the African bush elephant (*Loxodonta africana*)}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -129,7 +129,7 @@ plot(map2, add = TRUE)
 plot(map2[!is.na(map2$iso_code2),], col = "#cba74d", add = TRUE)
 ```
 
-<img src="figure/map-1.png" title="plot of chunk map" alt="plot of chunk map" style="display: block; margin: auto;" />
+<img src="img/map-1.png" title="plot of chunk map" alt="plot of chunk map" style="display: block; margin: auto;" />
 
 
 ## Access the legislation status
