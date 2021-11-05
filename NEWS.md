@@ -1,4 +1,4 @@
-# rcites (devel)
+# rcites 1.2.0
 
 * Default branch is now set to `main`.
 * `synonyms` are properly formatted (see #65).
