@@ -1,3 +1,7 @@
+# rcites devel
+
+* Cassettes are now recorded in JSON (see #66).
+
 # rcites 1.2.0
 
 * Default branch is now set to `main`.
