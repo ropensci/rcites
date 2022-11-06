@@ -19,11 +19,11 @@ Set and forget the authentification token for the current session.
 }
 \section{Functions}{
 \itemize{
-\item \code{set_token}: set the environment variable \code{SPECIESPLUS_TOKEN}.
+\item \code{set_token()}: set the environment variable \code{SPECIESPLUS_TOKEN}.
 
-\item \code{forget_token}: forget the environment variable \code{SPECIESPLUS_TOKEN}.
+\item \code{forget_token()}: forget the environment variable \code{SPECIESPLUS_TOKEN}.
+
 }}
-
 \examples{
 \dontrun{
  # NB: the token below is not working
