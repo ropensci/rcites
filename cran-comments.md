@@ -10,7 +10,7 @@ This is a minor release that mainly improves tests (tests have been reviewed, ht
 * GitHub Actions, Windows Server 2019 (10.0.17763): R-release,
 * GitHub Actions, Windows Server 2019 (10.0.17763): R-devel,
 * GitHub Actions, Windows Server 2019 (10.0.17763): R-release,
-* GitHub Actions, win-builder (R-release and R-devel),
+* win-builder (R-release and R-devel),
 * local Debian 11 (Kernel: 5.14.0-2-amd64 x86_64), R-4.1.1.
 
 

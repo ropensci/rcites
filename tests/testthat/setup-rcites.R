@@ -18,7 +18,8 @@ if (!nzchar(Sys.getenv("SPECIESPLUS_TOKEN"))) {
 
 invisible(vcr::vcr_configure(
   dir = vcr_dir,
-  filter_request_headers = list('X-Authentication-Token' = "safe")
+  filter_request_headers = list('X-Authentication-Token' = "safe"),
+  serialize_with = "json"
 ))
 
 vcr::check_cassette_names()

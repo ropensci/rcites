@@ -1,27 +1,20 @@
 {
-  "@context": [
-    "https://doi.org/10.5063/schema/codemeta-2.0",
-    "http://schema.org"
-  ],
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "@type": "SoftwareSourceCode",
   "identifier": "rcites",
   "description": "A programmatic interface to the Species+ <https://speciesplus.net/> database via the Species+/CITES Checklist API <https://api.speciesplus.net/>.",
   "name": "rcites: R Interface to the Species+ Database",
+  "relatedLink": ["https://docs.ropensci.org/rcites/", "https://CRAN.R-project.org/package=rcites"],
   "codeRepository": "https://github.com/ropensci/rcites",
-  "relatedLink": [
-    "https://ropensci.github.io/rcites/",
-    "https://CRAN.R-project.org/package=rcites",
-    "https://docs.ropensci.org/rcites/"
-  ],
   "issueTracker": "https://github.com/ropensci/rcites/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "1.1.0.9000",
+  "version": "1.2.0.9000",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.1.2 (2021-11-01)",
+  "runtimePlatform": "R version 4.2.2 (2022-10-31)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -67,8 +60,6 @@
       "familyName": "Verzelen"
     }
   ],
-  "copyrightHolder": {},
-  "funder": {},
   "maintainer": [
     {
       "@type": "Person",
@@ -154,14 +145,14 @@
       "sameAs": "https://CRAN.R-project.org/package=vcr"
     }
   ],
-  "softwareRequirements": [
-    {
+  "softwareRequirements": {
+    "1": {
       "@type": "SoftwareApplication",
       "identifier": "R",
       "name": "R",
       "version": ">= 3.1.0"
     },
-    {
+    "2": {
       "@type": "SoftwareApplication",
       "identifier": "cli",
       "name": "cli",
@@ -173,7 +164,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=cli"
     },
-    {
+    "3": {
       "@type": "SoftwareApplication",
       "identifier": "curl",
       "name": "curl",
@@ -185,7 +176,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=curl"
     },
-    {
+    "4": {
       "@type": "SoftwareApplication",
       "identifier": "httr",
       "name": "httr",
@@ -197,7 +188,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=httr"
     },
-    {
+    "5": {
       "@type": "SoftwareApplication",
       "identifier": "jsonlite",
       "name": "jsonlite",
@@ -208,23 +199,10 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=jsonlite"
-    }
-  ],
-  "readme": "https://github.com/ropensci/rcites/blob/master/README.md",
-  "fileSize": "1733.904KB",
-  "keywords": [
-    "cites",
-    "api-client",
-    "trade",
-    "endangered-species",
-    "r-package",
-    "database",
-    "r",
-    "rstats"
-  ],
-  "releaseNotes": "https://github.com/ropensci/rcites/blob/master/NEWS.md",
-  "contIntegration": ["https://github.com/ropensci/rcites/actions/workflows/R-CMD-check.yaml", "https://app.codecov.io/gh/ropensci/rcites"],
-  "developmentStatus": "https://www.repostatus.org/#active",
+    },
+    "SystemRequirements": null
+  },
+  "fileSize": "1953.027KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -271,12 +249,18 @@
         }
       ],
       "name": "{rcites}: An R package to access the CITES Species+ database",
-      "url": "https://docs.ropensci.org/rcites/"
+      "url": "https://docs.ropensci.org/rcites/",
+      "description": "R package version 1.2.0.9000"
     }
   ],
+  "releaseNotes": "https://github.com/ropensci/rcites/blob/master/NEWS.md",
+  "readme": "https://github.com/ropensci/rcites/blob/main/README.md",
+  "contIntegration": ["https://github.com/ropensci/rcites/actions/workflows/R-CMD-check.yaml", "https://app.codecov.io/gh/ropensci/rcites"],
+  "developmentStatus": "https://www.repostatus.org/#active",
   "review": {
     "@type": "Review",
     "url": "https://github.com/ropensci/software-review/issues/244",
     "provider": "https://ropensci.org"
-  }
+  },
+  "keywords": ["cites", "api-client", "trade", "endangered-species", "r-package", "database", "r", "rstats"]
 }
