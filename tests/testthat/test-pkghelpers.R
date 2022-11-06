@@ -1,9 +1,9 @@
 ## General helpers
 test_that("General helpers", {
   expect_identical(
-      rcites_timestamp("2017-01-01"),
-       utils::URLencode("2017-01-01T00:00:00", reserved = TRUE)
-     )
+    rcites_timestamp("2017-01-01"),
+    utils::URLencode("2017-01-01T00:00:00", reserved = TRUE)
+  )
   expect_true(is.null(rcites_lang("en")))
   expect_true(identical(rcites_lang("fr"), "language=fr"))
   expect_error(rcites_lang("wrong"))
@@ -42,11 +42,11 @@ str <- paste(letters[1:26], collapse = "")
 str2 <- paste(letters[1:25], collapse = "")
 rcites_print_shorten(str)
 test_that("Print helpers", {
-  expect_equal(rcites_print_shorten(str),
-    paste0(substring(str, 1, 20), " [truncated]"))
+  expect_equal(
+    rcites_print_shorten(str),
+    paste0(substring(str, 1, 20), " [truncated]")
+  )
   expect_equal(rcites_print_shorten(str2), str2)
   expect_equal(rcites_print_shorten(str, 4), "abcd [truncated]")
   expect_output(rcites_print_df(data.frame(id = 1)), "  id\\n1  1")
 })
-
-
