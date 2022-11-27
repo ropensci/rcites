@@ -26,10 +26,10 @@ Set and forget the authentification token for the current session.
 }}
 \examples{
 \dontrun{
- # NB: the token below is not working
- set_token('8QW6Qgh57sBG2k0gtt')
- # interactively
- set_token()
+# NB: the token below is not working
+set_token("8QW6Qgh57sBG2k0gtt")
+# interactively
+set_token()
 }
 }
 \references{

@@ -168,11 +168,9 @@ rcites_combine_lists <- function(x, taxon_id, raw) {
 rcites_getsecret <- function() {
   val <- Sys.getenv("SPECIESPLUS_TOKEN")
   if (identical(val, "")) {
-    rcites_msg_info("
-    `SPECIESPLUS_TOKEN` env var has not been set yet.
+    cli::cli_alert_warning("`SPECIESPLUS_TOKEN` env var has not been set yet.
     A token is required to use the species + API, see
-    https://api.speciesplus.net/documentation
-    ")
+    https://api.speciesplus.net/documentation")
     set_token()
     val <- rcites_getsecret()
   }
