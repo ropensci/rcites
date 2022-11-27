@@ -2,16 +2,16 @@ This is a minor release that mainly improves tests (tests have been reviewed, ht
 
 ## Test environments
 
-* GitHub Actions, Ubuntu 20.04: R-oldrel,
-* GitHub Actions, Ubuntu 20.04: R-release,
-* GitHub Actions, Ubuntu 20.04: R-devel,
-* GitHub Actions, macOS 11.6: R-release,
-* GitHub Actions, macOS 11.6: R-devel,
-* GitHub Actions, Windows Server 2019 (10.0.17763): R-release,
-* GitHub Actions, Windows Server 2019 (10.0.17763): R-devel,
-* GitHub Actions, Windows Server 2019 (10.0.17763): R-release,
+* GitHub Actions, Ubuntu 20.04.5: R-oldrel,
+* GitHub Actions, Ubuntu 20.04.5: R-release,
+* GitHub Actions, Ubuntu 20.04.5: R-devel,
+* GitHub Actions, macOS 11.7.1: R-release,
+* GitHub Actions, macOS 11.7.1: R-devel,
+* GitHub Actions, Microsoft Windows Server 2022 (10.0.20348): R-release,
+* GitHub Actions, Microsoft Windows Server 2022 (10.0.20348): R-devel,
+* GitHub Actions, Microsoft Windows Server 2022 (10.0.20348): R-release,
 * win-builder (R-release and R-devel),
-* local Debian 11 (Kernel: 5.14.0-2-amd64 x86_64), R-4.1.1.
+* local Ubuntu 22.04 (Kernel: 5.15.0-53-generic x86_64), R-4.2.2
 
 
 ## R CMD check results.
