@@ -2,7 +2,7 @@ nm1 <- c("id", "citation", "is_standard")
 
 test_that("spp_references() defaults works", {
   vcr::use_cassette("spp_references_def", {
-    res <- spp_references(taxon_id = tx_id)
+    suppressMessages(res <- spp_references(taxon_id = tx_id))
   })
   expect_s3_class(res, "spp_refs")
   expect_true(is(res[1L], "list"))
@@ -14,7 +14,8 @@ test_that("spp_references() defaults works", {
 test_that("spp_references() raw mode", {
   vcr::use_cassette("spp_references_raw", {
     expect_silent(res1 <- spp_references(
-      taxon_id = tx_id, raw = TRUE,
+      taxon_id = tx_id,
+      raw = TRUE,
       verbose = FALSE
     ))
     expect_warning(res2 <- spp_references(

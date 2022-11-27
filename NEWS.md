@@ -1,5 +1,8 @@
-# rcites devel
+# rcites 1.2.0.9000
 
+* `set_token()` now keeps prompting a message as long as the token is an empty 
+character string and it also indicates when a token might not be valid.
+* Minor code reformatting throughout the code. 
 * Cassettes are now recorded in JSON (see #66).
 
 # rcites 1.2.0

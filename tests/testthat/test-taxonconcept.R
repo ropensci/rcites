@@ -9,7 +9,7 @@ nm2 <- c(
 
 test_that("spp_taxonconcept() defaults work", {
   vcr::use_cassette("spp_taxonconcept_def", {
-    res <- spp_taxonconcept(query_taxon = tx_nm)
+    suppressMessages(res <- spp_taxonconcept(query_taxon = tx_nm))
   })
   expect_s3_class(res, "spp_taxon")
   expect_equal(length(res), 7)
@@ -22,40 +22,44 @@ test_that("spp_taxonconcept() defaults work", {
   expect_snapshot(print(res))
 })
 
-test_that("spp_taxonconcept() raw mode works", {
-  vcr::use_cassette("spp_taxonconcept_raw", {
-    expect_silent(res1 <- spp_taxonconcept(
-      query_taxon = tx_nm, raw = TRUE,
-      verbose = FALSE
-    ))
-    expect_warning(
-      res2 <- spp_taxonconcept(query_taxon = 0, raw = TRUE, verbose = FALSE), "Taxon not listed."
-    )
+
+suppressMessages({
+  test_that("spp_taxonconcept() raw mode works", {
+    vcr::use_cassette("spp_taxonconcept_raw", {
+      expect_silent(res1 <- spp_taxonconcept(
+        query_taxon = tx_nm, raw = TRUE,
+        verbose = FALSE
+      ))
+      expect_warning(
+        res2 <- spp_taxonconcept(query_taxon = 0, raw = TRUE, verbose = FALSE), "Taxon not listed."
+      )
+    })
+    expect_true(is_cl_rw(res1))
+    expect_true(is.null(res2))
   })
-  expect_true(is_cl_rw(res1))
-  expect_true(is.null(res2))
+
+  test_that("spp_taxonconcept() CMS works", {
+    vcr::use_cassette("spp_taxonconcept_cms", {
+      res <- spp_taxonconcept(query_taxon = "", taxonomy = "CMS", per_page = 10, pages = 1:2, language = "EN", verbose = FALSE)
+    })
+    expect_s3_class(res, "spp_taxon")
+    expect_equal(nrow(res[[1L]]), 20)
+    expect_equal(attributes(res)$taxonomy, "CMS")
+    expect_true(all(res$common_names$language == "EN"))
+    expect_type(res$higher_taxa$kingdom, "character")
+  })
+
+  test_that("spp_taxonconcept() page selection works", {
+    vcr::use_cassette("spp_taxonconcept_pag", {
+      res <- spp_taxonconcept(
+        query_taxon = "", pages = c(43:44), per_page = 10,
+        with_descendants = FALSE, verbose = FALSE
+      )
+    })
+    expect_equal(nrow(res[[1L]]), 20)
+  })
 })
 
-test_that("spp_taxonconcept() CMS works", {
-  vcr::use_cassette("spp_taxonconcept_cms", {
-    res <- spp_taxonconcept(query_taxon = "", taxonomy = "CMS", per_page = 10, pages = 1:2, language = "EN", verbose = FALSE)
-  })
-  expect_s3_class(res, "spp_taxon")
-  expect_equal(nrow(res[[1L]]), 20)
-  expect_equal(attributes(res)$taxonomy, "CMS")
-  expect_true(all(res$common_names$language == "EN"))
-  expect_type(res$higher_taxa$kingdom, "character")
-})
-
-test_that("spp_taxonconcept() page selection works", {
-  vcr::use_cassette("spp_taxonconcept_pag", {
-    res <- spp_taxonconcept(
-      query_taxon = "", pages = c(43:44), per_page = 10,
-      with_descendants = FALSE, verbose = FALSE
-    )
-  })
-  expect_equal(nrow(res[[1L]]), 20)
-})
 
 test_that("spp_taxonconcept() updated_since works", {
   vcr::use_cassette("spp_taxonconcept_upd", {
