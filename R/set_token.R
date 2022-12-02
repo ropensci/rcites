@@ -3,7 +3,7 @@
 #' Set and forget the authentification token for the current session.
 #'
 #' @param token a character string (with quotes) containing your token. If
-#' `NULL`, then the token can be passed without quotes (not as character
+#' `NULL`, then the token can be passed without quotes (not as a character
 #' string) after a prompt.
 #'
 #' @references
@@ -13,17 +13,21 @@
 #'
 #' @examples
 #' \dontrun{
-#' # NB: the token below is not working
+#' # NB: the token below is not working and should not be used
 #' set_token("8QW6Qgh57sBG2k0gtt")
-#' # interactively
-#' set_token()
 #' }
 
 #' @describeIn set_token set the environment variable `SPECIESPLUS_TOKEN`.
 set_token <- function(token = NULL) {
-    while (is.null(token) || identical(token, "")) {
-        cli::cli_alert_warning("No token has been provided yet.")
-        token <- readline("Enter your token without quotes: ")
+    nat <- 5
+    for (k in seq_len(5)) {
+        if (is.null(token) || identical(token, "")) {
+            cli::cli_alert_warning("No token has been provided yet.")
+            token <- readline("Enter your token without quotes: ")
+        } else {
+            if (k < nat) break
+        }
+        if (k == nat) stop("Token still not set after ", nat," attempts.")
     }
     if (!grepl("[[:alnum:]]+", token)) {
         cli::cli_alert_warning("The token may not have the right format.")

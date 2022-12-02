@@ -11,7 +11,7 @@ forget_token()
 }
 \arguments{
 \item{token}{a character string (with quotes) containing your token. If
-\code{NULL}, then the token can be passed without quotes (not as character
+\code{NULL}, then the token can be passed without quotes (not as a character
 string) after a prompt.}
 }
 \description{
@@ -26,10 +26,8 @@ Set and forget the authentification token for the current session.
 }}
 \examples{
 \dontrun{
-# NB: the token below is not working
+# NB: the token below is not working and should not be used
 set_token("8QW6Qgh57sBG2k0gtt")
-# interactively
-set_token()
 }
 }
 \references{
