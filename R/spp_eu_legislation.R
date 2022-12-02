@@ -38,6 +38,7 @@
 #'
 #' @examples
 #' \donttest{
+#' # this calls will only work if a token is set and valid
 #' res1 <- spp_eu_legislation(taxon_id = '4521')
 #' res2 <- spp_eu_legislation(taxon_id = c('4521', '3210', '10255'))
 #' res3 <- spp_eu_legislation(taxon_id = '4521', scope = 'historic')

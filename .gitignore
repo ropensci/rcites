@@ -6,6 +6,7 @@ Makefile
 inst/tmp
 .Renviron
 pkgdown/
+.vscode
 
 # History files
 .Rhistory

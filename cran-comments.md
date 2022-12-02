@@ -1,4 +1,15 @@
-This is a minor release that mainly improves tests (tests have been reviewed, http requests have been recorded using vcr) and the testing environment (see below). Minor bugs have been squashed along the way. 
+This is a minor release that mainly improves tests (following the recent changes 
+in vcr) and improve code format as well as the set_token() function.
+
+## Problems fixed 
+
+* In the latest submission, the command `R CMD check --as-cran --run-donttest rcites_1.3.0.tar.gz`
+was stuck in a infinite while loop (a token was expected to be set and was not). 
+I fixed this problem, I use a for loop with 5 attempts. I also removed the line 
+in the example, the documentation of the function is clear enough about this feature. 
+* After re-reading some of the CRAN policy about examples, I have added a comment to every \donttest that are used to example why they won't work.
+* I ran the command `R CMD check --as-cran --run-donttest rcites_1.3.0.tar.gz`
+and it worked (took < 3min to run locally).
 
 ## Test environments
 
