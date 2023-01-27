@@ -59,7 +59,7 @@ Retrieve current EU annex listings, SRG opinions, and EU suspensions for a
 given taxon concept (identifier must be known).
 }
 \examples{
-\donttest{
+\dontrun{
 # this calls will only work if a token is set and valid
 res1 <- spp_eu_legislation(taxon_id = '4521')
 res2 <- spp_eu_legislation(taxon_id = c('4521', '3210', '10255'))
