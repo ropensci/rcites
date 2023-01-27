@@ -3,13 +3,10 @@ in vcr) and improve code format as well as the set_token() function.
 
 ## Problems fixed 
 
-* In the latest submission, the command `R CMD check --as-cran --run-donttest rcites_1.3.0.tar.gz`
-was stuck in a infinite while loop (a token was expected to be set and was not). 
-I fixed this problem, I use a for loop with 5 attempts. I also removed the line 
-in the example, the documentation of the function is clear enough about this feature. 
-* After re-reading some of the CRAN policy about examples, I have added a comment to every \donttest that are used to example why they won't work.
-* I ran the command `R CMD check --as-cran --run-donttest rcites_1.3.0.tar.gz`
-and it worked (took < 3min to run locally).
+* Following up on your email of the 2022-12-14, I have replaced all `\donttest` 
+tags by `\dontrun` because the token will not be set up, and so the same
+error will keep on being triggered (error that led to the suggestion of this change). 
+
 
 ## Test environments
 

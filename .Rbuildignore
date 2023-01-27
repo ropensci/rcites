@@ -17,4 +17,4 @@
 ^_pkgdown\.yml$
 ^CRAN-RELEASE$
 ^CRAN-SUBMISSION$
-^\.vscode/
+^\.vscode$

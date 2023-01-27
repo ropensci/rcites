@@ -60,7 +60,7 @@ Retrieve current CITES appendix listings and reservations, CITES quotas, and
 CITES suspensions for a given taxon concept.
 }
 \examples{
-\donttest{
+\dontrun{
 # this calls will only work if a token is set and valid
 res1 <- spp_cites_legislation(taxon_id = 4521)
 res2 <- spp_cites_legislation(taxon_id = c('4521', '3210', '10255'))
