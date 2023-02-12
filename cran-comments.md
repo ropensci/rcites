@@ -1,5 +1,5 @@
 This is a minor release that mainly improves tests (following the recent changes 
-in vcr) and improve code format as well as the set_token() function.
+in vcr) and improves code format as well as the set_token() function.
 
 ## Problems fixed 
 
@@ -13,9 +13,9 @@ error will keep on being triggered (error that led to the suggestion of this cha
 * GitHub Actions, Ubuntu 20.04.5: R-oldrel,
 * GitHub Actions, Ubuntu 20.04.5: R-release,
 * GitHub Actions, Ubuntu 20.04.5: R-devel,
-* GitHub Actions, macOS 11.7.1: R-release,
-* GitHub Actions, macOS 11.7.1: R-devel,
-* GitHub Actions, Microsoft Windows Server 2022 (10.0.20348): R-release,
+* GitHub Actions, macOS 12.6.2: R-release,
+* GitHub Actions, macOS 12.6.2: R-devel,
+* GitHub Actions, Microsoft Windows Server 2022 (10.0.20348): R-oldrel,
 * GitHub Actions, Microsoft Windows Server 2022 (10.0.20348): R-devel,
 * GitHub Actions, Microsoft Windows Server 2022 (10.0.20348): R-release,
 * win-builder (R-release and R-devel),
