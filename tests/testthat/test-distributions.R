@@ -1,4 +1,4 @@
-lang_GQ <- c("Equatorial Guinea", "Guinée équatoriale", "Guinea Ecuatorial")
+lang_GQ <- c("Equatorial Guinea", "Guin\u00e9e \u00e9quatoriale", "Guinea Ecuatorial")
 
 
 suppressMessages({
