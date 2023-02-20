@@ -1,3 +1,8 @@
+# rcites devel
+
+* Uses unicode escapes for "é" in tests.
+
+
 # rcites 1.3.0
 
 * `set_token()` now keeps prompting a message as long as the token is an empty 
