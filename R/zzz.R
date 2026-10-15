@@ -531,8 +531,10 @@ rcites_party <- function(x) {
 
 rcites_taxonconcept_cites_listings <- function(x, identifier) {
   # extract cites_listings
-  ls_cl <- lapply(x, rcites_null_to_na) |>
-    lapply(function(x) x$cites_listings)
+  ls_cl <- lapply(
+    lapply(x, rcites_null_to_na),
+    function(x) x$cites_listings
+  )
   ls_cl <- unlist(ls_cl, recursive = FALSE)
   ##
   if (length(ls_cl)) {
@@ -546,11 +548,11 @@ rcites_taxonconcept_cites_listings <- function(x, identifier) {
       as.data.frame(y, stringsAsFactors = FALSE)
     })
     cols <- unique(unlist(lapply(rows, names)))
-    out <- lapply(rows, function(y) {
+    rows <- lapply(rows, function(y) {
       y[setdiff(cols, names(y))] <- NA
       y[cols]
-    }) |>
-      do.call(what = rbind)
+    })
+    out <- do.call(rbind, rows)
   } else {
     out <- data.frame()
   }
