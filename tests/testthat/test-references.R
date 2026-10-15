@@ -13,21 +13,26 @@ test_that("spp_references() defaults works", {
 
 test_that("spp_references() raw mode", {
   vcr::use_cassette("spp_references_raw", {
-    expect_silent(res1 <- spp_references(
-      taxon_id = tx_id,
-      raw = TRUE,
-      verbose = FALSE
-    ))
-    expect_warning(res2 <- spp_references(
-      taxon_id = 0, raw = TRUE,
-      verbose = FALSE
-    ))
+    expect_silent(
+      res1 <- spp_references(
+        taxon_id = tx_id,
+        raw = TRUE,
+        verbose = FALSE
+      )
+    )
+    expect_warning(
+      res2 <- spp_references(
+        taxon_id = 0,
+        raw = TRUE,
+        verbose = FALSE
+      )
+    )
   })
   expect_true(is_cl_rw(res1))
   expect_true(is_cl_rw(res2))
   expect_equal(
     res2$error$message,
-    "We are sorry but an error occurred processing your request"
+    "Couldn't find TaxonConcept with 'id'=0"
   )
 })
 
@@ -43,7 +48,8 @@ test_that("spp_references() batch mode works", {
 test_that("spp_references() raw batch mode works", {
   vcr::use_cassette("spp_references_ram", {
     res <- spp_references(
-      taxon_id = c(tx_id, tx_id2), raw = TRUE,
+      taxon_id = c(tx_id, tx_id2),
+      raw = TRUE,
       verbose = FALSE
     )
   })

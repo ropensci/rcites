@@ -5,36 +5,36 @@
     Output
       
       -- Distributions ($distributions): ---------------------------------------------
-      # A tibble: 42 x 5
-            id iso_code2 name              type    tags 
-         <int> <chr>     <chr>             <chr>   <chr>
-       1  1778 ML        Mali              COUNTRY ""   
-       2  1923 GQ        Equatorial Guinea COUNTRY ""   
-       3  4429 RW        Rwanda            COUNTRY ""   
-       4  4491 GH        Ghana             COUNTRY ""   
-       5  5628 SD        Sudan             COUNTRY ""   
-       6  6724 ET        Ethiopia          COUNTRY ""   
-       7  8995 GA        Gabon             COUNTRY ""   
-       8 12983 AO        Angola            COUNTRY ""   
-       9 15554 CM        Cameroon          COUNTRY ""   
-      10 17060 BJ        Benin             COUNTRY ""   
-      # i 32 more rows
+      # A tibble: 27 x 5
+            id iso_code2 name         type    tags 
+         <int> <chr>     <chr>        <chr>   <chr>
+       1  1778 ML        Mali         COUNTRY ""   
+       2  4429 RW        Rwanda       COUNTRY ""   
+       3  5628 SD        Sudan        COUNTRY ""   
+       4  6724 ET        Ethiopia     COUNTRY ""   
+       5 15554 CM        Cameroon     COUNTRY ""   
+       6 19004 MZ        Mozambique   COUNTRY ""   
+       7 21296 ZW        Zimbabwe     COUNTRY ""   
+       8 22598 BW        Botswana     COUNTRY ""   
+       9 25648 ZA        South Africa COUNTRY ""   
+      10 34325 BF        Burkina Faso COUNTRY ""   
+      # i 17 more rows
       
       -- References ($references): ---------------------------------------------------
-      # A tibble: 146 x 2
+      # A tibble: 108 x 2
             id reference                       
          <int> <chr>                           
        1  1778 Kingdon, J., Happold [truncated]
-       2  1923 Basilio, A. 1962. La [truncated]
-       3  4429 Jackson, P. 1982. El [truncated]
-       4  4429 Monfort, A. 1992. Pr [truncated]
-       5  4491 Grubb, P., Jones, T. [truncated]
-       6  4491 Jackson, P. 1982. El [truncated]
-       7  5628 Hameed, S.M.A. and E [truncated]
-       8  6724 Bolton, M. 1973. Not [truncated]
-       9  6724 Largen, M. J. and Ya [truncated]
-      10  6724 Meester, J. and Setz [truncated]
-      # i 136 more rows
+       2  4429 Jackson, P. 1982. El [truncated]
+       3  4429 Monfort, A. 1992. Pr [truncated]
+       4  5628 Hameed, S.M.A. and E [truncated]
+       5  6724 Bolton, M. 1973. Not [truncated]
+       6  6724 Largen, M. J. and Ya [truncated]
+       7  6724 Meester, J. and Setz [truncated]
+       8 15554 Bauer, H. and Kari,  [truncated]
+       9 15554 Blanc, J.J., Thoules [truncated]
+      10 15554 Bowden, C. G. R. 198 [truncated]
+      # i 98 more rows
 
 # spp_distributions() works when no info available
 

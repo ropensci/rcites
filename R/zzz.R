@@ -533,32 +533,24 @@ rcites_taxonconcept_cites_listings <- function(x, identifier) {
   # extract cites_listings
   ls_cl <- lapply(x, rcites_null_to_na) |>
     lapply(function(x) x$cites_listings)
-  wch <- unlist(lapply(ls_cl, function(x) length(x) > 0))
+  ls_cl <- unlist(ls_cl, recursive = FALSE)
   ##
-  if (sum(wch)) {
-    tmp <- lapply(
-      Filter(Negate(is.null), ls_cl),
-      function(y) do.call(rbind, y)
-    )
-    tmp2 <- lapply(tmp, as.data.frame) |>
+  if (length(ls_cl)) {
+    # one row per listing, party removed; fields such as party are optional
+    # so listings may not share the same set of fields
+    rows <- lapply(ls_cl, function(y) {
+      y <- y[!names(y) %in% c("party", "hash_annotation")]
+      y <- lapply(y, function(z) {
+        if (length(z) == 1) z else paste(unlist(z), collapse = "")
+      })
+      as.data.frame(y, stringsAsFactors = FALSE)
+    })
+    cols <- unique(unlist(lapply(rows, names)))
+    out <- lapply(rows, function(y) {
+      y[setdiff(cols, names(y))] <- NA
+      y[cols]
+    }) |>
       do.call(what = rbind)
-    ## collapse hash_annotation
-    h_an <- lapply(tmp2$hash_annotation, paste, collapse = "")
-    if (!is.null(h_an)) {
-      tmp2$hash_annotation <- ""
-    }
-    ## Remove party
-    # party_all <- as.data.frame(
-    #   do.call(rbind, lapply(tmp2$party, rcites_party))
-    # )
-    # if (!nrow(party_all)) {
-    #
-    # } else {
-    #   row.names(party_all) <- NULL
-    #   colnames(party_all) <- paste0("party_", colnames(party_all))
-    # }
-    # ##
-    out <- cbind(tmp2[!names(tmp2) %in% c("party")])
   } else {
     out <- data.frame()
   }
