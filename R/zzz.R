@@ -44,6 +44,7 @@ rcites_get <- function(q_url, token, ...) {
   httr::GET(httr::modify_url(q_url), httr::add_headers(token), ...)
 }
 
+
 rcites_res <- function(q_url, token, raw, verbose, ...) {
   con <- rcites_get(q_url, token, ...)
   suc <- httr::http_status(con)
@@ -530,7 +531,8 @@ rcites_party <- function(x) {
 
 rcites_taxonconcept_cites_listings <- function(x, identifier) {
   # extract cites_listings
-  ls_cl <- lapply(lapply(x, rcites_null_to_na), function(x) x$cites_listings)
+  ls_cl <- lapply(x, rcites_null_to_na) |>
+    lapply(function(x) x$cites_listings)
   wch <- unlist(lapply(ls_cl, function(x) length(x) > 0))
   ##
   if (sum(wch)) {
@@ -538,26 +540,28 @@ rcites_taxonconcept_cites_listings <- function(x, identifier) {
       Filter(Negate(is.null), ls_cl),
       function(y) do.call(rbind, y)
     )
-    tmp2 <- do.call(rbind, lapply(tmp, as.data.frame))
+    tmp2 <- lapply(tmp, as.data.frame) |>
+      do.call(what = rbind)
     ## collapse hash_annotation
-    tmp2$hash_annotation <- lapply(tmp2$hash_annotation, paste, collapse = "")
-    ## Deal with party
-    party_all <- as.data.frame(
-      do.call(rbind, lapply(tmp2$party, rcites_party))
-    )
-    row.names(party_all) <- NULL
-    colnames(party_all) <- paste0("party_", colnames(party_all))
-    ##
-    tmp3 <- cbind(tmp2[!names(tmp2) %in% c("party")], party_all)
-    out <- data.frame(
-      id = rep(identifier[wch], unlist(lapply(tmp, nrow))),
-      apply(tmp3, 2, unlist),
-      stringsAsFactors = FALSE
-    )
+    h_an <- lapply(tmp2$hash_annotation, paste, collapse = "")
+    if (!is.null(h_an)) {
+      tmp2$hash_annotation <- ""
+    }
+    ## Remove party
+    # party_all <- as.data.frame(
+    #   do.call(rbind, lapply(tmp2$party, rcites_party))
+    # )
+    # if (!nrow(party_all)) {
+    #
+    # } else {
+    #   row.names(party_all) <- NULL
+    #   colnames(party_all) <- paste0("party_", colnames(party_all))
+    # }
+    # ##
+    out <- cbind(tmp2[!names(tmp2) %in% c("party")])
   } else {
     out <- data.frame()
   }
   ## output
-  out <- rcites_assign_class(out)
-  out
+  rcites_assign_class(out)
 }
