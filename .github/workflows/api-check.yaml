@@ -1,0 +1,50 @@
+on:
+  schedule:
+    # 06:00 UTC on the first day of every month
+    - cron: "0 6 1 * *"
+  workflow_dispatch:
+
+name: API check
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  api-check:
+    runs-on: ubuntu-latest
+
+    env:
+      SPECIESPLUS_TOKEN: ${{ secrets.SPECIESPLUS_TOKEN }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: true
+
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          extra-packages: local::.
+          dependencies: '"hard"'
+
+      - name: Check Species+ API structure
+        run: Rscript .github/scripts/check-api.R
+
+      - name: Open an issue on failure
+        if: failure() && github.event_name == 'schedule'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          title="Species+ API check failed"
+          # avoid duplicates: comment on the open issue if there is one
+          number=$(gh issue list --state open --search "\"$title\" in:title" \
+            --json number --jq '.[0].number')
+          if [ -n "$number" ]; then
+            gh issue comment "$number" --body "Failed again: $RUN_URL"
+          else
+            gh issue create --title "$title" \
+              --body "The monthly API check failed, the Species+ API may have changed: $RUN_URL"
+          fi
