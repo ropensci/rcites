@@ -18,7 +18,7 @@
        8 12983 AO        Angola            COUNTRY ""   
        9 15554 CM        Cameroon          COUNTRY ""   
       10 17060 BJ        Benin             COUNTRY ""   
-      # ... with 32 more rows
+      # i 32 more rows
       
       -- References ($references): ---------------------------------------------------
       # A tibble: 146 x 2
@@ -34,7 +34,7 @@
        8  6724 Bolton, M. 1973. Not [truncated]
        9  6724 Largen, M. J. and Ya [truncated]
       10  6724 Meester, J. and Setz [truncated]
-      # ... with 136 more rows
+      # i 136 more rows
 
 # spp_distributions() works when no info available
 
