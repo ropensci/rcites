@@ -6,11 +6,10 @@
       
       -- General info - CITES ($general): --------------------------------------------
       # A tibble: 1 x 8
-        id    full_name       autho~1 rank  name_~2 updated_at          active cites~3
-      * <chr> <chr>           <chr>   <chr> <chr>   <dttm>              <lgl>  <chr>  
-      1 4521  Loxodonta afri~ (Blume~ SPEC~ A       2022-10-25 10:29:30 TRUE   I/II   
-      # ... with abbreviated variable names 1: author_year, 2: name_status,
-      #   3: cites_listing
+        id    full_name       author_year rank  name_status updated_at          active
+      * <chr> <chr>           <chr>       <chr> <chr>       <dttm>              <lgl> 
+      1 4521  Loxodonta afri~ (Blumenbac~ SPEC~ A           2022-10-25 10:29:30 TRUE  
+      # i 1 more variable: cites_listing <chr>
       
       -- Classification ($higher_taxa): ----------------------------------------------
       # A tibble: 1 x 6
@@ -38,7 +37,7 @@
        8  4521 Słoń afrykański   PL      
        9  4521 Slon              RU      
       10  4521 Elefant           NO      
-      # ... with 42 more rows
+      # i 42 more rows
       
       Information available: $all_id, $general, $higher_taxa, $accepted_names, $common_names, $synonyms, $cites_listings 
 

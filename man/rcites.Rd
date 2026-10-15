@@ -2,8 +2,8 @@
 % Please edit documentation in R/zzz.R
 \docType{package}
 \name{rcites}
-\alias{rcites}
 \alias{rcites-package}
+\alias{rcites}
 \title{rcites}
 \description{
 A programmatic interface to the Species+ \url{https://speciesplus.net/} database
@@ -23,6 +23,7 @@ Useful links:
 
 Authors:
 \itemize{
+  \item Kevin Cazelles \email{kevin.cazelles@gmail.com} (\href{https://orcid.org/0000-0001-6619-9874}{ORCID})
   \item Jonas Geschke \email{jonas.e.geschke@gmail.com} (\href{https://orcid.org/0000-0002-5654-9313}{ORCID})
   \item Ignasi Bartomeus (\href{https://orcid.org/0000-0001-7893-4389}{ORCID})
 }
