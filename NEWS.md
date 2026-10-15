@@ -1,5 +1,6 @@
 # rcites devel
 
+* spp_taxonconcept() handles the new shape of CITES listings (see #70)
 * Uses unicode escapes for "é" in tests.
 
 

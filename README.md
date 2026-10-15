@@ -1,6 +1,7 @@
 # rcites <img src="man/figures/rcites_logo.png" width="130" height="150" align="right"/>
 
-[![R CMD Check](https://github.com/ropensci/rcites/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ropensci/rcites/actions/workflows/R-CMD-check.yaml)
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/ropensci/rcites/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ropensci/rcites/actions/workflows/R-CMD-check.yaml)
 [![codecov](https://codecov.io/gh/ropensci/rcites/branch/master/graph/badge.svg)](https://app.codecov.io/gh/ropensci/rcites)
 [![status](https://tinyverse.netlify.com/badge/rcites)](https://CRAN.R-project.org/package=rcites)
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
@@ -9,6 +10,7 @@
 [![CRAN downloads](https://cranlogs.r-pkg.org/badges/grand-total/rcites)](https://cran.r-project.org/package=rcites)
 [![Zenodo DOI](https://zenodo.org/badge/113842199.svg)](https://zenodo.org/badge/latestdoi/113842199)
 [![JOSS DOI](http://joss.theoj.org/papers/10.21105/joss.01091/status.svg)](https://doi.org/10.21105/joss.01091)
+<!-- badges: end -->
 
 
 An R package to access information from the [Speciesplus](https://speciesplus.net/) database via the [Speciesplus/CITES Checklist API](https://api.speciesplus.net/documentation/v1.html). The package is available for download from [CRAN](https://cran.r-project.org/package=rcites) (stable version) and [Github](https://github.com/ropensci/rcites) (development version).
