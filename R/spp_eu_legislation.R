@@ -46,46 +46,70 @@
 #'  verbose = FALSE, config=httr::verbose())
 #' }
 
-spp_eu_legislation <- function(taxon_id, scope = "current", language = "en",
-    raw = FALSE, token = NULL, verbose = TRUE, pause = 1, ...) {
-
-    if (length(taxon_id) > 1) {
-        out <- lapply(taxon_id, spp_eu_legislation, scope = scope,
-          language = language, raw = raw, token = token, verbose = verbose,
-           pause = pause, ...)
-        out <- rcites_combine_lists(out, taxon_id, raw)
-    } else {
-        # token check
-        if (is.null(token))
-            token <- rcites_getsecret()
-        # id check
-        if (rcites_checkid(taxon_id)) {
-            out <- NULL
-        } else {
-            if (verbose)
-                rcites_current_id(taxon_id)
-            # set query string
-            query_string <- paste(c(rcites_lang(language), rcites_scope(scope)),
-                collapse = "&")
-            if (query_string != "")
-                query_string <- paste0("?", query_string)
-            ## create url
-            q_url <- rcites_url("taxon_concepts/", taxon_id,
-              "/eu_legislation.json", query_string)
-            ## get_res
-            tmp <- rcites_res(q_url, token, raw, verbose, ...)
-            ## outputs
-            if (raw) {
-                out <- tmp
-                class(out) <- c("list", "spp_raw")
-            } else {
-                out <- list()
-                out$eu_listings <- rcites_simplify_listings(tmp$eu_listings)
-                out$eu_decisions <- rcites_simplify_decisions(tmp$eu_decisions)
-                class(out) <- c("spp_eu_leg")
-            }
-        }
+spp_eu_legislation <- function(
+  taxon_id,
+  scope = "current",
+  language = "en",
+  raw = FALSE,
+  token = NULL,
+  verbose = TRUE,
+  pause = 1,
+  ...
+) {
+  if (length(taxon_id) > 1) {
+    out <- lapply(
+      taxon_id,
+      spp_eu_legislation,
+      scope = scope,
+      language = language,
+      raw = raw,
+      token = token,
+      verbose = verbose,
+      pause = pause,
+      ...
+    )
+    out <- rcites_combine_lists(out, taxon_id, raw)
+  } else {
+    # token check
+    if (is.null(token)) {
+      token <- rcites_getsecret()
     }
-    Sys.sleep(pause)
-    out
+    # id check
+    if (rcites_checkid(taxon_id)) {
+      out <- NULL
+    } else {
+      if (verbose) {
+        rcites_current_id(taxon_id)
+      }
+      # set query string
+      query_string <- paste(
+        c(rcites_lang(language), rcites_scope(scope)),
+        collapse = "&"
+      )
+      if (query_string != "") {
+        query_string <- paste0("?", query_string)
+      }
+      ## create url
+      q_url <- rcites_url(
+        "taxon_concepts/",
+        taxon_id,
+        "/eu_legislation.json",
+        query_string
+      )
+      ## get_res
+      tmp <- rcites_res(q_url, token, raw, verbose, ...)
+      ## outputs
+      if (raw) {
+        out <- tmp
+        class(out) <- c("list", "spp_raw")
+      } else {
+        out <- list()
+        out$eu_listings <- rcites_simplify_listings(tmp$eu_listings)
+        out$eu_decisions <- rcites_simplify_decisions(tmp$eu_decisions)
+        class(out) <- c("spp_eu_leg")
+      }
+    }
+  }
+  Sys.sleep(pause)
+  out
 }

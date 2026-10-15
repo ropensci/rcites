@@ -60,93 +60,151 @@
 #' res4 <- spp_taxonconcept(query_taxon = '', per_page = 20, pages = 44)
 #' }
 
-
-spp_taxonconcept <- function(query_taxon, taxonomy = "CITES",
-    with_descendants = FALSE, language = NULL, updated_since = NULL,
-    per_page = 500, pages = NULL, raw = FALSE, token = NULL, verbose = TRUE,
-    pause = 1, ...) {
-    # taxonomy check
-    taxonomy <- match.arg(taxonomy, c("CITES", "CMS"))
-    # token check
-    if (is.null(token))
-        token <- rcites_getsecret()
-    # request
-    if (is.null(pages)) {
-        # first page
-        f_page <- 1
+spp_taxonconcept <- function(
+  query_taxon,
+  taxonomy = "CITES",
+  with_descendants = FALSE,
+  language = NULL,
+  updated_since = NULL,
+  per_page = 500,
+  pages = NULL,
+  raw = FALSE,
+  token = NULL,
+  verbose = TRUE,
+  pause = 1,
+  ...
+) {
+  # taxonomy check
+  taxonomy <- match.arg(taxonomy, c("CITES", "CMS"))
+  # token check
+  if (is.null(token)) {
+    token <- rcites_getsecret()
+  }
+  # request
+  if (is.null(pages)) {
+    # first page
+    f_page <- 1
+  } else {
+    pages <- sort(unique(as.integer(pages)))
+    f_page <- pages[1L]
+  }
+  q_url <- rcites_taxonconcept_request(
+    query_taxon,
+    taxonomy,
+    with_descendants,
+    f_page,
+    per_page,
+    updated_since,
+    language
+  )
+  # results
+  if (verbose) {
+    rcites_cat_pages(f_page)
+  }
+  tmp <- rcites_res(q_url, token, raw, verbose, ...)
+  # number of pages
+  pag <- rcites_numberpages(tmp$pagination)
+  #
+  if (!pag) {
+    warning("Taxon not listed.")
+    return(NULL)
+  } else {
+    if (pag > 1) {
+      if (is.null(pages)) {
+        pages <- seq_len(pag)
+      } else {
+        pages <- pages[pages <= pag]
+      }
+      if (!length(pages)) {
+        stop("Only page 1-", pag, " are available.")
+      }
+      if (length(pages) > 1) {
+        res <- rcites_autopagination(
+          q_url,
+          per_page,
+          pages[-1L],
+          pag,
+          token,
+          verbose,
+          ...
+        )
+        tmp2 <- c(
+          tmp$taxon_concepts,
+          do.call(c, lapply(res, function(x) x$taxon_concepts))
+        )
+      } else {
+        tmp2 <- tmp$taxon_concepts
+      }
     } else {
-        pages <- sort(unique(as.integer(pages)))
-        f_page <- pages[1L]
+      tmp2 <- tmp$taxon_concepts
     }
-    q_url <- rcites_taxonconcept_request(query_taxon, taxonomy,
-        with_descendants, f_page, per_page, updated_since, language)
-    # results
-    if (verbose)
-      rcites_cat_pages(f_page)
-    tmp <- rcites_res(q_url, token, raw, verbose, ...)
-    # number of pages
-    pag <- rcites_numberpages(tmp$pagination)
-    #
-    if (!pag) {
-        warning("Taxon not listed.")
-        return(NULL)
+    # outputs
+    if (raw) {
+      class(tmp2) <- c("list", "spp_raw")
+      return(tmp2)
     } else {
-        if (pag > 1) {
-            if (is.null(pages))
-                pages <- seq_len(pag) else pages <- pages[pages <= pag]
-            if (!length(pages))
-                stop("Only page 1-", pag, " are available.")
-            if (length(pages) > 1) {
-                res <- rcites_autopagination(q_url, per_page, pages[-1L],
-                  pag, token, verbose, ...)
-                tmp2 <- c(tmp$taxon_concepts,
-                  do.call(c, lapply(res, function(x) x$taxon_concepts)))
-            } else tmp2 <- tmp$taxon_concepts
-        } else tmp2 <- tmp$taxon_concepts
-        # outputs
-        if (raw) {
-            class(tmp2) <- c("list", "spp_raw")
-            return(tmp2)
-        } else {
-            ## special cases
-            sp_nm <- c("synonyms", "higher_taxa", "common_names",
-                "cites_listing", "cites_listings", "accepted_names")
-            ## output
-            out <- list()
-            out$all_id <- rcites_taxonconcept_allentries(tmp2, sp_nm)
-            out$all_id$updated_at <- as.POSIXlt(out$all_id$updated_at,
-                format = "%Y-%m-%dT%H:%M:%OS")
-            out$all_id$active <- as.logical(out$all_id$active)
-            ## extract active only
-            id <- which(out$all_id$active)
-            out$general <- out$all_id[out$all_id$active, ]
+      ## special cases
+      sp_nm <- c(
+        "synonyms",
+        "higher_taxa",
+        "common_names",
+        "cites_listing",
+        "cites_listings",
+        "accepted_names"
+      )
+      ## output
+      out <- list()
+      out$all_id <- rcites_taxonconcept_allentries(tmp2, sp_nm)
+      out$all_id$updated_at <- as.POSIXlt(
+        out$all_id$updated_at,
+        format = "%Y-%m-%dT%H:%M:%OS"
+      )
+      out$all_id$active <- as.logical(out$all_id$active)
+      ## extract active only
+      id <- which(out$all_id$active)
+      out$general <- out$all_id[out$all_id$active, ]
 
-            ## Classification
-            out$higher_taxa <- rcites_taxonconcept_higher_taxa(tmp2[id],
-                out$general$id)
-            ## Names
-            out$accepted_names <- rcites_taxonconcept_names(tmp2[!id],
-                "accepted_names", out$all_id$id[!id])
-            out$common_names <- rcites_taxonconcept_names(tmp2[id],
-              "common_names", out$general$id)
-            out$synonyms <- rcites_taxonconcept_names(tmp2[id], "synonyms",
-                out$general$id)
+      ## Classification
+      out$higher_taxa <- rcites_taxonconcept_higher_taxa(
+        tmp2[id],
+        out$general$id
+      )
+      ## Names
+      out$accepted_names <- rcites_taxonconcept_names(
+        tmp2[!id],
+        "accepted_names",
+        out$all_id$id[!id]
+      )
+      out$common_names <- rcites_taxonconcept_names(
+        tmp2[id],
+        "common_names",
+        out$general$id
+      )
+      out$synonyms <- rcites_taxonconcept_names(
+        tmp2[id],
+        "synonyms",
+        out$general$id
+      )
 
-            ## Extra output if taxonomy is set to CITES
-            if (taxonomy == "CITES") {
-                tmp_cit <- lapply(tmp2[id], function(x) x$cites_listing)
-                out$general$cites_listing <- unlist(lapply(tmp_cit,
-                  rcites_null_to_na))
-                out$cites_listings <- rcites_taxonconcept_cites_listings(
-                  tmp2[id], out$general$id)
-            }
-            class(out$general) <- class(out$all_id) <- c("tbl_df", "tbl",
-                "data.frame")
-            ##
-            class(out) <- c("spp_taxon")
-            attr(out, "taxonomy") <- taxonomy
-        }
+      ## Extra output if taxonomy is set to CITES
+      if (taxonomy == "CITES") {
+        tmp_cit <- lapply(tmp2[id], function(x) x$cites_listing)
+        out$general$cites_listing <- unlist(lapply(tmp_cit, rcites_null_to_na))
+        out$cites_listings <- rcites_taxonconcept_cites_listings(
+          tmp2[id],
+          out$general$id
+        )
+      }
+      class(out$general) <- class(out$all_id) <- c(
+        "tbl_df",
+        "tbl",
+        "data.frame"
+      )
+      ##
+      class(out) <- c("spp_taxon")
+      attr(out, "taxonomy") <- taxonomy
     }
-    Sys.sleep(pause)
-    out
+  }
+  Sys.sleep(pause)
+  out
 }
