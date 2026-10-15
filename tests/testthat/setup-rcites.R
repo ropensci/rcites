@@ -10,9 +10,7 @@ if (!nzchar(Sys.getenv("SPECIESPLUS_TOKEN"))) {
     Sys.setenv("SPECIESPLUS_TOKEN" = "hackme")
   } else {
     # If there's no mock files nor API token, impossible to run tests
-    stop("No API key nor cassettes, tests cannot be run.",
-      call. = FALSE
-    )
+    stop("No API key nor cassettes, tests cannot be run.", call. = FALSE)
   }
 }
 

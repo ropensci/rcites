@@ -5,11 +5,11 @@
     Output
       
       -- General info - CITES ($general): --------------------------------------------
-      # A tibble: 1 x 8
+      # A tibble: 1 x 9
         id    full_name       author_year rank  name_status updated_at          active
       * <chr> <chr>           <chr>       <chr> <chr>       <dttm>              <lgl> 
-      1 4521  Loxodonta afri~ (Blumenbac~ SPEC~ A           2022-10-25 10:29:30 TRUE  
-      # i 1 more variable: cites_listing <chr>
+      1 4521  Loxodonta afri~ (Blumenbac~ SPEC~ A           2026-09-08 15:28:17 TRUE  
+      # i 2 more variables: eu_listing <chr>, cites_listing <chr>
       
       -- Classification ($higher_taxa): ----------------------------------------------
       # A tibble: 1 x 6
@@ -18,26 +18,23 @@
       1 4521  Animalia Chordata Mammalia Proboscidea Elephantidae
       
       -- Synonyms ($synonyms): -------------------------------------------------------
-      # A tibble: 1 x 4
-           id full_name          author_year      rank   
-        <int> <chr>              <chr>            <chr>  
-      1 37069 Loxodonta cyclotis (Matschie, 1900) SPECIES
+      No records available.
       
       -- Common names ($common_names): -----------------------------------------------
-      # A tibble: 52 x 3
-            id name              language
-         <int> <chr>             <chr>   
-       1  4521 slon africký      SK      
-       2  4521 afriški slon      SL      
-       3  4521 Ndovo             SW      
-       4  4521 Tembo             SW      
-       5  4521 Haathi            UR      
-       6  4521 Elefante          PT      
-       7  4521 Elefante-africano PT      
-       8  4521 Słoń afrykański   PL      
-       9  4521 Slon              RU      
-      10  4521 Elefant           NO      
-      # i 42 more rows
+      # A tibble: 53 x 3
+            id name                  language
+         <int> <chr>                 <chr>   
+       1  4521 Haathi                UR      
+       2  4521 Elefante              PT      
+       3  4521 Ndovo                 SW      
+       4  4521 Norsu                 FI      
+       5  4521 afrikansk elefant     DA      
+       6  4521 Elefant               NO      
+       7  4521 Afrikanischer Elefant DE      
+       8  4521 Elefante              EU      
+       9  4521 Slon                  BG      
+      10  4521 Elefante africano     IT      
+      # i 43 more rows
       
       Information available: $all_id, $general, $higher_taxa, $accepted_names, $common_names, $synonyms, $cites_listings 
 

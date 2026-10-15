@@ -20,3 +20,10 @@
       ! The token may not have the right format.
       v Token stored for the session.
 
+---
+
+    Code
+      set_token(old)
+    Message
+      v Token stored for the session.
+
