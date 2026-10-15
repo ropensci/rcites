@@ -30,7 +30,6 @@ rcites_cat_failure <- function() {
 }
 
 
-
 ################## General helpers
 
 rcites_baseurl <- function() "https://api.speciesplus.net/api/v1/"
@@ -107,7 +106,9 @@ rcites_checkid <- function(taxon_id) {
 
 rcites_current_id <- function(x) {
   rcites_msg_info(
-    "Now processing taxon_id '", x, "'",
+    "Now processing taxon_id '",
+    x,
+    "'",
     paste(rep(".", 26 - nchar(x)), collapse = ""),
     " ",
     appendLF = FALSE
@@ -118,7 +119,8 @@ rcites_current_id <- function(x) {
 rcites_add_taxon_id <- function(x, taxon_id) {
   if (length(x)) {
     out <- cbind.data.frame(
-      taxon_id = as.character(taxon_id), x,
+      taxon_id = as.character(taxon_id),
+      x,
       stringsAsFactors = FALSE
     )
   } else {
@@ -150,16 +152,19 @@ rcites_combine_lists <- function(x, taxon_id, raw) {
     out <- list()
     for (i in seq_along(ls_keys[[1L]])) {
       key <- ls_keys[[1L]][i]
-      out[[key]] <- rcites_assign_class(do.call(rbind, lapply(
-        x,
-        `[[`, key
-      )))
+      out[[key]] <- rcites_assign_class(do.call(
+        rbind,
+        lapply(
+          x,
+          `[[`,
+          key
+        )
+      ))
     }
     class(out) <- paste0(cls, "_multi", sep = "")
   }
   out
 }
-
 
 
 ################# Secret helpers
@@ -168,9 +173,11 @@ rcites_combine_lists <- function(x, taxon_id, raw) {
 rcites_getsecret <- function() {
   val <- Sys.getenv("SPECIESPLUS_TOKEN")
   if (identical(val, "")) {
-    cli::cli_alert_warning("`SPECIESPLUS_TOKEN` env var has not been set yet.
+    cli::cli_alert_warning(
+      "`SPECIESPLUS_TOKEN` env var has not been set yet.
     A token is required to use the species + API, see
-    https://api.speciesplus.net/documentation")
+    https://api.speciesplus.net/documentation"
+    )
     set_token()
     val <- rcites_getsecret()
   }
@@ -180,8 +187,15 @@ rcites_getsecret <- function() {
 
 ##################### Pagination helpers
 
-rcites_autopagination <- function(q_url, per_page, pages, tot_page, token,
-                                  verbose = TRUE, ...) {
+rcites_autopagination <- function(
+  q_url,
+  per_page,
+  pages,
+  tot_page,
+  token,
+  verbose = TRUE,
+  ...
+) {
   out <- list()
   q_url_0 <- gsub(
     q_url,
@@ -200,7 +214,10 @@ rcites_autopagination <- function(q_url, per_page, pages, tot_page, token,
       rcites_cat_pages(pages[i])
     }
     q_url_new <- paste0(
-      q_url_0, "page=", pages[i], "&per_page=",
+      q_url_0,
+      "page=",
+      pages[i],
+      "&per_page=",
       min(per_page, 500)
     )
     out[[i]] <- rcites_res(q_url_new, token, verbose = verbose, ...)
@@ -212,8 +229,10 @@ rcites_autopagination <- function(q_url, per_page, pages, tot_page, token,
 rcites_cat_pages <- function(pag) {
   rcites_msg_info(
     "Retrieving info from page ",
-    pag, " ",
-    paste(rep(".", 25 - nchar(pag)), collapse = ""), " ",
+    pag,
+    " ",
+    paste(rep(".", 25 - nchar(pag)), collapse = ""),
+    " ",
     appendLF = FALSE
   )
 }
@@ -221,7 +240,6 @@ rcites_cat_pages <- function(pag) {
 rcites_numberpages <- function(x) {
   x$total_entries %/% x$per_page + (x$total_entries %% x$per_page > 0)
 }
-
 
 
 ################## Outputs helpers
@@ -288,11 +306,10 @@ rcites_simplify_listings <- function(x) {
   } else {
     # fields below may or may not be included, so there are removed
     vc_rm <- c("party", "hash_annotation", "annotation")
-    tmp <- lapply(lapply(x, FUN = function(x) x[!names(x) %in% vc_rm]),
+    tmp <- lapply(
+      lapply(x, FUN = function(x) x[!names(x) %in% vc_rm]),
       FUN = function(y) {
-        data.frame(do.call(cbind, y),
-          stringsAsFactors = FALSE
-        )
+        data.frame(do.call(cbind, y), stringsAsFactors = FALSE)
       }
     )
     if (length(tmp) > 1) {
@@ -310,10 +327,13 @@ rcites_simplify_listings <- function(x) {
 rcites_simplify_decisions <- function(x) {
   tmp0 <- lapply(lapply(x, rcites_null_to_na), unlist)
   out <- data.frame(
-    do.call(rbind, lapply(
-      tmp0,
-      function(y) data.frame(rbind(y), stringsAsFactors = FALSE)
-    )),
+    do.call(
+      rbind,
+      lapply(
+        tmp0,
+        function(y) data.frame(rbind(y), stringsAsFactors = FALSE)
+      )
+    ),
     stringsAsFactors = FALSE
   )
   #
@@ -329,7 +349,8 @@ rcites_simplify_distributions <- function(x) {
   )
   tmp1 <- tmp[!names(tmp) %in% c("tags", "references")]
   out <- list()
-  out$distributions <- as.data.frame(lapply(tmp1, unlist),
+  out$distributions <- as.data.frame(
+    lapply(tmp1, unlist),
     stringsAsFactors = FALSE
   )
   # collapse tags
@@ -346,7 +367,8 @@ rcites_simplify_distributions <- function(x) {
         out$distributions$id,
         unlist(lapply(tmp2, length))
       ),
-      reference = unlist(tmp2), stringsAsFactors = FALSE
+      reference = unlist(tmp2),
+      stringsAsFactors = FALSE
     )
     out$references <- rcites_assign_class(out$references)
   } else {
@@ -357,14 +379,14 @@ rcites_simplify_distributions <- function(x) {
 }
 
 
-
-
 ################ print helpers
 
 rcites_print_shorten <- function(x, stop = 20) {
   unlist(lapply(x, function(y) {
-    ifelse(nchar(y) > (stop + 5),
-      paste0(substring(y, 1, stop), " [truncated]"), y
+    ifelse(
+      nchar(y) > (stop + 5),
+      paste0(substring(y, 1, stop), " [truncated]"),
+      y
     )
   }))
 }
@@ -414,11 +436,17 @@ rcites_print_taxon_id <- function(x, max_print = 20) {
 }
 
 
-
 ############################# spp_taxonconcept() helpers
 
-rcites_taxonconcept_request <- function(x, taxonomy, with_descendants,
-                                        page, per_page, updated_since = NULL, language = NULL) {
+rcites_taxonconcept_request <- function(
+  x,
+  taxonomy,
+  with_descendants,
+  page,
+  per_page,
+  updated_since = NULL,
+  language = NULL
+) {
   # deal with whitespace
   tmp <- curl::curl_escape(as.character(x))
   #
@@ -426,13 +454,19 @@ rcites_taxonconcept_request <- function(x, taxonomy, with_descendants,
   taxo <- ifelse(taxonomy == "CMS", "taxonomy=CMS", "")
   #
   wdes <- ifelse(with_descendants, "with_descendants=true", "")
-  lng <- ifelse(is.null(language), "", paste0("language=", paste(language,
-    collapse = ","
-  )))
-  tim <- ifelse(is.null(updated_since), "", paste0(
-    "updated_since=",
-    rcites_timestamp(updated_since)
-  ))
+  lng <- ifelse(
+    is.null(language),
+    "",
+    paste0("language=", paste(language, collapse = ","))
+  )
+  tim <- ifelse(
+    is.null(updated_since),
+    "",
+    paste0(
+      "updated_since=",
+      rcites_timestamp(updated_since)
+    )
+  )
   #
   pag <- paste0("page=", page, "&per_page=", min(per_page, 500))
   #
@@ -459,7 +493,8 @@ rcites_taxonconcept_higher_taxa <- function(x, identifier) {
   wch <- which(lapply(tmp, length) > 0)
   #
   out <- data.frame(
-    id = identifier[wch], do.call(rbind, tmp[wch]),
+    id = identifier[wch],
+    do.call(rbind, tmp[wch]),
     stringsAsFactors = FALSE
   )
   out <- rcites_assign_class(out)

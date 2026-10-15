@@ -44,41 +44,62 @@
 #'  verbose = FALSE, config = httr::progress())
 #' }
 
-spp_distributions <- function(taxon_id, language = "en", raw = FALSE,
-    token = NULL, verbose = TRUE, pause = 1, ...) {
-
-    if (length(taxon_id) > 1) {
-        out <- lapply(taxon_id, spp_distributions, language = language,
-            raw = raw, token = token, verbose = verbose, pause = pause, ...)
-        out <- rcites_combine_lists(out, taxon_id, raw)
-    } else {
-        # token check
-        if (is.null(token))
-            token <- rcites_getsecret()
-        # id check
-        if (rcites_checkid(taxon_id)) {
-            out <- NULL
-        } else {
-            if (verbose)
-                rcites_current_id(taxon_id)
-            # set query string
-            tmp <- rcites_lang(language)
-            if (!is.null(tmp))
-                tmp <- paste0("?", tmp)
-            q_url <- rcites_url("taxon_concepts/", taxon_id,
-              "/distributions.json", tmp)
-            # get results
-            res <- rcites_res(q_url, token, raw, verbose, ...)
-            # outputs
-            if (raw) {
-                out <- res
-                class(out) <- c("list", "spp_raw")
-            } else {
-                out <- rcites_simplify_distributions(res)
-                class(out) <- c("spp_distr")
-            }
-        }
+spp_distributions <- function(
+  taxon_id,
+  language = "en",
+  raw = FALSE,
+  token = NULL,
+  verbose = TRUE,
+  pause = 1,
+  ...
+) {
+  if (length(taxon_id) > 1) {
+    out <- lapply(
+      taxon_id,
+      spp_distributions,
+      language = language,
+      raw = raw,
+      token = token,
+      verbose = verbose,
+      pause = pause,
+      ...
+    )
+    out <- rcites_combine_lists(out, taxon_id, raw)
+  } else {
+    # token check
+    if (is.null(token)) {
+      token <- rcites_getsecret()
     }
-    Sys.sleep(pause)
-    out
+    # id check
+    if (rcites_checkid(taxon_id)) {
+      out <- NULL
+    } else {
+      if (verbose) {
+        rcites_current_id(taxon_id)
+      }
+      # set query string
+      tmp <- rcites_lang(language)
+      if (!is.null(tmp)) {
+        tmp <- paste0("?", tmp)
+      }
+      q_url <- rcites_url(
+        "taxon_concepts/",
+        taxon_id,
+        "/distributions.json",
+        tmp
+      )
+      # get results
+      res <- rcites_res(q_url, token, raw, verbose, ...)
+      # outputs
+      if (raw) {
+        out <- res
+        class(out) <- c("list", "spp_raw")
+      } else {
+        out <- rcites_simplify_distributions(res)
+        class(out) <- c("spp_distr")
+      }
+    }
+  }
+  Sys.sleep(pause)
+  out
 }
